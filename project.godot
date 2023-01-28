@@ -8,10 +8,73 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node",
+"class": "BT",
+"language": "GDScript",
+"path": "res://_Dev/Yalmaz/bTrees/BT.gd"
+}, {
+"base": "Node",
+"class": "BT_Blackboard",
+"language": "GDScript",
+"path": "res://_Dev/Yalmaz/bTrees/BT_Blackboard.gd"
+}, {
+"base": "BT_Leaf",
+"class": "BT_Conditional",
+"language": "GDScript",
+"path": "res://_Dev/Yalmaz/bTrees/Leaves/BT_Conditional.gd"
+}, {
+"base": "Base_BT_Node",
+"class": "BT_Leaf",
+"language": "GDScript",
+"path": "res://_Dev/Yalmaz/bTrees/Leaves/BT_Leaf.gd"
+}, {
+"base": "BT",
+"class": "BT_Root",
+"language": "GDScript",
+"path": "res://_Dev/Yalmaz/bTrees/BT_Root.gd"
+}, {
+"base": "Base_BT_Composite",
+"class": "BT_Selector",
+"language": "GDScript",
+"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Selector.gd"
+}, {
+"base": "Base_BT_Composite",
+"class": "BT_Sequencer",
+"language": "GDScript",
+"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Sequencer.gd"
+}, {
+"base": "Base_BT_Node",
+"class": "Base_BT_Composite",
+"language": "GDScript",
+"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Composite.gd"
+}, {
+"base": "BT",
+"class": "Base_BT_Node",
+"language": "GDScript",
+"path": "res://_Dev/Yalmaz/bTrees/Base_BT_Node.gd"
+} ]
+_global_script_class_icons={
+"BT": "",
+"BT_Blackboard": "",
+"BT_Conditional": "",
+"BT_Leaf": "",
+"BT_Root": "",
+"BT_Selector": "",
+"BT_Sequencer": "",
+"Base_BT_Composite": "",
+"Base_BT_Node": ""
+}
+
 [application]
 
 config/name="The Fixer"
 config/icon="res://icon.png"
+
+[global]
+
+resolution=false
+window=false
 
 [gui]
 
