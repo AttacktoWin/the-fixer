@@ -12,47 +12,47 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "BT",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/BT.gd"
+"path": "res://_Dev/Yalmaz/Behaviour Tree/BT.gd"
 }, {
 "base": "Node",
 "class": "BT_Blackboard",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/BT_Blackboard.gd"
+"path": "res://_Dev/Yalmaz/Behaviour Tree/BT_Blackboard.gd"
 }, {
 "base": "BT_Leaf",
 "class": "BT_Conditional",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Leaves/BT_Conditional.gd"
+"path": "res://_Dev/Yalmaz/Behaviour Tree/Leaves/BT_Conditional.gd"
 }, {
 "base": "Base_BT_Node",
 "class": "BT_Leaf",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Leaves/BT_Leaf.gd"
+"path": "res://_Dev/Yalmaz/Behaviour Tree/Leaves/BT_Leaf.gd"
 }, {
 "base": "BT",
 "class": "BT_Root",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/BT_Root.gd"
+"path": "res://_Dev/Yalmaz/Behaviour Tree/BT_Root.gd"
 }, {
 "base": "Base_BT_Composite",
 "class": "BT_Selector",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Selector.gd"
+"path": "res://_Dev/Yalmaz/Behaviour Tree/Composite/BT_Selector.gd"
 }, {
 "base": "Base_BT_Composite",
 "class": "BT_Sequencer",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Sequencer.gd"
+"path": "res://_Dev/Yalmaz/Behaviour Tree/Composite/BT_Sequencer.gd"
 }, {
 "base": "Base_BT_Node",
 "class": "Base_BT_Composite",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Composite.gd"
+"path": "res://_Dev/Yalmaz/Behaviour Tree/Composite/BT_Composite.gd"
 }, {
 "base": "BT",
 "class": "Base_BT_Node",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Base_BT_Node.gd"
+"path": "res://_Dev/Yalmaz/Behaviour Tree/Base_BT_Node.gd"
 } ]
 _global_script_class_icons={
 "BT": "",
@@ -79,14 +79,6 @@ window=false
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
-
-[input]
-
-test={
-"deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
- ]
-}
 
 [physics]
 
