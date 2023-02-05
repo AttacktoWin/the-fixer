@@ -107,22 +107,22 @@ _global_script_classes=[ {
 "base": "Resource",
 "class": "Dialogue",
 "language": "GDScript",
-"path": "res://_Dev/Shashank/scripts/classes/Dialogue.gd"
+"path": "res://Scripts/DialogueSystem/classes/Dialogue.gd"
 }, {
 "base": "Resource",
 "class": "DialogueFile",
 "language": "GDScript",
-"path": "res://_Dev/Shashank/scripts/classes/DialogueFile.gd"
+"path": "res://Scripts/DialogueSystem/classes/DialogueFile.gd"
 }, {
 "base": "Resource",
 "class": "DialogueNPCIds",
 "language": "GDScript",
-"path": "res://_Dev/Shashank/scripts/classes/DialogueNpcIds.gd"
+"path": "res://Scripts/DialogueSystem/classes/DialogueNpcIds.gd"
 }, {
 "base": "Object",
 "class": "DialogueQueue",
 "language": "GDScript",
-"path": "res://_Dev/Shashank/scripts/classes/DialogueQueue.gd"
+"path": "res://Scripts/DialogueSystem/classes/DialogueQueue.gd"
 }, {
 "base": "PanelContainer",
 "class": "HistoryRow",
@@ -132,22 +132,22 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "NPC",
 "language": "GDScript",
-"path": "res://_Dev/Shashank/scripts/NPC.gd"
+"path": "res://Scripts/DialogueSystem/NPC.gd"
 }, {
 "base": "Node2D",
 "class": "NPCInstance",
 "language": "GDScript",
-"path": "res://_Dev/Shashank/scripts/NPCInstance.gd"
+"path": "res://Scripts/DialogueSystem/NPCInstance.gd"
 }, {
 "base": "Resource",
 "class": "UnlockTable",
 "language": "GDScript",
-"path": "res://_Dev/Shashank/scripts/classes/UnlockTable.gd"
+"path": "res://Scripts/DialogueSystem/classes/UnlockTable.gd"
 }, {
 "base": "Resource",
 "class": "UnlockTableEntry",
 "language": "GDScript",
-"path": "res://_Dev/Shashank/scripts/classes/UnlockTableEntry.gd"
+"path": "res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd"
 } ]
 _global_script_class_icons={
 "BT": "",
@@ -184,6 +184,10 @@ _global_script_class_icons={
 
 config/name="The Fixer"
 config/icon="res://icon.png"
+
+[autoload]
+
+DialogueSystem="*res://Scenes/DialogueSystem.tscn"
 
 [editor_plugins]
 

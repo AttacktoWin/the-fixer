@@ -3,8 +3,8 @@ class_name NPC
 
 extends Node
 
-const Dialogue = preload("res://scripts/classes/Dialogue.gd")
-const DialogueQueue = preload("res://scripts/classes/DialogueQueue.gd")
+const Dialogue = preload("res://Scripts/DialogueSystem/classes/Dialogue.gd")
+const DialogueQueue = preload("res://Scripts/DialogueSystem/classes/DialogueQueue.gd")
 
 export var id: String = ""
 export var dialogue_file: Resource
@@ -20,7 +20,7 @@ func _ready():
 		
 func init():
 	if (!dialogue_file.dialogues.has("default")):
-		print("No default dialoge found for NPC ", id)
+		print("No default dialogue found for NPC ", id)
 		return
 	queue.enqueue(dialogue_file.dialogues["default"])
 

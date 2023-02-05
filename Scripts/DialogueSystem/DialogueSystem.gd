@@ -2,9 +2,9 @@ tool
 extends Node
 
 
-const NPC = preload("res://scripts/NPC.gd")
-const DialogueNPCIds = preload("res://scripts/classes/DialogueNpcIds.gd")
-const Dialogue = preload("res://scripts/classes/Dialogue.gd")
+const NPC = preload("res://Scripts/DialogueSystem/NPC.gd")
+const DialogueNPCIds = preload("res://Scripts/DialogueSystem/classes/DialogueNpcIds.gd")
+const Dialogue = preload("res://Scripts/DialogueSystem/classes/Dialogue.gd")
 
 export var dialogue_unlock_table: Resource
 export var save_file_name: String = ""
@@ -50,6 +50,7 @@ func _ready():
 		
 		
 func display_dialogue(npc_id: String, dialogue_id: String) -> void:
+	# TODO: listen to dialogic signals and emit signals for pausing player, etc.
 	if (Dialogic.timeline_exists(npc_id + "-" + dialogue_id)):
 		var dialog = Dialogic.start(npc_id + "-" + dialogue_id)
 		add_child(dialog)

@@ -2,7 +2,7 @@ class_name DialogueQueue
 
 extends Object
 
-const Dialogue = preload("res://scripts/classes/Dialogue.gd")
+const Dialogue = preload("res://Scripts/DialogueSystem/classes/Dialogue.gd")
 
 var heap: Array
 var size: int
