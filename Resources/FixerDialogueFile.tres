@@ -1,0 +1,33 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://Scripts/DialogueSystem/classes/DialogueFile.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/DialogueSystem/classes/Dialogue.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+id = "default"
+priority = 0
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+id = "demo1"
+priority = 99
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+id = "demo2"
+priority = 99
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 2 )
+id = "demo3"
+priority = 99
+
+[resource]
+script = ExtResource( 1 )
+dialogues = {
+"default": SubResource( 1 ),
+"demo1": SubResource( 2 ),
+"demo2": SubResource( 3 ),
+"demo3": SubResource( 4 )
+}
