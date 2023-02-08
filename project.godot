@@ -53,6 +53,51 @@ _global_script_classes=[ {
 "class": "Base_BT_Node",
 "language": "GDScript",
 "path": "res://_Dev/Yalmaz/bTrees/Base_BT_Node.gd"
+}, {
+"base": "Area2D",
+"class": "BulletBase",
+"language": "GDScript",
+"path": "res://_Dev/marcus/projectiles/BulletBase.gd"
+}, {
+"base": "RunnableList",
+"class": "DecoratorList",
+"language": "GDScript",
+"path": "res://_Dev/marcus/utils/DecoratorList.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "MovingEntity",
+"language": "GDScript",
+"path": "res://_Dev/marcus/entities/MovingEntity.gd"
+}, {
+"base": "MovingEntity",
+"class": "Player",
+"language": "GDScript",
+"path": "res://_Dev/marcus/entities/Player.gd"
+}, {
+"base": "Object",
+"class": "Runnable",
+"language": "GDScript",
+"path": "res://_Dev/marcus/utils/Runnable.gd"
+}, {
+"base": "Object",
+"class": "RunnableList",
+"language": "GDScript",
+"path": "res://_Dev/marcus/utils/RunnableList.gd"
+}, {
+"base": "Weapon",
+"class": "TestGun",
+"language": "GDScript",
+"path": "res://_Dev/marcus/entities/TestGun.gd"
+}, {
+"base": "RunnableList",
+"class": "VariableList",
+"language": "GDScript",
+"path": "res://_Dev/marcus/utils/VariableList.gd"
+}, {
+"base": "Node2D",
+"class": "Weapon",
+"language": "GDScript",
+"path": "res://_Dev/marcus/entities/Weapon.gd"
 } ]
 _global_script_class_icons={
 "BT": "",
@@ -63,13 +108,28 @@ _global_script_class_icons={
 "BT_Selector": "",
 "BT_Sequencer": "",
 "Base_BT_Composite": "",
-"Base_BT_Node": ""
+"Base_BT_Node": "",
+"BulletBase": "",
+"DecoratorList": "",
+"MovingEntity": "",
+"Player": "",
+"Runnable": "",
+"RunnableList": "",
+"TestGun": "",
+"VariableList": "",
+"Weapon": ""
 }
 
 [application]
 
 config/name="The Fixer"
+run/main_scene="res://_Dev/marcus/scenes/marcus_test_scene.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+CameraSingleton="*res://_Dev/marcus/entities/CameraSingleton.gd"
+PausingSingleton="*res://_Dev/marcus/entities/PausingSingleton.gd"
 
 [global]
 

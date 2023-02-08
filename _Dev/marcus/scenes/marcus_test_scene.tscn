@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://_Dev/marcus/scenes/player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://_Dev/marcus/scenes/wall.tscn" type="PackedScene" id=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 232, 136 )
+
+[node name="Wall" parent="." instance=ExtResource( 2 )]
+position = Vector2( 224, 32 )
+
+[node name="Wall2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 289, 32 )
+
+[node name="Wall3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 352, 32 )
+
+[node name="Wall4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 417, 32 )
