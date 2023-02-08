@@ -1,0 +1,15 @@
+{
+	"events": [
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "[i]The rooms of this place always gave me the creeps. I coulda sworn they shifted around whenever I wasn't looking.[/i]"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1675632467.json",
+		"name": "fixer-demo1"
+	}
+}
