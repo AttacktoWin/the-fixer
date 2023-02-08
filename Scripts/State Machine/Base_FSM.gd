@@ -1,7 +1,5 @@
 class_name Base_FSM extends Node2D
 
-signal transitioned(state_name)
-
 export(NodePath) var initial_state_path
 
 onready var p_state: Base_State = get_node(initial_state_path)
@@ -22,7 +20,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	print(p_state)
+	# print(p_state)
 	p_state.tick(delta)
 
 
@@ -35,6 +33,8 @@ func transition_to(target_state_name: String, _msg: Dictionary = {}):
 		return
 
 	p_state.exit()
+	context["prev"] = (p_state.name)
+	print("recived")
+	yield(p_state, "ready_to_transition")
 	p_state = get_node(target_state_name)
 	p_state.enter()
-	emit_signal("transitioned", p_state.name)

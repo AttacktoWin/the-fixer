@@ -1,5 +1,5 @@
 class_name Base_State extends Node2D
-
+signal ready_to_transition
 var state_machine = null
 var next_state := ""
 
