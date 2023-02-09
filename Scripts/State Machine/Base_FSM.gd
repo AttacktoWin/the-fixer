@@ -1,40 +1,51 @@
-class_name Base_FSM extends Node2D
+# Author: Yalmaz
+# Description: Interface to implement FSM. controls the state trasitions for this state patten.
+class_name Base_FSM
+extends Node2D
 
 export(NodePath) var initial_state_path
 
-onready var p_state: Base_State = get_node(initial_state_path)
+var context := Context  # Context passed into the states allows information to be passed betewen states. This could be a dict or custom data type
+onready var current_state: Base_State = get_node(initial_state_path)
 
-var context := {}
+
+# Description: Method used to transition the state.
+# Params `target_state_name`:  specifies the state being transitioned to. This must be the same as the name of state node in scene.
+# Params `_msg`: pass any message that the state needs to relay back to the fsm.
+func transition_to(target_state_name: String, _msg: Dictionary = {}) -> void:
+	if not has_node(target_state_name):
+		return
+
+	#call clean up for current state
+	context = current_state.exit()
+
+	#wait for state to finish clean up
+	yield(current_state, "cleanup_finished")
+
+	#prepare and connect next state
+	current_state = get_node(target_state_name)
+	current_state.enter(context)
 
 
+########################################################################
+#Life Cycle Methods
+########################################################################
 func _ready() -> void:
 	yield(owner, "ready")
 	for child in get_children():
 		if child.has_method("tick"):
 			child.state_machine = self
-	p_state.enter()
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	p_state.handle_input(event)
+	current_state.enter(context)
+	get_node("%Manager_Enemy").enemies.append(self)
 
 
 func _process(delta: float) -> void:
-	# print(p_state)
-	p_state.tick(delta)
+	current_state.tick(delta)
 
 
 func _physics_process(delta: float) -> void:
-	p_state.physics_tick(delta)
+	current_state.physics_tick(delta)
 
 
-func transition_to(target_state_name: String, _msg: Dictionary = {}):
-	if not has_node(target_state_name):
-		return
-
-	p_state.exit()
-	context["prev"] = (p_state.name)
-	print("recived")
-	yield(p_state, "ready_to_transition")
-	p_state = get_node(target_state_name)
-	p_state.enter()
+func _unhandled_input(event: InputEvent) -> void:
+	current_state.handle_input(event)

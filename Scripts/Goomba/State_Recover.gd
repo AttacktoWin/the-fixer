@@ -1,19 +1,34 @@
+# Author: Yalmaz
+# Description: Chase state for goomba has it run after the player.
 extends Base_State_Goomba
 
 var timer = 0
-var transitioned = false
 
 
+func recoverAnim() -> void:
+	if p_context.animator.current_animation != "Recover":
+		p_context.animator.play("Recover")
+
+
+func slide(_delta: float) -> bool:
+	timer += _delta
+	if timer < 0.4:
+		# warning-ignore:UNUSED_VARIABLE
+		var velocity = p_context.kinematic_body.move_and_slide(
+			(
+				lerp(60, 0, clamp(timer / 0.4, 0, 1))
+				* p_context.extra["recovery_dir"]
+			)
+		)
+		return false
+	return true
+
+
+########################################################################
+#Overrides
+########################################################################
 func tick(_delta: float) -> void:
 	update()
-
-
-func enter() -> void:
-	print("entered")
-	print("pev: " + state_machine.context["prev"])
-	on = true
-	timer = 0
-	recoverAnim()
 
 
 func physics_tick(_delta: float) -> void:
@@ -22,25 +37,12 @@ func physics_tick(_delta: float) -> void:
 		pass
 
 
-func exit() -> void:
-	on = false
-	emit_signal("ready_to_transition")
+func exit():
+	emit_signal("cleanup_finished")
+	return .exit()
 
 
-func recoverAnim() -> void:
-	if state_machine.context["animator"].current_animation != "Recover":
-		state_machine.context["animator"].play("Recover")
-
-
-func slide(_delta: float) -> bool:
-	timer += _delta
-	if timer < 0.4:
-		# warning-ignore:UNUSED_VARIABLE
-		var velocity = state_machine.context["kinematic_body"].move_and_slide(
-			(
-				lerp(60, 0, clamp(timer / 0.4, 0, 1))
-				* state_machine.context["recovery_dir"]
-			)
-		)
-		return false
-	return true
+func enter(_context) -> void:
+	.enter(_context)
+	timer = 0
+	recoverAnim()

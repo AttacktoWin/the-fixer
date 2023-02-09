@@ -29,6 +29,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Goomba/Base_State_Goomba.gd"
 }, {
+"base": "Node",
+"class": "Context",
+"language": "GDScript",
+"path": "res://Scripts/State Machine/Base_Context.gd"
+}, {
+"base": "Context",
+"class": "Context_Goomba",
+"language": "GDScript",
+"path": "res://Scripts/Goomba/Context_Goomba.gd"
+}, {
 "base": "Reference",
 "class": "DTS",
 "language": "GDScript",
@@ -129,6 +139,8 @@ _global_script_class_icons={
 "Base_State": "",
 "Base_State_Camera": "",
 "Base_State_Goomba": "",
+"Context": "",
+"Context_Goomba": "",
 "DTS": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",

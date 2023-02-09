@@ -7,9 +7,8 @@ Note2: ## is used for class comments # is used for comments inside the class.
 Note3: If something is not specified here follow the gd-script official style sheet.
 """
 
-## Class: name if it has any. Any abstract classes should be preceeded by Base_
-## Author: Your name
-## Description: Highlevel description of the script and any important usage notes.
+# Author: Your name
+# Description: Highlevel description of the script and any important usage notes.
 
 """Order of member declation"""
 
