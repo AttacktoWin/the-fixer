@@ -8,9 +8,9 @@ func handle_input(_event: InputEvent) -> void:
 		state_machine.transition_to("STAGGER")
 
 
-func enter() -> void:
+func enter(_context) -> void:
 	on = true
 
 
-func exit() -> void:
+func exit():
 	on = false

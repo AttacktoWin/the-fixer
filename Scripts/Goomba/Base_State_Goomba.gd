@@ -3,7 +3,7 @@
 class_name Base_State_Goomba
 extends Base_State
 
-onready var p_manager := get_node("%Manager_Enemy")
+var p_manager
 
 
 # Description: temporary method for testing hit animation
@@ -26,6 +26,7 @@ func flipSprite():
 ########################################################################
 func enter(_context) -> void:
 	.enter(_context)
+	p_manager = _context.manager
 	#print out the current state for debuging.
 	print("pev: " + p_context.previous_node)
 	pass

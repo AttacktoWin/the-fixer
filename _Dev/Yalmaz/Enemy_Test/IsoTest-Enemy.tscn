@@ -1,10 +1,8 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://_Dev/Ronan/Tiles/tileexample.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Sprites/Knife/spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://_Dev/Ronan/Tiles/tile2.png" type="Texture" id=3]
 [ext_resource path="res://_Dev/Ronan/Tiles/tile3.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/Goomba/FSM_Goomba.gd" type="Script" id=5]
 [ext_resource path="res://_Dev/Ronan/Tiles/tile4.png" type="Texture" id=6]
 [ext_resource path="res://_Dev/Ronan/Tiles/tile5.png" type="Texture" id=7]
 [ext_resource path="res://_Dev/Ronan/Tiles/tile6.png" type="Texture" id=8]
@@ -26,12 +24,7 @@
 [ext_resource path="res://_Dev/Ronan/Tiles/tile12.png" type="Texture" id=24]
 [ext_resource path="res://_Dev/Ronan/Tiles/wall2.png" type="Texture" id=25]
 [ext_resource path="res://_Dev/Ronan/Tiles/wall3.png" type="Texture" id=26]
-[ext_resource path="res://Scripts/Goomba/State_Default.gd" type="Script" id=27]
 [ext_resource path="res://_Dev/Yalmaz/Enemy_Test/Test_player.gd" type="Script" id=28]
-[ext_resource path="res://Scripts/Manager_Enemy.gd" type="Script" id=29]
-[ext_resource path="res://Scripts/Goomba/State_Chase.gd" type="Script" id=30]
-[ext_resource path="res://Scripts/Goomba/State_Recover.gd" type="Script" id=31]
-[ext_resource path="res://Scripts/Goomba/State_Attack.gd" type="Script" id=32]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tile2.png 0"
@@ -241,129 +234,11 @@ animations = [ {
 "speed": 12.0
 } ]
 
-[sub_resource type="Animation" id=12]
-resource_name = "Attack"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6 ]
-}
+[sub_resource type="CapsuleShape2D" id=4]
 
-[sub_resource type="Animation" id=11]
-resource_name = "Charge_Attack"
-length = 1.2
-step = 0.4
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ 8, 7, 8 ]
-}
-
-[sub_resource type="Animation" id=9]
-resource_name = "Chase"
-length = 2.4
-loop = true
-step = 0.3
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 16, 17, 18, 19, 20, 21, 22, 23 ]
-}
-
-[sub_resource type="Animation" id=13]
-resource_name = "Default"
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 15 ]
-}
-
-[sub_resource type="Animation" id=7]
-resource_name = "Found"
-length = 3.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.6, 2, 2.4, 2.8, 3.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 14, 8, 9, 10, 11, 12, 13, 14, 16 ]
-}
-
-[sub_resource type="Animation" id=10]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 15 ]
-}
-
-[sub_resource type="Animation" id=14]
-resource_name = "Recover"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/path = NodePath("Visuals/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 13, 6, 7 ]
-}
-
-[sub_resource type="CapsuleShape2D" id=8]
-radius = 12.0
-height = 22.0
+[sub_resource type="AnimationNodeBlendTree" id=5]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="Manager_Enemy" type="Node2D" parent="."]
-unique_name_in_owner = true
-position = Vector2( 880, 534 )
-script = ExtResource( 29 )
 
 [node name="Level" type="Node2D" parent="."]
 
@@ -384,71 +259,39 @@ cell_size = Vector2( 256, 128 )
 format = 1
 tile_data = PoolIntArray( -262145, 2, 0, -327680, 2, 0, -327679, 2, 0, -327678, 2, 0, -327677, 2, 0, -327676, 2, 0, -327675, 2, 0, -327674, 4, 0, -327673, 3, 0, -327672, 2, 0, -327671, 2, 0, -327670, 2, 0, -327669, 2, 0, -327668, 2, 0, -327667, 2, 0, -327666, 2, 0, -327665, 2, 0, -327664, 2, 0, -327663, 2, 0, -196609, 2, 0, -262141, 1, 0, -262134, 3, 0, -262133, 4, 0, -262132, 2, 0, -262131, 2, 0, -262130, 2, 0, -262129, 2, 0, -262128, 2, 0, -131073, 2, 0, -65537, 2, 0, -131070, 9, 0, -131069, 9, 0, -131068, 5, 0, -1, 2, 0, -65534, 9, 0, -65533, 9, 0, -65532, 5, 0, 65535, 2, 0, 2, 9, 0, 3, 9, 0, 4, 5, 0, 131071, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 9, 0, 65539, 9, 0, 65540, 5, 0, 131073, 2, 0, 131074, 9, 0, 131085, 2, 0, 131086, 2, 0, 131087, 2, 0, 131088, 2, 0, 196609, 2, 0, 196610, 2, 0, 196612, 5, 0, 196621, 2, 0, 196622, 2, 0, 196623, 2, 0, 196624, 2, 0, 262146, 2, 0, 262147, 2, 0, 262154, 2, 0, 262155, 2, 0, 262156, 2, 0, 262157, 2, 0, 262158, 2, 0, 262159, 2, 0, 262160, 2, 0, 262161, 2, 0, 327683, 2, 0, 327684, 2, 0, 327685, 2, 0, 327686, 2, 0, 327689, 2, 0, 327690, 2, 0, 327691, 2, 0, 327692, 2, 0, 327693, 2, 0, 327694, 2, 0, 327695, 2, 0, 327696, 2, 0, 393222, 3, 0, 393227, 2, 0, 393228, 2, 0, 393229, 2, 0, 393230, 2, 0, 393231, 2, 0, 393232, 2, 0, 458758, 2, 0, 458764, 2, 0, 458765, 2, 0, 524294, 2, 0, 524300, 2, 0, 524301, 2, 0, 589830, 2, 0, 655366, 2, 0 )
 
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2( 471, 310 )
+rotation = 3.14159
+scale = Vector2( 57.9652, 3356.8 )
+
+[node name="Manager_Enemy" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2( 880, 534 )
+
 [node name="Player" type="AnimatedSprite" parent="."]
 unique_name_in_owner = true
 position = Vector2( 300, 280 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
-frame = 6
+frame = 9
 playing = true
 script = ExtResource( 28 )
 
 [node name="target" type="Node2D" parent="Player"]
 position = Vector2( 0, 60 )
 
-[node name="Goomba" type="KinematicBody2D" parent="."]
-position = Vector2( 505, 248 )
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 512, 236 )
 
-[node name="Visuals" type="Node2D" parent="Goomba"]
+[node name="HitBox" type="CollisionShape2D" parent="KinematicBody2D"]
+shape = SubResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="Goomba/Visuals"]
-position = Vector2( -2, -32.4 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 2 )
-hframes = 8
-vframes = 3
-frame = 15
+[node name="Visual" type="Node2D" parent="KinematicBody2D"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Goomba/Visuals"]
-root_node = NodePath("../..")
-playback_speed = 5.67
-anims/Attack = SubResource( 12 )
-anims/Charge_Attack = SubResource( 11 )
-anims/Chase = SubResource( 9 )
-anims/Default = SubResource( 13 )
-anims/Found = SubResource( 7 )
-anims/RESET = SubResource( 10 )
-anims/Recover = SubResource( 14 )
+[node name="Sprite" type="Sprite" parent="KinematicBody2D/Visual"]
 
-[node name="Goomba-FSM" type="Node2D" parent="Goomba"]
-script = ExtResource( 5 )
-initial_state_path = NodePath("DEFAULT")
-sprite_path = NodePath("../Visuals/Sprite")
-animator_path = NodePath("../Visuals/AnimationPlayer")
-speed = 170.0
-sense_radius = 150
+[node name="AnimationPlayer" type="AnimationPlayer" parent="KinematicBody2D/Visual"]
 
-[node name="DEFAULT" type="Node2D" parent="Goomba/Goomba-FSM"]
-script = ExtResource( 27 )
-
-[node name="CHASE" type="Node2D" parent="Goomba/Goomba-FSM"]
-script = ExtResource( 30 )
-
-[node name="ATTACK" type="Node2D" parent="Goomba/Goomba-FSM"]
-script = ExtResource( 32 )
-
-[node name="RECOVER" type="Node2D" parent="Goomba/Goomba-FSM"]
-script = ExtResource( 31 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Goomba"]
-position = Vector2( 0, 6.59991 )
-rotation = 4.71239
-shape = SubResource( 8 )
-
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2( 440, 267 )
-
-[node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2( 471, 310 )
-rotation = 3.14159
-scale = Vector2( 57.9652, 3356.8 )
+[node name="AnimationTree" type="AnimationTree" parent="KinematicBody2D/Visual"]
+tree_root = SubResource( 5 )
+anim_player = NodePath("../AnimationPlayer")

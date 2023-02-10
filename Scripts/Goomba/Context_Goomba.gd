@@ -2,6 +2,7 @@
 # Description: Implents Context interface to make data class for fsm
 class_name Context_Goomba extends Context
 
+var manager = null
 var kinematic_body = null
 var sprite = null
 var animator = null

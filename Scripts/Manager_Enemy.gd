@@ -27,6 +27,8 @@ func get_PlayerInLocal(enemy_node) -> Vector2:
 ########################################################################
 #Life Cycle Functions
 ########################################################################
-func _process(_delta):
-	for enemy in enemies:
-		enemy.current_state.update()
+func _ready():
+	get_tree().call_group("Enemy", "set_manager", self)
+# func _process(_delta):
+# 	for enemy in enemies:
+# 		enemy.current_state.update()

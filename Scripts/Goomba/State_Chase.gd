@@ -48,16 +48,15 @@ func tick(_delta: float) -> void:
 	if chasePlayer() and is_cleaningUp == false:
 		state_machine.transition_to("ATTACK")
 
-
 ########################################################################
 #DEBUG
 ########################################################################
 # Description: Draw debug visuals
-func _draw():
-	if not is_cleaningUp:
-		draw_line(Vector2.ZERO, p_manager.get_PlayerInLocal(self), Color.white)
-		draw_circle(
-			Vector2.ZERO,
-			p_context.attack_radius,
-			Color.blue - Color(0, 0, 0, 0.5)
-		)
+# func _draw():
+# 	if not is_cleaningUp:
+# 		draw_line(Vector2.ZERO, p_manager.get_PlayerInLocal(self), Color.white)
+# 		draw_circle(
+# 			Vector2.ZERO,
+# 			p_context.attack_radius,
+# 			Color.blue - Color(0, 0, 0, 0.5)
+# 		)

@@ -37,17 +37,16 @@ func tick(_delta: float) -> void:
 	if sensePlayer() and is_cleaningUp == false:
 		flipSprite()
 		animateFound()
-		state_machine.transition_to("CHASE")
-
+		# state_machine.transition_to("CHASE")
 
 ########################################################################
 #DEBUG
 ########################################################################
 # Description: Draw debug visuals
-func _draw():
-	if not is_cleaningUp:
-		draw_circle(
-			Vector2.ZERO,
-			p_context.sense_radius,
-			Color.red - Color(0, 0, 0, 0.5)
-		)
+# func _draw():
+# 	if not is_cleaningUp:
+# 		draw_circle(
+# 			Vector2.ZERO,
+# 			p_context.sense_radius,
+# 			Color.red - Color(0, 0, 0, 0.5)
+# 		)

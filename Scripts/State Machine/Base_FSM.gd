@@ -9,6 +9,11 @@ var context := Context  # Context passed into the states allows information to b
 onready var current_state: Base_State = get_node(initial_state_path)
 
 
+func set_manager(val):
+	print(val)
+	context.manager = val
+
+
 # Description: Method used to transition the state.
 # Params `target_state_name`:  specifies the state being transitioned to. This must be the same as the name of state node in scene.
 # Params `_msg`: pass any message that the state needs to relay back to the fsm.
@@ -36,7 +41,6 @@ func _ready() -> void:
 		if child.has_method("tick"):
 			child.state_machine = self
 	current_state.enter(context)
-	get_node("%Manager_Enemy").enemies.append(self)
 
 
 func _process(delta: float) -> void:

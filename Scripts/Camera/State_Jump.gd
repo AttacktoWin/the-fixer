@@ -14,7 +14,7 @@ var u = 100
 var g = 10
 
 
-func enter() -> void:
+func enter(_context):
 	pass
 
 
