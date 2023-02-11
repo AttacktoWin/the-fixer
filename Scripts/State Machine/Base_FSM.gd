@@ -5,7 +5,7 @@ extends Node2D
 
 export(NodePath) var initial_state_path
 
-var context := Context  # Context passed into the states allows information to be passed betewen states. This could be a dict or custom data type
+var context := Base_Context  # Context passed into the states allows information to be passed betewen states. This could be a dict or custom data type
 onready var current_state: Base_State = get_node(initial_state_path)
 
 

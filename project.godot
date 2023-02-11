@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Base_Context",
+"language": "GDScript",
+"path": "res://Scripts/State Machine/Base_Context.gd"
+}, {
 "base": "Node2D",
 "class": "Base_FSM",
 "language": "GDScript",
@@ -20,24 +25,14 @@ _global_script_classes=[ {
 "path": "res://Scripts/State Machine/Base_State.gd"
 }, {
 "base": "Base_State",
-"class": "Base_State_Camera",
-"language": "GDScript",
-"path": "res://Scripts/Camera/Base_State_Camera.gd"
-}, {
-"base": "Base_State",
 "class": "Base_State_Goomba",
 "language": "GDScript",
-"path": "res://Scripts/Goomba/Base_State_Goomba.gd"
+"path": "res://Scripts/Enemies/Goomba/Base_State_Goomba.gd"
 }, {
-"base": "Node",
-"class": "Context",
-"language": "GDScript",
-"path": "res://Scripts/State Machine/Base_Context.gd"
-}, {
-"base": "Context",
+"base": "Base_Context",
 "class": "Context_Goomba",
 "language": "GDScript",
-"path": "res://Scripts/Goomba/Context_Goomba.gd"
+"path": "res://Scripts/Enemies/Goomba/Context_Goomba.gd"
 }, {
 "base": "Reference",
 "class": "DTS",
@@ -135,11 +130,10 @@ _global_script_classes=[ {
 "path": "res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd"
 } ]
 _global_script_class_icons={
+"Base_Context": "",
 "Base_FSM": "",
 "Base_State": "",
-"Base_State_Camera": "",
 "Base_State_Goomba": "",
-"Context": "",
 "Context_Goomba": "",
 "DTS": "",
 "Dialogic": "",

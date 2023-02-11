@@ -8,7 +8,7 @@ signal cleanup_finished  # signal emitted when clean up complete and ready to tr
 
 var state_machine = null
 var is_cleaningUp
-onready var p_context = Context_Goomba.new()
+onready var p_context
 
 
 # Description: Method used to initialize state on entery.
