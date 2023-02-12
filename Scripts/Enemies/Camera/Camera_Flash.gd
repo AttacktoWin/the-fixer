@@ -14,3 +14,8 @@ func enter() -> void:
 func exit():
 	flipSprite()
 	animator.travel("Chase_ON")
+
+
+func _draw():
+	if is_Active:
+		pass

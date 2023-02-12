@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/DialogueQueue.gd"
 }, {
+"base": "Base_FSM",
+"class": "EnemyFSM",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/EnemyFSM.gd"
+}, {
 "base": "PanelContainer",
 "class": "HistoryRow",
 "language": "GDScript",
@@ -137,6 +142,7 @@ _global_script_class_icons={
 "DialogueFile": "",
 "DialogueNPCIds": "",
 "DialogueQueue": "",
+"EnemyFSM": "",
 "HistoryRow": "",
 "NPC": "",
 "NPCInstance": "",

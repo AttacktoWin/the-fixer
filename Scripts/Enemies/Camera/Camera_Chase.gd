@@ -10,7 +10,6 @@ func chasePlayer() -> bool:
 		var velocity = state_machine.move_and_slide(
 			state_machine.speed * get_DirectionToPlayer(self)
 		)
-
 	return false
 
 
@@ -20,4 +19,15 @@ func chasePlayer() -> bool:
 func tick(_delta: float) -> void:
 	flipSprite()
 	if chasePlayer():
-		state_machine.transition_to("FLASH")
+		state_machine.transition_to("ATTACK")
+
+
+func _draw():
+	if is_Active:
+		draw_line(Vector2.ZERO, get_PlayerInLocal(self), Color.white)
+		draw_line(
+			Vector2.ZERO,
+			get_DirectionToPlayer(self) * state_machine.attack_range,
+			Color.blue,
+			4
+		)

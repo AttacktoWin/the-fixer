@@ -1,10 +1,11 @@
 # Author: Yalmaz
-# Description: Interface to implement FSM. controls the state trasitions for this state patten.
+# Description: Abstract FSM class. controls the state trasitions for this state patten.
 class_name Base_FSM
 extends Node2D
 
 # Path for the state node that this fsm should initalize with.
 export(NodePath) var initial_state_path
+var previous_node
 onready var _current_state = get_node(initial_state_path)
 
 
@@ -23,13 +24,9 @@ func transition_to(target_state_name: String, _msg: Dictionary = {}) -> void:
 	#call clean up for current state
 	_current_state.exit()
 
-	#wait for state to finish clean up
-	# yield(_current_state, "cleanup_finished")
-
 	#prepare and connect next state
 	var next_state = get_node(target_state_name)
 	next_state.previous_state = _current_state.name
-	print("pev: " + _current_state.name)
 	_current_state = next_state
 	_current_state.enter()
 

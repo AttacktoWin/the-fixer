@@ -17,19 +17,20 @@ func enter() -> void:
 
 
 func exit():
+	.exit()
 	flipSprite()
 	animator.travel("Alerted")
 
 
 func tick(_delta: float) -> void:
-	update()
 	if sensePlayer():
 		state_machine.transition_to("CHASE")
 
 
 func _draw():
-	draw_circle(
-		Vector2.ZERO,
-		state_machine.sense_radius,
-		Color.red - Color(0, 0, 0, 0.5)
-	)
+	if is_Active:
+		draw_circle(
+			Vector2.ZERO,
+			state_machine.sense_radius,
+			Color.red - Color(0, 0, 0, 0.5)
+		)

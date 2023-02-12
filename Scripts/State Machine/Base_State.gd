@@ -8,18 +8,22 @@ signal cleanup_finished  # signal emitted when clean up complete and ready to tr
 
 var state_machine: Base_FSM = null
 var is_cleaningUp: bool = false
+var is_Active: bool = false
 
 
+########################################################################
+#Virtual Functions
+########################################################################
 # Description: Method used to initialize state on entery.
 # `_context` current context passed in from the state_machine
 func enter() -> void:
-	pass
+	is_Active = true
 
 
 # Description: Method used to clean up state on exit.
 # return context that has been modified by the state
 func exit():
-	pass
+	is_Active = false
 
 
 # Description: Virtual Method to that _process for the FSM is delegated to.

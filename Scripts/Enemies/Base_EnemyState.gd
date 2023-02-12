@@ -53,5 +53,6 @@ func get_PlayerInLocal(enemy_node: Node2D) -> Vector2:
 ########################################################################
 #Overrides
 ########################################################################
-func enter() -> void:
-	pass
+func exit():
+	.exit()
+	update()

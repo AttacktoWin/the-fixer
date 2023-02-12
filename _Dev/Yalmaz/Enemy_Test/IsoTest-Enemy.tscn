@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://_Dev/Ronan/Tiles/tileexample.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Enemies/E_Camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://_Dev/Ronan/Tiles/tile2.png" type="Texture" id=3]
 [ext_resource path="res://_Dev/Ronan/Tiles/tile3.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Enemies/E_Goomba.tscn" type="PackedScene" id=5]
 [ext_resource path="res://_Dev/Ronan/Tiles/tile4.png" type="Texture" id=6]
 [ext_resource path="res://_Dev/Ronan/Tiles/tile5.png" type="Texture" id=7]
 [ext_resource path="res://_Dev/Ronan/Tiles/tile6.png" type="Texture" id=8]
@@ -25,7 +26,9 @@
 [ext_resource path="res://_Dev/Ronan/Tiles/tile12.png" type="Texture" id=24]
 [ext_resource path="res://_Dev/Ronan/Tiles/wall2.png" type="Texture" id=25]
 [ext_resource path="res://_Dev/Ronan/Tiles/wall3.png" type="Texture" id=26]
+[ext_resource path="res://Scripts/Enemies/Manager_Enemy.gd" type="Script" id=27]
 [ext_resource path="res://_Dev/Yalmaz/Enemy_Test/Test_player.gd" type="Script" id=28]
+[ext_resource path="res://Scripts/Enemies/Goomba/Goomba_FSM.gd" type="Script" id=29]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tile2.png 0"
@@ -235,8 +238,6 @@ animations = [ {
 "speed": 12.0
 } ]
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=4]
-
 [node name="Node2D" type="Node2D"]
 
 [node name="Level" type="Node2D" parent="."]
@@ -266,12 +267,13 @@ scale = Vector2( 57.9652, 3356.8 )
 [node name="Manager_Enemy" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2( 880, 534 )
+script = ExtResource( 27 )
 
 [node name="Player" type="AnimatedSprite" parent="."]
-position = Vector2( 300, 280 )
+position = Vector2( 224, 314 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
-frame = 6
+frame = 3
 playing = true
 script = ExtResource( 28 )
 
@@ -280,10 +282,11 @@ unique_name_in_owner = true
 position = Vector2( 0, 60 )
 
 [node name="E_Test" parent="." instance=ExtResource( 2 )]
-position = Vector2( 445, 234 )
-_player_path = NodePath("../Player")
+position = Vector2( 227, 66 )
 
-[node name="AnimationTree" parent="E_Test/Visual" index="2"]
-parameters/playback = SubResource( 4 )
+[node name="E_Test2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 423, 237 )
+script = ExtResource( 29 )
 
-[editable path="E_Test"]
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( -17, 0 )

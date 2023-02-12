@@ -1,6 +1,10 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Sprites/Knife/spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Enemies/Goomba/Goomba_FSM.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemies/Goomba/Goomba_Idle.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemies/Goomba/Goomba_Chase.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Enemies/Goomba/Goomba_Charge.gd" type="Script" id=5]
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 20.0
@@ -80,7 +84,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=14]
 resource_name = "Get_In_Position"
-length = 0.4
+length = 0.8
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -89,10 +93,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.25, 0.3, 0.35 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.3, 0.35, 0.4, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 13, 5, 6, 7, 8 ]
+"values": [ 13, 5, 6, 7, 8, 8 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:position")
@@ -101,10 +105,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.15, 0.2, 0.25, 0.3, 0.35 ),
+"times": PoolRealArray( 0.15, 0.2, 0.3, 0.35, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, 1 ), Vector2( 0, -2 ), Vector2( 0, -3 ), Vector2( 0, -2 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 1 ), Vector2( 0, -5 ), Vector2( 0, -15 ), Vector2( 0, -10 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -183,6 +187,8 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=55]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id=56]
 states/Alerted/node = SubResource( 44 )
@@ -198,11 +204,16 @@ states/Get_In_Position/position = Vector2( 309, 234 )
 states/Idle/node = SubResource( 49 )
 states/Idle/position = Vector2( 103, 65 )
 transitions = [ "Idle", "Alerted", SubResource( 50 ), "Alerted", "Chase", SubResource( 51 ), "Chase", "Get_In_Position", SubResource( 52 ), "Get_In_Position", "Attack_CHARGE", SubResource( 53 ), "Attack_CHARGE", "Attack", SubResource( 54 ), "Attack", "Idle", SubResource( 55 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -23, -89 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=57]
 
 [node name="Goomba" type="KinematicBody2D"]
 position = Vector2( 512, 236 )
+script = ExtResource( 2 )
+initial_state_path = NodePath("IDLE")
+attack_range = 90.0
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 26 )
@@ -211,13 +222,14 @@ shape = SubResource( 4 )
 [node name="Visual" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Visual"]
+position = Vector2( 0, 1 )
 scale = Vector2( 0.346525, 0.346525 )
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 3
-frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
+playback_process_mode = 0
 anims/Alerted = SubResource( 9 )
 anims/Attack = SubResource( 12 )
 anims/Attack_CHARGE = SubResource( 10 )
@@ -232,3 +244,12 @@ tree_root = SubResource( 56 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 57 )
+
+[node name="IDLE" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="CHASE" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="CHARGE" type="Node2D" parent="."]
+script = ExtResource( 5 )
