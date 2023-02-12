@@ -9,10 +9,10 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "Base_Context",
+"base": "Base_State",
+"class": "Base_EnemyState",
 "language": "GDScript",
-"path": "res://Scripts/State Machine/Base_Context.gd"
+"path": "res://Scripts/Enemies/Base_EnemyState.gd"
 }, {
 "base": "Node2D",
 "class": "Base_FSM",
@@ -23,16 +23,6 @@ _global_script_classes=[ {
 "class": "Base_State",
 "language": "GDScript",
 "path": "res://Scripts/State Machine/Base_State.gd"
-}, {
-"base": "Base_State",
-"class": "Base_State_Goomba",
-"language": "GDScript",
-"path": "res://Scripts/Enemies/Goomba/Base_State_Goomba.gd"
-}, {
-"base": "Base_Context",
-"class": "Context_Goomba",
-"language": "GDScript",
-"path": "res://Scripts/Enemies/Goomba/Context_Goomba.gd"
 }, {
 "base": "Reference",
 "class": "DTS",
@@ -130,11 +120,9 @@ _global_script_classes=[ {
 "path": "res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd"
 } ]
 _global_script_class_icons={
-"Base_Context": "",
+"Base_EnemyState": "",
 "Base_FSM": "",
 "Base_State": "",
-"Base_State_Goomba": "",
-"Context_Goomba": "",
 "DTS": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",

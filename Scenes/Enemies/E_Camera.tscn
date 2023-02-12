@@ -1,10 +1,44 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Assets/Sprites/Camera/camera_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Enemies/Camera_FSM.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemies/Camera_Idle.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemies/Camera_Chase.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Enemies/Camera_Attack.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Enemies/Camera_Flash.gd" type="Script" id=6]
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 20.0
 height = 8.0
+
+[sub_resource type="Animation" id=43]
+resource_name = "Alerted"
+length = 0.47
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.11, 0.31, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 31, 33, 31, 36 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.11, 0.24, 0.31 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, -5 ), Vector2( 0, -12 ), Vector2( 0, -8 ), Vector2( 0, -5 ) ]
+}
 
 [sub_resource type="Animation" id=26]
 resource_name = "Attack_FLASH"
@@ -25,7 +59,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=27]
 resource_name = "Attack_SLASH"
-length = 0.95
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -34,7 +67,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.15, 0.2, 0.45, 0.5, 0.55, 0.6, 0.75, 0.8, 0.9 ),
+"times": PoolRealArray( 0, 0.05, 0.15, 0.2, 0.45, 0.5, 0.55, 0.6, 0.8, 0.85, 0.95 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 ]
@@ -59,8 +92,9 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=29]
 resource_name = "Chase_ON"
-length = 0.65
+length = 0.35
 loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -68,16 +102,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.75, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 12, 13, 14, 15, 16, 17, 18 ]
+"values": [ 17, 18, 12, 13, 14, 15, 16, 36, 36 ]
 }
 
 [sub_resource type="Animation" id=30]
 resource_name = "Idle"
 length = 0.1
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -103,7 +136,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0 ]
+"values": [ 16 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:position")
@@ -117,6 +150,9 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0, -5 ) ]
 }
+
+[sub_resource type="AnimationNodeAnimation" id=44]
+animation = "Alerted"
 
 [sub_resource type="AnimationNodeAnimation" id=31]
 animation = "Attack_FLASH"
@@ -138,6 +174,8 @@ animation = "Idle"
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=38]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=39]
 
@@ -145,24 +183,43 @@ animation = "Idle"
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+
 [sub_resource type="AnimationNodeStateMachine" id=41]
+states/Alerted/node = SubResource( 44 )
+states/Alerted/position = Vector2( 508, 476 )
 states/Attack_FLASH/node = SubResource( 31 )
-states/Attack_FLASH/position = Vector2( 552, 277 )
+states/Attack_FLASH/position = Vector2( 339, 332 )
 states/Attack_SLASH/node = SubResource( 32 )
-states/Attack_SLASH/position = Vector2( 162, 277 )
+states/Attack_SLASH/position = Vector2( 111, 190 )
 states/Chase_OFF/node = SubResource( 33 )
-states/Chase_OFF/position = Vector2( 346, 408 )
+states/Chase_OFF/position = Vector2( 508, 401 )
 states/Chase_ON/node = SubResource( 34 )
-states/Chase_ON/position = Vector2( 346, 277 )
+states/Chase_ON/position = Vector2( 111, 332 )
 states/Idle/node = SubResource( 35 )
-states/Idle/position = Vector2( 346, 190 )
-transitions = [ "Idle", "Chase_ON", SubResource( 36 ), "Chase_ON", "Attack_SLASH", SubResource( 37 ), "Attack_SLASH", "Idle", SubResource( 38 ), "Chase_ON", "Attack_FLASH", SubResource( 39 ), "Attack_FLASH", "Idle", SubResource( 40 ) ]
-graph_offset = Vector2( -127, 109 )
+states/Idle/position = Vector2( 339, 190 )
+transitions = [ "Idle", "Chase_ON", SubResource( 36 ), "Chase_ON", "Attack_SLASH", SubResource( 37 ), "Attack_SLASH", "Idle", SubResource( 38 ), "Chase_ON", "Attack_FLASH", SubResource( 39 ), "Attack_FLASH", "Idle", SubResource( 40 ), "Chase_OFF", "Alerted", SubResource( 45 ), "Alerted", "Chase_ON", SubResource( 46 ), "Idle", "Chase_OFF", SubResource( 47 ), "Chase_OFF", "Idle", SubResource( 48 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -46, 156.473 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=42]
 
 [node name="E_Camera" type="KinematicBody2D"]
 position = Vector2( 315, 102 )
+script = ExtResource( 2 )
+initial_state_path = NodePath("IDLE")
+_sprite_path = NodePath("Visual/Sprite")
+_parent_path = NodePath(".")
+_animator_path = NodePath("Visual/AnimationTree")
+speed = 150.0
 
 [node name="HitBox" type="CollisionShape2D" parent="."]
 position = Vector2( 2, 8 )
@@ -171,14 +228,15 @@ shape = SubResource( 4 )
 [node name="Visual" type="Node2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="Visual"]
-position = Vector2( 0, 1 )
+position = Vector2( 0, -5 )
 scale = Vector2( 0.346525, 0.346525 )
 texture = ExtResource( 1 )
 hframes = 12
 vframes = 4
-frame = 36
+frame = 16
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
+anims/Alerted = SubResource( 43 )
 anims/Attack_FLASH = SubResource( 26 )
 anims/Attack_SLASH = SubResource( 27 )
 anims/Chase_OFF = SubResource( 28 )
@@ -191,3 +249,15 @@ tree_root = SubResource( 41 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 42 )
+
+[node name="IDLE" type="Node2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="CHASE" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="ATTACK" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="FLASH" type="Node2D" parent="."]
+script = ExtResource( 6 )

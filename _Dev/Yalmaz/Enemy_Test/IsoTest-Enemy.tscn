@@ -268,26 +268,22 @@ unique_name_in_owner = true
 position = Vector2( 880, 534 )
 
 [node name="Player" type="AnimatedSprite" parent="."]
-unique_name_in_owner = true
 position = Vector2( 300, 280 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
-frame = 8
+frame = 6
 playing = true
 script = ExtResource( 28 )
 
-[node name="target" type="Node2D" parent="Player"]
+[node name="Player_Target" type="Node2D" parent="Player"]
+unique_name_in_owner = true
 position = Vector2( 0, 60 )
 
-[node name="E_Camera" parent="." instance=ExtResource( 2 )]
+[node name="E_Test" parent="." instance=ExtResource( 2 )]
+position = Vector2( 445, 234 )
+_player_path = NodePath("../Player")
 
-[node name="Sprite" parent="E_Camera/Visual" index="0"]
-position = Vector2( 0, -5 )
-frame = 0
-
-[node name="AnimationTree" parent="E_Camera/Visual" index="2"]
+[node name="AnimationTree" parent="E_Test/Visual" index="2"]
 parameters/playback = SubResource( 4 )
 
-[node name="IDLE" type="Node2D" parent="E_Camera"]
-
-[editable path="E_Camera"]
+[editable path="E_Test"]
