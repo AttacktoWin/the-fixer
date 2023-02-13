@@ -1,10 +1,10 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://Assets/Sprites/Knife/spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemies/Goomba/Goomba_FSM.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Enemies/Goomba/Goomba_Idle.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Enemies/Goomba/Goomba_Chase.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Enemies/Goomba/Goomba_Charge.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Enemies/Generic/Generic_Idle.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemies/Generic/Generic_Chase.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Enemies/Generic/Generic_Charge.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Enemies/Goomba/Goomba_GetReady.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Enemies/Goomba/Goomba_Attack.gd" type="Script" id=7]
 
@@ -27,6 +27,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 7, 8, 9, 10, 11, 12, 13 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../IDLE")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "CHASE" ],
+"method": "transition_atAnimEnd"
+} ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -67,13 +81,44 @@ tracks/2/keys = {
 "times": PoolRealArray( 0.6 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
+"args": [ "IDLE" ],
 "method": "transition_atAnimEnd"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("../CHARGE")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "ATTACK" ],
+"method": "transition_atAnimEnd"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("../ATTACK")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "hurtBoxSwitch"
+}, {
+"args": [  ],
+"method": "hurtBoxSwitch"
 } ]
 }
 
 [sub_resource type="Animation" id=10]
-resource_name = "Attack_CHARGE"
+resource_name = "Charge"
 length = 0.5
 loop = true
 step = 0.05
@@ -108,7 +153,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=14]
-resource_name = "Get_In_Position"
+resource_name = "Get_Ready"
 length = 0.8
 loop = true
 step = 0.05
@@ -137,16 +182,30 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 1 ), Vector2( 0, -5 ), Vector2( 0, -10 ), Vector2( 0, -15 ), Vector2( 0, -10 ), Vector2( 0, -5 ), Vector2( 0, 1 ) ]
 }
 tracks/2/type = "method"
-tracks/2/path = NodePath("../GET_READY")
+tracks/2/path = NodePath("../CHASE")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "GET_READY" ],
+"method": "transition_atAnimEnd"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("../GET_READY")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0.8 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [  ],
+"args": [ "CHARGE" ],
 "method": "transition_atAnimEnd"
 } ]
 }
@@ -201,13 +260,16 @@ animation = "Alerted"
 animation = "Attack"
 
 [sub_resource type="AnimationNodeAnimation" id=46]
-animation = "Attack_CHARGE"
+animation = "Charge"
 
 [sub_resource type="AnimationNodeAnimation" id=47]
 animation = "Chase"
 
 [sub_resource type="AnimationNodeAnimation" id=48]
-animation = "Get_In_Position"
+animation = "Get_Ready"
+
+[sub_resource type="AnimationNodeAnimation" id=59]
+animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=49]
 animation = "Idle"
@@ -230,22 +292,36 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=63]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=64]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=65]
+
 [sub_resource type="AnimationNodeStateMachine" id=56]
-states/Alerted/node = SubResource( 44 )
-states/Alerted/position = Vector2( 103, 150 )
-states/Attack/node = SubResource( 45 )
-states/Attack/position = Vector2( 522, 65 )
-states/Attack_CHARGE/node = SubResource( 46 )
-states/Attack_CHARGE/position = Vector2( 522, 234 )
-states/Chase/node = SubResource( 47 )
-states/Chase/position = Vector2( 309, 150 )
-states/Get_In_Position/node = SubResource( 48 )
-states/Get_In_Position/position = Vector2( 309, 234 )
-states/Idle/node = SubResource( 49 )
-states/Idle/position = Vector2( 103, 65 )
-transitions = [ "Idle", "Alerted", SubResource( 50 ), "Alerted", "Chase", SubResource( 51 ), "Chase", "Get_In_Position", SubResource( 52 ), "Get_In_Position", "Attack_CHARGE", SubResource( 53 ), "Attack_CHARGE", "Attack", SubResource( 54 ), "Attack", "Idle", SubResource( 58 ) ]
-start_node = "Idle"
-graph_offset = Vector2( -107, -36 )
+states/ALERTED/node = SubResource( 44 )
+states/ALERTED/position = Vector2( 103, 150 )
+states/ATTACK/node = SubResource( 45 )
+states/ATTACK/position = Vector2( 522, 65 )
+states/CHARGE/node = SubResource( 46 )
+states/CHARGE/position = Vector2( 522, 234 )
+states/CHASE/node = SubResource( 47 )
+states/CHASE/position = Vector2( 103, 234 )
+states/GET_READY/node = SubResource( 48 )
+states/GET_READY/position = Vector2( 309, 234 )
+states/HIT/node = SubResource( 59 )
+states/HIT/position = Vector2( 309, -85 )
+states/IDLE/node = SubResource( 49 )
+states/IDLE/position = Vector2( 103, 65 )
+transitions = [ "IDLE", "ALERTED", SubResource( 50 ), "ALERTED", "CHASE", SubResource( 51 ), "CHASE", "GET_READY", SubResource( 52 ), "GET_READY", "CHARGE", SubResource( 53 ), "CHARGE", "ATTACK", SubResource( 54 ), "ATTACK", "IDLE", SubResource( 58 ), "ALERTED", "HIT", SubResource( 60 ), "GET_READY", "HIT", SubResource( 61 ), "CHASE", "HIT", SubResource( 62 ), "IDLE", "HIT", SubResource( 63 ), "CHARGE", "HIT", SubResource( 64 ), "ATTACK", "HIT", SubResource( 65 ) ]
+start_node = "IDLE"
+graph_offset = Vector2( -120, -198.86 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=57]
 
@@ -261,7 +337,6 @@ position = Vector2( 0, 26 )
 shape = SubResource( 4 )
 
 [node name="Visual" type="Node2D" parent="."]
-position = Vector2( 0, -1.37931 )
 
 [node name="Sprite" type="Sprite" parent="Visual"]
 position = Vector2( 0, 1 )
@@ -274,13 +349,13 @@ vframes = 3
 playback_process_mode = 0
 anims/Alerted = SubResource( 9 )
 anims/Attack = SubResource( 12 )
-anims/Attack_CHARGE = SubResource( 10 )
+anims/Charge = SubResource( 10 )
 anims/Chase = SubResource( 13 )
-anims/Get_In_Position = SubResource( 14 )
+anims/Get_Ready = SubResource( 14 )
 anims/Idle = SubResource( 25 )
 anims/RESET = SubResource( 15 )
 
-[node name="AnimationTree" type="AnimationTree" parent="Visual"]
+[node name="AnimationTree" type="AnimationTree" parent="Visual" groups=["Enemy"]]
 tree_root = SubResource( 56 )
 anim_player = NodePath("../AnimationPlayer")
 active = true

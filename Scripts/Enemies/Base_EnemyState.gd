@@ -1,5 +1,5 @@
 # Author: Yalmaz
-# Description: Interface to be implemented when making a node
+# Description: Extension of Abstract Base_FSM that implements some enemy specific utils
 class_name Base_EnemyState
 extends Base_State
 
@@ -8,12 +8,6 @@ var parent: Node2D = null
 var animator = null
 var player: Node2D = null
 var previous_state = "Root"
-
-
-# Description: temporary method for testing hit animation
-func handle_input(_event: InputEvent) -> void:
-	if _event.is_action_pressed("ui_right"):
-		state_machine.transition_to("STAGGER")
 
 
 # Description: used to flip sprite based on player position relative to self
@@ -51,8 +45,9 @@ func get_PlayerInLocal(enemy_node: Node2D) -> Vector2:
 
 
 ########################################################################
-#Overrides
+#DEBGU CODE
 ########################################################################
-func exit():
-	.exit()
-	update()
+#Description: temporary method for testing hit animation
+func handle_input(_event: InputEvent) -> void:
+	if _event.is_action_pressed("ui_right"):
+		state_machine.transition_to("STAGGER")

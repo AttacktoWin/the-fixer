@@ -197,18 +197,18 @@ auto_advance = true
 states/Alerted/node = SubResource( 44 )
 states/Alerted/position = Vector2( 508, 476 )
 states/Attack_FLASH/node = SubResource( 31 )
-states/Attack_FLASH/position = Vector2( 339, 332 )
+states/Attack_FLASH/position = Vector2( 25, 104 )
 states/Attack_SLASH/node = SubResource( 32 )
 states/Attack_SLASH/position = Vector2( 111, 190 )
 states/Chase_OFF/node = SubResource( 33 )
-states/Chase_OFF/position = Vector2( 508, 401 )
+states/Chase_OFF/position = Vector2( 705, 172 )
 states/Chase_ON/node = SubResource( 34 )
 states/Chase_ON/position = Vector2( 111, 332 )
 states/Idle/node = SubResource( 35 )
-states/Idle/position = Vector2( 339, 190 )
+states/Idle/position = Vector2( 332, 104 )
 transitions = [ "Idle", "Chase_ON", SubResource( 36 ), "Chase_ON", "Attack_SLASH", SubResource( 37 ), "Attack_SLASH", "Idle", SubResource( 38 ), "Chase_ON", "Attack_FLASH", SubResource( 39 ), "Attack_FLASH", "Idle", SubResource( 40 ), "Chase_OFF", "Alerted", SubResource( 45 ), "Alerted", "Chase_ON", SubResource( 46 ), "Idle", "Chase_OFF", SubResource( 47 ), "Chase_OFF", "Idle", SubResource( 48 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -72, 204.473 )
+graph_offset = Vector2( -91, 38.473 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=42]
 

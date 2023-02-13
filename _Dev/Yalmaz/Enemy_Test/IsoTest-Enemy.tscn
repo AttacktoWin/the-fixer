@@ -277,7 +277,7 @@ tile_data = PoolIntArray( -262145, 2, 0, -327680, 2, 0, -327679, 2, 0, -327678, 
 position = Vector2( 249, 348 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
-frame = 7
+frame = 9
 playing = true
 script = ExtResource( 28 )
 
@@ -288,5 +288,5 @@ position = Vector2( 0, 60 )
 [node name="E_Test" parent="YSort" instance=ExtResource( 2 )]
 position = Vector2( 240, 193 )
 
-[node name="E_Test2" parent="YSort" instance=ExtResource( 5 )]
+[node name="E_Test2" parent="YSort" groups=["Enemy"] instance=ExtResource( 5 )]
 position = Vector2( 423, 237 )

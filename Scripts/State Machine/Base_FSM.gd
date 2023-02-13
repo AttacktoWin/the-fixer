@@ -22,13 +22,13 @@ func transition_to(target_state_name: String, _msg: Dictionary = {}) -> void:
 		return
 
 	#call clean up for current state
-	_current_state.exit()
+	_current_state.on_exit()
 
 	#prepare and connect next state
 	var next_state = get_node(target_state_name)
 	next_state.previous_state = _current_state.name
 	_current_state = next_state
-	_current_state.enter()
+	_current_state.on_enter()
 
 
 ########################################################################
@@ -38,7 +38,7 @@ func _ready() -> void:
 	for child in get_children():
 		if child.has_method("tick"):
 			p_initializeStates(child)
-	_current_state.enter()
+	_current_state.on_enter()
 
 
 func _process(delta: float) -> void:

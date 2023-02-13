@@ -1,5 +1,8 @@
 extends Base_EnemyState
 
+# next animator fsm node to travel to
+export(String) var next_node = "ALERTED"
+
 
 # Description: detect player when in range
 func sensePlayer() -> bool:
@@ -13,20 +16,18 @@ func sensePlayer() -> bool:
 ########################################################################
 func enter() -> void:
 	.enter()
-	animator.travel("Idle")
-
-
-func exit():
-	.exit()
-	flipSprite()
-	animator.travel("Alerted")
+	animator.travel("IDLE")
 
 
 func tick(_delta: float) -> void:
 	if sensePlayer():
-		state_machine.transition_to("CHASE")
+		flipSprite()
+		animator.travel(next_node)
 
 
+########################################################################
+#DEBGU CODE
+########################################################################
 func _draw():
 	if is_Active:
 		draw_circle(
