@@ -38,6 +38,8 @@ func _get_wanted_velocity():
 func _handle_input():
 	if Input.is_action_just_pressed("ui_focus_next"):
 		if self._dash_part == 1:
+			# CameraSingleton.freeze(CameraSingleton.TARGET.LOCATION)
+			CameraSingleton.set_zoom(Vector2(1.01, 1.01))
 			self._dash_part = 0
 			self._dash_direction = CameraSingleton.get_mouse_from_camera_center().normalized()
 			self._dash_timer.wait_time = 0.25
@@ -47,6 +49,10 @@ func _handle_input():
 
 func _dash_increment():
 	self._dash_part = 1
+	# CameraSingleton.unfreeze(CameraSingleton.TARGET.LOCATION)
+	CameraSingleton.set_zoom(Vector2(0.97, 0.97))
+	CameraSingleton.jump_field(CameraSingleton.TARGET.SCALE)
+	CameraSingleton.set_zoom(Vector2(1, 1))
 	var _discard = move_and_slide(self._dash_direction * 9600)
 
 

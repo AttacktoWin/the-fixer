@@ -1,28 +1,33 @@
 extends Node
 
 var _shake_timer = 0
-var _target = Vector2()
-var _current = Vector2()
+var _location_target = Vector2()
+var _scale_target = Vector2(1, 1)
 var _transition_factor = 0.2
 var _viewport
+var _camera
+var _frozen = false
 
 const SHAKE_FACTOR = 10
 const MAX_SHAKE_TIMER = 120
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	self._viewport = get_viewport()
+enum TARGET { LOCATION, SCALE, ROTATION }
+var _frozen_dict = {}
 
 
-func set_target(target):
-	self._target.x = target.x
-	self._target.y = target.y
+func _init():
+	for key in TARGET:
+		self._frozen_dict[TARGET[key]] = false
+
+
+func set_camera(camera):
+	self._camera = camera
+	self._viewport = camera.get_viewport()
 
 
 func set_target_center(target):
-	self._target.x = target.x - self._viewport.size.x / 2
-	self._target.y = target.y - self._viewport.size.y / 2
+	self._location_target.x = target.x
+	self._location_target.y = target.y
 
 
 func set_transition_factor(transition_factor):
@@ -42,23 +47,59 @@ func get_local_mouse() -> Vector2:
 
 
 func get_absolute_mouse() -> Vector2:
-	return self.get_local_mouse() + self._current
+	return self.get_local_mouse() + self._camera.transform.origin
 
 
 func get_mouse_from_camera_center() -> Vector2:
 	return self.get_local_mouse() - self._viewport.size / 2
 
 
+func set_zoom(new_scale):
+	self._scale_target = new_scale
+
+
+func jump_field(target_type):
+	match target_type:
+		TARGET.LOCATION:
+			self._camera.transform.origin = self._location_target
+		TARGET.SCALE:
+			self._camera.zoom = self._scale_target
+
+
+# prevents the camera from moving
+func freeze(type):
+	self._frozen_dict[type] = true
+
+
+func unfreeze(type):
+	self._frozen_dict[type] = false
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	self._current = self._current + (self._target - self._current) * self._transition_factor
-	self._shake_timer = max(self._shake_timer / 3, 0)
-	# move the camera!
+	var delta_60 = _delta * 60
+	self._shake_timer = max(self._shake_timer / 3 / delta_60, 0)
 
-	# print(self._target.x, "::", self._target.y, " actual: ", self._current.x, "::", self._current.y)
+	# move
+	if not self._frozen_dict[TARGET.LOCATION]:
+		self._camera.transform.origin = (
+			self._camera.transform.origin
+			+ (
+				(self._location_target - self._camera.transform.origin)
+				* pow(self._transition_factor, 1 / delta_60)
+			)
+		)
 
-	self._viewport.canvas_transform.origin = (
-		-self._current
+	# zoom
+	if not self._frozen_dict[TARGET.SCALE]:
+		self._camera.zoom = (
+			self._camera.zoom
+			+ (self._scale_target - self._camera.zoom) * pow(self._transition_factor, 1 / delta_60)
+		)
+
+	# SCREEN SHAKE!!! (the most important part)
+	self._camera.transform.origin = (
+		self._camera.transform.origin
 		+ (
 			Vector2(
 				rand_range(-self._shake_timer, self._shake_timer),
