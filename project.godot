@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Base_State",
+"class": "Base_EnemyState",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Base_EnemyState.gd"
+}, {
 "base": "Node2D",
 "class": "Base_FSM",
 "language": "GDScript",
@@ -18,26 +23,6 @@ _global_script_classes=[ {
 "class": "Base_State",
 "language": "GDScript",
 "path": "res://Scripts/State Machine/Base_State.gd"
-}, {
-"base": "Base_State",
-"class": "Base_State_Camera",
-"language": "GDScript",
-"path": "res://Scripts/Camera/Base_State_Camera.gd"
-}, {
-"base": "Base_State",
-"class": "Base_State_Goomba",
-"language": "GDScript",
-"path": "res://Scripts/Goomba/Base_State_Goomba.gd"
-}, {
-"base": "Node",
-"class": "Context",
-"language": "GDScript",
-"path": "res://Scripts/State Machine/Base_Context.gd"
-}, {
-"base": "Context",
-"class": "Context_Goomba",
-"language": "GDScript",
-"path": "res://Scripts/Goomba/Context_Goomba.gd"
 }, {
 "base": "Reference",
 "class": "DTS",
@@ -109,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/DialogueQueue.gd"
 }, {
+"base": "Base_FSM",
+"class": "EnemyFSM",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/EnemyFSM.gd"
+}, {
 "base": "PanelContainer",
 "class": "HistoryRow",
 "language": "GDScript",
@@ -135,12 +125,9 @@ _global_script_classes=[ {
 "path": "res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd"
 } ]
 _global_script_class_icons={
+"Base_EnemyState": "",
 "Base_FSM": "",
 "Base_State": "",
-"Base_State_Camera": "",
-"Base_State_Goomba": "",
-"Context": "",
-"Context_Goomba": "",
 "DTS": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",
@@ -155,6 +142,7 @@ _global_script_class_icons={
 "DialogueFile": "",
 "DialogueNPCIds": "",
 "DialogueQueue": "",
+"EnemyFSM": "",
 "HistoryRow": "",
 "NPC": "",
 "NPCInstance": "",

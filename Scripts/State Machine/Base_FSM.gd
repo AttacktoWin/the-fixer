@@ -1,12 +1,17 @@
 # Author: Yalmaz
-# Description: Interface to implement FSM. controls the state trasitions for this state patten.
+# Description: Abstract FSM class. controls the state trasitions for this state patten.
 class_name Base_FSM
 extends Node2D
 
+# Path for the state node that this fsm should initalize with.
 export(NodePath) var initial_state_path
+var previous_node
+onready var _current_state = get_node(initial_state_path)
 
-var context := Context  # Context passed into the states allows information to be passed betewen states. This could be a dict or custom data type
-onready var current_state: Base_State = get_node(initial_state_path)
+
+# Description: Method used to initalize the states on ready.
+func p_initializeStates(state) -> void:
+	state.state_machine = self
 
 
 # Description: Method used to transition the state.
@@ -17,35 +22,32 @@ func transition_to(target_state_name: String, _msg: Dictionary = {}) -> void:
 		return
 
 	#call clean up for current state
-	context = current_state.exit()
-
-	#wait for state to finish clean up
-	yield(current_state, "cleanup_finished")
+	_current_state.on_exit()
 
 	#prepare and connect next state
-	current_state = get_node(target_state_name)
-	current_state.enter(context)
+	var next_state = get_node(target_state_name)
+	next_state.previous_state = _current_state.name
+	_current_state = next_state
+	_current_state.on_enter()
 
 
 ########################################################################
 #Life Cycle Methods
 ########################################################################
 func _ready() -> void:
-	yield(owner, "ready")
 	for child in get_children():
 		if child.has_method("tick"):
-			child.state_machine = self
-	current_state.enter(context)
-	get_node("%Manager_Enemy").enemies.append(self)
+			p_initializeStates(child)
+	_current_state.on_enter()
 
 
 func _process(delta: float) -> void:
-	current_state.tick(delta)
+	_current_state.tick(delta)
 
 
 func _physics_process(delta: float) -> void:
-	current_state.physics_tick(delta)
+	_current_state.physics_tick(delta)
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	current_state.handle_input(event)
+	_current_state.handle_input(event)

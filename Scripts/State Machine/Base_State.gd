@@ -3,31 +3,38 @@
 class_name Base_State
 extends Node2D
 
-# warning-ignore:UNUSED_SIGNAL
-signal cleanup_finished  # signal emitted when clean up complete and ready to transition
-
-var state_machine = null
-var is_cleaningUp
-onready var p_context = Context_Goomba.new()
+var state_machine: Base_FSM = null
+var is_Active: bool = false
 
 
+func transition_atAnimEnd(next_state: String):
+	state_machine.transition_to(next_state)
+
+
+########################################################################
+#Virtual Functions
+########################################################################
 # Description: Method used to initialize state on entery.
-# `_context` current context passed in from the state_machine
-func enter(_context) -> void:
-	p_context = _context
+func on_enter() -> void:
+	is_Active = true
 
 
 # Description: Method used to clean up state on exit.
-# return context that has been modified by the state
-func exit():
-	return p_context
+func on_exit():
+	update()
+	is_Active = false
 
 
-# Description: Virtual Method to that _process for the FSM is delegated to.
+# Description: Virtual Method that _process for the FSM is delegated to.
 func tick(_delta: float) -> void:
-	return
+	pass
 
 
-# Description: Virtual Method to that _physics_process for the FSM is delegated to.
+# Description: Virtual Method that _physics_process for the FSM is delegated to.
 func physics_tick(_delta: float) -> void:
+	pass
+
+
+# Description: Virtual Method that _unhandled_input for the FSM is delegated to.
+func handle_input(_event: InputEvent) -> void:
 	pass

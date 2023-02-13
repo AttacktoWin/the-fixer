@@ -1,0 +1,51 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=10 format=2]
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "Attack_CHARGE"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "Get_In_Position"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "Attack"
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "Chase"
+
+[sub_resource type="AnimationNodeOneShot" id=29]
+
+[sub_resource type="AnimationNodeOneShot" id=30]
+
+[sub_resource type="AnimationNodeOneShot" id=23]
+
+[sub_resource type="AnimationNodeTransition" id=24]
+input_count = 2
+input_0/name = "state 0"
+input_0/auto_advance = false
+input_1/name = "state 1"
+input_1/auto_advance = false
+
+[resource]
+graph_offset = Vector2( -399.263, -116.696 )
+nodes/Animation/node = SubResource( 21 )
+nodes/Animation/position = Vector2( -760, -20 )
+"nodes/Animation 2/node" = SubResource( 16 )
+"nodes/Animation 2/position" = Vector2( -840, 160 )
+"nodes/Animation 3/node" = SubResource( 26 )
+"nodes/Animation 3/position" = Vector2( -840, 280 )
+"nodes/Animation 4/node" = SubResource( 27 )
+"nodes/Animation 4/position" = Vector2( -560, 80 )
+"nodes/Animation 6/node" = SubResource( 28 )
+"nodes/Animation 6/position" = Vector2( -780, -140 )
+nodes/OneShot/node = SubResource( 23 )
+nodes/OneShot/position = Vector2( -40, 60 )
+"nodes/OneShot 2/node" = SubResource( 29 )
+"nodes/OneShot 2/position" = Vector2( -560, 200 )
+"nodes/OneShot 3/node" = SubResource( 30 )
+"nodes/OneShot 3/position" = Vector2( -257.708, 208.866 )
+"nodes/Transition 3/node" = SubResource( 24 )
+"nodes/Transition 3/position" = Vector2( -560, -80 )
+node_connections = [ "output", 0, "OneShot", "OneShot 2", 0, "Animation 2", "OneShot 2", 1, "Animation 3", "OneShot", 0, "Transition 3", "OneShot", 1, "OneShot 3", "Transition 3", 0, "Animation 6", "Transition 3", 1, "Animation", "OneShot 3", 0, "Animation 4", "OneShot 3", 1, "OneShot 2" ]
