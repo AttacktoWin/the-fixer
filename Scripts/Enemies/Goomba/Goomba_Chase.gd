@@ -5,7 +5,7 @@ func chasePlayer() -> bool:
 	if is_PlayerInRange(self, state_machine.attack_range):
 		return true
 
-	if animator.get_current_node() == "Chase_ON":
+	if animator.get_current_node() == "Chase":
 		# warning-ignore:UNUSED_VARIABLE
 		var velocity = state_machine.move_and_slide(
 			state_machine.speed * get_DirectionToPlayer(self)
@@ -19,7 +19,7 @@ func chasePlayer() -> bool:
 func tick(_delta: float) -> void:
 	flipSprite()
 	if chasePlayer():
-		state_machine.transition_to("CHARGE")
+		state_machine.transition_to("GET_READY")
 
 
 func _draw():

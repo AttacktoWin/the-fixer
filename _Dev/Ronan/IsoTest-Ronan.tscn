@@ -261,7 +261,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 2 )
 
 [node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 644, 245 )
+position = Vector2( 611, 237 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 5 )
 
@@ -269,7 +269,7 @@ texture = ExtResource( 5 )
 position = Vector2( 340, 264 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
-frame = 4
+frame = 1
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
