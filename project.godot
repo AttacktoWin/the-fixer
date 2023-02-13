@@ -9,65 +9,125 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "BT",
+"base": "Base_State",
+"class": "Base_EnemyState",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/BT.gd"
+"path": "res://Scripts/Enemies/Base_EnemyState.gd"
 }, {
-"base": "Node",
-"class": "BT_Blackboard",
+"base": "Node2D",
+"class": "Base_FSM",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/BT_Blackboard.gd"
+"path": "res://Scripts/State Machine/Base_FSM.gd"
 }, {
-"base": "BT_Leaf",
-"class": "BT_Conditional",
+"base": "Node2D",
+"class": "Base_State",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Leaves/BT_Conditional.gd"
-}, {
-"base": "Base_BT_Node",
-"class": "BT_Leaf",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Leaves/BT_Leaf.gd"
-}, {
-"base": "BT",
-"class": "BT_Root",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/BT_Root.gd"
-}, {
-"base": "Base_BT_Composite",
-"class": "BT_Selector",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Selector.gd"
-}, {
-"base": "Base_BT_Composite",
-"class": "BT_Sequencer",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Sequencer.gd"
-}, {
-"base": "Base_BT_Node",
-"class": "Base_BT_Composite",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Composite.gd"
-}, {
-"base": "BT",
-"class": "Base_BT_Node",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Base_BT_Node.gd"
+"path": "res://Scripts/State Machine/Base_State.gd"
 }, {
 "base": "Area2D",
 "class": "BulletBase",
 "language": "GDScript",
 "path": "res://_Dev/marcus/projectiles/BulletBase.gd"
 }, {
+"base": "Reference",
+"class": "DTS",
+"language": "GDScript",
+"path": "res://addons/dialogic/Localization/translation_service.gd"
+}, {
 "base": "RunnableList",
 "class": "DecoratorList",
 "language": "GDScript",
 "path": "res://_Dev/marcus/utils/DecoratorList.gd"
 }, {
+"base": "Node",
+"class": "Dialogic",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicClass.gd"
+}, {
+"base": "Reference",
+"class": "DialogicAnimaPropertiesHelper",
+"language": "GDScript",
+"path": "res://addons/dialogic/Nodes/Anima/DialogicAnimaPropertiesHelper.gd"
+}, {
+"base": "Node",
+"class": "DialogicAnimaResources",
+"language": "GDScript",
+"path": "res://addons/dialogic/Nodes/Anima/DialogicAnimaResources.gd"
+}, {
+"base": "Control",
+"class": "DialogicBackgroundMusic",
+"language": "GDScript",
+"path": "res://addons/dialogic/Nodes/BackgroundMusic.gd"
+}, {
+"base": "Node",
+"class": "DialogicCustomEvents",
+"language": "GDScript",
+"path": "res://addons/dialogic/Nodes/DialogicCustomEvents.gd"
+}, {
+"base": "Node",
+"class": "DialogicDefinitionsUtil",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicDefinitionsUtil.gd"
+}, {
+"base": "Node",
+"class": "DialogicParser",
+"language": "GDScript",
+"path": "res://addons/dialogic/Parser/DialogicParser.gd"
+}, {
+"base": "Reference",
+"class": "DialogicResources",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicResources.gd"
+}, {
+"base": "Reference",
+"class": "DialogicUtil",
+"language": "GDScript",
+"path": "res://addons/dialogic/Other/DialogicUtil.gd"
+}, {
+"base": "Resource",
+"class": "Dialogue",
+"language": "GDScript",
+"path": "res://Scripts/DialogueSystem/classes/Dialogue.gd"
+}, {
+"base": "Resource",
+"class": "DialogueFile",
+"language": "GDScript",
+"path": "res://Scripts/DialogueSystem/classes/DialogueFile.gd"
+}, {
+"base": "Resource",
+"class": "DialogueNPCIds",
+"language": "GDScript",
+"path": "res://Scripts/DialogueSystem/classes/DialogueNpcIds.gd"
+}, {
+"base": "Object",
+"class": "DialogueQueue",
+"language": "GDScript",
+"path": "res://Scripts/DialogueSystem/classes/DialogueQueue.gd"
+}, {
+"base": "Base_FSM",
+"class": "EnemyFSM",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/EnemyFSM.gd"
+}, {
+"base": "PanelContainer",
+"class": "HistoryRow",
+"language": "GDScript",
+"path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "MovingEntity",
 "language": "GDScript",
 "path": "res://_Dev/marcus/entities/MovingEntity.gd"
+}, {
+"base": "Node",
+"class": "NPC",
+"language": "GDScript",
+"path": "res://Scripts/DialogueSystem/NPC.gd"
+}, {
+"base": "Node2D",
+"class": "NPCInstance",
+"language": "GDScript",
+"path": "res://Scripts/DialogueSystem/NPCInstance.gd"
 }, {
 "base": "MovingEntity",
 "class": "Player",
@@ -89,6 +149,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://_Dev/marcus/entities/TestGun.gd"
 }, {
+"base": "Resource",
+"class": "UnlockTable",
+"language": "GDScript",
+"path": "res://Scripts/DialogueSystem/classes/UnlockTable.gd"
+}, {
+"base": "Resource",
+"class": "UnlockTableEntry",
+"language": "GDScript",
+"path": "res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd"
+}, {
 "base": "RunnableList",
 "class": "VariableList",
 "language": "GDScript",
@@ -100,22 +170,36 @@ _global_script_classes=[ {
 "path": "res://_Dev/marcus/entities/Weapon.gd"
 } ]
 _global_script_class_icons={
-"BT": "",
-"BT_Blackboard": "",
-"BT_Conditional": "",
-"BT_Leaf": "",
-"BT_Root": "",
-"BT_Selector": "",
-"BT_Sequencer": "",
-"Base_BT_Composite": "",
-"Base_BT_Node": "",
+"Base_EnemyState": "",
+"Base_FSM": "",
+"Base_State": "",
 "BulletBase": "",
+"DTS": "",
 "DecoratorList": "",
+"Dialogic": "",
+"DialogicAnimaPropertiesHelper": "",
+"DialogicAnimaResources": "",
+"DialogicBackgroundMusic": "",
+"DialogicCustomEvents": "",
+"DialogicDefinitionsUtil": "",
+"DialogicParser": "",
+"DialogicResources": "",
+"DialogicUtil": "",
+"Dialogue": "",
+"DialogueFile": "",
+"DialogueNPCIds": "",
+"DialogueQueue": "",
+"EnemyFSM": "",
+"HistoryRow": "",
 "MovingEntity": "",
+"NPC": "",
+"NPCInstance": "",
 "Player": "",
 "Runnable": "",
 "RunnableList": "",
 "TestGun": "",
+"UnlockTable": "",
+"UnlockTableEntry": "",
 "VariableList": "",
 "Weapon": ""
 }
@@ -123,7 +207,7 @@ _global_script_class_icons={
 [application]
 
 config/name="The Fixer"
-run/main_scene="res://_Dev/marcus/scenes/marcus_test_scene.tscn"
+run/main_scene="res://_Dev/Ronan/IsoTest-Ronan.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -131,14 +215,31 @@ config/icon="res://icon.png"
 CameraSingleton="*res://_Dev/marcus/entities/CameraSingleton.gd"
 PausingSingleton="*res://_Dev/marcus/entities/PausingSingleton.gd"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )
+
 [global]
 
 resolution=false
 window=false
+back=false
 
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+dialogic_default_action={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":true,"doubleclick":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
 
 [physics]
 
@@ -149,4 +250,5 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

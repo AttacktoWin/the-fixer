@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/DialogueSystem/DialogueSystem.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/DialogueSystem/NPC.gd" type="Script" id=2]
+[ext_resource path="res://Resources/UnlockTable.tres" type="Resource" id=3]
+[ext_resource path="res://Resources/FixerDialogueFile.tres" type="Resource" id=4]
+
+[node name="DialogueSystem" type="Node"]
+script = ExtResource( 1 )
+dialogue_unlock_table = ExtResource( 3 )
+save_file_name = "dialogue_system.save"
+
+[node name="Fixer" type="Node" parent="."]
+script = ExtResource( 2 )
+id = "fixer"
+dialogue_file = ExtResource( 4 )
