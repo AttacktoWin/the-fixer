@@ -5,8 +5,12 @@ class_name MovingEntity extends KinematicBody2D
 enum STATE {IDLE, MOVING, DASHING, HITSTUN, FIRING, RELOADING};
 enum STATUSES {INVULNERABLE, SLOWED}
 enum VARIABLE {MAX_SPEED, ACCEL, HEALTH, VELOCITY, DRAG, KNOCKBACK_FACTOR, WEIGHT}
-var variables = VariableList.new(	VARIABLE, {VARIABLE.MAX_SPEED: 480, VARIABLE.HEALTH:100, 
-										VARIABLE.ACCEL: 120, VARIABLE.VELOCITY: Vector2(), VARIABLE.DRAG: 0.5, 
+export var base_speed = 340;
+export var base_health = 100;
+export var base_accel = 80;
+export var base_drag = 0.5;
+var variables = VariableList.new(	VARIABLE, {VARIABLE.MAX_SPEED: base_speed, VARIABLE.HEALTH:base_health, 
+										VARIABLE.ACCEL: base_accel, VARIABLE.VELOCITY: Vector2(), VARIABLE.DRAG: base_drag, 
 										VARIABLE.KNOCKBACK_FACTOR: 0, VARIABLE.WEIGHT: 0})
 
 var _state = STATE.IDLE
@@ -51,6 +55,7 @@ func _ready():
 		print("Error connecting to pause: ", _error)
 	
 	self._state_timer.connect("timeout", self, "state_finished")
+	add_child(self._state_timer)
 
 func _set_state_timeout(timeout_seconds):
 	self._state_timer.start(timeout_seconds)

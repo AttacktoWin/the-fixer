@@ -1,6 +1,6 @@
 class_name TestGun extends Weapon
 
-var BulletScene = preload("res://_Dev/marcus/scenes/bullet_scene.tscn")
+var BulletScene = preload("res://Scenes/Weapons/bullet_scene.tscn")
 
 
 func _fire(_direction, _target = null):

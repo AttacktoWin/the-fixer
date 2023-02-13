@@ -48,4 +48,4 @@ nodes/OneShot/position = Vector2( -40, 60 )
 "nodes/OneShot 3/position" = Vector2( -257.708, 208.866 )
 "nodes/Transition 3/node" = SubResource( 24 )
 "nodes/Transition 3/position" = Vector2( -560, -80 )
-node_connections = [ "output", 0, "OneShot", "OneShot 2", 0, "Animation 2", "OneShot 2", 1, "Animation 3", "OneShot", 0, "Transition 3", "OneShot", 1, "OneShot 3", "Transition 3", 0, "Animation 6", "Transition 3", 1, "Animation", "OneShot 3", 0, "Animation 4", "OneShot 3", 1, "OneShot 2" ]
+node_connections = [ "Transition 3", 0, "Animation 6", "Transition 3", 1, "Animation", "OneShot 2", 0, "Animation 2", "OneShot 2", 1, "Animation 3", "OneShot", 0, "Transition 3", "OneShot", 1, "OneShot 3", "OneShot 3", 0, "Animation 4", "OneShot 3", 1, "OneShot 2", "output", 0, "OneShot" ]

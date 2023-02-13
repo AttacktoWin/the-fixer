@@ -2,13 +2,23 @@ class_name Player extends MovingEntity
 
 const TURN_FACTOR = 2
 
+var _dash_timer = Timer.new()
+var _dash_part = 1
+var _dash_direction = Vector2()
+
+var _inv_timer = 0
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	yield(owner, "ready")
+	if owner:
+		yield(owner, "ready")
 	var gun = TestGun.new()
 	gun.set_parent(self)
 	get_tree().get_root().call_deferred("add_child", gun)
+	self._dash_timer.one_shot = true
+	self._dash_timer.connect("timeout", self, "_dash_increment")
+	add_child(self._dash_timer)
 
 
 func _get_wanted_direction():
@@ -23,6 +33,21 @@ func _get_wanted_direction():
 
 func _get_wanted_velocity():
 	return _get_wanted_direction() * _getv(VARIABLE.MAX_SPEED)
+
+
+func _handle_input():
+	if Input.is_action_just_pressed("ui_focus_next"):
+		if self._dash_part == 1:
+			self._dash_part = 0
+			self._dash_direction = CameraSingleton.get_mouse_from_camera_center().normalized()
+			self._dash_timer.wait_time = 0.25
+			self._dash_timer.start()
+			self._inv_timer = 60
+
+
+func _dash_increment():
+	self._dash_part = 1
+	var _discard = move_and_slide(self._dash_direction * 9600)
 
 
 func _state_finished():
@@ -88,6 +113,9 @@ func _apply_drag(delta_fixed):
 
 
 func _move_control(delta):
+	if self._dash_part == 0:
+		_setv(VARIABLE.VELOCITY, Vector2())  # use a getter later :)
+		return
 	var delta_fixed = delta * 60
 	match self._state:
 		STATE.IDLE:
@@ -115,6 +143,7 @@ func _process(_delta):
 func _physics_process(delta):
 	self._move_control(delta)
 	self._try_move()
+	self._handle_input()
 
 	var off = CameraSingleton.get_mouse_from_camera_center() / 15
 	CameraSingleton.set_target_center(self.position + off)

@@ -6,7 +6,7 @@ var events = DecoratorList.new(EVENTS)
 # when attempting to access a variable
 enum VARIABLE { SPEED, DAMAGE, DIRECTION, LIFE }  # (self, current) -> return next
 var variables = VariableList.new(
-	VARIABLE, {VARIABLE.SPEED: 100, VARIABLE.DAMAGE: 1, VARIABLE.DIRECTION: 0, VARIABLE.LIFE: 10.0}
+	VARIABLE, {VARIABLE.SPEED: 500, VARIABLE.DAMAGE: 1, VARIABLE.DIRECTION: 0, VARIABLE.LIFE: 2.0}
 )
 
 

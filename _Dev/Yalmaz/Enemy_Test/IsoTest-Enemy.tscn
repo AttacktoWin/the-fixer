@@ -277,7 +277,7 @@ tile_data = PoolIntArray( -262145, 2, 0, -327680, 2, 0, -327679, 2, 0, -327678, 
 position = Vector2( 249, 348 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
-frame = 9
+frame = 6
 playing = true
 script = ExtResource( 28 )
 

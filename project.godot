@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "BulletBase",
 "language": "GDScript",
-"path": "res://_Dev/marcus/projectiles/BulletBase.gd"
+"path": "res://Scripts/Entities/Projectiles/BulletBase.gd"
 }, {
 "base": "Reference",
 "class": "DTS",
@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "RunnableList",
 "class": "DecoratorList",
 "language": "GDScript",
-"path": "res://_Dev/marcus/utils/DecoratorList.gd"
+"path": "res://Scripts/Utils/DecoratorList.gd"
 }, {
 "base": "Node",
 "class": "Dialogic",
@@ -117,7 +117,7 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "MovingEntity",
 "language": "GDScript",
-"path": "res://_Dev/marcus/entities/MovingEntity.gd"
+"path": "res://Scripts/Entities/MovingEntity.gd"
 }, {
 "base": "Node",
 "class": "NPC",
@@ -132,22 +132,22 @@ _global_script_classes=[ {
 "base": "MovingEntity",
 "class": "Player",
 "language": "GDScript",
-"path": "res://_Dev/marcus/entities/Player.gd"
+"path": "res://Scripts/Player/Player.gd"
 }, {
 "base": "Object",
 "class": "Runnable",
 "language": "GDScript",
-"path": "res://_Dev/marcus/utils/Runnable.gd"
+"path": "res://Scripts/Utils/Runnable.gd"
 }, {
 "base": "Object",
 "class": "RunnableList",
 "language": "GDScript",
-"path": "res://_Dev/marcus/utils/RunnableList.gd"
+"path": "res://Scripts/Utils/RunnableList.gd"
 }, {
 "base": "Weapon",
 "class": "TestGun",
 "language": "GDScript",
-"path": "res://_Dev/marcus/entities/TestGun.gd"
+"path": "res://Scripts/Entities/Weapons/TestGun.gd"
 }, {
 "base": "Resource",
 "class": "UnlockTable",
@@ -162,12 +162,12 @@ _global_script_classes=[ {
 "base": "RunnableList",
 "class": "VariableList",
 "language": "GDScript",
-"path": "res://_Dev/marcus/utils/VariableList.gd"
+"path": "res://Scripts/Utils/VariableList.gd"
 }, {
 "base": "Node2D",
 "class": "Weapon",
 "language": "GDScript",
-"path": "res://_Dev/marcus/entities/Weapon.gd"
+"path": "res://Scripts/Entities/Weapons/Weapon.gd"
 } ]
 _global_script_class_icons={
 "Base_EnemyState": "",
@@ -212,8 +212,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-CameraSingleton="*res://_Dev/marcus/entities/CameraSingleton.gd"
-PausingSingleton="*res://_Dev/marcus/entities/PausingSingleton.gd"
+CameraSingleton="*res://Scripts/Singletons/CameraSingleton.gd"
+PausingSingleton="*res://Scripts/Singletons/PausingSingleton.gd"
 
 [editor_plugins]
 

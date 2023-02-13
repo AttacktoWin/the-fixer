@@ -9,13 +9,10 @@ var _viewport
 const SHAKE_FACTOR = 10
 const MAX_SHAKE_TIMER = 120
 
-var _window_size
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self._viewport = get_viewport()
-	self._window_size = self._viewport.size
 
 
 func set_target(target):
@@ -24,8 +21,8 @@ func set_target(target):
 
 
 func set_target_center(target):
-	self._target.x = target.x - self._window_size.x / 2
-	self._target.y = target.y - self._window_size.y / 2
+	self._target.x = target.x - self._viewport.size.x / 2
+	self._target.y = target.y - self._viewport.size.y / 2
 
 
 func set_transition_factor(transition_factor):
@@ -40,16 +37,16 @@ func shake_max(value):
 	self._shake_timer = max(self._shake_timer, value)
 
 
-func get_local_mouse():
+func get_local_mouse() -> Vector2:
 	return self._viewport.get_mouse_position()
 
 
-func get_absolute_mouse():
+func get_absolute_mouse() -> Vector2:
 	return self.get_local_mouse() + self._current
 
 
-func get_mouse_from_camera_center():
-	return self.get_local_mouse() - self._window_size / 2
+func get_mouse_from_camera_center() -> Vector2:
+	return self.get_local_mouse() - self._viewport.size / 2
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
