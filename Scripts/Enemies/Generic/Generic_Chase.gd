@@ -1,11 +1,11 @@
-extends Base_EnemyState
+class_name Generic_CHASE extends Base_EnemyState
 
 # next animator fsm node to travel to
 export(String) var next_node = "GET_READY"
 
 
-func _chasePlayer() -> bool:
-	if is_PlayerInRange(self, state_machine.attack_range):
+func _chasePlayer(attack_range: float) -> bool:
+	if is_PlayerInRange(self, attack_range):
 		return true
 	elif animator.get_current_node() == "CHASE":
 		# warning-ignore:UNUSED_VARIABLE
@@ -20,7 +20,7 @@ func _chasePlayer() -> bool:
 ########################################################################
 func physics_tick(_delta: float) -> void:
 	flipSprite()
-	if _chasePlayer():
+	if _chasePlayer(state_machine.attack_range):
 		animator.travel(next_node)
 
 

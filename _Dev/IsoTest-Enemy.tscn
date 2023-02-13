@@ -27,7 +27,7 @@
 [ext_resource path="res://_Dev/Ronan/Tiles/wall2.png" type="Texture" id=25]
 [ext_resource path="res://_Dev/Ronan/Tiles/wall3.png" type="Texture" id=26]
 [ext_resource path="res://Scripts/Enemies/Manager_Enemy.gd" type="Script" id=27]
-[ext_resource path="res://_Dev/Yalmaz/Enemy_Test/Test_player.gd" type="Script" id=28]
+[ext_resource path="res://_Dev/Test_player.gd" type="Script" id=28]
 
 [sub_resource type="TileSet" id=1]
 0/name = "tile2.png 0"
@@ -277,7 +277,7 @@ tile_data = PoolIntArray( -262145, 2, 0, -327680, 2, 0, -327679, 2, 0, -327678, 
 position = Vector2( 249, 348 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
-frame = 9
+frame = 5
 playing = true
 script = ExtResource( 28 )
 
@@ -285,8 +285,12 @@ script = ExtResource( 28 )
 unique_name_in_owner = true
 position = Vector2( 0, 60 )
 
-[node name="E_Test" parent="YSort" instance=ExtResource( 2 )]
-position = Vector2( 240, 193 )
-
-[node name="E_Test2" parent="YSort" groups=["Enemy"] instance=ExtResource( 5 )]
+[node name="E_Goomba" parent="YSort" groups=["Enemy"] instance=ExtResource( 5 )]
 position = Vector2( 423, 237 )
+
+[node name="E_Camera" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 288, 208 )
+speed = 200.0
+flash_range = 150.0
+
+[node name="Node2D2" type="Node2D" parent="."]
