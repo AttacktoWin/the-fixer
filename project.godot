@@ -139,7 +139,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Utils/Runnable.gd"
 }, {
-"base": "Object",
+"base": "Node2D",
 "class": "RunnableList",
 "language": "GDScript",
 "path": "res://Scripts/Utils/RunnableList.gd"

@@ -1,4 +1,4 @@
-class_name RunnableList extends Object
+class_name RunnableList extends Node2D
 
 var _runnables = {}
 var _counter = 0
@@ -52,7 +52,7 @@ func _get_runnables_raw(choice) -> Array:
 	return self._runnables[choice]
 
 
-func add_runnable(choice: String, runnable, priority: int, _name: String = "!NO_NAME"):
+func add_runnable(choice: int, runnable, priority: int, _name: String = "!NO_NAME"):
 	self._check_choice_or_throw(choice)
 
 	var l = SortableRunnable.new(runnable, priority, self._counter, _name)
@@ -63,7 +63,7 @@ func add_runnable(choice: String, runnable, priority: int, _name: String = "!NO_
 
 
 # finds and removes the decorator either by reference or by name
-func remove_runnable(choice, runnable_or_name):
+func remove_runnable(choice: int, runnable_or_name):
 	self._check_choice_or_throw(choice)
 	var runnables = _get_runnables_raw(choice)
 
@@ -76,6 +76,13 @@ func remove_runnable(choice, runnable_or_name):
 
 func _recalculate_priorities(arr):
 	arr.sort_custom(PrioritySort, "sort")
+
+
+func _process(delta):
+	for key in self._runnables:
+		var list = self._runnables[key]
+		for sortable_runnable in list:
+			sortable_runnable.runnable.tick(delta)
 
 
 # Called when the node enters the scene tree for the first time.

@@ -77,6 +77,8 @@ func unfreeze(type):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if not self._camera:
+		return
 	var delta_60 = _delta * 60
 	self._shake_timer = max(self._shake_timer / 3 / delta_60, 0)
 

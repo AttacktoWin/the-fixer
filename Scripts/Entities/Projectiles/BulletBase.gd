@@ -9,6 +9,9 @@ var variables = VariableList.new(
 	VARIABLE, {VARIABLE.SPEED: 500, VARIABLE.DAMAGE: 1, VARIABLE.DIRECTION: 0, VARIABLE.LIFE: 2.0}
 )
 
+func _ready():
+	add_child(variables)
+	add_child(events)
 
 func set_direction(dir):
 	variables.set_variable(VARIABLE.DIRECTION, dir)
