@@ -9,50 +9,20 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node",
-"class": "BT",
+"base": "Base_State",
+"class": "Base_EnemyState",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/BT.gd"
+"path": "res://Scripts/Enemies/Base_EnemyState.gd"
 }, {
-"base": "Node",
-"class": "BT_Blackboard",
+"base": "Node2D",
+"class": "Base_FSM",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/BT_Blackboard.gd"
+"path": "res://Scripts/State Machine/Base_FSM.gd"
 }, {
-"base": "BT_Leaf",
-"class": "BT_Conditional",
+"base": "Node2D",
+"class": "Base_State",
 "language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Leaves/BT_Conditional.gd"
-}, {
-"base": "Base_BT_Node",
-"class": "BT_Leaf",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Leaves/BT_Leaf.gd"
-}, {
-"base": "BT",
-"class": "BT_Root",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/BT_Root.gd"
-}, {
-"base": "Base_BT_Composite",
-"class": "BT_Selector",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Selector.gd"
-}, {
-"base": "Base_BT_Composite",
-"class": "BT_Sequencer",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Sequencer.gd"
-}, {
-"base": "Base_BT_Node",
-"class": "Base_BT_Composite",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Composite/BT_Composite.gd"
-}, {
-"base": "BT",
-"class": "Base_BT_Node",
-"language": "GDScript",
-"path": "res://_Dev/Yalmaz/bTrees/Base_BT_Node.gd"
+"path": "res://Scripts/State Machine/Base_State.gd"
 }, {
 "base": "Reference",
 "class": "DTS",
@@ -124,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/DialogueQueue.gd"
 }, {
+"base": "Base_FSM",
+"class": "EnemyFSM",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/EnemyFSM.gd"
+}, {
 "base": "PanelContainer",
 "class": "HistoryRow",
 "language": "GDScript",
@@ -150,15 +125,9 @@ _global_script_classes=[ {
 "path": "res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd"
 } ]
 _global_script_class_icons={
-"BT": "",
-"BT_Blackboard": "",
-"BT_Conditional": "",
-"BT_Leaf": "",
-"BT_Root": "",
-"BT_Selector": "",
-"BT_Sequencer": "",
-"Base_BT_Composite": "",
-"Base_BT_Node": "",
+"Base_EnemyState": "",
+"Base_FSM": "",
+"Base_State": "",
 "DTS": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",
@@ -173,6 +142,7 @@ _global_script_class_icons={
 "DialogueFile": "",
 "DialogueNPCIds": "",
 "DialogueQueue": "",
+"EnemyFSM": "",
 "HistoryRow": "",
 "NPC": "",
 "NPCInstance": "",
@@ -183,11 +153,8 @@ _global_script_class_icons={
 [application]
 
 config/name="The Fixer"
+run/main_scene="res://_Dev/Ronan/IsoTest-Ronan.tscn"
 config/icon="res://icon.png"
-
-[autoload]
-
-DialogueSystem="*res://Scenes/DialogueSystem.tscn"
 
 [editor_plugins]
 
@@ -197,6 +164,7 @@ enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )
 
 resolution=false
 window=false
+back=false
 
 [gui]
 
@@ -223,4 +191,5 @@ common/enable_pause_aware_picking=true
 quality/driver/driver_name="GLES2"
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
