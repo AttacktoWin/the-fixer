@@ -1,33 +1,23 @@
-extends Base_EnemyState
+# Author: Yalmaz
+# Description: Chase state specific to the spyder enemy
+extends Generic_CHASE
 
-
-func chasePlayer() -> bool:
-	if is_PlayerInRange(self, state_machine.attack_range):
-		return true
-
-	if animator.get_current_node() == "Chase_ON":
-		# warning-ignore:UNUSED_VARIABLE
-		var velocity = state_machine.move_and_slide(
-			state_machine.speed * get_DirectionToPlayer(self)
-		)
-	return false
+# this node can have two possible transitions. This specifies the second
+export(String) var alternative_node = "FLASH"
 
 
 ########################################################################
 #Overrides
 ########################################################################
-func tick(_delta: float) -> void:
+func physics_tick(_delta: float) -> void:
 	flipSprite()
-	if chasePlayer():
-		state_machine.transition_to("ATTACK")
-
-
-func _draw():
-	if is_Active:
-		draw_line(Vector2.ZERO, get_PlayerInLocal(self), Color.white)
-		draw_line(
-			Vector2.ZERO,
-			get_DirectionToPlayer(self) * state_machine.attack_range,
-			Color.blue,
-			4
+	if _chasePlayer(
+		(
+			state_machine.attack_range
+			if (state_machine.is_flashON)
+			else state_machine.flash_range
+		)
+	):
+		animator.travel(
+			next_node if (state_machine.is_flashON) else alternative_node
 		)

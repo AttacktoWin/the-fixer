@@ -20,7 +20,7 @@ func on_enter() -> void:
 
 
 # Description: Method used to clean up state on exit.
-func on_exit():
+func on_exit() -> void:
 	update()
 	is_Active = false
 
