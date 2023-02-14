@@ -24,8 +24,8 @@ func _attack(_delta):
 ########################################################################
 #Overrides
 ########################################################################
-func on_enter() -> void:
-	.on_enter()
+func on_enter(_msg: Dictionary = {}) -> void:
+	.on_enter(_msg)
 	lunge_timer = 0
 
 	start_pos = state_machine.global_position
