@@ -1,4 +1,8 @@
+# Author: Yalmaz
+# Description: Chase state specific to the spyder enemy
 extends Generic_CHASE
+
+# this node can have two possible transitions. This specifies the second
 export(String) var alternative_node = "FLASH"
 
 

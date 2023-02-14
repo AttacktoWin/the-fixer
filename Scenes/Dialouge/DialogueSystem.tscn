@@ -2,8 +2,9 @@
 
 [ext_resource path="res://Scripts/DialogueSystem/DialogueSystem.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DialogueSystem/NPC.gd" type="Script" id=2]
-[ext_resource path="res://Resources/UnlockTable.tres" type="Resource" id=3]
-[ext_resource path="res://Resources/FixerDialogueFile.tres" type="Resource" id=4]
+[ext_resource path="res://Resources/Dialouge/UnlockTable.tres" type="Resource" id=3]
+[ext_resource path="res://Resources/Dialouge/FixerDialogueFile.tres" type="Resource" id=4]
+
 
 [node name="DialogueSystem" type="Node"]
 script = ExtResource( 1 )

@@ -1,3 +1,5 @@
+# Author: Yalmaz
+# Description: Generic state that handles chasing behaviour
 class_name Generic_CHASE extends Base_EnemyState
 
 # next animator fsm node to travel to

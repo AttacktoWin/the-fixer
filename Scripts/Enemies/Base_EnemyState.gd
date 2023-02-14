@@ -44,10 +44,14 @@ func get_PlayerInLocal(enemy_node: Node2D) -> Vector2:
 	return enemy_node.to_local(player.global_position)
 
 
+# Description: called when enemy is hit. The only thing that can override the animatior's control of the fsm.
+func on_Hurt():
+	state_machine.transition_to("HURT")
+
 ########################################################################
 #DEBGU CODE
 ########################################################################
 #Description: temporary method for testing hit animation
-func handle_input(_event: InputEvent) -> void:
-	if _event.is_action_pressed("ui_right"):
-		state_machine.transition_to("STAGGER")
+# func handle_input(_event: InputEvent) -> void:
+# 	if _event.is_action_pressed("ui_accept"):
+# 		on_Hurt()

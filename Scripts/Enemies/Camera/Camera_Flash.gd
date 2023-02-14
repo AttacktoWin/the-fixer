@@ -1,7 +1,12 @@
+# Author: Yalmaz
+# Description: Flash state for the spyder handles the logic for flash attack
 extends Base_EnemyState
 
 
-func on_exit():
+########################################################################
+#Overrides
+########################################################################
+func on_exit() -> void:
 	state_machine.is_flashON = true
 
 
