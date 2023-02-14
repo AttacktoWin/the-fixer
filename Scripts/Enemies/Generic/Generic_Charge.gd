@@ -9,7 +9,7 @@ export(String) var next_node = "ATTACK"
 ########################################################################
 #Overrides
 ########################################################################
-func on_enter() -> void:
-	.on_enter()
+func on_enter(_msg: Dictionary = {}) -> void:
+	.on_enter(_msg)
 	yield(get_tree().create_timer(state_machine.charge_time), "timeout")
 	animator.travel(next_node)

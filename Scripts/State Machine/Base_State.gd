@@ -7,6 +7,7 @@ var state_machine: Base_FSM = null
 var is_Active: bool = false
 
 
+#TODO: RENAME
 func transition_atAnimEnd(next_state: String):
 	state_machine.transition_to(next_state)
 
@@ -15,7 +16,7 @@ func transition_atAnimEnd(next_state: String):
 #Virtual Functions
 ########################################################################
 # Description: Method used to initialize state on entery.
-func on_enter() -> void:
+func on_enter(_msg: Dictionary = {}) -> void:
 	is_Active = true
 
 
