@@ -1,4 +1,4 @@
-class_name Player extends MovingEntity
+class_name Player extends LivingEntity
 
 const TURN_FACTOR = 2
 

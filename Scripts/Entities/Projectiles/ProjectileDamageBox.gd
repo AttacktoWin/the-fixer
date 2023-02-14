@@ -23,5 +23,5 @@ func with_damage_owner(damage_owner):
 
 
 # warning-ignore:unused_argument
-func can_hurt(entity: MovingEntity):
+func can_hurt(entity: LivingEntity):
 	return true

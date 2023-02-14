@@ -1,4 +1,4 @@
-class_name MovingEntity extends KinematicBody2D
+class_name LivingEntity extends KinematicBody2D
 
 # this script implements the basics of status effects and state
 
