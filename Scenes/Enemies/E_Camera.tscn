@@ -6,8 +6,8 @@
 [ext_resource path="res://Scripts/Enemies/Camera/Camera_Chase.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Enemies/Camera/Camera_Slash.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Enemies/Camera/Camera_Flash.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/Enemies/Enemy_HurtBox.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/Enemies/Enemy_HitBox.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Enemies/Generic_HurtBox.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Enemies/Generic_HitBox.gd" type="Script" id=8]
 
 [sub_resource type="Animation" id=43]
 resource_name = "ALERTED"
@@ -354,6 +354,9 @@ script = ExtResource( 6 )
 
 [node name="SLASH" type="Node2D" parent="."]
 script = ExtResource( 5 )
+
+[node name="HURT" type="Node2D" parent="."]
+script = ExtResource( 7 )
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 16

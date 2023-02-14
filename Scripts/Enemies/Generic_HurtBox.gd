@@ -1,6 +1,6 @@
 # Author: Yalmaz
 # Description: HurtBox for enemies. Only detects hits from hitboxes that have hurtInfo.
-class_name Enemy_Hurtbox
+class_name Generic_Hurtbox
 extends Area2D
 
 
@@ -21,5 +21,5 @@ func _on_area_entered(hitbox) -> void:
 	if not "hurt_info" in hitbox:
 		return
 
-	if owner.has_method("on_Hurt"):
+	if owner.has_method("on_Hurt") and hitbox.can_hurt(self):
 		owner.on_Hurt(hitbox.hurt_info)
