@@ -134,15 +134,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
 }, {
-"base": "KinematicBody2D",
-"class": "MovingEntity",
-"language": "GDScript",
-"path": "res://Scripts/Entities/MovingEntity.gd"
-}, {
 "base": "Reference",
 "class": "MathU",
 "language": "GDScript",
 "path": "res://Scripts/MathUtils.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "MovingEntity",
+"language": "GDScript",
+"path": "res://Scripts/Entities/MovingEntity.gd"
 }, {
 "base": "Node",
 "class": "NPC",
@@ -220,8 +220,8 @@ _global_script_class_icons={
 "Generic_HURT": "",
 "Generic_IDLE": "",
 "HistoryRow": "",
-"MovingEntity": "",
 "MathU": "",
+"MovingEntity": "",
 "NPC": "",
 "NPCInstance": "",
 "Player": "",

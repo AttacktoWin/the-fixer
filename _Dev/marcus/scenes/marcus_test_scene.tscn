@@ -236,7 +236,7 @@ position = Vector2( 352, 32 )
 position = Vector2( 417, 32 )
 
 [node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2( -736, 424 )
+position = Vector2( -6.10352e-05, 0 )
 rotation = 3.14159
 scale = Vector2( 57.9652, 3356.8 )
 current = true

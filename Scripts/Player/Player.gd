@@ -35,8 +35,8 @@ func _get_wanted_velocity():
 	return _get_wanted_direction() * _getv(VARIABLE.MAX_SPEED)
 
 
-func _handle_input():
-	if Input.is_action_just_pressed("ui_focus_next"):
+func _unhandled_input(event: InputEvent):
+	if event.is_action_pressed("ui_focus_next"):
 		if self._dash_part == 1:
 			# CameraSingleton.freeze(CameraSingleton.TARGET.LOCATION)
 			CameraSingleton.set_zoom(Vector2(1.01, 1.01))
@@ -54,15 +54,6 @@ func _dash_increment():
 	CameraSingleton.jump_field(CameraSingleton.TARGET.SCALE)
 	CameraSingleton.set_zoom(Vector2(1, 1))
 	var _discard = move_and_slide(self._dash_direction * 9600)
-
-
-func _state_finished():
-	if self._state == STATE.DASHING:
-		var v = _getv(VARIABLE.VELOCITY)
-		if v.x == 0 and v.y == 0:
-			set_state(STATE.IDLE)
-		else:
-			set_state(STATE.MOVING)
 
 
 # TODO: use delta!!!
@@ -102,7 +93,7 @@ func _ground_control(delta_fixed):
 		var change = dir * clamp(speed_diff, -accel, accel) * coeff
 		_setv(VARIABLE.VELOCITY, current_vel + change)
 	else:
-		_setv(VARIABLE.VELOCITY, current_vel / 3)
+		_setv(VARIABLE.VELOCITY, current_vel / 2)
 
 
 func _dash_surface(delta_fixed):
@@ -123,18 +114,7 @@ func _move_control(delta):
 		_setv(VARIABLE.VELOCITY, Vector2())  # use a getter later :)
 		return
 	var delta_fixed = delta * 60
-	match self._state:
-		STATE.IDLE:
-			self._ground_control(delta_fixed)
-		STATE.MOVING:
-			self._ground_control(delta_fixed)
-		# no player control
-		STATE.DASHING:
-			self._dash_surface(delta_fixed)
-		STATE.HITSTUN:
-			self._stun(delta_fixed)
-		_:
-			self._apply_drag(delta_fixed)
+	self._ground_control(delta_fixed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -149,7 +129,6 @@ func _process(_delta):
 func _physics_process(delta):
 	self._move_control(delta)
 	self._try_move()
-	self._handle_input()
 
 	var off = CameraSingleton.get_mouse_from_camera_center() / 15
 	CameraSingleton.set_target_center(self.position + off)
