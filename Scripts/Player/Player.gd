@@ -124,6 +124,7 @@ func _process(_delta):
 			PausingSingleton.unpause(self)
 		else:
 			PausingSingleton.pause(self)
+	# self.try_take_damage(1)
 
 
 func _physics_process(delta):
