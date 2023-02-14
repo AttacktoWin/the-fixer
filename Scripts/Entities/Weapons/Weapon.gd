@@ -46,6 +46,10 @@ func on_fire_called():
 	self._try_fire(CameraSingleton.get_mouse_from_camera_center().angle(), null)
 
 
+func check_fire_pressed():
+	return false
+
+
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
+	if self.check_fire_pressed():
 		on_fire_called()

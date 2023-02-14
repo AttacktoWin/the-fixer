@@ -23,8 +23,8 @@ func _ready():
 
 func _get_wanted_direction():
 	var dir = Vector2(
-		Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left"),
-		Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	)
 	if dir.length() > 1:
 		return dir.normalized()
@@ -36,7 +36,7 @@ func _get_wanted_velocity():
 
 
 func _unhandled_input(event: InputEvent):
-	if event.is_action_pressed("ui_focus_next"):
+	if event.is_action_pressed("move_dash"):
 		if self._dash_part == 1:
 			# CameraSingleton.freeze(CameraSingleton.TARGET.LOCATION)
 			CameraSingleton.set_zoom(Vector2(1.01, 1.01))

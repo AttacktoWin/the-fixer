@@ -1,4 +1,4 @@
-class_name TestGun extends Weapon
+class_name TestGun extends BaseGun
 
 var BulletScene = preload("res://Scenes/Weapons/bullet_scene.tscn")
 
