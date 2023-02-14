@@ -1,24 +1,38 @@
 class_name Player extends LivingEntity
 
-const TURN_FACTOR = 2
-
 var _dash_timer = Timer.new()
 var _dash_part = 1
 var _dash_direction = Vector2()
 
 var _inv_timer = 0
 
+onready var animator: AnimationNodeStateMachinePlayback = $Visual/AnimationTree.get(
+	"parameters/playback"
+)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if owner:
-		yield(owner, "ready")
 	var gun = TestGun.new()
 	gun.set_parent(self)
 	get_tree().get_root().call_deferred("add_child", gun)
 	self._dash_timer.one_shot = true
 	self._dash_timer.connect("timeout", self, "_dash_increment")
 	add_child(self._dash_timer)
+	._ready()
+
+
+func _unhandled_input(event: InputEvent):
+	if event.is_action_pressed("move_dash"):
+		if self._dash_part == 1:
+			# CameraSingleton.freeze(CameraSingleton.TARGET.LOCATION)
+			self.transition_to("DASH")
+			CameraSingleton.set_zoom(Vector2(1.01, 1.01))
+			self._dash_part = 0
+			self._dash_direction = CameraSingleton.get_mouse_from_camera_center().normalized()
+			self._dash_timer.wait_time = 0.25
+			self._dash_timer.start()
+			self._inv_timer = 60
 
 
 func _get_wanted_direction():
@@ -32,19 +46,7 @@ func _get_wanted_direction():
 
 
 func _get_wanted_velocity():
-	return _get_wanted_direction() * _getv(VARIABLE.MAX_SPEED)
-
-
-func _unhandled_input(event: InputEvent):
-	if event.is_action_pressed("move_dash"):
-		if self._dash_part == 1:
-			# CameraSingleton.freeze(CameraSingleton.TARGET.LOCATION)
-			CameraSingleton.set_zoom(Vector2(1.01, 1.01))
-			self._dash_part = 0
-			self._dash_direction = CameraSingleton.get_mouse_from_camera_center().normalized()
-			self._dash_timer.wait_time = 0.25
-			self._dash_timer.start()
-			self._inv_timer = 60
+	return _get_wanted_direction() * _getv(LivingEntity.VARIABLE.MAX_SPEED)
 
 
 func _dash_increment():
@@ -56,69 +58,17 @@ func _dash_increment():
 	var _discard = move_and_slide(self._dash_direction * 9600)
 
 
-# TODO: use delta!!!
+# func _stun(delta_fixed):
+# 	var current_vel = _getv(VARIABLE.VELOCITY)
+# 	_setv(VARIABLE.VELOCITY, current_vel / 1.1)
 
-
-func _ground_control(delta_fixed):
-	# general rule:
-	# if the angle you're going is < 120 degrees from the one you're trying to go to, turn
-	# otherwise, stop in x frames and turn
-	var wanted_dir = _get_wanted_direction()
-
-	var current_vel = _getv(VARIABLE.VELOCITY)
-
-	var diff = wanted_dir.angle_to(current_vel)
-	if wanted_dir.x == 0 and wanted_dir.y == 0:
-		diff = PI * 2
-
-	# handle the case where we are stopped currently
-	if abs(current_vel.x) < 25 and abs(current_vel.y) < 25:
-		var boost = 6 * delta_fixed
-		var wanted_vel = _get_wanted_velocity()
-		var speed_diff = wanted_vel.length() - current_vel.length()
-		var accel = _getv(VARIABLE.ACCEL) * boost
-		var max_spd = _getv(VARIABLE.MAX_SPEED)
-		var new_vel = wanted_dir * clamp(clamp(speed_diff, -accel, accel), -max_spd, max_spd)
-		_setv(VARIABLE.VELOCITY, new_vel)
-	elif abs(diff) <= PI / 1.5:
-		var angle = current_vel.angle() - diff / TURN_FACTOR
-		# first, turn
-		current_vel = Vector2(cos(angle), sin(angle)) * current_vel.length()
-		# now scale up the speed to the desired one (using dot prod)
-		var wanted_vel = _get_wanted_velocity()
-		var coeff = wanted_vel.normalized().dot(current_vel.normalized())
-		var speed_diff = wanted_vel.length() - current_vel.length()
-		var dir = current_vel.normalized()
-		var accel = _getv(VARIABLE.ACCEL) * delta_fixed
-		var change = dir * clamp(speed_diff, -accel, accel) * coeff
-		_setv(VARIABLE.VELOCITY, current_vel + change)
-	else:
-		_setv(VARIABLE.VELOCITY, current_vel / 2)
-
-
-func _dash_surface(delta_fixed):
-	pass
-
-
-func _stun(delta_fixed):
-	var current_vel = _getv(VARIABLE.VELOCITY)
-	_setv(VARIABLE.VELOCITY, current_vel / 1.1)
-
-
-func _apply_drag(delta_fixed):
-	_setv(VARIABLE.VELOCITY, _getv(VARIABLE.VELOCITY) * _getv(VARIABLE.DRAG) / delta_fixed)
-
-
-func _move_control(delta):
-	if self._dash_part == 0:
-		_setv(VARIABLE.VELOCITY, Vector2())  # use a getter later :)
-		return
-	var delta_fixed = delta * 60
-	self._ground_control(delta_fixed)
+# func _apply_drag(delta_fixed):
+# 	_setv(VARIABLE.VELOCITY, _getv(VARIABLE.VELOCITY) * _getv(VARIABLE.DRAG) / delta_fixed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	._process(_delta)
 	if Input.is_action_just_pressed("ui_accept"):
 		if PausingSingleton.is_paused():
 			PausingSingleton.unpause(self)
@@ -128,7 +78,9 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	self._move_control(delta)
+	._physics_process(delta)
+
+	# self._move_control(delta)
 	self._try_move()
 
 	var off = CameraSingleton.get_mouse_from_camera_center() / 15

@@ -5,6 +5,7 @@ extends Node2D
 
 var state_machine: Base_FSM = null
 var is_Active: bool = false
+var previous_state = "Root"
 
 
 #TODO: RENAME

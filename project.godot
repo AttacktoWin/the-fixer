@@ -159,7 +159,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Data/HurtInfo.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Base_FSM",
 "class": "LivingEntity",
 "language": "GDScript",
 "path": "res://Scripts/Entities/LivingEntity.gd"
@@ -183,6 +183,16 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scripts/Player/Player.gd"
+}, {
+"base": "Base_State",
+"class": "PlayerState_Dash",
+"language": "GDScript",
+"path": "res://Scripts/Player/State_Dash.gd"
+}, {
+"base": "Base_State",
+"class": "PlayerState_Free",
+"language": "GDScript",
+"path": "res://Scripts/Player/State_Free.gd"
 }, {
 "base": "Object",
 "class": "Runnable",
@@ -255,6 +265,8 @@ _global_script_class_icons={
 "NPC": "",
 "NPCInstance": "",
 "Player": "",
+"PlayerState_Dash": "",
+"PlayerState_Free": "",
 "Runnable": "",
 "RunnableList": "",
 "TestGun": "",

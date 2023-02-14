@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Sprites/Fixer/fixer-spritesheet-WHOLE.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Player/State_Free.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Player/State_Dash.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Dash"
-loop = true
+length = 0.52
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -14,15 +16,40 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.06, 0.1, 0.12, 0.46, 0.5, 0.66, 0.9 ),
+"times": PoolRealArray( 0, 0.06, 0.1, 0.12, 0.34, 0.38, 0.46, 0.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 30, 31, 32, 33, 34, 35, 36, 37 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.12, 0.34, 0.52 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.376471 ), Color( 1, 1, 1, 0.376471 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath("../DASH")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.42 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "finish_dash"
+} ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "Die"
-loop = true
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -56,7 +83,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=5]
 resource_name = "Melee"
 length = 0.5
-loop = true
 step = 0.02
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -84,6 +110,18 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -122,21 +160,85 @@ tracks/0/keys = {
 "values": [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
 }
 
-[node name="Player" type="KinematicBody2D"]
-script = ExtResource( 11 )
+[sub_resource type="AnimationNodeAnimation" id=14]
+animation = "Dash"
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "Die"
+
+[sub_resource type="AnimationNodeAnimation" id=15]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=16]
+animation = "Melee"
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Run"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=25]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/Dash/node = SubResource( 14 )
+states/Dash/position = Vector2( 548, -45 )
+states/Die/node = SubResource( 27 )
+states/Die/position = Vector2( 734, -45 )
+states/Idle/node = SubResource( 15 )
+states/Idle/position = Vector2( 548, 74 )
+states/Melee/node = SubResource( 16 )
+states/Melee/position = Vector2( 734, 74 )
+states/Run/node = SubResource( 17 )
+states/Run/position = Vector2( 192, 74 )
+states/Walk/node = SubResource( 18 )
+states/Walk/position = Vector2( 372, 74 )
+transitions = [ "Dash", "Idle", SubResource( 19 ), "Walk", "Idle", SubResource( 21 ), "Walk", "Run", SubResource( 22 ), "Run", "Walk", SubResource( 23 ), "Idle", "Walk", SubResource( 24 ), "Idle", "Dash", SubResource( 25 ), "Idle", "Melee", SubResource( 26 ), "Melee", "Idle", SubResource( 20 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -166, -100 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
+
+[sub_resource type="CapsuleShape2D" id=13]
+radius = 18.0
+height = 22.0
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 4
+script = ExtResource( 11 )
+initial_state_path = NodePath("FREE")
+
+[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
 
-[node name="Visuals" type="Node2D" parent="."]
+[node name="Visual" type="Node2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="Visuals"]
+[node name="Sprite" type="Sprite" parent="Visual"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 5
+frame = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
 anims/Dash = SubResource( 2 )
 anims/Die = SubResource( 3 )
 anims/Idle = SubResource( 4 )
@@ -145,10 +247,22 @@ anims/RESET = SubResource( 6 )
 anims/Run = SubResource( 7 )
 anims/Walk = SubResource( 8 )
 
-[node name="DEFAULT" type="Node2D" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="Visual"]
+tree_root = SubResource( 11 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 12 )
 
-[node name="CHASE" type="Node2D" parent="."]
+[node name="DASH" type="Node2D" parent="."]
+script = ExtResource( 3 )
 
-[node name="ATTACK" type="Node2D" parent="."]
+[node name="FREE" type="Node2D" parent="."]
+script = ExtResource( 2 )
 
-[node name="RECOVER" type="Node2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="HurtCollider" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( 0, 33 )
+shape = SubResource( 13 )

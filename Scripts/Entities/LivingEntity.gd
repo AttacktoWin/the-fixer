@@ -1,4 +1,4 @@
-class_name LivingEntity extends KinematicBody2D
+class_name LivingEntity extends Base_FSM
 
 # this script implements the basics of status effects and state
 
@@ -22,10 +22,6 @@ var variables = VariableList.new(
 )
 
 
-func _init():
-	pass
-
-
 func _on_pause_change(should_pause, ignore_entity):
 	if ignore_entity == self:
 		return
@@ -39,6 +35,7 @@ func _ready():
 	_error = PausingSingleton.connect("pause_changed", self, "_on_pause_change")
 	if _error:
 		print("Error connecting to pause: ", _error)
+	._ready()
 
 
 func _getv(variable):

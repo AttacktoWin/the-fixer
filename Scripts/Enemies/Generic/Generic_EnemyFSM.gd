@@ -23,9 +23,10 @@ func on_Hurt(hurtInfo = {}):
 
 
 func flip_colliders(value):
-	hit_collider.scale.x = -1 if (value) else 1
-	hurt_collider.scale.x = -1 if (value) else 1
-	phys_collider.scale.x = -1 if (value) else 1
+	var flipped = -1 if value else 1
+	hit_collider.scale.x = flipped
+	hurt_collider.scale.x = flipped
+	phys_collider.scale.x = flipped
 
 
 ########################################################################

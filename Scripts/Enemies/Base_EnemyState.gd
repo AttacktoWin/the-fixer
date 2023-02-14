@@ -5,9 +5,8 @@ extends Base_State
 
 var sprite: Sprite = null
 var parent: Node2D = null
-var animator = null
+var animator: AnimationNodeStateMachinePlayback = null
 var player: Node2D = null
-var previous_state = "Root"
 
 
 # TODO:RENAME
