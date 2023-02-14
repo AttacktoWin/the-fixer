@@ -1,4 +1,4 @@
-extends Base_EnemyState
+class_name Generic_IDLE extends Base_EnemyState
 
 # next animator fsm node to travel to
 export(String) var next_node = "ALERTED"

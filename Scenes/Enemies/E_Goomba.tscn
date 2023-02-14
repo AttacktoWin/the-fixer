@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Assets/Sprites/Knife/spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemies/Goomba/Goomba_FSM.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scripts/Enemies/Generic/Generic_Charge.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Enemies/Goomba/Goomba_GetReady.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Enemies/Goomba/Goomba_Attack.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Enemies/Generic/Generic_Hurt.gd" type="Script" id=8]
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 20.0
@@ -210,6 +211,23 @@ tracks/3/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=60]
+resource_name = "Hurt"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 13 ]
+}
+
 [sub_resource type="Animation" id=25]
 resource_name = "Idle"
 loop = true
@@ -252,6 +270,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0, 1 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=44]
 animation = "Alerted"
@@ -269,7 +299,7 @@ animation = "Chase"
 animation = "Get_Ready"
 
 [sub_resource type="AnimationNodeAnimation" id=59]
-animation = "Idle"
+animation = "Hurt"
 
 [sub_resource type="AnimationNodeAnimation" id=49]
 animation = "Idle"
@@ -292,17 +322,7 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=61]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=62]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=63]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=64]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=65]
 
 [sub_resource type="AnimationNodeStateMachine" id=56]
 states/ALERTED/node = SubResource( 44 )
@@ -315,13 +335,13 @@ states/CHASE/node = SubResource( 47 )
 states/CHASE/position = Vector2( 103, 234 )
 states/GET_READY/node = SubResource( 48 )
 states/GET_READY/position = Vector2( 309, 234 )
-states/HIT/node = SubResource( 59 )
-states/HIT/position = Vector2( 309, -85 )
+states/HURT/node = SubResource( 59 )
+states/HURT/position = Vector2( -101, 234 )
 states/IDLE/node = SubResource( 49 )
 states/IDLE/position = Vector2( 103, 65 )
-transitions = [ "IDLE", "ALERTED", SubResource( 50 ), "ALERTED", "CHASE", SubResource( 51 ), "CHASE", "GET_READY", SubResource( 52 ), "GET_READY", "CHARGE", SubResource( 53 ), "CHARGE", "ATTACK", SubResource( 54 ), "ATTACK", "IDLE", SubResource( 58 ), "ALERTED", "HIT", SubResource( 60 ), "GET_READY", "HIT", SubResource( 61 ), "CHASE", "HIT", SubResource( 62 ), "IDLE", "HIT", SubResource( 63 ), "CHARGE", "HIT", SubResource( 64 ), "ATTACK", "HIT", SubResource( 65 ) ]
+transitions = [ "IDLE", "ALERTED", SubResource( 50 ), "ALERTED", "CHASE", SubResource( 51 ), "CHASE", "GET_READY", SubResource( 52 ), "GET_READY", "CHARGE", SubResource( 53 ), "CHARGE", "ATTACK", SubResource( 54 ), "ATTACK", "IDLE", SubResource( 58 ), "HURT", "CHASE", SubResource( 61 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -120, -198.86 )
+graph_offset = Vector2( -234, 6.14001 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=57]
 
@@ -352,6 +372,7 @@ anims/Attack = SubResource( 12 )
 anims/Charge = SubResource( 10 )
 anims/Chase = SubResource( 13 )
 anims/Get_Ready = SubResource( 14 )
+anims/Hurt = SubResource( 60 )
 anims/Idle = SubResource( 25 )
 anims/RESET = SubResource( 15 )
 
@@ -375,3 +396,6 @@ script = ExtResource( 5 )
 
 [node name="ATTACK" type="Node2D" parent="."]
 script = ExtResource( 7 )
+
+[node name="HURT" type="Node2D" parent="."]
+script = ExtResource( 8 )

@@ -1,3 +1,5 @@
+# Author: Yalmaz
+# Description: State used to by goomba when getting into position
 extends Base_EnemyState
 
 var start_pos = Vector2.ZERO
@@ -5,6 +7,7 @@ var end_pos = Vector2.ZERO
 var hop_timer = 0.0
 
 
+# Description: Handles the hop logic when getting into position
 func _getReady(_delta):
 	hop_timer += _delta
 	state_machine.position = start_pos.linear_interpolate(

@@ -1,21 +1,15 @@
+# Author: Yalmaz
+# Description: Flash state for the spyder handles the logic for flash attack
 extends Base_EnemyState
 
 
+########################################################################
+#Overrides
+########################################################################
+func on_exit() -> void:
+	state_machine.is_flashON = true
+
+
 func tick(_delta: float) -> void:
-	if animator.get_current_node() == "Idle":
-		state_machine.transition_to("CHASE")
-
-
-func enter() -> void:
-	flipSprite()
-	animator.travel("Attack_FLASH")
-
-
-func exit():
-	flipSprite()
-	animator.travel("Chase_ON")
-
-
-func _draw():
-	if is_Active:
-		pass
+	#handle flash logic here
+	pass

@@ -1,3 +1,5 @@
+# Author: Yalmaz
+# Description: State used to handle goomba's lunge attack
 extends Base_EnemyState
 
 var start_pos = Vector2.ZERO
@@ -5,10 +7,12 @@ var end_pos = Vector2.ZERO
 var lunge_timer = 0.0
 
 
+# Description: Used to switch the hurtbox on and off
 func hurtBoxSwitch():
 	print("test")
 
 
+# Description: Handles the lunge logic
 func _attack(_delta):
 	if animator.get_current_node() == "ATTACK":
 		lunge_timer += _delta
@@ -24,7 +28,7 @@ func on_enter() -> void:
 	.on_enter()
 	lunge_timer = 0
 
-	start_pos = self.global_position
+	start_pos = state_machine.global_position
 	end_pos = (
 		(get_DirectionToPlayer(self) * state_machine.lunge_distance)
 		+ start_pos

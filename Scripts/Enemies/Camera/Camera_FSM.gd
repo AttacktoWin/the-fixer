@@ -1,4 +1,9 @@
-extends EnemyFSM
+# Author: Yalmaz
+# Description: Enemy FSM extendied to be specific to the spyder enemy.
+extends Generic_EnemyFSM
 
-export(float) var flash_range = 80.0
-var flash = false
+# Range of the flash effect.
+export(float) var flash_range = 90.0
+
+# Used to see if flash attack has been used before.
+var is_flashON = false
