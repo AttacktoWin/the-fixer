@@ -49,14 +49,31 @@ func _setv(variable, v):
 	self.variables.set_variable(variable, v)
 
 
-# func _is_status_active(status):
-# 	var s = self._status_timers.get(status)
-# 	return s != null and s > 0
-
-# func add_status(status, time):
-# 	pass
-
-
 func _try_move():
 	# unlikely to ever change, but here anyway
 	_setv(VARIABLE.VELOCITY, move_and_slide(_getv(VARIABLE.VELOCITY)))
+
+
+func _on_death():
+	print("Rip")
+
+
+func _check_death() -> bool:
+	if self._getv(VARIABLE.HEALTH) <= 0:
+		queue_free()
+		self._on_death()  # emit signal
+		return true
+	return false
+
+
+func try_take_damage(amount) -> bool:
+	# check status... if status == invulenrable: return false
+
+	self._take_damage(amount)
+	return true
+
+
+func _take_damage(amount):
+	self._setv(VARIABLE.HEALTH, self._getv(VARIABLE.HEALTH) - amount)
+	# warning-ignore:return_value_discarded
+	self._check_death()
