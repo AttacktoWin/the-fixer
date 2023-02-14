@@ -11,6 +11,7 @@ var status: String = ""
 var knockback_dir: Vector2 = Vector2.RIGHT
 var knockback_dist: float = 20
 var knockback_time: float = 0.5
+
 var knockback_timer: float = 0
 var start_pos = Vector2.ZERO
 var end_pos = Vector2.ZERO
@@ -19,7 +20,8 @@ var end_pos = Vector2.ZERO
 ########################################################################
 #Overrides
 ########################################################################
-func on_enter() -> void:
+func on_enter(_msg: Dictionary = {}) -> void:
+	.on_enter(_msg)
 	knockback_timer = 0
 	animator.travel("HURT")
 	start_pos = state_machine.global_position
@@ -30,6 +32,7 @@ func physics_tick(_delta: float) -> void:
 	if knockback_timer >= knockback_time:
 		animator.travel("CHASE")
 		state_machine.transition_to("CHASE")
+
 	knockback_timer += _delta
 	state_machine.position = start_pos.linear_interpolate(
 		end_pos, knockback_timer / knockback_time

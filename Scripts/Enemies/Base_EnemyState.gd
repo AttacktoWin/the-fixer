@@ -1,5 +1,5 @@
 # Author: Yalmaz
-# Description: Extension of Abstract Base_FSM that implements some enemy specific utils
+# Description: Extension of Abstract Base_State that implements some enemy specific utils
 class_name Base_EnemyState
 extends Base_State
 
@@ -10,13 +10,16 @@ var player: Node2D = null
 var previous_state = "Root"
 
 
+# TODO:RENAME
 # Description: used to flip sprite based on player position relative to self
 func flipSprite():
 	var angle = get_AngleToPlayer(self)
 	if angle < 90 and angle > -90:
 		sprite.flip_h = true
+		state_machine.flip_colliders(true)
 	else:
 		sprite.flip_h = false
+		state_machine.flip_colliders(false)
 
 
 # Description: Get distance to player
@@ -42,11 +45,6 @@ func get_AngleToPlayer(enemy_node: Node2D) -> float:
 # Description: Get player position relative to player
 func get_PlayerInLocal(enemy_node: Node2D) -> Vector2:
 	return enemy_node.to_local(player.global_position)
-
-
-# Description: called when enemy is hit. The only thing that can override the animatior's control of the fsm.
-func on_Hurt():
-	state_machine.transition_to("HURT")
 
 ########################################################################
 #DEBGU CODE

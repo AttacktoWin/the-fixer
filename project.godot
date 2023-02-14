@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Base_EnemyState.gd"
 }, {
-"base": "Node2D",
+"base": "KinematicBody2D",
 "class": "Base_FSM",
 "language": "GDScript",
 "path": "res://Scripts/State Machine/Base_FSM.gd"
@@ -113,6 +113,16 @@ _global_script_classes=[ {
 "class": "DialogueQueue",
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/DialogueQueue.gd"
+}, {
+"base": "Area2D",
+"class": "Enemy_Hitbox",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Enemy_HitBox.gd"
+}, {
+"base": "Area2D",
+"class": "Enemy_Hurtbox",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Enemy_HurtBox.gd"
 }, {
 "base": "Base_EnemyState",
 "class": "Generic_CHARGE",
@@ -231,6 +241,8 @@ _global_script_class_icons={
 "DialogueFile": "",
 "DialogueNPCIds": "",
 "DialogueQueue": "",
+"Enemy_Hitbox": "",
+"Enemy_Hurtbox": "",
 "Generic_CHARGE": "",
 "Generic_CHASE": "",
 "Generic_EnemyFSM": "",
