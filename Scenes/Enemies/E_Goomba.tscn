@@ -1,8 +1,8 @@
 [gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Assets/Sprites/Knife/spritesheet.png" type="Texture" id=1]
-[ext_resource path="res://AnimationTree.gd" type="Script" id=2]
-[ext_resource path="res://GoombaTest.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemies/Goomba/GoombaFSM.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Enemies/Generic_HurtBox.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Enemies/Generic_HitBox.gd" type="Script" id=10]
 
@@ -369,9 +369,9 @@ states/HURT/node = SubResource( 59 )
 states/HURT/position = Vector2( -56, 234 )
 states/IDLE/node = SubResource( 49 )
 states/IDLE/position = Vector2( 103, 65 )
-transitions = [ "IDLE", "ALERTED", SubResource( 50 ), "ALERTED", "CHASE", SubResource( 51 ), "CHASE", "GET_READY", SubResource( 52 ), "GET_READY", "CHARGE", SubResource( 53 ), "CHARGE", "ATTACK", SubResource( 54 ), "HURT", "CHASE", SubResource( 70 ), "ATTACK", "CHASE", SubResource( 72 ) ]
+transitions = [ "IDLE", "ALERTED", SubResource( 50 ), "ALERTED", "CHASE", SubResource( 51 ), "CHASE", "GET_READY", SubResource( 52 ), "GET_READY", "CHARGE", SubResource( 53 ), "CHARGE", "ATTACK", SubResource( 54 ), "HURT", "CHASE", SubResource( 70 ), "ATTACK", "IDLE", SubResource( 72 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -167, -16.86 )
+graph_offset = Vector2( -133, 24.14 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=57]
 

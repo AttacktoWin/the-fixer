@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Resources/TileSets/FloorTiles.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Enemies/E_Camera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Resources/TileSets/WallTiles.tres" type="TileSet" id=3]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Enemies/E_Goomba.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/Entities/MainCamera.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/Enemies/Manager_Enemy.gd" type="Script" id=27]
 
 [node name="Node2D" type="Node2D"]
 
@@ -15,11 +15,6 @@ rotation = 3.14159
 scale = Vector2( 57.9652, 3356.8 )
 current = true
 script = ExtResource( 6 )
-
-[node name="Manager_Enemy" type="Node2D" parent="."]
-unique_name_in_owner = true
-position = Vector2( 880, 534 )
-script = ExtResource( 27 )
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2( -17, 0 )
@@ -51,6 +46,9 @@ position = Vector2( 261, 403 )
 [node name="Player_Target" type="Node2D" parent="YSort/Player"]
 unique_name_in_owner = true
 position = Vector2( 0, 60 )
+
+[node name="E_Camera" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( 314, 221 )
 
 [node name="Goomba" parent="YSort" instance=ExtResource( 5 )]
 position = Vector2( 459, 340 )

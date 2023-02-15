@@ -1,17 +1,23 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Assets/Sprites/Camera/camera_spritesheet.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Enemies/Camera/Camera_FSM.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Enemies/Generic/Generic_Idle.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Enemies/Camera/Camera_Chase.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Enemies/Camera/Camera_Slash.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/Enemies/Camera/Camera_Flash.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/SpyderTest.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/AnimationTree.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Enemies/Generic_HurtBox.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Enemies/Generic_HitBox.gd" type="Script" id=8]
 
+[sub_resource type="CircleShape2D" id=87]
+radius = 48.12
+
+[sub_resource type="CircleShape2D" id=89]
+radius = 36.19
+
+[sub_resource type="RectangleShape2D" id=88]
+extents = Vector2( 12, 19 )
+
 [sub_resource type="Animation" id=43]
 resource_name = "ALERTED"
-length = 0.47
+length = 0.45
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -20,10 +26,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.11, 0.31, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.07, 0.13, 0.19, 0.25, 0.31, 0.37, 0.43 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 31, 33, 31, 36 ]
+"values": [ 31, 33, 34, 35, 36, 25, 31, 24 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:position")
@@ -32,24 +38,95 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.11, 0.24, 0.31 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.07, 0.13, 0.19, 0.25 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, -5 ), Vector2( 0, -12 ), Vector2( 0, -8 ), Vector2( 0, -5 ) ]
+"values": [ Vector2( 0, -5 ), Vector2( 0, -8 ), Vector2( 0, -12 ), Vector2( 0, -8 ), Vector2( 0, -5 ) ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("../IDLE")
+tracks/2/type = "value"
+tracks/2/path = NodePath("../SensingColliders/IdleRadius/Sense:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.47 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../SensingColliders/FlashRadius/Flash:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../SensingColliders/AttackValidator/Attack:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=65]
+resource_name = "CHARGE"
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 26, 27, 28, 29, 30, 31 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.55 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "CHASE" ],
-"method": "transition_atAnimEnd"
+"args": [  ],
+"method": "increment_charge_loop_count"
 } ]
+}
+
+[sub_resource type="Animation" id=66]
+resource_name = "CHARGE_Transition"
+length = 0.19
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.07, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 24, 25, 26 ]
 }
 
 [sub_resource type="Animation" id=29]
@@ -64,15 +141,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.75, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 17, 18, 12, 13, 14, 15, 16, 36, 36 ]
+"values": [ 17, 18, 12, 13, 14, 15, 16 ]
 }
 
 [sub_resource type="Animation" id=26]
 resource_name = "FLASH"
-length = 1.625
+length = 0.65
 step = 0.025
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -81,32 +158,52 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.45, 0.525, 0.6, 0.675, 0.75, 0.825, 0.9, 0.975, 1.075, 1.15, 1.225, 1.3, 1.375, 1.4, 1.475, 1.55 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.175, 0.25, 0.325, 0.4, 0.425, 0.5, 0.575 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 24, 25, 26, 27, 28, 29, 30, 31, 26, 27, 28, 29, 30, 32, 33, 34, 35, 25, 28, 29, 25, 24 ]
+"values": [ 32, 33, 34, 35, 25, 28, 29, 25, 24 ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("../CHASE")
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationTree:parameters/conditions/flash_ready")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1.625 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "FLASH" ],
-"method": "transition_atAnimEnd"
-}, {
-"args": [ "CHASE" ],
-"method": "transition_atAnimEnd"
-} ]
+"times": PoolRealArray( 0.65 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:flash_used")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.65 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../SensingColliders/FlashRadius/Flash:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.65 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=59]
 resource_name = "HURT"
 length = 0.3
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -140,6 +237,7 @@ tracks/0/keys = {
 resource_name = "PATROL"
 length = 0.65
 loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -154,7 +252,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=60]
-length = 0.001
+length = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -165,7 +263,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 27 ]
+"values": [ 36 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("../HurtBox/HurtCollider:disabled")
@@ -179,9 +277,58 @@ tracks/1/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:flash_used")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../SensingColliders/FlashRadius/Flash:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../SensingColliders/IdleRadius/Sense:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../SensingColliders/AttackValidator/Attack:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [sub_resource type="Animation" id=27]
 resource_name = "SLASH"
+length = 0.6
 step = 0.01
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -190,134 +337,161 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.15, 0.2, 0.45, 0.5, 0.55, 0.6, 0.8, 0.85, 0.95 ),
+"times": PoolRealArray( 0, 0.03, 0.06, 0.09, 0.26, 0.32, 0.37, 0.48, 0.51, 0.54, 0.57 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46 ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("../FLASH")
+tracks/1/type = "value"
+tracks/1/path = NodePath("../HurtBox/HurtCollider:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "SLASH" ],
-"method": "transition_atAnimEnd"
-}, {
-"args": [ "CHASE" ],
-"method": "transition_atAnimEnd"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../HurtBox/HurtCollider:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.62 ),
+"times": PoolRealArray( 0.26, 0.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=44]
+[sub_resource type="AnimationNodeAnimation" id=67]
 animation = "ALERTED"
 
-[sub_resource type="AnimationNodeAnimation" id=34]
+[sub_resource type="AnimationNodeAnimation" id=70]
+animation = "CHARGE"
+
+[sub_resource type="AnimationNodeAnimation" id=71]
+animation = "CHARGE_Transition"
+
+[sub_resource type="AnimationNodeAnimation" id=69]
 animation = "CHASE"
 
-[sub_resource type="AnimationNodeAnimation" id=31]
+[sub_resource type="AnimationNodeAnimation" id=73]
 animation = "FLASH"
-
-[sub_resource type="AnimationNodeAnimation" id=61]
-animation = "HURT"
 
 [sub_resource type="AnimationNodeAnimation" id=35]
 animation = "IDLE"
 
-[sub_resource type="AnimationNodeAnimation" id=33]
+[sub_resource type="AnimationNodeAnimation" id=74]
 animation = "PATROL"
 
-[sub_resource type="AnimationNodeAnimation" id=32]
+[sub_resource type="AnimationNodeAnimation" id=80]
 animation = "SLASH"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=45]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=46]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+[sub_resource type="AnimationNodeStateMachineTransition" id=75]
+advance_condition = "in_flash_range"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=52]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=53]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=54]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=55]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=56]
-switch_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=51]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+[sub_resource type="AnimationNodeStateMachineTransition" id=76]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+[sub_resource type="AnimationNodeStateMachineTransition" id=77]
+switch_mode = 2
+advance_condition = "in_flash_range"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=78]
+advance_condition = "player_found"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=79]
+advance_condition = "flash_ready"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=81]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=82]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=83]
+advance_condition = "in_slash_range"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=85]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=90]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+[sub_resource type="AnimationNodeStateMachineTransition" id=91]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id=41]
-states/ALERTED/node = SubResource( 44 )
-states/ALERTED/position = Vector2( 59, 474 )
-states/CHASE/node = SubResource( 34 )
-states/CHASE/position = Vector2( 59, 265 )
-states/FLASH/node = SubResource( 31 )
-states/FLASH/position = Vector2( 59, 113 )
-states/HURT/node = SubResource( 61 )
-states/HURT/position = Vector2( -136.376, 265 )
+states/ALERTED/node = SubResource( 67 )
+states/ALERTED/position = Vector2( 18, 277.735 )
+states/CHARGE/node = SubResource( 70 )
+states/CHARGE/position = Vector2( 602.624, 393.735 )
+states/CHARGE_Transition/node = SubResource( 71 )
+states/CHARGE_Transition/position = Vector2( 376.624, 393.735 )
+states/CHASE/node = SubResource( 69 )
+states/CHASE/position = Vector2( 18, 393.735 )
+states/FLASH/node = SubResource( 73 )
+states/FLASH/position = Vector2( 602.624, 172 )
 states/IDLE/node = SubResource( 35 )
-states/IDLE/position = Vector2( 333, 113 )
-states/PATROL/node = SubResource( 33 )
-states/PATROL/position = Vector2( 580, 259 )
-states/SLASH/node = SubResource( 32 )
-states/SLASH/position = Vector2( 333, 265 )
-transitions = [ "IDLE", "CHASE", SubResource( 45 ), "IDLE", "PATROL", SubResource( 46 ), "ALERTED", "CHASE", SubResource( 47 ), "PATROL", "ALERTED", SubResource( 48 ), "CHASE", "SLASH", SubResource( 52 ), "IDLE", "FLASH", SubResource( 53 ), "IDLE", "SLASH", SubResource( 54 ), "CHASE", "IDLE", SubResource( 55 ), "ALERTED", "SLASH", SubResource( 56 ), "CHASE", "FLASH", SubResource( 51 ), "FLASH", "CHASE", SubResource( 57 ), "SLASH", "CHASE", SubResource( 58 ), "HURT", "CHASE", SubResource( 62 ) ]
+states/IDLE/position = Vector2( -182, 277.735 )
+states/PATROL/node = SubResource( 74 )
+states/PATROL/position = Vector2( -182, 172 )
+states/SLASH/node = SubResource( 80 )
+states/SLASH/position = Vector2( -182, 393.735 )
+transitions = [ "CHARGE_Transition", "CHARGE", SubResource( 72 ), "CHASE", "CHARGE_Transition", SubResource( 75 ), "ALERTED", "CHASE", SubResource( 76 ), "ALERTED", "CHARGE_Transition", SubResource( 77 ), "IDLE", "ALERTED", SubResource( 78 ), "CHARGE", "FLASH", SubResource( 79 ), "IDLE", "PATROL", SubResource( 81 ), "PATROL", "ALERTED", SubResource( 82 ), "CHASE", "SLASH", SubResource( 83 ), "SLASH", "IDLE", SubResource( 85 ), "FLASH", "CHASE", SubResource( 90 ), "SLASH", "CHASE", SubResource( 91 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -261.376, 71.735 )
+graph_offset = Vector2( -300.376, 56.859 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=42]
 
 [sub_resource type="CapsuleShape2D" id=63]
-radius = 21.0
-height = 56.0
+radius = 20.0
+height = 42.0
 
 [sub_resource type="RectangleShape2D" id=64]
 extents = Vector2( 15, 36.75 )
 
 [node name="E_Camera" type="KinematicBody2D" groups=["Enemy"]]
-position = Vector2( 315, 102 )
 collision_layer = 2
 script = ExtResource( 2 )
-initial_state_path = NodePath("IDLE")
+animation_tree_path = NodePath("Visual/AnimationTree")
+attack_validator_path = NodePath("SensingColliders/AttackValidator")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2( 7, -27 )
+position = Vector2( 0.200001, -61 )
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
 
+[node name="SensingColliders" type="Node2D" parent="."]
+position = Vector2( 3, 4 )
+
+[node name="IdleRadius" type="Area2D" parent="SensingColliders"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Sense" type="CollisionShape2D" parent="SensingColliders/IdleRadius"]
+position = Vector2( -3, -4 )
+scale = Vector2( 2, 1 )
+shape = SubResource( 87 )
+
+[node name="FlashRadius" type="Area2D" parent="SensingColliders"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Flash" type="CollisionShape2D" parent="SensingColliders/FlashRadius"]
+position = Vector2( -3, -4 )
+scale = Vector2( 2, 1 )
+shape = SubResource( 89 )
+disabled = true
+
+[node name="AttackValidator" type="Area2D" parent="SensingColliders"]
+position = Vector2( -34, -28 )
+collision_layer = 0
+collision_mask = 4
+
+[node name="Attack" type="CollisionShape2D" parent="SensingColliders/AttackValidator"]
+position = Vector2( 1, 11 )
+shape = SubResource( 88 )
+disabled = true
+
 [node name="Visual" type="Node2D" parent="."]
+position = Vector2( -6.8, -34 )
 
 [node name="Sprite" type="Sprite" parent="Visual"]
 position = Vector2( 0, -5 )
@@ -325,10 +499,12 @@ scale = Vector2( 0.346525, 0.346525 )
 texture = ExtResource( 1 )
 hframes = 12
 vframes = 4
-frame = 27
+frame = 36
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
 anims/ALERTED = SubResource( 43 )
+anims/CHARGE = SubResource( 65 )
+anims/CHARGE_Transition = SubResource( 66 )
 anims/CHASE = SubResource( 29 )
 anims/FLASH = SubResource( 26 )
 anims/HURT = SubResource( 59 )
@@ -340,33 +516,26 @@ anims/SLASH = SubResource( 27 )
 [node name="AnimationTree" type="AnimationTree" parent="Visual"]
 tree_root = SubResource( 41 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 42 )
-
-[node name="IDLE" type="Node2D" parent="."]
+parameters/conditions/flash_ready = false
+parameters/conditions/in_flash_range = false
+parameters/conditions/in_slash_range = false
+parameters/conditions/player_found = false
 script = ExtResource( 3 )
 
-[node name="CHASE" type="Node2D" parent="."]
-script = ExtResource( 4 )
-next_node = "SLASH"
-
-[node name="FLASH" type="Node2D" parent="."]
-script = ExtResource( 6 )
-
-[node name="SLASH" type="Node2D" parent="."]
-script = ExtResource( 5 )
-
-[node name="HURT" type="Node2D" parent="."]
-
 [node name="HitBox" type="Area2D" parent="."]
+position = Vector2( -6.8, -34 )
 collision_layer = 16
 collision_mask = 0
 script = ExtResource( 8 )
 
 [node name="HitCollider" type="CollisionShape2D" parent="HitBox"]
-position = Vector2( 1, -3 )
+position = Vector2( -3.2, -3 )
 shape = SubResource( 63 )
 
 [node name="HurtBox" type="Area2D" parent="."]
+position = Vector2( -6.8, -34 )
 collision_layer = 0
 collision_mask = 16
 script = ExtResource( 7 )
@@ -375,3 +544,9 @@ script = ExtResource( 7 )
 position = Vector2( -24, 9.75 )
 shape = SubResource( 64 )
 disabled = true
+
+[connection signal="body_entered" from="SensingColliders/IdleRadius" to="." method="_on_SenseRadius_eneterd"]
+[connection signal="body_entered" from="SensingColliders/FlashRadius" to="." method="_on_FlashRange_eneterd"]
+[connection signal="body_exited" from="SensingColliders/FlashRadius" to="." method="_on_FlashRange_exited"]
+[connection signal="body_entered" from="SensingColliders/AttackValidator" to="." method="_on_AttackVlaidator_eneterd"]
+[connection signal="body_exited" from="SensingColliders/AttackValidator" to="." method="_on_AttackVlaidator_exited"]
