@@ -37,9 +37,7 @@ func _fire(_direction, _target = null):
 	# bullet.variables.add_runnable(
 	# 	BulletBase.VARIABLE.DIRECTION, CurveBullet.new().with_parent(bullet), 0
 	# )
+
 	get_tree().get_root().add_child(bullet)
 	# add some screen shake!
-	# CameraSingleton.set_zoom(Vector2(0.995, 0.995))
-	# CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
-	# CameraSingleton.set_zoom(Vector2(1, 1))
 	CameraSingleton.shake(3)

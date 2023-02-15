@@ -70,7 +70,7 @@ func _dash_increment():
 
 
 func _handle_gun_aim():
-	var vec = CameraSingleton.get_mouse_from_camera_center()
+	var vec = CameraSingleton.get_absolute_mouse() - arms_container.global_position
 	self.visual.scale.x = sign(vec.x) if vec.x != 0.0 else 1.0
 	vec.x = abs(vec.x)
 	var angle = vec.angle()

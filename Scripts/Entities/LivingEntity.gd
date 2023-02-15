@@ -62,6 +62,10 @@ func _check_death() -> bool:
 		return true
 	return false
 
+# warning-ignore:unused_argument
+func can_be_hit():
+	return true
+
 
 func try_take_damage(amount) -> bool:
 	# check status... if status == invulenrable: return false
