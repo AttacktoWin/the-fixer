@@ -43,7 +43,8 @@ func _ready():
 
 
 func on_fire_called():
-	self._try_fire(CameraSingleton.get_mouse_from_camera_center().angle(), null)
+	var angle = (CameraSingleton.get_absolute_mouse() - self.global_position).angle()
+	self._try_fire(angle, null)
 
 
 func check_fire_pressed():

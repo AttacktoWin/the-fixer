@@ -9,13 +9,16 @@ var _inv_timer = 0
 onready var animator: AnimationNodeStateMachinePlayback = $Visual/AnimationTree.get(
 	"parameters/playback"
 )
+onready var socket_muzzle: Node2D = $Visual/ArmsContainer/SocketMuzzle
+onready var arms_container: Node2D = $Visual/ArmsContainer
+onready var visual: Node2D = $Visual
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var gun = TestGun.new()
 	gun.set_parent(self)
-	get_tree().get_root().call_deferred("add_child", gun)
+	socket_muzzle.add_child(gun)
 	self._dash_timer.one_shot = true
 	self._dash_timer.connect("timeout", self, "_dash_increment")
 	add_child(self._dash_timer)
@@ -53,7 +56,7 @@ func _dash_increment():
 	self._dash_part = 1
 	# CameraSingleton.unfreeze(CameraSingleton.TARGET.LOCATION)
 	CameraSingleton.set_zoom(Vector2(0.97, 0.97))
-	CameraSingleton.jump_field(CameraSingleton.TARGET.SCALE)
+	CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
 	CameraSingleton.set_zoom(Vector2(1, 1))
 	var _discard = move_and_slide(self._dash_direction * 9600)
 
@@ -66,6 +69,14 @@ func _dash_increment():
 # 	_setv(VARIABLE.VELOCITY, _getv(VARIABLE.VELOCITY) * _getv(VARIABLE.DRAG) / delta_fixed)
 
 
+func _handle_gun_aim():
+	var vec = CameraSingleton.get_mouse_from_camera_center()
+	self.visual.scale.x = sign(vec.x) if vec.x != 0.0 else 1.0
+	vec.x = abs(vec.x)
+	var angle = vec.angle()
+	self.arms_container.rotation = angle
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	._process(_delta)
@@ -75,6 +86,7 @@ func _process(_delta):
 		else:
 			PausingSingleton.pause(self)
 	# self.try_take_damage(1)
+	self._handle_gun_aim()
 
 
 func _physics_process(delta):

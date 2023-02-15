@@ -29,12 +29,17 @@ class CurveBullet:
 
 func _fire(_direction, _target = null):
 	var bullet: BulletBase = BulletScene.instance()
-	bullet.position = Vector2(self._parent.position.x, self._parent.position.y)
+	bullet.position = Vector2(self.global_position.x, self.global_position.y)
 	bullet.set_direction(_direction)
-	bullet.variables.add_runnable(
-		BulletBase.VARIABLE.DIRECTION, SinBullet.new().with_parent(bullet), 0
-	)
-	bullet.variables.add_runnable(
-		BulletBase.VARIABLE.DIRECTION, CurveBullet.new().with_parent(bullet), 0
-	)
+	# bullet.variables.add_runnable(
+	# 	BulletBase.VARIABLE.DIRECTION, SinBullet.new().with_parent(bullet), 0
+	# )
+	# bullet.variables.add_runnable(
+	# 	BulletBase.VARIABLE.DIRECTION, CurveBullet.new().with_parent(bullet), 0
+	# )
 	get_tree().get_root().add_child(bullet)
+	# add some screen shake!
+	# CameraSingleton.set_zoom(Vector2(0.995, 0.995))
+	# CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
+	# CameraSingleton.set_zoom(Vector2(1, 1))
+	CameraSingleton.shake(3)

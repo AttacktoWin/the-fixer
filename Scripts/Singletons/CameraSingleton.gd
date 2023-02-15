@@ -2,7 +2,7 @@ extends Node
 
 var _shake_timer = 0
 var _location_target = Vector2()
-var _scale_target = Vector2(1, 1)
+var _zoom_target = Vector2(1, 1)
 var _transition_factor = 0.1
 var _viewport
 var _camera
@@ -11,7 +11,7 @@ var _frozen = false
 const SHAKE_FACTOR = 10
 const MAX_SHAKE_TIMER = 120
 
-enum TARGET { LOCATION, SCALE, ROTATION }
+enum TARGET { LOCATION, ZOOM, ROTATION }
 var _frozen_dict = {}
 
 
@@ -47,7 +47,7 @@ func get_local_mouse() -> Vector2:
 
 
 func get_absolute_mouse() -> Vector2:
-	return self._viewport.get_global_mouse_position()
+	return self._camera.get_global_mouse_position()
 
 
 func get_mouse_from_camera_center() -> Vector2:
@@ -55,15 +55,15 @@ func get_mouse_from_camera_center() -> Vector2:
 
 
 func set_zoom(new_scale):
-	self._scale_target = new_scale
+	self._zoom_target = new_scale
 
 
 func jump_field(target_type):
 	match target_type:
 		TARGET.LOCATION:
 			self._camera.transform.origin = self._location_target
-		TARGET.SCALE:
-			self._camera.zoom = self._scale_target
+		TARGET.ZOOM:
+			self._camera.zoom = self._zoom_target
 
 
 # prevents the camera from moving
@@ -80,7 +80,7 @@ func _process(_delta):
 	if not self._camera:
 		return
 	var delta_60 = _delta * 60
-	self._shake_timer = max(self._shake_timer / 3 / delta_60, 0)
+	self._shake_timer = max(self._shake_timer / 1.2 / delta_60, 0)
 
 	# move
 	if not self._frozen_dict[TARGET.LOCATION]:
@@ -93,10 +93,10 @@ func _process(_delta):
 		)
 
 	# zoom
-	if not self._frozen_dict[TARGET.SCALE]:
+	if not self._frozen_dict[TARGET.ZOOM]:
 		self._camera.zoom = (
 			self._camera.zoom
-			+ (self._scale_target - self._camera.zoom) * pow(self._transition_factor, 1 / delta_60)
+			+ (self._zoom_target - self._camera.zoom) * pow(self._transition_factor, 1 / delta_60)
 		)
 
 	# SCREEN SHAKE!!! (the most important part)

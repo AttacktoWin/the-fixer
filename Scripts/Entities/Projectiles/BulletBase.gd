@@ -9,9 +9,12 @@ var variables = VariableList.new(
 	VARIABLE, {VARIABLE.SPEED: 500, VARIABLE.DAMAGE: 1, VARIABLE.DIRECTION: 0, VARIABLE.LIFE: 2.0}
 )
 
+
 func _ready():
 	add_child(variables)
 	add_child(events)
+	self.rotation = self.variables.get_variable(VARIABLE.DIRECTION)
+
 
 func set_direction(dir):
 	variables.set_variable(VARIABLE.DIRECTION, dir)
@@ -45,5 +48,6 @@ func _physics_process(_delta):
 	events.invoke(EVENTS.MOVE, null)
 	var dir = self.variables.get_variable(VARIABLE.DIRECTION)
 	var speed = self.variables.get_variable(VARIABLE.SPEED)
+	self.rotation = dir
 	var vel = Vector2(cos(dir), sin(dir)) * speed * _delta
 	self.position += vel
