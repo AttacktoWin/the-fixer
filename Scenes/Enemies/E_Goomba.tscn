@@ -1,15 +1,12 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Assets/Sprites/Knife/spritesheet.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Enemies/Goomba/Goomba_FSM.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Enemies/Generic/Generic_Idle.gd" type="Script" id=3]
-[ext_resource path="res://Scripts/Enemies/Generic/Generic_Chase.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/Enemies/Generic/Generic_Charge.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/Enemies/Goomba/Goomba_GetReady.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/Enemies/Goomba/Goomba_Attack.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/Enemies/Generic/Generic_Hurt.gd" type="Script" id=8]
+[ext_resource path="res://AnimationTree.gd" type="Script" id=2]
+[ext_resource path="res://GoombaTest.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/Enemies/Generic_HurtBox.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Enemies/Generic_HitBox.gd" type="Script" id=10]
+
+[sub_resource type="CircleShape2D" id=69]
 
 [sub_resource type="Animation" id=9]
 resource_name = "Alerted"
@@ -27,19 +24,29 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 7, 8, 9, 10, 11, 12, 13 ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("../IDLE")
+tracks/1/type = "value"
+tracks/1/path = NodePath("../SensingColliders/IdleRadius/Sense:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.7 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "CHASE" ],
-"method": "transition_atAnimEnd"
-} ]
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../SensingColliders/AttackRadius/Attack:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -58,20 +65,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:position")
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.49 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, -20 ), Vector2( 0, 0 ) ]
+"times": PoolRealArray( 0.01 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "lunge"
+} ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("../ATTACK")
+tracks/2/type = "value"
+tracks/2/path = NodePath("AnimationTree:parameters/conditions/attack_ready")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -79,101 +88,8 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0.6 ),
 "transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "IDLE" ],
-"method": "transition_atAnimEnd"
-} ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("../CHARGE")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "ATTACK" ],
-"method": "transition_atAnimEnd"
-} ]
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath("../ATTACK")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "hurtBoxSwitch"
-}, {
-"args": [  ],
-"method": "hurtBoxSwitch"
-} ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../HitBox/HitCollider:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0.01, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ false, true ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("../HitBox/HitCollider:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0, 0.2, 0.33, 0.42, 0.49 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -11, 16 ), Vector2( -10, -6 ), Vector2( -11, 3 ), Vector2( -14, 13 ), Vector2( -13, 20 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("../HitBox/HitCollider:rotation_degrees")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0, 0.2, 0.33, 0.42, 0.49 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ -59.6, -55.2, -59.6, -73.4, -68.4 ]
-}
-tracks/8/type = "value"
-tracks/8/path = NodePath("../HurtBox/HurtCollider:position")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
-"times": PoolRealArray( 0, 0.2, 0.33, 0.49, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 1, 34 ), Vector2( 1, 13 ), Vector2( 1, 21 ), Vector2( 2, 35 ), Vector2( 1, 34 ) ]
-}
-tracks/9/type = "value"
-tracks/9/path = NodePath("../HurtBox/HurtCollider:rotation_degrees")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/keys = {
-"times": PoolRealArray( 0, 0.2, 0.33, 0.49, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ -104.0, -90.8, -99.6, -108.4, -104.0 ]
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -192,6 +108,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 13, 8, 7, 8 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "increment_charge_loop_count"
+} ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -240,32 +170,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [ Vector2( 0, 1 ), Vector2( 0, -5 ), Vector2( 0, -10 ), Vector2( 0, -15 ), Vector2( 0, -10 ), Vector2( 0, -5 ), Vector2( 0, 1 ) ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("../CHASE")
+tracks/2/type = "value"
+tracks/2/path = NodePath("../HurtBox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "GET_READY" ],
-"method": "transition_atAnimEnd"
-} ]
+"times": PoolRealArray( 0, 0.15, 0.2, 0.35, 0.5, 0.55, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -4, -8 ), Vector2( -5, -11 ), Vector2( -4, -15 ), Vector2( -4, -24 ), Vector2( -4, -20 ), Vector2( -4, -14 ), Vector2( -4, -8 ), Vector2( -4, -8 ) ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("../GET_READY")
+tracks/3/path = NodePath("..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.8 ),
+"times": PoolRealArray( 0.025 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
-"args": [ "CHARGE" ],
-"method": "transition_atAnimEnd"
+"args": [  ],
+"method": "ready_hop"
 } ]
 }
 
@@ -302,7 +230,7 @@ tracks/0/keys = {
 "values": [ 7 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../HitBox/HitCollider:disabled")
+tracks/1/path = NodePath("../HurtBox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -310,8 +238,8 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
+"update": 0,
+"values": [ Vector2( -4, -10 ) ]
 }
 
 [sub_resource type="Animation" id=15]
@@ -329,7 +257,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
+tracks/1/path = NodePath("../SensingColliders/IdleRadius/Sense:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -337,11 +265,11 @@ tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 1 ) ]
+"update": 1,
+"values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:rotation_degrees")
+tracks/2/path = NodePath("../SensingColliders/AlertRadius/Sense:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -349,11 +277,11 @@ tracks/2/enabled = true
 tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0.0 ]
+"update": 1,
+"values": [ true ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../HitBox/HitCollider:disabled")
+tracks/3/path = NodePath("../SensingColliders/AttackRadius/Attack:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -364,53 +292,22 @@ tracks/3/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("../HitBox/HitCollider:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -10, -7 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("../HitBox/HitCollider:rotation_degrees")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ -59.6 ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("../HurtBox/HurtCollider:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 1, 34 ) ]
-}
-tracks/7/type = "value"
-tracks/7/path = NodePath("../HurtBox/HurtCollider:rotation_degrees")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ -104.0 ]
+
+[sub_resource type="Animation" id=71]
+resource_name = "Recover"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 13 ]
 }
 
 [sub_resource type="AnimationNodeAnimation" id=44]
@@ -435,28 +332,31 @@ animation = "Hurt"
 animation = "Idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
+advance_condition = "player_found"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=51]
 switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=52]
+advance_condition = "in_attack_range"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=53]
 switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=54]
+advance_condition = "attack_ready"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=58]
+[sub_resource type="AnimationNodeStateMachineTransition" id=70]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=72]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=61]
-
 [sub_resource type="AnimationNodeStateMachine" id=56]
 states/ALERTED/node = SubResource( 44 )
-states/ALERTED/position = Vector2( 103, 150 )
+states/ALERTED/position = Vector2( 103, 134 )
 states/ATTACK/node = SubResource( 45 )
 states/ATTACK/position = Vector2( 522, 65 )
 states/CHARGE/node = SubResource( 46 )
@@ -466,12 +366,12 @@ states/CHASE/position = Vector2( 103, 234 )
 states/GET_READY/node = SubResource( 48 )
 states/GET_READY/position = Vector2( 309, 234 )
 states/HURT/node = SubResource( 59 )
-states/HURT/position = Vector2( -101, 234 )
+states/HURT/position = Vector2( -56, 234 )
 states/IDLE/node = SubResource( 49 )
 states/IDLE/position = Vector2( 103, 65 )
-transitions = [ "IDLE", "ALERTED", SubResource( 50 ), "ALERTED", "CHASE", SubResource( 51 ), "CHASE", "GET_READY", SubResource( 52 ), "GET_READY", "CHARGE", SubResource( 53 ), "CHARGE", "ATTACK", SubResource( 54 ), "ATTACK", "IDLE", SubResource( 58 ), "HURT", "CHASE", SubResource( 61 ) ]
+transitions = [ "IDLE", "ALERTED", SubResource( 50 ), "ALERTED", "CHASE", SubResource( 51 ), "CHASE", "GET_READY", SubResource( 52 ), "GET_READY", "CHARGE", SubResource( 53 ), "CHARGE", "ATTACK", SubResource( 54 ), "HURT", "CHASE", SubResource( 70 ), "ATTACK", "CHASE", SubResource( 72 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -234, 6.14001 )
+graph_offset = Vector2( -167, -16.86 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=57]
 
@@ -484,19 +384,50 @@ radius = 12.3667
 height = 10.676
 
 [node name="Goomba" type="KinematicBody2D"]
-position = Vector2( 512, 236 )
 collision_layer = 2
-script = ExtResource( 2 )
-initial_state_path = NodePath("IDLE")
-speed = 100.0
-attack_range = 90.0
+script = ExtResource( 3 )
+animation_tree_path = NodePath("Visual/AnimationTree")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2( 2, -1.99999 )
+position = Vector2( -2.76989, -46 )
 scale = Vector2( 0.688088, 0.688088 )
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
+disabled = true
+
+[node name="SensingColliders" type="Node2D" parent="."]
+
+[node name="IdleRadius" type="Area2D" parent="SensingColliders"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Sense" type="CollisionShape2D" parent="SensingColliders/IdleRadius"]
+position = Vector2( -3, -4 )
+scale = Vector2( 10, 5 )
+shape = SubResource( 69 )
+
+[node name="AlertRadius" type="Area2D" parent="SensingColliders"]
+visible = false
+collision_layer = 0
+collision_mask = 4
+
+[node name="Sense" type="CollisionShape2D" parent="SensingColliders/AlertRadius"]
+position = Vector2( -3, -4 )
+scale = Vector2( 6, 3 )
+shape = SubResource( 69 )
+disabled = true
+
+[node name="AttackRadius" type="Area2D" parent="SensingColliders"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Attack" type="CollisionShape2D" parent="SensingColliders/AttackRadius"]
+position = Vector2( -3, -4 )
+scale = Vector2( 6, 3 )
+shape = SubResource( 69 )
+disabled = true
 
 [node name="Visual" type="Node2D" parent="."]
+position = Vector2( -4.76989, -44 )
 
 [node name="Sprite" type="Sprite" parent="Visual"]
 position = Vector2( 0, 1 )
@@ -515,47 +446,41 @@ anims/Get_Ready = SubResource( 14 )
 anims/Hurt = SubResource( 60 )
 anims/Idle = SubResource( 25 )
 anims/RESET = SubResource( 15 )
+anims/Recover = SubResource( 71 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Visual" groups=["Enemy"]]
 tree_root = SubResource( 56 )
 anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/playback = SubResource( 57 )
-
-[node name="IDLE" type="Node2D" parent="."]
-script = ExtResource( 3 )
-
-[node name="CHASE" type="Node2D" parent="."]
-script = ExtResource( 4 )
-
-[node name="GET_READY" type="Node2D" parent="."]
-script = ExtResource( 6 )
-
-[node name="CHARGE" type="Node2D" parent="."]
-script = ExtResource( 5 )
-
-[node name="ATTACK" type="Node2D" parent="."]
-script = ExtResource( 7 )
-
-[node name="HURT" type="Node2D" parent="."]
-script = ExtResource( 8 )
+parameters/conditions/attack_ready = false
+parameters/conditions/in_attack_range = false
+parameters/conditions/player_found = false
+script = ExtResource( 2 )
 
 [node name="HitBox" type="Area2D" parent="."]
+position = Vector2( -4, -42 )
 collision_layer = 16
 collision_mask = 0
 script = ExtResource( 10 )
 
 [node name="HitCollider" type="CollisionShape2D" parent="HitBox"]
-position = Vector2( -10, -7 )
+position = Vector2( -11, 16 )
 rotation = -1.04022
 shape = SubResource( 62 )
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="."]
+position = Vector2( -4, -10 )
 collision_layer = 0
 collision_mask = 16
 script = ExtResource( 9 )
 
 [node name="HurtCollider" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( 1, 34 )
+position = Vector2( 1, 0 )
 rotation = -1.81514
 shape = SubResource( 63 )
+
+[connection signal="body_entered" from="SensingColliders/IdleRadius" to="." method="_on_SenseRadius_eneterd"]
+[connection signal="body_entered" from="SensingColliders/AttackRadius" to="." method="_on_AttackRadius_eneterd"]
+[connection signal="body_exited" from="SensingColliders/AttackRadius" to="." method="_on_AttackRadius_exited"]
