@@ -227,16 +227,17 @@ script = ExtResource( 11 )
 initial_state_path = NodePath("FREE")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -55 )
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
 
 [node name="Visual" type="Node2D" parent="."]
+position = Vector2( 0, -55 )
 
 [node name="Sprite" type="Sprite" parent="Visual"]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 5
-frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
 anims/Dash = SubResource( 2 )
@@ -254,12 +255,15 @@ active = true
 parameters/playback = SubResource( 12 )
 
 [node name="DASH" type="Node2D" parent="."]
+position = Vector2( 0, -55 )
 script = ExtResource( 3 )
 
 [node name="FREE" type="Node2D" parent="."]
+position = Vector2( 0, -55 )
 script = ExtResource( 2 )
 
 [node name="HurtBox" type="Area2D" parent="."]
+position = Vector2( 0, -55 )
 collision_layer = 0
 collision_mask = 16
 

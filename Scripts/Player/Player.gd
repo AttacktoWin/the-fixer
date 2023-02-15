@@ -83,5 +83,12 @@ func _physics_process(delta):
 	# self._move_control(delta)
 	self._try_move()
 
-	var off = CameraSingleton.get_mouse_from_camera_center() / 15
-	CameraSingleton.set_target_center(self.position + off)
+	var center = CameraSingleton.get_mouse_from_camera_center() / 360
+	var off = (
+		MathUtils.interpolate_vector(
+			Vector2(abs(center.x), abs(center.y)), 0, 8, MathUtils.INTERPOLATE_OUT_EXPONENTIAL
+		)
+		* Vector2(sign(center.x), sign(center.y))
+	)
+	var off2 = off + self._getv(VARIABLE.VELOCITY) / 8
+	CameraSingleton.set_target_center(self.position + off2)

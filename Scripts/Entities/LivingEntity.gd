@@ -48,7 +48,7 @@ func _setv(variable, v):
 
 func _try_move():
 	# unlikely to ever change, but here anyway
-	_setv(VARIABLE.VELOCITY, move_and_slide(_getv(VARIABLE.VELOCITY) * Vector2(1, 0.69)))
+	_setv(VARIABLE.VELOCITY, move_and_slide(_getv(VARIABLE.VELOCITY) * Vector2(1, 0.6)))
 
 
 func _on_death():

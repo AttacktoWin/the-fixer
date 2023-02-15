@@ -261,7 +261,7 @@ tile_data = PoolIntArray( -131070, 9, 0, -131069, 9, 0, -131068, 5, 0, -131067, 
 [node name="YSort" type="YSort" parent="."]
 
 [node name="TileMap2" type="TileMap" parent="YSort"]
-position = Vector2( 0, 288 )
+position = Vector2( 0, 256 )
 scale = Vector2( 0.5, 0.5 )
 mode = 1
 tile_set = SubResource( 2 )

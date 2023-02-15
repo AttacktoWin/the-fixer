@@ -165,9 +165,9 @@ _global_script_classes=[ {
 "path": "res://Scripts/Entities/LivingEntity.gd"
 }, {
 "base": "Reference",
-"class": "MathU",
+"class": "MathUtils",
 "language": "GDScript",
-"path": "res://Scripts/MathUtils.gd"
+"path": "res://Scripts/Utils/MathUtils.gd"
 }, {
 "base": "Node",
 "class": "NPC",
@@ -261,7 +261,7 @@ _global_script_class_icons={
 "HistoryRow": "",
 "HurtInfo": "",
 "LivingEntity": "",
-"MathU": "",
+"MathUtils": "",
 "NPC": "",
 "NPCInstance": "",
 "Player": "",

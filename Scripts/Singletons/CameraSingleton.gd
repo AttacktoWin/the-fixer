@@ -3,7 +3,7 @@ extends Node
 var _shake_timer = 0
 var _location_target = Vector2()
 var _scale_target = Vector2(1, 1)
-var _transition_factor = 0.2
+var _transition_factor = 0.1
 var _viewport
 var _camera
 var _frozen = false
@@ -47,7 +47,7 @@ func get_local_mouse() -> Vector2:
 
 
 func get_absolute_mouse() -> Vector2:
-	return self.get_local_mouse() + self._camera.transform.origin
+	return self._viewport.get_global_mouse_position()
 
 
 func get_mouse_from_camera_center() -> Vector2:
