@@ -1,50 +1,25 @@
-extends LivingEntity
+extends Base_EnemyFSM
 #TODO: lunge height using cart-iso transform
 
-export(String) var targeting = "Player"
-export(NodePath) var animation_tree_path
-onready var animation_tree := get_node(animation_tree_path)
+#Hop Parameters
+export(int) var hop_distance = 20
+export(float) var hop_height = 0.0
+export(float) var hop_time = 0.55
 
-var target = null
+#Charge Parameters
+export(int) var charge_loop_length = 2
 
-var charge_loop_count = 0
-var charge_loop_length = 2
+#Lunge Parameters
+export(float) var lunge_distance = 160.0
+export(float) var lunge_height = 60.0
+export(float) var lunge_time = 0.55
 
-var movement_speed = 90
-
-var _attack_dir = Vector2.ZERO
-
-var hop_distance = 20
-var hop_height = 0.0
-var hop_time = 0.55
-
-var lunge_distance = 160.0
-var lunge_height = 60.0
-var lunge_time = 0.55
-
-
-func aim_attack():
-	if target != null:
-		_attack_dir = (target.global_position - self.global_position).normalized()
-
-
-func flipSprite():
-	var angle = rad2deg(self.get_angle_to(target.global_position))
-	if angle < 90 and angle > -90:
-		self.scale.x = -1
-	else:
-		self.scale.x = 1
+var _charge_loop_count = 0
 
 
 ########################################################################
 #Context Trigger Methods
 ########################################################################
-func _on_SenseRadius_eneterd(body):
-	if body.name == targeting:
-		target = body
-		animation_tree.set_condition("player_found", true)
-
-
 func _on_AttackRadius_eneterd(body):
 	if body.name == targeting:
 		animation_tree.set_condition("in_attack_range", true)
@@ -53,10 +28,6 @@ func _on_AttackRadius_eneterd(body):
 func _on_AttackRadius_exited(body):
 	if body.name == targeting:
 		animation_tree.set_condition("in_attack_range", false)
-
-
-func on_Anim_change(_prev_state: String, _new_state: String):
-	pass
 
 
 ########################################################################
@@ -76,10 +47,10 @@ func ready_hop():
 
 
 func increment_charge_loop_count():
-	charge_loop_count += 1
-	if charge_loop_count >= charge_loop_length:
+	_charge_loop_count += 1
+	if _charge_loop_count >= charge_loop_length:
 		animation_tree.set_condition("attack_ready", true)
-		charge_loop_count = 0
+		_charge_loop_count = 0
 
 
 func lunge():
@@ -94,25 +65,8 @@ func lunge():
 
 
 ########################################################################
-#Tick Methods
-########################################################################
-func _chase_player() -> void:
-	var _velocity = self.move_and_slide(
-		(
-			(movement_speed * Vector2(2, 1))
-			* (target.global_position - self.global_position).normalized()
-		)
-	)
-
-
-########################################################################
 #Life Cycle Methods
 ###############################i#########################################
-func _ready():
-	if animation_tree.connect("node_changed", self, "on_Anim_change") != 0:
-		print("FAILED to connect signal")
-
-
 func _physics_process(_delta):
 	var state = animation_tree.state_machine.get_current_node()
 	match state:

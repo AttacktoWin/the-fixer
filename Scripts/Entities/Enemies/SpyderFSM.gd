@@ -1,18 +1,14 @@
-extends LivingEntity
+extends Base_EnemyFSM
 #TODO: lunge height using cart-iso transform
 
-export(String) var targeting = "Player"
-export(NodePath) var animation_tree_path
 export(NodePath) var attack_validator_path
-onready var animation_tree := get_node(animation_tree_path)
 onready var attack_validator := get_node(attack_validator_path)
-var target = null
 
-var movement_speed = 180
-export var flash_used = false
+#Charge Parameters
+export(int) var charge_loop_length = 1
 
 var charge_loop_count = 0
-var charge_loop_length = 1
+var flash_used = false
 
 
 func flipSprite():
@@ -26,12 +22,6 @@ func flipSprite():
 ########################################################################
 #Context Trigger Methods
 ########################################################################
-func _on_SenseRadius_eneterd(body):
-	if body.name == targeting:
-		target = body
-		animation_tree.set_condition("player_found", true)
-
-
 func _on_FlashRange_eneterd(body):
 	if body.name == targeting and not flash_used:
 		flipSprite()
@@ -53,10 +43,6 @@ func _on_AttackVlaidator_exited(body):
 		animation_tree.set_condition("in_slash_range", false)
 
 
-func on_Anim_change(_prev_state: String, _new_state: String):
-	pass
-
-
 ########################################################################
 #Anim Controled Methods
 ########################################################################
@@ -65,6 +51,10 @@ func increment_charge_loop_count():
 	if charge_loop_count >= charge_loop_length:
 		animation_tree.set_condition("flash_ready", true)
 		charge_loop_count = 0
+
+
+func set_flash_used(val: bool):
+	flash_used = val
 
 
 ########################################################################
@@ -82,11 +72,6 @@ func _chase_player() -> void:
 ########################################################################
 #Life Cycle Methods
 ###############################i#########################################
-func _ready():
-	if animation_tree.connect("node_changed", self, "on_Anim_change") != 0:
-		print("FAILED to connect signal")
-
-
 func _physics_process(_delta):
 	var state = animation_tree.state_machine.get_current_node()
 	print(flash_used)
