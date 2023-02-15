@@ -4,9 +4,10 @@ var _cooldown_timer = Timer.new()
 var _can_fire = true
 var _cooldown = 0.5  # seconds
 var _parent = null
+var _aim_bone = null
 
 
-func _try_fire(direction, target = null):
+func _try_fire(direction: float, target: Node2D = null) -> bool:
 	if not self._can_fire or not self._check_fire(direction, target):
 		return false
 	self._can_fire = false
@@ -16,16 +17,26 @@ func _try_fire(direction, target = null):
 	return true
 
 
-func _check_fire(_direction, _target):
+func _check_fire(_direction: float, _target: Node2D) -> bool:
 	return true
 
 
-func _fire(_direction, _taget = null):
+func _fire(_direction: float, _taget: Node2D = null):
 	print("Not implemented!")
 
 
-func set_parent(parent):
+func set_parent(parent: Node2D) -> void:
 	self._parent = parent
+
+
+func set_aim_bone(bone: Node2D) -> void:
+	self._aim_bone = bone
+
+
+func _get_aim_position() -> Vector2:
+	if self._aim_bone:
+		return self._aim_bone.global_position
+	return self.global_position
 
 
 func _cooldown_complete():
@@ -42,15 +53,23 @@ func _ready():
 	add_child(self._cooldown_timer)
 
 
-func on_fire_called():
-	var angle = (CameraSingleton.get_absolute_mouse() - self.global_position).angle()
-	self._try_fire(angle, null)
+func can_fire() -> bool:
+	return self._can_fire
 
 
-func check_fire_pressed():
+func get_angle() -> float:
+	return 0.0
+
+
+func _on_fire_called() -> void:
+	# warning-ignore:return_value_discarded
+	self._try_fire(self.get_angle(), null)
+
+
+func _check_fire_pressed() -> bool:
 	return false
 
 
 func _process(_delta):
-	if self.check_fire_pressed():
-		on_fire_called()
+	if self._check_fire_pressed():
+		self._on_fire_called()

@@ -18,6 +18,7 @@ onready var visual: Node2D = $Visual
 func _ready():
 	var gun = TestGun.new()
 	gun.set_parent(self)
+	gun.set_aim_bone(arms_container)
 	socket_muzzle.add_child(gun)
 	self._dash_timer.one_shot = true
 	self._dash_timer.connect("timeout", self, "_dash_increment")

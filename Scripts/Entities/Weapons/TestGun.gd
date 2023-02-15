@@ -27,7 +27,7 @@ class CurveBullet:
 		return _arg + self._timer
 
 
-func _fire(_direction, _target = null):
+func _fire(_direction: float, _target: Node2D = null):
 	var bullet: BulletBase = BulletScene.instance()
 	bullet.position = Vector2(self.global_position.x, self.global_position.y)
 	bullet.set_direction(_direction)
