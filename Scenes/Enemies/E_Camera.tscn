@@ -356,7 +356,6 @@ script = ExtResource( 6 )
 script = ExtResource( 5 )
 
 [node name="HURT" type="Node2D" parent="."]
-script = ExtResource( 7 )
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 16
