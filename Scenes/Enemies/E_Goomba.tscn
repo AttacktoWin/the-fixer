@@ -395,7 +395,7 @@ height = 19.2829
 radius = 12.3667
 height = 10.676
 
-[node name="Goomba" type="KinematicBody2D"]
+[node name="Goomba" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource( 3 )
 animation_tree_path = NodePath("Visual/AnimationTree")
@@ -404,7 +404,6 @@ animation_tree_path = NodePath("Visual/AnimationTree")
 position = Vector2( -2.76989, -46 )
 scale = Vector2( 0.688088, 0.688088 )
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
-disabled = true
 
 [node name="SensingColliders" type="Node2D" parent="."]
 
@@ -418,7 +417,6 @@ scale = Vector2( 10, 5 )
 shape = SubResource( 69 )
 
 [node name="AlertRadius" type="Area2D" parent="SensingColliders"]
-visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -472,20 +470,21 @@ script = ExtResource( 2 )
 
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2( -4, -42 )
-collision_layer = 16
-collision_mask = 0
+collision_layer = 0
+collision_mask = 16
 script = ExtResource( 10 )
 
 [node name="HitCollider" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( -11, 16 )
 rotation = -1.04022
+scale = Vector2( 1, 1 )
 shape = SubResource( 62 )
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2( -4, -10 )
-collision_layer = 0
-collision_mask = 16
+collision_layer = 32
+collision_mask = 0
 script = ExtResource( 9 )
 
 [node name="HurtCollider" type="CollisionShape2D" parent="HurtBox"]

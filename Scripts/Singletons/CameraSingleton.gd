@@ -6,7 +6,6 @@ var _zoom_target = Vector2(1, 1)
 var _transition_factor = 0.1
 var _viewport
 var _camera
-var _frozen = false
 
 const SHAKE_FACTOR = 10
 const MAX_SHAKE_TIMER = 120

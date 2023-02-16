@@ -11,13 +11,15 @@ onready var socket_muzzle: Node2D = $Visual/ArmsContainer/SocketMuzzle
 onready var arms_container: Node2D = $Visual/ArmsContainer
 onready var visual: Node2D = $Visual
 
+var _gun = null
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var gun = TestGun.new()
-	gun.set_parent(self)
-	gun.set_aim_bone(arms_container)
-	socket_muzzle.add_child(gun)
+	self._gun = TestGun.new()
+	self._gun.set_parent(self)
+	self._gun.set_aim_bone(arms_container)
+	socket_muzzle.add_child(self._gun)
 	self._dash_timer.one_shot = true
 	self._dash_timer.connect("timeout", self, "_dash_increment")
 	add_child(self._dash_timer)
@@ -72,6 +74,8 @@ func _dash_increment():
 
 
 func _handle_gun_aim():
+	if self._is_dead:
+		return
 	var vec = CameraSingleton.get_absolute_mouse() - arms_container.global_position
 	self.visual.scale.x = sign(vec.x) if vec.x != 0.0 else 1.0
 	vec.x = abs(vec.x)
@@ -81,7 +85,6 @@ func _handle_gun_aim():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	._process(_delta)
 	if Input.is_action_just_pressed("ui_accept"):
 		if PausingSingleton.is_paused():
 			PausingSingleton.unpause(self)
@@ -92,9 +95,10 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	._physics_process(delta)
-
 	var state = self.animation_tree.state_machine.get_current_node()
+
+	if state == "Die":
+		self._setv(LivingEntity.VARIABLE.VELOCITY, Vector2.ZERO)
 
 	if state == "Idle" or state == "Walk" or state == "Run":
 		var delta_fixed = delta * 60
@@ -119,6 +123,16 @@ func _physics_process(delta):
 	)
 	var off2 = off + self._getv(VARIABLE.VELOCITY) / 8
 	CameraSingleton.set_target_center(self.position + off2)
+
+
+func _on_take_damage(_amount: float, _meta: HitMetadata):
+	var bar = Scene.ui.get_node("HealthBar")
+	bar.value = (self._getv(LivingEntity.VARIABLE.HEALTH) / self.base_health) * 100
+
+
+func _on_death():
+	self.animation_tree.state_machine.travel("Die")
+	self._gun.queue_free()
 
 
 # FSM

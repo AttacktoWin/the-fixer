@@ -223,21 +223,9 @@
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="MainCamera" type="Camera2D" parent="."]
-position = Vector2( -6.10352e-05, 0 )
-rotation = 3.14159
-scale = Vector2( 57.9652, 3356.8 )
-current = true
-script = ExtResource( 20 )
-
-[node name="UI" type="Control" parent="."]
-
-[node name="Managers" type="Node2D" parent="."]
-
 [node name="Level" type="Node2D" parent="."]
 
 [node name="Floor" type="TileMap" parent="Level"]
-position = Vector2( 17, 0 )
 scale = Vector2( 0.5, 0.5 )
 mode = 1
 tile_set = SubResource( 1 )
@@ -246,7 +234,6 @@ format = 1
 tile_data = PoolIntArray( -131070, 9, 0, -131069, 9, 0, -131068, 5, 0, -131067, 0, 0, -131066, 0, 0, -131065, 0, 0, -131064, 0, 0, -131063, 2, 0, -131062, 0, 0, -131061, 5, 0, -65534, 9, 0, -65533, 9, 0, -65532, 5, 0, -65531, 0, 0, -65530, 4, 0, -65529, 0, 0, -65528, 0, 0, -65527, 4, 0, -65526, 0, 0, -65525, 5, 0, -65524, 8, 0, -65523, 10, 0, -65522, 1, 0, -65521, 8, 0, -65520, 1, 0, -65519, 1, 0, -65518, 1, 0, -65517, 1, 0, 2, 9, 0, 3, 9, 0, 4, 5, 0, 5, 0, 0, 6, 0, 0, 7, 2, 0, 8, 2, 0, 9, 0, 0, 10, 0, 0, 11, 5, 0, 12, 1, 0, 13, 10, 0, 14, 1, 0, 15, 1, 0, 16, 6, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0, 20, 1, 0, 65538, 9, 0, 65539, 9, 0, 65540, 5, 0, 65541, 2, 0, 65542, 0, 0, 65543, 0, 0, 65544, 0, 0, 65545, 0, 0, 65546, 2, 0, 65547, 5, 0, 65548, 1, 0, 65549, 10, 0, 65550, 1, 0, 65551, 1, 0, 65552, 1, 0, 65553, 1, 0, 65554, 8, 0, 65555, 1, 0, 65556, 7, 0, 65557, 1, 0, 131074, 9, 0, 131075, 9, 0, 131076, 5, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 0, 0, 131083, 5, 0, 131084, 7, 0, 131085, 10, 0, 131086, 1, 0, 131087, 1, 0, 131088, 1, 0, 131089, 1, 0, 131090, 1, 0, 131091, 1, 0, 131092, 1, 0, 131093, 1, 0, 196612, 5, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 5, 0, 196620, 1, 0, 196621, 10, 0, 196622, 1, 0, 196623, 1, 0, 196624, 1, 0, 196625, 1, 0, 196626, 1, 0, 196627, 1, 0, 196628, 1, 0, 196629, 1, 0, 262148, 5, 0, 262149, 0, 0, 262150, 4, 0, 262151, 0, 0, 262152, 0, 0, 262153, 4, 0, 262154, 0, 0, 262155, 5, 0, 262156, 1, 0, 262157, 10, 0, 262158, 1, 0, 262163, 1, 0, 262164, 1, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 2, 0, 327690, 2, 0, 327691, 5, 0, 327692, 1, 0, 327693, 10, 0, 327694, 1, 0, 393222, 0, 0, 393223, 0, 0, 393224, 2, 0, 393225, 0, 0, 393226, 2, 0, 393227, 5, 0, 458761, 0, 0, 458762, 0, 0, 524296, 9, 0, 524297, 9, 0, 524298, 9, 0, 524299, 9, 0, 524300, 9, 0, 589832, 9, 0, 589833, 9, 0, 589834, 9, 0, 589835, 9, 0, 589836, 9, 0, 655369, 9, 0, 655370, 9, 0, 655371, 9, 0, 655372, 9, 0, 655373, 9, 0, 720905, 9, 0, 720906, 9, 0, 720907, 9, 0, 720908, 9, 0, 720909, 9, 0, 786441, 9, 0, 786442, 9, 0, 786443, 9, 0, 786444, 9, 0, 786445, 9, 0 )
 
 [node name="SortableEntities" type="YSort" parent="Level"]
-position = Vector2( 17, 0 )
 
 [node name="Walls" type="TileMap" parent="Level/SortableEntities"]
 position = Vector2( 0, 256 )
@@ -262,11 +249,27 @@ tile_data = PoolIntArray( -262145, 2, 0, -327680, 2, 0, -327679, 2, 0, -327678, 
 [node name="Player" parent="Level/SortableEntities" instance=ExtResource( 1 )]
 position = Vector2( 259, 385 )
 
-[node name="Goomba" parent="Level/SortableEntities" instance=ExtResource( 3 )]
-position = Vector2( 435, 258 )
-
 [node name="E_Camera" parent="Level/SortableEntities" instance=ExtResource( 4 )]
-position = Vector2( 208, 177 )
+position = Vector2( 273, 206 )
+
+[node name="Goomba" parent="Level/SortableEntities" instance=ExtResource( 3 )]
+position = Vector2( 478, 271 )
 
 [node name="Runtime" type="YSort" parent="Level/SortableEntities"]
 unique_name_in_owner = true
+
+[node name="Managers" type="Node2D" parent="."]
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2( -6.10352e-05, 0 )
+current = true
+script = ExtResource( 20 )
+
+[node name="UI" type="Control" parent="MainCamera"]
+
+[node name="HealthBar" type="ProgressBar" parent="MainCamera/UI"]
+margin_left = -510.0
+margin_top = 271.0
+margin_right = -147.0
+margin_bottom = 298.0
+value = 100.0
