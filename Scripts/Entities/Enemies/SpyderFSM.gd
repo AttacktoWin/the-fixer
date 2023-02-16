@@ -74,7 +74,7 @@ func _chase_player() -> void:
 ###############################i#########################################
 func _physics_process(_delta):
 	var state = animation_tree.state_machine.get_current_node()
-	print(flash_used)
+	print(state)
 	match state:
 		"CHASE":
 			flipSprite()

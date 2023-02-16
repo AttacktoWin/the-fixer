@@ -13,7 +13,7 @@ radius = 48.12
 radius = 36.19
 
 [sub_resource type="RectangleShape2D" id=88]
-extents = Vector2( 12, 19 )
+extents = Vector2( 11, 12 )
 
 [sub_resource type="Animation" id=43]
 resource_name = "ALERTED"
@@ -486,7 +486,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="Attack" type="CollisionShape2D" parent="SensingColliders/AttackValidator"]
-position = Vector2( 1, 11 )
+position = Vector2( 2, 9 )
 shape = SubResource( 88 )
 disabled = true
 
