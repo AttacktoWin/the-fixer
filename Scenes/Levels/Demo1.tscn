@@ -211,7 +211,7 @@ position = Vector2( 259, 385 )
 position = Vector2( 2500, 325 )
 to_level = ExtResource( 4 )
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="FixerNPCInstance" type="Node2D" parent="."]
 script = ExtResource( 7 )
 id = "fixer"
 immediate = true

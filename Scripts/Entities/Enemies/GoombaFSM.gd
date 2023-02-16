@@ -68,6 +68,8 @@ func lunge():
 #Life Cycle Methods
 ###############################i#########################################
 func _physics_process(_delta):
+	if (!is_instance_valid(animation_tree)):
+		return
 	var state = animation_tree.state_machine.get_current_node()
 	match state:
 		"CHASE":
