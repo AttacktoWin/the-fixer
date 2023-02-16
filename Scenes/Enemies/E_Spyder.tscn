@@ -526,7 +526,7 @@ script = ExtResource( 3 )
 
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2( -6.8, -34 )
-collision_layer = 16
+collision_layer = 32
 collision_mask = 0
 script = ExtResource( 8 )
 

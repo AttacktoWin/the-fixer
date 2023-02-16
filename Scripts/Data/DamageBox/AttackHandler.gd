@@ -1,6 +1,7 @@
 # data class which determines add
 class_name AttackHandler extends Object
 
+var _damage_dealer = null
 var _damage_owner = null
 var _hit_handler = null
 var _hitbox = null
@@ -8,7 +9,8 @@ var _filter = null
 var _hitbox_proxy = null
 
 
-func _init(damage_owner, hitbox = null, filter = null):
+func _init(damage_dealer, damage_owner, hitbox = null, filter = null):
+	self._damage_dealer = damage_dealer
 	self._damage_owner = damage_owner
 	self._hit_handler = BaseHitHandler.new(damage_owner)
 	self._hitbox = hitbox if hitbox else damage_owner
@@ -32,6 +34,9 @@ func get_hitbox():
 func try_hit_entity(body: Node):
 	if not (body is LivingEntity):
 		return
+	# TEMP
+	# if self._damage_dealer == body:
+	# 	return
 	if not self._try_filter_entity(body):
 		return
 	self._on_hit_entity_success(body)

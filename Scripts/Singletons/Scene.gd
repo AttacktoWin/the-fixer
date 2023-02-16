@@ -17,7 +17,7 @@ func set_root(root: Node2D):
 	self._root = root
 	self._camera = root.get_node("MainCamera")
 	self._runtime = root.get_node("Level/SortableEntities/Runtime")
-	self._ui = root.get_node("UI")
+	self._ui = root.get_node("MainCamera/UI")
 	self._managers = root.get_node("Managers")
 
 

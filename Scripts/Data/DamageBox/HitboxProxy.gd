@@ -17,17 +17,23 @@ func set_hitbox(hitbox):
 		self.remove_hitbox()
 	self._hitbox = hitbox
 	self._hitbox.connect("body_entered", self, "_on_body_entered")
+	self._hitbox.connect("area_entered", self, "_on_area_entered")
 
 
 func remove_hitbox():
 	if not self._hitbox:
 		print("No hitbox!")
 	self._hitbox.disconnect("body_entered", self, "_on_body_entered")
+	self._hitbox.disconnect("area_entered", self, "_on_area_entered")
 	self._hitbox = null
 
 
 func _on_body_entered(body: Node):
 	self._attack_handler.try_hit_entity(body)
+
+
+func _on_area_entered(body: Area2D):
+	self._attack_handler.try_hit_entity(body.owner)
 
 
 func get_hitbox():

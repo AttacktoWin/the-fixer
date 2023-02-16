@@ -269,7 +269,7 @@ texture = ExtResource( 5 )
 position = Vector2( 340, 264 )
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 2 )
-frame = 4
+frame = 8
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

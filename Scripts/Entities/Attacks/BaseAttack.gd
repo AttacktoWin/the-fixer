@@ -15,6 +15,7 @@ var variables = VariableList.new(
 )
 
 var _attack = null
+var _damage_dealer = null
 
 
 func _ready():
@@ -23,8 +24,10 @@ func _ready():
 	self.rotation = self.variables.get_variable(AttackVariable.DIRECTION)
 
 	if not self._attack:
-		self._attack = AttackHandler.new(self)
+		self._attack = AttackHandler.new(self._damage_dealer, self)
 
+func set_damage_dealer(dealer: LivingEntity):
+	self._damage_dealer = dealer
 
 func set_attack(attack):
 	self._attack = attack
