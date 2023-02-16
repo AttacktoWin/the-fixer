@@ -52,4 +52,13 @@ func load(level: Node):
 		print("Current level still loaded!")
 		return
 	self._root.add_child(level)
+	self._root.move_child(level, 0)
 	self._runtime = self._root.get_node("Level/SortableEntities/Runtime")
+
+
+func switch(level: Node):
+	self.deload()
+	self.load(level)
+
+
+var Demo1 = preload("res://Scenes/Levels/Demo2.tscn")

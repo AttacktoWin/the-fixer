@@ -86,10 +86,11 @@ func _handle_gun_aim():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("ui_accept"):
-		if PausingSingleton.is_paused():
-			PausingSingleton.unpause(self)
-		else:
-			PausingSingleton.pause(self)
+		# if PausingSingleton.is_paused():
+		# 	PausingSingleton.unpause(self)
+		# else:
+		# 	PausingSingleton.pause(self)
+		Scene.switch(Scene.Demo1.instance())
 	# self.try_take_damage(1)
 	self._handle_gun_aim()
 

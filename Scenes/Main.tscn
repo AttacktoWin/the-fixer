@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Levels/Demo1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Entities/Level.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Entities/MainCamera.gd" type="Script" id=20]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Managers" type="Node2D" parent="."]
+
+[node name="MainCamera" type="Camera2D" parent="."]
+position = Vector2( -6.10352e-05, 0 )
+current = true
+script = ExtResource( 20 )
+
+[node name="UI" type="Control" parent="MainCamera"]
+
+[node name="HealthBar" type="ProgressBar" parent="MainCamera/UI"]
+margin_left = -510.0
+margin_top = 271.0
+margin_right = -147.0
+margin_bottom = 298.0
+value = 100.0
+
+[node name="Level" parent="." instance=ExtResource( 1 )]
