@@ -54,9 +54,7 @@ func _ready():
 func display_dialogue(npc_id: String, dialogue_id: String) -> void:
 	# TODO: listen to dialogic signals and emit signals for pausing player, etc.
 	if (Dialogic.timeline_exists(npc_id + "-" + dialogue_id)):
-		var pausing = get_node("/root/PausingSingleton")
-		if (is_instance_valid(pausing)):
-			pausing.pause()
+		PausingSingleton.pause()
 		var dialog = Dialogic.start(npc_id + "-" + dialogue_id)
 		self.current_npc_id = npc_id
 		self.current_dialogue_id = dialogue_id
@@ -65,11 +63,9 @@ func display_dialogue(npc_id: String, dialogue_id: String) -> void:
 	else:
 		push_error("Unknown dialogue {d_id} for npc {n_id}".format({"d_id": dialogue_id, "n_id": npc_id}))
 
-func _timeline_end():
+func _timeline_end(t_name: String):
 	dialogue_viewed(self.current_npc_id, self.current_dialogue_id)
-	var pausing = get_node("/root/PausingSingleton")
-	if (is_instance_valid(pausing)):
-			pausing.unpause()
+	PausingSingleton.unpause()
 
 func get_top_dialogue(npc_id: String) -> Dialogue:
 	if (!NPCs.has(npc_id)):
