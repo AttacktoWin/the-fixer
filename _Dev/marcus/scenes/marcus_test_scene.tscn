@@ -254,6 +254,18 @@ position = Vector2( 273, 206 )
 
 [node name="Goomba" parent="Level/SortableEntities" instance=ExtResource( 3 )]
 position = Vector2( 478, 271 )
+base_speed = null
+base_health = null
+base_accel = null
+base_drag = null
+targeting = null
+hop_distance = null
+hop_height = null
+hop_time = null
+charge_loop_length = null
+lunge_distance = null
+lunge_height = null
+lunge_time = null
 
 [node name="Runtime" type="YSort" parent="Level/SortableEntities"]
 unique_name_in_owner = true

@@ -3,14 +3,18 @@ class_name BaseAttack extends Area2D
 enum EVENTS { CREATE, STEP, MOVE, HIT_WALL, HIT_ENEMY, DESTROY }
 var events = DecoratorList.new(EVENTS)
 
+export var base_speed: float = 500
+export var base_damage: float = 50
+export var base_direction: float = 0
+export var base_lifetime: float = 2.0
 # when attempting to access a variable
-var variables = VariableList.new(
+onready var variables = VariableList.new(
 	AttackVariable.get_script_constant_map(),
 	{
-		AttackVariable.SPEED: 500,
-		AttackVariable.DAMAGE: 50,
-		AttackVariable.DIRECTION: 0,
-		AttackVariable.LIFE: 2.0
+		AttackVariable.SPEED: base_speed,
+		AttackVariable.DAMAGE: base_damage,
+		AttackVariable.DIRECTION: base_direction,
+		AttackVariable.LIFE: base_lifetime
 	}
 )
 
@@ -22,12 +26,20 @@ func _ready():
 	add_child(variables)
 	add_child(events)
 	self.rotation = self.variables.get_variable(AttackVariable.DIRECTION)
+	self.initialize()
 
-	if not self._attack:
-		self._attack = AttackHandler.new(self._damage_dealer, self)
+
+func initialize(damage_dealer = null, attack = null):
+	if self._damage_dealer == null:
+		self._damage_dealer = self.owner if damage_dealer == null else damage_dealer
+	if self._attack == null:
+		self._attack = AttackHandler.new(self._damage_dealer, self) if attack == null else attack
+	return self
+
 
 func set_damage_dealer(dealer: LivingEntity):
 	self._damage_dealer = dealer
+
 
 func set_attack(attack):
 	self._attack = attack

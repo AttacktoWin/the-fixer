@@ -184,6 +184,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/NPCInstance.gd"
 }, {
+"base": "AttackHandler",
+"class": "PierceAttackHandler",
+"language": "GDScript",
+"path": "res://Scripts/Data/DamageBox/PierceAttackHandler.gd"
+}, {
 "base": "Base_AnimatedFSM",
 "class": "Player",
 "language": "GDScript",
@@ -265,6 +270,7 @@ _global_script_class_icons={
 "MathUtils": "",
 "NPC": "",
 "NPCInstance": "",
+"PierceAttackHandler": "",
 "Player": "",
 "Runnable": "",
 "RunnableList": "",
@@ -391,7 +397,7 @@ weapon_reload={
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Allies"
 2d_physics/layer_4="(Reserved)"
-2d_physics/layer_5="Hitboxes (deal damage)"
+2d_physics/layer_5="(Reserved)"
 2d_physics/layer_6="Hurtboxes (take damage)"
 
 [physics]

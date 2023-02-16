@@ -28,7 +28,8 @@ class CurveBullet:
 
 
 func _fire(_direction: float, _target: Node2D = null):
-	var bullet: BulletBase = BulletScene.instance()
+	var bullet: BulletBase = BulletScene.instance().initialize()
+	Scene.runtime.add_child(bullet)
 	bullet.set_damage_dealer(self._parent)
 	bullet.position = Vector2(self.global_position.x, self.global_position.y)
 	bullet.set_direction(_direction)
@@ -38,7 +39,5 @@ func _fire(_direction: float, _target: Node2D = null):
 	# bullet.variables.add_runnable(
 	# 	BulletBase.VARIABLE.DIRECTION, CurveBullet.new().with_parent(bullet), 0
 	# )
-
-	Scene.runtime.add_child(bullet)
 	# add some screen shake!
 	CameraSingleton.shake(3)

@@ -1,11 +1,10 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://Assets/Sprites/Camera/camera_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Enemies/SpyderFSM.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Wrappers/AnimationTree.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/Entities/Generic_HurtBox.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/Entities/Generic_HitBox.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Entities/Attacks/BaseAttack.gd" type="Script" id=5]
 
 [sub_resource type="CircleShape2D" id=87]
 radius = 48.12
@@ -14,7 +13,7 @@ radius = 48.12
 radius = 36.19
 
 [sub_resource type="RectangleShape2D" id=88]
-extents = Vector2( 11, 12 )
+extents = Vector2( 16.5, 23 )
 
 [sub_resource type="Animation" id=43]
 resource_name = "ALERTED"
@@ -438,7 +437,7 @@ states/SLASH/node = SubResource( 80 )
 states/SLASH/position = Vector2( -182, 393.735 )
 transitions = [ "CHARGE_Transition", "CHARGE", SubResource( 72 ), "CHASE", "CHARGE_Transition", SubResource( 75 ), "ALERTED", "CHASE", SubResource( 76 ), "ALERTED", "CHARGE_Transition", SubResource( 77 ), "IDLE", "ALERTED", SubResource( 78 ), "CHARGE", "FLASH", SubResource( 79 ), "IDLE", "PATROL", SubResource( 81 ), "PATROL", "ALERTED", SubResource( 82 ), "CHASE", "SLASH", SubResource( 83 ), "SLASH", "IDLE", SubResource( 85 ), "FLASH", "CHASE", SubResource( 90 ), "SLASH", "CHASE", SubResource( 91 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -300.376, 56.859 )
+graph_offset = Vector2( -377.376, 288.859 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=42]
 
@@ -487,7 +486,7 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="Attack" type="CollisionShape2D" parent="SensingColliders/AttackValidator"]
-position = Vector2( 2, 9 )
+position = Vector2( -3.5, 3 )
 shape = SubResource( 88 )
 disabled = true
 
@@ -529,7 +528,6 @@ script = ExtResource( 3 )
 position = Vector2( -6.8, -34 )
 collision_layer = 32
 collision_mask = 0
-script = ExtResource( 8 )
 
 [node name="HitCollider" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( -3.2, -3 )
@@ -538,8 +536,9 @@ shape = SubResource( 63 )
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2( -6.8, -34 )
 collision_layer = 0
-collision_mask = 16
-script = ExtResource( 7 )
+collision_mask = 32
+script = ExtResource( 5 )
+base_speed = 0.0
 
 [node name="HurtCollider" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( -24, 9.75 )

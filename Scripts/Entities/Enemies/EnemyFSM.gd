@@ -9,6 +9,16 @@ var movement_speed = 90
 var _attack_dir = Vector2.ZERO
 
 
+func _on_take_damage(_amount: float, _meta: HitMetadata):
+	print(_amount)
+	var bar = self.get_node("ProgressBar")
+	bar.value = (self._getv(LivingEntity.VARIABLE.HEALTH) / self.base_health) * 100
+
+
+func _on_death():
+	self.queue_free()  # YALMAZ ANIMATION HERE (DEATH ANIM)
+
+
 func aim_attack():
 	if target != null:
 		_attack_dir = (target.global_position - self.global_position).normalized()

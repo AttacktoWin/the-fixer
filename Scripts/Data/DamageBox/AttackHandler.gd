@@ -32,11 +32,11 @@ func get_hitbox():
 
 
 func try_hit_entity(body: Node):
-	if not (body is LivingEntity):
+	if not (body is LivingEntity) or body == null:
 		return
 	# TEMP
-	# if self._damage_dealer == body:
-	# 	return
+	if self._damage_dealer == body:
+		return
 	if not self._try_filter_entity(body):
 		return
 	self._on_hit_entity_success(body)

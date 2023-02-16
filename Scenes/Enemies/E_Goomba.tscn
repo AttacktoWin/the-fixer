@@ -383,7 +383,7 @@ states/IDLE/node = SubResource( 49 )
 states/IDLE/position = Vector2( 103, 65 )
 transitions = [ "IDLE", "ALERTED", SubResource( 50 ), "ALERTED", "CHASE", SubResource( 51 ), "CHASE", "GET_READY", SubResource( 52 ), "GET_READY", "CHARGE", SubResource( 53 ), "CHARGE", "ATTACK", SubResource( 54 ), "HURT", "CHASE", SubResource( 70 ), "ATTACK", "IDLE", SubResource( 72 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -133, 24.14 )
+graph_offset = Vector2( -258, 22.14 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=57]
 
@@ -471,13 +471,12 @@ script = ExtResource( 2 )
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2( -4, -42 )
 collision_layer = 0
-collision_mask = 16
+collision_mask = 32
 script = ExtResource( 10 )
 
 [node name="HitCollider" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( -11, 16 )
 rotation = -1.04022
-scale = Vector2( 1, 1 )
 shape = SubResource( 62 )
 disabled = true
 

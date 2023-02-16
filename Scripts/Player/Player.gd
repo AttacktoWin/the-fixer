@@ -90,7 +90,8 @@ func _process(_delta):
 		# 	PausingSingleton.unpause(self)
 		# else:
 		# 	PausingSingleton.pause(self)
-		Scene.switch(Scene.Demo1.instance())
+		# Scene.switch(Scene.Demo1.instance())
+		pass
 	# self.try_take_damage(1)
 	self._handle_gun_aim()
 

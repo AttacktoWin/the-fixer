@@ -10,6 +10,7 @@ extents = Vector2( 11, 5 )
 collision_layer = 0
 collision_mask = 32
 script = ExtResource( 1 )
+base_damage = 10.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )

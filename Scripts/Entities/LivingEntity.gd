@@ -8,7 +8,7 @@ export var base_speed: float = 340
 export var base_health: float = 100
 export var base_accel: float = 80
 export var base_drag: float = 0.5
-var variables = VariableList.new(
+onready var variables = VariableList.new(
 	VARIABLE,
 	{
 		VARIABLE.MAX_SPEED: base_speed,
