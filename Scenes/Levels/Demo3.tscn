@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/LevelTransition.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Levels/Demo4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Enemies/E_Goomba.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Enemies/E_Spyder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=8]
 [ext_resource path="res://Resources/TileSets/WallTiles.tres" type="TileSet" id=13]
 
@@ -191,6 +193,19 @@ cell_custom_transform = Transform2D( 70, 0, 0, 64, 0, 0 )
 cell_y_sort = true
 format = 1
 tile_data = PoolIntArray( -720878, 2, 0, -720877, 4, 0, -720876, 2, 0, -720875, 2, 0, -720874, 2, 0, -720873, 2, 0, -720872, 2, 0, -655342, 2, 0, -655336, 2, 0, -589806, 2, 0, -589800, 2, 0, -524279, 2, 0, -524278, 2, 0, -524277, 2, 0, -524276, 4, 0, -524275, 2, 0, -524274, 3, 0, -524273, 2, 0, -524272, 3, 0, -524271, 2, 0, -524270, 2, 0, -524264, 2, 0, -524263, 4, 0, -524262, 2, 0, -524261, 2, 0, -458743, 2, 0, -458725, 2, 0, -393207, 2, 0, -393189, 3, 0, -327671, 2, 0, -327653, 3, 0, -262135, 4, 0, -262117, 2, 0, -196599, 2, 0, -196593, 2, 0, -196588, 2, 0, -196587, 4, 0, -196586, 3, 0, -196585, 2, 0, -196584, 2, 0, -196583, 2, 0, -196582, 2, 0, -196581, 2, 0, -131063, 2, 0, -131045, 4, 0, -65532, 2, 0, -65531, 2, 0, -65530, 2, 0, -65529, 2, 0, -65528, 2, 0, -65527, 2, 0, -65526, 4, 0, -65525, 2, 0, -65524, 2, 0, -65523, 2, 0, -65509, 2, 0, 4, 4, 0, 13, 3, 0, 27, 2, 0, 65540, 2, 0, 65549, 2, 0, 65563, 4, 0, 131076, 4, 0, 131085, 2, 0, 131099, 2, 0, 196612, 4, 0, 196621, 2, 0, 196622, 2, 0, 196623, 3, 0, 196624, 2, 0, 196630, 2, 0, 196631, 2, 0, 196632, 3, 0, 196633, 2, 0, 196634, 2, 0, 196635, 2, 0, 262148, 2, 0, 262171, 2, 0, 327684, 2, 0, 327707, 2, 0, 393220, 2, 0, 393221, 2, 0, 393222, 2, 0, 393223, 2, 0, 393224, 2, 0, 393225, 3, 0, 393243, 2, 0, 458761, 2, 0, 458779, 2, 0, 524297, 3, 0, 524315, 4, 0, 589833, 2, 0, 589840, 3, 0, 589851, 2, 0, 655369, 2, 0, 655376, 2, 0, 655387, 2, 0, 720905, 2, 0, 720912, 2, 0, 720923, 2, 0, 786441, 2, 0, 786442, 2, 0, 786443, 2, 0, 786444, 2, 0, 786445, 2, 0, 786446, 2, 0, 786447, 2, 0, 786448, 2, 0, 786449, 4, 0, 786450, 4, 0, 786451, 2, 0, 786452, 4, 0, 786453, 2, 0, 786454, 2, 0, 786455, 3, 0, 786456, 2, 0, 786457, 2, 0, 786458, 2, 0, 786459, 2, 0 )
+
+[node name="E_Goomba3" parent="SortableEntities" instance=ExtResource( 5 )]
+position = Vector2( 998, 371 )
+animation_tree_path = NodePath("../E_Goomba/Visual/AnimationTree")
+
+[node name="E_Camera" parent="SortableEntities" instance=ExtResource( 6 )]
+position = Vector2( 1311, 614 )
+
+[node name="E_Goomba" parent="SortableEntities" instance=ExtResource( 5 )]
+position = Vector2( 818, 736 )
+
+[node name="E_Goomba2" parent="SortableEntities" instance=ExtResource( 5 )]
+position = Vector2( 630, 824 )
 
 [node name="Player" parent="SortableEntities" instance=ExtResource( 2 )]
 position = Vector2( 259, 385 )

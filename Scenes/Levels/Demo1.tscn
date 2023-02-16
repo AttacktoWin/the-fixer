@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/LevelTransition.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Levels/Demo2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Enemies/E_Goomba.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Enemies/E_Spyder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=8]
 [ext_resource path="res://Resources/TileSets/WallTiles.tres" type="TileSet" id=13]
 
@@ -164,6 +166,7 @@
 10/z_index = 0
 
 [node name="Level" type="Node2D"]
+position = Vector2( 145, 245 )
 
 [node name="Floor" type="TileMap" parent="."]
 scale = Vector2( 0.5, 0.5 )
@@ -191,6 +194,12 @@ cell_custom_transform = Transform2D( 70, 0, 0, 64, 0, 0 )
 cell_y_sort = true
 format = 1
 tile_data = PoolIntArray( -1114090, 2, 0, -1114089, 2, 0, -1114088, 3, 0, -1114087, 2, 0, -1114086, 3, 0, -1114085, 2, 0, -1114084, 2, 0, -1114083, 2, 0, -1048554, 2, 0, -1048547, 2, 0, -983018, 2, 0, -983011, 4, 0, -917482, 4, 0, -917475, 2, 0, -851953, 2, 0, -851952, 2, 0, -851951, 2, 0, -851950, 3, 0, -851949, 3, 0, -851948, 2, 0, -851947, 2, 0, -851946, 2, 0, -851939, 2, 0, -786417, 2, 0, -786403, 2, 0, -720890, 2, 0, -720889, 2, 0, -720888, 2, 0, -720887, 2, 0, -720886, 4, 0, -720885, 2, 0, -720884, 3, 0, -720883, 2, 0, -720882, 4, 0, -720881, 4, 0, -720867, 2, 0, -655354, 2, 0, -655331, 4, 0, -589818, 3, 0, -589795, 4, 0, -524282, 3, 0, -524259, 3, 0, -458746, 2, 0, -458725, 2, 0, -458724, 2, 0, -458723, 2, 0, -393210, 2, 0, -393189, 2, 0, -327674, 2, 0, -327653, 2, 0, -262138, 2, 0, -262131, 2, 0, -262130, 2, 0, -262129, 2, 0, -262117, 4, 0, -196604, 2, 0, -196603, 2, 0, -196602, 3, 0, -196595, 3, 0, -196593, 2, 0, -196581, 2, 0, -131068, 2, 0, -131059, 3, 0, -131057, 2, 0, -131056, 2, 0, -131055, 2, 0, -131054, 2, 0, -131053, 2, 0, -131052, 2, 0, -131051, 2, 0, -131050, 2, 0, -131049, 4, 0, -131048, 3, 0, -131047, 2, 0, -131046, 2, 0, -131045, 2, 0, -65532, 2, 0, -65523, 3, 0, 4, 4, 0, 13, 2, 0, 65540, 2, 0, 65549, 2, 0, 131076, 4, 0, 131085, 2, 0, 196612, 2, 0, 196621, 4, 0, 262148, 2, 0, 262157, 2, 0, 327684, 2, 0, 327693, 2, 0, 393220, 2, 0, 393221, 2, 0, 393222, 2, 0, 393223, 2, 0, 393224, 2, 0, 393225, 4, 0, 393226, 2, 0, 393227, 2, 0, 393228, 2, 0, 393229, 4, 0 )
+
+[node name="E_Goomba" parent="SortableEntities" instance=ExtResource( 5 )]
+position = Vector2( 883, 130 )
+
+[node name="E_Spyder" parent="SortableEntities" instance=ExtResource( 6 )]
+position = Vector2( 638, 227 )
 
 [node name="Player" parent="SortableEntities" instance=ExtResource( 2 )]
 position = Vector2( 259, 385 )
