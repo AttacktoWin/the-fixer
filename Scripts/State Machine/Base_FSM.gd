@@ -38,16 +38,20 @@ func _ready() -> void:
 	for child in get_children():
 		if child.has_method("tick"):
 			p_initializeStates(child)
-	_current_state.on_enter()
+	if _current_state != null:
+		_current_state.on_enter()
 
 
 func _process(delta: float) -> void:
-	_current_state.tick(delta)
+	if _current_state != null:
+		_current_state.tick(delta)
 
 
 func _physics_process(delta: float) -> void:
-	_current_state.physics_tick(delta)
+	if _current_state != null:
+		_current_state.physics_tick(delta)
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	_current_state.handle_input(event)
+	if _current_state != null:
+		_current_state.handle_input(event)
