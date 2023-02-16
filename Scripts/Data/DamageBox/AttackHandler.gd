@@ -12,7 +12,7 @@ var _hitbox_proxy = null
 func _init(damage_dealer, damage_owner, hitbox = null, filter = null):
 	self._damage_dealer = damage_dealer
 	self._damage_owner = damage_owner
-	self._hit_handler = BaseHitHandler.new(damage_owner)
+	self._hit_handler = BaseHitHandler.new(damage_owner, _damage_dealer)
 	self._hitbox = hitbox if hitbox else damage_owner
 	self._filter = filter if filter else HitFilter.new()  # always returns true...
 	self._hitbox_proxy = HitboxProxy.new(self, self._hitbox)

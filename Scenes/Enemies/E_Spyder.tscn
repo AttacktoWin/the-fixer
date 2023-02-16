@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Assets/Sprites/Camera/camera_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Entities/Enemies/SpyderFSM.gd" type="Script" id=2]
@@ -74,6 +74,18 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("AnimationTree:parameters/conditions/hit_stun_over")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
@@ -215,6 +227,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 27, 28, 29 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "increment_hurt_loop_count"
+} ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -370,6 +396,9 @@ animation = "CHASE"
 [sub_resource type="AnimationNodeAnimation" id=73]
 animation = "FLASH"
 
+[sub_resource type="AnimationNodeAnimation" id=92]
+animation = "HURT"
+
 [sub_resource type="AnimationNodeAnimation" id=35]
 animation = "IDLE"
 
@@ -418,6 +447,9 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=93]
+advance_condition = "hit_stun_over"
+
 [sub_resource type="AnimationNodeStateMachine" id=41]
 states/ALERTED/node = SubResource( 67 )
 states/ALERTED/position = Vector2( 18, 277.735 )
@@ -429,15 +461,17 @@ states/CHASE/node = SubResource( 69 )
 states/CHASE/position = Vector2( 18, 393.735 )
 states/FLASH/node = SubResource( 73 )
 states/FLASH/position = Vector2( 602.624, 172 )
+states/HURT/node = SubResource( 92 )
+states/HURT/position = Vector2( 18, 119.859 )
 states/IDLE/node = SubResource( 35 )
 states/IDLE/position = Vector2( -182, 277.735 )
 states/PATROL/node = SubResource( 74 )
 states/PATROL/position = Vector2( -182, 172 )
 states/SLASH/node = SubResource( 80 )
 states/SLASH/position = Vector2( -182, 393.735 )
-transitions = [ "CHARGE_Transition", "CHARGE", SubResource( 72 ), "CHASE", "CHARGE_Transition", SubResource( 75 ), "ALERTED", "CHASE", SubResource( 76 ), "ALERTED", "CHARGE_Transition", SubResource( 77 ), "IDLE", "ALERTED", SubResource( 78 ), "CHARGE", "FLASH", SubResource( 79 ), "IDLE", "PATROL", SubResource( 81 ), "PATROL", "ALERTED", SubResource( 82 ), "CHASE", "SLASH", SubResource( 83 ), "SLASH", "IDLE", SubResource( 85 ), "FLASH", "CHASE", SubResource( 90 ), "SLASH", "CHASE", SubResource( 91 ) ]
+transitions = [ "CHARGE_Transition", "CHARGE", SubResource( 72 ), "CHASE", "CHARGE_Transition", SubResource( 75 ), "ALERTED", "CHASE", SubResource( 76 ), "ALERTED", "CHARGE_Transition", SubResource( 77 ), "IDLE", "ALERTED", SubResource( 78 ), "CHARGE", "FLASH", SubResource( 79 ), "IDLE", "PATROL", SubResource( 81 ), "PATROL", "ALERTED", SubResource( 82 ), "CHASE", "SLASH", SubResource( 83 ), "SLASH", "IDLE", SubResource( 85 ), "FLASH", "CHASE", SubResource( 90 ), "SLASH", "CHASE", SubResource( 91 ), "HURT", "ALERTED", SubResource( 93 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -377.376, 288.859 )
+graph_offset = Vector2( -347.376, 69.859 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=42]
 
@@ -519,6 +553,7 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 42 )
 parameters/conditions/flash_ready = false
+parameters/conditions/hit_stun_over = false
 parameters/conditions/in_flash_range = false
 parameters/conditions/in_slash_range = false
 parameters/conditions/player_found = false

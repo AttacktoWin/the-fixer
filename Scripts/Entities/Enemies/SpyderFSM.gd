@@ -78,3 +78,5 @@ func _physics_process(_delta):
 		"CHASE":
 			flipSprite()
 			_chase_player()
+		"HURT":
+			_knock_back(_delta)

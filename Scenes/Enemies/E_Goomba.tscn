@@ -152,6 +152,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 16, 17, 18, 19, 20, 21, 22, 23 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationTree:parameters/conditions/hit_stun_over")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=14]
 resource_name = "Get_Ready"
@@ -224,6 +236,20 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 8, 13 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "increment_hurt_loop_count"
+} ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -361,6 +387,7 @@ auto_advance = true
 advance_condition = "attack_ready"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=70]
+advance_condition = "hit_stun_over"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=72]
 switch_mode = 2
@@ -383,7 +410,7 @@ states/IDLE/node = SubResource( 49 )
 states/IDLE/position = Vector2( 103, 65 )
 transitions = [ "IDLE", "ALERTED", SubResource( 50 ), "ALERTED", "CHASE", SubResource( 51 ), "CHASE", "GET_READY", SubResource( 52 ), "GET_READY", "CHARGE", SubResource( 53 ), "CHARGE", "ATTACK", SubResource( 54 ), "HURT", "CHASE", SubResource( 70 ), "ATTACK", "IDLE", SubResource( 72 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -258, 22.14 )
+graph_offset = Vector2( -299, -83.86 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=57]
 
@@ -395,7 +422,7 @@ height = 19.2829
 radius = 12.3667
 height = 10.676
 
-[node name="Goomba" type="KinematicBody2D" groups=["Enemy"]]
+[node name="E_Goomba" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource( 3 )
 base_speed = 500.0
@@ -467,6 +494,7 @@ anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 57 )
 parameters/conditions/attack_ready = false
+parameters/conditions/hit_stun_over = false
 parameters/conditions/in_attack_range = false
 parameters/conditions/player_found = false
 script = ExtResource( 2 )

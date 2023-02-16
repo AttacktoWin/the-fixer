@@ -31,9 +31,17 @@ func _ready():
 
 func _p_init(damage_dealer = null, attack = null):
 	if self._damage_dealer == null:
-		self._damage_dealer = self.owner if damage_dealer == null else damage_dealer
+		self._damage_dealer = (
+			self.owner
+			if damage_dealer == null
+			else damage_dealer
+		)
 	if self._attack == null:
-		self._attack = AttackHandler.new(self._damage_dealer, self) if attack == null else attack
+		self._attack = (
+			AttackHandler.new(self._damage_dealer, self)
+			if attack == null
+			else attack
+		)
 	return self
 
 
