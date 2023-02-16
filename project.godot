@@ -280,6 +280,7 @@ config/icon="res://icon.png"
 
 CameraSingleton="*res://Scripts/Singletons/CameraSingleton.gd"
 PausingSingleton="*res://Scripts/Singletons/PausingSingleton.gd"
+Scene="*res://Scripts/Singletons/Scene.gd"
 
 [editor_plugins]
 
