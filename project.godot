@@ -179,20 +179,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/NPCInstance.gd"
 }, {
-"base": "LivingEntity",
+"base": "Base_AnimatedFSM",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scripts/Player/Player.gd"
-}, {
-"base": "Base_State",
-"class": "PlayerState_Dash",
-"language": "GDScript",
-"path": "res://Scripts/Player/State_Dash.gd"
-}, {
-"base": "Base_State",
-"class": "PlayerState_Free",
-"language": "GDScript",
-"path": "res://Scripts/Player/State_Free.gd"
 }, {
 "base": "Object",
 "class": "Runnable",
@@ -270,8 +260,6 @@ _global_script_class_icons={
 "NPC": "",
 "NPCInstance": "",
 "Player": "",
-"PlayerState_Dash": "",
-"PlayerState_Free": "",
 "Runnable": "",
 "RunnableList": "",
 "SingleHitFilter": "",
@@ -292,6 +280,7 @@ config/icon="res://icon.png"
 
 CameraSingleton="*res://Scripts/Singletons/CameraSingleton.gd"
 PausingSingleton="*res://Scripts/Singletons/PausingSingleton.gd"
+Scene="*res://Scripts/Singletons/Scene.gd"
 
 [editor_plugins]
 

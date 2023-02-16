@@ -18,12 +18,13 @@ const INTERPOLATE_OUT_EXPONENTIAL = 14
 const INTERPOLATE_SMOOTH_EXPONENTIAL = 15
 
 
-static func iso_movement_factor() -> Vector2:
-	return Vector2(1, 0.6)
+static func vector_to_iso_vector(vec: Vector2) -> Vector2:
+	var angle = vec.angle()
+	return vec * (0.5 + abs(cos(angle)) / 2)
 
 
-static func as_iso_movement(move: Vector2) -> Vector2:
-	return move * iso_movement_factor()
+static func angle_to_iso_vector(val: float) -> Vector2:
+	return vector_to_iso_vector(Vector2(cos(val), sin(val)))
 
 
 static func interpolate_vector(vec, _min: float, _max: float, interp_type: int):

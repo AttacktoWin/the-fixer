@@ -38,6 +38,6 @@ func _fire(_direction: float, _target: Node2D = null):
 	# 	BulletBase.VARIABLE.DIRECTION, CurveBullet.new().with_parent(bullet), 0
 	# )
 
-	get_tree().get_root().add_child(bullet)
+	Scene.runtime.add_child(bullet)
 	# add some screen shake!
 	CameraSingleton.shake(3)

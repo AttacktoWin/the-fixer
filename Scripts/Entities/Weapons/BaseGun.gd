@@ -5,6 +5,7 @@ class_name BaseGun extends Weapon
 # override
 func _on_fire_called():
 	var angle = (CameraSingleton.get_absolute_mouse() - self._get_aim_position()).angle()
+	# warning-ignore:return_value_discarded
 	self._try_fire(angle, null)
 
 
