@@ -4,8 +4,8 @@
 [ext_resource path="res://Scripts/Wrappers/AnimationTree.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Entities/Enemies/GoombaFSM.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Entities/Attacks/BaseAttack.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Entities/Generic_HurtBox.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/Entities/Generic_HitBox.gd" type="Script" id=10]
 
 [sub_resource type="CircleShape2D" id=69]
 
@@ -398,7 +398,10 @@ height = 10.676
 [node name="Goomba" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource( 3 )
+base_speed = 500.0
+base_health = 50.0
 animation_tree_path = NodePath("Visual/AnimationTree")
+charge_loop_length = 0
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( -2.76989, -46 )
@@ -472,13 +475,14 @@ script = ExtResource( 2 )
 position = Vector2( -4, -42 )
 collision_layer = 0
 collision_mask = 32
-script = ExtResource( 10 )
+script = ExtResource( 5 )
+base_speed = 0.0
+base_damage = 25.0
 
 [node name="HitCollider" type="CollisionShape2D" parent="HitBox"]
 position = Vector2( -11, 16 )
 rotation = -1.04022
 shape = SubResource( 62 )
-disabled = true
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2( -4, -10 )

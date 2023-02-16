@@ -2,7 +2,7 @@ class_name BulletBase extends BaseAttack
 
 
 func initialize(damage_dealer = null, attack = null):
-	self._attack = PierceAttackHandler.new(self._damage_dealer, self)
+	self._attack = PierceAttackHandler.new(damage_dealer, self)
 	return .initialize(damage_dealer, attack)
 
 

@@ -24,7 +24,7 @@ margin_right = -64.9999
 margin_bottom = 285.0
 custom_styles/fg = SubResource( 3 )
 custom_styles/bg = SubResource( 4 )
-value = 62.21
+value = 100.0
 percent_visible = false
 
 [node name="TextureRect" type="TextureRect" parent="HealthBar"]

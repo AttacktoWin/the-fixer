@@ -44,14 +44,8 @@ func _unhandled_input(event: InputEvent):
 
 func _get_wanted_direction():
 	var dir = Vector2(
-		(
-			Input.get_action_strength("move_right")
-			- Input.get_action_strength("move_left")
-		),
-		(
-			Input.get_action_strength("move_down")
-			- Input.get_action_strength("move_up")
-		)
+		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
 	)
 	if dir.length() > 1:
 		dir = dir.normalized()
@@ -82,10 +76,7 @@ func _dash_increment():
 func _handle_gun_aim():
 	if self._is_dead:
 		return
-	var vec = (
-		CameraSingleton.get_absolute_mouse()
-		- arms_container.global_position
-	)
+	var vec = CameraSingleton.get_absolute_mouse() - arms_container.global_position
 	self.visual.scale.x = sign(vec.x) if vec.x != 0.0 else 1.0
 	vec.x = abs(vec.x)
 	var angle = vec.angle()
@@ -128,10 +119,7 @@ func _physics_process(delta):
 	var center = CameraSingleton.get_mouse_from_camera_center() / 360
 	var off = (
 		MathUtils.interpolate_vector(
-			Vector2(abs(center.x), abs(center.y)),
-			0,
-			8,
-			MathUtils.INTERPOLATE_OUT_EXPONENTIAL
+			Vector2(abs(center.x), abs(center.y)), 0, 8, MathUtils.INTERPOLATE_OUT_EXPONENTIAL
 		)
 		* Vector2(sign(center.x), sign(center.y))
 	)
@@ -141,11 +129,7 @@ func _physics_process(delta):
 
 func _on_take_damage(_amount: float, _meta: HitMetadata):
 	var bar = Scene.ui.get_node("HUD/HealthBar")
-
-	bar.value = (
-		(self._getv(LivingEntity.VARIABLE.HEALTH) / self.base_health)
-		* 100
-	)
+	bar.value = ((self._getv(LivingEntity.VARIABLE.HEALTH) / self.base_health) * 100)
 
 
 func _on_death():
@@ -184,10 +168,7 @@ func _ground_control(delta_fixed):
 		var speed_diff = wanted_vel.length() - current_vel.length()
 		var accel = self._getv(LivingEntity.VARIABLE.ACCEL) * boost
 		var max_spd = self._getv(LivingEntity.VARIABLE.MAX_SPEED)
-		var new_vel = (
-			wanted_dir
-			* clamp(clamp(speed_diff, -accel, accel), -max_spd, max_spd)
-		)
+		var new_vel = wanted_dir * clamp(clamp(speed_diff, -accel, accel), -max_spd, max_spd)
 		self._setv(LivingEntity.VARIABLE.VELOCITY, new_vel)
 	elif abs(diff) <= PI / 1.5:
 		var angle = current_vel.angle() - diff / TURN_FACTOR

@@ -26,10 +26,10 @@ func _ready():
 	add_child(variables)
 	add_child(events)
 	self.rotation = self.variables.get_variable(AttackVariable.DIRECTION)
-	self.initialize()
+	self._p_init()
 
 
-func initialize(damage_dealer = null, attack = null):
+func _p_init(damage_dealer = null, attack = null):
 	if self._damage_dealer == null:
 		self._damage_dealer = self.owner if damage_dealer == null else damage_dealer
 	if self._attack == null:
@@ -37,12 +37,15 @@ func initialize(damage_dealer = null, attack = null):
 	return self
 
 
-func set_damage_dealer(dealer: LivingEntity):
-	self._damage_dealer = dealer
+func initialize(damage_dealer = null, attack = null):
+	return self._p_init(damage_dealer, attack)
 
 
-func set_attack(attack):
-	self._attack = attack
+# func set_damage_dealer(dealer: LivingEntity):
+# 	self._damage_dealer = dealer
+
+# func set_attack(attack):
+# 	self._attack = attack
 
 
 func set_direction(dir):

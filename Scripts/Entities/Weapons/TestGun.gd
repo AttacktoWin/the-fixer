@@ -28,10 +28,9 @@ class CurveBullet:
 
 
 func _fire(_direction: float, _target: Node2D = null):
-	var bullet: BulletBase = BulletScene.instance().initialize()
+	var bullet: BulletBase = BulletScene.instance().initialize(self._parent)
 	Scene.runtime.add_child(bullet)
-	bullet.set_damage_dealer(self._parent)
-	bullet.position = Vector2(self.global_position.x, self.global_position.y)
+	bullet.global_position = Vector2(self.global_position.x, self.global_position.y)
 	bullet.set_direction(_direction)
 	# bullet.variables.add_runnable(
 	# 	BulletBase.VARIABLE.DIRECTION, SinBullet.new().with_parent(bullet), 0

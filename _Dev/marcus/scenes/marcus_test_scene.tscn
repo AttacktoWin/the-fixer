@@ -250,26 +250,17 @@ tile_data = PoolIntArray( -262145, 2, 0, -327680, 2, 0, -327679, 2, 0, -327678, 
 [node name="Player" parent="Level/SortableEntities" instance=ExtResource( 1 )]
 position = Vector2( 259, 385 )
 
-[node name="E_Camera" parent="Level/SortableEntities" instance=ExtResource( 4 )]
-position = Vector2( 273, 206 )
-
-[node name="Goomba" parent="Level/SortableEntities" instance=ExtResource( 3 )]
-position = Vector2( 478, 271 )
-base_speed = null
-base_health = null
-base_accel = null
-base_drag = null
-targeting = null
-hop_distance = null
-hop_height = null
-hop_time = null
-charge_loop_length = null
-lunge_distance = null
-lunge_height = null
-lunge_time = null
-
 [node name="Runtime" type="YSort" parent="Level/SortableEntities"]
 unique_name_in_owner = true
+
+[node name="Goomba3" parent="Level/SortableEntities" instance=ExtResource( 3 )]
+position = Vector2( 650, 348 )
+
+[node name="E_Camera2" parent="Level/SortableEntities" instance=ExtResource( 4 )]
+position = Vector2( 354, 234 )
+
+[node name="Goomba4" parent="Level/SortableEntities" instance=ExtResource( 3 )]
+position = Vector2( 156, 425 )
 
 [node name="Managers" type="Node2D" parent="."]
 
@@ -278,4 +269,8 @@ position = Vector2( -6.10352e-05, 0 )
 current = true
 script = ExtResource( 20 )
 
-[node name="UI" parent="MainCamera" instance=ExtResource( 19 )]
+[node name="UI" type="Control" parent="MainCamera"]
+
+[node name="HUD" parent="MainCamera/UI" instance=ExtResource( 19 )]
+
+[editable path="MainCamera/UI/HUD"]
