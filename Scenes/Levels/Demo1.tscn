@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Entities/MainCamera.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Interface/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=8]
 [ext_resource path="res://Resources/TileSets/WallTiles.tres" type="TileSet" id=13]
 
@@ -166,12 +167,12 @@
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2( -6.10352e-05, 0 )
-rotation = 3.14159
-scale = Vector2( 57.9652, 3356.8 )
 current = true
 script = ExtResource( 3 )
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="MainCamera"]
+
+[node name="HUD" parent="MainCamera/UI" instance=ExtResource( 4 )]
 
 [node name="Managers" type="Node2D" parent="."]
 
