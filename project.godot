@@ -114,22 +114,22 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Other/DialogicUtil.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
 "class": "Dialogue",
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/Dialogue.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
 "class": "DialogueFile",
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/DialogueFile.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
 "class": "DialogueNPCIds",
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/DialogueNpcIds.gd"
 }, {
-"base": "Object",
+"base": "Reference",
 "class": "DialogueQueue",
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/DialogueQueue.gd"
@@ -174,12 +174,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Utils/MathUtils.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "NPC",
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/NPC.gd"
 }, {
-"base": "Node2D",
+"base": "Reference",
 "class": "NPCInstance",
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/NPCInstance.gd"
@@ -214,12 +214,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Entities/Weapons/TestGun.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
 "class": "UnlockTable",
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/UnlockTable.gd"
 }, {
-"base": "Resource",
+"base": "Reference",
 "class": "UnlockTableEntry",
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd"
@@ -293,6 +293,7 @@ config/icon="res://icon.png"
 CameraSingleton="*res://Scripts/Singletons/CameraSingleton.gd"
 PausingSingleton="*res://Scripts/Singletons/PausingSingleton.gd"
 Scene="*res://Scripts/Singletons/Scene.gd"
+DialogueSystem="*res://Scenes/Dialouge/DialogueSystem.tscn"
 
 [editor_plugins]
 
