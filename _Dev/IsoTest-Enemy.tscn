@@ -54,3 +54,7 @@ position = Vector2( 314, 221 )
 position = Vector2( 459, 340 )
 
 [node name="Node2D2" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0

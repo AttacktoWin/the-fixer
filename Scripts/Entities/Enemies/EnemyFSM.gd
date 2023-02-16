@@ -15,11 +15,12 @@ func aim_attack():
 
 
 func flipSprite():
-	var angle = rad2deg(self.get_angle_to(target.global_position))
-	if angle < 90 and angle > -90:
-		self.scale.x = -1
-	else:
-		self.scale.x = 1
+	if target:
+		var angle = rad2deg(self.get_angle_to(target.global_position))
+		if angle < 90 and angle > -90:
+			self.scale.x = -1
+		else:
+			self.scale.x = 1
 
 
 ########################################################################
