@@ -48,7 +48,7 @@ func _setv(variable, v):
 
 func _try_move():
 	# unlikely to ever change, but here anyway
-	_setv(VARIABLE.VELOCITY, move_and_slide(_getv(VARIABLE.VELOCITY) * Vector2(1, 0.6)))
+	_setv(VARIABLE.VELOCITY, move_and_slide(_getv(VARIABLE.VELOCITY)))
 
 
 func _on_death():
@@ -61,6 +61,7 @@ func _check_death() -> bool:
 		self._on_death()  # emit signal
 		return true
 	return false
+
 
 # warning-ignore:unused_argument
 func can_be_hit():

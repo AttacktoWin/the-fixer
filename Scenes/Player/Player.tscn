@@ -1,9 +1,8 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Assets/Sprites/Fixer/fixer-spritesheet-WHOLE.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Player/State_Free.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Player/State_Dash.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Sprites/Fixer/fixer-arm.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Wrappers/AnimationTree.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=2]
@@ -34,27 +33,13 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.376471 ), Color( 1, 1, 1, 0.376471 ), Color( 1, 1, 1, 1 ) ]
 }
-tracks/2/type = "method"
-tracks/2/path = NodePath("../DASH")
-tracks/2/interp = 1
+tracks/2/type = "value"
+tracks/2/path = NodePath("ArmsContainer:modulate")
+tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.42 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "finish_dash"
-} ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("ArmsContainer:modulate")
-tracks/3/interp = 0
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.5, 0.52 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
@@ -283,6 +268,10 @@ auto_advance = true
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
 [sub_resource type="AnimationNodeStateMachine" id=11]
 states/Dash/node = SubResource( 14 )
 states/Dash/position = Vector2( 548, -45 )
@@ -296,9 +285,9 @@ states/Run/node = SubResource( 17 )
 states/Run/position = Vector2( 192, 74 )
 states/Walk/node = SubResource( 18 )
 states/Walk/position = Vector2( 372, 74 )
-transitions = [ "Dash", "Idle", SubResource( 19 ), "Walk", "Idle", SubResource( 21 ), "Walk", "Run", SubResource( 22 ), "Run", "Walk", SubResource( 23 ), "Idle", "Walk", SubResource( 24 ), "Idle", "Dash", SubResource( 25 ), "Idle", "Melee", SubResource( 26 ), "Melee", "Idle", SubResource( 20 ) ]
+transitions = [ "Dash", "Idle", SubResource( 19 ), "Walk", "Idle", SubResource( 21 ), "Walk", "Run", SubResource( 22 ), "Run", "Walk", SubResource( 23 ), "Idle", "Walk", SubResource( 24 ), "Idle", "Dash", SubResource( 25 ), "Idle", "Melee", SubResource( 26 ), "Melee", "Idle", SubResource( 20 ), "Walk", "Dash", SubResource( 28 ), "Run", "Dash", SubResource( 29 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -166, -100 )
+graph_offset = Vector2( -300, -126 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
@@ -309,7 +298,7 @@ height = 22.0
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 4
 script = ExtResource( 11 )
-initial_state_path = NodePath("FREE")
+animation_tree_path = NodePath("Visual/AnimationTree")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -55 )
@@ -350,14 +339,7 @@ tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 12 )
-
-[node name="DASH" type="Node2D" parent="."]
-position = Vector2( 0, -55 )
-script = ExtResource( 3 )
-
-[node name="FREE" type="Node2D" parent="."]
-position = Vector2( 0, -55 )
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2( 0, -55 )
