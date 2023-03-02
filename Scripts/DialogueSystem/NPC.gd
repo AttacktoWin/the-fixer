@@ -39,6 +39,7 @@ func save() -> Array:
 	return ids
 	
 func get_top_dialogue() -> Dialogue:
+	print("Called get_top_dialogue on ", self.id)
 	return queue.dequeue()
 	
 func unlock_dialogue(d_id: String) -> void:

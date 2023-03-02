@@ -13,6 +13,8 @@ var NPCs: Dictionary = {}
 var current_npc_id := ""
 var current_dialogue_id := ""
 
+var current_dialog_box: CanvasLayer
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -50,22 +52,36 @@ func _ready():
 	if (Engine.editor_hint):
 		print("Loaded Dialogue System in {time} usec.".format({"time": Time.get_ticks_usec() - init_time}))
 		
+func _process(delta):
+	if (is_instance_valid(self.current_dialog_box)):
+		var player = get_parent().get_node("World/Level/SortableEntities/Player")
+		if (is_instance_valid(player)):
+			current_dialog_box.offset = player.position - Vector2(80, 275)
 		
-func display_dialogue(npc_id: String, dialogue_id: String) -> void:
-	# TODO: listen to dialogic signals and emit signals for pausing player, etc.
+func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> void:
 	if (Dialogic.timeline_exists(npc_id + "-" + dialogue_id)):
-		PausingSingleton.pause()
-		var dialog = Dialogic.start(npc_id + "-" + dialogue_id)
+		var dialog: Node
+		dialog = Dialogic.start(npc_id + "-" + dialogue_id)
+		if (bubble):
+			self.current_dialog_box = dialog
+			dialog.follow_viewport_enable = true
 		self.current_npc_id = npc_id
 		self.current_dialogue_id = dialogue_id
 		dialog.connect("timeline_end", self, "_timeline_end")
+		dialog.connect("dialogic_signal", self, "_signal_listener")
 		add_child(dialog)
 	else:
 		push_error("Unknown dialogue {d_id} for npc {n_id}".format({"d_id": dialogue_id, "n_id": npc_id}))
 
 func _timeline_end(t_name: String):
 	dialogue_viewed(self.current_npc_id, self.current_dialogue_id)
-	PausingSingleton.unpause()
+
+func _signal_listener(s_name: String):
+	match s_name:
+		"pause":
+			PausingSingleton.pause()
+		"unpause":
+			PausingSingleton.unpause()
 
 func get_top_dialogue(npc_id: String) -> Dialogue:
 	if (!NPCs.has(npc_id)):

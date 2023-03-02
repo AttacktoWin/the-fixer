@@ -1,6 +1,10 @@
 {
 	"events": [
 		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
@@ -20,6 +24,10 @@
 		},
 		{
 			"emit_signal": "start_room",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "unpause",
 			"event_id": "dialogic_040"
 		}
 	],

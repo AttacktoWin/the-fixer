@@ -18,7 +18,8 @@ func interact() -> void:
 		return
 	var dialogue = DialogueSystem.get_top_dialogue(id)
 	if (is_instance_valid(dialogue)):
-		DialogueSystem.display_dialogue(id, dialogue.id)
+		print("Got dialogue back with id ", dialogue.id)
+		DialogueSystem.display_dialogue(id, dialogue.id, dialogue.bubble)
 	else:
 		print("Something wrong with dialogue")
 	interacted = true
