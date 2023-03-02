@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hub-walls.png-f45dc262ee35d56fc376ee2ca4644a51.stex"
+path="res://.import/hub-wall.png-18db080b345db8c9fd5085db06253492.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Tiles/Hub/hub-walls.png"
-dest_files=[ "res://.import/hub-walls.png-f45dc262ee35d56fc376ee2ca4644a51.stex" ]
+source_file="res://Assets/Tiles/Hub/hub-wall.png"
+dest_files=[ "res://.import/hub-wall.png-18db080b345db8c9fd5085db06253492.stex" ]
 
 [params]
 
