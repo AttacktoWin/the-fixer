@@ -16,6 +16,7 @@ id = "fixer"
 dialogue_file = ExtResource( 4 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchor_right = 1.0
