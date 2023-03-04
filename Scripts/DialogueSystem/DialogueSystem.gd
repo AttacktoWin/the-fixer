@@ -83,11 +83,13 @@ func _signal_listener(s_name: String):
 		"unpause":
 			PausingSingleton.unpause()
 		"hide_screen":
+			$CanvasLayer.show()
 			$CanvasLayer/Tween.interpolate_property($CanvasLayer/ColorRect, "modulate", $CanvasLayer/ColorRect.modulate, Color(1, 1, 1, 1), 0.2)
 			$CanvasLayer/Tween.start()
 		"reveal_screen":
 			$CanvasLayer/Tween.interpolate_property($CanvasLayer/ColorRect, "modulate", $CanvasLayer/ColorRect.modulate, Color(1, 1, 1, 0), 0.2)
-			$CanvasLayer/Tween.start()			
+			$CanvasLayer/Tween.interpolate_callback($CanvasLayer, 0.2, "show")
+			$CanvasLayer/Tween.start()
 
 func get_top_dialogue(npc_id: String) -> Dialogue:
 	if (!NPCs.has(npc_id)):
