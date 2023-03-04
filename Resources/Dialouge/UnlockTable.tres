@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=14 format=2]
+[gd_resource type="Resource" load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/DialogueSystem/classes/UnlockTable.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd" type="Script" id=2]
@@ -25,39 +25,45 @@ unlocked_ids = [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ]
 removed_ids = [  ]
 
 [sub_resource type="Resource" id=5]
+script = ExtResource( 2 )
+unlocked_ids = [  ]
+removed_ids = [  ]
+
+[sub_resource type="Resource" id=7]
 script = ExtResource( 3 )
 dialogue_id = "demo1"
 npc_id = "fixer"
 
 [sub_resource type="Resource" id=6]
 script = ExtResource( 2 )
-unlocked_ids = [ SubResource( 5 ) ]
+unlocked_ids = [ SubResource( 7 ) ]
 removed_ids = [  ]
 
-[sub_resource type="Resource" id=7]
+[sub_resource type="Resource" id=9]
 script = ExtResource( 3 )
 dialogue_id = "demo2"
 npc_id = "fixer"
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 2 )
-unlocked_ids = [ SubResource( 7 ) ]
+unlocked_ids = [ SubResource( 9 ) ]
 removed_ids = [  ]
 
-[sub_resource type="Resource" id=9]
+[sub_resource type="Resource" id=11]
 script = ExtResource( 3 )
 dialogue_id = "demo3"
 npc_id = "fixer"
 
 [sub_resource type="Resource" id=10]
 script = ExtResource( 2 )
-unlocked_ids = [ SubResource( 9 ) ]
+unlocked_ids = [ SubResource( 11 ) ]
 removed_ids = [  ]
 
 [resource]
 script = ExtResource( 1 )
 entries = {
 "npc-fixer-default": SubResource( 1 ),
+"npc-manifestation-1": SubResource( 5 ),
 "npc-fixer-demo1": SubResource( 6 ),
 "npc-fixer-demo2": SubResource( 8 ),
 "npc-fixer-demo3": SubResource( 10 )

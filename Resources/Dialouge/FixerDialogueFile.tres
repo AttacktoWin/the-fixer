@@ -7,25 +7,25 @@
 script = ExtResource( 2 )
 id = "default"
 priority = 0
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
 id = "demo1"
 priority = 99
-bubble = true
+bubble = true   
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 2 )
 id = "demo2"
 priority = 99
-bubble = true
+bubble = true   
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 2 )
 id = "demo3"
 priority = 99
-bubble = true
+bubble = true   
 
 [resource]
 script = ExtResource( 1 )

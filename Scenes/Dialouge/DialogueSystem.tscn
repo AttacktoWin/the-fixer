@@ -5,7 +5,6 @@
 [ext_resource path="res://Resources/Dialouge/UnlockTable.tres" type="Resource" id=3]
 [ext_resource path="res://Resources/Dialouge/FixerDialogueFile.tres" type="Resource" id=4]
 
-
 [node name="DialogueSystem" type="Node"]
 script = ExtResource( 1 )
 dialogue_unlock_table = ExtResource( 3 )
@@ -15,3 +14,14 @@ save_file_name = "dialogue_system.save"
 script = ExtResource( 2 )
 id = "fixer"
 dialogue_file = ExtResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="CanvasLayer"]
