@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://_Dev/Victoria/Manifestation Animate/manifestation-spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://_Dev/Victoria/Manifestation/isometric/manifestation-spritesheet.png" type="Texture" id=1]
 
 [sub_resource type="Animation" id=2]
 length = 2.0
@@ -635,26 +635,27 @@ bones = [ "hip", PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
 visible = false
 
 [node name="hip" type="Bone2D" parent="skeleton"]
-position = Vector2( 393, 625 )
+position = Vector2( 393, 631.183 )
 rest = Transform2D( 1, 0, 0, 1, 393, 625 )
 
 [node name="chest" type="Bone2D" parent="skeleton/hip"]
-position = Vector2( 43, -181 )
+position = Vector2( 43, -176.257 )
+rotation = -0.0140198
 rest = Transform2D( 1, 0, 0, 1, 43, -187 )
 
 [node name="neck" type="Bone2D" parent="skeleton/hip/chest"]
-position = Vector2( -44, -188 )
-rotation = 0.0318644
+position = Vector2( -44, -184.72 )
+rotation = 0.00102789
 rest = Transform2D( 1, 0, 0, 1, -44, -188 )
 
 [node name="head" type="Bone2D" parent="skeleton/hip/chest/neck"]
 position = Vector2( -32, -98 )
-rotation = 0.0209807
+rotation = 0.027634
 rest = Transform2D( 1, 0, 0, 1, -32, -98 )
 
 [node name="jaw" type="Bone2D" parent="skeleton/hip/chest/neck/head"]
 position = Vector2( -20, 55 )
-rotation = -3.90779
+rotation = -3.86054
 rest = Transform2D( -0.79229, 0.610145, -0.610145, -0.79229, -20, 55 )
 default_length = 95.0
 
@@ -663,12 +664,12 @@ rest = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="armLeftLower" type="Bone2D" parent="skeleton/hip/chest/leftUpper"]
 position = Vector2( 119, -210 )
-rotation = 0.0872665
+rotation = 0.0348951
 rest = Transform2D( 1, 0, 0, 1, 119, -210 )
 
 [node name="armLeftHand" type="Bone2D" parent="skeleton/hip/chest/leftUpper/armLeftLower"]
 position = Vector2( 251, 208 )
-rotation = 2.28611
+rotation = 2.42487
 rest = Transform2D( -0.645458, 0.763796, -0.763796, -0.645458, 251, 208 )
 default_length = 175.0
 
@@ -677,12 +678,12 @@ rest = Transform2D( 1, 0, 0, 1, 0, 0 )
 
 [node name="armRightUpper" type="Bone2D" parent="skeleton/hip/chest/rightUpper"]
 position = Vector2( -200, -214 )
-rotation = -0.0610865
+rotation = -0.029936
 rest = Transform2D( 1, 0, 0, 1, -200, -214 )
 
 [node name="armRightHand" type="Bone2D" parent="skeleton/hip/chest/rightUpper/armRightUpper"]
 position = Vector2( -119, 198 )
-rotation = 2.92317
+rotation = 2.77896
 rest = Transform2D( -0.893371, 0.449319, -0.449319, -0.893371, -119, 198 )
 default_length = 170.0
 
