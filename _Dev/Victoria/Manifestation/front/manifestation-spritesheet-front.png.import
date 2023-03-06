@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/manifestation-spritesheet.png-799ff6de79afa49aa9d54dac9c880477.stex"
+path="res://.import/manifestation-spritesheet-front.png-e90698b0501aa2ffccdee3af1917eb24.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_Dev/Victoria/Manifestation/isometric/manifestation-spritesheet.png"
-dest_files=[ "res://.import/manifestation-spritesheet.png-799ff6de79afa49aa9d54dac9c880477.stex" ]
+source_file="res://_Dev/Victoria/Manifestation/front/manifestation-spritesheet-front.png"
+dest_files=[ "res://.import/manifestation-spritesheet-front.png-e90698b0501aa2ffccdee3af1917eb24.stex" ]
 
 [params]
 
