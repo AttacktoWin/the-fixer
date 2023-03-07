@@ -4,9 +4,10 @@
 [ext_resource path="res://Scripts/Player/PlayerStateFree.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Player/PlayerStateDash.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Sprites/Fixer/fixer-arm.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/FSM/base/FSMController.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Player/PlayerStateDead.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=11]
+
 
 [sub_resource type="Animation" id=2]
 resource_name = "Dash"

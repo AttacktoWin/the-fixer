@@ -1,10 +1,11 @@
 [gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Assets/Sprites/Camera/camera_spritesheet.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Entities/Enemies/SpyderFSM.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemies/SpyderFSM.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Wrappers/AnimationTree.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Entities/Attacks/BaseAttack.gd" type="Script" id=5]
+
 
 [sub_resource type="CircleShape2D" id=87]
 radius = 110.82
