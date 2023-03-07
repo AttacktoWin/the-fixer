@@ -13,9 +13,21 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://Assets/Portraits/Fixer/fixer_portrait_neutral.png"
+		},
+		{
+			"name": "Shadow",
+			"path": "res://Assets/Portraits/Fixer/fixer_portrait_shadow.png"
+		},
+		{
+			"name": "Smile",
+			"path": "res://Assets/Portraits/Fixer/fixer_portrait_smile.png"
+		},
+		{
+			"name": "Secret",
+			"path": "res://Assets/Portraits/Fixer/fixer_portrait_uwu.png"
 		}
 	],
-	"scale": 100,
+	"scale": 50,
 	"theme": ""
 }

@@ -9,16 +9,16 @@
 			"animation_length": 0.5,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1675203451.json",
+			"character": "character-1675203446.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
 			"portrait": "Default",
 			"portrait_definition": "",
 			"position": {
 				"0": false,
-				"1": false,
+				"1": true,
 				"2": false,
-				"3": true,
+				"3": false,
 				"4": false
 			},
 			"type": 0,
@@ -32,48 +32,42 @@
 			"change_z_index": false,
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_002",
-			"mirror_portrait": false,
-			"portrait": "Shadow",
+			"mirror_portrait": true,
+			"portrait": "Default",
 			"portrait_definition": "",
 			"position": {
 				"0": false,
-				"1": true,
+				"1": false,
 				"2": false,
-				"3": false,
+				"3": true,
 				"4": false
 			},
 			"type": 0,
 			"z_index": 0
 		},
 		{
-			"character": "character-1678144008.json",
+			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[i]...[/i]"
+			"text": "\"Glad to see you back in one piece. I trust you're keeping an eye on our little... [i]problem[/i]?\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "(Don't change)",
-			"text": "[i]I had never seen anything like it before and yet, here it was. [pause=0.5]Staring me in the face... with a face.[/i]"
+			"portrait": "Shadow",
+			"text": "\"Yeah, Boss. I'm keeping close watch on it. But it's not looking great.\""
 		},
 		{
-			"character": "character-1675203357.json",
-			"event_id": "dialogic_001",
-			"portrait": "Default",
-			"text": "\"I'm here to take out the trash.\""
-		},
-		{
-			"character": "character-1678144008.json",
+			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"[i]...[/i]\""
+			"text": "\"Just remember your new assignment. [pause=0.5] Get to the bottom of [color=#FDD838]The Vault[/color] and, [pause=0.3]you know, [pause=0.3]if something [speed=5][i]unfortunate[/i][speed=1][pause=0.2] were to happen to some of the machinery down there...?\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "Smile",
-			"text": "\"Not much of a talker, huh? [pause=1] [signal=anim-fixer-draw_weapon] Makes this next part easier for me.\""
+			"text": "\"Sure would be a shame. Don't think anyone would be surprised though, sometimes [i]accidents[/i] happen, you know?\""
 		},
 		{
 			"emit_signal": "unpause",
@@ -82,7 +76,7 @@
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1675207311.json",
-		"name": "manifestation-1"
+		"file": "timeline-1678138756.json",
+		"name": "boss-default"
 	}
 }

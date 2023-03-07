@@ -6,10 +6,10 @@
 		"Characters": {
 			"files": [
 				"character-1674002562.json",
-				"character-1674002613.json",
-				"character-1675203357.json",
 				"character-1675203446.json",
-				"character-1675203451.json"
+				"character-1675203451.json",
+				"character-1675203357.json",
+				"character-1678144008.json"
 			],
 			"folders": {
 
@@ -46,14 +46,51 @@
 		},
 		"Timelines": {
 			"files": [
-				"timeline-1675203497.json",
-				"timeline-1675632467.json",
-				"timeline-1675632856.json",
-				"timeline-1675632999.json",
-				"timeline-1675207311.json"
+
 			],
 			"folders": {
+				"boss": {
+					"files": [
+						"timeline-1678138756.json",
+						"timeline-1678140354.json"
+					],
+					"folders": {
 
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
+				"fixer": {
+					"files": [
+						"timeline-1675203497.json",
+						"timeline-1675632467.json",
+						"timeline-1675632856.json",
+						"timeline-1675632999.json",
+						"timeline-1678142374.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				},
+				"manifestation": {
+					"files": [
+						"timeline-1675207311.json",
+						"timeline-1678144277.json"
+					],
+					"folders": {
+
+					},
+					"metadata": {
+						"color": null,
+						"folded": false
+					}
+				}
 			},
 			"metadata": {
 				"color": null,
