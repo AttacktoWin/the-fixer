@@ -91,6 +91,61 @@ with open("../UnlockTable.tres", "w") as f:
 [ext_resource path="res://Scripts/DialogueSystem/classes/DialogueNpcIds.gd" type="Script" id=3]
 '''
     count = 1
+    with open("./events.csv", "r") as events_file:
+        reader = csv.reader(events_file)
+        for row in reader:
+            if reader.line_num != 1:
+                if row[0] == '':
+                    break
+                timeline = row[0]
+                unlocks = row[1].split(",")
+                removes = row[2].split(",")
+
+                unlocked_resource_ids = []
+                removed_resource_ids = []
+                for i in range(len(unlocks)):
+                    full = unlocks[i]
+                    if full == '':
+                        break
+                    split = full.split("-")
+                    unlocked_resource_ids.append(count + i + 1)
+                    text += '''
+[sub_resource type="Resource" id=%d]
+script = ExtResource( 3 )
+dialogue_id = "%s"
+npc_id = "%s"
+''' % (count + i + 1, "-".join(split[1:]), split[0])
+                for i in range(len(removes)):
+                    full = removes[i]
+                    if full == '':
+                        break
+                    split = full.split("-")
+                    removed_resource_ids.append(count + i + len(unlocked_resource_ids) + 1)
+                    text += '''
+[sub_resource type="Resource" id=%d]
+script = ExtResource( 3 )
+dialogue_id = "%s"
+npc_id = "%s"
+''' % (count + i + len(unlocked_resource_ids) + 1, "-".join(split[1:]), split[0])
+
+                text += '''
+                [sub_resource type="Resource" id=%d]
+                script = ExtResource( 2 )
+                unlocked_ids = [ ''' % count
+                for i in range(len(unlocked_resource_ids)):
+                    text += "SubResource( %d )%s" % (
+                        unlocked_resource_ids[i], ", " if i < len(unlocked_resource_ids) - 1 else "")
+                text += ''' ]
+                removed_ids = [ '''
+                for i in range(len(removed_resource_ids)):
+                    text += "SubResource( %d )%s" % (
+                        removed_resource_ids[i], ", " if i < len(unlocked_resource_ids) - 1 else "")
+
+                text += ''' ]
+                '''
+                sub_resources[timeline] = count
+                count += 1 + len(unlocked_resource_ids) + len(removed_resource_ids)
+
     for d in dialogues:
         unlocked_resource_ids = []
         removed_resource_ids = []
@@ -111,22 +166,24 @@ npc_id = "%s"
 script = ExtResource ( 3 )
 dialogue_id = "%s"
 npc_id = "%s"
-''' % (count + i + 1, entry["dialogue_id"], entry["npc_id"])
+''' % (count + i + len(unlocked_resource_ids) + 1, entry["dialogue_id"], entry["npc_id"])
 
         text += '''
 [sub_resource type="Resource" id=%d]
 script = ExtResource( 2 )
 unlocked_ids = [ ''' % count
         for i in range(len(unlocked_resource_ids)):
-            text += "SubResource( %d )%s" % (unlocked_resource_ids[i], ", " if i < len(unlocked_resource_ids) - 1 else "")
+            text += "SubResource( %d )%s" % (
+                unlocked_resource_ids[i], ", " if i < len(unlocked_resource_ids) - 1 else "")
         text += ''' ]
 removed_ids = [ '''
         for i in range(len(removed_resource_ids)):
-            text += "SubResource( %d )%s" % (removed_resource_ids[i], ", " if i < len(unlocked_resource_ids) - 1 else "")
+            text += "SubResource( %d )%s" % (
+                removed_resource_ids[i], ", " if i < len(unlocked_resource_ids) - 1 else "")
 
         text += ''' ]
 '''
-        sub_resources[d] = count
+        sub_resources["npc-%s" % d] = count
         count += 1 + len(unlocked_resource_ids) + len(removed_resource_ids)
 
     text += '''
@@ -136,9 +193,8 @@ entries = {
 '''
     keys = list(sub_resources.keys())
     for resource in range(len(keys)):
-        text += '''"npc-%s": SubResource( %d )%s''' % (keys[resource], sub_resources[keys[resource]], ''',
+        text += '''"%s": SubResource( %d )%s''' % (keys[resource], sub_resources[keys[resource]], ''',
 ''' if resource < len(keys) - 1 else '''
 }''')
 
     f.write(text % count)
-

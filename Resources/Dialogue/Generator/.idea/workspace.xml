@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="85857e6c-57c3-422d-a9fe-340b82278ced" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../Assets/Portraits/Fixer/fixer_portrait_neutral.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Assets/Portraits/Fixer/fixer_portrait_neutral.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Assets/Portraits/Fixer/fixer_portrait_shadow.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Assets/Portraits/Fixer/fixer_portrait_shadow.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Assets/Portraits/Fixer/fixer_portrait_smile.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Assets/Portraits/Fixer/fixer_portrait_smile.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Assets/Portraits/Fixer/fixer_portrait_uwu.png.import" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Assets/Portraits/Fixer/fixer_portrait_uwu.png.import" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FixerDialogueFile.tres" beforeDir="false" afterPath="$PROJECT_DIR$/../FixerDialogueFile.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ManifestationDialogueFile.tres" beforeDir="false" afterPath="$PROJECT_DIR$/../ManifestationDialogueFile.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../UnlockTable.tres" beforeDir="false" afterPath="$PROJECT_DIR$/../UnlockTable.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../TileSets/WallTiles.tres" beforeDir="false" afterPath="$PROJECT_DIR$/../../TileSets/WallTiles.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Scenes/Main.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Scenes/Main.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../addons/dialogic/Editor/Events/styles/ResourceMenuPanelBackground.tres" beforeDir="false" afterPath="$PROJECT_DIR$/../../../addons/dialogic/Editor/Events/styles/ResourceMenuPanelBackground.tres" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../dialogic/folder_structure.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/folder_structure.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../dialogic/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/settings.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1675207311.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1675207311.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678144277.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678144277.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/../../../project.godot" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2MfZDeGTwAE5kkSHhTaE9AwX2I3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/shash/Documents/INT D 450/the-fixer/Resources/Dialouge/Generator"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="85857e6c-57c3-422d-a9fe-340b82278ced" name="Changes" comment="" />
+      <created>1678160478564</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678160478564</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -1,0 +1,119 @@
+[gd_resource type="Resource" load_steps=24 format=2]
+
+[ext_resource path="res://Scripts/DialogueSystem/classes/UnlockTable.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/DialogueSystem/classes/DialogueNpcIds.gd" type="Script" id=3]
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 3 )
+dialogue_id = "manifestation1win"
+npc_id = "boss"
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+unlocked_ids = [ SubResource( 2 ) ]
+removed_ids = [  ]
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 2 )
+unlocked_ids = [  ]
+removed_ids = [  ]
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 3 )
+dialogue_id = "default"
+npc_id = "boss"
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 3 )
+dialogue_id = "2"
+npc_id = "manifestation"
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 2 )
+unlocked_ids = [ SubResource( 18 ) ]
+removed_ids = [ SubResource( 19 ) ]
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 3 )
+dialogue_id = "demo1"
+npc_id = "fixer"
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 3 )
+dialogue_id = "demo2"
+npc_id = "fixer"
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 3 )
+dialogue_id = "demo3"
+npc_id = "fixer"
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 3 )
+dialogue_id = "1"
+npc_id = "boss"
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+unlocked_ids = [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ]
+removed_ids = [  ]
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 3 )
+dialogue_id = "demo1"
+npc_id = "fixer"
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 2 )
+unlocked_ids = [ SubResource( 11 ) ]
+removed_ids = [  ]
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 3 )
+dialogue_id = "demo2"
+npc_id = "fixer"
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 2 )
+unlocked_ids = [ SubResource( 13 ) ]
+removed_ids = [  ]
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 3 )
+dialogue_id = "demo3"
+npc_id = "fixer"
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 2 )
+unlocked_ids = [ SubResource( 15 ) ]
+removed_ids = [  ]
+
+[sub_resource type="Resource" id=20]
+script = ExtResource( 2 )
+unlocked_ids = [  ]
+removed_ids = [  ]
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 3 )
+dialogue_id = "default"
+npc_id = "boss"
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 2 )
+unlocked_ids = [  ]
+removed_ids = [ SubResource( 9 ) ]
+
+[resource]
+script = ExtResource( 1 )
+entries = {
+"event-manifestation1win": SubResource( 1 ),
+"npc-boss-default": SubResource( 16 ),
+"npc-boss-manifestation1win": SubResource( 17 ),
+"npc-fixer-default": SubResource( 3 ),
+"npc-fixer-demo1": SubResource( 10 ),
+"npc-fixer-demo2": SubResource( 12 ),
+"npc-fixer-demo3": SubResource( 14 ),
+"npc-manifestation-2": SubResource( 20 ),
+"npc-manifestation-default": SubResource( 8 )
+}
