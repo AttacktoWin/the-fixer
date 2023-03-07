@@ -55,10 +55,7 @@ func _on_SenseRadius_eneterd(body):
 ########################################################################
 func _on_take_damage(_amount: float, _meta: HitMetadata):
 	var bar = self.get_node("ProgressBar")
-	bar.value = (
-		(self._getv(LivingEntity.VARIABLE.HEALTH) / self.base_health)
-		* 100
-	)
+	bar.value = ((self.getv(LivingEntity.VARIABLE.HEALTH) / self.base_health) * 100)
 
 	#knockback
 	#TODO really need to redo this without the hard coded values
@@ -82,8 +79,6 @@ func _chase_player() -> void:
 
 
 func _knock_back(delta) -> void:
-	_knock_back_speed = clamp(
-		_knock_back_speed - delta * _knock_back_friction, 0, 10
-	)
+	_knock_back_speed = clamp(_knock_back_speed - delta * _knock_back_friction, 0, 10)
 	#warning-ignore:RETURN_VALUE_DISCARDED
 	move_and_collide(_knock_back_dir * _knock_back_speed)

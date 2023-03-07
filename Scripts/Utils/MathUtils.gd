@@ -19,6 +19,14 @@ const INTERPOLATE_SMOOTH_EXPONENTIAL = 15
 
 
 static func vector_to_iso_vector(vec: Vector2) -> Vector2:
+	return vec * Vector2(1, 0.5)
+
+
+static func iso_vector_to_vector(vec: Vector2) -> Vector2:
+	return vec * Vector2(1, 2)
+
+
+static func scale_vector_to_iso(vec: Vector2) -> Vector2:
 	var angle = vec.angle()
 	return vec * (0.5 + abs(cos(angle)) / 2)
 

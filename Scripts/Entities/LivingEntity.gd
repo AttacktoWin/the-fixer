@@ -1,3 +1,5 @@
+# Author: Marcus
+
 class_name LivingEntity extends KinematicBody2D
 
 # this script implements the basics of status effects and state
@@ -39,17 +41,17 @@ func _ready():
 		print("Error connecting to pause: ", _error)
 
 
-func _getv(variable):
+func getv(variable):
 	return self.variables.get_variable(variable)
 
 
-func _setv(variable, v):
+func setv(variable, v):
 	self.variables.set_variable(variable, v)
 
 
 func _try_move():
-	# unlikely to ever change, but here anyway
-	_setv(VARIABLE.VELOCITY, move_and_slide(_getv(VARIABLE.VELOCITY)))
+	# warning-ignore:return_value_discarded
+	move_and_slide(getv(VARIABLE.VELOCITY))
 
 
 func is_dead():
@@ -61,7 +63,7 @@ func _on_death():
 
 
 func _check_death() -> bool:
-	if self._getv(VARIABLE.HEALTH) <= 0 and not self._is_dead:
+	if self.getv(VARIABLE.HEALTH) <= 0 and not self._is_dead:
 		self._is_dead = true
 		# queue_free()
 		self._on_death()  # emit signal
@@ -86,7 +88,7 @@ func _on_take_damage(_amount: float, _meta: HitMetadata):
 
 
 func _take_damage(amount, meta):
-	self._setv(VARIABLE.HEALTH, self._getv(VARIABLE.HEALTH) - amount)
+	self.setv(VARIABLE.HEALTH, self.getv(VARIABLE.HEALTH) - amount)
 	self._on_take_damage(amount, meta)
 	# warning-ignore:return_value_discarded
 	self._check_death()

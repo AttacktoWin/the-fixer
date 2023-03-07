@@ -1,8 +1,11 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Sprites/Fixer/fixer-spritesheet-WHOLE.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Player/PlayerStateFree.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Player/PlayerStateDash.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Sprites/Fixer/fixer-arm.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/Wrappers/AnimationTree.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/FSM/base/FSMController.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Player/PlayerStateDead.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=2]
@@ -40,7 +43,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5, 0.52 ),
+"times": PoolRealArray( 0, 0.518147, 0.52 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -230,67 +233,6 @@ tracks/1/keys = {
 "values": [ Vector2( -10, 0 ), Vector2( -10, 1 ), Vector2( -10, 2 ), Vector2( -10, 2 ), Vector2( -10, 1 ), Vector2( -10, 0 ), Vector2( -10, 1 ), Vector2( -10, 2 ), Vector2( -10, 2 ), Vector2( -10, 1 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=14]
-animation = "Dash"
-
-[sub_resource type="AnimationNodeAnimation" id=27]
-animation = "Die"
-
-[sub_resource type="AnimationNodeAnimation" id=15]
-animation = "Idle"
-
-[sub_resource type="AnimationNodeAnimation" id=16]
-animation = "Melee"
-
-[sub_resource type="AnimationNodeAnimation" id=17]
-animation = "Run"
-
-[sub_resource type="AnimationNodeAnimation" id=18]
-animation = "Walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
-
-[sub_resource type="AnimationNodeStateMachine" id=11]
-states/Dash/node = SubResource( 14 )
-states/Dash/position = Vector2( 548, -45 )
-states/Die/node = SubResource( 27 )
-states/Die/position = Vector2( 734, -45 )
-states/Idle/node = SubResource( 15 )
-states/Idle/position = Vector2( 548, 74 )
-states/Melee/node = SubResource( 16 )
-states/Melee/position = Vector2( 734, 74 )
-states/Run/node = SubResource( 17 )
-states/Run/position = Vector2( 192, 74 )
-states/Walk/node = SubResource( 18 )
-states/Walk/position = Vector2( 372, 74 )
-transitions = [ "Dash", "Idle", SubResource( 19 ), "Walk", "Idle", SubResource( 21 ), "Walk", "Run", SubResource( 22 ), "Run", "Walk", SubResource( 23 ), "Idle", "Walk", SubResource( 24 ), "Idle", "Dash", SubResource( 25 ), "Idle", "Melee", SubResource( 26 ), "Melee", "Idle", SubResource( 20 ), "Walk", "Dash", SubResource( 28 ), "Run", "Dash", SubResource( 29 ) ]
-start_node = "Idle"
-graph_offset = Vector2( -300, -126 )
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
-
 [sub_resource type="CapsuleShape2D" id=13]
 radius = 18.0
 height = 22.0
@@ -298,7 +240,6 @@ height = 22.0
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 4
 script = ExtResource( 11 )
-animation_tree_path = NodePath("Visual/AnimationTree")
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -55 )
@@ -326,20 +267,13 @@ texture = ExtResource( 4 )
 position = Vector2( 114, -13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
-anims/Dash = SubResource( 2 )
-anims/Die = SubResource( 3 )
-anims/Idle = SubResource( 4 )
-anims/Melee = SubResource( 5 )
+anims/DASH = SubResource( 2 )
+anims/DIE = SubResource( 3 )
+anims/IDLE = SubResource( 4 )
+anims/MELEE = SubResource( 5 )
 anims/RESET = SubResource( 6 )
-anims/Run = SubResource( 7 )
-anims/Walk = SubResource( 8 )
-
-[node name="AnimationTree" type="AnimationTree" parent="Visual"]
-tree_root = SubResource( 11 )
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource( 12 )
-script = ExtResource( 5 )
+anims/RUN = SubResource( 7 )
+anims/WALK = SubResource( 8 )
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2( 0, -55 )
@@ -349,3 +283,17 @@ collision_mask = 0
 [node name="HurtCollider" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 0, 33 )
 shape = SubResource( 13 )
+
+[node name="FSMController" type="Node2D" parent="."]
+script = ExtResource( 6 )
+root_state = NodePath("PlayerStateFree")
+animation_player = NodePath("../Visual/AnimationPlayer")
+
+[node name="PlayerStateFree" type="Node2D" parent="FSMController"]
+script = ExtResource( 2 )
+
+[node name="PlayerStateDash" type="Node2D" parent="FSMController"]
+script = ExtResource( 3 )
+
+[node name="PlayerStateDead" type="Node2D" parent="FSMController"]
+script = ExtResource( 7 )

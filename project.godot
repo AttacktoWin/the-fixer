@@ -144,6 +144,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/DialogueQueue.gd"
 }, {
+"base": "Node2D",
+"class": "FSMController",
+"language": "GDScript",
+"path": "res://Scripts/FSM/base/FSMController.gd"
+}, {
+"base": "Node2D",
+"class": "FSMNode",
+"language": "GDScript",
+"path": "res://Scripts/FSM/base/FSMNode.gd"
+}, {
 "base": "Area2D",
 "class": "Generic_Hitbox",
 "language": "GDScript",
@@ -199,10 +209,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Data/DamageBox/PierceAttackHandler.gd"
 }, {
-"base": "Base_AnimatedFSM",
+"base": "LivingEntity",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scripts/Player/Player.gd"
+}, {
+"base": "Reference",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStatesEnum.gd"
+}, {
+"base": "FSMNode",
+"class": "PlayerStateDash",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStateDash.gd"
+}, {
+"base": "FSMNode",
+"class": "PlayerStateDead",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStateDead.gd"
+}, {
+"base": "FSMNode",
+"class": "PlayerStateFree",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStateFree.gd"
 }, {
 "base": "Object",
 "class": "Runnable",
@@ -272,6 +302,8 @@ _global_script_class_icons={
 "DialogueFile": "",
 "DialogueNPCIds": "",
 "DialogueQueue": "",
+"FSMController": "",
+"FSMNode": "",
 "Generic_Hitbox": "",
 "Generic_Hurtbox": "",
 "HistoryRow": "",
@@ -284,6 +316,10 @@ _global_script_class_icons={
 "NPCInstance": "",
 "PierceAttackHandler": "",
 "Player": "",
+"PlayerState": "",
+"PlayerStateDash": "",
+"PlayerStateDead": "",
+"PlayerStateFree": "",
 "Runnable": "",
 "RunnableList": "",
 "SingleHitFilter": "",
@@ -306,6 +342,7 @@ CameraSingleton="*res://Scripts/Singletons/CameraSingleton.gd"
 PausingSingleton="*res://Scripts/Singletons/PausingSingleton.gd"
 Scene="*res://Scripts/Singletons/Scene.gd"
 DialogueSystem="*res://Scenes/Dialouge/DialogueSystem.tscn"
+WwiseSingleton="*res://Scripts/Singletons/WwiseSingleton.gd"
 Waapi="*res://addons/wwise/bin/waapi-gdnative.gdns"
 WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
 Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
