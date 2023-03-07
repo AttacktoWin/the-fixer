@@ -1,3 +1,5 @@
+# Author: Marcus
+
 class_name Player extends LivingEntity
 
 var _inv_timer = 0

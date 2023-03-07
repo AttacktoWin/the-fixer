@@ -1,3 +1,5 @@
+# Author: Marcus
+
 extends Node
 
 var _root = null

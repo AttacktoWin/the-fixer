@@ -1,3 +1,5 @@
+# Author: Marcus
+
 class_name PlayerStateDash extends FSMNode
 
 var _dash_timer = Timer.new()

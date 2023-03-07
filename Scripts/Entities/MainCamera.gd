@@ -1,3 +1,5 @@
+# Author: Marcus
+
 extends Camera2D
 
 
