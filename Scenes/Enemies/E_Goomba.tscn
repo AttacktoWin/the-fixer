@@ -7,7 +7,6 @@
 [ext_resource path="res://Scripts/Entities/Attacks/BaseAttack.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Entities/Generic_HurtBox.gd" type="Script" id=9]
 
-
 [sub_resource type="CircleShape2D" id=69]
 
 [sub_resource type="Shader" id=73]

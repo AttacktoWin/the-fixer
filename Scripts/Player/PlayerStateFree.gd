@@ -23,16 +23,21 @@ func _physics_process(_delta):
 
 func _process(_delta):
 	var vel = self.entity.getv(LivingEntity.VARIABLE.VELOCITY)
-	if vel.length() > 25:
+	if vel.length() > 25 or self.entity._get_wanted_direction().length() != 0:
 		self.fsm.set_animation("WALK")
 	else:
 		self.fsm.set_animation("IDLE")
-	var x = sign(vel.x)
+
+	var x = sign(round(vel.x))
+
 	var facing = sign(CameraSingleton.get_mouse_from_camera_center().x)
-	if x != facing:
-		self.fsm.get_animation_player().playback_speed = -1.0
-	else:
-		self.fsm.get_animation_player().playback_speed = 1.0
+	var speed = (
+		MathUtils.iso_vector_to_vector(vel).length()
+		/ self.entity.getv(LivingEntity.VARIABLE.MAX_SPEED)
+	)
+	if x != 0 and x != facing:
+		speed = -speed
+	self.fsm.get_animation_player().playback_speed = speed
 
 
 func _unhandled_input(event: InputEvent):

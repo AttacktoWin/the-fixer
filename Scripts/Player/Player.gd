@@ -33,7 +33,7 @@ func _get_wanted_direction():
 	)
 	if dir.length() > 1:
 		dir = dir.normalized()
-	return dir * Vector2(1, 0.5)
+	return MathUtils.vector_to_iso_vector(dir)
 
 
 func _get_wanted_velocity():

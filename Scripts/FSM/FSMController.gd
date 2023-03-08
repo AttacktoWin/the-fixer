@@ -26,7 +26,7 @@ func _ready():
 	if self.animation_player:
 		self.animation_player = get_node(self.animation_player)
 		# warning-ignore:return_value_discarded
-		connect("animation_finished", self, "_on_animation_looped")
+		# connect("animation_finished", self, "_on_animation_looped")
 
 	if self._current_state:
 		var arr = self._current_state.get_handled_states()
@@ -109,7 +109,11 @@ func _check_anim_loop(delta):
 	var current = ap.current_animation_position
 	var last = self._last_animation_timer
 
-	if sign(current - last) != sign(ap.playback_speed) or delta > ap.current_animation_length:
+	if (
+		sign(current - last) != sign(ap.playback_speed)
+		or delta >= ap.current_animation_length
+		or ap.current_animation_position == ap.current_animation_length
+	):
 		self._on_animation_looped()
 
 	self._last_animation_timer = current
@@ -134,16 +138,21 @@ func _transition(target: FSMNode, target_name):
 	self._transition_target = null
 
 
+func _check_transition():
+	if self._transition_target != null:
+		self._transition(self._state_map[self._transition_target], self._transition_target)
+
+
 func _physics_process(delta):
 	if not self._current_state:
 		print("ERR: no state!")
 		return
-	self._current_state._physics_process(delta)
 
 	self._check_anim_loop(delta)
+	self._check_transition()
 
-	if self._transition_target != null:
-		self._transition(self._state_map[self._transition_target], self._transition_target)
+	self._current_state._physics_process(delta)
+	self._check_transition()
 
 
 func current_state():
