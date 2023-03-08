@@ -170,7 +170,7 @@ position = Vector2( 145, 245 )
 current = true
 zoom = Vector2( 10, 10 )
 
-[node name="Generator" type="Node" parent="."]
+[node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 7 )
 debug_mode = true
 map_size = Vector2( 40, 40 )

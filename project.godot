@@ -184,7 +184,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/NPCInstance.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "PCG_Partioner",
 "language": "GDScript",
 "path": "res://Scripts/LevelGeneration/PCG_Partioner.gd"

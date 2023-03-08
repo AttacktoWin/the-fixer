@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 onready var Floor = get_node("%Floor")
 onready var Walls:TileMap = get_node("%Walls")
 
@@ -26,7 +26,7 @@ export(int) var max_steps_in_direction = 2
 ########################################################################
 #PARTIONER Params
 ########################################################################
-var the_British:PCG_Partioner
+var partitioner:PCG_Partioner
 
 
 
@@ -37,12 +37,18 @@ func _init():
 		level.push_back([])
 		for _y in range (0,map_size.y*2):
 			level[x].push_back(-1)
-
+	
+var debug_list
 func _ready():
 	filler	= PCG_TileFiller.new()
 	walker	= PCG_Walker.new()
 	walker.construct(map_size,corridor_width)
 	
-	var path = walker.random_walk(walk_length,walker_start_pos,start_direction,random_turn_chance,max_steps_in_direction)
-	filler.floor_pass(path,level,Floor)
-	filler.wall_pass(path,level,Walls)
+#	var path = walker.random_walk(walk_length,walker_start_pos,start_direction,random_turn_chance,max_steps_in_direction)
+#	filler.floor_pass(path,level,Floor)
+#	filler.wall_pass(path,level,Walls)
+	
+	partitioner = PCG_Partioner.new()
+	var path2 = partitioner.room_builder()
+	filler.floor_pass(path2,level,Floor)
+	filler.wall_pass(path2,level,Walls)

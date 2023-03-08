@@ -25,8 +25,7 @@ func construct(
 	):
 	area = Rect2(0,0,map_size.x,map_size.y)
 	brush_size = corridor_size
-	print(brush_size)
-	
+
 
 # Description: Nothing much too look at here. Its a simple random walking algo.
 func random_walk(
