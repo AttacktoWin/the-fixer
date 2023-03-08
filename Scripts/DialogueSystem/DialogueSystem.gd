@@ -135,7 +135,7 @@ func choice_selected(choice_id: String, option_selected: int) -> void:
 	_lookup_unlock_table(key)
 
 func event_viewed(event_tag: String) -> void:
-	var key := "world-{event_tag}".format({"event_tag": event_tag})
+	var key := "event-{event_tag}".format({"event_tag": event_tag})
 	_lookup_unlock_table(key)
 	
 func save() -> void:
