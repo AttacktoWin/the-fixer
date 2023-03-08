@@ -7,13 +7,13 @@
 		{
 			"block_input": true,
 			"event_id": "dialogic_050",
-			"wait_time": 0
+			"wait_time": 3
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[i]These security systems are getting more complex, with more legs than they have any right to. I should be on my guard. [/i]"
+			"text": "\"Let's see you try to take my picture again.\""
 		},
 		{
 			"event_id": "dialogic_022",
@@ -22,7 +22,7 @@
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1675632856.json",
-		"name": "fixer-demo2"
+		"file": "timeline-1678239419.json",
+		"name": "fixer-pre-spyder"
 	}
 }

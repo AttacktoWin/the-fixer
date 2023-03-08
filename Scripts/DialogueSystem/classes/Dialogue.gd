@@ -2,7 +2,7 @@ class_name Dialogue
 
 extends Resource
 
-enum Priority { STORY = 1, QUIP = 99}
+enum Priority { STORY = 0, RELEVANT = 1, QUIP = 99}
 
 export var id: String
 export (Priority) var priority

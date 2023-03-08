@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=5 format=2]
+[gd_resource type="Resource" load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/DialogueSystem/classes/DialogueFile.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DialogueSystem/classes/Dialogue.gd" type="Script" id=2]
@@ -7,17 +7,94 @@
 script = ExtResource( 2 )
 id = "default"
 priority = 0
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
 id = "manifestation1win"
 priority = 0
-bubble = false
+bubble = false   
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+id = "pre-quip1"
+priority = 99
+bubble = false   
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 2 )
+id = "pre-pillbugkill"
+priority = 1
+bubble = false   
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 2 )
+id = "pre-spyderkill"
+priority = 1
+bubble = false   
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 2 )
+id = "pre-beetlekill"
+priority = 1
+bubble = false   
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 2 )
+id = "pre-birdkill"
+priority = 1
+bubble = false   
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 2 )
+id = "pre-pillbugkill1"
+priority = 1
+bubble = false   
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 2 )
+id = "pre-spyderkill1"
+priority = 1
+bubble = false   
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 2 )
+id = "pre-beetlekill1"
+priority = 1
+bubble = false   
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 2 )
+id = "pre-birdkill1"
+priority = 1
+bubble = false   
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 2 )
+id = "pre-quip2"
+priority = 99
+bubble = false   
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 2 )
+id = "pre-quip3"
+priority = 99
+bubble = false   
 
 [resource]
 script = ExtResource( 1 )
 dialogues = {
 "default": SubResource( 1 ),
-"manifestation1win": SubResource( 2 )
+"manifestation1win": SubResource( 2 ),
+"pre-quip1": SubResource( 3 ),
+"pre-pillbugkill": SubResource( 4 ),
+"pre-spyderkill": SubResource( 5 ),
+"pre-beetlekill": SubResource( 6 ),
+"pre-birdkill": SubResource( 7 ),
+"pre-pillbugkill1": SubResource( 8 ),
+"pre-spyderkill1": SubResource( 9 ),
+"pre-beetlekill1": SubResource( 10 ),
+"pre-birdkill1": SubResource( 11 ),
+"pre-quip2": SubResource( 12 ),
+"pre-quip3": SubResource( 13 )
 }

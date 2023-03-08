@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=7 format=2]
+[gd_resource type="Resource" load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/DialogueSystem/classes/DialogueFile.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DialogueSystem/classes/Dialogue.gd" type="Script" id=2]
@@ -7,25 +7,49 @@
 script = ExtResource( 2 )
 id = "default"
 priority = 0
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
 id = "demo1"
 priority = 99
-bubble = true
+bubble = true   
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 2 )
 id = "demo2"
 priority = 99
-bubble = true
+bubble = true   
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 2 )
 id = "demo3"
 priority = 99
-bubble = true
+bubble = true   
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 2 )
+id = "pre-pillbug"
+priority = 99
+bubble = true   
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 2 )
+id = "pre-spyder"
+priority = 99
+bubble = true   
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 2 )
+id = "pre-beetle"
+priority = 99
+bubble = true   
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 2 )
+id = "pre-bird"
+priority = 99
+bubble = true   
 
 [resource]
 script = ExtResource( 1 )
@@ -33,5 +57,9 @@ dialogues = {
 "default": SubResource( 1 ),
 "demo1": SubResource( 2 ),
 "demo2": SubResource( 3 ),
-"demo3": SubResource( 4 )
+"demo3": SubResource( 4 ),
+"pre-pillbug": SubResource( 5 ),
+"pre-spyder": SubResource( 6 ),
+"pre-beetle": SubResource( 7 ),
+"pre-bird": SubResource( 8 )
 }

@@ -60,7 +60,7 @@
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
-			"portrait": "",
+			"portrait": "Smile",
 			"text": "\"See, this is why you're a part of the family.\""
 		},
 		{
@@ -72,7 +72,7 @@
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
-			"portrait": "",
+			"portrait": "Crossed",
 			"text": "\"You feeling alright? You're looking a little pale.\""
 		},
 		{
@@ -143,7 +143,7 @@
 			"wait_seconds": 1
 		},
 		{
-			"emit_signal": "unhide_screen",
+			"emit_signal": "reveal_screen",
 			"event_id": "dialogic_040"
 		},
 		{
@@ -196,7 +196,7 @@
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
-			"portrait": "",
+			"portrait": "Shadow",
 			"text": "\"Ah, we got a real detective here.\""
 		},
 		{
@@ -208,7 +208,7 @@
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
-			"portrait": "",
+			"portrait": "Shadow Cross",
 			"text": "\"Get it done this time. [pause=1]See to it that our problem gets popped [speed=6][i]for good[/i].\""
 		},
 		{
@@ -236,7 +236,7 @@
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "Shadow",
-			"text": "[i]Looks like I gotta get down [color=#FDD838]there[/color] and whack... whatever that thing was again.[/i]"
+			"text": "[i]Looks like I gotta get down [color=#FDD838]there[/color] and take out... whatever that thing was, again.[/i]"
 		},
 		{
 			"emit_signal": "unpause",

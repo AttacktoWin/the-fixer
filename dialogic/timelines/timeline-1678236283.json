@@ -30,7 +30,7 @@
 			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1675203357.json",
+			"character": "character-1678144008.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": true,
 			"portrait": "Default",
@@ -48,35 +48,79 @@
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "\"Glad to see you back in one piece. I trust you're keeping an eye on our little... [i]problem[/i]?\""
+			"portrait": "Crossed",
+			"text": "\"So you're telling me it just walks up to youse with a knife? And that's what sent you back?\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "Shadow",
-			"text": "\"Yeah, Boss. I'm keeping close watch on it. But it's not looking great.\""
+			"portrait": "",
+			"text": "\"To be fair though Boss, it's real cute.\""
 		},
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
-			"portrait": "Crossed",
-			"text": "\"Just remember your new assignment. [pause=0.5] Get to the bottom of [color=#FDD838]The Vault[/color] and, [pause=0.3]you know, [pause=0.3]if something [speed=5][i]unfortunate[/i][speed=1][pause=0.2] were to happen to some of the machinery down there...?\""
+			"portrait": "",
+			"text": "\"...\"\n\"How cute are we talking?\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "Smile",
-			"text": "\"Sure would be a shame. Don't think anyone would be surprised though, sometimes [i]accidents[/i] happen, you know?\""
+			"portrait": "",
+			"text": "\"It's just a little guy, Boss.\""
+		},
+		{
+			"animation": "5-fade_out_down.gd",
+			"animation_length": 0.5,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
 		},
 		{
 			"emit_signal": "unpause",
 			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "bubble",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1677774779.cfg"
+		},
+		{
+			"block_input": true,
+			"event_id": "dialogic_050",
+			"wait_time": 3
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"I would not recommend hugging it though.\""
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
 		}
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1678138756.json",
-		"name": "boss-default"
+		"file": "timeline-1678236283.json",
+		"name": "boss-pre-pillbugkill"
 	}
 }

@@ -1,2 +1,6 @@
 Event,Unlocks,Removes
-event-manifestation1win,boss-manifestation1win,
+event-manifestation1win,boss-manifestation1win,manifestation-pre-fight
+event-pre-pillbugkill,"boss-pre-pillbugkill,boss-pre-pillgub1","boss-pre-spyderkill,boss-pre-beetlekill,boss-pre-birdkill"
+event-pre-spyderkill,"boss-pre-spyderkill,boss-pre-spyderkill1","boss-pre-pillbugkill,boss-pre-beetlekill,boss-pre-birdkill"
+event-pre-beetlekill,"boss-pre-beetlekill,boss-pre-beetlekill1","boss-pre-spyderkill,boss-pre-pillbugkill,boss-pre-birdkill"
+event-pre-birdkill,"boss-pre-bridkill,boss-pre-birdkill1","boss-pre-spyderkill,boss-pre-beetlekill,boss-pre-pillbugkill"

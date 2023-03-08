@@ -5,8 +5,8 @@
 			"event_id": "dialogic_040"
 		},
 		{
-			"animation": "2-fade_in_up.gd",
-			"animation_length": 0.5,
+			"animation": "[Default]",
+			"animation_length": 0,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "character-1675203446.json",
@@ -25,8 +25,8 @@
 			"z_index": 0
 		},
 		{
-			"animation": "2-fade_in_up.gd",
-			"animation_length": 0.5,
+			"animation": "[Default]",
+			"animation_length": 0,
 			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
@@ -46,28 +46,49 @@
 			"z_index": 0
 		},
 		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Why'd we get so many umbrellas again?\""
+		},
+		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"Glad to see you back in one piece. I trust you're keeping an eye on our little... [i]problem[/i]?\""
+			"text": "\"It's always a dark and stormy night in this city.\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "Shadow",
-			"text": "\"Yeah, Boss. I'm keeping close watch on it. But it's not looking great.\""
+			"text": "\"[speed=10]...\""
 		},
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
-			"portrait": "Crossed",
-			"text": "\"Just remember your new assignment. [pause=0.5] Get to the bottom of [color=#FDD838]The Vault[/color] and, [pause=0.3]you know, [pause=0.3]if something [speed=5][i]unfortunate[/i][speed=1][pause=0.2] were to happen to some of the machinery down there...?\""
+			"portrait": "Shadow Cross",
+			"text": "\"[speed=10]...\""
 		},
 		{
-			"character": "character-1675203357.json",
-			"event_id": "dialogic_001",
-			"portrait": "Smile",
-			"text": "\"Sure would be a shame. Don't think anyone would be surprised though, sometimes [i]accidents[/i] happen, you know?\""
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
 		},
 		{
 			"emit_signal": "unpause",
@@ -76,7 +97,7 @@
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1678138756.json",
-		"name": "boss-default"
+		"file": "timeline-1678240613.json",
+		"name": "boss-pre-birdkill"
 	}
 }

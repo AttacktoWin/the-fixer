@@ -16,13 +16,8 @@
 			"text": "[i]The rooms of this place always gave me the creeps. I coulda sworn they shifted around whenever I wasn't looking.[/i]"
 		},
 		{
-			"event_id": "dialogic_023",
-			"hide_dialogbox": false,
-			"wait_seconds": 3
-		},
-		{
 			"event_id": "dialogic_022",
-			"transition_duration": 1
+			"transition_duration": 0.5
 		}
 	],
 	"metadata": {
