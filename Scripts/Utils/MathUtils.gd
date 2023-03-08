@@ -50,6 +50,11 @@ static func interpolate_vector(vec, _min: float, _max: float, interp_type: int):
 	return vec
 
 
+# converts delta from seconds to frames
+static func delta_frames(delta):
+	return delta * 60
+
+
 static func interpolate(val: float, _min: float, _max: float, interp_type: int) -> float:
 	var diff = _max - _min
 	if val >= 1:

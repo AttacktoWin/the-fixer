@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Sprites/Fixer/fixer-spritesheet-WHOLE.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player/PlayerStateFree.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Player/PlayerStateDead.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=11]
+
+[sub_resource type="CircleShape2D" id=14]
+radius = 32.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Dash"
@@ -242,8 +245,17 @@ collision_layer = 4
 script = ExtResource( 11 )
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2( 0, -55 )
+position = Vector2( 0, -60 )
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
+
+[node name="EntityCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityCollider"]
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 14 )
 
 [node name="Visual" type="Node2D" parent="."]
 position = Vector2( 0, -55 )
@@ -281,7 +293,7 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="HurtCollider" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( 0, 33 )
+position = Vector2( 0, 27 )
 shape = SubResource( 13 )
 
 [node name="FSMController" type="Node2D" parent="."]

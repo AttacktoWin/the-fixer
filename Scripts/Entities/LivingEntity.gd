@@ -23,7 +23,25 @@ onready var variables = VariableList.new(
 	}
 )
 
+export var entity_radius: float = 32
+export var push_amount: float = 256
+export(NodePath) var entity_collider_path = null
+
+var _entity_collider = null
+
 var _is_dead = false
+
+
+func _get_node_or_err(test_path, default_path):
+	var node = null
+	if test_path:
+		node = get_node_or_null(test_path)
+	if not node and default_path:
+		node = get_node_or_null(default_path)
+
+	if not node:
+		print("WARN: required node for '", default_path, "' not found in entity '", self.name, "'!")
+	return node
 
 
 func _on_pause_change(should_pause, ignore_entity):
@@ -34,6 +52,7 @@ func _on_pause_change(should_pause, ignore_entity):
 
 
 func _ready():
+	self._entity_collider = self._get_node_or_err(entity_collider_path, "EntityCollider")
 	# linter is mad at me
 	var _error = null
 	_error = PausingSingleton.connect("pause_changed", self, "_on_pause_change")
@@ -52,6 +71,27 @@ func setv(variable, v):
 func _try_move():
 	# warning-ignore:return_value_discarded
 	move_and_slide(getv(VARIABLE.VELOCITY))
+
+
+func _physics_process(delta):
+	var push_dir = Vector2()
+	var colliding = CollisionUtils.get_overlapping_bodies_filtered(
+		self._entity_collider, self, KinematicBody2D
+	)
+	for other in colliding:
+		var v = self.global_position - other.global_position
+		var dist = v.length()
+		var max_dist = self.entity_radius + other.entity_radius
+		if dist > max_dist:
+			dist = max_dist
+
+		var interp = MathUtils.interpolate(
+			dist / max_dist, self.push_amount, 0, MathUtils.INTERPOLATE_OUT
+		)
+
+		push_dir += MathUtils.vector_to_iso_vector(v.normalized() * interp)
+	# warning-ignore:return_value_discarded
+	self.move_and_slide(push_dir * MathUtils.delta_frames(delta))
 
 
 func is_dead():

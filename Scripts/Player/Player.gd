@@ -74,10 +74,11 @@ func _handle_camera():
 	CameraSingleton.set_target_center(self.position + off2)
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	# Wwise.set_2d_position(self, self.global_position)
 	_handle_camera()
 	_try_move()
+	._physics_process(delta)
 
 
 func _on_take_damage(_amount: float, _meta: HitMetadata):
