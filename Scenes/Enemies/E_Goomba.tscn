@@ -386,6 +386,23 @@ tracks/1/keys = {
 "values": [ Vector2( -4, -10 ) ]
 }
 
+[sub_resource type="Animation" id=71]
+resource_name = "Recover"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 8, 13 ]
+}
+
 [sub_resource type="Animation" id=15]
 length = 0.001
 tracks/0/type = "value"
@@ -473,43 +490,26 @@ tracks/6/keys = {
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=71]
-resource_name = "Recover"
-length = 0.2
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 8, 13 ]
-}
-
 [sub_resource type="AnimationNodeAnimation" id=44]
-animation = "Alerted"
+animation = "ALERTED"
 
 [sub_resource type="AnimationNodeAnimation" id=45]
-animation = "Attack"
+animation = "ATTACK"
 
 [sub_resource type="AnimationNodeAnimation" id=46]
-animation = "Charge"
+animation = "CHARGE"
 
 [sub_resource type="AnimationNodeAnimation" id=47]
-animation = "Chase"
+animation = "CHASE"
 
 [sub_resource type="AnimationNodeAnimation" id=48]
-animation = "Get_Ready"
+animation = "GET_READY"
 
 [sub_resource type="AnimationNodeAnimation" id=59]
-animation = "Hurt"
+animation = "HURT"
 
 [sub_resource type="AnimationNodeAnimation" id=49]
-animation = "Idle"
+animation = "IDLE"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
 advance_condition = "player_found"
@@ -552,7 +552,7 @@ states/IDLE/node = SubResource( 49 )
 states/IDLE/position = Vector2( 103, 65 )
 transitions = [ "IDLE", "ALERTED", SubResource( 50 ), "ALERTED", "CHASE", SubResource( 51 ), "CHASE", "GET_READY", SubResource( 52 ), "GET_READY", "CHARGE", SubResource( 53 ), "CHARGE", "ATTACK", SubResource( 54 ), "ATTACK", "IDLE", SubResource( 72 ), "HURT", "ALERTED", SubResource( 75 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -255, 30.14 )
+graph_offset = Vector2( -448, 48.14 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=57]
 
@@ -630,15 +630,15 @@ vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
 playback_process_mode = 0
-anims/Alerted = SubResource( 9 )
-anims/Attack = SubResource( 12 )
-anims/Charge = SubResource( 10 )
-anims/Chase = SubResource( 13 )
-anims/Get_Ready = SubResource( 14 )
-anims/Hurt = SubResource( 60 )
-anims/Idle = SubResource( 25 )
+anims/ALERTED = SubResource( 9 )
+anims/ATTACK = SubResource( 12 )
+anims/CHARGE = SubResource( 10 )
+anims/CHASE = SubResource( 13 )
+anims/GET_READY = SubResource( 14 )
+anims/HURT = SubResource( 60 )
+anims/IDLE = SubResource( 25 )
+anims/RECOVER = SubResource( 71 )
 anims/RESET = SubResource( 15 )
-anims/Recover = SubResource( 71 )
 
 [node name="AnimationTree" type="AnimationTree" parent="Visual" groups=["Enemy"]]
 tree_root = SubResource( 56 )

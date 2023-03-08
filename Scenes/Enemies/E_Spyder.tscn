@@ -530,7 +530,7 @@ animation = "ALERTED"
 animation = "CHARGE"
 
 [sub_resource type="AnimationNodeAnimation" id=71]
-animation = "CHARGE_Transition"
+animation = "CHARGE_TRANSITION"
 
 [sub_resource type="AnimationNodeAnimation" id=69]
 animation = "CHASE"
@@ -597,8 +597,8 @@ states/ALERTED/node = SubResource( 67 )
 states/ALERTED/position = Vector2( 18, 277.735 )
 states/CHARGE/node = SubResource( 70 )
 states/CHARGE/position = Vector2( 602.624, 393.735 )
-states/CHARGE_Transition/node = SubResource( 71 )
-states/CHARGE_Transition/position = Vector2( 376.624, 393.735 )
+states/CHARGE_TRANSITION/node = SubResource( 71 )
+states/CHARGE_TRANSITION/position = Vector2( 376.624, 393.735 )
 states/CHASE/node = SubResource( 69 )
 states/CHASE/position = Vector2( 18, 393.735 )
 states/FLASH/node = SubResource( 73 )
@@ -611,9 +611,9 @@ states/PATROL/node = SubResource( 74 )
 states/PATROL/position = Vector2( -182, 172 )
 states/SLASH/node = SubResource( 80 )
 states/SLASH/position = Vector2( -182, 393.735 )
-transitions = [ "CHARGE_Transition", "CHARGE", SubResource( 72 ), "CHASE", "CHARGE_Transition", SubResource( 75 ), "ALERTED", "CHASE", SubResource( 76 ), "ALERTED", "CHARGE_Transition", SubResource( 77 ), "IDLE", "ALERTED", SubResource( 78 ), "CHARGE", "FLASH", SubResource( 79 ), "IDLE", "PATROL", SubResource( 81 ), "PATROL", "ALERTED", SubResource( 82 ), "CHASE", "SLASH", SubResource( 83 ), "SLASH", "IDLE", SubResource( 85 ), "FLASH", "CHASE", SubResource( 90 ), "SLASH", "CHASE", SubResource( 91 ), "HURT", "ALERTED", SubResource( 93 ) ]
+transitions = [ "CHARGE_TRANSITION", "CHARGE", SubResource( 72 ), "CHASE", "CHARGE_TRANSITION", SubResource( 75 ), "ALERTED", "CHASE", SubResource( 76 ), "ALERTED", "CHARGE_TRANSITION", SubResource( 77 ), "IDLE", "ALERTED", SubResource( 78 ), "CHARGE", "FLASH", SubResource( 79 ), "IDLE", "PATROL", SubResource( 81 ), "PATROL", "ALERTED", SubResource( 82 ), "CHASE", "SLASH", SubResource( 83 ), "SLASH", "IDLE", SubResource( 85 ), "FLASH", "CHASE", SubResource( 90 ), "SLASH", "CHASE", SubResource( 91 ), "HURT", "ALERTED", SubResource( 93 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -339.376, 62.859 )
+graph_offset = Vector2( -457.376, 229.859 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=42]
 
@@ -690,7 +690,7 @@ frame = 36
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
 anims/ALERTED = SubResource( 43 )
 anims/CHARGE = SubResource( 65 )
-anims/CHARGE_Transition = SubResource( 66 )
+anims/CHARGE_TRANSITION = SubResource( 66 )
 anims/CHASE = SubResource( 29 )
 anims/FLASH = SubResource( 26 )
 anims/HURT = SubResource( 59 )
