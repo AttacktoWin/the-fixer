@@ -26,6 +26,7 @@ func floor_pass(
 		if level[step.x][step.y] == -1:
 			floor_set.set_cellv(Vector2(step.x,step.y),1)
 			level[step.x][step.y] = 1
+	return level
 
 
 # Description: Fills the walls in tileset
@@ -46,3 +47,4 @@ func wall_pass(
 			):
 				wall_set.set_cellv(Vector2(curr.x,curr.y),2)
 				level[curr.x][curr.y] == 2
+	return level

@@ -45,8 +45,8 @@ func _ready():
 	walker.construct(map_size,corridor_width)
 	
 	var path = walker.random_walk(walk_length,walker_start_pos,start_direction,random_turn_chance,max_steps_in_direction)
-	filler.floor_pass(path,level,Floor)
-	filler.wall_pass(path,level,Walls)
+	level = filler.floor_pass(path,level,Floor)
+	level = filler.wall_pass(path,level,Walls)
 	
 #	partitioner = PCG_Partioner.new()
 #	var path2 = partitioner.room_builder()
