@@ -7,24 +7,24 @@
 script = ExtResource( 2 )
 id = "default"
 priority = 0
-bubble = false   
+bubble = false
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
 id = "2"
 priority = 0
-bubble = false   
+bubble = false
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 2 )
 id = "pre-fight"
 priority = 0
-bubble = false   
+bubble = false
 
 [resource]
 script = ExtResource( 1 )
 dialogues = {
-"default": SubResource( 1 ),
 "2": SubResource( 2 ),
+"default": SubResource( 1 ),
 "pre-fight": SubResource( 3 )
 }
