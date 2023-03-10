@@ -309,6 +309,7 @@ DialogueSystem="*res://Scenes/Dialogue/DialogueSystem.tscn"
 Waapi="*res://addons/wwise/bin/waapi-gdnative.gdns"
 WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
 Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
+StatsTracker="*res://Scenes/Dialogue/StatsTracker.tscn"
 
 [editor_plugins]
 

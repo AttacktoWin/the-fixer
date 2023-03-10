@@ -129,9 +129,9 @@ npc_id = "%s"
 ''' % (count + i + len(unlocked_resource_ids) + 1, "-".join(split[1:]), split[0])
 
                 text += '''
-                [sub_resource type="Resource" id=%d]
-                script = ExtResource( 2 )
-                unlocked_ids = [ ''' % count
+[sub_resource type="Resource" id=%d]
+script = ExtResource( 2 )
+unlocked_ids = [ ''' % count
                 for i in range(len(unlocked_resource_ids)):
                     text += "SubResource( %d )%s" % (
                         unlocked_resource_ids[i], ", " if i < len(unlocked_resource_ids) - 1 else "")

@@ -49,7 +49,9 @@ func _ready():
 			npc.init_with_data(save_dict[npc.id] as Array)
 		else:
 			npc.init()
-			
+	if (save_dict.has("stats")):
+		StatsTracker.init(save_dict["stats"])
+		
 	if (Engine.editor_hint):
 		print("Loaded Dialogue System in {time} usec.".format({"time": Time.get_ticks_usec() - init_time}))
 		
@@ -142,6 +144,7 @@ func save() -> void:
 	var save_dict := {}
 	for npc in NPCs.values():
 		save_dict[npc.id] = npc.save()
+	save_dict["stats"] = StatsTracker.save()
 	var text = JSON.print(save_dict)
 	var file = File.new()
 	file.open(save_file_name, File.WRITE)

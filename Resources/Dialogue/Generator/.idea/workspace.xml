@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="85857e6c-57c3-422d-a9fe-340b82278ced" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../BossDialogueFile.tres" beforeDir="false" afterPath="$PROJECT_DIR$/../BossDialogueFile.tres" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FixerDialogueFile.tres" beforeDir="false" afterPath="$PROJECT_DIR$/../FixerDialogueFile.tres" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/events.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/list.csv" beforeDir="false" afterPath="$PROJECT_DIR$/list.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ManifestationDialogueFile.tres" beforeDir="false" afterPath="$PROJECT_DIR$/../ManifestationDialogueFile.tres" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../UnlockTable.tres" beforeDir="false" afterPath="$PROJECT_DIR$/../UnlockTable.tres" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Scripts/DialogueSystem/DialogueSystem.gd" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Scripts/DialogueSystem/DialogueSystem.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../addons/dialogic/Other/DialogicClass.gd" beforeDir="false" afterPath="$PROJECT_DIR$/../../../addons/dialogic/Other/DialogicClass.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/characters/character-1675203357.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/characters/character-1675203357.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/folder_structure.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/folder_structure.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../dialogic/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/settings.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1675632467.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1675632467.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1675632856.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1675632856.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1675632999.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1675632999.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678138756.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678138756.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678140354.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678140354.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678142374.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678142374.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,13 +21,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/shash/Documents/INT D 450/the-fixer/Resources/Dialogue/Generator"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/shash/Documents/INT D 450/the-fixer/Resources/Dialogue/Generator&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
