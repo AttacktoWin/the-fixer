@@ -1,5 +1,5 @@
 {
-	"color": "#ffffffff",
+	"color": "#fffdd838",
 	"description": "",
 	"display_name": "",
 	"display_name_bool": false,
@@ -7,15 +7,15 @@
 	"mirror_portraits": false,
 	"name": "???",
 	"nickname": "",
-	"nickname_bool": false,
-	"offset_x": 0,
+	"nickname_bool": true,
+	"offset_x": 50,
 	"offset_y": 0,
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://Assets/Portraits/Manifestation/manifest_portrait.png"
 		}
 	],
-	"scale": 100,
+	"scale": 50,
 	"theme": ""
 }

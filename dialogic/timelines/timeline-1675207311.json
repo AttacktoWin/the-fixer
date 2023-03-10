@@ -5,11 +5,11 @@
 			"event_id": "dialogic_040"
 		},
 		{
-			"animation": "2-fade_in_up.gd",
-			"animation_length": 0.5,
+			"animation": "1-fade_in.gd",
+			"animation_length": 0,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1675203451.json",
+			"character": "character-1678144008.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
 			"portrait": "Default",
@@ -36,14 +36,14 @@
 			"portrait": "Shadow",
 			"portrait_definition": "",
 			"position": {
-				"0": false,
-				"1": true,
+				"0": true,
+				"1": false,
 				"2": false,
 				"3": false,
 				"4": false
 			},
 			"type": 0,
-			"z_index": 0
+			"z_index": 1
 		},
 		{
 			"character": "character-1678144008.json",
@@ -60,7 +60,7 @@
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "Default",
+			"portrait": "Shadow",
 			"text": "\"I'm here to take out the trash.\""
 		},
 		{
@@ -73,7 +73,7 @@
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "Smile",
-			"text": "\"Not much of a talker, huh? [pause=1] [signal=anim-fixer-draw_weapon] Makes this next part easier for me.\""
+			"text": "\"Not much of a talker, huh? [pause=1][signal=anim-fixer-draw_weapon] Makes this next part easier for me.\""
 		},
 		{
 			"emit_signal": "unpause",

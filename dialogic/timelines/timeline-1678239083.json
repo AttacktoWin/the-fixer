@@ -30,7 +30,7 @@
 			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1675203451.json",
+			"character": "character-1678144008.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
 			"portrait": "Default",
@@ -52,7 +52,7 @@
 			"text": "\"You're tough, I'll give you that.\""
 		},
 		{
-			"character": "character-1675203451.json",
+			"character": "character-1678144008.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "\"...\""
