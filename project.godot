@@ -184,6 +184,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/NPCInstance.gd"
 }, {
+"base": "Node",
+"class": "PCG_Corridors",
+"language": "GDScript",
+"path": "res://Scripts/LevelGeneration/PCG_Corridors.gd"
+}, {
 "base": "Node2D",
 "class": "PCG_Partioner",
 "language": "GDScript",
@@ -285,6 +290,7 @@ _global_script_class_icons={
 "MathUtils": "",
 "NPC": "",
 "NPCInstance": "",
+"PCG_Corridors": "",
 "PCG_Partioner": "",
 "PCG_TileFiller": "",
 "PCG_Walker": "",

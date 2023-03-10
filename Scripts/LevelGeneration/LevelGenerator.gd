@@ -27,7 +27,7 @@ export(int) var max_steps_in_direction = 2
 #PARTIONER Params
 ########################################################################
 var partitioner:PCG_Partioner
-
+var corridor_builder:PCG_Corridors
 
 
 func _init():
@@ -42,13 +42,16 @@ var debug_list
 func _ready():
 	filler	= PCG_TileFiller.new()
 	walker	= PCG_Walker.new()
+	partitioner = PCG_Partioner.new()
+	corridor_builder = PCG_Corridors.new()
 	walker.construct(map_size,corridor_width)
 	
-	var path = walker.random_walk(walk_length,walker_start_pos,start_direction,random_turn_chance,max_steps_in_direction)
-	level = filler.floor_pass(path,level,Floor)
-	level = filler.wall_pass(path,level,Walls)
+#	var path = walker.random_walk(walk_length,walker_start_pos,start_direction,random_turn_chance,max_steps_in_direction)
+#	level = filler.floor_pass(path,level,Floor)
+#	level = filler.wall_pass(path,level,Walls)
 	
-#	partitioner = PCG_Partioner.new()
-#	var path2 = partitioner.room_builder()
-#	filler.floor_pass(path2,level,Floor)
-#	filler.wall_pass(path2,level,Walls)
+	var partitioning_data = partitioner.room_builder()
+	var path2 = partitioning_data[0]
+	path2+=corridor_builder.connect_rooms(partitioning_data[1])
+	filler.floor_pass(path2,level,Floor)
+	filler.wall_pass(path2,level,Walls)
