@@ -2,6 +2,7 @@ class_name PCG_Corridors
 extends Node
 
 var rng = RandomNumberGenerator.new()
+var brush_size = 5
 
 func _init():
 	rng.randomize()
@@ -50,6 +51,8 @@ func _make_corridor(current,next):
 			current.y += 1
 		elif current.y>next.y:
 			current.y -= 1
-		corridor.push_back(current)
-		print([current,next])
+		
+		for i in brush_size:
+			for j in brush_size:
+				corridor.push_back(current+Vector2(i,j))
 	return corridor 

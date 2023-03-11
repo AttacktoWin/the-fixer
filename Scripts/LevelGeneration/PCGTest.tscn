@@ -172,12 +172,11 @@ zoom = Vector2( 10, 10 )
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 7 )
-debug_mode = true
 map_size = Vector2( 40, 40 )
-corridor_width = 4
 walk_length = 80
 start_direction = 2
 max_steps_in_direction = 4
+corridor_width = 4
 
 [node name="Floor" type="TileMap" parent="."]
 unique_name_in_owner = true
