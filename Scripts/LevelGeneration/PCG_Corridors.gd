@@ -1,21 +1,19 @@
 class_name PCG_Corridors
 extends Node
+# Author: Yalmaz
+# Description: This class implements builds corridors using simple manhattan traversal
 
+# Description: Initalize random number generator.
 var rng = RandomNumberGenerator.new()
-var brush_size = 5
-
 func _init():
 	rng.randomize()
 
-func connect_rooms(room_list):
-	var room_centers = []
-	for room in room_list:
-		var center = room.get_center()
-		room_centers.push_back(Vector2(floor(center.x),floor(center.y)))
-	
+
+# Description: Connect together rooms with corridors
+func connect_rooms(room_centers,brush_size):
 	var start_room = rng.randi_range(0,room_centers.size()-1)
 	var current_room = room_centers[start_room]
-	room_centers.erase(room_centers)
+	room_centers.erase(current_room)
 	
 	var corridors = []
 	while(room_centers.size()>0):
@@ -24,10 +22,12 @@ func connect_rooms(room_list):
 		#pop that room
 		room_centers.erase(next_room)
 		#make corridor to that room
-		corridors += _make_corridor(current_room,next_room)
+		corridors += _make_corridor(current_room,next_room,brush_size)
 		current_room = next_room
 	return corridors
 
+
+# Description: Get closest room
 func _get_closest_room(current, room_centers = []):
 	var closest
 	var min_dis = 10000000000
@@ -37,12 +37,12 @@ func _get_closest_room(current, room_centers = []):
 			closest = center
 			min_dis = curr_dis
 	return closest
-	
-func _make_corridor(current,next):
+
+
+# Description: Build corridor based on brush width
+func _make_corridor(current,next,brush_size):
 	var corridor = []
-	var count = 0
 	while current!=next:
-		count+=1
 		if current.x < next.x:
 			current.x += 1
 		elif current.x > next.x:

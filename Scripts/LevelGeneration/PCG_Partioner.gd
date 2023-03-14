@@ -1,53 +1,73 @@
 class_name PCG_Partioner
 extends Node2D
+# Author: Yalmaz
+# Description: This class implements room generation using binary space partition
 
+# Partitioner parameters
 var rng = RandomNumberGenerator.new()
 
-var space = Rect2(0,0,60,60)
-var min_width = 15
-var min_height = 15
-var shrink_factor = 3
 
+# Description: Initalize random number generator.
 func _init():
 	rng.randomize()
 
 
-func room_builder():
+# Description: Use binary space partition to build the rooms.
+func room_builder(
+	space:Rect2,		#param:specifies the size of the map
+	width:int,			#param:specifies the min width of the generated rooms
+	height:int,			#param:specifies the min height of the generated rooms
+	shrink_factor:int	#param: specifies the shrink value for the space between rooms.
+	):
 	var path = []
-	var room_list = _binary_space_partition()
-	for room in room_list:
-		for i in range(room.position.x+self.shrink_factor,room.end.x-self.shrink_factor):
-			for j in range(room.position.y+self.shrink_factor,room.end.y-self.shrink_factor):
-				if path.find(Vector2(i,j)) != -1:
-					print("overlaps %s" %[Vector2(i,j)]) #ur bsp is fucking up
+	var parition_data = binary_space_partition(space,width,height)
+	for room in parition_data[0]:
+		for i in range(room.position.x+shrink_factor,
+					   room.end.x-shrink_factor):
+			for j in range(room.position.y+shrink_factor,
+						   room.end.y-shrink_factor):
 				path.push_back(Vector2(i,j))
-	return [path,room_list]
+	return [path,parition_data[0],parition_data[1]]
 
 
-func _binary_space_partition():
+# Description: Nothing much to look at here, its a simple bsp algo that returns 
+# rooms. Can be used in combination with walker for natural looking rooms
+func binary_space_partition(
+	space:Rect2,			#param:specifies the size of the map
+	min_width:int,			#param:specifies the min width of the generated rooms
+	min_height:int			#param:specifies the min height of the generated rooms
+	):
 	var room_queue = []
 	var room_list = []
-	room_queue.push_back(self.space)
+	var room_centers = []
+	room_queue.push_back(space)
 	
 	while(room_queue.size()>0):
 		var candidate:Rect2 = room_queue.pop_front()
 		if candidate.size.x > min_width*2:
 			# warning-ignore:narrowing_conversion
-			var new_partitions = _split(candidate,candidate.size.x,true)
+			var new_partitions = _split(min_width,min_height,candidate,candidate.size.x,true)
 			room_queue.push_back(new_partitions[0])
 			room_queue.push_back(new_partitions[1])
 		elif candidate.size.y > min_height*2:
 			# warning-ignore:narrowing_conversion
-			var new_partitions = _split(candidate,candidate.size.y,false)
+			var new_partitions = _split(min_width,min_height,candidate,candidate.size.y,false)
 			room_queue.push_back(new_partitions[0])
 			room_queue.push_back(new_partitions[1])
 		elif candidate.size.x >= min_width && candidate.size.y >= min_height:
 			room_list.push_back(candidate)
-	return room_list
+			var center = candidate.get_center()
+			room_centers.push_back(Vector2(floor(center.x),floor(center.y)))
+	return [room_list,room_centers]
 
 
-func _split(split_candidate:Rect2,upper_bound:int,vertical=false):
-	
+# Description: split a rectangle into two based on a random split value. It
+# splits horizontally or vertiaclly based on the prvovided bool.
+func _split(
+	min_width:int,min_height:int,
+	split_candidate:Rect2,
+	upper_bound:int,vertical=false
+	):
 	var position_a
 	var position_b
 	var size_a
@@ -64,5 +84,4 @@ func _split(split_candidate:Rect2,upper_bound:int,vertical=false):
 		position_b = Vector2(split_candidate.position.x,split_value+split_candidate.position.y)
 		size_a = Vector2(split_candidate.size.x,split_value)
 		size_b = Vector2(split_candidate.size.x,split_candidate.size.y - split_value)
-	
 	return [Rect2(position_a,size_a),Rect2(position_b,size_b)]

@@ -2,47 +2,42 @@ extends Node2D
 onready var Floor = get_node("%Floor")
 onready var Walls:TileMap = get_node("%Walls")
 
-export(Vector2) var map_size = Vector2(60,60) 
-
 var level = []
-
-########################################################################
-#WALKER Params
-########################################################################
-var walker:PCG_Walker
+enum MODE{WALK,ROOM,WALKED_ROOM}
 enum CARDINAL_DIR{N,S,E,W}
 
-export(int) var walk_length = 500
-export(Vector2) var walker_start_pos = Vector2(0,0)
+export(Vector2) var map_size = Vector2(60,60) 
+export(MODE) var generator_mode = MODE.WALKED_ROOM
+
+
+# WALKER Params
+var walker:PCG_Walker
+var walker_start_pos = Vector2(0,0)
+
 export(CARDINAL_DIR) var start_direction = CARDINAL_DIR.S
 export(float) var random_turn_chance = 0.25
+export(int) var walk_length = 500
 export(int) var max_steps_in_direction = 2
 
-
-########################################################################
-#PARTIONER Params
-########################################################################
+# PARTIONER Params
 var partitioner:PCG_Partioner
+export(int) var room_min_width = 15
+export(int) var room_min_height = 15
+export(int) var room_space_between = 3
 
-
-########################################################################
-#CORRIDOR_BUILDER Params
-########################################################################
-export(int) var corridor_width = 3
+# CORRIDOR_BUILDER Params
 var corridor_builder:PCG_Corridors
+export(int) var corridor_width = 3
 
-
-########################################################################
-#TILE_FILLER Params
-########################################################################
+# TILE_FILLER Params
 var filler:PCG_TileFiller
 
 func _init():
 	#initlize level array
 	#its so cursed that there isnt a better way to initialize a 2d array
-	for x in range (0,map_size.x*2):
+	for x in range (0,map_size.x+1):
 		level.push_back([])
-		for _y in range (0,map_size.y*2):
+		for _y in range (0,map_size.y+1):
 			level[x].push_back(-1)
 
 func _ready():
@@ -53,17 +48,43 @@ func _ready():
 	
 	var level_space = Rect2(0,0,map_size.x,map_size.y)
 	
-	var path = walker.random_walk(
-		walk_length,
-		walker_start_pos,
-		start_direction,
-		random_turn_chance,max_steps_in_direction)
-	
-	level = filler.floor_pass(path,level,Floor)
-	level = filler.wall_pass(path,level,Walls)
-	
-#	var partitioning_data = partitioner.room_builder()
-#	var path2 = partitioning_data[0]
-#	path2+=corridor_builder.connect_rooms(partitioning_data[1])
-#	filler.floor_pass(path2,level,Floor)
-#	filler.wall_pass(path2,level,Walls)
+	match generator_mode:
+		MODE.WALK:
+			var path = walker.random_walk(
+				level_space,
+				self.walker_start_pos,
+				self.start_direction,
+				self.walk_length,
+				self.random_turn_chance,self.max_steps_in_direction)
+			filler.floor_pass(path,level,Floor)
+			self.level = filler.wall_pass(path,level,Walls)
+		MODE.ROOM:
+			var partitioning_data = partitioner.room_builder(
+				level_space,
+				self.room_min_width,
+				self.room_min_height,
+				self.room_space_between)
+			var path = partitioning_data[0]
+			var room_centers = partitioning_data[2]
+			path+=corridor_builder.connect_rooms(room_centers,self.corridor_width)
+			filler.floor_pass(path,level,Floor)
+			self.level = filler.wall_pass(path,level,Walls)
+		MODE.WALKED_ROOM:
+			var partitioning_data = partitioner.binary_space_partition(
+				level_space,
+				self.room_min_width,self.room_min_height)
+			var room_list = partitioning_data[0]
+			var room_centers = partitioning_data[1]
+			var path = []
+			for index in room_list.size():
+				print(index)
+				var partial_path = walker.random_walk(
+					room_list[index],
+					room_centers[index],
+					self.start_direction,
+					self.walk_length,
+					self.random_turn_chance,self.max_steps_in_direction)
+				path+=partial_path
+			path+=corridor_builder.connect_rooms(room_centers,self.corridor_width)
+			filler.floor_pass(path,level,Floor)
+			self.level = filler.wall_pass(path,level,Walls)
