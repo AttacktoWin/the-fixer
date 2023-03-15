@@ -12,6 +12,8 @@ onready var fsm: FSMController = $FSMController
 
 var _gun = null
 
+var gun_controlled = false
+
 
 func _init():
 	Wwise.register_listener(self)
@@ -40,14 +42,22 @@ func _get_wanted_velocity():
 	return _get_wanted_direction() * getv(LivingEntity.VARIABLE.MAX_SPEED)
 
 
-func _handle_gun_aim():
+func get_wanted_gun_vector():
+	return CameraSingleton.get_absolute_mouse() - arms_container.global_position
+
+
+func set_gun_angle(angle):
+	self.arms_container.rotation = angle
+
+
+func player_input_gun_aim():
 	if self._is_dead:
 		return
-	var vec = CameraSingleton.get_absolute_mouse() - arms_container.global_position
+	var vec = get_wanted_gun_vector()
 	self.visual.scale.x = sign(vec.x) if vec.x != 0.0 else 1.0
 	vec.x = abs(vec.x)
 	var angle = vec.angle()
-	self.arms_container.rotation = angle
+	self.set_gun_angle(angle)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,7 +69,6 @@ func _process(_delta):
 		# 	PausingSingleton.pause(self)
 		# Scene.switch(Scene.Demo1.instance())
 		pass
-	self._handle_gun_aim()
 
 
 func _handle_camera():

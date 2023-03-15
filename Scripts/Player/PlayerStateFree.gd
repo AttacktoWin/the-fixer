@@ -22,6 +22,8 @@ func _physics_process(_delta):
 
 
 func _process(_delta):
+	self.entity.player_input_gun_aim()
+
 	var vel = self.entity.getv(LivingEntity.VARIABLE.VELOCITY)
 	if vel.length() > 25 or self.entity._get_wanted_direction().length() != 0:
 		self.fsm.set_animation("WALK")

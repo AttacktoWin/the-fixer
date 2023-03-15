@@ -12,4 +12,4 @@ func _on_fire_called():
 
 
 func _check_fire_pressed():
-	return Input.is_action_just_pressed("weapon_fire_ranged")
+	return Input.is_action_pressed("weapon_fire_ranged")

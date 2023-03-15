@@ -4,6 +4,9 @@ class_name PlayerStateDash extends FSMNode
 
 var _dash_timer = Timer.new()
 var _dash_direction = Vector2()
+var _gun_angle = -1
+var _gun_counter = 0
+const DASH_GUN_ANGLE = 0.8
 
 
 func _init():
@@ -21,6 +24,8 @@ func get_handled_states():
 
 
 func enter():
+	self._gun_angle = MathUtils.abs_x(self.entity.get_wanted_gun_vector()).angle()
+	self._gun_counter = 0
 	# Wwise.post_event_id(AK.EVENTS.DASH_PLAYER, self)
 	self.fsm.set_animation("DASH")
 	self.entity.setv(LivingEntity.VARIABLE.VELOCITY, Vector2())
@@ -52,5 +57,18 @@ func _physics_process(_delta):
 	pass
 
 
-func _process(_delta):
-	pass
+func _process(delta):
+	self._gun_counter += delta
+	var ang = 0
+	if self._gun_counter > 0.3:
+		ang = MathUtils.interpolate(
+			(self._gun_counter - 0.3) * 10,
+			DASH_GUN_ANGLE,
+			MathUtils.abs_x(self.entity.get_wanted_gun_vector()).angle(),
+			MathUtils.INTERPOLATE_IN
+		)
+	else:
+		ang = MathUtils.interpolate(
+			self._gun_counter * 10, self._gun_angle, DASH_GUN_ANGLE, MathUtils.INTERPOLATE_IN
+		)
+	self.entity.set_gun_angle(ang)

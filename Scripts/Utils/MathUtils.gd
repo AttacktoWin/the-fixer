@@ -49,6 +49,8 @@ static func interpolate_vector(vec, _min: float, _max: float, interp_type: int):
 	print("Input is not of type vector! ", vec)
 	return vec
 
+static func abs_x(vec):
+	return Vector2(abs(vec.x), vec.y)
 
 # converts delta from seconds to frames
 static func delta_frames(delta):
