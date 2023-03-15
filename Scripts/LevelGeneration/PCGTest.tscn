@@ -172,7 +172,10 @@ zoom = Vector2( 10, 10 )
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 7 )
-generator_mode = 0
+start_direction = 0
+walk_length = 100
+room_min_width = 13
+room_min_height = 13
 
 [node name="Floor" type="TileMap" parent="."]
 unique_name_in_owner = true

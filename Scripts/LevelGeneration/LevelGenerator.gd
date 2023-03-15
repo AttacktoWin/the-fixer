@@ -2,7 +2,7 @@ extends Node2D
 onready var Floor = get_node("%Floor")
 onready var Walls:TileMap = get_node("%Walls")
 
-var level = []
+var level = [] #-1 = non, 1 = floor, 2 = wall
 enum MODE{WALK,ROOM,WALKED_ROOM}
 enum CARDINAL_DIR{N,S,E,W}
 
@@ -32,15 +32,15 @@ export(int) var corridor_width = 3
 # TILE_FILLER Params
 var filler:PCG_TileFiller
 
-func _init():
+
+func _ready():
 	#initlize level array
 	#its so cursed that there isnt a better way to initialize a 2d array
 	for x in range (0,map_size.x+1):
 		level.push_back([])
 		for _y in range (0,map_size.y+1):
 			level[x].push_back(-1)
-
-func _ready():
+	
 	filler	= PCG_TileFiller.new()
 	walker	= PCG_Walker.new()
 	partitioner = PCG_Partioner.new()
