@@ -2,6 +2,8 @@
 
 class_name PlayerStateFree extends FSMNode
 
+var t_timer = 0
+
 
 # returns an array of states this entry claims to handle. This can be any data type
 func get_handled_states():
@@ -13,6 +15,8 @@ func enter():
 
 
 func exit():
+	self.entity.arms_secondary.hide()
+	self.entity.arms_container.scale.x = 0.5
 	self.fsm.get_animation_player().playback_speed = 1.0
 
 
@@ -22,7 +26,15 @@ func _physics_process(_delta):
 
 
 func _process(_delta):
-	self.entity.player_input_gun_aim()
+	if self.t_timer > 0:
+		self.t_timer -= _delta
+		self.entity.set_gun_angle(0)
+		self.entity.arms_secondary.show()
+		self.entity.arms_container.scale.x = -0.5
+	else:
+		self.entity.arms_secondary.hide()
+		self.entity.arms_container.scale.x = 0.5
+		self.entity.player_input_gun_aim()
 
 	var vel = self.entity.getv(LivingEntity.VARIABLE.VELOCITY)
 	if vel.length() > 25 or self.entity._get_wanted_direction().length() != 0:
@@ -48,6 +60,15 @@ func _unhandled_input(event: InputEvent):
 
 	if event.is_action_pressed("move_dash") and self.fsm.is_this_state(self):
 		self.fsm.set_state(PlayerState.DASHING)
+
+	if (
+		event is InputEventKey
+		and event.scancode == KEY_T
+		and not event.is_echo()
+		and event.is_pressed()
+	):
+		CameraSingleton.shake(20)
+		t_timer = 0.1
 
 
 const TURN_FACTOR = 2

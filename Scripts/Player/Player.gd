@@ -7,6 +7,7 @@ var _inv_timer = 0
 onready var anim_player: AnimationPlayer = $Visual/AnimationPlayer
 onready var socket_muzzle: Node2D = $Visual/ArmsContainer/SocketMuzzle
 onready var arms_container: Node2D = $Visual/ArmsContainer
+onready var arms_secondary: Node2D = $Visual/Arm2
 onready var visual: Node2D = $Visual
 onready var fsm: FSMController = $FSMController
 
