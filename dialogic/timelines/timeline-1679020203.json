@@ -1,0 +1,13 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1679020203.json",
+		"name": "boss-manifestation11win"
+	}
+}

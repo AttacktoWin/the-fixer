@@ -6,8 +6,8 @@
 	"id": "character-1675203451.json",
 	"mirror_portraits": false,
 	"name": "Manifestation",
-	"nickname": "???",
-	"nickname_bool": false,
+	"nickname": "Manifestation of the Vault,Man,the Vault",
+	"nickname_bool": true,
 	"offset_x": 50,
 	"offset_y": 0,
 	"portraits": [

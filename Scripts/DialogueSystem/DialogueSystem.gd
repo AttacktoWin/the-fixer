@@ -19,6 +19,7 @@ var follow_player := false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	randomize()
 	var init_time: int
 	if (Engine.editor_hint):
 		print("Loading Dialogue System")
@@ -86,18 +87,24 @@ func _signal_listener(s_name: String):
 	match s_name:
 		"pause":
 			PausingSingleton.pause()
+			$CanvasLayer.show()
+			$CanvasLayer/Tween.interpolate_property($CanvasLayer/ColorRect, "modulate", $CanvasLayer/ColorRect.modulate, Color(1, 1, 1, 0.5), 0.2)
+			$CanvasLayer/Tween.start()
 		"unpause":
 			PausingSingleton.unpause()
+			$CanvasLayer/Tween.interpolate_property($CanvasLayer/ColorRect, "modulate", $CanvasLayer/ColorRect.modulate, Color(1, 1, 1, 0), 0.2)
+			$CanvasLayer/Tween.interpolate_callback($CanvasLayer, 0.2, "hide")
+			$CanvasLayer/Tween.start()
 		"hide_screen":
 			$CanvasLayer.show()
 			$CanvasLayer/Tween.interpolate_property($CanvasLayer/ColorRect, "modulate", $CanvasLayer/ColorRect.modulate, Color(1, 1, 1, 1), 0.2)
 			$CanvasLayer/Tween.start()
 		"reveal_screen":
 			$CanvasLayer/Tween.interpolate_property($CanvasLayer/ColorRect, "modulate", $CanvasLayer/ColorRect.modulate, Color(1, 1, 1, 0), 0.2)
-			$CanvasLayer/Tween.interpolate_callback($CanvasLayer, 0.2, "show")
+			$CanvasLayer/Tween.interpolate_callback($CanvasLayer, 0.2, "hide")
 			$CanvasLayer/Tween.start()
 		"shake_screen":
-			pass
+			CameraSingleton.shake(0.5)
 		"bubble":
 			self.current_dialog_box.follow_viewport_enable = true
 			self.follow_player = true
@@ -109,6 +116,7 @@ func get_top_dialogue(npc_id: String) -> Dialogue:
 	return (NPCs[npc_id] as NPC).get_top_dialogue()
 	
 func unlock_dialogues(unlocked: Array) -> void:
+	unlocked.shuffle()
 	for ids in unlocked:
 		if (NPCs.has(ids.npc_id)):
 			(NPCs[ids.npc_id] as NPC).unlock_dialogue(ids.dialogue_id)

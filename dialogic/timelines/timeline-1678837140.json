@@ -46,36 +46,58 @@
 			"z_index": 0
 		},
 		{
-			"audio": "play",
-			"audio_bus": "Master",
-			"event_id": "dialogic_030",
-			"event_name": "AudioEvent",
-			"file": "",
-			"volume": 0
-		},
-		{
-			"character": "character-1675203357.json",
-			"event_id": "dialogic_001",
-			"portrait": "Shadow",
-			"text": "\"...\""
-		},
-		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
-			"portrait": "Crossed",
-			"text": "\"Something troubling you?\""
+			"portrait": "",
+			"text": "\"Well, I did the legwork. I took a look into what you asked about.\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"...Don't be surprised if you find the phone, uh, [pause=0.5]disconnected.\""
+			"text": "\"About the orders that thing got?\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Crossed",
+			"text": "\"More about the Vault itself.\"\n\"Turns out the thing was installed into the hideout by one of the Bosses a few decades ago.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow",
+			"text": "\"Decades?! There's no way that thing's decades old!\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"See, the Boss back then was a wizard with machines. Made her own lab in the basement then built the Vault as sorta an extension to it.\"\n\"A little birdie told me she locked herself in that lab and kept making more machines, obsessed with automating our work.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"That sounds freaky. What happened to the good ol' fashioned work we were doing?\""
 		},
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "Default",
-			"text": "\"I didn't think the solicitors were that bad.\""
+			"text": "\"Well that's what I found. Follows that maybe she ended up making our little friend as a way to automate her job.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow",
+			"text": "\"...\"\n\"Well, thanks for looking into it. For now, I've got some beef to settle with that bucket of bolts.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Be careful down there.\""
 		},
 		{
 			"animation": "[Default]",
@@ -101,34 +123,11 @@
 		{
 			"emit_signal": "unpause",
 			"event_id": "dialogic_040"
-		},
-		{
-			"emit_signal": "bubble",
-			"event_id": "dialogic_040"
-		},
-		{
-			"event_id": "dialogic_024",
-			"set_theme": "theme-1677774779.cfg"
-		},
-		{
-			"block_input": true,
-			"event_id": "dialogic_050",
-			"wait_time": 3
-		},
-		{
-			"character": "character-1675203357.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "\"It's more the agressive collect calls I can't stand.\""
-		},
-		{
-			"event_id": "dialogic_022",
-			"transition_duration": 0.5
 		}
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1678236890.json",
-		"name": "boss-1-beetlekill"
+		"file": "timeline-1678837140.json",
+		"name": "boss-manifestation8win"
 	}
 }

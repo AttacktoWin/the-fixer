@@ -5,8 +5,8 @@
 			"event_id": "dialogic_040"
 		},
 		{
-			"animation": "2-fade_in_up.gd",
-			"animation_length": 0.5,
+			"animation": "[Default]",
+			"animation_length": 0,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "character-1675203446.json",
@@ -25,8 +25,8 @@
 			"z_index": 0
 		},
 		{
-			"animation": "2-fade_in_up.gd",
-			"animation_length": 0.5,
+			"animation": "[Default]",
+			"animation_length": 0,
 			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
@@ -49,29 +49,53 @@
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"I trust you've been making progess on your... [color=#ff1e2b]new assignment[/color]?\""
+			"text": "\"Learn anything new down there?\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"I've been chipping away at it, Boss.\""
+			"text": "\"...You wouldn't consider me a weapon, right?\""
 		},
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "Crossed",
-			"text": "\"Good, good. But don't think this means you're off the hook for your old job too.\""
+			"text": "\"What? Course not, you're flesh and blood under that coat.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Right, right. [pause=0.3]But, when I go and get weapons for you, you know, do my job? [pause=0.2]And of course with this new assignment of actually bruising some guys...\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Where's this going?\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"I'm just... having a bit of an existential crisis, I think.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"If you need some time to decompress, take it, please. We can keep all your side of the business on halt until when you get back.\"\n\"You're a made man, son, and that means your family's gonna be looking out for you.\"\n\"And if that means we gotta get back to the old school days of pool cues and fists while you figure things out, [pause=0.1]I'm sure everyone here would be willing to do it.\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "Smile",
-			"text": "\"Wouldn't dream of it. Besides, bringing back the goods from [color=#FDD838]The Vault[/color] has always been my passion.\""
+			"text": "\"Thanks, that really means a lot. [pause=0.3]But I'm still good to keep bringing pieces back. Helps me think, doing what I love.\""
 		},
 		{
-			"animation": "5-fade_out_down.gd",
-			"animation_length": 0.5,
+			"animation": "[Default]",
+			"animation_length": 0,
 			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
@@ -108,10 +132,10 @@
 			"wait_time": 3
 		},
 		{
-			"character": "character-1675203357.json",
+			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"Plus the pay's pretty good for it.\""
+			"text": "[i]And I need more answers from the Vault.[/i]"
 		},
 		{
 			"event_id": "dialogic_022",
@@ -120,7 +144,7 @@
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1678235409.json",
-		"name": "boss-1-quip2"
+		"file": "timeline-1678835135.json",
+		"name": "boss-manifestation7win"
 	}
 }

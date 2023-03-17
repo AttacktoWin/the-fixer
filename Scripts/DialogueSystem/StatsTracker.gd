@@ -3,6 +3,7 @@ extends Node
 
 var manifestation_wins := 0
 var manifestation_fights := 0
+var deaths := 0
 
 
 func add_manifestation_win():
@@ -16,6 +17,13 @@ func add_manifestation_fight():
 	self.manifestation_fights += 1
 	if (self.manifestation_fights == 100):
 		DialogueSystem.event_viewed("100manifestation")
+		
+func add_death():
+	self.deaths += 1
+	Dialogic.set_variable("deaths", self.deaths)
+	
+func set_current_difficulty(difficulty: float):
+	Dialogic.set_variable("difficulty", difficulty)
 
 func save():
 	return {

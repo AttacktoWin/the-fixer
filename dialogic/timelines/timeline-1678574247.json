@@ -5,34 +5,13 @@
 			"event_id": "dialogic_040"
 		},
 		{
-			"animation": "2-fade_in_up.gd",
-			"animation_length": 0.5,
+			"animation": "instant_in.gd",
+			"animation_length": 0,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1675203446.json",
+			"character": "character-1678144008.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
-			"portrait": "Default",
-			"portrait_definition": "",
-			"position": {
-				"0": false,
-				"1": true,
-				"2": false,
-				"3": false,
-				"4": false
-			},
-			"type": 0,
-			"z_index": 0
-		},
-		{
-			"animation": "2-fade_in_up.gd",
-			"animation_length": 0.5,
-			"animation_wait": true,
-			"change_mirror_portrait": false,
-			"change_z_index": false,
-			"character": "character-1675203357.json",
-			"event_id": "dialogic_002",
-			"mirror_portrait": true,
 			"portrait": "Default",
 			"portrait_definition": "",
 			"position": {
@@ -46,33 +25,59 @@
 			"z_index": 0
 		},
 		{
-			"character": "character-1675203446.json",
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Shadow",
+			"portrait_definition": "",
+			"position": {
+				"0": true,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1678144008.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"I trust you've been making progess on your... [color=#ff1e2b]new assignment[/color]?\""
+			"text": "\"[i]Keep at it. Maybe bashing its head in a few more times'll stop it from yapping[/i].\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"I've been chipping away at it, Boss.\""
+			"text": "\"You listening in on us, pal?!\""
 		},
 		{
-			"character": "character-1675203446.json",
+			"character": "character-1678144008.json",
 			"event_id": "dialogic_001",
-			"portrait": "Crossed",
-			"text": "\"Good, good. But don't think this means you're off the hook for your old job too.\""
+			"portrait": "",
+			"text": "\"[i]I'm listening in on you, pal?![/i]\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "[i]It looks like our little friend here's a rat. And in the mafia, ya gotta take out rats as soon as they stick out their heads.[/i]\n[i]But I got a sneaking suspicion that this rat's just gonna keep spying on us.[/i]"
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "Smile",
-			"text": "\"Wouldn't dream of it. Besides, bringing back the goods from [color=#FDD838]The Vault[/color] has always been my passion.\""
+			"text": "\"Only one way to find out I guess.\""
 		},
 		{
-			"animation": "5-fade_out_down.gd",
-			"animation_length": 0.5,
-			"animation_wait": true,
+			"animation": "[Default]",
+			"animation_length": 0,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "[All]",
@@ -93,34 +98,11 @@
 		{
 			"emit_signal": "unpause",
 			"event_id": "dialogic_040"
-		},
-		{
-			"emit_signal": "bubble",
-			"event_id": "dialogic_040"
-		},
-		{
-			"event_id": "dialogic_024",
-			"set_theme": "theme-1677774779.cfg"
-		},
-		{
-			"block_input": true,
-			"event_id": "dialogic_050",
-			"wait_time": 3
-		},
-		{
-			"character": "character-1675203357.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "\"Plus the pay's pretty good for it.\""
-		},
-		{
-			"event_id": "dialogic_022",
-			"transition_duration": 0.5
 		}
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1678235409.json",
-		"name": "boss-1-quip2"
+		"file": "timeline-1678574247.json",
+		"name": "manifestation-3"
 	}
 }

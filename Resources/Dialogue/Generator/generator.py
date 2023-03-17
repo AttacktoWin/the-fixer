@@ -1,8 +1,9 @@
 import csv
 
 priorities = {
-    "STORY": 0,
-    "RELEVANT": 1,
+    "SPECIFIC": 0,
+    "STORY": 1,
+    "RELEVANT": 2,
     "QUIP": 99
 }
 

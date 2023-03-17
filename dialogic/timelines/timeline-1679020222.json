@@ -7,17 +7,18 @@
 		{
 			"animation": "[Default]",
 			"animation_length": 0,
+			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
-			"portrait": "Shadow",
+			"portrait": "Smile",
 			"portrait_definition": "",
 			"position": {
 				"0": false,
-				"1": true,
-				"2": false,
+				"1": false,
+				"2": true,
 				"3": false,
 				"4": false
 			},
@@ -25,48 +26,44 @@
 			"z_index": 0
 		},
 		{
-			"animation": "[Default]",
-			"animation_length": 0,
-			"animation_wait": true,
-			"change_mirror_portrait": false,
-			"change_z_index": false,
-			"character": "character-1678144008.json",
-			"event_id": "dialogic_002",
-			"mirror_portrait": false,
-			"portrait": "Default",
-			"portrait_definition": "",
-			"position": {
-				"0": false,
-				"1": false,
-				"2": false,
-				"3": true,
-				"4": false
-			},
-			"type": 0,
-			"z_index": 0
-		},
-		{
 			"character": "character-1675203357.json",
-			"event_id": "dialogic_001",
-			"portrait": "(Don't change)",
-			"text": "\"You're tough, I'll give you that.\""
-		},
-		{
-			"character": "character-1678144008.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"...\""
+			"text": "[i]I know the ol' rust bucket's gonna get back up again anyways but...[/i]"
+		},
+		{
+			"emit_signal": "hide_screen",
+			"event_id": "dialogic_040"
+		},
+		{
+			"audio": "play",
+			"audio_bus": "Master",
+			"event_id": "dialogic_030",
+			"event_name": "AudioEvent",
+			"file": "",
+			"volume": 0
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "(Don't change)",
-			"text": "\"But you see, when there's a hit out for ya, a wiseguy like me's got a job to do.\""
+			"portrait": "",
+			"text": "[i]That oughta send a nice and clear message.[/i]"
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "[i]But what was it talking about? [pause=0.1]About me getting authorization if I were to become the Boss?[/i]\n[i]If I don't have authorization... [pause=0.2]Does that mean that the Boss does?[/i]"
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Smile",
+			"text": "[i]I've just had an awful idea.[/i]"
 		},
 		{
 			"animation": "[Default]",
 			"animation_length": 0,
-			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
 			"character": "[All]",
@@ -85,13 +82,17 @@
 			"z_index": 0
 		},
 		{
+			"emit_signal": "unhide_screen",
+			"event_id": "dialogic_040"
+		},
+		{
 			"emit_signal": "unpause",
 			"event_id": "dialogic_040"
 		}
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
-		"file": "timeline-1678239083.json",
-		"name": "manifestaion-1-fight"
+		"file": "timeline-1679020222.json",
+		"name": "fixer-post11win"
 	}
 }
