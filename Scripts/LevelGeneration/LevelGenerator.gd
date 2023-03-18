@@ -1,4 +1,10 @@
 extends Node2D
+
+export (NodePath) var Player_path
+export (NodePath) var Exit_path
+onready var player = get_node(Player_path)
+onready var exit = get_node(Exit_path)
+
 onready var Floor = get_node("%Floor")
 onready var Walls:TileMap = get_node("%Walls")
 
@@ -32,6 +38,9 @@ export(int) var corridor_width = 3
 # TILE_FILLER Params
 var filler:PCG_TileFiller
 
+# POPULATOR Params
+var populator:PCG_Populator
+
 
 func _ready():
 	#initlize level array
@@ -41,12 +50,15 @@ func _ready():
 		for _y in range (0,map_size.y+1):
 			level[x].push_back(-1)
 	
+	var level_space = Rect2(0,0,map_size.x,map_size.y)
+	
 	filler	= PCG_TileFiller.new()
 	walker	= PCG_Walker.new()
 	partitioner = PCG_Partioner.new()
 	corridor_builder = PCG_Corridors.new()
 	
-	var level_space = Rect2(0,0,map_size.x,map_size.y)
+	populator = PCG_Populator.new()
+	populator.construct(player,exit)
 	
 	match generator_mode:
 		MODE.WALK:
@@ -66,6 +78,7 @@ func _ready():
 				self.room_space_between)
 			var path = partitioning_data[0]
 			var room_centers = partitioning_data[2]
+			var path_by_rooms = partitioning_data[0]
 			path+=corridor_builder.connect_rooms(room_centers,self.corridor_width)
 			filler.floor_pass(path,level,Floor)
 			self.level = filler.wall_pass(path,level,Walls)
@@ -76,6 +89,8 @@ func _ready():
 			var room_list = partitioning_data[0]
 			var room_centers = partitioning_data[1]
 			var path = []
+			var path_by_rooms = {}
+			path = corridor_builder.connect_rooms(room_centers,self.corridor_width)
 			for index in room_list.size():
 				print(index)
 				var partial_path = walker.random_walk(
@@ -85,6 +100,7 @@ func _ready():
 					self.walk_length,
 					self.random_turn_chance,self.max_steps_in_direction)
 				path+=partial_path
-			path+=corridor_builder.connect_rooms(room_centers,self.corridor_width)
+				path_by_rooms[room_list[index]] = partial_path
 			filler.floor_pass(path,level,Floor)
 			self.level = filler.wall_pass(path,level,Walls)
+			populator.populate(Floor,path,room_list,room_centers,path_by_rooms)

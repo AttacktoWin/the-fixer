@@ -20,14 +20,17 @@ func room_builder(
 	shrink_factor:int	#param: specifies the shrink value for the space between rooms.
 	):
 	var path = []
+	var path_by_room = {}
 	var parition_data = binary_space_partition(space,width,height)
 	for room in parition_data[0]:
+		path_by_room[room] = []
 		for i in range(room.position.x+shrink_factor,
 					   room.end.x-shrink_factor):
 			for j in range(room.position.y+shrink_factor,
 						   room.end.y-shrink_factor):
 				path.push_back(Vector2(i,j))
-	return [path,parition_data[0],parition_data[1]]
+				path_by_room.push_back(Vector2(i,j))
+	return [path,parition_data[0],parition_data[1],path_by_room]
 
 
 # Description: Nothing much to look at here, its a simple bsp algo that returns 
