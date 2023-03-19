@@ -29,7 +29,7 @@
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[i]I know the ol' rust bucket's gonna get back up again anyways but...[/i]"
+			"text": "[i]I know the ol' rust bucket's just gonna get back up again but...[/i]"
 		},
 		{
 			"emit_signal": "hide_screen",

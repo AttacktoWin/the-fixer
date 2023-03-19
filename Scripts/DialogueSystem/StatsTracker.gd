@@ -12,6 +12,10 @@ func add_manifestation_win():
 		DialogueSystem.event_viewed("manifestation{count}win".format({
 		"count": self.manifestation_wins
 	}))
+		if (self.manifestation_wins >= 10):
+			DialogueSystem.call_deferred("display_dialogue", "fixer", "post{count}win".format({
+				"count": self.manifestation_wins
+			}))
 	
 func add_manifestation_fight():
 	self.manifestation_fights += 1

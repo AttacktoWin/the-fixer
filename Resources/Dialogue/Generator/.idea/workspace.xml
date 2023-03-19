@@ -5,34 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="85857e6c-57c3-422d-a9fe-340b82278ced" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/events.csv" beforeDir="false" afterPath="$PROJECT_DIR$/events.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Scripts/DialogueSystem/DialogueSystem.gd" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Scripts/DialogueSystem/DialogueSystem.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Scripts/DialogueSystem/NPC.gd" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Scripts/DialogueSystem/NPC.gd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/list.csv" beforeDir="false" afterPath="$PROJECT_DIR$/list.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../Scripts/DialogueSystem/StatsTracker.gd" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Scripts/DialogueSystem/StatsTracker.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../Scripts/DialogueSystem/classes/Dialogue.gd" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Scripts/DialogueSystem/classes/Dialogue.gd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../addons/dialogic/Localization/dialogic.de.translation" beforeDir="false" afterPath="$PROJECT_DIR$/../../../addons/dialogic/Localization/dialogic.de.translation" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../addons/dialogic/Localization/dialogic.en.translation" beforeDir="false" afterPath="$PROJECT_DIR$/../../../addons/dialogic/Localization/dialogic.en.translation" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../addons/dialogic/Localization/dialogic.es.translation" beforeDir="false" afterPath="$PROJECT_DIR$/../../../addons/dialogic/Localization/dialogic.es.translation" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../addons/dialogic/Localization/dialogic.fr.translation" beforeDir="false" afterPath="$PROJECT_DIR$/../../../addons/dialogic/Localization/dialogic.fr.translation" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../addons/dialogic/Localization/dialogic.zh_CN.translation" beforeDir="false" afterPath="$PROJECT_DIR$/../../../addons/dialogic/Localization/dialogic.zh_CN.translation" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/characters/character-1675203451.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/characters/character-1675203451.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/definitions.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/definitions.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../dialogic/folder_structure.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/folder_structure.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../dialogic/settings.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/settings.cfg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678144277.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678144277.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678234571.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678234571.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678235409.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678235409.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678235828.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678235828.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678236283.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678236283.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678236453.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678236453.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678236890.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678236890.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678239083.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678239083.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678239320.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678239320.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678239419.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678239419.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678239540.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678239540.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678239857.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678239857.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678240613.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1678240613.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1679020203.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1679020203.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1679020222.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../../dialogic/timelines/timeline-1679020222.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

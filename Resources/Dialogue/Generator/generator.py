@@ -137,7 +137,7 @@ unlocked_ids = [ ''' % count
                     text += "SubResource( %d )%s" % (
                         unlocked_resource_ids[i], ", " if i < len(unlocked_resource_ids) - 1 else "")
                 text += ''' ]
-                removed_ids = [ '''
+removed_ids = [ '''
                 for i in range(len(removed_resource_ids)):
                     text += "SubResource( %d )%s" % (
                         removed_resource_ids[i], ", " if i < len(removed_resource_ids) - 1 else "")
@@ -180,7 +180,7 @@ unlocked_ids = [ ''' % count
 removed_ids = [ '''
         for i in range(len(removed_resource_ids)):
             text += "SubResource( %d )%s" % (
-                removed_resource_ids[i], ", " if i < len(unlocked_resource_ids) - 1 else "")
+                removed_resource_ids[i], ", " if i < len(removed_resource_ids) - 1 else "")
 
         text += ''' ]
 '''

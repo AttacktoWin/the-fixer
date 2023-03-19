@@ -35,7 +35,8 @@
 		"Themes": {
 			"files": [
 				"default-theme.cfg",
-				"theme-1677774779.cfg"
+				"theme-1677774779.cfg",
+				"theme-1679257626.cfg"
 			],
 			"folders": {
 
@@ -441,7 +442,7 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": true
+						"folded": false
 					}
 				},
 				"Phase 09": {
@@ -488,7 +489,7 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": true
+						"folded": false
 					}
 				},
 				"Phase 10": {
@@ -535,7 +536,7 @@
 					},
 					"metadata": {
 						"color": null,
-						"folded": true
+						"folded": false
 					}
 				},
 				"Phase 11": {
@@ -590,7 +591,42 @@
 
 					],
 					"folders": {
+						"boss": {
+							"files": [
+								"timeline-1679257306.json"
+							],
+							"folders": {
 
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
+						},
+						"fixer": {
+							"files": [
+								"timeline-1679256331.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
+						},
+						"manifestation": {
+							"files": [
+								"timeline-1679255645.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
+						}
 					},
 					"metadata": {
 						"color": null,
