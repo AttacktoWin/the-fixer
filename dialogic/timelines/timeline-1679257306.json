@@ -168,7 +168,7 @@
 			"text": "[b]Thank you for playing![/b]"
 		},
 		{
-			"emit_signal": "unhide_screen",
+			"emit_signal": "reveal_screen",
 			"event_id": "dialogic_040"
 		},
 		{

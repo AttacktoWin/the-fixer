@@ -82,7 +82,7 @@
 			"z_index": 0
 		},
 		{
-			"emit_signal": "unhide_screen",
+			"emit_signal": "reveal_screen",
 			"event_id": "dialogic_040"
 		},
 		{
