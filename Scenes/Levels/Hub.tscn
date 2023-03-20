@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Tiles/Hub/hub-wall.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Tiles/Hub/hub-floor.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Tiles/Hub/vault-door.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=7]
 
 [sub_resource type="TileSet" id=1]
@@ -424,3 +425,8 @@ position = Vector2( 259, 385 )
 script = ExtResource( 7 )
 id = "fixer"
 immediate = true
+
+[node name="Vault-door" type="Sprite" parent="."]
+position = Vector2( 1835, -229 )
+scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 4 )
