@@ -11,6 +11,11 @@ func construct(_player,_goal):
 func populate(tile_map,path,room_list,room_centers,path_by_room):
 	_player_goal_pass(tile_map,path,room_list,room_centers,path_by_room)
 	_pick_cast()
+	var test = {"hello":1,"there":2,"super":3, "intendent":4}
+	for thing in test:
+		print(thing)
+	test = _sort_dict(test)
+	print(test)
 
 func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 	var start = room_centers.front()
@@ -73,7 +78,7 @@ func _pick_cast():
 #    2 |  0  0  5  5 10 10 15 15 20 20 25
 #    3 |  0  0  5  5 10 10 15 15 20 20 25
 
-func _hostile_pass():
+func _hostile_pass(rooms,enemies =[]):
 	pass
 	# reverse priority que of all rooms start with equal weight, shuffled and exluding start
 	# for each enemy:
@@ -82,7 +87,6 @@ func _hostile_pass():
 		#pop immediate neighbours
 		#if room has no more valid nodes kill it from the list
 		#otherwise add to it the cost
-
 
 func gen_dijstra_map(start,path):
 	var d_map = {}
@@ -103,3 +107,14 @@ func gen_dijstra_map(start,path):
 			d_map[candidate] = d_map[curr]+1
 			que.push_back(candidate)
 	return d_map
+
+func _sort_dict(dict={}):
+	var values = dict.values()
+	var sorted_dict = {}
+	values.sort()
+	for value in values:
+		for key in dict.keys():
+			if dict[key] == value:
+				dict.erase(key)
+				sorted_dict[key] = value
+	return sorted_dict
