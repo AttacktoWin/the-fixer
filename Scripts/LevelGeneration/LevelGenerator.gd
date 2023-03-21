@@ -101,6 +101,6 @@ func _ready():
 					self.random_turn_chance,self.max_steps_in_direction)
 				path+=partial_path
 				path_by_rooms[room_list[index]] = partial_path
+			populator.populate(Floor,path,room_list,room_centers,path_by_rooms)
 			filler.floor_pass(path,level,Floor)
 			self.level = filler.wall_pass(path,level,Walls)
-			populator.populate(Floor,path,room_list,room_centers,path_by_rooms)

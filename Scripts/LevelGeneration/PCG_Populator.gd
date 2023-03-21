@@ -1,8 +1,10 @@
 class_name PCG_Populator
 extends Node2D
 
+export(PackedScene) onready var enemies
 var player
 var goal
+var budget = 30
 
 func construct(_player,_goal):
 	self.player = _player
@@ -28,6 +30,10 @@ func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 	#loop over to find room
 	for index in range(room_list.size()):
 		if room_list[index].has_point(exit):
+			#flatten space around center
+			for x in range (-3,4):
+				for y in range (-3,4):
+					path.push_back(room_centers[index]+Vector2(x,y))
 			#set room center as exit
 			pos = tile_map.map_to_world(room_centers[index])
 			goal.global_position = tile_map.to_global(pos)
@@ -35,7 +41,10 @@ func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 	
 
 func _pick_cast():
-	pass
+	var enemies = ["goomba","camera","bird"]
+	var total =0
+	while total<budget:
+		pass
 	# while budget not dry and budget not less then min cost:
 		#while set>0
 			#pick enemy from suffled set
