@@ -1,10 +1,8 @@
 class_name PCG_Populator
 extends Node2D
 
-export(PackedScene) onready var enemies
 var player
 var goal
-var budget = 30
 
 func construct(_player,_goal):
 	self.player = _player
@@ -12,6 +10,7 @@ func construct(_player,_goal):
 	
 func populate(tile_map,path,room_list,room_centers,path_by_room):
 	_player_goal_pass(tile_map,path,room_list,room_centers,path_by_room)
+	_pick_cast()
 
 func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 	var start = room_centers.front()
@@ -37,33 +36,46 @@ func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 
 
 func _pick_cast():
-	var enemies = ["goomba","camera","bird"]
-	var total =0
-	while total<budget:
-		pass
-	# while budget not dry and budget not less then min cost:
-		#while set>0
-			#pick enemy from suffled set
-			#if cost<budget
-				#budget-cost
-				#break
-			#else
-				#pop
-
+	var enemies = ["goomba","bird","camera"]
+	var value = [3,7,2]
+	var cost = [4,9,1]
+	var budget = 6
+	#lets solve a knapsack problem baby
+	#look up table first
+	var look_up = []
+	for item in range(enemies.size()+1):
+		look_up.append([])
+		for capcity in range(budget+1):
+			look_up[item].append(0)
+	
+	var n = value.size()
+	for i in range(1,n+1):
+		for j in range(1,budget+1):
+			if cost[i-1]<=j:
+				look_up[i][j] = max(look_up[i-1][j], look_up[i-1][j-cost[i-1]]+value[i-1])
+			else:
+				look_up[i][j] = look_up[i-1][j]
+	
+	var i = n
+	var j = budget
+	var selection = []
+	while i>0 and j>0:
+		if look_up[i][j] != look_up[i-1][j]:
+			selection.append(enemies[i-1])
+			j-=cost[i-1]
+		i-=1
+	
+	print(selection)
 func _hostile_pass():
 	pass
-	# find path to goal
-		#dijkstra
-		#test by spawning goombs
-	# sample n=cast_size points on path at even distance
-		#test by spawning enemy at each point should be even
-	# reduce even-ness and translate it
-	# offset the positioning
-	
-	#pesudo poisson appraoch:
-	# divide cast among rooms
-	#for each enemy in room
-		# pick random point in room. delete cost radius
+	# reverse priority que of all rooms start with equal weight, shuffled and exluding start
+	# for each enemy:
+		#take the top room
+		#pick a random place it
+		#pop immediate neighbours
+		#if room has no more valid nodes kill it from the list
+		#otherwise add to it the cost
+
 
 func gen_dijstra_map(start,path):
 	var d_map = {}
