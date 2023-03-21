@@ -37,9 +37,9 @@ func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 
 func _pick_cast():
 	var enemies = ["goomba","bird","camera"]
-	var value = [3,7,2]
-	var cost = [4,9,1]
-	var budget = 6
+	var value = [5,6,8]
+	var cost = [2,5,6]
+	var budget = 10
 	#lets solve a knapsack problem baby
 	#look up table first
 	var look_up = []
@@ -65,7 +65,14 @@ func _pick_cast():
 			j-=cost[i-1]
 		i-=1
 	
-	print(selection)
+	print(look_up)
+#	      0  1  2  3  4  5  6  7  8  9 10
+#      ----------------------------------
+#    0 |  0  0  0  0  0  0  0  0  0  0  0
+#    1 |  0  0  5  5 10 10 15 15 20 20 25
+#    2 |  0  0  5  5 10 10 15 15 20 20 25
+#    3 |  0  0  5  5 10 10 15 15 20 20 25
+
 func _hostile_pass():
 	pass
 	# reverse priority que of all rooms start with equal weight, shuffled and exluding start
