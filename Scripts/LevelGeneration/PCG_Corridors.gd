@@ -11,16 +11,17 @@ func _init():
 
 # Description: Connect together rooms with corridors
 func connect_rooms(room_centers,brush_size):
-	var start_room = rng.randi_range(0,room_centers.size()-1)
-	var current_room = room_centers[start_room]
-	room_centers.erase(current_room)
+	var centers = room_centers.duplicate()
+	var start_room = rng.randi_range(0,centers.size()-1)
+	var current_room = centers[start_room]
+	centers.erase(current_room)
 	
 	var corridors = []
-	while(room_centers.size()>0):
+	while(centers.size()>0):
 		#find closest room
-		var next_room = _get_closest_room(current_room,room_centers)
+		var next_room = _get_closest_room(current_room,centers)
 		#pop that room
-		room_centers.erase(next_room)
+		centers.erase(next_room)
 		#make corridor to that room
 		corridors += _make_corridor(current_room,next_room,brush_size)
 		current_room = next_room

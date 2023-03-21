@@ -25,7 +25,7 @@ func floor_pass(
 	):
 	for step in path:
 		if level[step.x][step.y] == -1:
-			floor_set.set_cellv(Vector2(step.x,step.y),1)
+			floor_set.set_cellv(Vector2(step.x,step.y),0)
 			level[step.x][step.y] = 1
 	return level
 
