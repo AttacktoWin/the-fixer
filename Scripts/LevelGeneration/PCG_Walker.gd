@@ -18,7 +18,10 @@ var path = []
 # Description: Initalize random number generator.
 func _init():
 	randomize()
-
+#var path = []
+#	var room_list = []
+#	var room_centers = []
+#	var path_by_rooms = {}
 
 # Description: Nothing much too look at here. Its a simple random walking algo.
 func random_walk(
@@ -30,8 +33,12 @@ func random_walk(
 		max_steps_in_direction := 2,		#param:how far the the walker will walk in one direction.
 		corridor_size = 4
 	):
-	var curr_position  = start_position
 	var direction = DIRECTIONS[start_direction]
+	#dd current before walking begins
+	var curr_position  = start_position
+	for i in range(-corridor_size,corridor_size+1):
+		for j in range(-corridor_size,corridor_size+1):
+			path.push_back(curr_position+Vector2(i,j))
 	for step in walk_length:
 		#check if walker should change direction.
 		if (

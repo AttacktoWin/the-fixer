@@ -183,8 +183,9 @@ position = Vector2( 145, 245 )
 script = ExtResource( 7 )
 Player_path = NodePath("../SortableEntities/Player")
 Exit_path = NodePath("../Transition")
+generator_mode = 0
 start_direction = 0
-walk_length = 100
+walk_length = 32
 room_min_width = 13
 room_min_height = 13
 
@@ -219,6 +220,6 @@ cell_y_sort = true
 format = 1
 
 [node name="Player" parent="SortableEntities" instance=ExtResource( 5 )]
-position = Vector2( 259, 385 )
+position = Vector2( -16, 1 )
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]

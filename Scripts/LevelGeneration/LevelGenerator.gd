@@ -49,58 +49,67 @@ func _ready():
 		level.push_back([])
 		for _y in range (0,map_size.y+1):
 			level[x].push_back(-1)
-	
 	var level_space = Rect2(0,0,map_size.x,map_size.y)
 	
-	filler	= PCG_TileFiller.new()
-	walker	= PCG_Walker.new()
-	partitioner = PCG_Partioner.new()
-	corridor_builder = PCG_Corridors.new()
+	# Initialize level building tools
+	self.filler	= PCG_TileFiller.new()
+	self.walker	= PCG_Walker.new()
+	self.partitioner = PCG_Partioner.new()
+	self.corridor_builder = PCG_Corridors.new()
 	
-	populator = PCG_Populator.new()
-	populator.construct(player,exit)
+	var path = []
+	
+	# Initialize level populator
+	self.populator = PCG_Populator.new()
+	self.populator.construct(player,exit)
 	
 	match generator_mode:
 		MODE.WALK:
-			var path = walker.random_walk(
+			path = walker.random_walk(
 				level_space,
 				self.walker_start_pos,
 				self.start_direction,
 				self.walk_length,
 				self.random_turn_chance,self.max_steps_in_direction)
-			filler.floor_pass(path,level,Floor)
-			self.level = filler.wall_pass(path,level,Walls)
 		MODE.ROOM:
-			var partitioning_data = partitioner.room_builder(
+			var building_data = partitioner.room_builder(
 				level_space,
 				self.room_min_width,
 				self.room_min_height,
 				self.room_space_between)
-			var path = partitioning_data[0]
-			var room_centers = partitioning_data[2]
-			var path_by_rooms = partitioning_data[0]
+			path = building_data[0]
+			var room_list = building_data[1]
+			var room_centers = building_data[2]
+			var path_by_rooms = building_data[3]
 			path+=corridor_builder.connect_rooms(room_centers,self.corridor_width)
-			filler.floor_pass(path,level,Floor)
-			self.level = filler.wall_pass(path,level,Walls)
+			populator.populate(Floor,path,room_list,room_centers,path_by_rooms)
 		MODE.WALKED_ROOM:
 			var partitioning_data = partitioner.binary_space_partition(
 				level_space,
 				self.room_min_width,self.room_min_height)
 			var room_list = partitioning_data[0]
 			var room_centers = partitioning_data[1]
-			var path = []
 			var path_by_rooms = {}
 			path = corridor_builder.connect_rooms(room_centers,self.corridor_width)
-			for index in room_list.size():
-				print(index)
-				var partial_path = walker.random_walk(
-					room_list[index],
-					room_centers[index],
-					self.start_direction,
-					self.walk_length,
-					self.random_turn_chance,self.max_steps_in_direction)
-				path+=partial_path
-				path_by_rooms[room_list[index]] = partial_path
+			var build_data = random_walk_room(path,room_list,room_centers)
+			path = build_data[0]
+			path_by_rooms = build_data[1]
 			populator.populate(Floor,path,room_list,room_centers,path_by_rooms)
-			filler.floor_pass(path,level,Floor)
-			self.level = filler.wall_pass(path,level,Walls)
+	
+	filler.floor_pass(path,level,Floor)
+	self.level = filler.wall_pass(path,level,Walls)
+
+
+# Uses the random walker in combination with room results to give walked rooms
+func random_walk_room(path,room_list,room_centers):
+	var path_by_rooms = {}
+	for index in room_list.size():
+		var partial_path = walker.random_walk(
+			room_list[index],
+			room_centers[index],
+			self.start_direction,
+			self.walk_length,
+			self.random_turn_chance,self.max_steps_in_direction)
+		path+=partial_path
+		path_by_rooms[room_list[index]] = partial_path
+	return [path,path_by_rooms]

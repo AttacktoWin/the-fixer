@@ -29,7 +29,7 @@ func room_builder(
 			for j in range(room.position.y+shrink_factor,
 						   room.end.y-shrink_factor):
 				path.push_back(Vector2(i,j))
-				path_by_room.push_back(Vector2(i,j))
+				path_by_room[room].push_back(Vector2(i,j))
 	return [path,parition_data[0],parition_data[1],path_by_room]
 
 
