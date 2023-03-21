@@ -9,7 +9,7 @@ onready var Floor = get_node("%Floor")
 onready var Walls:TileMap = get_node("%Walls")
 
 var level = [] #-1 = non, 1 = floor, 2 = wall
-enum MODE{WALK,ROOM,WALKED_ROOM}
+enum MODE{ROOM,WALKED_ROOM}
 enum CARDINAL_DIR{N,S,E,W}
 
 export(Vector2) var map_size = Vector2(60,60) 
@@ -64,13 +64,6 @@ func _ready():
 	self.populator.construct(player,exit)
 	
 	match generator_mode:
-		MODE.WALK:
-			path = walker.random_walk(
-				level_space,
-				self.walker_start_pos,
-				self.start_direction,
-				self.walk_length,
-				self.random_turn_chance,self.max_steps_in_direction)
 		MODE.ROOM:
 			var building_data = partitioner.room_builder(
 				level_space,

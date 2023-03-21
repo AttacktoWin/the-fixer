@@ -14,11 +14,7 @@ func populate(tile_map,path,room_list,room_centers,path_by_room):
 	_player_goal_pass(tile_map,path,room_list,room_centers,path_by_room)
 
 func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
-	#i could just get start end from corridor builder?
-	
-	
-	var centers = room_centers
-	var start = centers.front()
+	var start = room_centers.front()
 	var pos = tile_map.map_to_world(start)
 	player.global_position = tile_map.to_global(pos)
 	#generate dijkstra map
@@ -38,7 +34,7 @@ func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 			pos = tile_map.map_to_world(room_centers[index])
 			goal.global_position = tile_map.to_global(pos)
 			break
-	
+
 
 func _pick_cast():
 	var enemies = ["goomba","camera","bird"]

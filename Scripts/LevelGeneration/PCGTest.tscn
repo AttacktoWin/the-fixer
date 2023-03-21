@@ -183,7 +183,6 @@ position = Vector2( 145, 245 )
 script = ExtResource( 7 )
 Player_path = NodePath("../SortableEntities/Player")
 Exit_path = NodePath("../Transition")
-generator_mode = 0
 start_direction = 0
 walk_length = 32
 room_min_width = 13
