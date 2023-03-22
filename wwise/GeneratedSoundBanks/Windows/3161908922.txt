@@ -1,0 +1,8 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1198969758	Swing_Knuckles_Player			\Default Work Unit\Swing_Knuckles_Player	
+	1828056235	Fire_Pistol_Player			\Default Work Unit\Fire_Pistol_Player	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	90599123	Fire_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Shoot_Pistol_Player_08F7D1DE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Fire_Pistol_Player		51836
+	215651341	Punch_Knuckles_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Swing_Knuckles_Player_65AC56E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Punch_Knuckles_Player		40552
+
