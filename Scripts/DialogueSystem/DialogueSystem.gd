@@ -16,6 +16,14 @@ var current_dialogue_id := ""
 var current_dialog_box: CanvasLayer
 var follow_player := false
 
+const enemy_timelines := {
+	"pillbug": [],
+	"spyder": [],
+	"beetle": [],
+	"bird": [],
+	"ant": []
+}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -147,6 +155,19 @@ func choice_selected(choice_id: String, option_selected: int) -> void:
 func event_viewed(event_tag: String) -> void:
 	var key := "event-{event_tag}".format({"event_tag": event_tag})
 	_lookup_unlock_table(key)
+	
+func level_started(enemies: Array):
+	var index = randi() % len(enemies)
+	var e_name = enemies[index].get_entity_name()
+	if (e_name in self.enemy_timelines.keys()):
+		var timeline = self.enemy_timelines[e_name][randi() % len(self.enemy_timelines[e_name])]
+		NPCs["fixer"].unlock_dialogue(timeline)
+		
+	
+func level_changed():
+	for npc in self.NPCs.values():
+		while npc.peek_top_dialogue().priority == 0:
+			npc.get_top_dialogue()
 	
 func save() -> void:
 	var save_dict := {}
