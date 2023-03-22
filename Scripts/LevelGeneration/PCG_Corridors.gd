@@ -11,7 +11,7 @@ func _init():
 
 # Description: Connect together rooms with corridors
 func connect_rooms(room_centers,brush_size):
-	var centers = room_centers.duplicate(true)
+	var centers = room_centers.duplicate()
 	var start_center = rng.randi_range(0,centers.size()-1)
 	var current_center = centers[start_center]
 	centers.erase(current_center)

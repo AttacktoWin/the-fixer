@@ -13,7 +13,6 @@ var DIRECTIONS = {
 
 # Walker run time values
 var steps_since_turn = 0
-var path = []
 
 # Description: Initalize random number generator.
 func _init():
@@ -31,13 +30,15 @@ func random_walk(
 		walk_length:int,					#param:how far the walker will go, each step is a tile.
 		random_turn_chance := 0.5,			#param:how likely it is for the walker to make a random turn.
 		max_steps_in_direction := 2,		#param:how far the the walker will walk in one direction.
-		corridor_size = 4
+		corridor_size = 3
 	):
+	var path = []
 	var direction = DIRECTIONS[start_direction]
 	#dd current before walking begins
 	var curr_position  = start_position
-	for i in range(-corridor_size,corridor_size+1):
-		for j in range(-corridor_size,corridor_size+1):
+	var c2 = floor(corridor_size/2)
+	for i in range(-c2,c2+1):
+		for j in range(-c2,c2+1):
 			path.push_back(curr_position+Vector2(i,j))
 	for step in walk_length:
 		#check if walker should change direction.
@@ -48,8 +49,8 @@ func random_walk(
 			):
 			direction = _change_direction(walk_area,corridor_size,curr_position,direction)
 		else:
-			curr_position = _take_valid_step(curr_position,direction,corridor_size)
-	return self.path
+			curr_position = _take_valid_step(curr_position,direction,corridor_size,path)
+	return path
 
 
 # Description: tries to find a valid direction for the walker to move int
@@ -89,7 +90,8 @@ func _is_valid_step(
 func _take_valid_step(
 	curr_position:Vector2,
 	current_direction:Vector2,
-	corridor_size
+	corridor_size,
+	path
 	):
 	self.steps_since_turn+=1
 	var new_position = curr_position+(current_direction*corridor_size)

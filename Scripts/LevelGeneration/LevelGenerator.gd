@@ -41,6 +41,7 @@ var filler:PCG_TileFiller
 # POPULATOR Params
 var populator:PCG_Populator
 export(PackedScene) var goomba_path
+export(PackedScene) var camera_path
 export(NodePath) var parent
 onready var entities: Node2D = get_node(parent)
 
@@ -67,7 +68,6 @@ func _ready():
 	# Initialize level populator
 	self.populator = PCG_Populator.new()
 	self.populator.construct(player,exit)
-	
 	match generator_mode:
 		MODE.ROOM:
 			var building_data = partitioner.room_builder(
@@ -81,23 +81,30 @@ func _ready():
 			path_by_rooms = building_data[3]
 			path += corridor_builder.connect_rooms(room_centers,self.corridor_width)
 		MODE.WALKED_ROOM:
-			var partitioning_data = partitioner.binary_space_partition(
+			room_list = partitioner.binary_space_partition(
 				level_space,
 				self.room_min_width,self.room_min_height)
-			room_list = partitioning_data[0]
-			room_centers = partitioning_data[1]
+			room_centers = partitioner.get_centers(room_list)
 			path = corridor_builder.connect_rooms(room_centers,self.corridor_width)
 			var build_data = random_walk_room(path,room_list,room_centers)
 			path = build_data[0]
 			path_by_rooms = build_data[1]
 	
-	var spawns = populator.populate(Floor,path,room_list,room_centers,path_by_rooms)
-	for spawn in spawns:
-		var test = goomba_path.instance()
-		var pos = Floor.map_to_world(spawn)
-		test.global_position = Floor.to_global(pos)
-		entities.add_child(test)
-	
+	var spawn_info = populator.populate(Floor,path,room_list,room_centers,path_by_rooms)
+	for enemy in spawn_info:
+		for spawn in spawn_info[enemy]:
+			match(enemy):
+				"goomba":
+					var test = goomba_path.instance()
+					var pos = Floor.map_to_world(spawn)
+					test.global_position = Floor.to_global(pos)
+					entities.add_child(test)
+				"camera":
+					var test = camera_path.instance()
+					var pos = Floor.map_to_world(spawn)
+					test.global_position = Floor.to_global(pos)
+					entities.add_child(test)
+
 	filler.floor_pass(path,level,Floor)
 	self.level = filler.wall_pass(path,level,Walls)
 
@@ -111,7 +118,8 @@ func random_walk_room(path,room_list,room_centers):
 			room_centers[index],
 			self.start_direction,
 			self.walk_length,
-			self.random_turn_chance,self.max_steps_in_direction)
+			self.random_turn_chance,self.max_steps_in_direction,
+			self.corridor_width)
 		path+=partial_path
 		path_by_rooms[room_list[index]] = partial_path
 	return [path,path_by_rooms]

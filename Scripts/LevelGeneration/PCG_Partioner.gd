@@ -21,16 +21,19 @@ func room_builder(
 	):
 	var path = []
 	var path_by_room = {}
-	var parition_data = binary_space_partition(space,width,height)
-	for room in parition_data[0]:
+	var room_list = binary_space_partition(space,width,height)
+	var room_centers = []
+	for room in room_list:
 		path_by_room[room] = []
+		var center = room.get_center()
+		room_centers.push_back(Vector2(floor(center.x),floor(center.y)))
 		for i in range(room.position.x+shrink_factor,
 					   room.end.x-shrink_factor):
 			for j in range(room.position.y+shrink_factor,
 						   room.end.y-shrink_factor):
 				path.push_back(Vector2(i,j))
 				path_by_room[room].push_back(Vector2(i,j))
-	return [path,parition_data[0],parition_data[1],path_by_room]
+	return [path,room_list,room_centers,path_by_room]
 
 
 # Description: Nothing much to look at here, its a simple bsp algo that returns 
@@ -42,7 +45,6 @@ func binary_space_partition(
 	):
 	var room_queue = []
 	var room_list = []
-	var room_centers = []
 	room_queue.push_back(space)
 	
 	while(room_queue.size()>0):
@@ -59,9 +61,7 @@ func binary_space_partition(
 			room_queue.push_back(new_partitions[1])
 		elif candidate.size.x >= min_width && candidate.size.y >= min_height:
 			room_list.push_back(candidate)
-			var center = candidate.get_center()
-			room_centers.push_back(Vector2(floor(center.x),floor(center.y)))
-	return [room_list,room_centers]
+	return room_list
 
 
 # Description: split a rectangle into two based on a random split value. It
@@ -88,3 +88,10 @@ func _split(
 		size_a = Vector2(split_candidate.size.x,split_value)
 		size_b = Vector2(split_candidate.size.x,split_candidate.size.y - split_value)
 	return [Rect2(position_a,size_a),Rect2(position_b,size_b)]
+
+func get_centers(room_list):
+	var centers = []
+	for room in room_list:
+		var center = room.get_center()
+		centers.push_back(Vector2(floor(center.x),floor(center.y)))
+	return centers

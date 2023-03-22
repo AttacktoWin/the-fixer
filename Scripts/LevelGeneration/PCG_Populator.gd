@@ -10,8 +10,8 @@ func construct(_player,_goal):
 	
 func populate(tile_map,path,room_list,room_centers,path_by_room):
 	var start = _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room)
-	var spawns = _hostile_pass(room_list,path_by_room,start)
-	return spawns
+	var spawn_data = _spawn_point_pass(room_list,path_by_room,start)
+	return _hostile_pass(spawn_data[0],spawn_data[1],spawn_data[2])
 
 func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 	var start = room_centers.front()
@@ -38,61 +38,51 @@ func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 	return start
 
 
-func _pick_cast():
-	var enemies = ["goomba","bird","camera"]
-	var value = [5,6,8]
-	var cost = [2,5,6]
-	var budget = 10
-	#lets solve a knapsack problem baby
-	#look up table first
-	var look_up = []
-	for item in range(enemies.size()+1):
-		look_up.append([])
-		for capcity in range(budget+1):
-			look_up[item].append(0)
+func _hostile_pass(count,spawns,room_list):
+	var spawn_by_room = spawns.duplicate()
+	var room_que = randomize_rooms(room_list)
+	var enemy_info = {"goomba":70,"camera":30}
+	var spawn_info = {}
+	var remaining = count
 	
-	var n = value.size()
-	for i in range(1,n+1):
-		for j in range(1,budget+1):
-			if cost[i-1]<=j:
-				look_up[i][j] = max(look_up[i-1][j], look_up[i-1][j-cost[i-1]]+value[i-1])
-			else:
-				look_up[i][j] = look_up[i-1][j]
+	for enemy in enemy_info:
+		var current = floor(count*enemy_info[enemy]/100)
+		remaining = remaining - current
+		enemy_info[enemy] = current
 	
-	var i = n
-	var j = budget
-	var selection = []
-	while i>0 and j>0:
-		if look_up[i][j] != look_up[i-1][j]:
-			selection.append(enemies[i-1])
-			j-=cost[i-1]
-		i-=1
+	for enemy in enemy_info:
+		spawn_info[enemy] = []
+		for point in enemy_info[enemy]:
+			room_que[0][1]+= 1
+			var coord = spawn_by_room[room_que[0][0]].pop_front()
+			room_que.sort_custom(CustomSorter,"priority_sorter")
+			spawn_info[enemy].append(coord)
 	
-	print(look_up)
-#	      0  1  2  3  4  5  6  7  8  9 10
-#      ----------------------------------
-#    0 |  0  0  0  0  0  0  0  0  0  0  0
-#    1 |  0  0  5  5 10 10 15 15 20 20 25
-#    2 |  0  0  5  5 10 10 15 15 20 20 25
-#    3 |  0  0  5  5 10 10 15 15 20 20 25
+	return spawn_info
 
-func _hostile_pass(room_list,path_by_room,start):
+func _spawn_point_pass(room_list,path_by_room,start):
+	var rooms = room_list.duplicate()
+	rooms.remove(0)
+	
 	var spawn_candidates = path_by_room.duplicate(true)
-	var spawns = []
-	room_list.remove(1)
-	for room in room_list:
+	var spawn_by_room = {}
+	var spawn_count = 0
+	for room in rooms:
+		var spawns = []
 		spawn_candidates[room].shuffle()
-		for x in range(5):
+		for x in range(3):
+			spawn_count+=1
 			var spawn = spawn_candidates[room].pop_front()
-			for i in range(-1,2):
-				for j in range(-1,2):
+			for i in range(-3,3):
+				for j in range(-3,3):
 					var neighbour = Vector2(spawn.x-i,spawn.y-j)
 					spawn_candidates[room].erase(neighbour)
-			if spawn_candidates[room].size()==0:
-				spawn_candidates.erase(room)
-				break
 			spawns.append(spawn)
-	return spawns
+			if spawn_candidates[room].size()==0:
+				print(room)
+				break
+		spawn_by_room[room] = spawns
+	return [spawn_count,spawn_by_room,rooms]
 	
 func gen_dijstra_map(start,path):
 	var d_map = {}
@@ -113,3 +103,23 @@ func gen_dijstra_map(start,path):
 			d_map[candidate] = d_map[curr]+1
 			que.push_back(candidate)
 	return d_map
+
+
+
+static func randomize_rooms(room_list):
+	var room_que = []
+	#room_que = [[room,value],[room,value],..]
+	for room in room_list:
+		room_que.append([room,randi()])
+		
+	room_que.sort_custom(CustomSorter,"priority_sorter")
+	
+	for room in room_que:
+		room[1] = 0
+	return room_que
+
+class CustomSorter:
+	static  func priority_sorter(a,b):
+		if a[1] < b[1]:
+			return true
+		return false
