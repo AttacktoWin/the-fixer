@@ -40,7 +40,9 @@ var filler:PCG_TileFiller
 
 # POPULATOR Params
 var populator:PCG_Populator
-
+export(PackedScene) var goomba_path
+export(NodePath) var parent
+onready var entities: Node2D = get_node(parent)
 
 func _ready():
 	#initlize level array
@@ -58,6 +60,9 @@ func _ready():
 	self.corridor_builder = PCG_Corridors.new()
 	
 	var path = []
+	var room_list = []
+	var room_centers = []
+	var path_by_rooms = {}
 	
 	# Initialize level populator
 	self.populator = PCG_Populator.new()
@@ -71,23 +76,27 @@ func _ready():
 				self.room_min_height,
 				self.room_space_between)
 			path = building_data[0]
-			var room_list = building_data[1]
-			var room_centers = building_data[2]
-			var path_by_rooms = building_data[3]
-			path+=corridor_builder.connect_rooms(room_centers,self.corridor_width)
-			populator.populate(Floor,path,room_list,room_centers,path_by_rooms)
+			room_list = building_data[1]
+			room_centers = building_data[2]
+			path_by_rooms = building_data[3]
+			path += corridor_builder.connect_rooms(room_centers,self.corridor_width)
 		MODE.WALKED_ROOM:
 			var partitioning_data = partitioner.binary_space_partition(
 				level_space,
 				self.room_min_width,self.room_min_height)
-			var room_list = partitioning_data[0]
-			var room_centers = partitioning_data[1]
-			var path_by_rooms = {}
+			room_list = partitioning_data[0]
+			room_centers = partitioning_data[1]
 			path = corridor_builder.connect_rooms(room_centers,self.corridor_width)
 			var build_data = random_walk_room(path,room_list,room_centers)
 			path = build_data[0]
 			path_by_rooms = build_data[1]
-			populator.populate(Floor,path,room_list,room_centers,path_by_rooms)
+	
+	var spawns = populator.populate(Floor,path,room_list,room_centers,path_by_rooms)
+	for spawn in spawns:
+		var test = goomba_path.instance()
+		var pos = Floor.map_to_world(spawn)
+		test.global_position = Floor.to_global(pos)
+		entities.add_child(test)
 	
 	filler.floor_pass(path,level,Floor)
 	self.level = filler.wall_pass(path,level,Walls)

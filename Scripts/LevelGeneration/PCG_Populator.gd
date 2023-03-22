@@ -9,13 +9,9 @@ func construct(_player,_goal):
 	self.goal = _goal
 	
 func populate(tile_map,path,room_list,room_centers,path_by_room):
-	_player_goal_pass(tile_map,path,room_list,room_centers,path_by_room)
-	_pick_cast()
-	var test = {"hello":1,"there":2,"super":3, "intendent":4}
-	for thing in test:
-		print(thing)
-	test = _sort_dict(test)
-	print(test)
+	var start = _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room)
+	var spawns = _hostile_pass(room_list,path_by_room,start)
+	return spawns
 
 func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 	var start = room_centers.front()
@@ -30,6 +26,7 @@ func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 	#loop over to find room
 	for index in range(room_list.size()):
 		if room_list[index].has_point(exit):
+			exit = index
 			#flatten space around center
 			for x in range (-3,4):
 				for y in range (-3,4):
@@ -38,6 +35,7 @@ func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 			pos = tile_map.map_to_world(room_centers[index])
 			goal.global_position = tile_map.to_global(pos)
 			break
+	return start
 
 
 func _pick_cast():
@@ -78,16 +76,24 @@ func _pick_cast():
 #    2 |  0  0  5  5 10 10 15 15 20 20 25
 #    3 |  0  0  5  5 10 10 15 15 20 20 25
 
-func _hostile_pass(rooms,enemies =[]):
-	pass
-	# reverse priority que of all rooms start with equal weight, shuffled and exluding start
-	# for each enemy:
-		#take the top room
-		#pick a random place it
-		#pop immediate neighbours
-		#if room has no more valid nodes kill it from the list
-		#otherwise add to it the cost
-
+func _hostile_pass(room_list,path_by_room,start):
+	var spawn_candidates = path_by_room.duplicate(true)
+	var spawns = []
+	room_list.remove(1)
+	for room in room_list:
+		spawn_candidates[room].shuffle()
+		for x in range(5):
+			var spawn = spawn_candidates[room].pop_front()
+			for i in range(-1,2):
+				for j in range(-1,2):
+					var neighbour = Vector2(spawn.x-i,spawn.y-j)
+					spawn_candidates[room].erase(neighbour)
+			if spawn_candidates[room].size()==0:
+				spawn_candidates.erase(room)
+				break
+			spawns.append(spawn)
+	return spawns
+	
 func gen_dijstra_map(start,path):
 	var d_map = {}
 	var que = []
@@ -107,14 +113,3 @@ func gen_dijstra_map(start,path):
 			d_map[candidate] = d_map[curr]+1
 			que.push_back(candidate)
 	return d_map
-
-func _sort_dict(dict={}):
-	var values = dict.values()
-	var sorted_dict = {}
-	values.sort()
-	for value in values:
-		for key in dict.keys():
-			if dict[key] == value:
-				dict.erase(key)
-				sorted_dict[key] = value
-	return sorted_dict

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Levels/Demo2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/LevelGeneration/LevelGenerator.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Enemies/E_Goomba.tscn" type="PackedScene" id=8]
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 127, 0, 255, 66, 127, 126, 1, 65, 127, 127 )
@@ -183,10 +184,13 @@ position = Vector2( 145, 245 )
 script = ExtResource( 7 )
 Player_path = NodePath("../SortableEntities/Player")
 Exit_path = NodePath("../Transition")
+generator_mode = 0
 start_direction = 0
-walk_length = 32
+walk_length = 98
 room_min_width = 13
 room_min_height = 13
+goomba_path = ExtResource( 8 )
+parent = NodePath("../SortableEntities/Runtime")
 
 [node name="Floor" type="TileMap" parent="."]
 unique_name_in_owner = true
