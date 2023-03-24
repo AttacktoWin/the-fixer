@@ -11,4 +11,5 @@ enum {
 	HIT_STUN,
 	DISABLED,
 	DEAD,
+	DEV,
 }

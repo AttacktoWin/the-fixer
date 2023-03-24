@@ -16,13 +16,10 @@ var _gun = null
 var gun_controlled = false
 
 
-func _init():
-	Wwise.register_listener(self)
-	Wwise.register_game_obj(self, self.get_name())
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Wwise.register_listener(self)
+	Wwise.register_game_obj(self, self.get_name())
 	self._gun = TestGun.new()
 	self._gun.set_parent(self)
 	self._gun.set_aim_bone(arms_container)
@@ -36,7 +33,7 @@ func _get_wanted_direction():
 	)
 	if dir.length() > 1:
 		dir = dir.normalized()
-	return MathUtils.vector_to_iso_vector(dir)
+	return dir
 
 
 func _get_wanted_velocity():
@@ -44,7 +41,7 @@ func _get_wanted_velocity():
 
 
 func get_wanted_gun_vector():
-	return CameraSingleton.get_absolute_mouse() - arms_container.global_position
+	return MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
 
 
 func set_gun_angle(angle):
@@ -63,20 +60,43 @@ func player_input_gun_aim():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		# if PausingSingleton.is_paused():
-		# 	PausingSingleton.unpause(self)
-		# else:
-		# 	PausingSingleton.pause(self)
-		# Scene.switch(Scene.Demo1.instance())
-		pass
+	if OS.is_debug_build():
+		if Input.is_action_pressed("ui_focus_next"):
+			var goomba = load("res://Scenes/Enemies/E_Goomba.tscn").instance()
+			goomba.global_position = CameraSingleton.get_absolute_mouse_iso()
+			Scene.runtime.add_child(goomba)
+		if Input.is_action_just_pressed("ui_up"):
+			var start = MathUtils.to_level_vector(self.global_position)
+			var end = MathUtils.to_level_vector(CameraSingleton.get_absolute_mouse())
+			print(MathUtils.line_coords(start, end))
+			for coord in MathUtils.line_coords(start, end):
+				if Scene.level[coord.x][coord.y] == Constants.TILE_TYPE.WALL:
+					print("Hit @ ", coord)
+		if Input.is_action_just_pressed("ui_down"):
+			var loc = MathUtils.floor_vec2(MathUtils.to_level_vector(self.global_position))
+			print(Pathfinder._pathfinder.get_point_connections(loc.x + loc.y * Pathfinder._width))
+
+
+func _unhandled_input(event: InputEvent):
+	if (
+		OS.is_debug_build()
+		and event is InputEventKey
+		and event.scancode == 96
+		and not event.is_echo()
+		and event.is_pressed()
+	):
+		if self.fsm.current_state_name() == PlayerState.DEV:
+			self.fsm.set_state(PlayerState.IDLE)
+		else:
+			self.fsm.set_state(PlayerState.DEV)
 
 
 func _handle_camera():
 	var center = CameraSingleton.get_mouse_from_camera_center() / 360
 	var off = (
-		MathUtils.interpolate_vector(
-			Vector2(abs(center.x), abs(center.y)), 0, 8, MathUtils.INTERPOLATE_OUT_EXPONENTIAL
+		Vector2(
+			MathUtils.interpolate(abs(center.x), 0, 8, MathUtils.INTERPOLATE_OUT_EXPONENTIAL),
+			MathUtils.interpolate(abs(center.y), 0, 8, MathUtils.INTERPOLATE_OUT_EXPONENTIAL)
 		)
 		* Vector2(sign(center.x), sign(center.y))
 	)

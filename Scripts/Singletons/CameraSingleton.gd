@@ -4,7 +4,7 @@ extends Node
 
 var _shake_timer = 0
 var _location_target = Vector2()
-var _zoom_target = Vector2(10, 10)
+var _zoom_target = Vector2(1, 2)
 var _transition_factor = 0.1
 var _viewport
 var _camera
@@ -23,6 +23,7 @@ func _init():
 
 func set_camera(camera):
 	self._camera = camera
+	self._camera.zoom *= MathUtils.FROM_ISO
 	self._viewport = camera.get_viewport()
 
 
@@ -50,13 +51,20 @@ func get_local_mouse() -> Vector2:
 func get_absolute_mouse() -> Vector2:
 	return self._camera.get_global_mouse_position()
 
+func get_absolute_mouse_iso() -> Vector2:
+	return self._camera.get_global_mouse_position() * MathUtils.TO_ISO
+
 
 func get_mouse_from_camera_center() -> Vector2:
 	return self.get_local_mouse() - self._viewport.size / 2
 
 
+func get_mouse_from_camera_center_screen() -> Vector2:
+	return get_mouse_from_camera_center() * MathUtils.FROM_ISO
+
+
 func set_zoom(new_scale):
-	self._zoom_target = new_scale
+	self._zoom_target = new_scale * MathUtils.FROM_ISO
 
 
 func jump_field(target_type):

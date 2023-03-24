@@ -30,9 +30,7 @@ func enter():
 	self.fsm.set_animation("DASH")
 	self.entity.setv(LivingEntity.VARIABLE.VELOCITY, Vector2())
 	CameraSingleton.set_zoom(Vector2(1.01, 1.01))
-	self._dash_direction = MathUtils.scale_vector_to_iso(
-		CameraSingleton.get_mouse_from_camera_center().normalized()
-	)
+	self._dash_direction = CameraSingleton.get_mouse_from_camera_center_screen().normalized()
 
 	self._dash_timer.wait_time = 0.25
 	self._dash_timer.start()
@@ -42,7 +40,7 @@ func _dash_increment():
 	CameraSingleton.set_zoom(Vector2(0.97, 0.97))
 	CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
 	CameraSingleton.set_zoom(Vector2(1, 1))
-	self.entity.move_and_collide(self._dash_direction * 240)
+	self.entity.move_and_slide(self._dash_direction * 240 * 60)
 
 
 func on_anim_reached_end():

@@ -613,7 +613,7 @@ states/SLASH/node = SubResource( 80 )
 states/SLASH/position = Vector2( -182, 393.735 )
 transitions = [ "CHARGE_TRANSITION", "CHARGE", SubResource( 72 ), "CHASE", "CHARGE_TRANSITION", SubResource( 75 ), "ALERTED", "CHASE", SubResource( 76 ), "ALERTED", "CHARGE_TRANSITION", SubResource( 77 ), "IDLE", "ALERTED", SubResource( 78 ), "CHARGE", "FLASH", SubResource( 79 ), "IDLE", "PATROL", SubResource( 81 ), "PATROL", "ALERTED", SubResource( 82 ), "CHASE", "SLASH", SubResource( 83 ), "SLASH", "IDLE", SubResource( 85 ), "FLASH", "CHASE", SubResource( 90 ), "SLASH", "CHASE", SubResource( 91 ), "HURT", "ALERTED", SubResource( 93 ) ]
 start_node = "IDLE"
-graph_offset = Vector2( -457.376, 229.859 )
+graph_offset = Vector2( -466.376, 152.859 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=42]
 

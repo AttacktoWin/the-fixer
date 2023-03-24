@@ -7,6 +7,7 @@ signal on_state_changed(prev_state, new_state)
 export(NodePath) var root_state = null  # optional, take first child otherwise
 export(NodePath) var animation_player = null  # optional, ignore anim callbacks otherwise
 export(NodePath) var entity = null  # optional, take owner otherwise refers to the entity which owns this FSM (i.e. enemy, player, etc)
+export var debug: bool = false
 
 var _state_map = {}
 var _alias_map = {}
@@ -16,17 +17,22 @@ var _transition_target = null
 var _state_timer = 0
 var _last_animation_timer = 0
 var _state_index = 0
+var _last_anim = ""
+
+var P = load("res://Scripts/Player/Player.gd")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	yield(owner, "ready")  # wait for parent node to finish intialization
+
 	self._current_state = get_node(root_state) if root_state else null
 	self.entity = get_node(root_state) if entity else owner
 	self._get_states_from_children()
 	if self.animation_player:
 		self.animation_player = get_node(self.animation_player)
 		# warning-ignore:return_value_discarded
-		# connect("animation_finished", self, "_on_animation_looped")
+		# connect("animation_finished", self, "_on_animation_complete")
 
 	if self._current_state:
 		var arr = self._current_state.get_handled_states()
@@ -36,27 +42,34 @@ func _ready():
 
 
 func _get_states_from_children():
-	var first_child = null
 	for child in self.get_children():
 		if not (child is FSMNode):
 			continue
-		if not first_child:
-			first_child = child
+		if not root_state:
+			self._current_state = child
 		self.add_state(child)
-
-	if not root_state:
-		self._current_state = first_child
 
 
 func add_state(node: FSMNode):
 	var idx = 0
 	self._state_map[node.get_name()] = node
 	for state_name in node.get_handled_states():
+		if self._state_map.has(state_name):
+			print(
+				"WARN: existing state overwritten by new node!",
+				"(",
+				state_name,
+				")",
+				self._state_map[state_name].name,
+				" -> ",
+				node.name
+			)
 		self._state_map[state_name] = node
 		self._alias_map[state_name] = idx
 		idx += 1
 	node.fsm = self
 	node.entity = self.entity
+	node.initialize()
 
 
 func remove_state(node: FSMNode):
@@ -72,10 +85,24 @@ func remove_state(node: FSMNode):
 
 
 func _process(delta):
+	if PausingSingleton.is_paused():
+		return
 	self._state_timer += delta
 	if not self._current_state:
 		print("ERR: no state!")
 		return
+	if self.debug:
+		print(self._current_state.name)
+
+	var states = []
+	for state_name in self._state_map:
+		var state = self._state_map[state_name]
+		if state in states:
+			continue
+		states.append(state)
+		state._background_process(delta)
+
+	self._check_anim_loop(delta)
 	self._current_state._process(delta)
 
 
@@ -94,7 +121,9 @@ func _set_animation_if_anim_player(name: String):
 		print("ERR: animation player does not have animation ", name)
 		return
 	if self.animation_player.current_animation != name:
+		reset_animation_info()
 		self._last_animation_timer = 0
+		self._last_anim = self.animation_player.current_animation
 		self.animation_player.play(name)
 
 
@@ -106,14 +135,15 @@ func _check_anim_loop(delta):
 	if not self.has_animation_player():
 		return
 	var ap = self.animation_player
+
+	if ap.current_animation == "" and self._last_anim != "":
+		self._on_animation_looped()
+		self._last_anim = ""
+
 	var current = ap.current_animation_position
 	var last = self._last_animation_timer
 
-	if (
-		sign(current - last) != sign(ap.playback_speed)
-		or delta >= ap.current_animation_length
-		or ap.current_animation_position == ap.current_animation_length
-	):
+	if (sign(current - last) != sign(ap.playback_speed) and current != 0 and current-last !=0) or delta >= ap.current_animation_length:
 		self._on_animation_looped()
 
 	self._last_animation_timer = current
@@ -144,19 +174,39 @@ func _check_transition():
 
 
 func _physics_process(delta):
+	if PausingSingleton.is_paused():
+		return
 	if not self._current_state:
 		print("ERR: no state!")
 		return
 
-	self._check_anim_loop(delta)
-	self._check_transition()
+	var states = []
+	for state_name in self._state_map:
+		var state = self._state_map[state_name]
+		if state in states:
+			continue
+		states.append(state)
+		state._background_physics(delta)
 
 	self._current_state._physics_process(delta)
 	self._check_transition()
 
 
+func reset_animation_info():
+	if not self.has_animation_player():
+		return
+	var ap = self.get_animation_player()
+	ap.playback_speed = 1
+	ap.seek(0)
+	self._last_animation_timer = 0
+
+
 func current_state():
 	return self._current_state
+
+
+func current_state_name():
+	return self._current_state_name
 
 
 # if a single entry handles multiple states (bosses), this number will tell you which state is currently being played.
@@ -168,9 +218,27 @@ func is_this_state(node: FSMNode):
 	return self._current_state == node
 
 
+func can_transition_to(state_name) -> bool:
+	if not self._state_map.has(state_name):
+		print("ERR: Unknown state for transition check: ", state_name, ". Ignoring.")
+		return false
+
+	return self._state_map[state_name].can_transition(self._current_state)
+
+
 func set_state(state_name, override: bool = false):
 	if not self._state_map.has(state_name):
-		print("ERR: unknown state ", state_name)
+		print("ERR: Unknown state for transition: ", state_name, ". Ignoring.")
+		return
+
+	if not self._state_map[state_name].can_transition(self._current_state):
+		print(
+			"WARN: cannot transition from state ",
+			self._current_state,
+			" to ",
+			state_name,
+			". Check with can_transition_to!"
+		)
 		return
 
 	if not self._current_state:

@@ -15,6 +15,16 @@ func _ready():
 	set_physics_process(false)
 
 
+# called when the node is first added to the FSM
+func initialize():
+	pass
+
+
+# can we transition to this state?
+func can_transition(_from):
+	return true
+
+
 # if set, automatically switch to this animation when setting this state
 func get_animation_name():
 	return null
@@ -50,4 +60,12 @@ func _physics_process(_delta):
 
 
 func _process(_delta):
+	pass
+
+# called before the current state ticks when this state is not the current state
+func _background_physics(_delta):
+	pass
+
+# called before the current state ticks when this state is not the current state
+func _background_process(_deleta):
 	pass

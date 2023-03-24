@@ -1,15 +1,13 @@
 # Author: Marcus
 
-class_name LivingEntity extends KinematicBody2D
-
-# this script implements the basics of status effects and state
+class_name LivingEntity extends Entity
 
 enum STATUSES { INVULNERABLE, SLOWED }
 enum VARIABLE { MAX_SPEED, ACCEL, HEALTH, VELOCITY, DRAG, KNOCKBACK_FACTOR, WEIGHT }
 export var base_speed: float = 340
 export var base_health: float = 100
 export var base_accel: float = 80
-export var base_drag: float = 0.5
+export var base_drag: float = 1.025
 onready var variables = VariableList.new(
 	VARIABLE,
 	{
@@ -18,14 +16,16 @@ onready var variables = VariableList.new(
 		VARIABLE.ACCEL: base_accel,
 		VARIABLE.VELOCITY: Vector2(),
 		VARIABLE.DRAG: base_drag,
-		VARIABLE.KNOCKBACK_FACTOR: 0,
-		VARIABLE.WEIGHT: 0
+		VARIABLE.KNOCKBACK_FACTOR: 1,
+		VARIABLE.WEIGHT: 1
 	}
 )
 
 export var entity_radius: float = 32
 export var push_amount: float = 256
-export(NodePath) var entity_collider_path = null
+export(NodePath) var entity_collider_path = NodePath("EntityCollider")
+
+var disable_pushing: int = 0
 
 var _entity_collider = null
 
@@ -68,6 +68,10 @@ func setv(variable, v):
 	self.variables.set_variable(variable, v)
 
 
+func get_wanted_velocity(dir_vector: Vector2) -> Vector2:
+	return dir_vector * getv(VARIABLE.MAX_SPEED)
+
+
 func _try_move():
 	# warning-ignore:return_value_discarded
 	move_and_slide(getv(VARIABLE.VELOCITY))
@@ -75,21 +79,22 @@ func _try_move():
 
 func _physics_process(delta):
 	var push_dir = Vector2()
-	var colliding = CollisionUtils.get_overlapping_bodies_filtered(
-		self._entity_collider, self, KinematicBody2D
-	)
-	for other in colliding:
-		var v = self.global_position - other.global_position
-		var dist = v.length()
-		var max_dist = self.entity_radius + other.entity_radius
-		if dist > max_dist:
-			dist = max_dist
-
-		var interp = MathUtils.interpolate(
-			dist / max_dist, self.push_amount, 0, MathUtils.INTERPOLATE_OUT
+	if not self.disable_pushing:
+		var colliding = CollisionUtils.get_overlapping_bodies_filtered(
+			self._entity_collider, self, KinematicBody2D
 		)
+		for other in colliding:
+			var v = self.global_position - other.global_position
+			var dist = v.length()
+			var max_dist = self.entity_radius + other.entity_radius
+			if dist > max_dist:
+				dist = max_dist
 
-		push_dir += MathUtils.vector_to_iso_vector(v.normalized() * interp)
+			var interp = MathUtils.interpolate(
+				dist / max_dist, self.push_amount, 0, MathUtils.INTERPOLATE_OUT
+			)
+
+			push_dir += v.normalized() * interp
 	# warning-ignore:return_value_discarded
 	self.move_and_slide(push_dir * MathUtils.delta_frames(delta))
 

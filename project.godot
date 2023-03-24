@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "AI",
+"language": "GDScript",
+"path": "res://Scripts/AI/AIManager.gd"
+}, {
 "base": "Reference",
 "class": "AK",
 "language": "GDScript",
@@ -33,6 +38,11 @@ _global_script_classes=[ {
 "class": "BaseAttack",
 "language": "GDScript",
 "path": "res://Scripts/Entities/Attacks/BaseAttack.gd"
+}, {
+"base": "LivingEntity",
+"class": "BaseEnemy",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/BaseEnemy.gd"
 }, {
 "base": "Weapon",
 "class": "BaseGun",
@@ -73,6 +83,11 @@ _global_script_classes=[ {
 "class": "CollisionUtils",
 "language": "GDScript",
 "path": "res://Scripts/Utils/CollisionUtils.gd"
+}, {
+"base": "Node2D",
+"class": "Constants",
+"language": "GDScript",
+"path": "res://Scripts/Singletons/Data/Constants.gd"
 }, {
 "base": "Reference",
 "class": "DTS",
@@ -149,30 +164,45 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/DialogueQueue.gd"
 }, {
-"base": "FSMNode",
-"class": "EnemeyStateAlert",
-"language": "GDScript",
-"path": "res://Scripts/Enemies/Generic/EnemyStateAlert.gd"
-}, {
-"base": "FSMNode",
-"class": "EnemeyStateWander",
-"language": "GDScript",
-"path": "res://Scripts/Enemies/Generic/EnemyStateWander.gd"
-}, {
 "base": "Reference",
 "class": "EnemyState",
 "language": "GDScript",
 "path": "res://Scripts/Enemies/EnemyStatesEnum.gd"
 }, {
 "base": "FSMNode",
+"class": "EnemyStateAlert",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateAlert.gd"
+}, {
+"base": "EnemyStateMoving",
 "class": "EnemyStateChase",
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Generic/EnemyStateChase.gd"
 }, {
 "base": "FSMNode",
+"class": "EnemyStateHurt",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateHurt.gd"
+}, {
+"base": "FSMNode",
+"class": "EnemyStateMoving",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateMoving.gd"
+}, {
+"base": "FSMNode",
 "class": "EnemyStateSleeping",
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Generic/EnemyStateSleeping.gd"
+}, {
+"base": "EnemyStateMoving",
+"class": "EnemyStateWander",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateWander.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Entity.gd"
 }, {
 "base": "Node2D",
 "class": "FSMController",
@@ -194,6 +224,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Entities/Generic_HurtBox.gd"
 }, {
+"base": "BaseEnemy",
+"class": "Goomba",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Goomba/Goomba.gd"
+}, {
+"base": "FSMNode",
+"class": "GoombaStateAttack",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Goomba/GoombaStateAttack.gd"
+}, {
 "base": "PanelContainer",
 "class": "HistoryRow",
 "language": "GDScript",
@@ -214,7 +254,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Data/DamageBox/HitboxProxy.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Entity",
 "class": "LivingEntity",
 "language": "GDScript",
 "path": "res://Scripts/Entities/LivingEntity.gd"
@@ -233,6 +273,11 @@ _global_script_classes=[ {
 "class": "NPCInstance",
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/NPCInstance.gd"
+}, {
+"base": "Node2D",
+"class": "NodeGroups",
+"language": "GDScript",
+"path": "res://Scripts/Singletons/Data/Groups.gd"
 }, {
 "base": "Node",
 "class": "PCG_Corridors",
@@ -259,6 +304,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/LevelGeneration/PCG_Walker.gd"
 }, {
+"base": "Resource",
+"class": "PathfindResult",
+"language": "GDScript",
+"path": "res://Scripts/AI/PathfindResult.gd"
+}, {
 "base": "AttackHandler",
 "class": "PierceAttackHandler",
 "language": "GDScript",
@@ -283,6 +333,11 @@ _global_script_classes=[ {
 "class": "PlayerStateDead",
 "language": "GDScript",
 "path": "res://Scripts/Player/PlayerStateDead.gd"
+}, {
+"base": "FSMNode",
+"class": "PlayerStateDev",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStateDev.gd"
 }, {
 "base": "FSMNode",
 "class": "PlayerStateFree",
@@ -330,11 +385,13 @@ _global_script_classes=[ {
 "path": "res://Scripts/Entities/Weapons/Weapon.gd"
 } ]
 _global_script_class_icons={
+"AI": "",
 "AK": "",
 "AkUtils": "",
 "AttackHandler": "",
 "AttackVariable": "",
 "BaseAttack": "",
+"BaseEnemy": "",
 "BaseGun": "",
 "BaseHitHandler": "",
 "Base_AnimatedFSM": "",
@@ -343,6 +400,7 @@ _global_script_class_icons={
 "Base_State": "",
 "BulletBase": "",
 "CollisionUtils": "",
+"Constants": "",
 "DTS": "",
 "DecoratorList": "",
 "Dialogic": "",
@@ -358,15 +416,20 @@ _global_script_class_icons={
 "DialogueFile": "",
 "DialogueNPCIds": "",
 "DialogueQueue": "",
-"EnemeyStateAlert": "",
-"EnemeyStateWander": "",
 "EnemyState": "",
+"EnemyStateAlert": "",
 "EnemyStateChase": "",
+"EnemyStateHurt": "",
+"EnemyStateMoving": "",
 "EnemyStateSleeping": "",
+"EnemyStateWander": "",
+"Entity": "",
 "FSMController": "",
 "FSMNode": "",
 "Generic_Hitbox": "",
 "Generic_Hurtbox": "",
+"Goomba": "",
+"GoombaStateAttack": "",
 "HistoryRow": "",
 "HitFilter": "",
 "HitMetadata": "",
@@ -375,16 +438,19 @@ _global_script_class_icons={
 "MathUtils": "",
 "NPC": "",
 "NPCInstance": "",
+"NodeGroups": "",
 "PCG_Corridors": "",
 "PCG_Partioner": "",
 "PCG_Populator": "",
 "PCG_TileFiller": "",
 "PCG_Walker": "",
+"PathfindResult": "",
 "PierceAttackHandler": "",
 "Player": "",
 "PlayerState": "",
 "PlayerStateDash": "",
 "PlayerStateDead": "",
+"PlayerStateDev": "",
 "PlayerStateFree": "",
 "Runnable": "",
 "RunnableList": "",
@@ -412,6 +478,7 @@ WwiseSingleton="*res://Scripts/Singletons/WwiseSingleton.gd"
 Waapi="*res://addons/wwise/bin/waapi-gdnative.gdns"
 WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
 Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
+Pathfinder="*res://Scripts/AI/Pathfinder.gd"
 
 [editor_plugins]
 

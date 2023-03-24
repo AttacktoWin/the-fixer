@@ -47,4 +47,5 @@ func wall_pass(
 				and level[curr.x][curr.y] == -1
 			):
 				wall_set.set_cellv(Vector2(curr.x,curr.y),2)
+				level[curr.x][curr.y] = 2
 	return level

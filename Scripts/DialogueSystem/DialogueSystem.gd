@@ -56,7 +56,7 @@ func _process(delta):
 	if (is_instance_valid(self.current_dialog_box)):
 		var player = get_parent().get_node("World/Level/SortableEntities/Player")
 		if (is_instance_valid(player)):
-			current_dialog_box.offset = player.position - Vector2(80, 275)
+			current_dialog_box.offset = MathUtils.from_iso(player.position - Vector2(80, 275))
 		
 func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> void:
 	if (Dialogic.timeline_exists(npc_id + "-" + dialogue_id)):
@@ -65,6 +65,7 @@ func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> vo
 		if (bubble):
 			self.current_dialog_box = dialog
 			dialog.follow_viewport_enable = true
+			dialog.scale = Vector2(1, 2)
 		self.current_npc_id = npc_id
 		self.current_dialogue_id = dialogue_id
 		dialog.connect("timeline_end", self, "_timeline_end")

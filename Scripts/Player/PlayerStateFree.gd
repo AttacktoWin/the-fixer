@@ -45,20 +45,17 @@ func _process(_delta):
 	var x = sign(round(vel.x))
 
 	var facing = sign(CameraSingleton.get_mouse_from_camera_center().x)
-	var speed = (
-		MathUtils.iso_vector_to_vector(vel).length()
-		/ self.entity.getv(LivingEntity.VARIABLE.MAX_SPEED)
-	)
+	var speed = vel.length() / self.entity.getv(LivingEntity.VARIABLE.MAX_SPEED)
 	if x != 0 and x != facing:
 		speed = -speed
 	self.fsm.get_animation_player().playback_speed = speed
 
 
 func _unhandled_input(event: InputEvent):
-	if PausingSingleton.is_paused():
+	if PausingSingleton.is_paused() or not self.fsm.is_this_state(self):
 		return
 
-	if event.is_action_pressed("move_dash") and self.fsm.is_this_state(self):
+	if event.is_action_pressed("move_dash"):
 		self.fsm.set_state(PlayerState.DASHING)
 
 	if (
@@ -66,9 +63,10 @@ func _unhandled_input(event: InputEvent):
 		and event.scancode == KEY_T
 		and not event.is_echo()
 		and event.is_pressed()
+		and randf() < 0.01
 	):
 		CameraSingleton.shake(20)
-		t_timer = 0.1
+		self.t_timer = 0.1
 
 
 const TURN_FACTOR = 2
