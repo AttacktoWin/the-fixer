@@ -1,0 +1,126 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": true,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": true,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Why'd we get so many umbrellas again?\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"It's always a dark and stormy night in this city.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow",
+			"text": "\"[speed=10]...\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow Cross",
+			"text": "\"[speed=10]...\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "bubble",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1677774779.cfg"
+		},
+		{
+			"block_input": true,
+			"event_id": "dialogic_050",
+			"wait_time": 3
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "Too bad no one can hear internal monologues."
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0.5
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1678240613.json",
+		"name": "boss-1-birdkill"
+	}
+}

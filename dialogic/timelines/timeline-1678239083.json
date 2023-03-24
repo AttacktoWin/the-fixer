@@ -1,0 +1,97 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Shadow",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": true,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1678144008.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "(Don't change)",
+			"text": "\"You're tough, I'll give you that.\""
+		},
+		{
+			"character": "character-1678144008.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"...\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "(Don't change)",
+			"text": "\"But you see, when there's a hit out for ya, a wiseguy like me's got a job to do.\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1678239083.json",
+		"name": "manifestaion-1-fight"
+	}
+}

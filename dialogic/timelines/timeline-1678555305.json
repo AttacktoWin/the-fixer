@@ -1,0 +1,132 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Crossed",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": true,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": true,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"I'm telling you, Boss, it started talking.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "(Don't change)",
+			"text": "\"Talking, huh? What'd it say?\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow",
+			"text": "\"It... it repeated back what I said to it. Like it was listening to me and learning.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"That's not good.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"What should I do, Boss?\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow Cross",
+			"text": "\"Hmm...\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Crossed",
+			"text": "\"Keep at it. Maybe bashing its head in a few more times'll stop it from yapping.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow",
+			"text": "[i]I could tell the Boss was scared. Hell, I was too, but I wasn't gonna start accusing the Boss of being weak.[/i]"
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"Sounds like a good plan, Boss.\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1678555305.json",
+		"name": "boss-manifestation2win"
+	}
+}

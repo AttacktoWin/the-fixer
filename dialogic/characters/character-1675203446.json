@@ -1,21 +1,37 @@
 {
-	"color": "#ffffffff",
+	"color": "#ffff1e2b",
 	"description": "",
 	"display_name": "",
 	"display_name_bool": false,
 	"id": "character-1675203446.json",
-	"mirror_portraits": false,
+	"mirror_portraits": true,
 	"name": "The Boss",
-	"nickname": "",
-	"nickname_bool": false,
+	"nickname": "Boss",
+	"nickname_bool": true,
 	"offset_x": 0,
 	"offset_y": 0,
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://Assets/Portraits/Boss/boss-default.png"
+		},
+		{
+			"name": "Crossed",
+			"path": "res://Assets/Portraits/Boss/boss-cross.png"
+		},
+		{
+			"name": "Smile",
+			"path": "res://Assets/Portraits/Boss/boss-smile.png"
+		},
+		{
+			"name": "Shadow",
+			"path": "res://Assets/Portraits/Boss/boss-shadow.png"
+		},
+		{
+			"name": "Shadow Cross",
+			"path": "res://Assets/Portraits/Boss/boss-cross_shadow.png"
 		}
 	],
-	"scale": 100,
+	"scale": 47,
 	"theme": ""
 }

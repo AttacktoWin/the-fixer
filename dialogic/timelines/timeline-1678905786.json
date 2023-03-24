@@ -1,0 +1,119 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Shadow",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "[i]I gotta get in there before that thing rebuilds itself.[/i]\n[i]Lucky for me, you learn a thing or two about picking locks in the business.[/i]"
+		},
+		{
+			"emit_signal": "hide_screen",
+			"event_id": "dialogic_040"
+		},
+		{
+			"audio": "play",
+			"audio_bus": "Master",
+			"event_id": "dialogic_030",
+			"event_name": "AudioEvent",
+			"file": "",
+			"volume": 0
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Smile",
+			"text": "[i]And... [pause=1]open.[/i]"
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "[i]Woah. I'd never seen that many screens before. Numbers and letters flying across them.[/i]\n[i]There's a typewriter over there, maybe I can change the instructions.[/i]"
+		},
+		{
+			"audio": "play",
+			"audio_bus": "Master",
+			"event_id": "dialogic_030",
+			"event_name": "AudioEvent",
+			"file": "",
+			"volume": 0
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow",
+			"text": "[i]Damn thing says I'm 'not authorized'? How's this for authorized?![/i]"
+		},
+		{
+			"audio": "play",
+			"audio_bus": "Master",
+			"event_id": "dialogic_030",
+			"event_name": "AudioEvent",
+			"file": "",
+			"volume": 0
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "[i]Well, the machines are broken. Better head back and hope that's enough to stop this thing.[/i]"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"emit_signal": "reveal_screen",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1678905786.json",
+		"name": "fixer-postmanifestation10"
+	}
+}

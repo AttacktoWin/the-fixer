@@ -9,16 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Object",
-"class": "AttackHandler",
-"language": "GDScript",
-"path": "res://Scripts/Data/DamageBox/AttackHandler.gd"
-}, {
-"base": "Reference",
-"class": "AttackVariable",
-"language": "GDScript",
-"path": "res://Scripts/Entities/Attacks/AttackVariable.gd"
-}, {
 "base": "Reference",
 "class": "AK",
 "language": "GDScript",
@@ -28,6 +18,16 @@ _global_script_classes=[ {
 "class": "AkUtils",
 "language": "GDScript",
 "path": "res://addons/wwise/runtime/helpers/ak_utils.gd"
+}, {
+"base": "Object",
+"class": "AttackHandler",
+"language": "GDScript",
+"path": "res://Scripts/Data/DamageBox/AttackHandler.gd"
+}, {
+"base": "Reference",
+"class": "AttackVariable",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Attacks/AttackVariable.gd"
 }, {
 "base": "Area2D",
 "class": "BaseAttack",
@@ -265,10 +265,10 @@ _global_script_classes=[ {
 "path": "res://Scripts/Entities/Weapons/Weapon.gd"
 } ]
 _global_script_class_icons={
-"AttackHandler": "",
-"AttackVariable": "",
 "AK": "",
 "AkUtils": "",
+"AttackHandler": "",
+"AttackVariable": "",
 "BaseAttack": "",
 "BaseGun": "",
 "BaseHitHandler": "",
@@ -277,6 +277,7 @@ _global_script_class_icons={
 "Base_FSM": "",
 "Base_State": "",
 "BulletBase": "",
+"DTS": "",
 "DecoratorList": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",
@@ -328,11 +329,12 @@ config/icon="res://icon.png"
 CameraSingleton="*res://Scripts/Singletons/CameraSingleton.gd"
 PausingSingleton="*res://Scripts/Singletons/PausingSingleton.gd"
 Scene="*res://Scripts/Singletons/Scene.gd"
-DialogueSystem="*res://Scenes/Dialouge/DialogueSystem.tscn"
+DialogueSystem="*res://Scenes/Dialogue/DialogueSystem.tscn"
 Waapi="*res://addons/wwise/bin/waapi-gdnative.gdns"
 WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
 Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
->>>>>>> e9ce540 (Integrated wwise, created example scripts and nodes in _Dev)
+StatsTracker="*res://Scenes/Dialogue/StatsTracker.tscn"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/wwise/plugin.cfg" )
@@ -351,10 +353,10 @@ common/drop_mouse_on_gui_input_disabled=true
 
 dialogic_default_action={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":true,"doubleclick":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
  ]
 }

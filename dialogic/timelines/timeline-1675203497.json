@@ -1,6 +1,14 @@
 {
 	"events": [
 		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "hide_screen",
+			"event_id": "dialogic_040"
+		},
+		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
@@ -19,7 +27,11 @@
 			"text": "[i]I knew that this time was gonna be different.[/i]"
 		},
 		{
-			"emit_signal": "start_room",
+			"emit_signal": "reveal_screen",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "unpause",
 			"event_id": "dialogic_040"
 		}
 	],

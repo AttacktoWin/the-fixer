@@ -1,0 +1,180 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": true,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": true,
+			"portrait": "Shadow",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"It-it spoke to me.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Crossed",
+			"text": "\"Repeating back what we talked about?\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"No, Boss, it SPOKE. On its own.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow Cross",
+			"text": "\"...\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Said it was listening to us and learning.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"[i]Where have heard that before?[/i]\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"What was that, Boss?\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Crossed",
+			"text": "\"Hmm? Nothing.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow",
+			"text": "[i]The Boss is defnitely hiding something. But right now? I didn't wanna get the bad sides of both him and [pause=0.33]whatever that thing was down there.[/i]"
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"So what do we do, Boss?\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"...Get it talking next time you're down there. If we've got a mole, let's hear it squeal.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Crossed",
+			"text": "\"And if our friend needs a little... [i]encouragement[/i]?\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Smile",
+			"text": "\"I'll be packing heat.\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "bubble",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1677774779.cfg"
+		},
+		{
+			"block_input": true,
+			"event_id": "dialogic_050",
+			"wait_time": 3
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "(Don't change)",
+			"text": "[i]I just hope it'll be enough.[/]"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0.5
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1678679031.json",
+		"name": "boss-manifestation4win"
+	}
+}

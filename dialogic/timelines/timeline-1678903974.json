@@ -1,0 +1,157 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": true,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": true,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Looks like you got the right intel, Boss. The big guy down there got built 36-ish years ago.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"That matches up with what I heard. Though that does mean you've got your work cut out for you.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"How so?\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Crossed",
+			"text": "\"If this thing was really made by that Boss, then it's gonna try everything it can to stay on.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"I get the feeling that's why it's been sending all those security systems after me.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"You mean those cameras?\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Yeah, spider cameras, little pillbugs with knives, those flying umbrella birds, and the phone beetles.\"\n\"Oh, and those ants, but I don't think they're that threatening.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"Spider cameras? Maybe those're the knuckleheads spying on us in here.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Smile",
+			"text": "\"I guess if you're a SPYder, it's second nature.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow",
+			"text": "\"...\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "(Don't change)",
+			"text": "\"...\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"I'm gonna go back into the Vault now.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"You do that.\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": false,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1678903974.json",
+		"name": "boss-manifestation9win"
+	}
+}

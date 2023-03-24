@@ -1,10 +1,23 @@
 {
 	"events": [
 		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1677774779.cfg"
+		},
+		{
+			"block_input": true,
+			"event_id": "dialogic_050",
+			"wait_time": 0
+		},
+		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[i]These security systems are getting more complex, with more legs than they have any right to. I should be on my guard [/i]"
+			"text": "[i]These security systems are getting more complex, with more legs than they have any right to. I should be on my guard. [/i]"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0.5
 		}
 	],
 	"metadata": {

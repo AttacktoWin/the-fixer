@@ -1,0 +1,133 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": true,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": true,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Well, I did the legwork. I took a look into what you asked about.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"About the orders that thing got?\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Crossed",
+			"text": "\"More about the Vault itself.\"\n\"Turns out the thing was installed into the hideout by one of the Bosses a few decades ago.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow",
+			"text": "\"Decades?! There's no way that thing's decades old!\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"See, the Boss back then was a wizard with machines. Made her own lab in the basement then built the Vault as sorta an extension to it.\"\n\"A little birdie told me she locked herself in that lab and kept making more machines, obsessed with automating our work.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"That sounds freaky. What happened to the good ol' fashioned work we were doing?\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"Well that's what I found. Follows that maybe she ended up making our little friend as a way to automate her job.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow",
+			"text": "\"...\"\n\"Well, thanks for looking into it. For now, I've got some beef to settle with that bucket of bolts.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Be careful down there.\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1678837140.json",
+		"name": "boss-manifestation8win"
+	}
+}

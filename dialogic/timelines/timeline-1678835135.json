@@ -1,0 +1,150 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": true,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": true,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Learn anything new down there?\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"...You wouldn't consider me a weapon, right?\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Crossed",
+			"text": "\"What? Course not, you're flesh and blood under that coat.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Right, right. [pause=0.3]But, when I go and get weapons for you, you know, do my job? [pause=0.2]And of course with this new assignment of actually bruising some guys...\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Where's this going?\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"I'm just... having a bit of an existential crisis, I think.\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"If you need some time to decompress, take it, please. We can keep all your side of the business on halt until when you get back.\"\n\"You're a made man, son, and that means your family's gonna be looking out for you.\"\n\"And if that means we gotta get back to the old school days of pool cues and fists while you figure things out, [pause=0.1]I'm sure everyone here would be willing to do it.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Smile",
+			"text": "\"Thanks, that really means a lot. [pause=0.3]But I'm still good to keep bringing pieces back. Helps me think, doing what I love.\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "bubble",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1677774779.cfg"
+		},
+		{
+			"block_input": true,
+			"event_id": "dialogic_050",
+			"wait_time": 3
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "[i]And I need more answers from the Vault.[/i]"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0.5
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1678835135.json",
+		"name": "boss-manifestation7win"
+	}
+}

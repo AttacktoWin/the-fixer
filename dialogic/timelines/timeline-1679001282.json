@@ -1,0 +1,115 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "instant_in.gd",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Shadow",
+			"portrait_definition": "",
+			"position": {
+				"0": true,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Unauthorized access to the mainframe is not permitted. [pause=0.3]Your presence must be terminated.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "[i]There was something about it this time. Something was off.[/i]\n[i]I'd almost describe it as... [pause=0.2][speed=6]angry.[/i]\n\"Guess I had to make my own authorization.\""
+		},
+		{
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Authorization for [pause=0.2][speed=8]The Fixer[pause=0.2][speed=1] has one condition in order to be granted authorization.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Oh?\""
+		},
+		{
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"[speed=8]... [pause=0.2][speed=1]The Fixer cannot be allowed to gain the status of [pause=0.1][speed=8]The Boss[pause=0.1][speed=1]. [pause=0.2]We must terminate The Fixer.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"I'd almost say that was personal.\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1679001282.json",
+		"name": "manifestation-11"
+	}
+}

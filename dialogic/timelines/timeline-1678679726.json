@@ -1,0 +1,132 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "instant_in.gd",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1678144008.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Shadow",
+			"portrait_definition": "",
+			"position": {
+				"0": true,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"So, you got a name?\""
+		},
+		{
+			"character": "character-1678144008.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"We are the [color=#fdd838]Manifestation of the Vault[/color], we have not been given a name.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Manifestation? Works for me.\""
+		},
+		{
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Your name is not the Fixer.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"I ain't aboutta go giving my name out to the 'Man'.\""
+		},
+		{
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"So you are not like the Boss. [pause=0.4]This has been noted.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"What?\""
+		},
+		{
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"We have been talking for longer than 6 pieces of dialogue. [pause=0.4]Our model suggests that fighting is now the most likely course of action.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Smile",
+			"text": "\"Can't argue with that.\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1678679726.json",
+		"name": "manifestation-5"
+	}
+}
