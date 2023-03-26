@@ -62,9 +62,9 @@ func player_input_gun_aim():
 func _process(_delta):
 	if OS.is_debug_build():
 		if Input.is_action_pressed("ui_focus_next"):
-			var goomba = load("res://Scenes/Enemies/E_Goomba.tscn").instance()
-			goomba.global_position = CameraSingleton.get_absolute_mouse_iso()
-			Scene.runtime.add_child(goomba)
+			var enemy = load("res://Scenes/Enemies/E_Spyder.tscn").instance()
+			enemy.global_position = CameraSingleton.get_absolute_mouse_iso()
+			Scene.runtime.add_child(enemy)
 		if Input.is_action_just_pressed("ui_up"):
 			var start = MathUtils.to_level_vector(self.global_position)
 			var end = MathUtils.to_level_vector(CameraSingleton.get_absolute_mouse())

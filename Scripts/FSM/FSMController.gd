@@ -113,6 +113,9 @@ func get_animation_player():
 func has_animation_player():
 	return self.animation_player != null
 
+func has_animation(name: String):
+	return self.has_animation_player() and self.animation_player.has_animation(name)
+
 
 func _set_animation_if_anim_player(name: String):
 	if not self.has_animation_player():
@@ -130,6 +133,11 @@ func _set_animation_if_anim_player(name: String):
 func set_animation(name: String):
 	self._set_animation_if_anim_player(name)
 
+func get_animation() -> String:
+	if not self.has_animation_player():
+		return ""
+	return self.animation_player.current_animation
+
 
 func _check_anim_loop(delta):
 	if not self.has_animation_player():
@@ -139,6 +147,9 @@ func _check_anim_loop(delta):
 	if ap.current_animation == "" and self._last_anim != "":
 		self._on_animation_looped()
 		self._last_anim = ""
+	
+	if ap.current_animation == "":
+		return
 
 	var current = ap.current_animation_position
 	var last = self._last_animation_timer
@@ -197,7 +208,8 @@ func reset_animation_info():
 		return
 	var ap = self.get_animation_player()
 	ap.playback_speed = 1
-	ap.seek(0)
+	if ap.current_animation != "" and ap.current_animation_position != 0:
+		ap.seek(0)
 	self._last_animation_timer = 0
 
 

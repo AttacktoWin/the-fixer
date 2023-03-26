@@ -22,17 +22,17 @@ func _physics_process(delta):
 	if AI.has_LOS(self.entity.global_position, self.entity.get_target().global_position):
 		var dist = (self.entity.get_target().global_position - self.entity.global_position).length()
 		if (
-			self.entity.has_ranged_attack
-			and dist < self.entity.ranged_attack_range
-			and self.fsm.can_transition_to(EnemyState.ATTACKING_RANGED)
-		):
-			self.fsm.set_state(EnemyState.ATTACKING_RANGED)
-		elif (
 			self.entity.has_melee_attack
 			and dist < self.entity.melee_attack_range
 			and self.fsm.can_transition_to(EnemyState.ATTACKING_MELEE)
 		):
 			self.fsm.set_state(EnemyState.ATTACKING_MELEE)
+		elif (
+			self.entity.has_ranged_attack
+			and dist < self.entity.ranged_attack_range
+			and self.fsm.can_transition_to(EnemyState.ATTACKING_RANGED)
+		):
+			self.fsm.set_state(EnemyState.ATTACKING_RANGED)
 
 
 func _draw():

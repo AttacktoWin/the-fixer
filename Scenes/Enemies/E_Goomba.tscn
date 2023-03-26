@@ -29,7 +29,7 @@ height = 19.2829
 radius = 12.3667
 height = 10.676
 
-[sub_resource type="Shader" id=73]
+[sub_resource type="Shader" id=79]
 code = "shader_type canvas_item;
 
 uniform bool flash = false;
@@ -65,7 +65,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=74]
-shader = SubResource( 73 )
+shader = SubResource( 79 )
 shader_param/flash = false
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/line_color = Color( 0.988235, 0.847059, 0.215686, 0 )
@@ -283,6 +283,7 @@ scale = Vector2( 0.346525, 0.346525 )
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 3
+frame = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FlipComponents/Visual"]
 playback_process_mode = 0
