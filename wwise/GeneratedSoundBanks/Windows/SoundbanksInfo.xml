@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
+	<RootPaths>
+		<ProjectRoot>A:\Downloads\Audio\INTD450\The Fixer Main\</ProjectRoot>
+		<SourceFilesRoot>A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Evan\Desktop\The Fixer\the-fixer\wwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>A:\Downloads\Audio\INTD450\The Fixer Main\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX" Hash="1958929096">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>1355168291.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="3161908922" Language="SFX" Hash="3399231591">
+			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
+			<ShortName>Main</ShortName>
+			<Path>3161908922.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1828056235" Name="Fire_Pistol_Player" ObjectPath="\Events\Default Work Unit\Fire_Pistol_Player">
+					<IncludedMemoryFiles>
+						<File Id="90599123" Language="SFX">
+							<ShortName>Shoot_Pistol_Player.wav</ShortName>
+							<Path>SFX\Shoot_Pistol_Player_08F7D1DE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1198969758" Name="Swing_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Swing_Knuckles_Player">
+					<IncludedMemoryFiles>
+						<File Id="215651341" Language="SFX">
+							<ShortName>Swing_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Swing_Knuckles_Player_65AC56E0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>
