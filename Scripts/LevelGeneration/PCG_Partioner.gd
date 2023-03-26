@@ -16,7 +16,7 @@ func construct(
 	level_space:Rect2,		#param:specifies the size of the map
 	s_width:int,			#param:specifies the min width of the generated rooms
 	s_height:int,			#param:specifies the min height of the generated rooms
-	shrink:int	#param: specifies the shrink value for the space between rooms.
+	shrink:int				#param: specifies the shrink value for the space between rooms.
 ):
 	self.random = rng
 	self.space = level_space

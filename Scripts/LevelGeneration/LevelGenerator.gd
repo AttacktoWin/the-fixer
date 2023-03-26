@@ -17,16 +17,15 @@ export(Resource) var generator_data = PCG_RoomData.new()
 onready var Floor = get_node("%Floor")
 onready var Walls:TileMap = get_node("%Walls")
 
-var level = [] #-1 = non, 1 = floor, 2 = wall
 enum MODE{ROOM,WALKED_ROOM}
 enum CARDINAL_DIR{N,S,E,W}
-var walker_start_pos = Vector2(0,0)
 var rng = RandomNumberGenerator.new()
-
+var level = [] #-1 = non, 1 = floor, 2 = wall
+var saved_seed
 
 func _init():
 	rng.randomize()
-
+	saved_seed = rng.seed
 
 func _ready():
 	var path = []
@@ -54,9 +53,9 @@ func _ready():
 		level_space,
 		generator_data.min_width,generator_data.min_height,
 		generator_data.shrink_factor)
-	corridor_builder.construct(generator_data.corridor_width)
+	corridor_builder.construct(rng,generator_data.corridor_width)
 	populator.construct(player,exit,
-	enemies_per_room,enemy_buffer,enemy_info)
+	enemies_per_room,enemy_buffer,enemy_info,rng.seed)
 	
 	match generator_data.mode:
 		MODE.ROOM:
@@ -70,6 +69,7 @@ func _ready():
 		MODE.WALKED_ROOM:
 			#builder with room based random walk for more organic looking rooms
 			var walker	= PCG_Walker.new()
+			walker.construct(rng.seed)
 			partitioner.binary_space_partition(
 				generator_data.min_width,
 				generator_data.min_height,
@@ -96,3 +96,10 @@ func initialize_level(data):
 		self.level.push_back([])
 		for _y in range (0,data.map_size.y+1):
 			self.level[x].push_back(-1)
+
+func set_seed(value):
+	rng.seed = value
+	saved_seed = value
+
+func get_seed():
+	return rng.seed

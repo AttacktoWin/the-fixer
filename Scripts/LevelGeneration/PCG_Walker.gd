@@ -13,10 +13,10 @@ var DIRECTIONS = {
 
 # Walker run time values
 var steps_since_turn = 0
+var random
 
-# Description: Initalize random number generator.
-func _init():
-	randomize()
+func construct(seed_val):
+	seed(seed_val)
 
 # Description: Calls the random walker on a per level basis.
 func random_walk_room(generator_data,path,path_by_rooms,room_list,room_centers):

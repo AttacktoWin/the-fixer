@@ -4,18 +4,17 @@ extends Node
 # Description: This class implements builds corridors using simple manhattan traversal
 
 # Description: Initalize random number generator.
-var rng = RandomNumberGenerator.new()
-func _init():
-	rng.randomize()
-	
+var random = RandomNumberGenerator.new()
+
 var brush_size = 0
-func construct(size):
+func construct(rng,size):
+	self.random = rng
 	self.brush_size = size
 
 # Description: Connect together rooms with corridors
 func connect_rooms(room_centers):
 	var centers = room_centers.duplicate()
-	var start_center = rng.randi_range(0,centers.size()-1)
+	var start_center = self.random.randi_range(0,centers.size()-1)
 	var current_center = centers[start_center]
 	centers.erase(current_center)
 

@@ -23,12 +23,14 @@ func construct(
 	_player,_goal,
 	per_room,
 	buffer,
-	info):
+	info,
+	seed_val):
 	self.player = _player
 	self.goal = _goal
 	self.max_per_room = per_room
 	self.enemy_buffer = buffer
 	self.enemy_info = info
+	seed(seed_val)
 
 
 func populate(
@@ -94,7 +96,7 @@ func _spawn_point_pass(room_list,path_by_room):
 	for room in rooms:
 		var spawns = []
 		spawn_candidates[room].shuffle()
-		for enemy in range(self.max_per_room):
+		for _enemy in range(self.max_per_room):
 			spawn_count+=1
 			var spawn = spawn_candidates[room].pop_front()
 			for x in range(
