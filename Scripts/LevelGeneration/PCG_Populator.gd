@@ -40,10 +40,11 @@ func populate(
 	parent):
 	#remove all tiles on edges to avoid clipping
 	path_by_room = _remove_edges(path_by_room)
-	_player_goal_pass(tile_map,path,room_list,room_centers)
+	var end_index = _player_goal_pass(tile_map,path,room_list,room_centers)
 	var spawn_data = _spawn_point_pass(room_list,path_by_room)
 	var spawn_info = _hostile_selection_pass(spawn_data[0],spawn_data[1],spawn_data[2])
 	spawn_pass(spawn_info,tile_map,parent)
+	return end_index
 
 
 func _remove_edges(path_by_room):
@@ -83,7 +84,8 @@ func _player_goal_pass(tile_map,path,room_list,room_centers):
 			#set room center as exit
 			pos = tile_map.map_to_world(room_centers[index])
 			goal.global_position = tile_map.to_global(pos)
-			break
+			return index
+	
 
 
 func _spawn_point_pass(room_list,path_by_room):

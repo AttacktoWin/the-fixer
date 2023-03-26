@@ -1,9 +1,27 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/LevelGeneration/PCGTest.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Entities/Level.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Interface/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Entities/MainCamera.gd" type="Script" id=20]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+
+uniform vec2 target = vec2(0.5);
+uniform float intensity: hint_range(0.0, 1.0, 0.1);
+
+void fragment(){
+	COLOR = vec4(1);
+	float x = SCREEN_PIXEL_SIZE.x/distance(vec2(target.x,UV.y),UV);
+	float y = SCREEN_PIXEL_SIZE.y/distance(vec2(UV.x,target.y),UV);
+	COLOR.a = (x+y)*intensity;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/target = Vector2( 0.5, 0.5 )
+shader_param/intensity = 0.2
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -30,7 +48,14 @@ script = ExtResource( 20 )
 
 [node name="HUD" parent="MainCamera/UI" instance=ExtResource( 3 )]
 
-[node name="Post Porcessing" type="CanvasLayer" parent="MainCamera"]
+[node name="PostPorcessing" type="CanvasLayer" parent="MainCamera"]
+
+[node name="ColorRect" type="ColorRect" parent="MainCamera/PostPorcessing"]
+unique_name_in_owner = true
+visible = false
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )

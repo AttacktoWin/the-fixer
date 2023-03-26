@@ -56,6 +56,7 @@ func _ready():
 	corridor_builder.construct(rng,generator_data.corridor_width)
 	populator.construct(player,exit,
 	enemies_per_room,enemy_buffer,enemy_info,rng.seed)
+	filler.construct(rng)
 	
 	match generator_data.mode:
 		MODE.ROOM:
@@ -83,12 +84,13 @@ func _ready():
 			path = build_data[0]
 			path_by_rooms = build_data[1]
 	
-	populator.populate(
+	var end_index = populator.populate(
 		Floor,path,path_by_rooms,
 		room_list,room_centers,
 		entities)
 	
 	filler.floor_pass(path,level,Floor)
+	filler.room_deco_pass(path,room_list,path_by_rooms,end_index,Floor)
 	self.level = filler.wall_pass(path,level,Walls)
 
 func initialize_level(data):

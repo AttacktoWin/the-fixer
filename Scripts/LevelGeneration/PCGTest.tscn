@@ -181,7 +181,6 @@ outlines = [ PoolVector2Array( 129, 127, 256, 63, 128, 0, 0, 60 ) ]
 [node name="Level" type="Node2D"]
 position = Vector2( 145, 245 )
 script = ExtResource( 9 )
-level_path = NodePath("Generator")
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 7 )
