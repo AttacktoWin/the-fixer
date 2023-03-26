@@ -7,10 +7,13 @@ extends Node
 var rng = RandomNumberGenerator.new()
 func _init():
 	rng.randomize()
-
+	
+var brush_size = 0
+func construct(size):
+	self.brush_size = size
 
 # Description: Connect together rooms with corridors
-func connect_rooms(room_centers,brush_size):
+func connect_rooms(room_centers):
 	var centers = room_centers.duplicate()
 	var start_center = rng.randi_range(0,centers.size()-1)
 	var current_center = centers[start_center]
@@ -23,7 +26,7 @@ func connect_rooms(room_centers,brush_size):
 		#pop that room
 		centers.erase(next_center)
 		#make corridor to that room
-		corridors += _make_corridor(current_center,next_center,brush_size)
+		corridors += _make_corridor(current_center,next_center)
 		current_center = next_center
 	return corridors
 
@@ -41,7 +44,7 @@ func _get_closest_room(current, room_centers = []):
 
 
 # Description: Build corridor based on brush width
-func _make_corridor(current,next,brush_size):
+func _make_corridor(current,next):
 	var corridor = []
 	while current!=next:
 		if current.x < next.x:
@@ -53,7 +56,7 @@ func _make_corridor(current,next,brush_size):
 		elif current.y>next.y:
 			current.y -= 1
 		
-		for i in brush_size:
-			for j in brush_size:
+		for i in self.brush_size:
+			for j in self.brush_size:
 				corridor.push_back(current+Vector2(i,j))
 	return corridor 

@@ -3,49 +3,61 @@ extends Node2D
 # Author: Yalmaz
 # Description: This class implements room generation using binary space partition
 
-# Partitioner parameters
-var rng = RandomNumberGenerator.new()
+var random
+var space:Rect2
+var width:int = 0
+var height:int = 0
+var shrink_factor:int = 0
 
 
-# Description: Initalize random number generator.
-func _init():
-	rng.randomize()
+# Description: initialize the class with fixed params
+func construct(
+	rng:RandomNumberGenerator,
+	level_space:Rect2,		#param:specifies the size of the map
+	s_width:int,			#param:specifies the min width of the generated rooms
+	s_height:int,			#param:specifies the min height of the generated rooms
+	shrink:int	#param: specifies the shrink value for the space between rooms.
+):
+	self.random = rng
+	self.space = level_space
+	self.width = s_width
+	self.height = s_height
+	self.shrink_factor = shrink
 
 
 # Description: Use binary space partition to build the rooms.
 func room_builder(
-	space:Rect2,		#param:specifies the size of the map
-	width:int,			#param:specifies the min width of the generated rooms
-	height:int,			#param:specifies the min height of the generated rooms
-	shrink_factor:int	#param: specifies the shrink value for the space between rooms.
+	o_path,
+	o_path_by_room,
+	o_room_list,
+	o_room_centers
 	):
-	var path = []
-	var path_by_room = {}
-	var room_list = binary_space_partition(space,width,height)
-	var room_centers = []
-	for room in room_list:
-		path_by_room[room] = []
+	binary_space_partition(
+		self.width,self.height,
+		self.space,
+		o_room_list)
+	for room in o_room_list:
+		o_path_by_room[room] = []
 		var center = room.get_center()
-		room_centers.push_back(Vector2(floor(center.x),floor(center.y)))
-		for i in range(room.position.x+shrink_factor,
-					   room.end.x-shrink_factor):
-			for j in range(room.position.y+shrink_factor,
-						   room.end.y-shrink_factor):
-				path.push_back(Vector2(i,j))
-				path_by_room[room].push_back(Vector2(i,j))
-	return [path,room_list,room_centers,path_by_room]
+		o_room_centers.push_back(Vector2(floor(center.x),floor(center.y)))
+		for i in range(room.position.x+self.shrink_factor,
+					   room.end.x-self.shrink_factor):
+			for j in range(room.position.y+self.shrink_factor,
+						   room.end.y-self.shrink_factor):
+				o_path.push_back(Vector2(i,j))
+				o_path_by_room[room].push_back(Vector2(i,j))
 
 
 # Description: Nothing much to look at here, its a simple bsp algo that returns 
 # rooms. Can be used in combination with walker for natural looking rooms
 func binary_space_partition(
-	space:Rect2,			#param:specifies the size of the map
 	min_width:int,			#param:specifies the min width of the generated rooms
-	min_height:int			#param:specifies the min height of the generated rooms
+	min_height:int,			#param:specifies the min height of the generated rooms
+	level_space:Rect2,			#param:specifies the size of the map
+	o_room_list
 	):
 	var room_queue = []
-	var room_list = []
-	room_queue.push_back(space)
+	room_queue.push_back(level_space)
 	
 	while(room_queue.size()>0):
 		var candidate:Rect2 = room_queue.pop_front()
@@ -60,8 +72,7 @@ func binary_space_partition(
 			room_queue.push_back(new_partitions[0])
 			room_queue.push_back(new_partitions[1])
 		elif candidate.size.x >= min_width && candidate.size.y >= min_height:
-			room_list.push_back(candidate)
-	return room_list
+			o_room_list.push_back(candidate)
 
 
 # Description: split a rectangle into two based on a random split value. It
@@ -76,19 +87,21 @@ func _split(
 	var size_a
 	var size_b
 	if vertical:
-		var split_value = rng.randi_range(min_width,upper_bound)
+		var split_value = self.random.randi_range(min_width,upper_bound)
 		position_a = split_candidate.position
 		position_b = Vector2(split_candidate.position.x + split_value,split_candidate.position.y)
 		size_a = Vector2(split_value,split_candidate.size.y)
 		size_b = Vector2(split_candidate.size.x - split_value,split_candidate.size.y)
 	else:
-		var split_value = rng.randi_range(min_height,upper_bound)
+		var split_value = self.random.randi_range(min_height,upper_bound)
 		position_a = split_candidate.position
 		position_b = Vector2(split_candidate.position.x,split_value+split_candidate.position.y)
 		size_a = Vector2(split_candidate.size.x,split_value)
 		size_b = Vector2(split_candidate.size.x,split_candidate.size.y - split_value)
 	return [Rect2(position_a,size_a),Rect2(position_b,size_b)]
 
+
+# Description: get centers for the generated rooms
 func get_centers(room_list):
 	var centers = []
 	for room in room_list:

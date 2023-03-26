@@ -1,9 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/LevelGeneration/PCGTest.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Entities/Level.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Interface/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Entities/MainCamera.gd" type="Script" id=20]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+dof_blur_far_distance = 0.02
+dof_blur_far_amount = 1.0
+adjustment_brightness = 2.67
+adjustment_contrast = 2.29
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
@@ -22,3 +29,8 @@ script = ExtResource( 20 )
 [node name="UI" type="Control" parent="MainCamera"]
 
 [node name="HUD" parent="MainCamera/UI" instance=ExtResource( 3 )]
+
+[node name="Post Porcessing" type="CanvasLayer" parent="MainCamera"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )

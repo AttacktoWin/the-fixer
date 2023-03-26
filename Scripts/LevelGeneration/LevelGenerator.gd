@@ -5,121 +5,94 @@ export (NodePath) var Exit_path
 onready var player = get_node(Player_path)
 onready var exit = get_node(Exit_path)
 
+export(NodePath) var parent
+onready var entities: Node2D = get_node(parent)
+export(int) var enemies_per_room = 5
+export(int) var enemy_buffer = 2
+export(int) var pillbug_spawn_rate = 70
+export(int) var spyder_spawn_rate = 30
+
+export(Resource) var generator_data = PCG_RoomData.new()
+
 onready var Floor = get_node("%Floor")
 onready var Walls:TileMap = get_node("%Walls")
 
 var level = [] #-1 = non, 1 = floor, 2 = wall
 enum MODE{ROOM,WALKED_ROOM}
 enum CARDINAL_DIR{N,S,E,W}
-
-export(Vector2) var map_size = Vector2(60,60) 
-export(MODE) var generator_mode = MODE.WALKED_ROOM
-
-
-# WALKER Params
-var walker:PCG_Walker
 var walker_start_pos = Vector2(0,0)
+var rng = RandomNumberGenerator.new()
 
-export(CARDINAL_DIR) var start_direction = CARDINAL_DIR.S
-export(float) var random_turn_chance = 0.25
-export(int) var walk_length = 500
-export(int) var max_steps_in_direction = 2
 
-# PARTIONER Params
-var partitioner:PCG_Partioner
-export(int) var room_min_width = 15
-export(int) var room_min_height = 15
-export(int) var room_space_between = 3
+func _init():
+	rng.randomize()
 
-# CORRIDOR_BUILDER Params
-var corridor_builder:PCG_Corridors
-export(int) var corridor_width = 3
-
-# TILE_FILLER Params
-var filler:PCG_TileFiller
-
-# POPULATOR Params
-var populator:PCG_Populator
-export(PackedScene) var goomba_path
-export(PackedScene) var camera_path
-export(NodePath) var parent
-onready var entities: Node2D = get_node(parent)
 
 func _ready():
-	#initlize level array
-	#its so cursed that there isnt a better way to initialize a 2d array
-	for x in range (0,map_size.x+1):
-		level.push_back([])
-		for _y in range (0,map_size.y+1):
-			level[x].push_back(-1)
-	var level_space = Rect2(0,0,map_size.x,map_size.y)
-	
-	# Initialize level building tools
-	self.filler	= PCG_TileFiller.new()
-	self.walker	= PCG_Walker.new()
-	self.partitioner = PCG_Partioner.new()
-	self.corridor_builder = PCG_Corridors.new()
-	
 	var path = []
 	var room_list = []
 	var room_centers = []
 	var path_by_rooms = {}
+	var enemy_info = {
+		"pillbug": [pillbug_spawn_rate,load("res://Scenes/Enemies/E_Goomba.tscn")],
+		"spyder": [spyder_spawn_rate,load("res://Scenes/Enemies/E_Spyder.tscn")]
+	}
 	
-	# Initialize level populator
-	self.populator = PCG_Populator.new()
-	self.populator.construct(player,exit)
-	match generator_mode:
+	#initlize level array
+	initialize_level(generator_data)
+	var level_space = Rect2(0,0,generator_data.map_size.x,generator_data.map_size.y)
+	
+	#declare building too,
+	var partitioner = PCG_Partioner.new()
+	var corridor_builder = PCG_Corridors.new()
+	var populator = PCG_Populator.new()
+	var filler	= PCG_TileFiller.new()
+	
+	#initialize level building tools
+	partitioner.construct(
+		rng,
+		level_space,
+		generator_data.min_width,generator_data.min_height,
+		generator_data.shrink_factor)
+	corridor_builder.construct(generator_data.corridor_width)
+	populator.construct(player,exit,
+	enemies_per_room,enemy_buffer,enemy_info)
+	
+	match generator_data.mode:
 		MODE.ROOM:
-			var building_data = partitioner.room_builder(
-				level_space,
-				self.room_min_width,
-				self.room_min_height,
-				self.room_space_between)
-			path = building_data[0]
-			room_list = building_data[1]
-			room_centers = building_data[2]
-			path_by_rooms = building_data[3]
-			path += corridor_builder.connect_rooms(room_centers,self.corridor_width)
+			#simple room based builder
+			partitioner.room_builder(
+				path,
+				path_by_rooms,
+				room_list,
+				room_centers)
+			path += corridor_builder.connect_rooms(room_centers)
 		MODE.WALKED_ROOM:
-			room_list = partitioner.binary_space_partition(
-				level_space,
-				self.room_min_width,self.room_min_height)
+			#builder with room based random walk for more organic looking rooms
+			var walker	= PCG_Walker.new()
+			partitioner.binary_space_partition(
+				generator_data.min_width,
+				generator_data.min_height,
+				level_space,room_list)
 			room_centers = partitioner.get_centers(room_list)
-			path = corridor_builder.connect_rooms(room_centers,self.corridor_width)
-			var build_data = random_walk_room(path,room_list,room_centers)
+			path = corridor_builder.connect_rooms(room_centers)
+			var build_data = walker.random_walk_room(
+				generator_data,
+				path,path_by_rooms,
+				room_list,room_centers)
 			path = build_data[0]
 			path_by_rooms = build_data[1]
 	
-	var spawn_info = populator.populate(Floor,path,room_list,room_centers,path_by_rooms)
-	for enemy in spawn_info:
-		for spawn in spawn_info[enemy]:
-			match(enemy):
-				"goomba":
-					var test = goomba_path.instance()
-					var pos = Floor.map_to_world(spawn)
-					test.global_position = Floor.to_global(pos)
-					entities.add_child(test)
-				"camera":
-					var test = camera_path.instance()
-					var pos = Floor.map_to_world(spawn)
-					test.global_position = Floor.to_global(pos)
-					entities.add_child(test)
-
+	populator.populate(
+		Floor,path,path_by_rooms,
+		room_list,room_centers,
+		entities)
+	
 	filler.floor_pass(path,level,Floor)
 	self.level = filler.wall_pass(path,level,Walls)
 
-
-# Uses the random walker in combination with room results to give walked rooms
-func random_walk_room(path,room_list,room_centers):
-	var path_by_rooms = {}
-	for index in room_list.size():
-		var partial_path = walker.random_walk(
-			room_list[index],
-			room_centers[index],
-			self.start_direction,
-			self.walk_length,
-			self.random_turn_chance,self.max_steps_in_direction,
-			self.corridor_width)
-		path+=partial_path
-		path_by_rooms[room_list[index]] = partial_path
-	return [path,path_by_rooms]
+func initialize_level(data):
+	for x in range (0,data.map_size.x+1):
+		self.level.push_back([])
+		for _y in range (0,data.map_size.y+1):
+			self.level[x].push_back(-1)

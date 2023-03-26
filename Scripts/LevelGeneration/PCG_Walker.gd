@@ -17,13 +17,24 @@ var steps_since_turn = 0
 # Description: Initalize random number generator.
 func _init():
 	randomize()
-#var path = []
-#	var room_list = []
-#	var room_centers = []
-#	var path_by_rooms = {}
+
+# Description: Calls the random walker on a per level basis.
+func random_walk_room(generator_data,path,path_by_rooms,room_list,room_centers):
+	for index in room_list.size():
+		var partial_path = _random_walk(
+			room_list[index],
+			room_centers[index],
+			generator_data.start_direction,
+			generator_data.walk_length,
+			generator_data.random_turn_chance,generator_data.max_steps_in_direction,
+			generator_data.walker_width)
+		path+=partial_path
+		path_by_rooms[room_list[index]] = partial_path
+	return [path,path_by_rooms]
+
 
 # Description: Nothing much too look at here. Its a simple random walking algo.
-func random_walk(
+func _random_walk(
 		walk_area:Rect2,					#param:specifies the size of the map, used in boundary cehcks by walker
 		start_position:Vector2,				#param:where the walker will start.
 		start_direction,					#param:which direction the walker starts walking in.
