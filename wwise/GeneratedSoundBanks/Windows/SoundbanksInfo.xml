@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="SFX" Hash="3268403482">
+		<SoundBank Id="89505537" Language="SFX" Hash="1550164993">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>89505537.bnk</Path>
@@ -105,11 +105,11 @@
 					<IncludedMemoryFiles>
 						<File Id="15880499" Language="SFX">
 							<ShortName>Flash_Camera.wav</ShortName>
-							<Path>SFX\Flash_Camera_53EE6918.wem</Path>
+							<Path>SFX\Flash_Camera_B6BBCEE5.wem</Path>
 						</File>
 						<File Id="865640855" Language="SFX">
 							<ShortName>spyder charge.wav</ShortName>
-							<Path>SFX\spyder charge_471333F6.wem</Path>
+							<Path>SFX\spyder charge_A592BCF1.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -130,8 +130,11 @@
 				</Event>
 				<Event Id="2010675244" Name="Weapon_Pickup_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Weapon_Pickup_Player"/>
 			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
+			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="1958929096">
+		<SoundBank Id="1355168291" Language="SFX" Hash="3713283302">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>1355168291.bnk</Path>
@@ -149,7 +152,7 @@
 				<Event Id="3289055956" Name="Move_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Move_Menu"/>
 			</IncludedEvents>
 		</SoundBank>
-		<SoundBank Id="3161908922" Language="SFX" Hash="4160100658">
+		<SoundBank Id="3161908922" Language="SFX">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
 			<ShortName>Main</ShortName>
 			<Path>3161908922.bnk</Path>
@@ -220,7 +223,7 @@
 					<IncludedMemoryFiles>
 						<File Id="865640855" Language="SFX">
 							<ShortName>spyder charge.wav</ShortName>
-							<Path>SFX\spyder charge_471333F6.wem</Path>
+							<Path>SFX\spyder charge_A592BCF1.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -255,11 +258,11 @@
 					<IncludedMemoryFiles>
 						<File Id="15880499" Language="SFX">
 							<ShortName>Flash_Camera.wav</ShortName>
-							<Path>SFX\Flash_Camera_53EE6918.wem</Path>
+							<Path>SFX\Flash_Camera_B6BBCEE5.wem</Path>
 						</File>
 						<File Id="865640855" Language="SFX">
 							<ShortName>spyder charge.wav</ShortName>
-							<Path>SFX\spyder charge_471333F6.wem</Path>
+							<Path>SFX\spyder charge_A592BCF1.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -282,11 +285,115 @@
 				</Event>
 				<Event Id="2010675244" Name="Weapon_Pickup_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Weapon_Pickup_Player"/>
 			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
+			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="3012300438">
+		<SoundBank Id="3991942870" Language="SFX" Hash="3536434751">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>3991942870.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1932095129" Name="Combat_Music" ObjectPath="\Events\Music\Combat_Music">
+					<IncludedMemoryFiles>
+						<File Id="13186207" Language="SFX">
+							<ShortName>combat\combat_pianoHarmony1.wav</ShortName>
+							<Path>SFX\combat\combat_pianoHarmony1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="105726356" Language="SFX">
+							<ShortName>combat\combat_pianoMelody.wav</ShortName>
+							<Path>SFX\combat\combat_pianoMelody_D79FB2B7.wem</Path>
+						</File>
+						<File Id="239014887" Language="SFX">
+							<ShortName>combat\combat_drumsSideStickRide.wav</ShortName>
+							<Path>SFX\combat\combat_drumsSideStickRide_D79FB2B7.wem</Path>
+						</File>
+						<File Id="242845153" Language="SFX">
+							<ShortName>combat\combat_drumsSnare.wav</ShortName>
+							<Path>SFX\combat\combat_drumsSnare_D79FB2B7.wem</Path>
+						</File>
+						<File Id="267026404" Language="SFX">
+							<ShortName>combat\combat_trumpetHarmony.wav</ShortName>
+							<Path>SFX\combat\combat_trumpetHarmony_D79FB2B7.wem</Path>
+						</File>
+						<File Id="291085458" Language="SFX">
+							<ShortName>combat\combat_pianoHarmony2.wav</ShortName>
+							<Path>SFX\combat\combat_pianoHarmony2_D79FB2B7.wem</Path>
+						</File>
+						<File Id="385739181" Language="SFX">
+							<ShortName>combat\combat_bass.wav</ShortName>
+							<Path>SFX\combat\combat_bass_D79FB2B7.wem</Path>
+						</File>
+						<File Id="557515144" Language="SFX">
+							<ShortName>combat\combat_trumpetCrescendo.wav</ShortName>
+							<Path>SFX\combat\combat_trumpetCrescendo_D79FB2B7.wem</Path>
+						</File>
+						<File Id="732865985" Language="SFX">
+							<ShortName>combat\combat_drumsKick.wav</ShortName>
+							<Path>SFX\combat\combat_drumsKick_D79FB2B7.wem</Path>
+						</File>
+						<File Id="917152437" Language="SFX">
+							<ShortName>combat\combat_drumsCymbals.wav</ShortName>
+							<Path>SFX\combat\combat_drumsCymbals_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3751267554" Name="Hub_Music" ObjectPath="\Events\Music\Hub_Music">
+					<IncludedMemoryFiles>
+						<File Id="26819846" Language="SFX">
+							<ShortName>hub\hub_theme_bass.wav</ShortName>
+							<Path>SFX\hub\hub_theme_bass_D79FB2B7.wem</Path>
+						</File>
+						<File Id="132082285" Language="SFX">
+							<ShortName>hub\hub_theme_cymbalTriple.wav</ShortName>
+							<Path>SFX\hub\hub_theme_cymbalTriple_D79FB2B7.wem</Path>
+						</File>
+						<File Id="187651302" Language="SFX">
+							<ShortName>hub\hub_theme_pianoChords.wav</ShortName>
+							<Path>SFX\hub\hub_theme_pianoChords_D79FB2B7.wem</Path>
+						</File>
+						<File Id="379602483" Language="SFX">
+							<ShortName>hub\hub_theme_hi-hatFourth.wav</ShortName>
+							<Path>SFX\hub\hub_theme_hi-hatFourth_D79FB2B7.wem</Path>
+						</File>
+						<File Id="655898296" Language="SFX">
+							<ShortName>hub\hub_theme_vibraphone.wav</ShortName>
+							<Path>SFX\hub\hub_theme_vibraphone_D79FB2B7.wem</Path>
+						</File>
+						<File Id="660831505" Language="SFX">
+							<ShortName>hub\hub_theme_pianoMelody1.wav</ShortName>
+							<Path>SFX\hub\hub_theme_pianoMelody1_D79FB2B7.wem</Path>
+						</File>
+						<File Id="748179741" Language="SFX">
+							<ShortName>hub\hub_theme_pianoMelody.wav</ShortName>
+							<Path>SFX\hub\hub_theme_pianoMelody_D79FB2B7.wem</Path>
+						</File>
+						<File Id="748423373" Language="SFX">
+							<ShortName>hub\hub_theme_hi-hatSixth.wav</ShortName>
+							<Path>SFX\hub\hub_theme_hi-hatSixth_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2930852717" Name="Manifestation_Music" ObjectPath="\Events\Music\Manifestation_Music">
+					<IncludedMemoryFiles>
+						<File Id="27907497" Language="SFX">
+							<ShortName>manifestation\manifestation_theme.wav</ShortName>
+							<Path>SFX\manifestation\manifestation_theme_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="309205993" Name="Title_Music" ObjectPath="\Events\Music\Title_Music">
+					<IncludedMemoryFiles>
+						<File Id="591223848" Language="SFX">
+							<ShortName>title\title_screen.wav</ShortName>
+							<Path>SFX\title\title_screen_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\MusicVolume"/>
+			</GameParameters>
 		</SoundBank>
 	</SoundBanks>
 </SoundBanksInfo>
