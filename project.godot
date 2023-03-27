@@ -334,6 +334,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Entities/Weapons/TestGun.gd"
 }, {
+"base": "Node2D",
+"class": "TimerList",
+"language": "GDScript",
+"path": "res://Scripts/Utils/TimerList.gd"
+}, {
 "base": "Resource",
 "class": "UnlockTable",
 "language": "GDScript",
@@ -420,6 +425,7 @@ _global_script_class_icons={
 "Spyder": "",
 "SpyderStateRangedAttack": "",
 "TestGun": "",
+"TimerList": "",
 "UnlockTable": "",
 "UnlockTableEntry": "",
 "VariableList": "",

@@ -22,6 +22,8 @@ onready var variables = VariableList.new(
 	}
 )
 
+onready var status_timers = TimerList.new(self, STATUSES, {})
+
 export var entity_radius: float = 32
 export var push_amount: float = 256
 export(NodePath) var entity_collider_path = NodePath("EntityCollider")
@@ -59,6 +61,9 @@ func _ready():
 	_error = PausingSingleton.connect("pause_changed", self, "_on_pause_change")
 	if _error:
 		print("Error connecting to pause: ", _error)
+
+	add_child(variables)
+	add_child(status_timers)
 
 
 func getv(variable):
