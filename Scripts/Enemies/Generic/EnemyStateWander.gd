@@ -77,11 +77,12 @@ func _generate_random_path():
 			/ (1 + MIN_WANDER_DISTANCE_FAC)
 			* wander_radius
 		)
-		var loc = self._home + Vector2(cos(angle) * dist, sin(angle) * dist)
+		var loc = MathUtils.from_iso(self._home + Vector2(cos(angle) * dist, sin(angle) * dist))
 		if Pathfinder.is_in_bounds(loc):
 			self._path = Pathfinder.generate_path(self.entity.global_position, loc)
 			if self._path.path_length() > self.wander_radius * 2:
 				self._path = null
+		attempts -= 1
 	return self._path != null
 
 

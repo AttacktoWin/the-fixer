@@ -51,6 +51,7 @@ func get_local_mouse() -> Vector2:
 func get_absolute_mouse() -> Vector2:
 	return self._camera.get_global_mouse_position()
 
+
 func get_absolute_mouse_iso() -> Vector2:
 	return self._camera.get_global_mouse_position() * MathUtils.TO_ISO
 

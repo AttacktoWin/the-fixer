@@ -1,24 +1,70 @@
 class_name PCG_Populator
 extends Node2D
 
-export(PackedScene) onready var enemies
 var player
 var goal
-var budget = 30
+var max_per_room
+var enemy_buffer
+var enemy_info
 
-func construct(_player,_goal):
+var neighbours_kernel = [
+	Vector2(0,1),
+	Vector2(0,-1),
+	Vector2(1,0),
+	Vector2(-1,0),
+	
+	Vector2(1,1),
+	Vector2(-1,1),
+	Vector2(1,-1),
+	Vector2(-1,-1),
+]
+
+func construct(
+	_player,_goal,
+	per_room,
+	buffer,
+	info,
+	seed_val):
 	self.player = _player
 	self.goal = _goal
-	
-func populate(tile_map,path,room_list,room_centers,path_by_room):
-	_player_goal_pass(tile_map,path,room_list,room_centers,path_by_room)
+	self.max_per_room = per_room
+	self.enemy_buffer = buffer
+	self.enemy_info = info
+	seed(seed_val)
 
-func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
-	#i could just get start end from corridor builder?
-	
-	
-	var centers = room_centers
-	var start = centers.front()
+
+func populate(
+	tile_map,
+	path,path_by_room,
+	room_list,room_centers,
+	parent):
+	#remove all tiles on edges to avoid clipping
+	path_by_room = _remove_edges(path_by_room)
+	var end_index = _player_goal_pass(tile_map,path,room_list,room_centers)
+	var spawn_data = _spawn_point_pass(room_list,path_by_room)
+	var spawn_info = _hostile_selection_pass(spawn_data[0],spawn_data[1],spawn_data[2])
+	spawn_pass(spawn_info,tile_map,parent)
+	return end_index
+
+
+func _remove_edges(path_by_room):
+	var shrunk = {}
+	for room in path_by_room:
+		shrunk[room] = []
+		for tile in path_by_room[room]:
+			var test_status = true
+			for neighbour in neighbours_kernel:
+				var test = tile+neighbour
+				if not (test in path_by_room[room]):
+					test_status = false
+					break
+			if test_status:
+				shrunk[room].append(tile)
+	return shrunk
+
+
+func _player_goal_pass(tile_map,path,room_list,room_centers):
+	var start = room_centers.front()
 	var pos = tile_map.map_to_world(start)
 	player.global_position = tile_map.to_global(pos)
 	#generate dijkstra map
@@ -30,44 +76,79 @@ func _player_goal_pass(tile_map,path,room_list,room_centers,path_by_room):
 	#loop over to find room
 	for index in range(room_list.size()):
 		if room_list[index].has_point(exit):
+			exit = index
 			#flatten space around center
-			for x in range (-3,4):
-				for y in range (-3,4):
+			for x in range (-2,3):
+				for y in range (-2,3):
 					path.push_back(room_centers[index]+Vector2(x,y))
 			#set room center as exit
 			pos = tile_map.map_to_world(room_centers[index])
 			goal.global_position = tile_map.to_global(pos)
-			break
+			return index
 	
 
-func _pick_cast():
-	var enemies = ["goomba","camera","bird"]
-	var total =0
-	while total<budget:
-		pass
-	# while budget not dry and budget not less then min cost:
-		#while set>0
-			#pick enemy from suffled set
-			#if cost<budget
-				#budget-cost
-				#break
-			#else
-				#pop
 
-func _hostile_pass():
-	pass
-	# find path to goal
-		#dijkstra
-		#test by spawning goombs
-	# sample n=cast_size points on path at even distance
-		#test by spawning enemy at each point should be even
-	# reduce even-ness and translate it
-	# offset the positioning
+func _spawn_point_pass(room_list,path_by_room):
+	var rooms = room_list.duplicate()
+	rooms.remove(0)
 	
-	#pesudo poisson appraoch:
-	# divide cast among rooms
-	#for each enemy in room
-		# pick random point in room. delete cost radius
+	var spawn_candidates = path_by_room.duplicate(true)
+	var spawn_by_room = {}
+	var spawn_count = 0
+	for room in rooms:
+		var spawns = []
+		spawn_candidates[room].shuffle()
+		for _enemy in range(self.max_per_room):
+			spawn_count+=1
+			var spawn = spawn_candidates[room].pop_front()
+			for x in range(
+				-self.enemy_buffer,
+				self.enemy_buffer+1):
+				for y in range(
+					-self.enemy_buffer,
+					self.enemy_buffer+1):
+					var neighbour = Vector2(spawn.x-x,spawn.y-y)
+					spawn_candidates[room].erase(neighbour)
+			spawns.append(spawn)
+			if spawn_candidates[room].size()==0:
+				break
+		spawn_by_room[room] = spawns
+	return [spawn_count,spawn_by_room,rooms]
+
+
+func _hostile_selection_pass(count,spawns,room_list):
+	var spawn_by_room = spawns.duplicate()
+	var room_que = _randomize_rooms(room_list)
+	var spawn_info = {}
+	var remaining = count
+	
+	for enemy in enemy_info:
+		var current = floor(count*enemy_info[enemy][0]/100)
+		remaining = remaining - current
+		enemy_info[enemy][0] = current
+	
+	for enemy in enemy_info:
+		spawn_info[enemy] = []
+		for point in enemy_info[enemy][0]:
+			var current_room = room_que[0]
+			var coord = spawn_by_room[current_room[0]].pop_front()
+			if coord == null:
+				continue
+			room_que[0][1]+= 1
+			room_que.sort_custom(CustomSorter,"priority_sorter")
+			spawn_info[enemy].append(coord)
+	return spawn_info
+
+
+func spawn_pass(spawn_info,tile_map,entities):
+	for enemy in spawn_info:
+		for spawn in spawn_info[enemy]:
+			var test = enemy_info[enemy][1].instance()
+			var pos = tile_map.map_to_world(spawn)
+			test.global_position = tile_map.to_global(pos)
+			#test.global_position -= Vector2(2,2)
+			entities.add_child(test)
+
 
 func gen_dijstra_map(start,path):
 	var d_map = {}
@@ -88,3 +169,21 @@ func gen_dijstra_map(start,path):
 			d_map[candidate] = d_map[curr]+1
 			que.push_back(candidate)
 	return d_map
+
+
+static func _randomize_rooms(room_list):
+	var room_que = []
+	#room_que = [[room,value],[room,value],..]
+	for room in room_list:
+		room_que.append([room,randi()])
+	room_que.sort_custom(CustomSorter,"priority_sorter")
+	for room in room_que:
+		room[1] = 0
+	return room_que
+
+
+class CustomSorter:
+	static  func priority_sorter(a,b):
+		if a[1] < b[1]:
+			return true
+		return false

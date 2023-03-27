@@ -156,7 +156,7 @@ func generate_path(from: Vector2, to: Vector2) -> PathfindResult:
 func is_in_bounds(vec: Vector2) -> bool:
 	vec = MathUtils.floor_vec2(MathUtils.to_level_vector(vec))
 	var idx = vec.x + vec.y * self._width
-	return self._pathfinder.get_point_connections(idx).size() > 0
+	return self._pathfinder.has_point(idx)
 
 
 func get_vector_from_walls(pos: Vector2) -> Vector2:
