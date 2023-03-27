@@ -7,6 +7,7 @@ var _dash_direction = Vector2()
 var _gun_angle = -1
 var _gun_counter = 0
 const DASH_GUN_ANGLE = 0.8
+const DASH_INVULNERABILITY = 0.5
 
 
 func _init():
@@ -24,6 +25,8 @@ func get_handled_states():
 
 
 func enter():
+	self.entity.status_timers.delta_timer(LivingEntityStatus.INVULNERABLE, DASH_INVULNERABILITY)
+
 	self._gun_angle = MathUtils.abs_x(self.entity.get_wanted_gun_vector()).angle()
 	self._gun_counter = 0
 	# Wwise.post_event_id(AK.EVENTS.DASH_PLAYER, self)
