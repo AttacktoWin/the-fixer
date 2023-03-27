@@ -13,13 +13,48 @@ State	ID	Name	State Group			Notes
 	1668749452	No	GamePaused			
 
 Custom State	ID	Name	State Group	Owner		Notes
+	14428371	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_trumpetHarmony		
+	23191759	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody\combat_trumpetHarmony		
+	43055577	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody\combat_drumsKick		
+	47362443	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_pianoMelody		
+	138335497	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody\combat_drumsSnare		
+	148576282	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet\combat_drumsSnare		
+	161611501	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_drumsKick		
+	171930232	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_drumsSideStickRide		
 	172559245	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_drumsSnare		
 	187424397	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_pianoMelody		
+	187745304	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_trumpetCrescendo		
+	241352986	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody		
+	250815791	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody\combat_pianoMelody		
+	252749704	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet\combat_trumpetHarmony		
+	280447904	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_trumpetCrescendo		
 	292279961	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_drumsKick		
+	362242592	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet\combat_drumsKick		
+	392981489	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_drumsSnare		
+	423696502	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_trumpetHarmony		
+	475000241	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_drumsSideStickRide		
+	485013230	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet\combat_pianoMelody		
+	494727314	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass		
+	511433416	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_drumsKick		
 	515276191	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_trumpetCrescendo		
+	519381964	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet\combat_drumsSideStickRide		
+	541448078	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody\combat_trumpetCrescendo		
+	551311551	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_drumsSnare		
+	619541305	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet		
 	626499817	Yes	GamePaused	\Interactive Music Hierarchy\Music\Manifestation Playlist\manifestation		
+	651282631	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano		
 	659917848	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_drumsSideStickRide		
+	687163822	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_drumsSideStickRide		
+	700226086	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler		
+	730165159	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet\combat_trumpetCrescendo		
+	738759556	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_pianoMelody		
+	783122944	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_drumsKick		
+	846409964	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_pianoMelody		
+	884997160	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_trumpetHarmony		
+	927133015	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_drumsSnare		
+	951897129	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody\combat_drumsSideStickRide		
 	989005569	Yes	GamePaused	\Interactive Music Hierarchy\Music\Hub Playlist\hub		
+	1029881085	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_trumpetCrescendo		
 	1048229371	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat		
 	1065297155	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_trumpetHarmony		
 
