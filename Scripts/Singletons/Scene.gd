@@ -9,13 +9,14 @@ var runtime setget , _get_runtime
 var ui setget , _get_ui
 var managers setget , _get_managers
 var level setget , _get_level
+var player setget, _get_player
 
 var _camera = null
 var _runtime = null
 var _ui = null
 var _managers = null
 var _level = null
-
+var _player = null
 
 func _reload_variables():
 	self._camera = self._root.get_node("MainCamera")
@@ -23,6 +24,7 @@ func _reload_variables():
 	self._ui = self._root.get_node("UILayer/UI")
 	self._managers = self._root.get_node("Managers")
 	self._level = self._root.get_node("Level/Generator").level
+	self._player = self._root.get_node("Level/Generator").get_node("%Player")
 	Pathfinder.update_level(self._level)
 
 
@@ -50,6 +52,8 @@ func _get_managers() -> Node:
 func _get_level() -> Array:
 	return self._level
 
+func _get_player()->KinematicBody2D:
+	return self._player
 
 func get_tree() -> SceneTree:
 	return self._root.get_tree()

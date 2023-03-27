@@ -505,14 +505,12 @@ PausingSingleton="*res://Scripts/Singletons/PausingSingleton.gd"
 Scene="*res://Scripts/Singletons/Scene.gd"
 DialogueSystem="*res://Scenes/Dialogue/DialogueSystem.tscn"
 Waapi="*res://addons/wwise/bin/waapi-gdnative.gdns"
-WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
-Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
 StatsTracker="*res://Scenes/Dialogue/StatsTracker.tscn"
 Pathfinder="*res://Scripts/AI/Pathfinder.gd"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/wwise/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )
 
 [global]
 

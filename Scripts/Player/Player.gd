@@ -18,8 +18,8 @@ var gun_controlled = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Wwise.register_listener(self)
-	Wwise.register_game_obj(self, self.get_name())
+#	Wwise.register_listener(self)
+#	Wwise.register_game_obj(self, self.get_name())
 	self._gun = TestGun.new()
 	self._gun.set_parent(self)
 	self._gun.set_aim_bone(arms_container)

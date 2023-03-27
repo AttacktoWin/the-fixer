@@ -221,5 +221,6 @@ cell_y_sort = true
 format = 1
 
 [node name="Player" parent="SortableEntities" instance=ExtResource( 5 )]
+unique_name_in_owner = true
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]

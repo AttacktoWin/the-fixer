@@ -4,13 +4,14 @@ extends Node
 
 var _shake_timer = 0
 var _location_target = Vector2()
-var _zoom_target = Vector2(1, 2)
+var _zoom_target = Vector2(2, 4)
 var _transition_factor = 0.1
 var _viewport
 var _camera
 
 const SHAKE_FACTOR = 10
 const MAX_SHAKE_TIMER = 120
+
 
 enum TARGET { LOCATION, ZOOM, ROTATION }
 var _frozen_dict = {}
