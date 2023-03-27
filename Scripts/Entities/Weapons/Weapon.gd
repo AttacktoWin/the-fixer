@@ -4,8 +4,12 @@ var _cooldown_timer = Timer.new()
 var _can_fire = true
 var _cooldown = 0.5  # seconds
 var _aim_bone = null
+var _ammo_count = INF
 
 var entity = null
+
+signal on_fire
+signal on_fire_empty
 
 
 func _init(parent_entity):
@@ -21,10 +25,18 @@ func _ready():
 func _try_fire(direction: float, target: Node2D = null) -> bool:
 	if not self._can_fire or not self._check_fire(direction, target):
 		return false
+
 	self._can_fire = false
 	self._cooldown_timer.wait_time = self._cooldown
 	self._cooldown_timer.start()
+
+	# fire sound
+	if self._ammo_count < 0:
+		emit_signal("on_fire_empty")
+		return false
+	self._ammo_count -= 1
 	_fire(direction, target)
+	emit_signal("on_fire")
 	return true
 
 
@@ -40,6 +52,18 @@ func set_aim_bone(bone: Node2D) -> void:
 	self._aim_bone = bone
 
 
+func get_ammo_count() -> int:
+	return self._ammo_count
+
+
+func set_ammo_count(ammo: int):
+	self._ammo_count = ammo
+
+
+func add_ammo(ammo: int):
+	self._ammo += ammo
+
+
 func _get_aim_position() -> Vector2:
 	if self._aim_bone:
 		return self._aim_bone.global_position
@@ -51,7 +75,7 @@ func _cooldown_complete():
 
 
 func can_fire() -> bool:
-	return self._can_fire
+	return self._can_fire and self._ammo_count > 0
 
 
 func get_angle() -> float:
@@ -67,6 +91,6 @@ func _check_fire_pressed() -> bool:
 	return false
 
 
-func _process(_delta):
+func _physics_process(_delta):
 	if self._check_fire_pressed():
 		self._on_fire_called()
