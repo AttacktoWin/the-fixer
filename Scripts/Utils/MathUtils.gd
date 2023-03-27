@@ -1,45 +1,144 @@
 class_name MathUtils
 
-const INTERPOLATE_LINEAR = 0
-const INTERPOLATE_IN = 1
-const INTERPOLATE_OUT = 2
-const INTERPOLATE_SMOOTH = 3
-const INTERPOLATE_IN_ELASTIC = 4
-const INTERPOLATE_OUT_ELASTIC = 5
-const INTERPOLATE_SMOOTH_ELASTIC = 6
-const INTERPOLATE_IN_QUAD = 7
-const INTERPOLATE_OUT_QUAD = 8
-const INTERPOLATE_SMOOTH_QUAD = 9
-const INTERPOLATE_IN_BACK = 10
-const INTERPOLATE_OUT_BACK = 11
-const INTERPOLATE_SMOOTH_BACK = 12
-const INTERPOLATE_IN_EXPONENTIAL = 13
-const INTERPOLATE_OUT_EXPONENTIAL = 14
-const INTERPOLATE_SMOOTH_EXPONENTIAL = 15
+const INTERPOLATE_LINEAR: int = 0
+const INTERPOLATE_IN: int = 1
+const INTERPOLATE_OUT: int = 2
+const INTERPOLATE_SMOOTH: int = 3
+const INTERPOLATE_IN_ELASTIC: int = 4
+const INTERPOLATE_OUT_ELASTIC: int = 5
+const INTERPOLATE_SMOOTH_ELASTIC: int = 6
+const INTERPOLATE_IN_QUAD: int = 7
+const INTERPOLATE_OUT_QUAD: int = 8
+const INTERPOLATE_SMOOTH_QUAD: int = 9
+const INTERPOLATE_IN_BACK: int = 10
+const INTERPOLATE_OUT_BACK: int = 11
+const INTERPOLATE_SMOOTH_BACK: int = 12
+const INTERPOLATE_IN_EXPONENTIAL: int = 13
+const INTERPOLATE_OUT_EXPONENTIAL: int = 14
+const INTERPOLATE_SMOOTH_EXPONENTIAL: int = 15
+const FROM_ISO: Vector2 = Vector2(1, 2)
+const TO_ISO: Vector2 = Vector2(1, 0.5)
 
 
-static func vector_to_iso_vector(vec: Vector2) -> Vector2:
-	var angle = vec.angle()
-	return vec * (0.5 + abs(cos(angle)) / 2)
+static func from_iso(vec: Vector2) -> Vector2:
+	return vec * FROM_ISO
 
 
-static func angle_to_iso_vector(val: float) -> Vector2:
-	return vector_to_iso_vector(Vector2(cos(val), sin(val)))
+static func to_iso(vec: Vector2) -> Vector2:
+	return vec * TO_ISO
 
 
-static func interpolate_vector(vec, _min: float, _max: float, interp_type: int):
-	if typeof(vec) == TYPE_VECTOR2:
+# converts a worldspace vector to a level space vector clamped to the tilemap
+static func to_level_vector(vec: Vector2, _clamp: bool = true) -> Vector2:
+	vec = vec.rotated(-PI / 4)
+	var x = vec.x / Constants.TILE.HYP
+	var y = vec.y / Constants.TILE.HYP
+	if not _clamp:
+		return Vector2(x, y)
+
+	var level = Scene.level
+	var x_max = level.size()
+	var y_max = level[0].size()
+	return Vector2(clamp(x, 0, x_max - 0.00001), clamp(y, 0, y_max - 0.00001))
+
+
+static func from_level_vector(vec: Vector2) -> Vector2:
+	var x = vec.x * Constants.TILE.HYP
+	var y = vec.y * Constants.TILE.HYP
+	return Vector2(x, y).rotated(PI / 4)
+
+
+static func interpolate_vector(val: float, _min, _max, interp_type: int):
+	if typeof(_min) == TYPE_VECTOR2:
 		return Vector2(
-			interpolate(vec.x, _min, _max, interp_type), interpolate(vec.y, _min, _max, interp_type)
+			interpolate(val, _min.x, _max.x, interp_type),
+			interpolate(val, _min.y, _max.z, interp_type)
 		)
-	if typeof(vec) == TYPE_VECTOR3:
+	if typeof(_min) == TYPE_VECTOR3:
 		return Vector3(
-			interpolate(vec.x, _min, _max, interp_type),
-			interpolate(vec.y, _min, _max, interp_type),
-			interpolate(vec.z, _min, _max, interp_type)
+			interpolate(val, _min.x, _max.x, interp_type),
+			interpolate(val, _min.y, _max.y, interp_type),
+			interpolate(val, _min.z, _max.z, interp_type)
 		)
-	print("Input is not of type vector! ", vec)
-	return vec
+	print("Input is not of type vector! ", _min)
+	return _min
+
+
+static func interpolate_color(val: float, color1: Color, color2: Color, interp_type: int):
+	return Color(
+		interpolate(val, color1.r, color2.r, interp_type),
+		interpolate(val, color1.g, color2.g, interp_type),
+		interpolate(val, color1.b, color2.b, interp_type),
+		interpolate(val, color1.a, color2.a, interp_type)
+	)
+
+
+static func angle_difference(angle1: float, angle2: float) -> float:
+	return fposmod(angle1 - angle2 + PI, PI * 2) - PI
+
+
+static func line_coords_world(start: Vector2, end: Vector2) -> Array:
+	return line_coords(to_level_vector(start), to_level_vector(end))
+
+
+static func line_coords(start: Vector2, end: Vector2) -> Array:
+	var x = floor(start.x)
+	var y = floor(start.y)
+
+	if start == end:
+		return [Vector2(x, y)]
+
+	var dx = end.x - start.x
+	var dy = end.y - start.y
+	var stepX = sign(dx)
+	var stepY = sign(dy)
+
+	var xOffset = (ceil(start.x) - start.x) if end.x > start.x else (start.x - floor(start.x))
+	var yOffset = (ceil(start.y) - start.y) if end.y > start.y else (start.y - floor(start.y))
+
+	var angle = atan2(-dy, dx)
+	var c = cos(angle)
+	var s = sin(angle)
+	if s == 0:
+		s = 0.000000000001
+	if c == 0:
+		c = 0.000000000001
+
+	var tMaxX = xOffset / c
+	var tMaxY = yOffset / s
+
+	var tDeltaX = 1.0 / c
+	var tDeltaY = 1.0 / s
+
+	# Travel one grid cell at a time.
+	var dist = abs(floor(end.x) - floor(start.x)) + abs(floor(end.y) - floor(start.y))
+
+	var points = []
+
+	for _t in range(dist + 1):
+		points.append(Vector2(x, y))
+
+		if abs(tMaxX) < abs(tMaxY):
+			tMaxX += tDeltaX
+			x += stepX
+		else:
+			tMaxY += tDeltaY
+			y += stepY
+
+	return points
+
+
+static func abs_x(vec):
+	return Vector2(abs(vec.x), vec.y)
+
+
+static func floor_vec2(vec):
+	return Vector2(floor(vec.x), floor(vec.y))
+
+
+# converts delta from seconds to frames
+static func delta_frames(delta):
+	return delta * 60
 
 
 static func interpolate(val: float, _min: float, _max: float, interp_type: int) -> float:

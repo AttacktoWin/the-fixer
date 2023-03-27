@@ -1,0 +1,14 @@
+class_name EnemyState
+
+enum {
+	SLEEPING,
+	WANDER,
+	ALERTED,
+	CHASING,
+	SEARCHING,
+	PAIN,
+	IDLE,
+	ATTACKING_RANGED,
+	ATTACKING_MELEE,
+	DEAD,
+}

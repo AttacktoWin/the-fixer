@@ -4,26 +4,29 @@ extends Node
 # Description: This class implements builds corridors using simple manhattan traversal
 
 # Description: Initalize random number generator.
-var rng = RandomNumberGenerator.new()
-func _init():
-	rng.randomize()
+var random = RandomNumberGenerator.new()
 
+var brush_size = 0
+func construct(rng,size):
+	self.random = rng
+	self.brush_size = size
 
 # Description: Connect together rooms with corridors
-func connect_rooms(room_centers,brush_size):
-	var start_room = rng.randi_range(0,room_centers.size()-1)
-	var current_room = room_centers[start_room]
-	room_centers.erase(current_room)
-	
+func connect_rooms(room_centers):
+	var centers = room_centers.duplicate()
+	var start_center = self.random.randi_range(0,centers.size()-1)
+	var current_center = centers[start_center]
+	centers.erase(current_center)
+
 	var corridors = []
-	while(room_centers.size()>0):
+	while(centers.size()>0):
 		#find closest room
-		var next_room = _get_closest_room(current_room,room_centers)
+		var next_center = _get_closest_room(current_center,centers)
 		#pop that room
-		room_centers.erase(next_room)
+		centers.erase(next_center)
 		#make corridor to that room
-		corridors += _make_corridor(current_room,next_room,brush_size)
-		current_room = next_room
+		corridors += _make_corridor(current_center,next_center)
+		current_center = next_center
 	return corridors
 
 
@@ -40,7 +43,7 @@ func _get_closest_room(current, room_centers = []):
 
 
 # Description: Build corridor based on brush width
-func _make_corridor(current,next,brush_size):
+func _make_corridor(current,next):
 	var corridor = []
 	while current!=next:
 		if current.x < next.x:
@@ -52,7 +55,7 @@ func _make_corridor(current,next,brush_size):
 		elif current.y>next.y:
 			current.y -= 1
 		
-		for i in brush_size:
-			for j in brush_size:
+		for i in self.brush_size:
+			for j in self.brush_size:
 				corridor.push_back(current+Vector2(i,j))
 	return corridor 

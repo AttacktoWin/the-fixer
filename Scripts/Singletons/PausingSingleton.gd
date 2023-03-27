@@ -1,3 +1,5 @@
+# Author: Marcus
+
 extends Node
 
 signal pause_changed(pause, _entity)
@@ -25,6 +27,6 @@ func unpause(_entity = null):
 	self._paused = false
 	emit_signal("pause_changed", false, _entity)
 
+
 func is_paused():
 	return self._paused
-

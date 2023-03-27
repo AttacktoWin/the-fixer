@@ -1,3 +1,5 @@
+# Author: Marcus
+
 extends Area2D
 
 export(PackedScene) var to_level

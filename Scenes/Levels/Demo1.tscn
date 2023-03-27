@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/LevelTransition.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Levels/Demo2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Enemies/E_Goomba.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Enemies/E_Spyder.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=8]
 [ext_resource path="res://Resources/TileSets/WallTiles.tres" type="TileSet" id=13]
@@ -198,9 +197,6 @@ tile_data = PoolIntArray( -1114090, 2, 0, -1114089, 2, 0, -1114088, 3, 0, -11140
 
 [node name="E_Goomba" parent="SortableEntities" instance=ExtResource( 5 )]
 position = Vector2( 883, 130 )
-
-[node name="E_Spyder" parent="SortableEntities" instance=ExtResource( 6 )]
-position = Vector2( 638, 227 )
 
 [node name="Player" parent="SortableEntities" instance=ExtResource( 2 )]
 position = Vector2( 259, 385 )

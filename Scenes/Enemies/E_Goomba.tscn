@@ -1,15 +1,35 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Assets/Sprites/Knife/spritesheet.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Wrappers/AnimationTree.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Entities/Enemies/GoombaFSM.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemies/Goomba/Goomba.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Entities/Attacks/BaseAttack.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateAlert.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateChase.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateWander.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Entities/Generic_HurtBox.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateHurt.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Enemies/Goomba/GoombaStateAttack.gd" type="Script" id=11]
 
-[sub_resource type="CircleShape2D" id=69]
+[sub_resource type="CircleShape2D" id=78]
+radius = 512.0
 
-[sub_resource type="Shader" id=73]
+[sub_resource type="CircleShape2D" id=76]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id=77]
+radius = 400.0
+
+[sub_resource type="CapsuleShape2D" id=62]
+radius = 7.65067
+height = 19.2829
+
+[sub_resource type="CapsuleShape2D" id=63]
+radius = 12.3667
+height = 10.676
+
+[sub_resource type="Shader" id=79]
 code = "shader_type canvas_item;
 
 uniform bool flash = false;
@@ -45,7 +65,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=74]
-shader = SubResource( 73 )
+shader = SubResource( 79 )
 shader_param/flash = false
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/line_color = Color( 0.988235, 0.847059, 0.215686, 0 )
@@ -67,54 +87,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 7, 8, 9, 10, 11, 12, 13 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("../SensingColliders/IdleRadius/Sense:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../SensingColliders/AttackRadius/Attack:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:material:shader_param/line_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.988235, 0.847059, 0.215686, 1 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite:material:shader_param/flash")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=12]
 resource_name = "Attack"
@@ -132,37 +104,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("..")
+tracks/1/type = "value"
+tracks/1/path = NodePath("../HitBox/HitCollider:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.01 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "lunge"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("AnimationTree:parameters/conditions/attack_ready")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.6 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=10]
 resource_name = "Charge"
 length = 0.5
-loop = true
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -175,31 +132,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 13, 8, 7, 8 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "increment_charge_loop_count"
-} ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath("..")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
-"values": [  ]
 }
 
 [sub_resource type="Animation" id=13]
@@ -217,18 +149,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 16, 17, 18, 19, 20, 21, 22, 23 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("AnimationTree:parameters/conditions/hit_stun_over")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
 }
 
 [sub_resource type="Animation" id=14]
@@ -248,112 +168,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 13, 5, 6, 7, 8, 8 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.15, 0.2, 0.25, 0.35, 0.5, 0.55, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Vector2( 0, 1 ), Vector2( 0, -5 ), Vector2( 0, -10 ), Vector2( 0, -15 ), Vector2( 0, -10 ), Vector2( 0, -5 ), Vector2( 0, 1 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../HurtBox:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.15, 0.2, 0.35, 0.5, 0.55, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -4, -8 ), Vector2( -5, -11 ), Vector2( -4, -15 ), Vector2( -4, -24 ), Vector2( -4, -20 ), Vector2( -4, -14 ), Vector2( -4, -8 ), Vector2( -4, -8 ) ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath("..")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.025 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "ready_hop"
-} ]
-}
-
-[sub_resource type="Animation" id=60]
-resource_name = "Hurt"
-length = 0.1
-loop = true
-step = 0.01
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.07 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 8, 13 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "increment_hurt_loop_count"
-} ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Sprite:material:shader_param/line_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 0.117647, 0.168627, 1 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprite:material:shader_param/flash")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.04, 0.07, 0.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, false ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite:material:shader_param/flash_color")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.04, 0.07, 0.1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0.117647, 0.168627, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 0.117647, 0.168627, 1 ) ]
-}
 
 [sub_resource type="Animation" id=25]
 resource_name = "Idle"
@@ -365,109 +179,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 7 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../HurtBox:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( -4, -10 ) ]
-}
-
-[sub_resource type="Animation" id=15]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("../SensingColliders/IdleRadius/Sense:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("../SensingColliders/AlertRadius/Sense:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../SensingColliders/AttackRadius/Attack:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Sprite:material:shader_param/line_color")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0.988235, 0.847059, 0.215686, 0 ) ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Sprite:material:shader_param/flash")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("Sprite:material:shader_param/flash_color")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 1 ) ]
+"values": [ 7, 8 ]
 }
 
 [sub_resource type="Animation" id=71]
@@ -487,181 +202,99 @@ tracks/0/keys = {
 "values": [ 8, 13 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=44]
-animation = "Alerted"
-
-[sub_resource type="AnimationNodeAnimation" id=45]
-animation = "Attack"
-
-[sub_resource type="AnimationNodeAnimation" id=46]
-animation = "Charge"
-
-[sub_resource type="AnimationNodeAnimation" id=47]
-animation = "Chase"
-
-[sub_resource type="AnimationNodeAnimation" id=48]
-animation = "Get_Ready"
-
-[sub_resource type="AnimationNodeAnimation" id=59]
-animation = "Hurt"
-
-[sub_resource type="AnimationNodeAnimation" id=49]
-animation = "Idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=50]
-advance_condition = "player_found"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=51]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=52]
-advance_condition = "in_attack_range"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=53]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=54]
-advance_condition = "attack_ready"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=72]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=75]
-advance_condition = "hit_stun_over"
-
-[sub_resource type="AnimationNodeStateMachine" id=56]
-states/ALERTED/node = SubResource( 44 )
-states/ALERTED/position = Vector2( 103, 134 )
-states/ATTACK/node = SubResource( 45 )
-states/ATTACK/position = Vector2( 522, 65 )
-states/CHARGE/node = SubResource( 46 )
-states/CHARGE/position = Vector2( 522, 234 )
-states/CHASE/node = SubResource( 47 )
-states/CHASE/position = Vector2( 103, 234 )
-states/GET_READY/node = SubResource( 48 )
-states/GET_READY/position = Vector2( 309, 234 )
-states/HURT/node = SubResource( 59 )
-states/HURT/position = Vector2( -56, 234 )
-states/IDLE/node = SubResource( 49 )
-states/IDLE/position = Vector2( 103, 65 )
-transitions = [ "IDLE", "ALERTED", SubResource( 50 ), "ALERTED", "CHASE", SubResource( 51 ), "CHASE", "GET_READY", SubResource( 52 ), "GET_READY", "CHARGE", SubResource( 53 ), "CHARGE", "ATTACK", SubResource( 54 ), "ATTACK", "IDLE", SubResource( 72 ), "HURT", "ALERTED", SubResource( 75 ) ]
-start_node = "IDLE"
-graph_offset = Vector2( -255, 30.14 )
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=57]
-
-[sub_resource type="CapsuleShape2D" id=62]
-radius = 7.65067
-height = 19.2829
-
-[sub_resource type="CapsuleShape2D" id=63]
-radius = 12.3667
-height = 10.676
+[sub_resource type="Animation" id=15]
+length = 0.001
 
 [node name="E_Goomba" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource( 3 )
-base_speed = 500.0
-base_health = 50.0
-animation_tree_path = NodePath("Visual/AnimationTree")
-charge_loop_length = 0
+height_component_path = NodePath("FlipComponents")
+base_speed = 200.0
+base_accel = 6.0
+melee_attack_range = 150.0
+draw_path = true
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( -2.76989, -46 )
 scale = Vector2( 0.688088, 0.688088 )
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
 
-[node name="SensingColliders" type="Node2D" parent="."]
+[node name="NearbyEntities" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
 
-[node name="IdleRadius" type="Area2D" parent="SensingColliders"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NearbyEntities"]
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 78 )
+
+[node name="EntityCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityCollider"]
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 76 )
+
+[node name="IdleRadius" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
-[node name="Sense" type="CollisionShape2D" parent="SensingColliders/IdleRadius"]
-position = Vector2( -3, -4 )
-scale = Vector2( 24, 12 )
-shape = SubResource( 69 )
+[node name="Sense" type="CollisionShape2D" parent="IdleRadius"]
+position = Vector2( -3, -2 )
+scale = Vector2( 2, 1 )
+shape = SubResource( 77 )
 
-[node name="AlertRadius" type="Area2D" parent="SensingColliders"]
-collision_layer = 0
-collision_mask = 4
+[node name="FlipComponents" type="Node2D" parent="."]
 
-[node name="Sense" type="CollisionShape2D" parent="SensingColliders/AlertRadius"]
-position = Vector2( -3, -4 )
-scale = Vector2( 6, 3 )
-shape = SubResource( 69 )
-disabled = true
-
-[node name="AttackRadius" type="Area2D" parent="SensingColliders"]
-collision_layer = 0
-collision_mask = 4
-
-[node name="Attack" type="CollisionShape2D" parent="SensingColliders/AttackRadius"]
-position = Vector2( -3, -4 )
-scale = Vector2( 6, 3 )
-shape = SubResource( 69 )
-disabled = true
-
-[node name="Visual" type="Node2D" parent="."]
-position = Vector2( -4.76989, -44 )
-
-[node name="Sprite" type="Sprite" parent="Visual"]
-material = SubResource( 74 )
-position = Vector2( 0, 1 )
-scale = Vector2( 0.346525, 0.346525 )
-texture = ExtResource( 1 )
-hframes = 8
-vframes = 3
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
-playback_process_mode = 0
-anims/Alerted = SubResource( 9 )
-anims/Attack = SubResource( 12 )
-anims/Charge = SubResource( 10 )
-anims/Chase = SubResource( 13 )
-anims/Get_Ready = SubResource( 14 )
-anims/Hurt = SubResource( 60 )
-anims/Idle = SubResource( 25 )
-anims/RESET = SubResource( 15 )
-anims/Recover = SubResource( 71 )
-
-[node name="AnimationTree" type="AnimationTree" parent="Visual" groups=["Enemy"]]
-tree_root = SubResource( 56 )
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource( 57 )
-parameters/conditions/attack_ready = false
-parameters/conditions/hit_stun_over = false
-parameters/conditions/in_attack_range = false
-parameters/conditions/player_found = false
-script = ExtResource( 2 )
-
-[node name="HitBox" type="Area2D" parent="."]
-position = Vector2( -4, -42 )
+[node name="HitBox" type="Area2D" parent="FlipComponents"]
+position = Vector2( -5, -42 )
 collision_layer = 0
 collision_mask = 32
 script = ExtResource( 5 )
 base_speed = 0.0
 base_damage = 25.0
 
-[node name="HitCollider" type="CollisionShape2D" parent="HitBox"]
+[node name="HitCollider" type="CollisionShape2D" parent="FlipComponents/HitBox"]
 position = Vector2( -11, 16 )
 rotation = -1.04022
 shape = SubResource( 62 )
+disabled = true
 
-[node name="HurtBox" type="Area2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="FlipComponents"]
 position = Vector2( -4, -10 )
 collision_layer = 32
 collision_mask = 0
 script = ExtResource( 9 )
 
-[node name="HurtCollider" type="CollisionShape2D" parent="HurtBox"]
+[node name="HurtCollider" type="CollisionShape2D" parent="FlipComponents/HurtBox"]
 position = Vector2( 1, 0 )
 rotation = -1.81514
 shape = SubResource( 63 )
+
+[node name="Visual" type="Node2D" parent="FlipComponents"]
+position = Vector2( -4.76989, -44 )
+
+[node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
+material = SubResource( 74 )
+position = Vector2( 0, 1 )
+scale = Vector2( 0.346525, 0.346525 )
+texture = ExtResource( 1 )
+hframes = 8
+vframes = 3
+frame = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlipComponents/Visual"]
+playback_process_mode = 0
+anims/ALERTED = SubResource( 9 )
+anims/ATTACK = SubResource( 12 )
+anims/CHARGE = SubResource( 10 )
+anims/CHASE = SubResource( 13 )
+anims/GET_READY = SubResource( 14 )
+anims/IDLE = SubResource( 25 )
+anims/RECOVER = SubResource( 71 )
+anims/RESET = SubResource( 15 )
 
 [node name="ProgressBar" parent="." instance=ExtResource( 4 )]
 margin_left = -25.0
@@ -669,6 +302,23 @@ margin_top = -52.0
 margin_right = 15.0
 margin_bottom = -43.0
 
-[connection signal="body_entered" from="SensingColliders/IdleRadius" to="." method="_on_SenseRadius_eneterd"]
-[connection signal="body_entered" from="SensingColliders/AttackRadius" to="." method="_on_AttackRadius_eneterd"]
-[connection signal="body_exited" from="SensingColliders/AttackRadius" to="." method="_on_AttackRadius_exited"]
+[node name="FSMController" type="Node2D" parent="."]
+script = ExtResource( 2 )
+root_state = NodePath("EnemyStateWander")
+animation_player = NodePath("../FlipComponents/Visual/AnimationPlayer")
+
+[node name="EnemyStateWander" type="Node2D" parent="FSMController"]
+script = ExtResource( 8 )
+draw_path = true
+
+[node name="EnemyStateAlert" type="Node2D" parent="FSMController"]
+script = ExtResource( 6 )
+
+[node name="EnemyStateChase" type="Node2D" parent="FSMController"]
+script = ExtResource( 7 )
+
+[node name="EnemyStateHurt" type="Node2D" parent="FSMController"]
+script = ExtResource( 10 )
+
+[node name="GoombaStateAttack" type="Node2D" parent="FSMController"]
+script = ExtResource( 11 )
