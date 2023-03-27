@@ -15,6 +15,8 @@ var _gun = null
 
 var gun_controlled = false
 
+const INVULNERABLE_TIME = 1
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -111,6 +113,7 @@ func _physics_process(delta):
 
 
 func _on_take_damage(_info: AttackInfo):
+	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	var bar = Scene.ui.get_node("HUD/HealthBar")
 	bar.value = ((getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
 

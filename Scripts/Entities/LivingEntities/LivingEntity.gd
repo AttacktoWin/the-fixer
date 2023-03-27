@@ -32,6 +32,8 @@ var _entity_collider = null
 
 var _is_dead = false
 
+const INVULNERABLE_FLASH_RATE = 0.1
+
 
 func _get_node_or_err(test_path, default_path):
 	var node = null
@@ -89,6 +91,23 @@ func get_wanted_velocity(dir_vector: Vector2) -> Vector2:
 func _try_move():
 	# warning-ignore:return_value_discarded
 	move_and_slide(getv(LivingEntityVariable.VELOCITY))
+
+
+func _handle_invulnerable_flash():
+	var t = self.status_timers.get_timer(LivingEntityStatus.INVULNERABLE)
+	if t == 0 or self._is_dead:
+		self.modulate.a = 1
+	else:
+		var frac = fmod(t, INVULNERABLE_FLASH_RATE)
+		if frac < INVULNERABLE_FLASH_RATE / 2:
+			self.modulate.a = 0.25
+		else:
+			self.modulate.a = 1
+
+
+func _process(delta):
+	_handle_invulnerable_flash()
+	._process(delta)
 
 
 func _physics_process(delta):
