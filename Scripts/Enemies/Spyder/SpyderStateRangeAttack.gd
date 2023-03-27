@@ -5,6 +5,7 @@ class_name SpyderStateRangedAttack extends FSMNode
 const MAX_DEVIATION = PI / 6
 const COOLDOWN = 5
 const COOLDOWN_INTERRUPT = 1
+const SLOW_TIME = 1.5
 
 var _charging: int = 2
 var _angle: float = 0
@@ -47,6 +48,14 @@ func do_attack():
 		var diff = abs(MathUtils.angle_difference(ang, self._angle))
 		if diff > MAX_DEVIATION or not AI.has_LOS(self.global_position, body.global_position):
 			continue
+
+		# apply slow
+		var dist_norm = (
+			(self.entity.global_position - body.global_position).length()
+			/ self.entity.ranged_attack_range
+		)
+		var interp = MathUtils.interpolate(dist_norm, SLOW_TIME, 0.25, MathUtils.INTERPOLATE_IN)
+		body.status_timers.delta_timer(LivingEntityStatus.SLOWED, interp)
 
 
 func on_anim_reached_end():

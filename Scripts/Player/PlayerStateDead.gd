@@ -9,7 +9,7 @@ func get_handled_states():
 
 
 func enter():
-	self.entity.setv(LivingEntity.VARIABLE.VELOCITY, Vector2())
+	self.entity.setv(LivingEntityVariable.VELOCITY, Vector2())
 	self.fsm.set_animation("DIE")
 
 

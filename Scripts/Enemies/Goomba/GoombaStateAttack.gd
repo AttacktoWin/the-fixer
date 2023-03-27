@@ -32,8 +32,8 @@ func _physics_process(delta):
 		self._current_time += delta
 	if self._current_time > JUMP_TIME or self._charging:
 		self.entity.setv(
-			LivingEntity.VARIABLE.VELOCITY,
-			self.entity.getv(LivingEntity.VARIABLE.VELOCITY) * ATTACK_DECAY
+			LivingEntityVariable.VELOCITY,
+			self.entity.getv(LivingEntityVariable.VELOCITY) * ATTACK_DECAY
 		)
 		if self._pushing_disabled:
 			self._pushing_disabled = false
@@ -49,7 +49,7 @@ func _physics_process(delta):
 		MathUtils.interpolate(amount, ATTACK_HEIGHT, 0, MathUtils.INTERPOLATE_IN_QUAD)
 	)
 
-	var x = -sign(self.entity.getv(LivingEntity.VARIABLE.VELOCITY).x)
+	var x = -sign(self.entity.getv(LivingEntityVariable.VELOCITY).x)
 	if x != 0:
 		self.entity.flip_components.scale.x = x
 
@@ -66,7 +66,7 @@ func on_anim_reached_end():
 		self.fsm.set_animation("ATTACK")
 		var off = Vector2(rand_range(-RANDOM_MAX, RANDOM_MAX), rand_range(-RANDOM_MAX, RANDOM_MAX))
 		var dir = (self.entity.get_target().global_position - self.entity.global_position + off).normalized()
-		self.entity.setv(LivingEntity.VARIABLE.VELOCITY, dir * ATTACK_SPEED)
+		self.entity.setv(LivingEntityVariable.VELOCITY, dir * ATTACK_SPEED)
 
 
 func exit():

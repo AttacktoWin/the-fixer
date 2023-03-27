@@ -9,7 +9,7 @@ func get_handled_states():
 
 
 func enter():
-	self.entity.setv(LivingEntity.VARIABLE.VELOCITY, Vector2())
+	self.entity.setv(LivingEntityVariable.VELOCITY, Vector2())
 	self.entity.get_node("PhysicsCollider").disabled = true
 
 
@@ -19,7 +19,7 @@ func exit():
 
 func _physics_process(_delta):
 	var wanted_vel = self.entity._get_wanted_velocity() * 10
-	self.entity.setv(LivingEntity.VARIABLE.VELOCITY, wanted_vel)
+	self.entity.setv(LivingEntityVariable.VELOCITY, wanted_vel)
 
 
 func _process(_delta):

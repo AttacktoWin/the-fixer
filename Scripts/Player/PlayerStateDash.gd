@@ -28,7 +28,7 @@ func enter():
 	self._gun_counter = 0
 	# Wwise.post_event_id(AK.EVENTS.DASH_PLAYER, self)
 	self.fsm.set_animation("DASH")
-	self.entity.setv(LivingEntity.VARIABLE.VELOCITY, Vector2())
+	self.entity.setv(LivingEntityVariable.VELOCITY, Vector2())
 	CameraSingleton.set_zoom(Vector2(1.01, 1.01))
 	self._dash_direction = CameraSingleton.get_mouse_from_camera_center_screen().normalized()
 

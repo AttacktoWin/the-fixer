@@ -14,7 +14,7 @@ func _init(entity, choices: Dictionary, _default = null).(entity, choices):
 			self._values[value] = _default
 
 
-func add_runnable(variable: int, runnable: Runnable, priority: int, _name: String = "!NO_NAME"):
+func add_runnable(variable: int, runnable: Runnable, priority: int = 0, _name: String = "!NO_NAME"):
 	runnable.default_value = get_variable_raw(variable)
 	.add_runnable(variable, runnable, priority, _name)
 

@@ -43,14 +43,14 @@ func get_timer(variable):
 
 func set_timer(variable, value):
 	var max_value = self._max_values.get(variable, INF)
-	self._timers[variable] = clamp(value, -INF, max_value)
+	self._timers[variable] = clamp(value, 0, max_value)
 
 
-func add_timer(variable, value):
+func delta_timer(variable, value):
 	var max_value = self._max_values.get(variable, INF)
-	self._timers[variable] += clamp(value, -INF, max_value)
+	self._timers[variable] = clamp(self._timers[variable] + value, 0, max_value)
 
 
 func _physics_process(delta):
 	for key in self._timers:
-		self._timers[key] -= delta
+		self._timers[key] = clamp(self._timers[key] - delta, 0, INF)

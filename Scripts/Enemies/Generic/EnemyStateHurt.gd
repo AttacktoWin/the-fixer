@@ -37,9 +37,9 @@ func _process(delta):
 
 
 func _physics_process(_delta):
-	var current_vel = self.entity.getv(LivingEntity.VARIABLE.VELOCITY)
+	var current_vel = self.entity.getv(LivingEntityVariable.VELOCITY)
 	self.entity.setv(
-		LivingEntity.VARIABLE.VELOCITY, current_vel / self.entity.getv(LivingEntity.VARIABLE.DRAG)
+		LivingEntityVariable.VELOCITY, current_vel / self.entity.getv(LivingEntityVariable.DRAG)
 	)
 	self.entity._try_move()
 

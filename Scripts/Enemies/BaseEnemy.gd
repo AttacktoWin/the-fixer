@@ -199,16 +199,16 @@ func _on_take_damage(info: AttackInfo):
 	self.fsm.set_state(EnemyState.PAIN)
 	var direction = info.get_attack_direction(self.global_position)
 	self.setv(
-		LivingEntity.VARIABLE.VELOCITY,
+		LivingEntityVariable.VELOCITY,
 		(
 			direction
 			* info.knockback_factor
-			* self.getv(LivingEntity.VARIABLE.KNOCKBACK_FACTOR)
-			/ self.getv(LivingEntity.VARIABLE.WEIGHT)
+			* self.getv(LivingEntityVariable.KNOCKBACK_FACTOR)
+			/ self.getv(LivingEntityVariable.WEIGHT)
 		)
 	)
 	var bar = self.get_node("ProgressBar")
-	bar.value = ((self.getv(LivingEntity.VARIABLE.HEALTH) / self.base_health) * 100)
+	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
 
 
 func _draw():

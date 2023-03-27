@@ -36,7 +36,7 @@ func _process(_delta):
 		self.entity.arms_container.scale.x = 0.5
 		self.entity.player_input_gun_aim()
 
-	var vel = self.entity.getv(LivingEntity.VARIABLE.VELOCITY)
+	var vel = self.entity.getv(LivingEntityVariable.VELOCITY)
 	if vel.length() > 25 or self.entity._get_wanted_direction().length() != 0:
 		self.fsm.set_animation("WALK")
 	else:
@@ -45,7 +45,7 @@ func _process(_delta):
 	var x = sign(round(vel.x))
 
 	var facing = sign(CameraSingleton.get_mouse_from_camera_center().x)
-	var speed = vel.length() / self.entity.getv(LivingEntity.VARIABLE.MAX_SPEED)
+	var speed = vel.length() / self.entity.variables.get_variable_raw(LivingEntityVariable.MAX_SPEED)
 	if x != 0 and x != facing:
 		speed = -speed
 	self.fsm.get_animation_player().playback_speed = speed
@@ -79,7 +79,7 @@ func _ground_control(delta_fixed):
 
 	var wanted_dir = self.entity._get_wanted_direction()
 
-	var current_vel = self.entity.getv(LivingEntity.VARIABLE.VELOCITY)
+	var current_vel = self.entity.getv(LivingEntityVariable.VELOCITY)
 
 	var diff = wanted_dir.angle_to(current_vel)
 	if wanted_dir.x == 0 and wanted_dir.y == 0:
@@ -90,10 +90,10 @@ func _ground_control(delta_fixed):
 		var boost = 6 * delta_fixed
 		var wanted_vel = self.entity._get_wanted_velocity()
 		var speed_diff = wanted_vel.length() - current_vel.length()
-		var accel = self.entity.getv(LivingEntity.VARIABLE.ACCEL) * boost
-		var max_spd = self.entity.getv(LivingEntity.VARIABLE.MAX_SPEED)
+		var accel = self.entity.getv(LivingEntityVariable.ACCEL) * boost
+		var max_spd = self.entity.getv(LivingEntityVariable.MAX_SPEED)
 		var new_vel = wanted_dir * clamp(clamp(speed_diff, -accel, accel), -max_spd, max_spd)
-		self.entity.setv(LivingEntity.VARIABLE.VELOCITY, new_vel)
+		self.entity.setv(LivingEntityVariable.VELOCITY, new_vel)
 	elif abs(diff) <= PI / 1.5:
 		var angle = current_vel.angle() - diff / TURN_FACTOR
 		# first, turn
@@ -103,8 +103,8 @@ func _ground_control(delta_fixed):
 		var coeff = wanted_vel.normalized().dot(current_vel.normalized())
 		var speed_diff = wanted_vel.length() - current_vel.length()
 		var dir = current_vel.normalized()
-		var accel = self.entity.getv(LivingEntity.VARIABLE.ACCEL) * delta_fixed
+		var accel = self.entity.getv(LivingEntityVariable.ACCEL) * delta_fixed
 		var change = dir * clamp(speed_diff, -accel, accel) * coeff
-		self.entity.setv(LivingEntity.VARIABLE.VELOCITY, current_vel + change)
+		self.entity.setv(LivingEntityVariable.VELOCITY, current_vel + change)
 	else:
-		self.entity.setv(LivingEntity.VARIABLE.VELOCITY, current_vel / 2)
+		self.entity.setv(LivingEntityVariable.VELOCITY, current_vel / 2)

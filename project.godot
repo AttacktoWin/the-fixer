@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Entities/Weapons/BaseGun.gd"
 }, {
+"base": "Runnable",
+"class": "BaseSlowHandler",
+"language": "GDScript",
+"path": "res://Scripts/Entities/LivingEntities/BaseHandlers/BaseSlowHandler.gd"
+}, {
 "base": "BaseAttack",
 "class": "BulletBase",
 "language": "GDScript",
@@ -212,7 +217,17 @@ _global_script_classes=[ {
 "base": "Entity",
 "class": "LivingEntity",
 "language": "GDScript",
-"path": "res://Scripts/Entities/LivingEntity.gd"
+"path": "res://Scripts/Entities/LivingEntities/LivingEntity.gd"
+}, {
+"base": "Node2D",
+"class": "LivingEntityStatus",
+"language": "GDScript",
+"path": "res://Scripts/Entities/LivingEntities/LivingEntityStatus.gd"
+}, {
+"base": "Node2D",
+"class": "LivingEntityVariable",
+"language": "GDScript",
+"path": "res://Scripts/Entities/LivingEntities/LivingEntityVariable.gd"
 }, {
 "base": "Reference",
 "class": "MathUtils",
@@ -368,6 +383,7 @@ _global_script_class_icons={
 "BaseAttack": "",
 "BaseEnemy": "",
 "BaseGun": "",
+"BaseSlowHandler": "",
 "BulletBase": "",
 "CollisionUtils": "",
 "Constants": "",
@@ -401,6 +417,8 @@ _global_script_class_icons={
 "GoombaStateAttack": "",
 "HistoryRow": "",
 "LivingEntity": "",
+"LivingEntityStatus": "",
+"LivingEntityVariable": "",
 "MathUtils": "",
 "NPC": "",
 "NPCInstance": "",

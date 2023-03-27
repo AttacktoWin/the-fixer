@@ -24,7 +24,7 @@ func enter():
 	else:
 		self._charging = false
 		self.fsm.set_animation("ATTACK_MELEE")
-	self.entity.setv(LivingEntity.VARIABLE.VELOCITY, Vector2())
+	self.entity.setv(LivingEntityVariable.VELOCITY, Vector2())
 
 
 func _physics_process(_delta):

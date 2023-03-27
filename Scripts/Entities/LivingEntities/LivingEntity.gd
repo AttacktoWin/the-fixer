@@ -2,27 +2,25 @@
 
 class_name LivingEntity extends Entity
 
-enum STATUSES { INVULNERABLE, SLOWED }
-enum VARIABLE { MAX_SPEED, ACCEL, HEALTH, VELOCITY, DRAG, KNOCKBACK_FACTOR, WEIGHT }
 export var base_speed: float = 340
 export var base_health: float = 100
 export var base_accel: float = 80
 export var base_drag: float = 1.025
 onready var variables = VariableList.new(
 	self,
-	VARIABLE,
+	LivingEntityVariable.get_script_constant_map(),
 	{
-		VARIABLE.MAX_SPEED: base_speed,
-		VARIABLE.HEALTH: base_health,
-		VARIABLE.ACCEL: base_accel,
-		VARIABLE.VELOCITY: Vector2(),
-		VARIABLE.DRAG: base_drag,
-		VARIABLE.KNOCKBACK_FACTOR: 1,
-		VARIABLE.WEIGHT: 1
+		LivingEntityVariable.MAX_SPEED: base_speed,
+		LivingEntityVariable.HEALTH: base_health,
+		LivingEntityVariable.ACCEL: base_accel,
+		LivingEntityVariable.VELOCITY: Vector2(),
+		LivingEntityVariable.DRAG: base_drag,
+		LivingEntityVariable.KNOCKBACK_FACTOR: 1,
+		LivingEntityVariable.WEIGHT: 1
 	}
 )
 
-onready var status_timers = TimerList.new(self, STATUSES, {})
+onready var status_timers = TimerList.new(self, LivingEntityStatus.get_script_constant_map(), {})
 
 export var entity_radius: float = 32
 export var push_amount: float = 256
@@ -65,6 +63,12 @@ func _ready():
 	add_child(variables)
 	add_child(status_timers)
 
+	_add_default_runnables()
+
+
+func _add_default_runnables():
+	self.variables.add_runnable(LivingEntityVariable.MAX_SPEED, BaseSlowHandler.new())
+
 
 func getv(variable):
 	return self.variables.get_variable(variable)
@@ -79,12 +83,12 @@ func changev(variable: int, off):
 
 
 func get_wanted_velocity(dir_vector: Vector2) -> Vector2:
-	return dir_vector * getv(VARIABLE.MAX_SPEED)
+	return dir_vector * getv(LivingEntityVariable.MAX_SPEED)
 
 
 func _try_move():
 	# warning-ignore:return_value_discarded
-	move_and_slide(getv(VARIABLE.VELOCITY))
+	move_and_slide(getv(LivingEntityVariable.VELOCITY))
 
 
 func _physics_process(delta):
@@ -118,7 +122,7 @@ func _on_death():
 
 
 func _check_death() -> bool:
-	if self.getv(VARIABLE.HEALTH) <= 0 and not self._is_dead:
+	if self.getv(LivingEntityVariable.HEALTH) <= 0 and not self._is_dead:
 		self._is_dead = true
 		# queue_free()
 		self._on_death()  # emit signal
@@ -127,7 +131,7 @@ func _check_death() -> bool:
 
 
 func can_be_hit():
-	return true
+	return self.status_timers.get_timer(LivingEntityStatus.INVULNERABLE) <= 0
 
 
 func on_hit(info: AttackInfo):
@@ -141,5 +145,5 @@ func _on_take_damage(_info: AttackInfo):
 
 
 func _take_damage(amount: float):
-	self.changev(VARIABLE.HEALTH, -amount)
+	self.changev(LivingEntityVariable.HEALTH, -amount)
 	self._check_death()  # warning-ignore:return_value_discarded

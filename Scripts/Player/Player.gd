@@ -36,7 +36,7 @@ func _get_wanted_direction():
 
 
 func _get_wanted_velocity():
-	return _get_wanted_direction() * getv(LivingEntity.VARIABLE.MAX_SPEED)
+	return _get_wanted_direction() * getv(LivingEntityVariable.MAX_SPEED)
 
 
 func get_wanted_gun_vector():
@@ -99,7 +99,7 @@ func _handle_camera():
 		)
 		* Vector2(sign(center.x), sign(center.y))
 	)
-	var off2 = off + self.getv(VARIABLE.VELOCITY) / 8
+	var off2 = off + self.getv(LivingEntityVariable.VELOCITY) / 8
 	CameraSingleton.set_target_center(self.position + off2)
 
 
@@ -112,7 +112,7 @@ func _physics_process(delta):
 
 func _on_take_damage(_info: AttackInfo):
 	var bar = Scene.ui.get_node("HUD/HealthBar")
-	bar.value = ((getv(LivingEntity.VARIABLE.HEALTH) / self.base_health) * 100)
+	bar.value = ((getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
 
 
 func _on_death():
