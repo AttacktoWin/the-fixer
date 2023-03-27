@@ -508,6 +508,14 @@ Waapi="*res://addons/wwise/bin/waapi-gdnative.gdns"
 StatsTracker="*res://Scenes/Dialogue/StatsTracker.tscn"
 Pathfinder="*res://Scripts/AI/Pathfinder.gd"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/test_width=1024
+window/size/test_height=600
+window/stretch/mode="viewport"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )

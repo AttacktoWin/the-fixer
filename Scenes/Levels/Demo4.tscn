@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=8]
 [ext_resource path="res://Resources/TileSets/WallTiles.tres" type="TileSet" id=13]
 
+
 [sub_resource type="TileSet" id=1]
 0/name = "vault-basic-floor.png 0"
 0/texture = ExtResource( 8 )
