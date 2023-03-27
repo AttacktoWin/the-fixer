@@ -1,26 +1,44 @@
 # Author: Marcus
-# Static class
+# Singleton
+extends Node2D
 
-class_name AI extends Node2D
+signal on_global_aggro_changed
+
+var _has_aggro = false
 
 
-static func get_all_enemies():
+func _physics_process(delta):
+	if self._has_aggro:
+		for enemy in get_all_enemies():
+			if enemy.has_target():
+				return
+		self._has_aggro = false
+		emit_signal("on_global_aggro_changed", false)
+	else:
+		for enemy in get_all_enemies():
+			if enemy.has_target():
+				self._has_aggro = true
+				emit_signal("on_global_aggro_changed", true)
+				return
+
+
+func get_all_enemies():
 	return Scene.get_tree().get_nodes_in_group("Enemy")
 
 
-static func _propogate_alert(location):
+func _propogate_alert(location):
 	pass
 
 
-static func notify_hit(source):
+func notify_hit(source):
 	pass
 
 
-static func has_LOS(from: Vector2, to: Vector2) -> bool:
+func has_LOS(from: Vector2, to: Vector2) -> bool:
 	return _can_sound_travel(MathUtils.line_coords_world(from, to), 0)
 
 
-static func _can_sound_travel(coords: Array, strength: int) -> bool:
+func _can_sound_travel(coords: Array, strength: int) -> bool:
 	var is_in_wall = 0
 	for coord in coords:
 		var t = Scene.level[coord.x][coord.y]
@@ -34,7 +52,7 @@ static func _can_sound_travel(coords: Array, strength: int) -> bool:
 	return true
 
 
-static func notify_sound(location: Vector2, max_dist: float = 1024, strength: int = 1) -> void:
+func notify_sound(location: Vector2, max_dist: float = 1024, strength: int = 1) -> void:
 	for enemy in get_all_enemies():
 		var dist = (location - enemy.global_position).length()
 		if dist > max_dist:

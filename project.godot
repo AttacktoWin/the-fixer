@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "AI",
-"language": "GDScript",
-"path": "res://Scripts/AI/AIManager.gd"
-}, {
 "base": "Reference",
 "class": "AK",
 "language": "GDScript",
@@ -410,7 +405,6 @@ _global_script_classes=[ {
 "path": "res://Scripts/Entities/Weapons/Weapon.gd"
 } ]
 _global_script_class_icons={
-"AI": "",
 "AK": "",
 "AkUtils": "",
 "AttackHandler": "",
@@ -509,6 +503,7 @@ WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
 Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
 StatsTracker="*res://Scenes/Dialogue/StatsTracker.tscn"
 Pathfinder="*res://Scripts/AI/Pathfinder.gd"
+AI="*res://Scripts/AI/AIManager.gd"
 
 [editor_plugins]
 
