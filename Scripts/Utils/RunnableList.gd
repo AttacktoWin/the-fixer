@@ -78,6 +78,7 @@ func remove_runnable(choice: int, runnable_or_name, _free = true):
 		var l = runnables[x]
 		if l.name == runnable_or_name or l.runnable == runnable_or_name:
 			var ret = runnables.pop_at(x)
+			remove_child(ret)
 			ret._on_removed()
 			if _free:
 				ret.free()
