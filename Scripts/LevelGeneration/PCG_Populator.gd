@@ -145,7 +145,7 @@ func spawn_pass(spawn_info,tile_map,entities):
 		for spawn in spawn_info[enemy]:
 			var test = enemy_info[enemy][1].instance()
 			var pos = tile_map.map_to_world(spawn)
-			test.global_position = tile_map.to_global(pos)
+			test.position = MathUtils.to_iso(tile_map.to_global(pos))
 			#test.global_position -= Vector2(2,2)
 			entities.add_child(test)
 

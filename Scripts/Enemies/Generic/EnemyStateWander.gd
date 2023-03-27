@@ -49,7 +49,7 @@ func _check_for_targets():
 
 
 func enter():
-	self._home = Vector2(self.entity.global_position.x, self.entity.global_position.y)
+	self._home = self.entity.global_position
 	self._path = null
 	self._wander_timer = rand_range(MIN_WANDER_DELAY, MAX_WANDER_DELAY)
 	self.entity.sprite_material.set_shader_param(Constants.SP.B_FLASH, false)
@@ -77,7 +77,7 @@ func _generate_random_path():
 			/ (1 + MIN_WANDER_DISTANCE_FAC)
 			* wander_radius
 		)
-		var loc = MathUtils.from_iso(self._home + Vector2(cos(angle) * dist, sin(angle) * dist))
+		var loc = self._home + Vector2(cos(angle) * dist, sin(angle) * dist)
 		if Pathfinder.is_in_bounds(loc):
 			self._path = Pathfinder.generate_path(self.entity.global_position, loc)
 			if self._path.path_length() > self.wander_radius * 2:

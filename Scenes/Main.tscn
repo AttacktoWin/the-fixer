@@ -31,6 +31,8 @@ adjustment_brightness = 2.67
 adjustment_contrast = 2.29
 
 [node name="World" type="Node2D"]
+process_priority = 100000000
+scale = Vector2( 1, 2 )
 script = ExtResource( 2 )
 
 [node name="Level" parent="." instance=ExtResource( 1 )]

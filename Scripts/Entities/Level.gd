@@ -4,7 +4,6 @@ extends Node2D
 onready var nod:ColorRect = get_node("%ColorRect")
 
 func _ready():
-	self.scale = Vector2(1, 2)
 	Scene.set_root(self)
 
 func _process(_delta):
