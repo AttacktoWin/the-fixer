@@ -16,7 +16,11 @@ func get_handled_states():
 
 
 func can_transition(_from):
-	return self._cooldown_timer <= 0
+	return (
+		self._cooldown_timer <= 0
+		and self.entity.has_target()
+		and AI.has_LOS(self.global_position, self.entity.get_target().global_position)
+	)
 
 
 func _background_physics(_delta):
@@ -41,7 +45,7 @@ func do_attack():
 			continue
 		var ang = (self.entity.global_position - body.global_position).angle()
 		var diff = abs(MathUtils.angle_difference(ang, self._angle))
-		if diff > MAX_DEVIATION:
+		if diff > MAX_DEVIATION or not AI.has_LOS(self.global_position, body.global_position):
 			continue
 
 

@@ -10,7 +10,7 @@
 [ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateHurt.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateWander.gd" type="Script" id=10]
-[ext_resource path="res://Scripts/Entities/Generic_HurtBox.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Enemies/BaseEnemy.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Enemies/Spyder/SpyderStateRangeAttack.gd" type="Script" id=12]
 
 [sub_resource type="CircleShape2D" id=97]
@@ -255,7 +255,7 @@ has_ranged_attack = true
 melee_attack_range = 64.0
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2( 0.200001, -61 )
+position = Vector2( 0, -61 )
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
 
 [node name="NearbyEntities" type="Area2D" parent="."]
@@ -281,7 +281,6 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="Sense" type="CollisionShape2D" parent="RangedAttack"]
-position = Vector2( -3, -2 )
 scale = Vector2( 2, 1 )
 shape = SubResource( 99 )
 
@@ -290,7 +289,6 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="Sense" type="CollisionShape2D" parent="IdleRadius"]
-position = Vector2( -3, -2 )
 scale = Vector2( 2, 1 )
 shape = SubResource( 98 )
 
@@ -302,6 +300,13 @@ collision_layer = 0
 collision_mask = 32
 script = ExtResource( 5 )
 base_speed = 0.0
+allied_class = ExtResource( 11 )
+persistent = true
+die_on_pierce = false
+camera_shake = 64.0
+max_pierce = 10000
+should_forget_entities = true
+entity_forget_time = 0.2
 
 [node name="HitCollider" type="CollisionShape2D" parent="FlipComponents/HitBox"]
 position = Vector2( -24, 9.75 )
@@ -312,7 +317,6 @@ disabled = true
 position = Vector2( -6.8, -34 )
 collision_layer = 32
 collision_mask = 0
-script = ExtResource( 11 )
 
 [node name="HurtCollider" type="CollisionShape2D" parent="FlipComponents/HurtBox"]
 position = Vector2( -3.2, -3 )

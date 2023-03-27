@@ -9,6 +9,7 @@ export var base_health: float = 100
 export var base_accel: float = 80
 export var base_drag: float = 1.025
 onready var variables = VariableList.new(
+	self,
 	VARIABLE,
 	{
 		VARIABLE.MAX_SPEED: base_speed,
@@ -65,7 +66,11 @@ func getv(variable):
 
 
 func setv(variable, v):
-	self.variables.set_variable(variable, v)
+	return self.variables.set_variable(variable, v)
+
+
+func changev(variable: int, off):
+	return setv(variable, getv(variable) + off)
 
 
 func get_wanted_velocity(dir_vector: Vector2) -> Vector2:
@@ -116,24 +121,20 @@ func _check_death() -> bool:
 	return false
 
 
-# warning-ignore:unused_argument
 func can_be_hit():
 	return true
 
 
-func try_take_damage(amount, meta) -> bool:
+func on_hit(info: AttackInfo):
 	# check status... if status == invulenrable: return false
+	self._take_damage(info.damage)
+	self._on_take_damage(info)
 
-	self._take_damage(amount, meta)
-	return true
 
-
-func _on_take_damage(_amount: float, _meta: HitMetadata):
+func _on_take_damage(_info: AttackInfo):
 	pass
 
 
-func _take_damage(amount, meta):
-	self.setv(VARIABLE.HEALTH, self.getv(VARIABLE.HEALTH) - amount)
-	self._on_take_damage(amount, meta)
-	# warning-ignore:return_value_discarded
-	self._check_death()
+func _take_damage(amount: float):
+	self.changev(VARIABLE.HEALTH, -amount)
+	self._check_death()  # warning-ignore:return_value_discarded

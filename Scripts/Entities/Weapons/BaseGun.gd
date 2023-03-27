@@ -2,6 +2,11 @@
 class_name BaseGun extends Weapon
 
 
+func _init(parent_entity).(parent_entity):
+	pass
+	
+
+
 # override
 func _on_fire_called():
 	var angle1 = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - self.global_position).angle()

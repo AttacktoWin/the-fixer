@@ -184,7 +184,6 @@ script = ExtResource( 7 )
 Player_path = NodePath("../SortableEntities/Player")
 Exit_path = NodePath("../Transition")
 parent = NodePath("../SortableEntities/Runtime")
-enemies_per_room = 1
 generator_data = ExtResource( 8 )
 
 [node name="Floor" type="TileMap" parent="."]

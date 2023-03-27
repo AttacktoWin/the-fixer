@@ -195,14 +195,14 @@ func alert(target: LivingEntity):
 	self.set_target(target)
 
 
-func _on_take_damage(_amount: float, _meta: HitMetadata):
+func _on_take_damage(info: AttackInfo):
 	self.fsm.set_state(EnemyState.PAIN)
+	var direction = info.get_attack_direction(self.global_position)
 	self.setv(
 		LivingEntity.VARIABLE.VELOCITY,
 		(
-			_meta.direction
-			* _amount
-			* 5
+			direction
+			* info.knockback_factor
 			* self.getv(LivingEntity.VARIABLE.KNOCKBACK_FACTOR)
 			/ self.getv(LivingEntity.VARIABLE.WEIGHT)
 		)

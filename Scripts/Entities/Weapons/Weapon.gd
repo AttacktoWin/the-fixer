@@ -3,8 +3,19 @@ class_name Weapon extends Node2D
 var _cooldown_timer = Timer.new()
 var _can_fire = true
 var _cooldown = 0.5  # seconds
-var _parent = null
 var _aim_bone = null
+
+var entity = null
+
+
+func _init(parent_entity):
+	self.entity = parent_entity
+
+
+func _ready():
+	# self._cooldown_timer.one_shot = true
+	self._cooldown_timer.connect("timeout", self, "_cooldown_complete")
+	add_child(self._cooldown_timer)
 
 
 func _try_fire(direction: float, target: Node2D = null) -> bool:
@@ -25,10 +36,6 @@ func _fire(_direction: float, _taget: Node2D = null):
 	print("Not implemented!")
 
 
-func set_parent(parent: Node2D) -> void:
-	self._parent = parent
-
-
 func set_aim_bone(bone: Node2D) -> void:
 	self._aim_bone = bone
 
@@ -41,16 +48,6 @@ func _get_aim_position() -> Vector2:
 
 func _cooldown_complete():
 	self._can_fire = true
-
-
-func _init():
-	pass
-
-
-func _ready():
-	# self._cooldown_timer.one_shot = true
-	self._cooldown_timer.connect("timeout", self, "_cooldown_complete")
-	add_child(self._cooldown_timer)
 
 
 func can_fire() -> bool:

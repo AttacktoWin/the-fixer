@@ -1,7 +1,7 @@
 class_name DecoratorList extends RunnableList
 
 
-func _init(choices: Dictionary).(choices):
+func _init(entity, choices: Dictionary).(entity, choices):
 	pass
 
 

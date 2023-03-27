@@ -20,8 +20,7 @@ var gun_controlled = false
 func _ready():
 	Wwise.register_listener(self)
 	Wwise.register_game_obj(self, self.get_name())
-	self._gun = TestGun.new()
-	self._gun.set_parent(self)
+	self._gun = TestGun.new(self)
 	self._gun.set_aim_bone(arms_container)
 	socket_muzzle.add_child(self._gun)
 
@@ -111,7 +110,7 @@ func _physics_process(delta):
 	._physics_process(delta)
 
 
-func _on_take_damage(_amount: float, _meta: HitMetadata):
+func _on_take_damage(_info: AttackInfo):
 	var bar = Scene.ui.get_node("HUD/HealthBar")
 	bar.value = ((getv(LivingEntity.VARIABLE.HEALTH) / self.base_health) * 100)
 

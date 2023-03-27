@@ -1,26 +1,37 @@
-class_name Runnable extends Object
+class_name Runnable extends Node2D
 
-var _parent = null
-
-
-func with_parent(parent):
-	self._parent = parent
-	return self
+var entity = null
+var default_value = null
 
 
-func get_parent():
-	return self._parent
+func _init(_default_value = null):
+	self.default_value = false
 
 
-# runnable list is responsible for updating this... We do it this way so we can copy these nodes as data classes
-# warning-ignore:unused_argument
-func tick(delta):
+func _ready():
+	set_process(false)
+	set_physics_process(false)
+
+
+func _on_added():
+	pass
+
+
+func _on_removed():
+	pass
+
+
+func _process(_delta):
+	pass
+
+
+func _physics_process(_delta):
 	pass
 
 
 # warning-ignore:unused_argument
 func clone(new_parent):
-	print("Not implemented!!!")
+	return duplicate()
 
 
 func run(_arg):

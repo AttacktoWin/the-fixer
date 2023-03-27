@@ -1,7 +1,8 @@
 class_name RunnableList extends Node2D
 
-var _runnables = {}
-var _counter = 0
+var _runnables: Dictionary = {}
+var _counter: int = 0
+var _entity = null
 
 
 class PrioritySort:
@@ -24,7 +25,9 @@ class SortableRunnable:
 		self.name = name_arg
 
 
-func _init(choices: Dictionary):
+func _init(entity, choices: Dictionary):
+	self._entity = entity
+
 	if not choices:
 		push_error("No choices supplied!")
 
@@ -52,26 +55,35 @@ func _get_runnables_raw(choice) -> Array:
 	return self._runnables[choice]
 
 
-func add_runnable(choice: int, runnable, priority: int, _name: String = "!NO_NAME"):
+func add_runnable(choice: int, runnable: Runnable, priority: int, _name: String = "!NO_NAME"):
 	self._check_choice_or_throw(choice)
+
+	runnable.entity = self._entity
 
 	var l = SortableRunnable.new(runnable, priority, self._counter, _name)
 	self._counter += 1
 
 	self._get_runnables_raw(choice).push_back(l)
 	self._recalculate_priorities(_get_runnables_raw(choice))
+	add_child(runnable)
+	runnable._on_added()
 
 
 # finds and removes the decorator either by reference or by name
-func remove_runnable(choice: int, runnable_or_name):
+func remove_runnable(choice: int, runnable_or_name, _free = true):
 	self._check_choice_or_throw(choice)
 	var runnables = _get_runnables_raw(choice)
 
 	for x in range(len(runnables)):
 		var l = runnables[x]
 		if l.name == runnable_or_name or l.runnable == runnable_or_name:
-			runnables.pop_at(x)
-			return
+			var ret = runnables.pop_at(x)
+			ret._on_removed()
+			if _free:
+				ret.free()
+				return true
+
+	return false
 
 
 func _recalculate_priorities(arr):
@@ -82,7 +94,14 @@ func _process(delta):
 	for key in self._runnables:
 		var list = self._runnables[key]
 		for sortable_runnable in list:
-			sortable_runnable.runnable.tick(delta)
+			sortable_runnable.runnable._process(delta)
+
+
+func _physics_process(delta):
+	for key in self._runnables:
+		var list = self._runnables[key]
+		for sortable_runnable in list:
+			sortable_runnable.runnable._physics_process(delta)
 
 
 # Called when the node enters the scene tree for the first time.

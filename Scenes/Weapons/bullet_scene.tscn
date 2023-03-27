@@ -8,10 +8,11 @@ extents = Vector2( 11, 5 )
 
 [node name="BulletBase" type="Area2D"]
 collision_layer = 0
-collision_mask = 32
+collision_mask = 33
 script = ExtResource( 1 )
 base_speed = 800.0
 base_damage = 4.0
+base_lifetime = 200.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )
