@@ -54,6 +54,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Entities/LivingEntities/BaseHandlers/BaseSlowHandler.gd"
 }, {
+"base": "BaseEnemy",
+"class": "Beetle",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Beetle/Beetle.gd"
+}, {
+"base": "FSMNode",
+"class": "BeetleStateAttack",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Beetle/BeetleStateAttack.gd"
+}, {
 "base": "BaseAttack",
 "class": "BulletBase",
 "language": "GDScript",
@@ -384,6 +394,8 @@ _global_script_class_icons={
 "BaseEnemy": "",
 "BaseGun": "",
 "BaseSlowHandler": "",
+"Beetle": "",
+"BeetleStateAttack": "",
 "BulletBase": "",
 "CollisionUtils": "",
 "Constants": "",

@@ -139,7 +139,11 @@ func _on_area_entered(body: Node2D):
 
 func invoke_attack():
 	for entity in self._hitbox.get_overlapping_bodies():
-		self._try_hit_entity(entity)  # warning-ignore:return_value_discarded
+		if entity != null and entity is LivingEntity:
+			self._try_hit_entity(entity)  # warning-ignore:return_value_discarded
+	for entity in self._hitbox.get_overlapping_areas():
+		if entity.owner != null and entity.owner is LivingEntity:
+			self._try_hit_entity(entity.owner)  # warning-ignore:return_value_discarded
 
 
 func set_direction(dir: float):

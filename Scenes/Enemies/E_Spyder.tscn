@@ -32,7 +32,7 @@ extents = Vector2( 15, 36.75 )
 radius = 20.0
 height = 42.0
 
-[sub_resource type="Shader" id=94]
+[sub_resource type="Shader" id=100]
 code = "shader_type canvas_item;
 
 uniform bool flash = false;
@@ -68,7 +68,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=95]
-shader = SubResource( 94 )
+shader = SubResource( 100 )
 shader_param/flash = false
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/line_color = Color( 0.988235, 0.847059, 0.215686, 0 )

@@ -7,6 +7,7 @@ onready var visual: Node2D = $FlipComponents/Visual
 onready var sprite_material: Material = null
 onready var fsm: FSMController = $FSMController
 onready var flip_components: Node2D = $FlipComponents
+onready var hitbox: Node2D = $FlipComponents/HitBox
 
 onready var idle_collider: Area2D = $IdleRadius
 onready var nearby_entities: Area2D = $NearbyEntities
