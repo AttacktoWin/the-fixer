@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -10,13 +10,16 @@
 [ext_resource path="res://Scripts/LevelGeneration/PCG_DataClasses/test2.tres" type="Resource" id=8]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_bank.gd" type="Script" id=10]
+[ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
+[ext_resource path="res://addons/wwise/runtime/nodes/ak_listener_2d.gd" type="Script" id=12]
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends Node2D
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var ret = Wwise.set_rtpc(AK.GAME_PARAMETERS.MUSICVOLUME,90,$LevelMusic)
+	print($LevelMusic)
+	print(Wwise.get_rtpc(AK.GAME_PARAMETERS.MUSICVOLUME,$LevelMusic))
 "
 
 [sub_resource type="NavigationPolygon" id=3]
@@ -190,6 +193,36 @@ outlines = [ PoolVector2Array( 129, 127, 256, 63, 128, 0, 0, 60 ) ]
 [node name="Level" type="Node2D"]
 script = SubResource( 4 )
 
+[node name="AkBank-INIT" type="Node" parent="."]
+script = ExtResource( 10 )
+bank = {
+"Id": 1355168291,
+"Name": "INIT"
+}
+load_on = 1
+unload_on = 2
+
+[node name="AkBank-MUSIC" type="Node" parent="."]
+script = ExtResource( 10 )
+bank = {
+"Id": 3991942870,
+"Name": "MUSIC"
+}
+load_on = 1
+unload_on = 2
+
+[node name="AkListener2D" type="Node2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="LevelMusic" type="Node2D" parent="."]
+script = ExtResource( 11 )
+event = {
+"Id": 1932095129,
+"Name": "COMBAT MUSIC"
+}
+trigger_on = 3
+stop_on = 2
+
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 7 )
 Player_path = NodePath("../SortableEntities/Player")
@@ -241,6 +274,3 @@ id = "fixer"
 immediate = true
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]
-
-[node name="AkBank" type="Node" parent="."]
-script = ExtResource( 10 )
