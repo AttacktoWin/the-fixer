@@ -166,3 +166,4 @@ func _on_death():
 	self.fsm.lock()
 	self._gun.queue_free()
 	self._gun = null
+	StatsTracker.add_death()
