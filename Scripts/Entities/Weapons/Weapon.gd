@@ -31,7 +31,7 @@ func _try_fire(direction: float, target: Node2D = null) -> bool:
 	self._cooldown_timer.start()
 
 	# fire sound
-	if self._ammo_count < 0:
+	if self._ammo_count <= 0:
 		emit_signal("on_fire_empty")
 		return false
 	self._ammo_count -= 1
@@ -61,7 +61,7 @@ func set_ammo_count(ammo: int):
 
 
 func add_ammo(ammo: int):
-	self._ammo += ammo
+	self._ammo_count += ammo
 
 
 func _get_aim_position() -> Vector2:

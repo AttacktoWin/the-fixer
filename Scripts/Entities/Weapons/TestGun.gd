@@ -60,8 +60,8 @@ func _init(parent_entity).(parent_entity):
 	pass
 
 
-func _ready():
-	self._cooldown = 0.01
+# func _ready():
+# 	self._cooldown = 0.01
 
 
 func _fire(direction: float, _target: Node2D = null):
@@ -76,8 +76,8 @@ func _fire(direction: float, _target: Node2D = null):
 	# bullet.variables.add_runnable(
 	# 	BulletBase.VARIABLE.DIRECTION, CurveBullet.new().with_parent(bullet), 0
 	# )
-	var runnable = SeekingBullet.new()
-	bullet.variables.add_runnable(AttackVariable.DIRECTION, runnable, 0)
+	# var runnable = SeekingBullet.new()
+	# bullet.variables.add_runnable(AttackVariable.DIRECTION, runnable, 0)
 	# add some screen shake!
 	CameraSingleton.shake(3)
 	AI.notify_sound(self.global_position)

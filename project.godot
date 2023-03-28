@@ -314,6 +314,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/Player.gd"
 }, {
+"base": "BaseAttack",
+"class": "PlayerMelee",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerMeleeAttack.gd"
+}, {
 "base": "Reference",
 "class": "PlayerState",
 "language": "GDScript",
@@ -338,6 +343,11 @@ _global_script_classes=[ {
 "class": "PlayerStateFree",
 "language": "GDScript",
 "path": "res://Scripts/Player/PlayerStateFree.gd"
+}, {
+"base": "FSMNode",
+"class": "PlayerStateMelee",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStateMelee.gd"
 }, {
 "base": "Node2D",
 "class": "Runnable",
@@ -451,11 +461,13 @@ _global_script_class_icons={
 "PCG_Walker": "",
 "PathfindResult": "",
 "Player": "",
+"PlayerMelee": "",
 "PlayerState": "",
 "PlayerStateDash": "",
 "PlayerStateDead": "",
 "PlayerStateDev": "",
 "PlayerStateFree": "",
+"PlayerStateMelee": "",
 "Runnable": "",
 "RunnableList": "",
 "Spyder": "",

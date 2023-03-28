@@ -3,8 +3,7 @@ class_name BaseGun extends Weapon
 
 
 func _init(parent_entity).(parent_entity):
-	pass
-	
+	self._ammo_count = 2
 
 
 # override

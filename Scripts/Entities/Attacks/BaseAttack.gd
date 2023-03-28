@@ -80,11 +80,16 @@ func _generate_attack_info(_entity: LivingEntity) -> AttackInfo:
 	)
 
 
+func _on_hit_entity(_entity: LivingEntity):
+	pass
+
+
 func _hit_entity(entity: LivingEntity) -> void:
 	self._hit_entities[entity] = self._current_time
 	self._pierce += 1
 	CameraSingleton.shake(self.camera_shake)
 	entity.on_hit(self._generate_attack_info(entity))
+	self._on_hit_entity(entity)
 	if self.die_on_pierce and self._pierce >= max_pierce:
 		self._expire()
 

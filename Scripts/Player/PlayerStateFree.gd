@@ -69,6 +69,9 @@ func _unhandled_input(event: InputEvent):
 		self._dash_timer = DASH_COOLDOWN
 		self.fsm.set_state(PlayerState.DASHING)
 
+	if event.is_action_pressed("weapon_fire_melee"):
+		self.fsm.set_state(PlayerState.FIRE_MELEE)
+
 	if (
 		event is InputEventKey
 		and event.scancode == KEY_T

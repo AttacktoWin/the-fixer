@@ -10,6 +10,7 @@ onready var arms_container: Node2D = $Visual/ArmsContainer
 onready var arms_secondary: Node2D = $Visual/Arm2
 onready var visual: Node2D = $Visual
 onready var fsm: FSMController = $FSMController
+onready var melee_hitbox: Area2D = $Visual/HitBox
 
 var _gun = null
 
@@ -46,6 +47,8 @@ func _get_wanted_velocity():
 func get_wanted_gun_vector():
 	return MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
 
+func add_ammo(ammo: int):
+	self._gun.add_ammo(ammo)
 
 func set_gun_angle(angle):
 	self.arms_container.rotation = angle
