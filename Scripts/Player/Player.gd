@@ -92,6 +92,9 @@ func _process(_delta):
 			var point = Pathfinder._pathfinder.has_point(idx)
 			var type = Scene.level[vec.x][vec.y]
 			print("Level: ", vec, " -- in bounds: ", point, " -- tile_type: ", type)
+		if Input.is_action_just_pressed("ui_left"):
+			print("Playing test sound")
+			Wwise.post_event_id(AK.EVENTS.FIRE_PISTOL_PLAYER, self)
 
 
 func _unhandled_input(event: InputEvent):
