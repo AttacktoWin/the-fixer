@@ -16,4 +16,4 @@ func _on_fire_called():
 
 
 func _check_fire_pressed():
-	return Input.is_action_pressed("weapon_fire_ranged")
+	return not PausingSingleton.is_paused_recently() and Input.is_action_pressed("weapon_fire_ranged")

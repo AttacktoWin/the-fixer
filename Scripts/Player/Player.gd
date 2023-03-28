@@ -85,11 +85,13 @@ func _process(_delta):
 			var loc = MathUtils.floor_vec2(MathUtils.to_level_vector(self.global_position))
 			print(Pathfinder._pathfinder.get_point_connections(loc.x + loc.y * Pathfinder._width))
 		if Input.is_action_just_pressed("ui_right"):
-			var vec = MathUtils.floor_vec2(MathUtils.to_level_vector(CameraSingleton.get_absolute_mouse()))
+			var vec = MathUtils.floor_vec2(
+				MathUtils.to_level_vector(CameraSingleton.get_absolute_mouse())
+			)
 			var idx = vec.x + vec.y * Pathfinder._width
 			var point = Pathfinder._pathfinder.has_point(idx)
 			var type = Scene.level[vec.x][vec.y]
-			print("Level: ", vec," -- in bounds: ", point," -- tile_type: ", type)
+			print("Level: ", vec, " -- in bounds: ", point, " -- tile_type: ", type)
 
 
 func _unhandled_input(event: InputEvent):

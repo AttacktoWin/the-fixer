@@ -4,14 +4,14 @@ extends Node
 
 var _shake_timer = 0
 var _location_target = Vector2()
-var _zoom_target = Vector2(0.7, 1.4)#0.7, 1.4
+var _base_zoom = 0.7
+var _zoom_target = Vector2(1 * _base_zoom, 2 * _base_zoom)  # 0.7, 1.4
 var _transition_factor = 0.1
 var _viewport
 var _camera
 
 const SHAKE_FACTOR = 10
 const MAX_SHAKE_TIMER = 120
-
 
 enum TARGET { LOCATION, ZOOM, ROTATION }
 var _frozen_dict = {}
@@ -66,7 +66,7 @@ func get_mouse_from_camera_center_screen() -> Vector2:
 
 
 func set_zoom(new_scale):
-	self._zoom_target = new_scale * MathUtils.FROM_ISO
+	self._zoom_target = new_scale * MathUtils.FROM_ISO * self._base_zoom
 
 
 func jump_field(target_type):
