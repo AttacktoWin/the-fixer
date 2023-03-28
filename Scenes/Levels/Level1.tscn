@@ -185,7 +185,7 @@ script = ExtResource( 7 )
 Player_path = NodePath("../SortableEntities/Player")
 Exit_path = NodePath("../Transition")
 parent = NodePath("../SortableEntities/Runtime")
-pillbug_spawn_rate = 0
+pillbug_spawn_rate = 100
 spyder_spawn_rate = 0
 generator_data = ExtResource( 8 )
 

@@ -54,7 +54,7 @@ func enter():
 	self._wander_timer = rand_range(MIN_WANDER_DELAY, MAX_WANDER_DELAY)
 	self.entity.sprite_material.set_shader_param(Constants.SP.B_FLASH, false)
 	self.entity.sprite_material.set_shader_param(
-		Constants.SP.C_LINE_COLOR, Constants.COLOR.INVISIBLE
+		Constants.SP.C_LINE_COLOR, Constants.COLOR.BLACK
 	)
 	self.entity.clear_investigate_target()
 	self.entity.clear_target(false)
