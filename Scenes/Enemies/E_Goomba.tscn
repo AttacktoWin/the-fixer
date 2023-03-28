@@ -21,9 +21,8 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id=77]
 radius = 400.0
 
-[sub_resource type="CapsuleShape2D" id=62]
-radius = 7.65067
-height = 19.2829
+[sub_resource type="CircleShape2D" id=80]
+radius = 24.0
 
 [sub_resource type="CapsuleShape2D" id=63]
 radius = 12.3667
@@ -263,9 +262,8 @@ should_forget_entities = true
 entity_forget_time = 0.5
 
 [node name="HitCollider" type="CollisionShape2D" parent="FlipComponents/HitBox"]
-position = Vector2( -11, 16 )
-rotation = -1.04022
-shape = SubResource( 62 )
+position = Vector2( -5, 42 )
+shape = SubResource( 80 )
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="FlipComponents"]

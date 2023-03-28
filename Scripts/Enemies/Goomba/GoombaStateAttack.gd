@@ -10,7 +10,7 @@ const ATTACK_TIME = 2
 const JUMP_TIME = 0.8
 const ATTACK_SPEED = 300
 const ATTACK_DECAY = 0.92
-const RANDOM_MAX = 32
+const RANDOM_MAX = 16
 const ATTACK_HEIGHT = 32
 
 
