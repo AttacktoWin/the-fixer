@@ -15,6 +15,8 @@ var _gun = null
 
 var gun_controlled = false
 
+var knockback_velocity = Vector2.ZERO
+
 const INVULNERABLE_TIME = 1
 
 
@@ -105,8 +107,16 @@ func _handle_camera():
 	CameraSingleton.set_target_center(self.position + off2)
 
 
+func _try_move():
+	# warning-ignore:return_value_discarded
+	move_and_slide(getv(LivingEntityVariable.VELOCITY) + self.knockback_velocity)
+
+
 func _physics_process(delta):
 	# Wwise.set_2d_position(self, self.global_position)
+	self.knockback_velocity *= 0.9
+	if self.knockback_velocity.length() < 30:
+		self.knockback_velocity = Vector2.ZERO
 	_handle_camera()
 	_try_move()
 	._physics_process(delta)
@@ -114,24 +124,18 @@ func _physics_process(delta):
 
 func _on_take_damage(info: AttackInfo):
 	var direction = info.get_attack_direction(self.global_position)
-	self.changev(
-		LivingEntityVariable.VELOCITY,
-		(
-			direction
-			* info.knockback_factor
-			* self.getv(LivingEntityVariable.KNOCKBACK_FACTOR)
-			/ self.getv(LivingEntityVariable.WEIGHT)
-		)
+	self.knockback_velocity += (
+		direction
+		* info.knockback_factor
+		* self.getv(LivingEntityVariable.KNOCKBACK_FACTOR)
+		/ self.getv(LivingEntityVariable.WEIGHT)
 	)
-	print(direction
-	* info.knockback_factor
-	* self.getv(LivingEntityVariable.KNOCKBACK_FACTOR)
-	/ self.getv(LivingEntityVariable.WEIGHT))
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	var bar = Scene.ui.get_node("HUD/HealthBar")
 	bar.value = ((getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
 
 
 func _on_death():
+	self.knockback_velocity = Vector2.ZERO
 	self.fsm.set_state(PlayerState.DEAD)
 	self._gun.queue_free()
