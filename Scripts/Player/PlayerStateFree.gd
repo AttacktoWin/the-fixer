@@ -4,9 +4,6 @@ class_name PlayerStateFree extends FSMNode
 
 var t_timer = 0
 
-const DASH_COOLDOWN = 2
-var _dash_timer = 0
-
 
 # returns an array of states this entry claims to handle. This can be any data type
 func get_handled_states():
@@ -23,12 +20,7 @@ func exit():
 	self.fsm.get_animation_player().playback_speed = 1.0
 
 
-func _background_physics_process(delta):
-	self._dash_timer -= delta
-
-
 func _physics_process(delta):
-	self._dash_timer -= delta
 	self._ground_control(MathUtils.delta_frames(delta))
 
 
@@ -65,8 +57,10 @@ func _unhandled_input(event: InputEvent):
 	if PausingSingleton.is_paused_recently(6) or not self.fsm.is_this_state(self):
 		return
 
-	if event.is_action_pressed("move_dash") and self._dash_timer < 0:
-		self._dash_timer = DASH_COOLDOWN
+	if (
+		event.is_action_pressed("move_dash")
+		and self.fsm.can_transition_to(PlayerState.DASHING)
+	):
 		self.fsm.set_state(PlayerState.DASHING)
 
 	if event.is_action_pressed("weapon_fire_melee"):

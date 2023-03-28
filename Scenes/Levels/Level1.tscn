@@ -220,7 +220,6 @@ event = {
 "Id": 1932095129,
 "Name": "COMBAT MUSIC"
 }
-trigger_on = 3
 stop_on = 2
 
 [node name="Generator" type="Node2D" parent="."]

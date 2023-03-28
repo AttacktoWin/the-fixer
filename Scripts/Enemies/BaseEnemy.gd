@@ -198,7 +198,10 @@ func alert(target: LivingEntity):
 
 func _get_base_alpha() -> float:
 	var dist = (self.global_position - Scene.player.global_position).length() / 128 - 4
-	return MathUtils.interpolate(dist, 1, 0, MathUtils.INTERPOLATE_IN_EXPONENTIAL)
+	var alpha = MathUtils.interpolate(dist, 1, 0, MathUtils.INTERPOLATE_IN_EXPONENTIAL)
+	# if alpha > 0 and not AI.has_LOS(self.global_position, Scene.player.global_position):
+	# 	alpha = 0
+	return alpha
 
 
 func _on_take_damage(info: AttackInfo):
