@@ -88,7 +88,7 @@ func _generate_random_path():
 
 func _follow_path(delta):
 	if self._path == null:
-		self._try_move(delta, Vector2())
+		_try_move(delta, Vector2())
 		return
 	self._path.update(self.entity.global_position)
 	var dir = self.entity.apply_steering(self._path.get_target_vector())

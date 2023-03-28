@@ -47,8 +47,11 @@ func _get_wanted_velocity():
 func get_wanted_gun_vector():
 	return MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
 
+
 func add_ammo(ammo: int):
-	self._gun.add_ammo(ammo)
+	if self._gun:
+		self._gun.add_ammo(ammo)
+
 
 func set_gun_angle(angle):
 	self.arms_container.rotation = angle
@@ -68,7 +71,7 @@ func player_input_gun_aim():
 func _process(_delta):
 	if OS.is_debug_build():
 		if Input.is_action_pressed("ui_focus_next"):
-			var enemy = load("res://Scenes/Enemies/E_Beetle.tscn").instance()
+			var enemy = load("res://Scenes/Enemies/E_Ant.tscn").instance()
 			enemy.global_position = CameraSingleton.get_absolute_mouse_iso()
 			Scene.runtime.add_child(enemy)
 		if Input.is_action_just_pressed("ui_up"):
@@ -142,3 +145,4 @@ func _on_death():
 	self.knockback_velocity = Vector2.ZERO
 	self.fsm.set_state(PlayerState.DEAD)
 	self._gun.queue_free()
+	self._gun = null

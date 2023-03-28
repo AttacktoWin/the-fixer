@@ -2,6 +2,7 @@
 
 class_name EnemyStateMoving extends FSMNode
 
+export var global_animation_speed_multiplier: float = 1.0
 var _animation_speed_multiplier: float = 1.0
 
 
@@ -28,6 +29,7 @@ func _update_visuals():
 			self.fsm.get_animation_player().playback_speed = (
 				speed
 				* self._animation_speed_multiplier
+				* self.global_animation_speed_multiplier
 			)
 		else:
 			self.fsm.get_animation_player().playback_speed = 1
@@ -50,11 +52,3 @@ func _try_move(delta, wanted_velocity):
 	else:
 		self.entity.setv(LivingEntityVariable.VELOCITY, current_vel + accel)
 	self.entity._try_move()
-
-
-func enter():
-	pass
-
-
-func exit():
-	pass

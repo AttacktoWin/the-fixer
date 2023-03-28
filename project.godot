@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/wwise/runtime/helpers/ak_utils.gd"
 }, {
+"base": "BaseEnemy",
+"class": "Ant",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Ant/Ant.gd"
+}, {
+"base": "EnemyStateWander",
+"class": "AntStateWander",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Ant/AntStateWander.gd"
+}, {
 "base": "Resource",
 "class": "AttackInfo",
 "language": "GDScript",
@@ -183,6 +193,11 @@ _global_script_classes=[ {
 "class": "EnemyStateMoving",
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Generic/EnemyStateMoving.gd"
+}, {
+"base": "EnemyStateMoving",
+"class": "EnemyStateRun",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateRun.gd"
 }, {
 "base": "FSMNode",
 "class": "EnemyStateSleeping",
@@ -402,6 +417,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AK": "",
 "AkUtils": "",
+"Ant": "",
+"AntStateWander": "",
 "AttackInfo": "",
 "AttackType": "",
 "AttackVariable": "",
@@ -435,6 +452,7 @@ _global_script_class_icons={
 "EnemyStateChase": "",
 "EnemyStateHurt": "",
 "EnemyStateMoving": "",
+"EnemyStateRun": "",
 "EnemyStateSleeping": "",
 "EnemyStateWander": "",
 "Entity": "",
