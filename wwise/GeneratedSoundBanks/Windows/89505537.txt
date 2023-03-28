@@ -27,6 +27,7 @@ Game Parameter	ID	Name			Wwise Object Path	Notes
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	15880499	Spyder_Flash	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Flash_Camera_B6BBCEE5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Spyder\Spyder_Flash		63416
 	68113316	Ammo_Pickup_Player-004	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-004_3FDF283B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-004		40732
+	73824784	Hit_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Hit_Pistol_Player_4922D340.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Hit_Pistol_Player		74808
 	90599123	Fire_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Shoot_Pistol_Player_08F7D1DE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Fire_Pistol_Player		51836
 	215651341	Punch_Knuckles_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Swing_Knuckles_Player_65AC56E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Punch_Knuckles_Player		40552
 	313999180	Ammo_Pickup_Player-008	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-008_A9EDB648.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-008		44056
@@ -34,6 +35,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	384635967	Ammo_Pickup_Player-003	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-003_9BB6A447.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-003		57332
 	476551547	Spyder_Attack	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\spyder attack_9EEF2BFA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Spyder\Spyder_Attack		102884
 	518315914	Empty_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Empty_Pistol_Player_6C16FD96.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Empty_Pistol_Player		35756
+	590813281	Hit_Knuckles_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Hit_Knuckles_Player_E815407F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Hit_Knuckles_Player		94412
 	678458525	Ammo_Pickup_Player-001	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-001_AF398A34.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-001		37412
 	738966222	Ammo_Pickup_Player-009	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-009_07D8E4C6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-009		44884
 	865640855	Spyder_Charge	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\spyder charge_A592BCF1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Spyder\Spyder_Charge		59286
