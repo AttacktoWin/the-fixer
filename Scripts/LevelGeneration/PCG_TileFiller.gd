@@ -65,9 +65,12 @@ func wall_pass(
 	for step in path:
 		for neighbour in neighbours_kernel:
 			var curr = Vector2(
-				step.x-neighbours_kernel[neighbour].x,
-				step.y-neighbours_kernel[neighbour].y)
-			if(
+				step.x+neighbours_kernel[neighbour].x,
+				step.y+neighbours_kernel[neighbour].y)
+			if(curr.x<0 or curr.y<0):
+				level[curr.x][curr.y] == 2
+				wall_set.set_cellv(Vector2(curr.x,curr.y),random.randi_range(2,4))
+			elif(
 				processed.get(curr) == null 
 				and level[curr.x][curr.y] == -1
 			):
