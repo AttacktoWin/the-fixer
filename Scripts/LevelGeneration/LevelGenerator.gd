@@ -9,8 +9,9 @@ export(NodePath) var parent
 onready var entities: Node2D = get_node(parent)
 export(int) var enemies_per_room = 5
 export(int) var enemy_buffer = 2
-export(int) var pillbug_spawn_rate = 70
+export(int) var pillbug_spawn_rate = 50
 export(int) var spyder_spawn_rate = 30
+export(int) var beetle_spawn_rate = 20
 
 export(Resource) var generator_data = PCG_RoomData.new()
 
@@ -34,7 +35,8 @@ func _ready():
 	var path_by_rooms = {}
 	var enemy_info = {
 		"pillbug": [pillbug_spawn_rate,load("res://Scenes/Enemies/E_Goomba.tscn")],
-		"spyder": [spyder_spawn_rate,load("res://Scenes/Enemies/E_Spyder.tscn")]
+		"spyder": [spyder_spawn_rate,load("res://Scenes/Enemies/E_Spyder.tscn")],
+		"beetle": [beetle_spawn_rate,load("res://Scenes/Enemies/E_Beetle.tscn")]
 	}
 	
 	#initlize level array

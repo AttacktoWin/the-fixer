@@ -218,6 +218,7 @@ func _on_take_damage(info: AttackInfo):
 	)
 	var bar = self.get_node("ProgressBar")
 	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
+	._on_take_damage(info)
 
 
 func _draw():

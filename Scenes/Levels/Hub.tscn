@@ -434,7 +434,6 @@ flags = 4
 17/z_index = 0
 
 [node name="Level" type="Node2D"]
-position = Vector2( 145, 245 )
 
 [node name="Generator" type="Node2D" parent="."]
 script = SubResource( 4 )

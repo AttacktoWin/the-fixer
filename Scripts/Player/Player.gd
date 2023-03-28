@@ -54,6 +54,12 @@ func add_ammo(ammo: int):
 		self._gun.add_ammo(ammo)
 
 
+func get_ammo() -> int:
+	if self._gun:
+		return self._gun.get_ammo_count()
+	return 0
+
+
 func set_gun_angle(angle):
 	self.arms_container.rotation = angle
 
@@ -71,8 +77,8 @@ func player_input_gun_aim():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if OS.is_debug_build():
-		if Input.is_action_pressed("ui_focus_next"):
-			var enemy = load("res://Scenes/Enemies/E_Ant.tscn").instance()
+		if Input.is_action_just_pressed("ui_focus_next"):
+			var enemy = load("res://Scenes/Enemies/E_Goomba.tscn").instance()
 			enemy.global_position = CameraSingleton.get_absolute_mouse_iso()
 			Scene.runtime.add_child(enemy)
 		if Input.is_action_just_pressed("ui_up"):
@@ -151,6 +157,7 @@ func _on_take_damage(info: AttackInfo):
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	var bar = Scene.ui.get_node("HUD/HealthBar")
 	bar.value = ((getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
+	._on_take_damage(info)
 
 
 func _on_death():

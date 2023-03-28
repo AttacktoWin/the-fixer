@@ -104,16 +104,16 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../../../HitBox/HitCollider:disabled")
+tracks/1/path = NodePath("../HitBox/HitCollider:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.59 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.13, 0.59 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ false, true ]
+"values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -211,7 +211,6 @@ height_component_path = NodePath("FlipComponents")
 base_speed = 400.0
 base_accel = 6.0
 melee_attack_range = 150.0
-draw_path = true
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( -2.76989, -46 )
@@ -256,6 +255,7 @@ base_damage = 25.0
 allied_class = ExtResource( 9 )
 persistent = true
 die_on_pierce = false
+camera_shake = 16.0
 knockback_factor = 1024.0
 max_pierce = 10000
 should_forget_entities = true
@@ -264,7 +264,6 @@ entity_forget_time = 0.5
 [node name="HitCollider" type="CollisionShape2D" parent="FlipComponents/HitBox"]
 position = Vector2( -5, 42 )
 shape = SubResource( 80 )
-disabled = true
 
 [node name="HurtBox" type="Area2D" parent="FlipComponents"]
 position = Vector2( -4, -10 )
@@ -286,7 +285,7 @@ scale = Vector2( 0.346525, 0.346525 )
 texture = ExtResource( 1 )
 hframes = 8
 vframes = 3
-frame = 5
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FlipComponents/Visual"]
 playback_process_mode = 0
@@ -306,7 +305,6 @@ animation_player = NodePath("../FlipComponents/Visual/AnimationPlayer")
 
 [node name="EnemyStateWander" type="Node2D" parent="FSMController"]
 script = ExtResource( 8 )
-draw_path = true
 
 [node name="EnemyStateAlert" type="Node2D" parent="FSMController"]
 script = ExtResource( 6 )

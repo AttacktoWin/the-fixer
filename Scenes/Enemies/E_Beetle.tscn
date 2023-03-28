@@ -16,16 +16,16 @@
 radius = 512.0
 
 [sub_resource type="CircleShape2D" id=76]
-radius = 32.0
+radius = 50.0
 
 [sub_resource type="CircleShape2D" id=77]
 radius = 400.0
 
 [sub_resource type="CircleShape2D" id=87]
-radius = 24.0
+radius = 48.0
 
 [sub_resource type="CircleShape2D" id=81]
-radius = 25.807
+radius = 48.0
 
 [sub_resource type="Shader" id=79]
 code = "shader_type canvas_item;
@@ -161,6 +161,7 @@ script = ExtResource( 3 )
 height_component_path = NodePath("FlipComponents")
 base_speed = 200.0
 base_accel = 6.0
+entity_radius = 50.0
 melee_attack_range = 300.0
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
@@ -207,7 +208,7 @@ allied_class = ExtResource( 9 )
 attack_type = 2
 persistent = true
 die_on_pierce = false
-camera_shake = 128.0
+camera_shake = 64.0
 knockback_factor = 1024.0
 max_pierce = 10000
 should_forget_entities = true
@@ -231,8 +232,8 @@ position = Vector2( -4.76989, -44 )
 
 [node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
 material = SubResource( 74 )
-position = Vector2( 1.76989, 26 )
-scale = Vector2( 0.25, 0.25 )
+position = Vector2( 3.76989, 2 )
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 9
 vframes = 4
@@ -257,7 +258,6 @@ animation_player = NodePath("../FlipComponents/Visual/AnimationPlayer")
 
 [node name="EnemyStateWander" type="Node2D" parent="FSMController"]
 script = ExtResource( 8 )
-draw_path = true
 
 [node name="EnemyStateAlert" type="Node2D" parent="FSMController"]
 script = ExtResource( 6 )

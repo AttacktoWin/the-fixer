@@ -9,7 +9,7 @@ var runtime setget , _get_runtime
 var ui setget , _get_ui
 var managers setget , _get_managers
 var level setget , _get_level
-var player setget, _get_player
+var player setget , _get_player
 
 var _camera = null
 var _runtime = null
@@ -21,6 +21,7 @@ var _player = null
 signal transition_start
 signal transition_complete
 
+
 func _reload_variables():
 	self._camera = self._root.get_node("MainCamera")
 	self._runtime = self._root.get_node("Level/SortableEntities/Runtime")
@@ -29,11 +30,13 @@ func _reload_variables():
 	self._level = self._root.get_node("Level/Generator").level
 	self._player = self._root.get_node("Level/Generator").get_node("%Player")
 	Pathfinder.update_level(self._level)
-	if (self._root.get_node("Level/Generator").get("level_name") and 
-		self._root.get_node("Level/Generator").level_name == "hub"):
-		self.emit_signal("transition_complete",true)
+	if (
+		self._root.get_node("Level/Generator").get("level_name")
+		and self._root.get_node("Level/Generator").level_name == "hub"
+	):
+		self.emit_signal("transition_complete", true)
 	else:
-		self.emit_signal("transition_complete",false)
+		self.emit_signal("transition_complete", false)
 
 
 func set_root(root: Node2D):
@@ -60,8 +63,10 @@ func _get_managers() -> Node:
 func _get_level() -> Array:
 	return self._level
 
-func _get_player()->KinematicBody2D:
+
+func _get_player() -> KinematicBody2D:
 	return self._player
+
 
 func get_tree() -> SceneTree:
 	return self._root.get_tree()
