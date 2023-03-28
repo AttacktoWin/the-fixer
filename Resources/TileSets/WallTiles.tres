@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=7 format=2]
+[gd_resource type="TileSet" load_steps=8 format=2]
 
 [ext_resource path="res://_Dev/Ronan/Tiles/wall2.png" type="Texture" id=1]
 [ext_resource path="res://_Dev/Ronan/Tiles/wall1.png" type="Texture" id=2]
@@ -12,6 +12,10 @@ points = PoolVector2Array( 0, 256, 128, 192, 256, 256, 256, 384, 128, 448, 0, 38
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
 points = PoolVector2Array( 0, 256, 128, 192, 256, 256, 256, 384, 128, 448, 0, 384 )
+
+[sub_resource type="StreamTexture" id=10]
+flags = 4
+load_path = "res://.import/wall0005.png-293138d1dc5ae8e713b3c00c553f4e49.stex"
 
 [resource]
 2/name = "wall1.png 2"
@@ -77,3 +81,17 @@ points = PoolVector2Array( 0, 256, 128, 192, 256, 256, 256, 384, 128, 448, 0, 38
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 4/z_index = 0
+9/name = "wall0005.png 9"
+9/texture = SubResource( 10 )
+9/tex_offset = Vector2( 0, 0 )
+9/modulate = Color( 1, 1, 1, 1 )
+9/region = Rect2( 32, 160, 192, 256 )
+9/tile_mode = 0
+9/occluder_offset = Vector2( 0, 0 )
+9/navigation_offset = Vector2( 0, 0 )
+9/shape_offset = Vector2( 0, 0 )
+9/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+9/shape_one_way = false
+9/shape_one_way_margin = 0.0
+9/shapes = [  ]
+9/z_index = 0
