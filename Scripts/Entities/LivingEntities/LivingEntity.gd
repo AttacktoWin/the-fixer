@@ -93,20 +93,24 @@ func _try_move():
 	move_and_slide(getv(LivingEntityVariable.VELOCITY))
 
 
-func _handle_invulnerable_flash():
+func _get_base_alpha() -> float:
+	return 1.0
+
+
+func _handle_alpha():
 	var t = self.status_timers.get_timer(LivingEntityStatus.INVULNERABLE)
 	if t == 0 or self._is_dead:
-		self.modulate.a = 1
+		self.modulate.a = 1 * self._get_base_alpha()
 	else:
 		var frac = fmod(t, INVULNERABLE_FLASH_RATE)
 		if frac < INVULNERABLE_FLASH_RATE / 2:
-			self.modulate.a = 0.25
+			self.modulate.a = 0.25 * self._get_base_alpha()
 		else:
-			self.modulate.a = 1
+			self.modulate.a = 1 * self._get_base_alpha()
 
 
 func _process(delta):
-	_handle_invulnerable_flash()
+	_handle_alpha()
 	._process(delta)
 
 

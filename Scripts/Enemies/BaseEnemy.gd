@@ -196,6 +196,11 @@ func alert(target: LivingEntity):
 	self.set_target(target)
 
 
+func _get_base_alpha() -> float:
+	var dist = (self.global_position - Scene.player.global_position).length() / 128 - 4
+	return MathUtils.interpolate(dist, 1, 0, MathUtils.INTERPOLATE_IN_EXPONENTIAL)
+
+
 func _on_take_damage(info: AttackInfo):
 	self.fsm.set_state(EnemyState.PAIN)
 	var direction = info.get_attack_direction(self.global_position)
