@@ -145,7 +145,7 @@ func _physics_process(delta):
 	_try_move()
 	._physics_process(delta)
 
-
+signal player_hurt
 func _on_take_damage(info: AttackInfo):
 	var direction = info.get_attack_direction(self.global_position)
 	self.knockback_velocity += (
@@ -157,8 +157,8 @@ func _on_take_damage(info: AttackInfo):
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	var bar = Scene.ui.get_node("HUD/HealthBar")
 	bar.value = ((getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
+	Scene.ui.get_node("DamageFeedback").display_feedback()
 	._on_take_damage(info)
-
 
 func _on_death():
 	self.knockback_velocity = Vector2.ZERO
