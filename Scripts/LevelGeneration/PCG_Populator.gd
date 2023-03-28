@@ -99,20 +99,17 @@ func _spawn_point_pass(room_list,path_by_room):
 		var spawns = []
 		spawn_candidates[room].shuffle()
 		for _enemy in range(self.max_per_room):
-			spawn_count+=1
+			if(spawn_candidates[room].size() == 0):
+				break
 			var spawn = spawn_candidates[room].pop_front()
-			for x in range(
-				-self.enemy_buffer,
-				self.enemy_buffer+1):
-				for y in range(
-					-self.enemy_buffer,
-					self.enemy_buffer+1):
+			for x in range(-self.enemy_buffer,self.enemy_buffer+1):
+				for y in range(-self.enemy_buffer,self.enemy_buffer+1):
 					var neighbour = Vector2(spawn.x-x,spawn.y-y)
 					spawn_candidates[room].erase(neighbour)
+			spawn_count+=1
 			spawns.append(spawn)
-			if spawn_candidates[room].size()==0:
-				break
-		spawn_by_room[room] = spawns
+		if(spawns.size() > 0):
+			spawn_by_room[room] = spawns
 	return [spawn_count,spawn_by_room,rooms]
 
 

@@ -15,7 +15,8 @@ func construct(rng,size):
 func connect_rooms(room_centers):
 	var centers = room_centers.duplicate()
 	var start_center = self.random.randi_range(0,centers.size()-1)
-	var current_center = centers[start_center]
+	start_center = centers[start_center]
+	var current_center = start_center
 	centers.erase(current_center)
 
 	var corridors = []
@@ -27,6 +28,7 @@ func connect_rooms(room_centers):
 		#make corridor to that room
 		corridors += _make_corridor(current_center,next_center)
 		current_center = next_center
+	corridors += _make_corridor(current_center,start_center)
 	return corridors
 
 
