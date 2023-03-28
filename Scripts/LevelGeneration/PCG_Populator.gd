@@ -128,6 +128,9 @@ func _hostile_selection_pass(count,spawns,room_list):
 		spawn_info[enemy] = []
 		for point in enemy_info[enemy][0]:
 			var current_room = room_que[0]
+			if not current_room[0] in spawn_by_room.keys():
+				room_que.erase(current_room)
+				continue
 			var coord = spawn_by_room[current_room[0]].pop_front()
 			if coord == null:
 				continue

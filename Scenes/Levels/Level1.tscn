@@ -23,9 +23,9 @@ func _ready():
 [sub_resource type="Resource" id=7]
 script = ExtResource( 6 )
 map_size = Vector2( 25, 25 )
-min_width = 7
-min_height = 7
-shrink_factor = 1
+min_width = 6
+min_height = 6
+shrink_factor = 2
 corridor_width = 3
 
 [sub_resource type="NavigationPolygon" id=3]
@@ -265,6 +265,9 @@ event = {
 "Id": 1932095129,
 "Name": "COMBAT MUSIC"
 }
+trigger_on = 3
+stop_on = 2
+stop_fade_time = 2
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 7 )
@@ -318,5 +321,6 @@ unique_name_in_owner = true
 [node name="NPCInstance" type="Node2D" parent="SortableEntities/Player"]
 script = ExtResource( 9 )
 id = "fixer"
+immediate = true
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]
