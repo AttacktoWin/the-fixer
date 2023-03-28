@@ -1,10 +1,26 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Scenes/Levels/Level1.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Levels/Hub.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Entities/Level.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Interface/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Magic/noiseTexture.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Entities/MainCamera.gd" type="Script" id=20]
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends CanvasLayer
+
+func _ready():
+	Scene.connect(\"transition_start\",self,\"load_screen\")
+	Scene.connect(\"transition_complete\",self,\"enable_ui\")
+
+func enable_ui(state):
+	$ColorRect.visible = false;
+	self.visible = !state
+
+func load_screen():
+	print(\"called_ui\")
+	$ColorRect.visible = true;
+"
 
 [sub_resource type="Shader" id=4]
 code = "shader_type canvas_item;
@@ -117,6 +133,7 @@ current = true
 script = ExtResource( 20 )
 
 [node name="UILayer" type="CanvasLayer" parent="."]
+script = SubResource( 8 )
 
 [node name="VisionReduction" type="ColorRect" parent="UILayer"]
 material = SubResource( 5 )
@@ -145,6 +162,12 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="HUD" parent="UILayer/UI" instance=ExtResource( 3 )]
+
+[node name="ColorRect" type="ColorRect" parent="UILayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0, 0, 1 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )

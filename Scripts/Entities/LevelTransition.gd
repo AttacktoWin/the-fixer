@@ -4,7 +4,6 @@ extends Area2D
 
 export(PackedScene) var to_level
 
-
 func _ready() -> void:
 	#warning-ignore:RETURN_VALUE_DISCARDED
 	connect("body_entered", self, "_on_body_entered")
