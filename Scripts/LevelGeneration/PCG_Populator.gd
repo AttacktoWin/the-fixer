@@ -137,6 +137,7 @@ func _hostile_selection_pass(count,spawns,room_list):
 			room_que[0][1]+= 1
 			room_que.sort_custom(CustomSorter,"priority_sorter")
 			spawn_info[enemy].append(coord)
+	
 	return spawn_info
 
 
