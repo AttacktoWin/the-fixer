@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="SFX" Hash="1550164993">
+		<SoundBank Id="89505537" Language="SFX" Hash="2346434604">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>89505537.bnk</Path>
@@ -113,8 +113,22 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2020382007" Name="Hit_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Knuckles_Player"/>
-				<Event Id="708461478" Name="Hit_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Pistol_Player"/>
+				<Event Id="2020382007" Name="Hit_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Knuckles_Player">
+					<IncludedMemoryFiles>
+						<File Id="590813281" Language="SFX">
+							<ShortName>Hit_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Hit_Knuckles_Player_E815407F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="708461478" Name="Hit_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Pistol_Player">
+					<IncludedMemoryFiles>
+						<File Id="73824784" Language="SFX">
+							<ShortName>Hit_Pistol_Player.wav</ShortName>
+							<Path>SFX\Hit_Pistol_Player_4922D340.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3277391769" Name="Notice_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle"/>
 				<Event Id="1274459313" Name="Notice_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Notice_Bird"/>
 				<Event Id="1980235893" Name="Notice_Pillbug" ObjectPath="\Events\Default Work Unit\Enemy Actions\Pillbug Actions\Notice_Pillbug"/>
@@ -267,8 +281,22 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="338712458" Name="Forward_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Forward_Menu"/>
-				<Event Id="2020382007" Name="Hit_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Knuckles_Player"/>
-				<Event Id="708461478" Name="Hit_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Pistol_Player"/>
+				<Event Id="2020382007" Name="Hit_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Knuckles_Player">
+					<IncludedMemoryFiles>
+						<File Id="590813281" Language="SFX">
+							<ShortName>Hit_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Hit_Knuckles_Player_E815407F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="708461478" Name="Hit_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Pistol_Player">
+					<IncludedMemoryFiles>
+						<File Id="73824784" Language="SFX">
+							<ShortName>Hit_Pistol_Player.wav</ShortName>
+							<Path>SFX\Hit_Pistol_Player_4922D340.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3289055956" Name="Move_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Move_Menu"/>
 				<Event Id="3277391769" Name="Notice_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle"/>
 				<Event Id="1274459313" Name="Notice_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Notice_Bird"/>
