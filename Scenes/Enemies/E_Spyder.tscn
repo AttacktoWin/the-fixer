@@ -13,7 +13,6 @@
 [ext_resource path="res://Scripts/Enemies/BaseEnemy.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/Enemies/Spyder/SpyderStateRangeAttack.gd" type="Script" id=12]
 
-
 [sub_resource type="CircleShape2D" id=97]
 radius = 512.0
 
@@ -373,6 +372,7 @@ script = ExtResource( 9 )
 
 [node name="EnemyStateAttackMelee" type="Node2D" parent="FSMController"]
 script = ExtResource( 7 )
+play_sound = 1294487939
 should_charge = false
 should_diable_pushing = false
 

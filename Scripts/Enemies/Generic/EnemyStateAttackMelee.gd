@@ -2,6 +2,9 @@
 
 class_name EnemyStateAttackMelee extends FSMNode
 
+export var should_play_sound: bool = true
+export(AK.EVENTS._dict) var play_sound = 0
+
 var _charging: bool = true
 var _pushing_disabled: bool = false
 
@@ -37,6 +40,8 @@ func on_anim_reached_end():
 		return
 
 	if self._charging:
+		if self.should_play_sound:
+			Wwise.post_event_id(self.play_sound, self.entity)
 		self._charging = false
 		self.fsm.set_animation("ATTACK_MELEE")
 	else:

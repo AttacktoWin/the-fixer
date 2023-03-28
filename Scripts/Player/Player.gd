@@ -50,6 +50,7 @@ func get_wanted_gun_vector():
 
 func add_ammo(ammo: int):
 	if self._gun:
+		Wwise.post_event_id(AK.EVENTS.AMMO_PICKUP_PLAYER, self)
 		self._gun.add_ammo(ammo)
 
 
@@ -94,7 +95,7 @@ func _process(_delta):
 			print("Level: ", vec, " -- in bounds: ", point, " -- tile_type: ", type)
 		if Input.is_action_just_pressed("ui_left"):
 			print("Playing test sound")
-			Wwise.post_event_id(AK.EVENTS.FIRE_PISTOL_PLAYER, self)
+			Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, self)
 
 
 func _unhandled_input(event: InputEvent):

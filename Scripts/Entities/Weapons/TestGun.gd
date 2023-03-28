@@ -59,6 +59,11 @@ class SeekingBullet:
 func _init(parent_entity).(parent_entity):
 	pass
 
+func _notify_fire(has_ammo: bool):
+	if(has_ammo):
+		Wwise.post_event_id(AK.EVENTS.FIRE_PISTOL_PLAYER, self.entity)
+	else:
+		Wwise.post_event_id(AK.EVENTS.EMPTY_PISTOL_PLAYER, self.entity)
 
 # func _ready():
 # 	self._cooldown = 0.01

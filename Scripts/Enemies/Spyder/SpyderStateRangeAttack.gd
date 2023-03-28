@@ -29,6 +29,7 @@ func _background_physics(_delta):
 
 
 func enter():
+	Wwise.post_event_id(AK.EVENTS.CHARGE_SPYDER, self.entity)
 	self.entity.disable_pathfind += 1
 	self.fsm.set_animation("CHARGE_TRANSITION")
 	self._charging = 2
@@ -69,6 +70,7 @@ func on_anim_reached_end():
 		return
 
 	if self._charging == 1:
+		Wwise.post_event_id(AK.EVENTS.FLASH_SPYDER, self.entity)
 		self._charging = 0
 		self.fsm.set_animation("FLASH")
 		do_attack()

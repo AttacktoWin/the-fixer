@@ -13,6 +13,7 @@ func enter():
 	self.entity.melee_hitbox.attack_direction = dir
 	self.entity.setv(LivingEntityVariable.VELOCITY, Vector2.ZERO)
 	self.fsm.set_animation("MELEE")
+	Wwise.post_event_id(AK.EVENTS.SWING_KNUCKLES_PLAYER, self.entity)
 
 
 func on_anim_reached_end():

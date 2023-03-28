@@ -33,11 +33,16 @@ func _try_fire(direction: float, target: Node2D = null) -> bool:
 	# fire sound
 	if self._ammo_count <= 0:
 		emit_signal("on_fire_empty")
+		self._notify_fire(false)
 		return false
 	self._ammo_count -= 1
 	_fire(direction, target)
+	self._notify_fire(true)
 	emit_signal("on_fire")
 	return true
+
+func _notify_fire(has_ammo: bool):
+	pass
 
 
 func _check_fire(_direction: float, _target: Node2D) -> bool:

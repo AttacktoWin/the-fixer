@@ -6,6 +6,7 @@ var attack_direction: float = 0
 
 
 func _on_hit_entity(entity: LivingEntity):
+	Wwise.post_event_id(AK.EVENTS.HIT_KNUCKLES_PLAYER, self._damage_source)
 	if entity.is_dead():
 		self._damage_source.add_ammo(1)
 
