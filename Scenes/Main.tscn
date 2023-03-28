@@ -122,23 +122,27 @@ script = ExtResource( 20 )
 material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = SubResource( 6 )
 
 [node name="VisionReduction2" type="ColorRect" parent="UILayer"]
 material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = SubResource( 6 )
 
 [node name="UI" type="Control" parent="UILayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="Retical" type="ColorRect" parent="UILayer/UI"]
 visible = false
 material = SubResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="HUD" parent="UILayer/UI" instance=ExtResource( 3 )]
 

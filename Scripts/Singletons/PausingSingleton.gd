@@ -38,5 +38,5 @@ func is_paused():
 	return self._paused
 
 
-func is_paused_recently():
-	return self._paused or self._unpaused_frames <= 30
+func is_paused_recently(frames:int = 30):
+	return self._paused or self._unpaused_frames <= frames

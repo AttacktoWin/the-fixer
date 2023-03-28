@@ -62,7 +62,7 @@ func _process(_delta):
 
 
 func _unhandled_input(event: InputEvent):
-	if PausingSingleton.is_paused() or not self.fsm.is_this_state(self):
+	if PausingSingleton.is_paused_recently(6) or not self.fsm.is_this_state(self):
 		return
 
 	if event.is_action_pressed("move_dash") and self._dash_timer < 0:
