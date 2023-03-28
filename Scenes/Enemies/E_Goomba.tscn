@@ -266,6 +266,7 @@ entity_forget_time = 0.5
 position = Vector2( -11, 16 )
 rotation = -1.04022
 shape = SubResource( 62 )
+disabled = true
 
 [node name="HurtBox" type="Area2D" parent="FlipComponents"]
 position = Vector2( -4, -10 )
