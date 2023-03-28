@@ -105,13 +105,13 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../HitBox/HitCollider:disabled")
+tracks/1/path = NodePath("../../../HitBox/HitCollider:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.6 ),
+"times": PoolRealArray( 0, 0.59 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -273,10 +273,24 @@ position = Vector2( 1, 0 )
 rotation = -1.81514
 shape = SubResource( 63 )
 
-[node name="Visual" type="Node2D" parent="FlipComponents"]
-position = Vector2( -4.76989, -44 )
+[node name="ViewportContainer" type="ViewportContainer" parent="FlipComponents"]
+margin_left = -34.0
+margin_top = -60.0
+margin_right = 1886.0
+margin_bottom = 1020.0
+rect_scale = Vector2( 0.25, 0.25 )
 
-[node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
+[node name="Viewport" type="Viewport" parent="FlipComponents/ViewportContainer"]
+size = Vector2( 1920, 1080 )
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+
+[node name="Visual" type="Node2D" parent="FlipComponents/ViewportContainer/Viewport"]
+position = Vector2( 120, 67 )
+scale = Vector2( 4, 4 )
+
+[node name="Sprite" type="Sprite" parent="FlipComponents/ViewportContainer/Viewport/Visual"]
 material = SubResource( 74 )
 position = Vector2( 0, 1 )
 scale = Vector2( 0.346525, 0.346525 )
@@ -285,7 +299,7 @@ hframes = 8
 vframes = 3
 frame = 7
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FlipComponents/Visual"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlipComponents/ViewportContainer/Viewport/Visual"]
 playback_process_mode = 0
 anims/ALERTED = SubResource( 9 )
 anims/ATTACK = SubResource( 12 )
@@ -296,24 +310,10 @@ anims/IDLE = SubResource( 25 )
 anims/RECOVER = SubResource( 71 )
 anims/RESET = SubResource( 15 )
 
-[node name="ViewportContainer" type="ViewportContainer" parent="FlipComponents"]
-margin_left = -35.0
-margin_top = -44.0
-margin_right = 1885.0
-margin_bottom = 1036.0
-
-[node name="Viewport" type="Viewport" parent="FlipComponents/ViewportContainer"]
-size = Vector2( 1920, 58 )
-transparent_bg = true
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="Sprite" type="Sprite" parent="FlipComponents/ViewportContainer/Viewport"]
-
 [node name="FSMController" type="Node2D" parent="."]
 script = ExtResource( 2 )
 root_state = NodePath("EnemyStateWander")
-animation_player = NodePath("../FlipComponents/Visual/AnimationPlayer")
+animation_player = NodePath("../FlipComponents/ViewportContainer/Viewport/Visual/AnimationPlayer")
 
 [node name="EnemyStateWander" type="Node2D" parent="FSMController"]
 script = ExtResource( 8 )
