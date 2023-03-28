@@ -13,6 +13,7 @@ export(NodePath) var hitbox_path = null  # assumed self otherwise
 export(GDScript) var allied_class = null  # this class will be ignored for attacks
 export(AttackVariable.ATTACK_TYPE) var attack_type = AttackVariable.ATTACK_TYPE.CONTINUOUS
 export var attack_interval: float = 0.25
+export(AttackVariable.DAMAGE_TYPE) var damage_type = AttackVariable.DAMAGE_TYPE.MELEE
 export var persistent: bool = false
 export var die_on_pierce: bool = true
 export var spectral: bool = false
@@ -72,6 +73,7 @@ func reset():
 func _generate_attack_info(_entity: LivingEntity) -> AttackInfo:
 	return AttackInfo.new(
 		self._damage_source,
+		self.damage_type,
 		Vector2(INF, INF),
 		self.getv(AttackVariable.DAMAGE),
 		self.getv(AttackVariable.DIRECTION),

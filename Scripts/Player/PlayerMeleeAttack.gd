@@ -13,6 +13,7 @@ func _on_hit_entity(entity: LivingEntity):
 func _generate_attack_info(_entity: LivingEntity) -> AttackInfo:
 	return AttackInfo.new(
 		self._damage_source,
+		self.damage_type,
 		Vector2(INF, INF),
 		self.getv(AttackVariable.DAMAGE),
 		self.attack_direction,

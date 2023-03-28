@@ -35,11 +35,6 @@ _global_script_classes=[ {
 "path": "res://Scripts/Entities/Attacks/AttackInfo.gd"
 }, {
 "base": "Reference",
-"class": "AttackType",
-"language": "GDScript",
-"path": "res://Scripts/Entities/Attacks/AttackType.gd"
-}, {
-"base": "Reference",
 "class": "AttackVariable",
 "language": "GDScript",
 "path": "res://Scripts/Entities/Attacks/AttackVariable.gd"
@@ -420,7 +415,6 @@ _global_script_class_icons={
 "Ant": "",
 "AntStateWander": "",
 "AttackInfo": "",
-"AttackType": "",
 "AttackVariable": "",
 "BaseAttack": "",
 "BaseEnemy": "",

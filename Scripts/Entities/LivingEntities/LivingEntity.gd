@@ -150,11 +150,10 @@ func _check_death() -> bool:
 
 
 func can_be_hit():
-	return self.status_timers.get_timer(LivingEntityStatus.INVULNERABLE) <= 0
+	return self.status_timers.get_timer(LivingEntityStatus.INVULNERABLE) <= 0 and not self._is_dead
 
 
 func on_hit(info: AttackInfo):
-	# check status... if status == invulenrable: return false
 	self._take_damage(info.damage)
 	self._on_take_damage(info)
 

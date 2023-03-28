@@ -204,7 +204,7 @@ tracks/0/keys = {
 "values": [ 36, 37, 38, 39, 40, 41 ]
 }
 
-[node name="E_Spyder" type="KinematicBody2D" groups=["Enemy"]]
+[node name="E_Umbrella" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource( 2 )
 height_component_path = NodePath("FlipComponents")

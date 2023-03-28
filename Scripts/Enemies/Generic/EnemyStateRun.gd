@@ -4,6 +4,7 @@ class_name EnemyStateRun extends EnemyStateMoving
 
 export var draw_path: bool = false
 export var max_run_distance: float = 1024
+export var min_run_distance: float = 128
 var _path: PathfindResult = null
 var _has_found_path = false
 var _attempts = 0
@@ -40,14 +41,14 @@ func _follow_path(delta):
 
 func _try_find_path():
 	var angle = (self.entity.global_position - self.entity.get_target().global_position).angle()
-	var attempts = 100
+	var attempts = 10
 	self._attempts += 1
 	self._path = null
 	while self._path == null and attempts > 0:
 		var angle2 = angle + randf() * PI / 2 - PI / 4
 		if self._attempts > MAX_ATTETMPS:
 			angle2 = randf() * PI * 2
-		var dist = randf() * max_run_distance
+		var dist = min_run_distance + randf() * (max_run_distance - min_run_distance)
 		var loc = self.entity.global_position + Vector2(cos(angle2) * dist, sin(angle2) * dist)
 		if Pathfinder.is_in_bounds(loc):
 			self._path = Pathfinder.generate_path(self.entity.global_position, loc)
