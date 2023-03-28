@@ -146,6 +146,8 @@ func _simplify_path(start: Vector2, path: Array):
 func generate_path(from: Vector2, to: Vector2) -> PathfindResult:
 	var start = MathUtils.floor_vec2(MathUtils.to_level_vector(from))
 	var end = MathUtils.floor_vec2(MathUtils.to_level_vector(to))
+	if not is_in_bounds(from) or not is_in_bounds(to):
+		return PathfindResult.new(from, [to])
 	var data = self._pathfinder.get_point_path(
 		start.x + start.y * self._width, end.x + end.y * self._width
 	)

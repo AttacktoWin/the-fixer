@@ -239,8 +239,8 @@ tracks/1/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=13]
-radius = 18.0
-height = 22.0
+radius = 14.0
+height = 30.0
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 4
@@ -300,7 +300,8 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="HurtCollider" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( 0, 27 )
+position = Vector2( 0, 53 )
+rotation = 1.5708
 shape = SubResource( 13 )
 
 [node name="FSMController" type="Node2D" parent="."]

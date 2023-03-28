@@ -96,6 +96,9 @@ func _filter_entity(entity: LivingEntity) -> bool:
 	if self.allied_class and entity is self.allied_class:
 		return false
 
+	if entity.is_dead():
+		return false
+
 	if not entity.can_be_hit():
 		return false
 

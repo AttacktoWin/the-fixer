@@ -244,6 +244,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Utils/MathUtils.gd"
 }, {
+"base": "BaseAttack",
+"class": "MovementAttack",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Attacks/MovementAttack.gd"
+}, {
 "base": "Node",
 "class": "NPC",
 "language": "GDScript",
@@ -432,6 +437,7 @@ _global_script_class_icons={
 "LivingEntityStatus": "",
 "LivingEntityVariable": "",
 "MathUtils": "",
+"MovementAttack": "",
 "NPC": "",
 "NPCInstance": "",
 "NodeGroups": "",

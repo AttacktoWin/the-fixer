@@ -112,7 +112,21 @@ func _physics_process(delta):
 	._physics_process(delta)
 
 
-func _on_take_damage(_info: AttackInfo):
+func _on_take_damage(info: AttackInfo):
+	var direction = info.get_attack_direction(self.global_position)
+	self.changev(
+		LivingEntityVariable.VELOCITY,
+		(
+			direction
+			* info.knockback_factor
+			* self.getv(LivingEntityVariable.KNOCKBACK_FACTOR)
+			/ self.getv(LivingEntityVariable.WEIGHT)
+		)
+	)
+	print(direction
+	* info.knockback_factor
+	* self.getv(LivingEntityVariable.KNOCKBACK_FACTOR)
+	/ self.getv(LivingEntityVariable.WEIGHT))
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	var bar = Scene.ui.get_node("HUD/HealthBar")
 	bar.value = ((getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)

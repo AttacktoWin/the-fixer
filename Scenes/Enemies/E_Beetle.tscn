@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Enemies/Goomba/Goomba.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/Entities/Attacks/BaseAttack.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Entities/Attacks/MovementAttack.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateAlert.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateChase.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateWander.gd" type="Script" id=8]
@@ -209,6 +209,7 @@ attack_type = 2
 persistent = true
 die_on_pierce = false
 camera_shake = 128.0
+knockback_factor = 1024.0
 max_pierce = 10000
 should_forget_entities = true
 
