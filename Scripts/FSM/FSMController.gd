@@ -18,6 +18,7 @@ var _state_timer = 0
 var _last_animation_timer = 0
 var _state_index = 0
 var _last_anim = ""
+var _locked = false
 
 var P = load("res://Scripts/Player/Player.gd")
 
@@ -113,6 +114,7 @@ func get_animation_player():
 func has_animation_player():
 	return self.animation_player != null
 
+
 func has_animation(name: String):
 	return self.has_animation_player() and self.animation_player.has_animation(name)
 
@@ -133,6 +135,7 @@ func _set_animation_if_anim_player(name: String):
 func set_animation(name: String):
 	self._set_animation_if_anim_player(name)
 
+
 func get_animation() -> String:
 	if not self.has_animation_player():
 		return ""
@@ -147,14 +150,17 @@ func _check_anim_loop(delta):
 	if ap.current_animation == "" and self._last_anim != "":
 		self._on_animation_looped()
 		self._last_anim = ""
-	
+
 	if ap.current_animation == "":
 		return
 
 	var current = ap.current_animation_position
 	var last = self._last_animation_timer
 
-	if (sign(current - last) != sign(ap.playback_speed) and current != 0 and current-last !=0) or delta >= ap.current_animation_length:
+	if (
+		(sign(current - last) != sign(ap.playback_speed) and current != 0 and current - last != 0)
+		or delta >= ap.current_animation_length
+	):
 		self._on_animation_looped()
 
 	self._last_animation_timer = current
@@ -221,6 +227,10 @@ func current_state_name():
 	return self._current_state_name
 
 
+func lock() -> void:
+	self._locked = true
+
+
 # if a single entry handles multiple states (bosses), this number will tell you which state is currently being played.
 func state_index():
 	return self._alias_index
@@ -239,6 +249,9 @@ func can_transition_to(state_name) -> bool:
 
 
 func set_state(state_name, override: bool = false):
+	if self._locked:
+		return
+
 	if not self._state_map.has(state_name):
 		print("ERR: Unknown state for transition: ", state_name, ". Ignoring.")
 		return

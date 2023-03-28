@@ -115,11 +115,10 @@ tracks/0/keys = {
 collision_layer = 2
 script = ExtResource( 3 )
 height_component_path = NodePath("FlipComponents")
-base_speed = 300.0
-base_accel = 12.0
+base_speed = 400.0
+base_accel = 6.0
 auto_pathfind = false
 has_melee_attack = false
-draw_path = true
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( -2.76989, -46 )
@@ -191,7 +190,6 @@ animation_player = NodePath("../FlipComponents/Visual/AnimationPlayer")
 
 [node name="AntStateWander" type="Node2D" parent="FSMController"]
 script = ExtResource( 6 )
-draw_path = true
 
 [node name="EnemyStateRun" type="Node2D" parent="FSMController"]
 script = ExtResource( 5 )

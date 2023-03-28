@@ -9,7 +9,7 @@ var _wait_timer = 0
 var _target_direction = Vector2.ZERO
 var _last_position = Vector2.ZERO
 
-const ATTACK_SPEED_MULTIPLIER = 3
+const ATTACK_SPEED_MULTIPLIER = 3.5
 const ATTACK_TIME = 2
 const COOLDOWN_TIME = 0.5
 const RANDOM_MAX = 32
@@ -66,7 +66,7 @@ func _physics_process(delta):
 		if (
 			(
 				max((self._last_position - self.entity.global_position).length(), 5)
-				< multiplier / 1.25 * delta
+				< multiplier / 1.1 * delta
 			)
 			and self._current_time > 0.6
 		):

@@ -162,6 +162,7 @@ func _on_take_damage(info: AttackInfo):
 
 func _on_death():
 	self.knockback_velocity = Vector2.ZERO
-	self.fsm.set_state(PlayerState.DEAD)
+	self.fsm.set_state(PlayerState.DEAD, true)
+	self.fsm.lock()
 	self._gun.queue_free()
 	self._gun = null

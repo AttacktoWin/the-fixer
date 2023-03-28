@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Sprites/Beetle/beetle-spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateAlert.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateChase.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateWander.gd" type="Script" id=8]
-[ext_resource path="res://Scripts/Enemies/BaseEnemy.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateHurt.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Enemies/Beetle/BeetleStateAttack.gd" type="Script" id=11]
 
@@ -165,8 +164,8 @@ entity_radius = 50.0
 melee_attack_range = 300.0
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2( -2.76989, -46 )
-scale = Vector2( 0.688088, 0.688088 )
+position = Vector2( 1.23011, -89 )
+scale = Vector2( 1.5, 1.5 )
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
 
 [node name="NearbyEntities" type="Area2D" parent="."]
@@ -204,7 +203,6 @@ collision_mask = 32
 script = ExtResource( 5 )
 base_speed = 0.0
 base_damage = 25.0
-allied_class = ExtResource( 9 )
 attack_type = 2
 persistent = true
 die_on_pierce = false
@@ -246,10 +244,10 @@ anims/IDLE = SubResource( 85 )
 anims/RESET = SubResource( 86 )
 
 [node name="ProgressBar" parent="." instance=ExtResource( 4 )]
-margin_left = -25.0
-margin_top = -52.0
-margin_right = 15.0
-margin_bottom = -43.0
+margin_left = -20.0
+margin_top = -83.0
+margin_right = 20.0
+margin_bottom = -74.0
 
 [node name="FSMController" type="Node2D" parent="."]
 script = ExtResource( 2 )
