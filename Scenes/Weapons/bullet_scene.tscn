@@ -13,6 +13,7 @@ script = ExtResource( 1 )
 base_speed = 800.0
 base_damage = 40.0
 base_lifetime = 200.0
+damage_type = 1
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.5, 0.5 )

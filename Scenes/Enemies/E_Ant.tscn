@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Sprites/Ant/ant-spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Enemies/Goomba/Goomba.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemies/Ant/Ant.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateRun.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Enemies/Ant/AntStateWander.gd" type="Script" id=6]

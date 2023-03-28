@@ -1,7 +1,7 @@
 [gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Sprites/Bird/bird-spritesheet.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/Enemies/Spyder/Spyder.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemies/Umbrella/Umbrella.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateChase.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Entities/Attacks/BaseAttack.gd" type="Script" id=5]
@@ -207,11 +207,6 @@ tracks/0/keys = {
 [node name="E_Umbrella" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource( 2 )
-height_component_path = NodePath("FlipComponents")
-base_speed = 300.0
-base_accel = 5.0
-has_ranged_attack = true
-melee_attack_range = 64.0
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -61 )
