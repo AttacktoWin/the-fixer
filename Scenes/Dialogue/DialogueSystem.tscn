@@ -28,6 +28,7 @@ id = "boss"
 dialogue_file = ExtResource( 6 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]

@@ -2,8 +2,8 @@
 
 class_name BaseEnemy extends LivingEntity
 
-onready var anim_player: AnimationPlayer = $FlipComponents/Visual/AnimationPlayer
-onready var visual: Node2D = $FlipComponents/Visual
+onready var anim_player: AnimationPlayer = $FlipComponents/ViewportContainer/Viewport/Visual/AnimationPlayer
+onready var visual: Node2D = $FlipComponents/ViewportContainer/Viewport/Visual
 onready var sprite_material: Material = null
 onready var fsm: FSMController = $FSMController
 onready var flip_components: Node2D = $FlipComponents
@@ -39,13 +39,13 @@ signal on_investigate_target_set
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Wwise.register_listener(self)
-	Wwise.register_game_obj(self, name)
+#	Wwise.register_listener(self)
+#	Wwise.register_game_obj(self, name)
 	if not "Enemy" in get_groups():
 		print("WARN: enemy '", name, "' not in group 'Enemy'")
 	var spr = visual.get_node("Sprite")
 	spr.set_material(spr.get_material().duplicate())
-	self.sprite_material = ($FlipComponents/Visual/Sprite).material
+	self.sprite_material = ($FlipComponents/ViewportContainer/Viewport/Visual/Sprite).material
 
 
 func set_nav_path(path: PathfindResult):
@@ -208,7 +208,7 @@ func _on_take_damage(info: AttackInfo):
 			/ self.getv(LivingEntityVariable.WEIGHT)
 		)
 	)
-	var bar = self.get_node("ProgressBar")
+	var bar = self.get_node("CanvasLayer/ProgressBar")
 	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
 
 

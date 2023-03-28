@@ -1,5 +1,5 @@
 # Author: Marcus
-# Author: Marcus
+# Author: Yalmaz
 
 extends Node
 # Exists only to preload Wwise... Might do more later
@@ -7,8 +7,11 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Wwise.load_bank_id(AK.BANKS.INIT)
-	Wwise.load_bank_id(AK.BANKS.MAIN)
+	var debug_result
+	debug_result = Wwise.load_bank_id(AK.BANKS.INIT)
+	debug_result = Wwise.load_bank_id(AK.BANKS.MUSIC)
+	debug_result = Wwise.load_bank_id(AK.BANKS.UI)
+	debug_result = Wwise.load_bank_id(AK.BANKS.GAMEPLAY)
 
 # Wwise examples:
 

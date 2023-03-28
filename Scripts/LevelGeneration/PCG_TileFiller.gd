@@ -49,7 +49,6 @@ func room_deco_pass(path,room_list,path_by_rooms,end_index,floor_set):
 			if is_edge:
 				floor_set.set_cellv(tile,6)
 	
-	room_tiles.remove(end_index)
 	room_tiles.shuffle()
 	var random_deco_tile = random.randi_range(6,10)
 	for tile in path_by_rooms[room_tiles[0]]:
