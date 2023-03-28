@@ -7,79 +7,79 @@
 script = ExtResource( 2 )
 id = "default"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
 id = "demo1"
 priority = 99
-bubble = true
+bubble = true   
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 2 )
 id = "demo2"
 priority = 99
-bubble = true
+bubble = true   
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 2 )
 id = "demo3"
 priority = 99
-bubble = true
+bubble = true   
 
 [sub_resource type="Resource" id=5]
 script = ExtResource( 2 )
 id = "1-pillbug"
 priority = 0
-bubble = true
+bubble = true   
 
 [sub_resource type="Resource" id=6]
 script = ExtResource( 2 )
 id = "1-spyder"
 priority = 0
-bubble = true
+bubble = true   
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 2 )
 id = "1-beetle"
 priority = 0
-bubble = true
+bubble = true   
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 2 )
 id = "1-bird"
 priority = 0
-bubble = true
+bubble = true   
 
 [sub_resource type="Resource" id=9]
 script = ExtResource( 2 )
 id = "post10win"
 priority = 0
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=10]
 script = ExtResource( 2 )
 id = "post11win"
 priority = 0
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=11]
 script = ExtResource( 2 )
 id = "post12win"
 priority = 0
-bubble = false
+bubble = false   
 
 [resource]
 script = ExtResource( 1 )
 dialogues = {
-"1-beetle": SubResource( 7 ),
-"1-bird": SubResource( 8 ),
-"1-pillbug": SubResource( 5 ),
-"1-spyder": SubResource( 6 ),
 "default": SubResource( 1 ),
 "demo1": SubResource( 2 ),
 "demo2": SubResource( 3 ),
 "demo3": SubResource( 4 ),
+"1-pillbug": SubResource( 5 ),
+"1-spyder": SubResource( 6 ),
+"1-beetle": SubResource( 7 ),
+"1-bird": SubResource( 8 ),
 "post10win": SubResource( 9 ),
 "post11win": SubResource( 10 ),
 "post12win": SubResource( 11 )

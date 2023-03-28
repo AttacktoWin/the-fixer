@@ -25,9 +25,6 @@ func add_manifestation_fight():
 func add_death():
 	self.deaths += 1
 	Dialogic.set_variable("deaths", self.deaths)
-	
-func set_current_difficulty(difficulty: float):
-	Dialogic.set_variable("difficulty", difficulty)
 
 func save():
 	return {

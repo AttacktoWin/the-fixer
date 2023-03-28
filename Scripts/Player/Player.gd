@@ -119,3 +119,4 @@ func _on_take_damage(_amount: float, _meta: HitMetadata):
 func _on_death():
 	self.fsm.set_state(PlayerState.DEAD)
 	self._gun.queue_free()
+	StatsTracker.add_death()

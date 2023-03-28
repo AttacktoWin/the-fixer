@@ -73,7 +73,7 @@
 			"character": "character-1675203451.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"There is still inefficiency in your decision model. [pause=0.3]You have entered at a difficulty of [difficulty] despite having been sent back [deaths] number of times.\""
+			"text": "\"There is still inefficiency in your decision model. [pause=0.3]You have been sent back [deaths] number of times.\""
 		},
 		{
 			"condition": "<",
@@ -85,7 +85,7 @@
 			"character": "character-1675203451.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"The optimization algorithm predicts higher efficiency if a high difficulty run is attempted.\""
+			"text": "\"The optimization algorithm predicts higher efficiency if more runs are attempted.\""
 		},
 		{
 			"event_id": "dialogic_013"
@@ -100,7 +100,7 @@
 			"character": "character-1675203451.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"The optimization algorithm predicts more efficient performance if lower difficulty runs are used to train the model on the operation of the security systems.\""
+			"text": "\"The optimization algorithm predicts more efficient performance if more weapons are gathered to train the model on the operation of the security systems.\""
 		},
 		{
 			"event_id": "dialogic_013"
