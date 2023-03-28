@@ -12,7 +12,6 @@
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateHurt.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Enemies/Goomba/GoombaStateAttack.gd" type="Script" id=11]
 
-
 [sub_resource type="CircleShape2D" id=78]
 radius = 512.0
 
@@ -297,12 +296,6 @@ anims/IDLE = SubResource( 25 )
 anims/RECOVER = SubResource( 71 )
 anims/RESET = SubResource( 15 )
 
-[node name="ProgressBar" parent="." instance=ExtResource( 4 )]
-margin_left = -25.0
-margin_top = -52.0
-margin_right = 15.0
-margin_bottom = -43.0
-
 [node name="FSMController" type="Node2D" parent="."]
 script = ExtResource( 2 )
 root_state = NodePath("EnemyStateWander")
@@ -323,3 +316,19 @@ script = ExtResource( 10 )
 
 [node name="GoombaStateAttack" type="Node2D" parent="FSMController"]
 script = ExtResource( 11 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 4
+follow_viewport_enable = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+margin_left = -42.0
+margin_top = -98.0
+margin_right = 38.0
+margin_bottom = 83.0
+
+[node name="ProgressBar" parent="CanvasLayer" instance=ExtResource( 4 )]
+margin_left = -25.0
+margin_top = -52.0
+margin_right = 15.0
+margin_bottom = -43.0

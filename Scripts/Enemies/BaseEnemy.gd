@@ -207,7 +207,7 @@ func _on_take_damage(_amount: float, _meta: HitMetadata):
 			/ self.getv(LivingEntity.VARIABLE.WEIGHT)
 		)
 	)
-	var bar = self.get_node("ProgressBar")
+	var bar = self.get_node("CanvasLayer/ProgressBar")
 	bar.value = ((self.getv(LivingEntity.VARIABLE.HEALTH) / self.base_health) * 100)
 
 

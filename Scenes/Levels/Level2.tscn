@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Scenes/Levels/Demo2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/LevelGeneration/LevelGenerator.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/LevelGeneration/PCG_DataClasses/test2.tres" type="Resource" id=8]
+[ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 127, 0, 255, 66, 127, 126, 1, 65, 127, 127 )
@@ -222,5 +223,10 @@ format = 1
 
 [node name="Player" parent="SortableEntities" instance=ExtResource( 5 )]
 unique_name_in_owner = true
+
+[node name="NPCInstance" type="Node2D" parent="SortableEntities/Player"]
+script = ExtResource( 9 )
+id = "fixer"
+randomized = true
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]
