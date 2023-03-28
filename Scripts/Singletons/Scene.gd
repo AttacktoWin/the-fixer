@@ -18,6 +18,9 @@ var _managers = null
 var _level = null
 var _player = null
 
+signal transition_start
+signal transition_complete
+
 func _reload_variables():
 	self._camera = self._root.get_node("MainCamera")
 	self._runtime = self._root.get_node("Level/SortableEntities/Runtime")
@@ -26,6 +29,11 @@ func _reload_variables():
 	self._level = self._root.get_node("Level/Generator").level
 	self._player = self._root.get_node("Level/Generator").get_node("%Player")
 	Pathfinder.update_level(self._level)
+	if (self._root.get_node("Level/Generator").get("level_name") and 
+		self._root.get_node("Level/Generator").level_name == "hub"):
+		self.emit_signal("transition_complete",true)
+	else:
+		self.emit_signal("transition_complete",false)
 
 
 func set_root(root: Node2D):
@@ -79,5 +87,6 @@ func load(new_level: Node):
 
 
 func switch(new_level: Node):
+	self.emit_signal("transition_start")
 	self.deload()
 	self.load(new_level)

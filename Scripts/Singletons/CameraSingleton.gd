@@ -64,6 +64,9 @@ func get_mouse_from_camera_center() -> Vector2:
 func get_mouse_from_camera_center_screen() -> Vector2:
 	return get_mouse_from_camera_center() * MathUtils.FROM_ISO
 
+func get_camera_center()->Vector2:
+	return self._camera.transform.origin
+
 
 func set_zoom(new_scale):
 	self._zoom_target = new_scale * MathUtils.FROM_ISO

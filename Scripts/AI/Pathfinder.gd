@@ -114,8 +114,8 @@ func _build_AStar(level: Array, wall_distances: Array) -> void:
 				self._pathfinder.add_point(x + y * self._width, vec, weight)
 				if any_point == null:
 					any_point = Vector2(x, y)
-
-	_BFS_AStar(level, any_point.x, any_point.y)
+	if any_point!=null:
+		_BFS_AStar(level, any_point.x, any_point.y)
 
 
 func update_level(new_level: Array):

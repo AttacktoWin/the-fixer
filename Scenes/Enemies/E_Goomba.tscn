@@ -273,24 +273,10 @@ position = Vector2( 1, 0 )
 rotation = -1.81514
 shape = SubResource( 63 )
 
-[node name="ViewportContainer" type="ViewportContainer" parent="FlipComponents"]
-margin_left = -34.0
-margin_top = -60.0
-margin_right = 1886.0
-margin_bottom = 1020.0
-rect_scale = Vector2( 0.25, 0.25 )
+[node name="Visual" type="Node2D" parent="FlipComponents"]
+position = Vector2( -3, -42 )
 
-[node name="Viewport" type="Viewport" parent="FlipComponents/ViewportContainer"]
-size = Vector2( 1920, 1080 )
-transparent_bg = true
-handle_input_locally = false
-render_target_update_mode = 3
-
-[node name="Visual" type="Node2D" parent="FlipComponents/ViewportContainer/Viewport"]
-position = Vector2( 120, 67 )
-scale = Vector2( 4, 4 )
-
-[node name="Sprite" type="Sprite" parent="FlipComponents/ViewportContainer/Viewport/Visual"]
+[node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
 material = SubResource( 74 )
 position = Vector2( 0, 1 )
 scale = Vector2( 0.346525, 0.346525 )
@@ -299,7 +285,7 @@ hframes = 8
 vframes = 3
 frame = 7
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FlipComponents/ViewportContainer/Viewport/Visual"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlipComponents/Visual"]
 playback_process_mode = 0
 anims/ALERTED = SubResource( 9 )
 anims/ATTACK = SubResource( 12 )
@@ -313,7 +299,7 @@ anims/RESET = SubResource( 15 )
 [node name="FSMController" type="Node2D" parent="."]
 script = ExtResource( 2 )
 root_state = NodePath("EnemyStateWander")
-animation_player = NodePath("../FlipComponents/ViewportContainer/Viewport/Visual/AnimationPlayer")
+animation_player = NodePath("../FlipComponents/Visual/AnimationPlayer")
 
 [node name="EnemyStateWander" type="Node2D" parent="FSMController"]
 script = ExtResource( 8 )
@@ -331,12 +317,7 @@ script = ExtResource( 10 )
 [node name="GoombaStateAttack" type="Node2D" parent="FSMController"]
 script = ExtResource( 11 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 4
-visible = false
-follow_viewport_enable = true
-
-[node name="ProgressBar" parent="CanvasLayer" instance=ExtResource( 4 )]
+[node name="ProgressBar" parent="." instance=ExtResource( 4 )]
 margin_left = -25.0
 margin_top = -52.0
 margin_right = 15.0

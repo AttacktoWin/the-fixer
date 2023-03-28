@@ -15,7 +15,6 @@ points = PoolVector2Array( 0, 256, 128, 192, 256, 256, 256, 384, 128, 448, 0, 38
 
 [sub_resource type="StreamTexture" id=10]
 flags = 4
-load_path = "res://.import/wall0005.png-293138d1dc5ae8e713b3c00c553f4e49.stex"
 
 [resource]
 2/name = "wall1.png 2"

@@ -2,8 +2,8 @@
 
 class_name BaseEnemy extends LivingEntity
 
-onready var anim_player: AnimationPlayer = $FlipComponents/ViewportContainer/Viewport/Visual/AnimationPlayer
-onready var visual: Node2D = $FlipComponents/ViewportContainer/Viewport/Visual
+onready var anim_player: AnimationPlayer = $FlipComponents/Visual/AnimationPlayer
+onready var visual: Node2D = $FlipComponents/Visual
 onready var sprite_material: Material = null
 onready var fsm: FSMController = $FSMController
 onready var flip_components: Node2D = $FlipComponents
@@ -44,7 +44,7 @@ func _ready():
 		print("WARN: enemy '", name, "' not in group 'Enemy'")
 	var spr = visual.get_node("Sprite")
 	spr.set_material(spr.get_material().duplicate())
-	self.sprite_material = ($FlipComponents/ViewportContainer/Viewport/Visual/Sprite).material
+	self.sprite_material = ($FlipComponents/Visual/Sprite).material
 
 
 func set_nav_path(path: PathfindResult):
@@ -207,7 +207,7 @@ func _on_take_damage(_amount: float, _meta: HitMetadata):
 			/ self.getv(LivingEntity.VARIABLE.WEIGHT)
 		)
 	)
-	var bar = self.get_node("CanvasLayer/ProgressBar")
+	var bar = self.get_node("ProgressBar")
 	bar.value = ((self.getv(LivingEntity.VARIABLE.HEALTH) / self.base_health) * 100)
 
 
