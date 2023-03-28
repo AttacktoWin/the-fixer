@@ -52,6 +52,8 @@ func add_ammo(ammo: int):
 	if self._gun:
 		Wwise.post_event_id(AK.EVENTS.AMMO_PICKUP_PLAYER, self)
 		self._gun.add_ammo(ammo)
+		var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
+		ammo_count.text = String(self._gun.get_ammo_count())
 
 
 func get_ammo() -> int:

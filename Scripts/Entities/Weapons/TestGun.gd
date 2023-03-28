@@ -74,6 +74,8 @@ func _fire(direction: float, _target: Node2D = null):
 	Scene.runtime.add_child(bullet)
 	bullet.set_direction(direction)
 	bullet.global_position = self.global_position
+	var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
+	ammo_count.text = String(self._ammo_count)
 
 	# bullet.variables.add_runnable(
 	# 	BulletBase.VARIABLE.DIRECTION, SinBullet.new().with_parent(bullet), 0
