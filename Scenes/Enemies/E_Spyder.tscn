@@ -29,8 +29,8 @@ radius = 400.0
 extents = Vector2( 24.5, 38.5 )
 
 [sub_resource type="CapsuleShape2D" id=63]
-radius = 20.0
-height = 42.0
+radius = 28.0
+height = 36.0
 
 [sub_resource type="Shader" id=100]
 code = "shader_type canvas_item;
@@ -318,7 +318,7 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="HurtCollider" type="CollisionShape2D" parent="FlipComponents/HurtBox"]
-position = Vector2( -3.2, -3 )
+position = Vector2( 6.8, 1 )
 shape = SubResource( 63 )
 
 [node name="Visual" type="Node2D" parent="FlipComponents"]
@@ -331,7 +331,7 @@ scale = Vector2( 0.346525, 0.346525 )
 texture = ExtResource( 1 )
 hframes = 12
 vframes = 4
-frame = 29
+frame = 36
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FlipComponents/Visual"]
 anims/ALERTED = SubResource( 43 )
