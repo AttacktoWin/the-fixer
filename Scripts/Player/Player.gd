@@ -25,7 +25,11 @@ const INVULNERABLE_TIME = 1
 func _ready():
 	Wwise.register_listener(self)
 	Wwise.register_game_obj(self, self.get_name())
-	self._gun = TestGun.new(self)
+	self.set_gun(load("res://Scenes/Weapons/PlayerTommyGunScene.tscn").instance())
+
+
+func set_gun(gun: PlayerBaseGun):
+	self._gun = gun.with_parent(self)
 	self._gun.set_aim_bone(arms_container)
 	socket_muzzle.add_child(self._gun)
 
@@ -48,12 +52,16 @@ func get_wanted_gun_vector():
 	return MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
 
 
+func update_ammo_counter():
+	var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
+	ammo_count.text = String(self._gun.get_ammo_count())
+
+
 func add_ammo(ammo: int):
 	if self._gun:
 		Wwise.post_event_id(AK.EVENTS.AMMO_PICKUP_PLAYER, self)
 		self._gun.add_ammo(ammo)
-		var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
-		ammo_count.text = String(self._gun.get_ammo_count())
+		update_ammo_counter()
 
 
 func get_ammo() -> int:
@@ -147,20 +155,27 @@ func _physics_process(delta):
 	_try_move()
 	._physics_process(delta)
 
-signal player_hurt
+
+func knockback(vel: Vector2):
+	self.knockback_velocity += vel
+
+
 func _on_take_damage(info: AttackInfo):
 	var direction = info.get_attack_direction(self.global_position)
-	self.knockback_velocity += (
-		direction
-		* info.knockback_factor
-		* self.getv(LivingEntityVariable.KNOCKBACK_FACTOR)
-		/ self.getv(LivingEntityVariable.WEIGHT)
+	knockback(
+		(
+			direction
+			* info.knockback_factor
+			* self.getv(LivingEntityVariable.KNOCKBACK_FACTOR)
+			/ self.getv(LivingEntityVariable.WEIGHT)
+		)
 	)
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	var bar = Scene.ui.get_node("HUD/HealthBar")
 	bar.value = ((getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
 	Scene.ui.get_node("DamageFeedback").display_feedback()
 	._on_take_damage(info)
+
 
 func _on_death():
 	self.knockback_velocity = Vector2.ZERO

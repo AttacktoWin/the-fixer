@@ -1,10 +1,12 @@
 class_name Weapon extends Node2D
 
-var _cooldown_timer = Timer.new()
-var _can_fire = true
-var _cooldown = 0.5  # seconds
+var _cooldown_timer = 0
 var _aim_bone = null
-var _ammo_count = INF
+
+export var cooldown: float = 0.5
+export var ammo_count: int = 2
+export(PackedScene) var ammo_scene = null
+export var infinite_ammo: bool = false
 
 var entity = null
 
@@ -12,36 +14,39 @@ signal on_fire
 signal on_fire_empty
 
 
-func _init(parent_entity):
-	self.entity = parent_entity
+func _init(_parent_entity: LivingEntity = null):
+	self.entity = _parent_entity
 
+func with_parent(parent_entity: LivingEntity):
+	self.entity = parent_entity
+	return self
 
 func _ready():
-	# self._cooldown_timer.one_shot = true
-	self._cooldown_timer.connect("timeout", self, "_cooldown_complete")
-	add_child(self._cooldown_timer)
+	if not self.ammo_scene:
+		print("ERR: ammo scene not present!")
 
 
 func _try_fire(direction: float, target: Node2D = null) -> bool:
-	if not self._can_fire or not self._check_fire(direction, target):
+	if not self.can_fire() or not self._check_fire(direction, target):
 		return false
 
-	self._can_fire = false
-	self._cooldown_timer.wait_time = self._cooldown
-	self._cooldown_timer.start()
+	self._cooldown_timer = self.cooldown
 
 	# fire sound
-	if self._ammo_count <= 0:
+	if self.ammo_count <= 0 and not self.infinite_ammo:
 		emit_signal("on_fire_empty")
 		self._notify_fire(false)
 		return false
-	self._ammo_count -= 1
+
+	self.ammo_count -= 1 if not self.infinite_ammo else 0
+
 	_fire(direction, target)
 	self._notify_fire(true)
 	emit_signal("on_fire")
 	return true
 
-func _notify_fire(has_ammo: bool):
+
+func _notify_fire(_has_ammo: bool):
 	pass
 
 
@@ -58,15 +63,15 @@ func set_aim_bone(bone: Node2D) -> void:
 
 
 func get_ammo_count() -> int:
-	return self._ammo_count
+	return self.ammo_count
 
 
 func set_ammo_count(ammo: int):
-	self._ammo_count = ammo
+	self.ammo_count = ammo
 
 
 func add_ammo(ammo: int):
-	self._ammo_count += ammo
+	self.ammo_count += ammo
 
 
 func _get_aim_position() -> Vector2:
@@ -75,12 +80,8 @@ func _get_aim_position() -> Vector2:
 	return self.global_position
 
 
-func _cooldown_complete():
-	self._can_fire = true
-
-
 func can_fire() -> bool:
-	return self._can_fire and self._ammo_count > 0
+	return self._cooldown_timer <= 0 and (self.infinite_ammo or self.ammo_count > 0)
 
 
 func get_angle() -> float:
@@ -96,6 +97,11 @@ func _check_fire_pressed() -> bool:
 	return false
 
 
-func _physics_process(_delta):
+func _cooldown_timer_tick(delta):
+	self._cooldown_timer -= delta
+
+
+func _physics_process(delta):
+	self._cooldown_timer_tick(delta)
 	if self._check_fire_pressed():
 		self._on_fire_called()

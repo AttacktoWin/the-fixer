@@ -156,6 +156,8 @@ func _check_death() -> bool:
 func can_be_hit():
 	return self.status_timers.get_timer(LivingEntityStatus.INVULNERABLE) <= 0 and not self._is_dead
 
+func knockback(_vel: Vector2):
+	pass
 
 func on_hit(info: AttackInfo):
 	self._take_damage(info.damage)

@@ -204,11 +204,14 @@ func _get_base_alpha() -> float:
 	return alpha
 
 
+func knockback(vel: Vector2):
+	self.changev(LivingEntityVariable.VELOCITY, vel)
+
+
 func _on_take_damage(info: AttackInfo):
 	self.fsm.set_state(EnemyState.PAIN)
 	var direction = info.get_attack_direction(self.global_position)
-	self.setv(
-		LivingEntityVariable.VELOCITY,
+	knockback(
 		(
 			direction
 			* info.knockback_factor
