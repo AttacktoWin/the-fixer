@@ -1,6 +1,7 @@
+name: Nightly Build
 on:
     schedule:
-        - cron '59 11 * * *'
+        - cron: '59 11 * * *'
 
 jobs:
   # job id, can be anything
@@ -11,12 +12,13 @@ jobs:
     permissions: write-all
     # Job name, can be anything
     name: Export Game
-    if: github.ref == 'refs/heads/Dev'
     steps:
       # Always include the checkout step so that 
       # your project is available for Godot to export
     - name: checkout
       uses: actions/checkout@v3.3.0
+      with:
+        ref: Dev
   
     - name: export game
       id: export
