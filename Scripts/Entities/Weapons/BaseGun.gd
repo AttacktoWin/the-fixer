@@ -11,6 +11,8 @@ func _on_fire_called():
 	var angle1 = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - self.global_position).angle()
 	var angle2 = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - self._get_aim_position()).angle()
 	var angle = angle1 if abs(angle1 - angle2) < 0.1 else angle2
+	var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
+	ammo_count.text = String(self._ammo_count) + " / " + String(self._max_ammo)
 	# warning-ignore:return_value_discarded
 	self._try_fire(angle, null)
 

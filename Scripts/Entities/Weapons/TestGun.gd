@@ -2,7 +2,6 @@ class_name TestGun extends BaseGun
 
 var BulletScene = preload("res://Scenes/Weapons/bullet_scene.tscn")
 
-
 class SinBullet:
 	extends Runnable
 
@@ -57,7 +56,7 @@ class SeekingBullet:
 
 
 func _init(parent_entity).(parent_entity):
-	pass
+	self._max_ammo = 6
 
 func _notify_fire(has_ammo: bool):
 	if(has_ammo):
@@ -74,8 +73,6 @@ func _fire(direction: float, _target: Node2D = null):
 	Scene.runtime.add_child(bullet)
 	bullet.set_direction(direction)
 	bullet.global_position = self.global_position
-	var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
-	ammo_count.text = String(self._ammo_count)
 
 	# bullet.variables.add_runnable(
 	# 	BulletBase.VARIABLE.DIRECTION, SinBullet.new().with_parent(bullet), 0

@@ -5,6 +5,7 @@ var _can_fire = true
 var _cooldown = 0.5  # seconds
 var _aim_bone = null
 var _ammo_count = INF
+var _max_ammo = INF
 
 var entity = null
 
@@ -66,7 +67,15 @@ func set_ammo_count(ammo: int):
 
 
 func add_ammo(ammo: int):
+	if (self._ammo_count == self._max_ammo):
+		return
 	self._ammo_count += ammo
+	
+func get_max_ammo() -> int:
+	return self._max_ammo
+	
+func set_max_ammo(ammo: int):
+	self._max_ammo = ammo
 
 
 func _get_aim_position() -> Vector2:
