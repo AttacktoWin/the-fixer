@@ -8,3 +8,5 @@ export.cfg
 data_*/
 
 Resources/Dialouge/Generator/list.csv
+
+Bin/win/*
