@@ -71,6 +71,7 @@ func on_anim_reached_end():
 
 
 func exit():
+	self.entity.hitbox.get_child(0).disabled = true
 	self.entity.disable_pathfind -= 1
 	if self._pushing_disabled:
 		self.entity.disable_pushing -= 1
