@@ -22,6 +22,8 @@ func exit():
 
 func _physics_process(delta):
 	self._ground_control(MathUtils.delta_frames(delta))
+	if Input.is_action_pressed("weapon_fire_melee"):
+		self.fsm.set_state(PlayerState.FIRE_MELEE)
 
 
 func _process(_delta):
@@ -57,14 +59,8 @@ func _unhandled_input(event: InputEvent):
 	if PausingSingleton.is_paused_recently(6) or not self.fsm.is_this_state(self):
 		return
 
-	if (
-		event.is_action_pressed("move_dash")
-		and self.fsm.can_transition_to(PlayerState.DASHING)
-	):
+	if event.is_action_pressed("move_dash") and self.fsm.can_transition_to(PlayerState.DASHING):
 		self.fsm.set_state(PlayerState.DASHING)
-
-	if event.is_action_pressed("weapon_fire_melee"):
-		self.fsm.set_state(PlayerState.FIRE_MELEE)
 
 	if (
 		event is InputEventKey
