@@ -10,3 +10,4 @@ data_*/
 Resources/Dialouge/Generator/list.csv
 
 Bin/*/*
+!Bin/*/.gitignore
