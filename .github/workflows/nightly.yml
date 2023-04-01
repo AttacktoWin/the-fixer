@@ -46,6 +46,6 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         generateReleaseNotes: true
-        tag: ${{ github.ref_name }}
+        tag: Nightly ${{ steps.date.outputs.date }}
         name: Nightly ${{ steps.date.outputs.date }}
         artifacts: ${{ steps.export.outputs.archive_directory }}/*
