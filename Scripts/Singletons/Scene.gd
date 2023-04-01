@@ -69,6 +69,10 @@ func _get_player() -> KinematicBody2D:
 
 
 func get_tree() -> SceneTree:
+	if (!is_instance_valid(self._root)):
+		# Running some sort of test
+		self._root = Node2D.new()
+		add_child(self._root)
 	return self._root.get_tree()
 
 

@@ -125,7 +125,7 @@
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "",
+			"portrait": "Shadow",
 			"text": "[i]He's only got the bits about efficiency and training crossed off?[/i]\n\"Boss, what are you doing?\""
 		},
 		{
@@ -137,7 +137,7 @@
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "",
+			"portrait": "Default",
 			"text": "\"Wh- I... [pause=0.2]I guess?\""
 		},
 		{
