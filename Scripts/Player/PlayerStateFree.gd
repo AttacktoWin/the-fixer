@@ -40,19 +40,19 @@ func _process(_delta):
 	var vel = self.entity.getv(LivingEntityVariable.VELOCITY)
 	if vel.length() > 25 or self.entity._get_wanted_direction().length() != 0:
 		self.fsm.set_animation("WALK")
+		var x = sign(round(vel.x))
+
+		var facing = sign(CameraSingleton.get_mouse_from_camera_center().x)
+		var speed = (
+			vel.length()
+			/ self.entity.variables.get_variable_raw(LivingEntityVariable.MAX_SPEED)
+		)
+		if x != 0 and x != facing:
+			speed = -speed
+		self.fsm.get_animation_player().playback_speed = speed
 	else:
 		self.fsm.set_animation("IDLE")
-
-	var x = sign(round(vel.x))
-
-	var facing = sign(CameraSingleton.get_mouse_from_camera_center().x)
-	var speed = (
-		vel.length()
-		/ self.entity.variables.get_variable_raw(LivingEntityVariable.MAX_SPEED)
-	)
-	if x != 0 and x != facing:
-		speed = -speed
-	self.fsm.get_animation_player().playback_speed = speed
+		self.fsm.get_animation_player().playback_speed = 1
 
 
 func _unhandled_input(event: InputEvent):
