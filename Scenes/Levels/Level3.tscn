@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -12,14 +12,6 @@
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_bank.gd" type="Script" id=10]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_listener_2d.gd" type="Script" id=12]
-
-[sub_resource type="GDScript" id=4]
-script/source = "extends Node2D
-
-func _ready():
-	var ret = Wwise.set_rtpc(AK.GAME_PARAMETERS.MUSICVOLUME,90,$LevelMusic)
-	print(Wwise.get_rtpc(AK.GAME_PARAMETERS.MUSICVOLUME,$LevelMusic))
-"
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 127, 0, 255, 66, 127, 126, 1, 65, 127, 127 )
@@ -211,7 +203,6 @@ shader_param/target = Vector2( 0.5, 0.5 )
 shader_param/radius = 0.164
 
 [node name="Level" type="Node2D"]
-script = SubResource( 4 )
 
 [node name="AkBank-INIT" type="Node" parent="."]
 script = ExtResource( 10 )

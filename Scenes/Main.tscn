@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Scenes/Levels/Hub.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Levels/Tutorial.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Entities/Level.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/Interface/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Magic/noiseTexture.png" type="Texture" id=4]
@@ -88,7 +88,7 @@ shader_param/mask_noise_scale = Vector2( 1, 1 )
 shader_param/mask_noise_offset = Vector2( 1, 0 )
 shader_param/mask_noise_speed = Vector2( 0, -0.1 )
 shader_param/mask_noise_strength = 0.269
-shader_param/mask_radius = 0.367
+shader_param/mask_radius = 0.369
 shader_param/mask_mask_scale = Vector2( 1.276, 0.93 )
 shader_param/mask_mask_offset = Vector2( -0.26, -0.094 )
 shader_param/mask_mask_color = Color( 0, 0, 0, 0.788235 )
@@ -163,13 +163,10 @@ var total = 0.3
 var curr = 0
 func display_feedback():
 	curr = total
-	print(\"called\")
 
 func _process(delta):
 	var val = lerp(0.2,2,clamp(0,1,curr/total))
 	curr -= delta
-	print(val)
-	print(curr)
 	material.set_shader_param(\"smooth_a\",val)
 "
 
