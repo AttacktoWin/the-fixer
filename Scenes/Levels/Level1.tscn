@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_bank.gd" type="Script" id=10]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_listener_2d.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=13]
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 8 )
@@ -189,6 +190,21 @@ outlines = [ PoolVector2Array( 129, 127, 256, 63, 128, 0, 0, 60 ) ]
 10/shapes = [  ]
 10/z_index = 0
 
+[sub_resource type="SpriteFrames" id=64]
+animations = [ {
+"frames": [ ExtResource( 13 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFontData" id=65]
+font_path = "res://Assets/UI/Tutorial/FilmPosterNarrow-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=66]
+size = 35
+font_data = SubResource( 65 )
+
 [sub_resource type="Shader" id=5]
 code = "shader_type  canvas_item;
 
@@ -283,18 +299,25 @@ cell_size = Vector2( 256, 128 )
 format = 1
 
 [node name="Transition" type="Node2D" parent="."]
-position = Vector2( 0, 32 )
-scale = Vector2( 4, 2 )
 
 [node name="Hitbox" parent="Transition" instance=ExtResource( 3 )]
-position = Vector2( 0, -16 )
-scale = Vector2( 1, 1 )
 to_level = ExtResource( 6 )
 
-[node name="Exit" type="Sprite" parent="Transition/Hitbox"]
-position = Vector2( 0, -16 )
+[node name="Exit" type="AnimatedSprite" parent="Transition/Hitbox"]
+position = Vector2( 0.5, -12.5 )
 scale = Vector2( 0.125, 0.25 )
-texture = ExtResource( 1 )
+frames = SubResource( 64 )
+
+[node name="ExitMessage" type="Label" parent="Transition/Hitbox"]
+visible = false
+margin_left = -16.25
+margin_top = -72.5
+margin_right = 118.75
+margin_bottom = 2.5
+rect_scale = Vector2( 0.25, 0.5 )
+custom_fonts/font = SubResource( 66 )
+text = "Not enough enemies
+have been defeated."
 
 [node name="SortableEntities" type="YSort" parent="."]
 

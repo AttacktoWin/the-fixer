@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scenes/LevelTransition.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Levels/Level1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=64]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFontData" id=65]
+font_path = "res://Assets/UI/Tutorial/FilmPosterNarrow-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=66]
+size = 35
+font_data = SubResource( 65 )
+
+[node name="Transition" type="Node2D"]
+
+[node name="Hitbox" parent="." instance=ExtResource( 1 )]
+to_level = ExtResource( 2 )
+
+[node name="Exit" type="AnimatedSprite" parent="Hitbox"]
+position = Vector2( 0.5, -12.5 )
+scale = Vector2( 0.125, 0.25 )
+frames = SubResource( 64 )
+
+[node name="ExitMessage" type="Label" parent="Hitbox"]
+visible = false
+margin_left = -16.25
+margin_top = -72.5
+margin_right = 118.75
+margin_bottom = 2.5
+rect_scale = Vector2( 0.25, 0.5 )
+custom_fonts/font = SubResource( 66 )
+text = "Not enough enemies
+have been defeated."
