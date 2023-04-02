@@ -27,6 +27,8 @@ var P = load("res://Scripts/Player/Player.gd")
 func _ready():
 	yield(owner, "ready")  # wait for parent node to finish intialization
 
+	PausingSingleton.connect("pause_changed", self, "_on_pause_changed")
+
 	self._current_state = get_node(root_state) if root_state else null
 	self.entity = get_node(root_state) if entity else owner
 	self._get_states_from_children()
@@ -83,6 +85,15 @@ func remove_state(node: FSMNode):
 		self._alias_map.erase(state_name)
 
 	self.remove_child(node)
+
+
+func _on_pause_changed(pause_val, _entity):
+	if has_animation_player():
+		var player = get_animation_player()
+		if pause_val:
+			player.stop(false)
+		else:
+			player.play()
 
 
 func _process(delta):
