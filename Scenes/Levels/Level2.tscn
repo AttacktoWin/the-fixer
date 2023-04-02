@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -9,9 +9,7 @@
 [ext_resource path="res://Scripts/LevelGeneration/LevelGenerator.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Levels/Level3.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
-[ext_resource path="res://addons/wwise/runtime/nodes/ak_bank.gd" type="Script" id=10]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
-[ext_resource path="res://addons/wwise/runtime/nodes/ak_listener_2d.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=13]
 
 [sub_resource type="Resource" id=7]
@@ -227,45 +225,6 @@ shader_param/target = Vector2( 0.5, 0.5 )
 shader_param/radius = 0.164
 
 [node name="Level" type="Node2D"]
-
-[node name="AkBank-INIT" type="Node" parent="."]
-script = ExtResource( 10 )
-bank = {
-"Id": 1355168291,
-"Name": "INIT"
-}
-load_on = 1
-unload_on = 2
-
-[node name="AkBank-UI" type="Node" parent="."]
-script = ExtResource( 10 )
-bank = {
-"Id": 1551306167,
-"Name": "UI"
-}
-load_on = 1
-unload_on = 2
-
-[node name="AkBank-GAMEPLAY" type="Node" parent="."]
-script = ExtResource( 10 )
-bank = {
-"Id": 89505537,
-"Name": "GAMEPLAY"
-}
-load_on = 1
-unload_on = 2
-
-[node name="AkBank-MUSIC" type="Node" parent="."]
-script = ExtResource( 10 )
-bank = {
-"Id": 3991942870,
-"Name": "MUSIC"
-}
-load_on = 1
-unload_on = 2
-
-[node name="AkListener2D" type="Node2D" parent="."]
-script = ExtResource( 12 )
 
 [node name="LevelMusic" type="Node2D" parent="."]
 script = ExtResource( 11 )
