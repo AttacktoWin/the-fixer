@@ -244,6 +244,7 @@ height = 30.0
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 4
 script = ExtResource( 12 )
+base_speed = 450.0
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -60 )

@@ -41,7 +41,7 @@ func _dash_increment(delta):
 	CameraSingleton.set_zoom(Vector2(0.97, 0.97))
 	CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
 	CameraSingleton.set_zoom(Vector2(1, 1))
-	self.entity.move_and_slide(self._dash_direction * 240 * 60 * MathUtils.delta_frames(delta))
+	self.entity.move_and_slide(self._dash_direction * 320 * 60 * MathUtils.delta_frames(delta))
 	self._has_dashed = true
 
 

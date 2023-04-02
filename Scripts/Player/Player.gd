@@ -33,6 +33,7 @@ func _world_updated():
 	if not self._has_default_gun:
 		self._has_default_gun = true
 		self.set_gun(load("res://Scenes/Weapons/PlayerPistolScene.tscn").instance())
+	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION)
 
 
 func set_weapon_disabled(val):
