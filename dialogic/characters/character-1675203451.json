@@ -8,7 +8,7 @@
 	"name": "Manifestation",
 	"nickname": "Manifestation of the Vault,Man,the Vault",
 	"nickname_bool": true,
-	"offset_x": 50,
+	"offset_x": 200,
 	"offset_y": 0,
 	"portraits": [
 		{
@@ -16,6 +16,6 @@
 			"path": "res://Assets/Portraits/Manifestation/manifest_portrait.png"
 		}
 	],
-	"scale": 50,
+	"scale": 70,
 	"theme": ""
 }

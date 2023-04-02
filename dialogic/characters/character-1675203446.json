@@ -8,7 +8,7 @@
 	"name": "The Boss",
 	"nickname": "Boss",
 	"nickname_bool": true,
-	"offset_x": 0,
+	"offset_x": -200,
 	"offset_y": 0,
 	"portraits": [
 		{
@@ -32,6 +32,6 @@
 			"path": "res://Assets/Portraits/Boss/boss-cross_shadow.png"
 		}
 	],
-	"scale": 47,
+	"scale": 60,
 	"theme": ""
 }
