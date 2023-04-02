@@ -32,7 +32,7 @@ func _ready():
 func _world_updated():
 	if not self._has_default_gun:
 		self._has_default_gun = true
-		self.set_gun(load("res://Scenes/Weapons/PlayerTommyGunScene.tscn").instance())
+		self.set_gun(load("res://Scenes/Weapons/PlayerShotgunScene.tscn").instance())
 
 
 func set_weapon_disabled(val):

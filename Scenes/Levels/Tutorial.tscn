@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -19,7 +19,7 @@
 [ext_resource path="res://Assets/UI/Tutorial/space-pressed.png" type="Texture" id=17]
 [ext_resource path="res://Assets/UI/Tutorial/space.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Sprites/Fixer/fixer_spritesheet_idle.png" type="Texture" id=19]
-[ext_resource path="res://Resources/FilmPoster.tres" type="DynamicFont" id=20]
+[ext_resource path="res://Resources/Bahnschrift.tres" type="DynamicFont" id=20]
 [ext_resource path="res://Scripts/Singletons/FixerOutline.tres" type="Material" id=21]
 [ext_resource path="res://Assets/UI/Tutorial/mouse-right.png" type="Texture" id=22]
 [ext_resource path="res://Assets/UI/Tutorial/wasd-a-down.png" type="Texture" id=23]
@@ -203,13 +203,6 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
-
-[sub_resource type="DynamicFontData" id=65]
-font_path = "res://Assets/UI/Tutorial/FilmPosterNarrow-Bold.ttf"
-
-[sub_resource type="DynamicFont" id=66]
-size = 35
-font_data = SubResource( 65 )
 
 [sub_resource type="Shader" id=22]
 code = "shader_type  canvas_item;
@@ -467,16 +460,24 @@ position = Vector2( 0.5, -12.5 )
 scale = Vector2( 0.125, 0.25 )
 frames = SubResource( 64 )
 
-[node name="ExitMessage" type="Label" parent="Transition/Hitbox"]
+[node name="Node2D" type="Node2D" parent="Transition/Hitbox"]
+show_behind_parent = true
+z_index = 999
+
+[node name="ExitMessage" type="Label" parent="Transition/Hitbox/Node2D"]
 visible = false
 margin_left = -16.25
 margin_top = -72.5
 margin_right = 118.75
 margin_bottom = 2.5
 rect_scale = Vector2( 0.25, 0.5 )
-custom_fonts/font = SubResource( 66 )
-text = "Not enough enemies
-have been defeated."
+custom_fonts/font = ExtResource( 20 )
+text = "All enemies must be defeated."
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": true
+}
 
 [node name="SortableEntities" type="YSort" parent="."]
 
@@ -527,7 +528,7 @@ position = Vector2( 1671, 1180 )
 [node name="Label" type="Label" parent="SortableEntities/Runtime/E_Goomba3"]
 margin_left = 26.0
 margin_top = -74.0
-margin_right = 206.0
+margin_right = 267.0
 margin_bottom = -5.0
 custom_fonts/font = ExtResource( 20 )
 text = "Finish off an enemy with
@@ -536,6 +537,16 @@ melee to pick up ammo"
 [node name="E_Ant" parent="SortableEntities/Runtime" instance=ExtResource( 9 )]
 position = Vector2( -59, 1350 )
 base_speed = 200.0
+
+[node name="Label" type="Label" parent="SortableEntities/Runtime/E_Ant"]
+margin_left = -117.0
+margin_top = -69.0
+margin_right = -29.0
+margin_bottom = -20.0
+custom_fonts/font = ExtResource( 20 )
+text = "Hello, Im an ant"
+align = 1
+autowrap = true
 
 [node name="E_Goomba4" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( -1482, 1760 )
@@ -553,20 +564,19 @@ auto_pickup = false
 weapon_scene = ExtResource( 27 )
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 293.0
-margin_top = 1433.0
-margin_right = 455.0
-margin_bottom = 1538.0
+margin_left = 487.0
+margin_top = 1416.0
+margin_right = 678.0
+margin_bottom = 1543.0
 custom_fonts/font = ExtResource( 20 )
-text = "Ants give back ammo 
-regardless of how you 
-destroy them..."
+text = "Ants give back 1 ammo if destroyed by ranged and 3 if destroyed by melee..."
+autowrap = true
 
 [node name="Label" type="Label" parent="."]
-margin_left = 178.0
-margin_top = 1656.0
-margin_right = 340.0
-margin_bottom = 1761.0
+margin_left = 597.0
+margin_top = 1724.0
+margin_right = 766.0
+margin_bottom = 1829.0
 custom_fonts/font = ExtResource( 20 )
 text = "...but they will try
 to run away from
@@ -581,19 +591,21 @@ rect_pivot_offset = Vector2( 406, 269 )
 mouse_filter = 2
 
 [node name="Label" type="Label" parent="Movement"]
-margin_left = 21.0
+margin_left = 18.0
 margin_top = 195.0
-margin_right = 211.0
-margin_bottom = 233.0
+margin_right = 214.0
+margin_bottom = 244.0
 custom_fonts/font = ExtResource( 20 )
 text = "press \"WASD\" keys to move."
+align = 1
+autowrap = true
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="Movement"]
 material = ExtResource( 21 )
 position = Vector2( 170.866, 139.593 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 1
+frame = 8
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
@@ -630,7 +642,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 9
+frame = 5
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -639,10 +651,10 @@ playback_speed = 4.72
 anims/RESET = SubResource( 61 )
 
 [node name="Label" type="Label" parent="Shoot"]
-margin_left = -13.0
-margin_top = 194.0
-margin_right = 173.0
-margin_bottom = 232.0
+margin_left = -4.0
+margin_top = 193.0
+margin_right = 177.0
+margin_bottom = 231.0
 custom_fonts/font = ExtResource( 20 )
 text = "Left click to shoot."
 align = 1
@@ -660,6 +672,7 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
+frame = 3
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
@@ -668,10 +681,10 @@ scale = Vector2( 0.633333, 0.633333 )
 texture = ExtResource( 22 )
 
 [node name="Label" type="Label" parent="Melee"]
-margin_left = 5.0
-margin_top = 195.0
-margin_right = 191.0
-margin_bottom = 233.0
+margin_left = 2.0
+margin_top = 194.0
+margin_right = 202.0
+margin_bottom = 232.0
 custom_fonts/font = ExtResource( 20 )
 text = "Right click to melee."
 align = 1
