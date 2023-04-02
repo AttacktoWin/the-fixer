@@ -30,7 +30,7 @@
 			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1678144008.json",
+			"character": "character-1675203357.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": true,
 			"portrait": "Default",
@@ -39,8 +39,8 @@
 				"0": false,
 				"1": false,
 				"2": false,
-				"3": true,
-				"4": false
+				"3": false,
+				"4": true
 			},
 			"type": 0,
 			"z_index": 0

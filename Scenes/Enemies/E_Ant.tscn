@@ -60,8 +60,8 @@ void fragment() {
 shader = SubResource( 79 )
 shader_param/flash = false
 shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/line_color = Color( 0.988235, 0.847059, 0.215686, 0 )
-shader_param/line_thickness = 6.0
+shader_param/line_color = Color( 0, 0, 0, 1 )
+shader_param/line_thickness = 0.5
 
 [sub_resource type="Animation" id=82]
 resource_name = "CHASE"

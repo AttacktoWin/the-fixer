@@ -3,5 +3,5 @@
 [ext_resource path="res://addons/dialogic/Documentation/Theme/Font/NotoSans-Bold.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 32
+size = 50
 font_data = ExtResource( 1 )
