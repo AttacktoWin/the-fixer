@@ -13,7 +13,9 @@ func _ready() -> void:
 func _process(_delta):
 	if AI.get_all_enemies().size() == 0:
 		cleared = true
-		$Exit.frame = 1
+		var exit = get_node_or_null("Exit")
+		if exit:
+			exit.frame = 1
 
 func _on_body_entered(body: Node2D):
 	if body is Player and cleared:
