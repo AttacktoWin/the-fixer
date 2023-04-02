@@ -203,7 +203,7 @@ func _get_base_alpha() -> float:
 
 
 func knockback(vel: Vector2):
-	self.changev(LivingEntityVariable.VELOCITY, vel)
+	self.changev(LivingEntityVariable.VELOCITY, vel / getv(LivingEntityVariable.WEIGHT))
 
 
 func _on_take_damage(info: AttackInfo):

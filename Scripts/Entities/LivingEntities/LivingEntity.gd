@@ -6,6 +6,7 @@ export var base_speed: float = 340
 export var base_health: float = 100
 export var base_accel: float = 80
 export var base_drag: float = 1.025
+export var base_weight: float = 1
 onready var variables = VariableList.new(
 	self,
 	LivingEntityVariable.get_script_constant_map(),
@@ -16,7 +17,7 @@ onready var variables = VariableList.new(
 		LivingEntityVariable.VELOCITY: Vector2(),
 		LivingEntityVariable.DRAG: base_drag,
 		LivingEntityVariable.KNOCKBACK_FACTOR: 1,
-		LivingEntityVariable.WEIGHT: 1
+		LivingEntityVariable.WEIGHT: base_weight
 	}
 )
 
