@@ -21,11 +21,15 @@ func _on_body_entered(body: Node2D):
 	if body is Player and cleared:
 		self.call_deferred("_transition")
 	elif body is Player:
-		$ExitMessage.visible = true
+		var exit = get_node_or_null("Node2D/ExitMessage")
+		if exit:
+			exit.visible = true
 
 func _on_body_exit(body:Node2D):
 	if body is Player:
-		$ExitMessage.visible = false
+		var exit = get_node_or_null("Node2D/ExitMessage")
+		if exit:
+			exit.visible = false
 
 
 func _transition():

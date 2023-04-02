@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=5]
+code = "shader_type  canvas_item;
+
+uniform vec2 target = vec2(0.5);
+uniform float radius = 0.5;
+
+void fragment(){
+	COLOR = texture(TEXTURE,UV);
+	float dist = abs(distance(target,SCREEN_UV));
+	float strenth = mix(0,1,dist/radius);
+	if(dist<=radius && COLOR.a>0.0){
+		COLOR.a = strenth;
+	}
+}
+"
+
+[resource]
+shader = SubResource( 5 )
+shader_param/target = Vector2( 0.5, 0.5 )
+shader_param/radius = 0.164
