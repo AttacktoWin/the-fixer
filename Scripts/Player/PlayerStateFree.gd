@@ -61,6 +61,8 @@ func _unhandled_input(event: InputEvent):
 
 	if event.is_action_pressed("move_dash") and self.fsm.can_transition_to(PlayerState.DASHING):
 		self.fsm.set_state(PlayerState.DASHING)
+	
+	
 
 	if (
 		event is InputEventKey

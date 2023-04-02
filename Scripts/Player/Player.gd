@@ -13,6 +13,7 @@ onready var fsm: FSMController = $FSMController
 onready var melee_hitbox: Area2D = $Visual/HitBox
 
 var _gun = null
+var _has_default_gun = false
 
 var gun_controlled = false
 
@@ -25,13 +26,24 @@ const INVULNERABLE_TIME = 1
 func _ready():
 	Wwise.register_listener(self)
 	Wwise.register_game_obj(self, self.get_name())
-	self.set_gun(load("res://Scenes/Weapons/PlayerTommyGunScene.tscn").instance())
+	Scene.connect("world_updated", self, "_world_updated") # warning-ignore:return_value_discarded
 
+func _world_updated():
+	if not self._has_default_gun:
+		self._has_default_gun = true
+		self.set_gun(load("res://Scenes/Weapons/PlayerTommyGunScene.tscn").instance())
 
 func set_gun(gun: PlayerBaseGun):
+	if self._gun:
+		var pickup = WorldWeapon.new()
+		pickup.set_weapon(self._gun)
+		pickup.auto_pickup = false
+		pickup.global_position = self.global_position * MathUtils.TO_ISO
+		Scene.runtime.add_child(pickup)
 	self._gun = gun.with_parent(self)
 	self._gun.set_aim_bone(arms_container)
 	socket_muzzle.add_child(self._gun)
+	update_ammo_counter()
 
 
 func _get_wanted_direction():

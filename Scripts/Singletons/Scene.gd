@@ -20,7 +20,7 @@ var _player = null
 
 signal transition_start
 signal transition_complete
-
+signal world_updated
 
 func _reload_variables():
 	self._camera = self._root.get_node("MainCamera")
@@ -30,6 +30,7 @@ func _reload_variables():
 	self._level = self._root.get_node("Level/Generator").level
 	self._player = self._root.get_node("Level/Generator").get_node("%Player")
 	Pathfinder.update_level(self._level)
+	emit_signal("world_updated")
 	if (
 		self._root.get_node("Level/Generator").get("level_name")
 		and self._root.get_node("Level/Generator").level_name == "hub"

@@ -7,6 +7,7 @@ export var cooldown: float = 0.5
 export var ammo_count: int = 2
 export(PackedScene) var ammo_scene = null
 export var infinite_ammo: bool = false
+export(Texture) var world_sprite = null
 
 var entity = null
 
@@ -17,9 +18,11 @@ signal on_fire_empty
 func _init(_parent_entity: LivingEntity = null):
 	self.entity = _parent_entity
 
+
 func with_parent(parent_entity: LivingEntity):
 	self.entity = parent_entity
 	return self
+
 
 func _ready():
 	if not self.ammo_scene:
