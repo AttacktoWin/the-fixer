@@ -12,12 +12,12 @@ onready var visual: Node2D = $Visual
 onready var fsm: FSMController = $FSMController
 onready var melee_hitbox: Area2D = $Visual/HitBox
 
+var weapon_disabled = false setget set_weapon_disabled
+
 var _gun = null
 var _has_default_gun = false
 
-var gun_controlled = false
-
-var knockback_velocity = Vector2.ZERO
+var _knockback_velocity = Vector2.ZERO
 
 const INVULNERABLE_TIME = 1
 
@@ -26,12 +26,20 @@ const INVULNERABLE_TIME = 1
 func _ready():
 	Wwise.register_listener(self)
 	Wwise.register_game_obj(self, self.get_name())
-	Scene.connect("world_updated", self, "_world_updated") # warning-ignore:return_value_discarded
+	Scene.connect("world_updated", self, "_world_updated")  # warning-ignore:return_value_discarded
+
 
 func _world_updated():
 	if not self._has_default_gun:
 		self._has_default_gun = true
 		self.set_gun(load("res://Scenes/Weapons/PlayerTommyGunScene.tscn").instance())
+
+
+func set_weapon_disabled(val):
+	weapon_disabled = val
+	if self._gun:
+		self._gun.set_disabled(val)
+
 
 func set_gun(gun: PlayerBaseGun):
 	if self._gun:
@@ -61,7 +69,10 @@ func _get_wanted_velocity():
 
 
 func get_wanted_gun_vector():
-	return MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
+	var v = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
+	if self.weapon_disabled:
+		return Vector2(1 * sign(v.x) if v.x != 0.0 else 1.0, 1)
+	return v
 
 
 func update_ammo_counter():
@@ -155,21 +166,21 @@ func _handle_camera():
 
 func _try_move():
 	# warning-ignore:return_value_discarded
-	move_and_slide(getv(LivingEntityVariable.VELOCITY) + self.knockback_velocity)
+	move_and_slide(getv(LivingEntityVariable.VELOCITY) + self._knockback_velocity)
 
 
 func _physics_process(delta):
 	# Wwise.set_2d_position(self, self.global_position)
-	self.knockback_velocity *= 0.9
-	if self.knockback_velocity.length() < 30:
-		self.knockback_velocity = Vector2.ZERO
+	self._knockback_velocity *= 0.9
+	if self._knockback_velocity.length() < 30:
+		self._knockback_velocity = Vector2.ZERO
 	_handle_camera()
 	_try_move()
 	._physics_process(delta)
 
 
 func knockback(vel: Vector2):
-	self.knockback_velocity += vel
+	self._knockback_velocity += vel
 
 
 func _on_take_damage(info: AttackInfo):
@@ -190,7 +201,7 @@ func _on_take_damage(info: AttackInfo):
 
 
 func _on_death():
-	self.knockback_velocity = Vector2.ZERO
+	self._knockback_velocity = Vector2.ZERO
 	self.fsm.set_state(PlayerState.DEAD, true)
 	self.fsm.lock()
 	self._gun.queue_free()

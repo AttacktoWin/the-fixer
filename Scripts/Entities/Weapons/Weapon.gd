@@ -3,6 +3,8 @@ class_name Weapon extends Node2D
 var _cooldown_timer = 0
 var _aim_bone = null
 
+var _disabled = false
+
 export var cooldown: float = 0.5
 export var ammo_count: int = 2
 export(PackedScene) var ammo_scene = null
@@ -83,8 +85,11 @@ func _get_aim_position() -> Vector2:
 	return self.global_position
 
 
+func set_disabled(val: bool) -> void:
+	self._disabled = not val
+
 func can_fire() -> bool:
-	return self._cooldown_timer <= 0 and (self.infinite_ammo or self.ammo_count > 0)
+	return self._cooldown_timer <= 0 and (self.infinite_ammo or self.ammo_count > 0) and not self._disabled
 
 
 func get_angle() -> float:
