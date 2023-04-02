@@ -90,6 +90,8 @@ func remove_state(node: FSMNode):
 func _on_pause_changed(pause_val, _entity):
 	if has_animation_player():
 		var player = get_animation_player()
+		if player.current_animation == "":
+			return
 		if pause_val:
 			player.stop(false)
 		else:

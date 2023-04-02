@@ -9,7 +9,6 @@ var _wall_hitbox: Area2D = null
 func _ready():
 	self._wall_hitbox = get_node("WallCollider")
 	self._wall_hitbox.connect("body_entered", self, "_on_wall_body_entered")  #warning-ignore:return_value_discarded
-	self._hitbox.connect("body_entered", self, "_on_body_entered_bullet")  # warning-ignore:return_value_discarded
 	self.rotation = 0  # scuffed
 
 
