@@ -32,7 +32,7 @@ func _ready():
 func _world_updated():
 	if not self._has_default_gun:
 		self._has_default_gun = true
-		self.set_gun(load("res://Scenes/Weapons/PlayerShotgunScene.tscn").instance())
+		self.set_gun(load("res://Scenes/Weapons/PlayerPistolScene.tscn").instance())
 
 
 func set_weapon_disabled(val):
@@ -135,6 +135,8 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_left"):
 			print("Playing test sound")
 			Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, self)
+		if Input.is_action_just_pressed("ui_end"):
+			self.add_ammo(900)
 
 
 func _unhandled_input(event: InputEvent):

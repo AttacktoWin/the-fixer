@@ -29,5 +29,5 @@ shape = SubResource( 1 )
 [node name="WallCollider" type="Area2D" parent="."]
 
 [node name="WallHitbox" type="CollisionShape2D" parent="WallCollider"]
-position = Vector2( 0, 56 )
+position = Vector2( 0, 44 )
 shape = SubResource( 2 )
