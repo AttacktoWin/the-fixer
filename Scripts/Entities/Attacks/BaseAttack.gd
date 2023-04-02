@@ -17,6 +17,7 @@ export(AttackVariable.DAMAGE_TYPE) var damage_type = AttackVariable.DAMAGE_TYPE.
 export var persistent: bool = false
 export var die_on_pierce: bool = true
 export var spectral: bool = false
+export var ignore_wall_collisions: bool = true
 export var camera_shake: float = 3
 export var knockback_factor: float = 32
 export var stun_factor: float = 1
@@ -130,6 +131,8 @@ func _try_hit_entity(entity: LivingEntity) -> bool:
 
 
 func _on_body_entered(body: Node2D):
+	if not ignore_wall_collisions and body is TileMap and not self.spectral:
+		self._expire()
 	if (
 		self.attack_type != AttackVariable.ATTACK_TYPE.CONTINUOUS
 		or not (body is LivingEntity)
@@ -143,8 +146,6 @@ func _on_body_entered(body: Node2D):
 func _on_area_entered(body: Node2D):
 	if body.owner is LivingEntity:
 		self._on_body_entered(body.owner)
-	elif not self.spectral:
-		self._expire()
 
 
 func invoke_attack():
