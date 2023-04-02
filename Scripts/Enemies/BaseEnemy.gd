@@ -162,13 +162,11 @@ func _process(_delta):
 	self._check_target_available()
 	if self.draw_path:
 		update()
-	._process(_delta)
 
 
 func _physics_process(delta):
 	self._check_target_available()
 	self._handle_pathfinding(delta)
-	._physics_process(delta)
 
 
 func set_investigate_target(target: Vector2):

@@ -23,6 +23,7 @@ export var knockback_factor: float = 32
 export var stun_factor: float = 1
 export var max_pierce: int = 1
 export var can_hit_self: bool = false
+export var ignore_rotation: bool = false
 export var should_forget_entities: bool = false
 export var entity_forget_time: float = 1  # useful for repeating attacks
 var _hitbox: Area2D = null
@@ -179,7 +180,8 @@ func _expire():
 
 
 func _process(_delta):
-	self.rotation = getv(AttackVariable.DIRECTION)
+	if not self.ignore_rotation:
+		self.rotation = getv(AttackVariable.DIRECTION)
 
 
 func _physics_process(delta):

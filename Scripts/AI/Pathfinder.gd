@@ -2,6 +2,7 @@
 
 extends Node
 
+var _level = null
 var _pathfinder: AStar2D = null
 var _width: int = -1
 var _wall_gradient = null
@@ -114,11 +115,12 @@ func _build_AStar(level: Array, wall_distances: Array) -> void:
 				self._pathfinder.add_point(x + y * self._width, vec, weight)
 				if any_point == null:
 					any_point = Vector2(x, y)
-	if any_point!=null:
+	if any_point != null:
 		_BFS_AStar(level, any_point.x, any_point.y)
 
 
 func update_level(new_level: Array):
+	self._level = new_level
 	self._width = new_level.size()
 	self._wall_gradient = {}
 	self._pathfinder = AStar2D.new()
@@ -153,6 +155,30 @@ func generate_path(from: Vector2, to: Vector2) -> PathfindResult:
 	)
 	data.append(to)
 	return PathfindResult.new(from, _simplify_path(from, data))
+
+
+func is_on_upper_wall(vec: Vector2):
+	if not is_in_bounds(vec):
+		return false
+	vec = MathUtils.floor_vec2(MathUtils.to_level_vector(vec))
+	if self._level[vec.x][vec.y] == Constants.TILE_TYPE.WALL:
+		if (
+			vec.x < self._level.size() - 1
+			and self._level[vec.x + 1][vec.y] == Constants.TILE_TYPE.FLOOR
+		):
+			return true
+		if (
+			vec.y > self._level[0].size() - 1
+			and self._level[vec.x][vec.y + 1] == Constants.TILE_TYPE.FLOOR
+		):
+			return true
+		if (
+			vec.y > self._level.size() - 1
+			and vec.x > self._level[0].size() - 1
+			and self._level[vec.x - 1][vec.y - 1] == Constants.TILE_TYPE.FLOOR
+		):
+			return true
+	return false
 
 
 func is_in_bounds(vec: Vector2) -> bool:

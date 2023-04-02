@@ -109,9 +109,8 @@ func _handle_alpha():
 			self.modulate.a = 1 * self._get_base_alpha()
 
 
-func _process(delta):
+func _process(_delta):
 	_handle_alpha()
-	._process(delta)
 
 
 func _physics_process(delta):
@@ -156,8 +155,10 @@ func _check_death() -> bool:
 func can_be_hit():
 	return self.status_timers.get_timer(LivingEntityStatus.INVULNERABLE) <= 0 and not self._is_dead
 
+
 func knockback(_vel: Vector2):
 	pass
+
 
 func on_hit(info: AttackInfo):
 	self._take_damage(info.damage)
