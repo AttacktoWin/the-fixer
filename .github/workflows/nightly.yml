@@ -45,6 +45,7 @@ jobs:
       uses: ncipollo/release-action@v1.12.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+        commit: Dev
         generateReleaseNotes: true
         tag: nightly
         name: Nightly ${{ steps.date.outputs.date }}
