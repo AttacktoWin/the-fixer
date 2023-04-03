@@ -17,10 +17,10 @@ var current_dialog_box: CanvasLayer
 var follow_player := false
 
 const enemy_timelines := {
-	"pillbug": [],
-	"spyder": [],
-	"beetle": [],
-	"bird": [],
+	"pillbug": ["1-pillbug"],
+	"spyder": ["1-spyder"],
+	"beetle": ["1-beetle"],
+	"bird": ["1-bird"],
 	"ant": []
 }
 
