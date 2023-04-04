@@ -281,6 +281,7 @@ collision_layer = 0
 collision_mask = 32
 script = ExtResource( 5 )
 base_speed = 0.0
+base_damage = 25.0
 allied_class = ExtResource( 11 )
 persistent = true
 die_on_pierce = false

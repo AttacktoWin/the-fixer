@@ -6,7 +6,7 @@ onready var socket_muzzle: Node2D = $FlipComponents/Visual/SocketMuzzle
 
 
 func can_attack_hit(info: AttackInfo):
-	if self.fsm.current_state_name() == EnemyState.PAIN:
+	if self.fsm.current_state_name() == EnemyState.PAIN or not info.attack.is_ranged:
 		return true
 
 	var facing = get_x_direction()

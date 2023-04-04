@@ -2,6 +2,9 @@
 
 class_name UmbrellaStateRangedAttack extends EnemyStateMoving
 
+export var bullet_speed: float = 350
+export var bullet_damage: int = 10
+
 var _current_angle = 0
 var _angle_mult = 1
 var _los_counter = 0
@@ -55,8 +58,8 @@ func _shoot():
 		AttackVariable.DIRECTION,
 		MathUtils.to_iso(self.entity.get_target().global_position - bullet.global_position).angle()
 	)
-	bullet.setv(AttackVariable.SPEED, 350)
-	bullet.setv(AttackVariable.DAMAGE, 10)
+	bullet.setv(AttackVariable.SPEED, self.bullet_speed)
+	bullet.setv(AttackVariable.DAMAGE, self.bullet_damage)
 
 
 func _handle_weapon(delta):
