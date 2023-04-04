@@ -1,3 +1,5 @@
+# Author: Marcus
+
 class_name BaseAttack extends Node2D
 
 enum EVENTS { CREATE, STEP, MOVE, HIT_WALL, HIT_ENEMY, DESTROY }
@@ -17,11 +19,13 @@ export(AttackVariable.DAMAGE_TYPE) var damage_type = AttackVariable.DAMAGE_TYPE.
 export var persistent: bool = false
 export var die_on_pierce: bool = true
 export var spectral: bool = false
+export var ignore_wall_collisions: bool = true
 export var camera_shake: float = 3
 export var knockback_factor: float = 32
 export var stun_factor: float = 1
 export var max_pierce: int = 1
 export var can_hit_self: bool = false
+export var ignore_rotation: bool = false
 export var should_forget_entities: bool = false
 export var entity_forget_time: float = 1  # useful for repeating attacks
 var _hitbox: Area2D = null
@@ -75,6 +79,7 @@ func _generate_attack_info(_entity: LivingEntity) -> AttackInfo:
 		self._damage_source,
 		self.damage_type,
 		Vector2(INF, INF),
+		self,
 		self.getv(AttackVariable.DAMAGE),
 		self.getv(AttackVariable.DIRECTION),
 		self.knockback_factor,
@@ -86,14 +91,14 @@ func _on_hit_entity(_entity: LivingEntity):
 	pass
 
 
-func _hit_entity(entity: LivingEntity) -> void:
+func _hit_entity(entity: LivingEntity, info: AttackInfo) -> void:
 	self._hit_entities[entity] = self._current_time
 	self._pierce += 1
 	CameraSingleton.shake(self.camera_shake)
-	entity.on_hit(self._generate_attack_info(entity))
-	self._on_hit_entity(entity)
+	entity.on_hit(info)
+	_on_hit_entity(entity)
 	if self.die_on_pierce and self._pierce >= max_pierce:
-		self._expire()
+		_expire()
 
 
 func _filter_entity(entity: LivingEntity) -> bool:
@@ -123,13 +128,21 @@ func _filter_entity(entity: LivingEntity) -> bool:
 func _try_hit_entity(entity: LivingEntity) -> bool:
 	if self._pierce >= self.max_pierce:
 		return false
-	if not self._filter_entity(entity):
+
+	if not _filter_entity(entity):
 		return false
-	self._hit_entity(entity)
+
+	var info = _generate_attack_info(entity)
+	if not entity.can_attack_hit(info):
+		return false
+
+	_hit_entity(entity, info)
 	return true
 
 
 func _on_body_entered(body: Node2D):
+	if not ignore_wall_collisions and body is TileMap and not self.spectral:
+		self._expire()
 	if (
 		self.attack_type != AttackVariable.ATTACK_TYPE.CONTINUOUS
 		or not (body is LivingEntity)
@@ -143,8 +156,6 @@ func _on_body_entered(body: Node2D):
 func _on_area_entered(body: Node2D):
 	if body.owner is LivingEntity:
 		self._on_body_entered(body.owner)
-	elif not self.spectral:
-		self._expire()
 
 
 func invoke_attack():
@@ -178,7 +189,8 @@ func _expire():
 
 
 func _process(_delta):
-	self.rotation = getv(AttackVariable.DIRECTION)
+	if not self.ignore_rotation:
+		self.rotation = getv(AttackVariable.DIRECTION)
 
 
 func _physics_process(delta):

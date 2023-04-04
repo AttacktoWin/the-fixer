@@ -56,7 +56,7 @@ func _physics_process(delta):
 	self.entity._try_move()
 
 
-func on_anim_reached_end():
+func on_anim_reached_end(_anim: String):
 	if not self.entity or not self.entity.has_target():
 		self.fsm.set_state(EnemyState.IDLE)
 		return
@@ -71,6 +71,7 @@ func on_anim_reached_end():
 
 
 func exit():
+	self.entity.hitbox.get_child(0).disabled = true
 	self.entity.disable_pathfind -= 1
 	if self._pushing_disabled:
 		self.entity.disable_pushing -= 1

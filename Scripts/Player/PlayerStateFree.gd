@@ -22,6 +22,8 @@ func exit():
 
 func _physics_process(delta):
 	self._ground_control(MathUtils.delta_frames(delta))
+	if Input.is_action_pressed("weapon_fire_melee"):
+		self.fsm.set_state(PlayerState.FIRE_MELEE)
 
 
 func _process(_delta):
@@ -38,33 +40,29 @@ func _process(_delta):
 	var vel = self.entity.getv(LivingEntityVariable.VELOCITY)
 	if vel.length() > 25 or self.entity._get_wanted_direction().length() != 0:
 		self.fsm.set_animation("WALK")
+		var x = sign(round(vel.x))
+
+		var facing = sign(CameraSingleton.get_mouse_from_camera_center().x)
+		var speed = (
+			vel.length()
+			/ self.entity.variables.get_variable_raw(LivingEntityVariable.MAX_SPEED)
+		)
+		if x != 0 and x != facing:
+			speed = -speed
+		self.fsm.get_animation_player().playback_speed = speed
 	else:
 		self.fsm.set_animation("IDLE")
-
-	var x = sign(round(vel.x))
-
-	var facing = sign(CameraSingleton.get_mouse_from_camera_center().x)
-	var speed = (
-		vel.length()
-		/ self.entity.variables.get_variable_raw(LivingEntityVariable.MAX_SPEED)
-	)
-	if x != 0 and x != facing:
-		speed = -speed
-	self.fsm.get_animation_player().playback_speed = speed
+		self.fsm.get_animation_player().playback_speed = 1
 
 
 func _unhandled_input(event: InputEvent):
 	if PausingSingleton.is_paused_recently(6) or not self.fsm.is_this_state(self):
 		return
 
-	if (
-		event.is_action_pressed("move_dash")
-		and self.fsm.can_transition_to(PlayerState.DASHING)
-	):
+	if event.is_action_pressed("move_dash") and self.fsm.can_transition_to(PlayerState.DASHING):
 		self.fsm.set_state(PlayerState.DASHING)
-
-	if event.is_action_pressed("weapon_fire_melee"):
-		self.fsm.set_state(PlayerState.FIRE_MELEE)
+	
+	
 
 	if (
 		event is InputEventKey

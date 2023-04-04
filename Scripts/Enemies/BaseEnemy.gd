@@ -7,7 +7,7 @@ onready var visual: Node2D = $FlipComponents/Visual
 onready var sprite_material: Material = null
 onready var fsm: FSMController = $FSMController
 onready var flip_components: Node2D = $FlipComponents
-onready var hitbox: Node2D = $FlipComponents/HitBox
+onready var hitbox: Node2D = get_node_or_null("FlipComponents/HitBox")
 
 onready var idle_collider: Area2D = $IdleRadius
 onready var nearby_entities: Area2D = $NearbyEntities
@@ -111,6 +111,10 @@ func _handle_pathfinding(delta):
 		)
 
 
+func get_steered_direction(to_location: Vector2):
+	return apply_steering((to_location - self.global_position).normalized())
+
+
 func get_wanted_direction() -> Vector2:
 	var vec = null
 	if self._current_path:
@@ -162,13 +166,11 @@ func _process(_delta):
 	self._check_target_available()
 	if self.draw_path:
 		update()
-	._process(_delta)
 
 
 func _physics_process(delta):
 	self._check_target_available()
 	self._handle_pathfinding(delta)
-	._physics_process(delta)
 
 
 func set_investigate_target(target: Vector2):
@@ -204,11 +206,14 @@ func _get_base_alpha() -> float:
 	return alpha
 
 
+func knockback(vel: Vector2):
+	self.changev(LivingEntityVariable.VELOCITY, vel / getv(LivingEntityVariable.WEIGHT))
+
+
 func _on_take_damage(info: AttackInfo):
 	self.fsm.set_state(EnemyState.PAIN)
 	var direction = info.get_attack_direction(self.global_position)
-	self.setv(
-		LivingEntityVariable.VELOCITY,
+	knockback(
 		(
 			direction
 			* info.knockback_factor
@@ -219,6 +224,10 @@ func _on_take_damage(info: AttackInfo):
 	var bar = self.get_node("ProgressBar")
 	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
 	._on_take_damage(info)
+
+
+func get_x_direction():
+	return -int(sign(flip_components.scale.x)) if flip_components.scale.x != 0 else -1
 
 
 func _draw():

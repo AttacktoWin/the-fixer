@@ -10,13 +10,15 @@ onready var arms_container: Node2D = $Visual/ArmsContainer
 onready var arms_secondary: Node2D = $Visual/Arm2
 onready var visual: Node2D = $Visual
 onready var fsm: FSMController = $FSMController
+onready var reload_progress_bar: ProgressBar = $ReloadProgress
 onready var melee_hitbox: Area2D = $Visual/HitBox
 
+var weapon_disabled = false setget set_weapon_disabled
+
 var _gun = null
+var _has_default_gun = false
 
-var gun_controlled = false
-
-var knockback_velocity = Vector2.ZERO
+var _knockback_velocity = Vector2.ZERO
 
 const INVULNERABLE_TIME = 1
 
@@ -25,9 +27,33 @@ const INVULNERABLE_TIME = 1
 func _ready():
 	Wwise.register_listener(self)
 	Wwise.register_game_obj(self, self.get_name())
-	self._gun = TestGun.new(self)
+	Scene.connect("world_updated", self, "_world_updated")  # warning-ignore:return_value_discarded
+
+
+func _world_updated():
+	if not self._has_default_gun:
+		self._has_default_gun = true
+		self.set_gun(load("res://Scenes/Weapons/PlayerPistolScene.tscn").instance())
+	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION)
+
+
+func set_weapon_disabled(val):
+	weapon_disabled = val
+	if self._gun:
+		self._gun.set_disabled(val)
+
+
+func set_gun(gun: PlayerBaseGun):
+	if self._gun:
+		var pickup = WorldWeapon.new()
+		pickup.set_weapon(self._gun)
+		pickup.auto_pickup = false
+		pickup.global_position = self.global_position * MathUtils.TO_ISO
+		Scene.runtime.add_child(pickup)
+	self._gun = gun.with_parent(self)
 	self._gun.set_aim_bone(arms_container)
 	socket_muzzle.add_child(self._gun)
+	update_ammo_counter()
 
 
 func _get_wanted_direction():
@@ -45,15 +71,22 @@ func _get_wanted_velocity():
 
 
 func get_wanted_gun_vector():
-	return MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
+	var v = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
+	if self.weapon_disabled:
+		return Vector2(1 * sign(v.x) if v.x != 0.0 else 1.0, 1)
+	return v
+
+
+func update_ammo_counter():
+	var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
+	ammo_count.text = String(self._gun.get_ammo_count())
 
 
 func add_ammo(ammo: int):
 	if self._gun:
 		Wwise.post_event_id(AK.EVENTS.AMMO_PICKUP_PLAYER, self)
 		self._gun.add_ammo(ammo)
-		var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
-		ammo_count.text = String(self._gun.get_ammo_count())
+		update_ammo_counter()
 
 
 func get_ammo() -> int:
@@ -76,11 +109,24 @@ func player_input_gun_aim():
 	self.set_gun_angle(angle)
 
 
+func _update_reload_progress():
+	var progress = 1.0
+	if self._gun:
+		progress = self._gun.get_cooldown_percent()
+
+	if progress >= 1.0:
+		self.reload_progress_bar.visible = false
+	else:
+		self.reload_progress_bar.value = progress
+		self.reload_progress_bar.visible = true
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	_update_reload_progress()
 	if OS.is_debug_build():
 		if Input.is_action_just_pressed("ui_focus_next"):
-			var enemy = load("res://Scenes/Enemies/E_Goomba.tscn").instance()
+			var enemy = load("res://Scenes/Enemies/E_Umbrella.tscn").instance()
 			enemy.global_position = CameraSingleton.get_absolute_mouse_iso()
 			Scene.runtime.add_child(enemy)
 		if Input.is_action_just_pressed("ui_up"):
@@ -104,6 +150,8 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_left"):
 			print("Playing test sound")
 			Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, self)
+		if Input.is_action_just_pressed("ui_end"):
+			self.add_ammo(900)
 
 
 func _unhandled_input(event: InputEvent):
@@ -135,26 +183,32 @@ func _handle_camera():
 
 func _try_move():
 	# warning-ignore:return_value_discarded
-	move_and_slide(getv(LivingEntityVariable.VELOCITY) + self.knockback_velocity)
+	move_and_slide(getv(LivingEntityVariable.VELOCITY) + self._knockback_velocity)
 
 
 func _physics_process(delta):
 	# Wwise.set_2d_position(self, self.global_position)
-	self.knockback_velocity *= 0.9
-	if self.knockback_velocity.length() < 30:
-		self.knockback_velocity = Vector2.ZERO
+	self._knockback_velocity *= 0.9
+	if self._knockback_velocity.length() < 30:
+		self._knockback_velocity = Vector2.ZERO
 	_handle_camera()
 	_try_move()
 	._physics_process(delta)
 
-signal player_hurt
+
+func knockback(vel: Vector2):
+	self._knockback_velocity += vel
+
+
 func _on_take_damage(info: AttackInfo):
 	var direction = info.get_attack_direction(self.global_position)
-	self.knockback_velocity += (
-		direction
-		* info.knockback_factor
-		* self.getv(LivingEntityVariable.KNOCKBACK_FACTOR)
-		/ self.getv(LivingEntityVariable.WEIGHT)
+	knockback(
+		(
+			direction
+			* info.knockback_factor
+			* self.getv(LivingEntityVariable.KNOCKBACK_FACTOR)
+			/ self.getv(LivingEntityVariable.WEIGHT)
+		)
 	)
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	var bar = Scene.ui.get_node("HUD/HealthBar")
@@ -162,8 +216,9 @@ func _on_take_damage(info: AttackInfo):
 	Scene.ui.get_node("DamageFeedback").display_feedback()
 	._on_take_damage(info)
 
+
 func _on_death():
-	self.knockback_velocity = Vector2.ZERO
+	self._knockback_velocity = Vector2.ZERO
 	self.fsm.set_state(PlayerState.DEAD, true)
 	self.fsm.lock()
 	self._gun.queue_free()

@@ -8,7 +8,7 @@ var _path_complete: bool = false
 var _current_location: Vector2 = Vector2()
 
 var _auto_advance: bool = true
-var _advance_distance: float = 32
+var _advance_distance: float = 8
 
 
 func _init(start: Vector2, nodes: Array = []):
@@ -30,16 +30,16 @@ func path_exists() -> bool:
 	return self._path_steps.size() != 0
 
 
-func update(position: Vector2):
+func update(position: Vector2, entity_radius: float =0):
 	# check if we are close enough to advance to the next part of our path
 	self._current_location = position
-	self._check_advance()
+	self._check_advance(entity_radius)
 
 
-func _check_advance():
+func _check_advance(entity_radius: float):
 	if not self._auto_advance or self._path_complete:
 		return
-	if self._check_distance_to_next_node() < self._advance_distance:
+	if self._check_distance_to_next_node() - entity_radius < self._advance_distance:
 		self.advance()
 
 

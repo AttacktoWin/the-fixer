@@ -141,6 +141,11 @@ static func delta_frames(delta):
 	return delta * 60
 
 
+static func normalize_range(val: float, _min: float, _max: float) -> float:
+	var diff = _max - _min
+	return clamp((val - _min) * (1 / diff), 0, 1)
+
+
 static func interpolate(val: float, _min: float, _max: float, interp_type: int) -> float:
 	var diff = _max - _min
 	if val >= 1:

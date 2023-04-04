@@ -2,24 +2,16 @@
 
 class_name PlayerStateDash extends FSMNode
 
-var _dash_recharge_timer = 0
-var _dash_timer: Timer = Timer.new()
+var _dash_recharge_timer: float = 0
+var _dash_timer: float = 0.25
 var _dash_direction: Vector2 = Vector2()
 var _gun_angle: float = -1
 var _gun_counter: float = 0
+var _has_dashed = false
 
 const DASH_COOLDOWN = 1
 const DASH_GUN_ANGLE = 0.8
 const DASH_INVULNERABILITY = 0.5
-
-
-func _init():
-	self._dash_timer.one_shot = true
-	self._dash_timer.connect("timeout", self, "_dash_increment")  # warning-ignore:return_value_discarded
-
-
-func _ready():
-	add_child(self._dash_timer)
 
 
 # returns an array of states this entry claims to handle. This can be any data type
@@ -41,29 +33,34 @@ func enter():
 	self.entity.setv(LivingEntityVariable.VELOCITY, Vector2())
 	CameraSingleton.set_zoom(Vector2(1.01, 1.01))
 	self._dash_direction = CameraSingleton.get_mouse_from_camera_center_screen().normalized()
+	self._has_dashed = false
+	self._dash_timer = 0.25
 
-	self._dash_timer.wait_time = 0.25
-	self._dash_timer.start()
 
-
-func _dash_increment():
+func _dash_increment(delta):
 	CameraSingleton.set_zoom(Vector2(0.97, 0.97))
 	CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
 	CameraSingleton.set_zoom(Vector2(1, 1))
-	self.entity.move_and_slide(self._dash_direction * 240 * 60)
+	self.entity.move_and_slide(self._dash_direction * 320 * 60 * MathUtils.delta_frames(delta))
+	self._has_dashed = true
 
 
-func on_anim_reached_end():
+func on_anim_reached_end(_anim: String):
 	self.fsm.set_state(PlayerState.IDLE)
 
 
 func exit():
 	self._dash_recharge_timer = DASH_COOLDOWN
-	self._dash_timer.stop()  # interrupt
 
 
 func _background_physics(delta):
 	self._dash_recharge_timer -= delta
+
+
+func _physics_process(delta):
+	self._dash_timer -= delta
+	if self._dash_timer < 0 and not self._has_dashed:
+		_dash_increment(delta)
 
 
 func _process(delta):

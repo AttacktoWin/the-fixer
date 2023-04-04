@@ -24,7 +24,7 @@ radius = 400.0
 radius = 48.0
 
 [sub_resource type="CircleShape2D" id=81]
-radius = 48.0
+radius = 56.4358
 
 [sub_resource type="Shader" id=79]
 code = "shader_type canvas_item;
@@ -202,7 +202,7 @@ collision_layer = 0
 collision_mask = 32
 script = ExtResource( 5 )
 base_speed = 0.0
-base_damage = 25.0
+base_damage = 30.0
 attack_type = 2
 persistent = true
 die_on_pierce = false
@@ -221,16 +221,15 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="HurtCollider" type="CollisionShape2D" parent="FlipComponents/HurtBox"]
-position = Vector2( 5, -1 )
+position = Vector2( 5, -13 )
 rotation = 1.5708
 shape = SubResource( 81 )
 
 [node name="Visual" type="Node2D" parent="FlipComponents"]
-position = Vector2( -4.76989, -44 )
 
 [node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
 material = SubResource( 74 )
-position = Vector2( 3.76989, 2 )
+position = Vector2( -5, -40 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 9

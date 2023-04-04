@@ -6,6 +6,7 @@ export var base_speed: float = 340
 export var base_health: float = 100
 export var base_accel: float = 80
 export var base_drag: float = 1.025
+export var base_weight: float = 1
 onready var variables = VariableList.new(
 	self,
 	LivingEntityVariable.get_script_constant_map(),
@@ -16,7 +17,7 @@ onready var variables = VariableList.new(
 		LivingEntityVariable.VELOCITY: Vector2(),
 		LivingEntityVariable.DRAG: base_drag,
 		LivingEntityVariable.KNOCKBACK_FACTOR: 1,
-		LivingEntityVariable.WEIGHT: 1
+		LivingEntityVariable.WEIGHT: base_weight
 	}
 )
 
@@ -109,9 +110,8 @@ func _handle_alpha():
 			self.modulate.a = 1 * self._get_base_alpha()
 
 
-func _process(delta):
+func _process(_delta):
 	_handle_alpha()
-	._process(delta)
 
 
 func _physics_process(delta):
@@ -152,9 +152,15 @@ func _check_death() -> bool:
 		return true
 	return false
 
+func can_attack_hit(_info: AttackInfo) -> bool:
+	return true
 
 func can_be_hit():
 	return self.status_timers.get_timer(LivingEntityStatus.INVULNERABLE) <= 0 and not self._is_dead
+
+
+func knockback(_vel: Vector2):
+	pass
 
 
 func on_hit(info: AttackInfo):

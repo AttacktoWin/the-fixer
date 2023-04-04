@@ -32,7 +32,7 @@ func get_animation_name():
 
 # callback for when the animation ends or loops
 # warn: this function may behave erratically if the animation player is seeked
-func on_anim_reached_end():
+func on_anim_reached_end(_anim: String):
 	pass
 
 

@@ -1,17 +1,17 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Assets/Sprites/Bird/bird-spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemies/Umbrella/Umbrella.gd" type="Script" id=2]
-[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateChase.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Enemies/Umbrella/UmbrellaStateIdle.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/Entities/Attacks/BaseAttack.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Entities/Attacks/LocationAttack.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateAlert.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateAttackMelee.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Enemies/Umbrella/UmbrellaStateRangeAttack.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateHurt.gd" type="Script" id=9]
-[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateWander.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Enemies/Umbrella/UmbrellaStateChase.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Enemies/BaseEnemy.gd" type="Script" id=11]
-[ext_resource path="res://Scripts/Enemies/Spyder/SpyderStateRangeAttack.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/Enemies/Umbrella/UmbrellaStateMelee.gd" type="Script" id=12]
 
 [sub_resource type="CircleShape2D" id=97]
 radius = 512.0
@@ -25,12 +25,12 @@ radius = 300.0
 [sub_resource type="CircleShape2D" id=98]
 radius = 400.0
 
-[sub_resource type="RectangleShape2D" id=64]
-extents = Vector2( 15, 36.75 )
+[sub_resource type="CapsuleShape2D" id=109]
+radius = 24.5321
+height = 85.3061
 
-[sub_resource type="CapsuleShape2D" id=63]
-radius = 20.0
-height = 42.0
+[sub_resource type="CircleShape2D" id=110]
+radius = 53.0094
 
 [sub_resource type="Shader" id=100]
 code = "shader_type canvas_item;
@@ -94,6 +94,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=102]
 resource_name = "FLY_OPEN"
 length = 0.4
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -105,6 +106,24 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 27, 28, 29, 30 ]
+}
+
+[sub_resource type="Animation" id=111]
+resource_name = "IDLE"
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 14, 11 ]
 }
 
 [sub_resource type="Animation" id=103]
@@ -155,10 +174,22 @@ tracks/0/keys = {
 "update": 0,
 "values": [ 0 ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("SocketMuzzle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -54.2, 12 ) ]
+}
 
 [sub_resource type="Animation" id=106]
 resource_name = "SPIN"
-length = 0.9
+length = 1.2
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -166,10 +197,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 54, 55, 56, 57, 58, 59, 60, 61, 62 ]
+"values": [ 54, 55, 56, 57, 58, 59, 60, 61, 62, 56, 55, 54 ]
 }
 
 [sub_resource type="Animation" id=107]
@@ -207,6 +238,10 @@ tracks/0/keys = {
 [node name="E_Umbrella" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource( 2 )
+base_speed = 400.0
+has_ranged_attack = true
+melee_attack_range = 200.0
+ranged_attack_range = 375.0
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -61 )
@@ -254,18 +289,21 @@ collision_layer = 0
 collision_mask = 32
 script = ExtResource( 5 )
 base_speed = 0.0
+base_damage = 20.0
 allied_class = ExtResource( 11 )
+attack_type = 2
 persistent = true
 die_on_pierce = false
-camera_shake = 64.0
+camera_shake = 32.0
+knockback_factor = 2048.0
 max_pierce = 10000
 should_forget_entities = true
 entity_forget_time = 0.2
 
 [node name="HitCollider" type="CollisionShape2D" parent="FlipComponents/HitBox"]
-position = Vector2( -24, 9.75 )
-shape = SubResource( 64 )
-disabled = true
+position = Vector2( -1.2, 4 )
+rotation = -1.8326
+shape = SubResource( 109 )
 
 [node name="HurtBox" type="Area2D" parent="FlipComponents"]
 position = Vector2( -6.8, -34 )
@@ -273,15 +311,14 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="HurtCollider" type="CollisionShape2D" parent="FlipComponents/HurtBox"]
-position = Vector2( -3.2, -3 )
-shape = SubResource( 63 )
+position = Vector2( 1.8, -3 )
+shape = SubResource( 110 )
 
 [node name="Visual" type="Node2D" parent="FlipComponents"]
-position = Vector2( -6.8, -34 )
 
 [node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
 material = SubResource( 95 )
-position = Vector2( 0, -5 )
+position = Vector2( -3, -36 )
 scale = Vector2( 0.346525, 0.346525 )
 texture = ExtResource( 1 )
 hframes = 9
@@ -290,12 +327,16 @@ vframes = 7
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FlipComponents/Visual"]
 anims/FLY_CLOSED = SubResource( 101 )
 anims/FLY_OPEN = SubResource( 102 )
+anims/IDLE = SubResource( 111 )
 anims/IDLE_CLOSED = SubResource( 103 )
 anims/IDLE_OPEN = SubResource( 104 )
 anims/RESET = SubResource( 105 )
 anims/SPIN = SubResource( 106 )
 anims/TO_CLOSED = SubResource( 107 )
 anims/TO_OPEN = SubResource( 108 )
+
+[node name="SocketMuzzle" type="Node2D" parent="FlipComponents/Visual"]
+position = Vector2( -54.2, 12 )
 
 [node name="ProgressBar" parent="." instance=ExtResource( 4 )]
 margin_left = -23.0
@@ -305,26 +346,30 @@ margin_bottom = -86.0
 
 [node name="FSMController" type="Node2D" parent="."]
 script = ExtResource( 8 )
-root_state = NodePath("EnemyStateWander")
-animation_player = NodePath("")
+root_state = NodePath("UmbrellaStateIdle")
+animation_player = NodePath("../FlipComponents/Visual/AnimationPlayer")
 
-[node name="EnemyStateWander" type="Node2D" parent="FSMController"]
-script = ExtResource( 10 )
-draw_path = true
-
-[node name="EnemyStateAlert" type="Node2D" parent="FSMController"]
-script = ExtResource( 6 )
-
-[node name="EnemyStateChase" type="Node2D" parent="FSMController"]
+[node name="UmbrellaStateIdle" type="Node2D" parent="FSMController"]
 script = ExtResource( 3 )
+global_animation_speed_multiplier = 2.0
+wander_radius = 128.0
+walk_speed_multiplier = 2.0
+min_wander_delay = 0.1
+max_wander_delay = 1.0
+min_wander_distance_fac = 0.25
 
 [node name="EnemyStateHurt" type="Node2D" parent="FSMController"]
 script = ExtResource( 9 )
 
-[node name="EnemyStateAttackMelee" type="Node2D" parent="FSMController"]
-script = ExtResource( 7 )
-should_charge = false
-should_diable_pushing = false
+[node name="UmbrellaStateChase" type="Node2D" parent="FSMController"]
+script = ExtResource( 10 )
 
-[node name="SpyderStateRangedAttack" type="Node2D" parent="FSMController"]
+[node name="UmbrellaStateRangedAttack" type="Node2D" parent="FSMController"]
+script = ExtResource( 7 )
+
+[node name="EnemyStateAlert" type="Node2D" parent="FSMController"]
+script = ExtResource( 6 )
+animation_name = "TO_OPEN"
+
+[node name="UmbrellaStateMelee" type="Node2D" parent="FSMController"]
 script = ExtResource( 12 )

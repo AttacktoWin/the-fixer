@@ -64,7 +64,8 @@ func get_mouse_from_camera_center() -> Vector2:
 func get_mouse_from_camera_center_screen() -> Vector2:
 	return get_mouse_from_camera_center() * MathUtils.FROM_ISO
 
-func get_camera_center()->Vector2:
+
+func get_camera_center() -> Vector2:
 	return self._camera.transform.origin
 
 
@@ -94,7 +95,7 @@ func _process(_delta):
 	if not self._camera:
 		return
 	var delta_60 = _delta * 60
-	self._shake_timer = max(self._shake_timer / 1.2 / delta_60, 0)
+	self._shake_timer = max(self._shake_timer / pow(1.2, MathUtils.delta_frames(_delta)), 0)
 
 	# move
 	if not self._frozen_dict[TARGET.LOCATION]:

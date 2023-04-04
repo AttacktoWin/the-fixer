@@ -30,6 +30,9 @@ func enter():
 	self._wait_timer = WAIT_TIME
 	self._target_direction = (self.entity.get_target().global_position - self.entity.global_position).normalized()
 	self._last_position = self.entity.global_position
+	var x = sign(self._target_direction.x)
+	if x != 0:
+		self.entity.flip_components.scale.x = -x
 
 
 func state_is_interruptable():

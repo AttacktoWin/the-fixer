@@ -20,12 +20,14 @@ var _state_index = 0
 var _last_anim = ""
 var _locked = false
 
-var P = load("res://Scripts/Player/Player.gd")
+#var TestEntity = load("res://Scripts/Enemies/Umbrella/Umbrella.gd")
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	yield(owner, "ready")  # wait for parent node to finish intialization
+
+	PausingSingleton.connect("pause_changed", self, "_on_pause_changed")  # warning-ignore:return_value_discarded
 
 	self._current_state = get_node(root_state) if root_state else null
 	self.entity = get_node(root_state) if entity else owner
@@ -85,6 +87,17 @@ func remove_state(node: FSMNode):
 	self.remove_child(node)
 
 
+func _on_pause_changed(pause_val, _entity):
+	if has_animation_player():
+		var player = get_animation_player()
+		if player.current_animation == "":
+			return
+		if pause_val:
+			player.stop(false)
+		else:
+			player.play()
+
+
 func _process(delta):
 	if PausingSingleton.is_paused():
 		return
@@ -128,7 +141,7 @@ func _set_animation_if_anim_player(name: String):
 	if self.animation_player.current_animation != name:
 		reset_animation_info()
 		self._last_animation_timer = 0
-		self._last_anim = self.animation_player.current_animation
+		self._last_anim = name
 		self.animation_player.play(name)
 
 
@@ -142,14 +155,21 @@ func get_animation() -> String:
 	return self.animation_player.current_animation
 
 
+func is_animation_complete() -> bool:
+	if not self.has_animation_player():
+		return false
+	return self.animation_player.current_animation == ""
+
+
 func _check_anim_loop(delta):
 	if not self.has_animation_player():
 		return
 	var ap = self.animation_player
 
 	if ap.current_animation == "" and self._last_anim != "":
-		self._on_animation_looped()
+		var name = self._last_anim
 		self._last_anim = ""
+		self._on_animation_looped(name)
 
 	if ap.current_animation == "":
 		return
@@ -161,13 +181,13 @@ func _check_anim_loop(delta):
 		(sign(current - last) != sign(ap.playback_speed) and current != 0 and current - last != 0)
 		or delta >= ap.current_animation_length
 	):
-		self._on_animation_looped()
+		self._on_animation_looped(ap.current_animation)
 
 	self._last_animation_timer = current
 
 
-func _on_animation_looped():
-	self._current_state.on_anim_reached_end()
+func _on_animation_looped(val: String):
+	self._current_state.on_anim_reached_end(val)
 
 
 func _transition(target: FSMNode, target_name):
@@ -219,7 +239,7 @@ func reset_animation_info():
 	self._last_animation_timer = 0
 
 
-func current_state():
+func current_state() -> FSMNode:
 	return self._current_state
 
 

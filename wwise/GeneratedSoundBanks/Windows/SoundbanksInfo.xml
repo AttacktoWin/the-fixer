@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="SFX" Hash="2346434604">
+		<SoundBank Id="89505537" Language="SFX" Hash="3253593786">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>89505537.bnk</Path>
@@ -57,7 +57,14 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="3269141561" Name="Attack_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Attack_Beetle"/>
-				<Event Id="2348673105" Name="Attack_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Attack_Bird"/>
+				<Event Id="2348673105" Name="Attack_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Attack_Bird">
+					<IncludedMemoryFiles>
+						<File Id="1061296916" Language="SFX">
+							<ShortName>bird_attack.wav</ShortName>
+							<Path>SFX\bird_attack_12AB079B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="4275276242" Name="Attack_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Attack_Manifestation"/>
 				<Event Id="3252579989" Name="Attack_Pillbug" ObjectPath="\Events\Default Work Unit\Enemy Actions\Pillbug Actions\Attack_Pillbug">
 					<IncludedMemoryFiles>
@@ -117,7 +124,7 @@
 					<IncludedMemoryFiles>
 						<File Id="590813281" Language="SFX">
 							<ShortName>Hit_Knuckles_Player.wav</ShortName>
-							<Path>SFX\Hit_Knuckles_Player_E815407F.wem</Path>
+							<Path>SFX\Hit_Knuckles_Player_09368E6E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -125,15 +132,43 @@
 					<IncludedMemoryFiles>
 						<File Id="73824784" Language="SFX">
 							<ShortName>Hit_Pistol_Player.wav</ShortName>
-							<Path>SFX\Hit_Pistol_Player_4922D340.wem</Path>
+							<Path>SFX\Hit_Pistol_Player_2DCB09E6.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3277391769" Name="Notice_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle"/>
-				<Event Id="1274459313" Name="Notice_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Notice_Bird"/>
-				<Event Id="1980235893" Name="Notice_Pillbug" ObjectPath="\Events\Default Work Unit\Enemy Actions\Pillbug Actions\Notice_Pillbug"/>
+				<Event Id="3277391769" Name="Notice_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1274459313" Name="Notice_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Notice_Bird">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1980235893" Name="Notice_Pillbug" ObjectPath="\Events\Default Work Unit\Enemy Actions\Pillbug Actions\Notice_Pillbug">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1582328950" Name="Roar_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Roar_Manifestation"/>
-				<Event Id="2396170652" Name="Shoot_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Shoot_Bird"/>
+				<Event Id="2396170652" Name="Shoot_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Shoot_Bird">
+					<IncludedMemoryFiles>
+						<File Id="142273814" Language="SFX">
+							<ShortName>Shoot_Bird.wav</ShortName>
+							<Path>SFX\Shoot_Bird_6F6797E0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1198969758" Name="Swing_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Swing_Knuckles_Player">
 					<IncludedMemoryFiles>
 						<File Id="215651341" Language="SFX">
@@ -142,7 +177,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2010675244" Name="Weapon_Pickup_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Weapon_Pickup_Player"/>
+				<Event Id="2010675244" Name="Weapon_Pickup_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Weapon_Pickup_Player">
+					<IncludedMemoryFiles>
+						<File Id="1008462791" Language="SFX">
+							<ShortName>weapon_pickup_player.wav</ShortName>
+							<Path>SFX\weapon_pickup_player_97E11A47.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 			</IncludedEvents>
 			<GameParameters>
 				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
@@ -153,17 +195,45 @@
 			<ShortName>Init</ShortName>
 			<Path>1355168291.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="1551306167" Language="SFX" Hash="2958860323">
+		<SoundBank Id="1551306167" Language="SFX" Hash="3829557501">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
 			<ShortName>UI</ShortName>
 			<Path>1551306167.bnk</Path>
 			<IncludedEvents>
-				<Event Id="3852800920" Name="Advance_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Advance_Textbox"/>
+				<Event Id="3852800920" Name="Advance_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Advance_Textbox">
+					<IncludedMemoryFiles>
+						<File Id="221732163" Language="SFX">
+							<ShortName>ui select.wav</ShortName>
+							<Path>SFX\ui select_26416A3B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2891465027" Name="Appear_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Appear_Textbox"/>
-				<Event Id="407919326" Name="Back_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Back_Menu"/>
+				<Event Id="407919326" Name="Back_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Back_Menu">
+					<IncludedMemoryFiles>
+						<File Id="933296836" Language="SFX">
+							<ShortName>ui move left.wav</ShortName>
+							<Path>SFX\ui move left_8B132BEB.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="476036265" Name="Disappear_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Disappear_Textbox"/>
-				<Event Id="338712458" Name="Forward_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Forward_Menu"/>
-				<Event Id="3289055956" Name="Move_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Move_Menu"/>
+				<Event Id="338712458" Name="Forward_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Forward_Menu">
+					<IncludedMemoryFiles>
+						<File Id="434915307" Language="SFX">
+							<ShortName>ui move right.wav</ShortName>
+							<Path>SFX\ui move right_E0C3F934.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3289055956" Name="Move_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Move_Menu">
+					<IncludedMemoryFiles>
+						<File Id="221732163" Language="SFX">
+							<ShortName>ui select.wav</ShortName>
+							<Path>SFX\ui select_26416A3B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 			</IncludedEvents>
 		</SoundBank>
 		<SoundBank Id="3161908922" Language="SFX">
@@ -171,7 +241,14 @@
 			<ShortName>Main</ShortName>
 			<Path>3161908922.bnk</Path>
 			<IncludedEvents>
-				<Event Id="3852800920" Name="Advance_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Advance_Textbox"/>
+				<Event Id="3852800920" Name="Advance_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Advance_Textbox">
+					<IncludedMemoryFiles>
+						<File Id="221732163" Language="SFX">
+							<ShortName>ui select.wav</ShortName>
+							<Path>SFX\ui select_26416A3B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="3344761002" Name="Ammo_Pickup_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Ammo_Pickup_Player">
 					<IncludedMemoryFiles>
 						<File Id="68113316" Language="SFX">
@@ -214,7 +291,14 @@
 				</Event>
 				<Event Id="2891465027" Name="Appear_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Appear_Textbox"/>
 				<Event Id="3269141561" Name="Attack_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Attack_Beetle"/>
-				<Event Id="2348673105" Name="Attack_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Attack_Bird"/>
+				<Event Id="2348673105" Name="Attack_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Attack_Bird">
+					<IncludedMemoryFiles>
+						<File Id="1061296916" Language="SFX">
+							<ShortName>bird_attack.wav</ShortName>
+							<Path>SFX\bird_attack_12AB079B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="4275276242" Name="Attack_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Attack_Manifestation"/>
 				<Event Id="3252579989" Name="Attack_Pillbug" ObjectPath="\Events\Default Work Unit\Enemy Actions\Pillbug Actions\Attack_Pillbug">
 					<IncludedMemoryFiles>
@@ -232,7 +316,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="407919326" Name="Back_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Back_Menu"/>
+				<Event Id="407919326" Name="Back_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Back_Menu">
+					<IncludedMemoryFiles>
+						<File Id="933296836" Language="SFX">
+							<ShortName>ui move left.wav</ShortName>
+							<Path>SFX\ui move left_8B132BEB.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="282373675" Name="Charge_Spyder" ObjectPath="\Events\Default Work Unit\Enemy Actions\Spyder Actions\Charge_Spyder">
 					<IncludedMemoryFiles>
 						<File Id="865640855" Language="SFX">
@@ -280,12 +371,19 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="338712458" Name="Forward_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Forward_Menu"/>
+				<Event Id="338712458" Name="Forward_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Forward_Menu">
+					<IncludedMemoryFiles>
+						<File Id="434915307" Language="SFX">
+							<ShortName>ui move right.wav</ShortName>
+							<Path>SFX\ui move right_E0C3F934.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="2020382007" Name="Hit_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Knuckles_Player">
 					<IncludedMemoryFiles>
 						<File Id="590813281" Language="SFX">
 							<ShortName>Hit_Knuckles_Player.wav</ShortName>
-							<Path>SFX\Hit_Knuckles_Player_E815407F.wem</Path>
+							<Path>SFX\Hit_Knuckles_Player_09368E6E.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -293,16 +391,51 @@
 					<IncludedMemoryFiles>
 						<File Id="73824784" Language="SFX">
 							<ShortName>Hit_Pistol_Player.wav</ShortName>
-							<Path>SFX\Hit_Pistol_Player_4922D340.wem</Path>
+							<Path>SFX\Hit_Pistol_Player_2DCB09E6.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3289055956" Name="Move_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Move_Menu"/>
-				<Event Id="3277391769" Name="Notice_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle"/>
-				<Event Id="1274459313" Name="Notice_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Notice_Bird"/>
-				<Event Id="1980235893" Name="Notice_Pillbug" ObjectPath="\Events\Default Work Unit\Enemy Actions\Pillbug Actions\Notice_Pillbug"/>
+				<Event Id="3289055956" Name="Move_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Move_Menu">
+					<IncludedMemoryFiles>
+						<File Id="221732163" Language="SFX">
+							<ShortName>ui select.wav</ShortName>
+							<Path>SFX\ui select_26416A3B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3277391769" Name="Notice_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1274459313" Name="Notice_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Notice_Bird">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1980235893" Name="Notice_Pillbug" ObjectPath="\Events\Default Work Unit\Enemy Actions\Pillbug Actions\Notice_Pillbug">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1582328950" Name="Roar_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Roar_Manifestation"/>
-				<Event Id="2396170652" Name="Shoot_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Shoot_Bird"/>
+				<Event Id="2396170652" Name="Shoot_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Shoot_Bird">
+					<IncludedMemoryFiles>
+						<File Id="142273814" Language="SFX">
+							<ShortName>Shoot_Bird.wav</ShortName>
+							<Path>SFX\Shoot_Bird_6F6797E0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1198969758" Name="Swing_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Swing_Knuckles_Player">
 					<IncludedMemoryFiles>
 						<File Id="215651341" Language="SFX">
@@ -311,13 +444,20 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="2010675244" Name="Weapon_Pickup_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Weapon_Pickup_Player"/>
+				<Event Id="2010675244" Name="Weapon_Pickup_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Weapon_Pickup_Player">
+					<IncludedMemoryFiles>
+						<File Id="1008462791" Language="SFX">
+							<ShortName>weapon_pickup_player.wav</ShortName>
+							<Path>SFX\weapon_pickup_player_97E11A47.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 			</IncludedEvents>
 			<GameParameters>
 				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="3674323703">
+		<SoundBank Id="3991942870" Language="SFX" Hash="741126722">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>3991942870.bnk</Path>

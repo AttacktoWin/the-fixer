@@ -198,3 +198,8 @@ draw_path = true
 
 [node name="EnemyStateHurt" type="Node2D" parent="FSMController"]
 script = ExtResource( 10 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Node2D"]
+position = Vector2( 9, -13 )
