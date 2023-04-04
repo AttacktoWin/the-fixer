@@ -226,11 +226,10 @@ rotation = 1.5708
 shape = SubResource( 81 )
 
 [node name="Visual" type="Node2D" parent="FlipComponents"]
-position = Vector2( -4.76989, -44 )
 
 [node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
 material = SubResource( 74 )
-position = Vector2( 3.76989, 2 )
+position = Vector2( -5, -40 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 9

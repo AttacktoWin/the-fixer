@@ -152,6 +152,8 @@ func _check_death() -> bool:
 		return true
 	return false
 
+func can_attack_hit(_info: AttackInfo) -> bool:
+	return true
 
 func can_be_hit():
 	return self.status_timers.get_timer(LivingEntityStatus.INVULNERABLE) <= 0 and not self._is_dead

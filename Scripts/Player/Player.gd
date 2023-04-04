@@ -126,7 +126,7 @@ func _process(_delta):
 	_update_reload_progress()
 	if OS.is_debug_build():
 		if Input.is_action_just_pressed("ui_focus_next"):
-			var enemy = load("res://Scenes/Enemies/E_Goomba.tscn").instance()
+			var enemy = load("res://Scenes/Enemies/E_Umbrella.tscn").instance()
 			enemy.global_position = CameraSingleton.get_absolute_mouse_iso()
 			Scene.runtime.add_child(enemy)
 		if Input.is_action_just_pressed("ui_up"):

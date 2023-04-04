@@ -26,6 +26,7 @@ export var can_hit_self: bool = false
 export var ignore_rotation: bool = false
 export var should_forget_entities: bool = false
 export var entity_forget_time: float = 1  # useful for repeating attacks
+export var is_ranged: bool = false
 var _hitbox: Area2D = null
 
 # runtime vars
@@ -77,6 +78,7 @@ func _generate_attack_info(_entity: LivingEntity) -> AttackInfo:
 		self._damage_source,
 		self.damage_type,
 		Vector2(INF, INF),
+		self,
 		self.getv(AttackVariable.DAMAGE),
 		self.getv(AttackVariable.DIRECTION),
 		self.knockback_factor,
@@ -88,14 +90,14 @@ func _on_hit_entity(_entity: LivingEntity):
 	pass
 
 
-func _hit_entity(entity: LivingEntity) -> void:
+func _hit_entity(entity: LivingEntity, info: AttackInfo) -> void:
 	self._hit_entities[entity] = self._current_time
 	self._pierce += 1
 	CameraSingleton.shake(self.camera_shake)
-	entity.on_hit(self._generate_attack_info(entity))
-	self._on_hit_entity(entity)
+	entity.on_hit(info)
+	_on_hit_entity(entity)
 	if self.die_on_pierce and self._pierce >= max_pierce:
-		self._expire()
+		_expire()
 
 
 func _filter_entity(entity: LivingEntity) -> bool:
@@ -125,9 +127,15 @@ func _filter_entity(entity: LivingEntity) -> bool:
 func _try_hit_entity(entity: LivingEntity) -> bool:
 	if self._pierce >= self.max_pierce:
 		return false
-	if not self._filter_entity(entity):
+
+	if not _filter_entity(entity):
 		return false
-	self._hit_entity(entity)
+
+	var info = _generate_attack_info(entity)
+	if not entity.can_attack_hit(info):
+		return false
+
+	_hit_entity(entity, info)
 	return true
 
 

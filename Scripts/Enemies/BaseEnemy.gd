@@ -7,7 +7,7 @@ onready var visual: Node2D = $FlipComponents/Visual
 onready var sprite_material: Material = null
 onready var fsm: FSMController = $FSMController
 onready var flip_components: Node2D = $FlipComponents
-onready var hitbox: Node2D = $FlipComponents/HitBox
+onready var hitbox: Node2D = get_node_or_null("FlipComponents/HitBox")
 
 onready var idle_collider: Area2D = $IdleRadius
 onready var nearby_entities: Area2D = $NearbyEntities
@@ -109,6 +109,10 @@ func _handle_pathfinding(delta):
 		set_nav_path(
 			Pathfinder.generate_path(self.global_position, self._last_known_target_location)
 		)
+
+
+func get_steered_direction(to_location: Vector2):
+	return apply_steering((to_location - self.global_position).normalized())
 
 
 func get_wanted_direction() -> Vector2:
@@ -220,6 +224,10 @@ func _on_take_damage(info: AttackInfo):
 	var bar = self.get_node("ProgressBar")
 	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
 	._on_take_damage(info)
+
+
+func get_x_direction():
+	return -int(sign(flip_components.scale.x)) if flip_components.scale.x != 0 else -1
 
 
 func _draw():

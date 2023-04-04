@@ -8,9 +8,10 @@ export var draw_path: bool = false
 var _home: Vector2 = Vector2(0, 0)
 var _wander_timer: float = 0
 var _path: PathfindResult = null
-const MIN_WANDER_DELAY = 0.25
-const MAX_WANDER_DELAY = 2
-const MIN_WANDER_DISTANCE_FAC = 0.1
+
+export var min_wander_delay: float = 0.25
+export var max_wander_delay: float = 2
+export var min_wander_distance_fac: float = 0.1
 
 
 func get_handled_states():
@@ -51,11 +52,9 @@ func _check_for_targets():
 func enter():
 	self._home = self.entity.global_position
 	self._path = null
-	self._wander_timer = rand_range(MIN_WANDER_DELAY, MAX_WANDER_DELAY)
+	self._wander_timer = rand_range(self.min_wander_delay, self.max_wander_delay)
 	self.entity.sprite_material.set_shader_param(Constants.SP.B_FLASH, false)
-	self.entity.sprite_material.set_shader_param(
-		Constants.SP.C_LINE_COLOR, Constants.COLOR.BLACK
-	)
+	self.entity.sprite_material.set_shader_param(Constants.SP.C_LINE_COLOR, Constants.COLOR.BLACK)
 	self.entity.clear_investigate_target()
 	self.entity.clear_target(false)
 
@@ -64,7 +63,7 @@ func _path_logic(delta):
 	if self._path == null:
 		self._wander_timer -= delta
 		if self._wander_timer < 0 and self._generate_random_path():
-			self._wander_timer = rand_range(MIN_WANDER_DELAY, MAX_WANDER_DELAY)
+			self._wander_timer = rand_range(self.min_wander_delay, self.max_wander_delay)
 
 
 func _generate_random_path():
@@ -73,8 +72,8 @@ func _generate_random_path():
 	while self._path == null and attempts > 0:
 		var angle = randf() * PI * 2
 		var dist = (
-			(randf() + MIN_WANDER_DISTANCE_FAC)
-			/ (1 + MIN_WANDER_DISTANCE_FAC)
+			(randf() + self.min_wander_distance_fac)
+			/ (1 + self.min_wander_distance_fac)
 			* wander_radius
 		)
 		var loc = self._home + Vector2(cos(angle) * dist, sin(angle) * dist)
@@ -90,7 +89,7 @@ func _follow_path(delta):
 	if self._path == null:
 		_try_move(delta, Vector2())
 		return
-	self._path.update(self.entity.global_position)
+	self._path.update(self.entity.global_position, self.entity.entity_radius)
 	var dir = self.entity.apply_steering(self._path.get_target_vector())
 	var vel = self.entity.get_wanted_velocity(dir) * walk_speed_multiplier
 	_try_move(delta, vel)

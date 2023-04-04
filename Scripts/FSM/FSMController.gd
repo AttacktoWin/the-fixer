@@ -27,7 +27,7 @@ var P = load("res://Scripts/Player/Player.gd")
 func _ready():
 	yield(owner, "ready")  # wait for parent node to finish intialization
 
-	PausingSingleton.connect("pause_changed", self, "_on_pause_changed")
+	PausingSingleton.connect("pause_changed", self, "_on_pause_changed")  # warning-ignore:return_value_discarded
 
 	self._current_state = get_node(root_state) if root_state else null
 	self.entity = get_node(root_state) if entity else owner
@@ -155,6 +155,12 @@ func get_animation() -> String:
 	return self.animation_player.current_animation
 
 
+func is_animation_complete() -> bool:
+	if not self.has_animation_player():
+		return false
+	return self.animation_player.current_animation == ""
+
+
 func _check_anim_loop(delta):
 	if not self.has_animation_player():
 		return
@@ -232,7 +238,7 @@ func reset_animation_info():
 	self._last_animation_timer = 0
 
 
-func current_state():
+func current_state() -> FSMNode:
 	return self._current_state
 
 
