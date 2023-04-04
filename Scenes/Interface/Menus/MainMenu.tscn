@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/UI/Buttons/button-newgame-hover.png" type="Texture" id=1]
+[ext_resource path="res://Assets/UI/Buttons/button-resume.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/Buttons/button-newgame.png" type="Texture" id=3]
+[ext_resource path="res://Assets/UI/Buttons/button-resume-hover.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/Buttons/button-quitgame-hover.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/Buttons/button-quitgame.png" type="Texture" id=6]
+
+[sub_resource type="GDScript" id=1]
+resource_name = "StartGame"
+script/source = "extends TextureButton
+
+func _ready():
+	pass # Replace with function body.
+
+
+func start_game():
+	get_tree().change_scene(\"res://Scenes/Main.tscn\")
+"
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -511.0
+margin_top = 260.0
+margin_right = 493.0
+margin_bottom = 411.0
+
+[node name="New_Cont" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 500.0
+margin_bottom = 151.0
+
+[node name="New Game" type="TextureButton" parent="HBoxContainer/New_Cont"]
+margin_right = 500.0
+margin_bottom = 150.0
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 1 )
+script = SubResource( 1 )
+
+[node name="Resume" type="TextureButton" parent="HBoxContainer/New_Cont"]
+visible = false
+margin_right = 500.0
+margin_bottom = 150.0
+texture_normal = ExtResource( 2 )
+texture_hover = ExtResource( 4 )
+
+[node name="Quit" type="TextureButton" parent="HBoxContainer"]
+margin_left = 504.0
+margin_right = 1004.0
+margin_bottom = 151.0
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+
+[connection signal="button_down" from="HBoxContainer/New_Cont/New Game" to="HBoxContainer/New_Cont/New Game" method="start_game"]

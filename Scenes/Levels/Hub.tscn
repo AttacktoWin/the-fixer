@@ -737,7 +737,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 4
+frame = 5
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
@@ -782,7 +782,7 @@ position = Vector2( -172, -240 )
 [node name="Runtime" type="YSort" parent="SortableEntities"]
 
 [node name="Tutorial" type="Sprite" parent="."]
-position = Vector2( 646, -892 )
+position = Vector2( 645, -862 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 21 )
 offset = Vector2( 0, -200 )
