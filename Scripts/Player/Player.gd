@@ -10,6 +10,7 @@ onready var arms_container: Node2D = $Visual/ArmsContainer
 onready var arms_secondary: Node2D = $Visual/Arm2
 onready var visual: Node2D = $Visual
 onready var fsm: FSMController = $FSMController
+onready var reload_progress_bar: ProgressBar = $ReloadProgress
 onready var melee_hitbox: Area2D = $Visual/HitBox
 
 var weapon_disabled = false setget set_weapon_disabled
@@ -108,8 +109,21 @@ func player_input_gun_aim():
 	self.set_gun_angle(angle)
 
 
+func _update_reload_progress():
+	var progress = 1.0
+	if self._gun:
+		progress = self._gun.get_cooldown_percent()
+
+	if progress >= 1.0:
+		self.reload_progress_bar.visible = false
+	else:
+		self.reload_progress_bar.value = progress
+		self.reload_progress_bar.visible = true
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	_update_reload_progress()
 	if OS.is_debug_build():
 		if Input.is_action_just_pressed("ui_focus_next"):
 			var enemy = load("res://Scenes/Enemies/E_Goomba.tscn").instance()

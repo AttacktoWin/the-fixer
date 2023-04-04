@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Assets/Sprites/Fixer/fixer-spritesheet-WHOLE.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player/PlayerStateFree.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scripts/Player/PlayerStateDev.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/Player/PlayerMeleeAttack.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Player/PlayerStateMelee.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=12]
 
 [sub_resource type="CircleShape2D" id=14]
@@ -342,3 +343,12 @@ script = ExtResource( 8 )
 
 [node name="PlayerStateMelee" type="Node2D" parent="FSMController"]
 script = ExtResource( 10 )
+
+[node name="ReloadProgress" parent="." instance=ExtResource( 11 )]
+visible = false
+margin_left = -26.0
+margin_top = -131.0
+margin_right = 26.0
+margin_bottom = -122.0
+max_value = 1.0
+value = 1.0

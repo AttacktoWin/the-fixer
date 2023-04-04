@@ -88,8 +88,17 @@ func _get_aim_position() -> Vector2:
 func set_disabled(val: bool) -> void:
 	self._disabled = not val
 
+
 func can_fire() -> bool:
-	return self._cooldown_timer <= 0 and (self.infinite_ammo or self.ammo_count > 0) and not self._disabled
+	return (
+		self._cooldown_timer <= 0
+		and (self.infinite_ammo or self.ammo_count > 0)
+		and not self._disabled
+	)
+
+
+func get_cooldown_percent():
+	return 1 - clamp(self._cooldown_timer / self.cooldown, 0, 1)
 
 
 func get_angle() -> float:
