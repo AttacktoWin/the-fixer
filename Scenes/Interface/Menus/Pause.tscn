@@ -34,7 +34,7 @@ margin_bottom = 304.0
 texture_normal = ExtResource( 6 )
 texture_hover = ExtResource( 5 )
 
-[node name="Exit to menu" type="TextureButton" parent="VBoxContainer"]
+[node name="Exit" type="TextureButton" parent="VBoxContainer"]
 margin_top = 308.0
 margin_right = 500.0
 margin_bottom = 458.0
