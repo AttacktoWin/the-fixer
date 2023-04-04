@@ -1,3 +1,5 @@
+# Author: Marcus
+
 class_name BaseAttack extends Node2D
 
 enum EVENTS { CREATE, STEP, MOVE, HIT_WALL, HIT_ENEMY, DESTROY }
@@ -26,7 +28,6 @@ export var can_hit_self: bool = false
 export var ignore_rotation: bool = false
 export var should_forget_entities: bool = false
 export var entity_forget_time: float = 1  # useful for repeating attacks
-export var is_ranged: bool = false
 var _hitbox: Area2D = null
 
 # runtime vars

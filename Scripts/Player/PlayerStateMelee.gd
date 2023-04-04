@@ -16,5 +16,5 @@ func enter():
 	Wwise.post_event_id(AK.EVENTS.SWING_KNUCKLES_PLAYER, self.entity)
 
 
-func on_anim_reached_end():
+func on_anim_reached_end(_anim: String):
 	self.fsm.set_state(PlayerState.IDLE)

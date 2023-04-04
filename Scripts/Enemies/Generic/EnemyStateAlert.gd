@@ -4,6 +4,7 @@ class_name EnemyStateAlert extends FSMNode
 
 export var animation_name: String = "ALERTED"
 
+
 func get_handled_states():
 	return [EnemyState.ALERTED]
 
@@ -14,7 +15,7 @@ func enter():
 	self.fsm.set_animation(animation_name)
 
 
-func on_anim_reached_end():
+func on_anim_reached_end(_anim: String):
 	self.fsm.set_state(EnemyState.CHASING)
 
 

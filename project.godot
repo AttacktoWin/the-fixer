@@ -244,6 +244,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Entities/LivingEntities/LivingEntityVariable.gd"
 }, {
+"base": "BaseAttack",
+"class": "LocationAttack",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Attacks/LocationAttack.gd"
+}, {
 "base": "Reference",
 "class": "MathUtils",
 "language": "GDScript",
@@ -419,6 +424,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Umbrella/UmbrellaStateIdle.gd"
 }, {
+"base": "FSMNode",
+"class": "UmbrellaStateMelee",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Umbrella/UmbrellaStateMelee.gd"
+}, {
 "base": "EnemyStateMoving",
 "class": "UmbrellaStateRangedAttack",
 "language": "GDScript",
@@ -502,6 +512,7 @@ _global_script_class_icons={
 "LivingEntity": "",
 "LivingEntityStatus": "",
 "LivingEntityVariable": "",
+"LocationAttack": "",
 "MathUtils": "",
 "MovementAttack": "",
 "NPC": "",
@@ -537,6 +548,7 @@ _global_script_class_icons={
 "Umbrella": "",
 "UmbrellaStateChase": "",
 "UmbrellaStateIdle": "",
+"UmbrellaStateMelee": "",
 "UmbrellaStateRangedAttack": "",
 "UnlockTable": "",
 "UnlockTableEntry": "",

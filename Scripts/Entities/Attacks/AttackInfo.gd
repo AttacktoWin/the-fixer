@@ -1,3 +1,5 @@
+# Author: Marcus
+
 class_name AttackInfo extends Resource
 
 var damage_source = null

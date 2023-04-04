@@ -34,7 +34,7 @@ func _physics_process(_delta):
 	self.entity._try_move()
 
 
-func on_anim_reached_end():
+func on_anim_reached_end(_anim: String):
 	if not self.entity or not self.entity.has_target():
 		self.fsm.set_state(EnemyState.IDLE)
 		return

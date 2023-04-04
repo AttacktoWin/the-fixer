@@ -20,7 +20,7 @@ var _state_index = 0
 var _last_anim = ""
 var _locked = false
 
-var P = load("res://Scripts/Player/Player.gd")
+#var TestEntity = load("res://Scripts/Enemies/Umbrella/Umbrella.gd")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -141,7 +141,7 @@ func _set_animation_if_anim_player(name: String):
 	if self.animation_player.current_animation != name:
 		reset_animation_info()
 		self._last_animation_timer = 0
-		self._last_anim = self.animation_player.current_animation
+		self._last_anim = name
 		self.animation_player.play(name)
 
 
@@ -167,8 +167,9 @@ func _check_anim_loop(delta):
 	var ap = self.animation_player
 
 	if ap.current_animation == "" and self._last_anim != "":
-		self._on_animation_looped()
+		var name = self._last_anim
 		self._last_anim = ""
+		self._on_animation_looped(name)
 
 	if ap.current_animation == "":
 		return
@@ -180,13 +181,13 @@ func _check_anim_loop(delta):
 		(sign(current - last) != sign(ap.playback_speed) and current != 0 and current - last != 0)
 		or delta >= ap.current_animation_length
 	):
-		self._on_animation_looped()
+		self._on_animation_looped(ap.current_animation)
 
 	self._last_animation_timer = current
 
 
-func _on_animation_looped():
-	self._current_state.on_anim_reached_end()
+func _on_animation_looped(val: String):
+	self._current_state.on_anim_reached_end(val)
 
 
 func _transition(target: FSMNode, target_name):

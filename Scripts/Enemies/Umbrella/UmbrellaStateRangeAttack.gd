@@ -88,7 +88,8 @@ func _handle_weapon(delta):
 				self._shoot_counter += 1
 				self._shoot()
 				if self._shoot_counter >= SHOTS_PER_VOLLEY:
-					self.fsm.set_animation("TO_OPEN")
+					#self.fsm.set_animation("TO_OPEN")
+					self.fsm.set_state(EnemyState.ATTACKING_MELEE)
 
 	else:
 		self.fsm.set_animation("IDLE_OPEN")

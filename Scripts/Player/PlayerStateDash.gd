@@ -45,7 +45,7 @@ func _dash_increment(delta):
 	self._has_dashed = true
 
 
-func on_anim_reached_end():
+func on_anim_reached_end(_anim: String):
 	self.fsm.set_state(PlayerState.IDLE)
 
 
