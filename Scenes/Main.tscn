@@ -17,10 +17,10 @@
 script/source = "extends CanvasLayer
 
 func _ready():
-	Scene.connect(\"transition_complete\",self,\"enable_ui\")
+	Scene.connect(\"world_updated\",self,\"_reload\")
 
-func enable_ui(state):
-	get_node(\"UI\").visible = !state
+func _reload():
+	get_node(\"UI/HUD\").visible = Scene.level_node.ui_enabled
 "
 
 [sub_resource type="Shader" id=4]
@@ -71,6 +71,19 @@ shader_param/noise = ExtResource( 4 )
 [sub_resource type="GDScript" id=6]
 script/source = "extends ColorRect
 var player_node:KinematicBody2D
+
+func _ready():
+	Scene.connect(\"world_updated\", self, \"_reload\")
+	
+func _reload():
+	var alpha = 0.0
+	var vision_range = 0.3
+	if Scene.level_node.vision_enabled:
+		alpha = Scene.level_node.vision_alpha
+		vision_range = Scene.level_node.vision_range
+	modulate.a = alpha
+	material.set_shader_param(\"mask_radius\",vision_range)
+		
 
 func _process(_delta):
 	player_node = Scene.player

@@ -10,6 +10,7 @@ var ui setget , _get_ui
 var ui_layer setget , _get_ui_layer
 var managers setget , _get_managers
 var level setget , _get_level
+var level_node setget , _get_level_node
 var player setget , _get_player
 
 var _camera = null
@@ -18,6 +19,7 @@ var _ui = null
 var _ui_layer = null
 var _managers = null
 var _level = null
+var _level_node = null
 var _player = null
 
 signal transition_start
@@ -32,17 +34,12 @@ func _reload_variables():
 	self._ui_layer = self._root.get_node("UILayer")
 	self._managers = self._root.get_node("Managers")
 	self._level = self._root.get_node("Level/Generator").level
+	self._level_node = self._root.get_node("Level")
 	if self._player == null:
 		self._player = self._root.get_node("Level/SortableEntities/Player")
 	Pathfinder.update_level(self._level)
 	emit_signal("world_updated")
-	if (
-		self._root.get_node("Level/Generator").get("level_name")
-		and self._root.get_node("Level/Generator").level_name == "hub"
-	):
-		emit_signal("transition_complete", true)
-	else:
-		emit_signal("transition_complete", false)
+	emit_signal("transition_complete")
 
 
 func set_root(root: Node2D):
@@ -74,7 +71,11 @@ func _get_level() -> Array:
 	return self._level
 
 
-func _get_player() -> KinematicBody2D:
+func _get_level_node() -> Node2D:
+	return self._level_node
+
+
+func _get_player() -> Player:
 	return self._player
 
 

@@ -14,6 +14,8 @@ onready var nearby_entities: Area2D = $NearbyEntities
 
 var disable_pathfind: int = 0
 
+var _appear_range: float = 512
+
 var _target: LivingEntity = null
 var _last_known_target_location: Vector2 = Vector2(INF, INF)
 var _investigate_target: Vector2 = Vector2(INF, INF)
@@ -46,6 +48,11 @@ func _ready():
 	var spr = visual.get_node("Sprite")
 	spr.set_material(spr.get_material().duplicate())
 	self.sprite_material = ($FlipComponents/Visual/Sprite).material
+	Scene.connect("world_updated", self, "_world_updated")  # warning-ignore:return_value_discarded
+
+
+func _world_updated():
+	self._appear_range = Scene.level_node.enemy_appear_distance
 
 
 func set_nav_path(path: PathfindResult):
@@ -199,7 +206,11 @@ func alert(target: LivingEntity):
 
 
 func _get_base_alpha() -> float:
-	var dist = (self.global_position - Scene.player.global_position).length() / 128 - 4
+	var dist = MathUtils.normalize_range(
+		(self.global_position - Scene.player.global_position).length(),
+		self._appear_range,
+		self._appear_range + 128
+	)
 	var alpha = MathUtils.interpolate(dist, 1, 0, MathUtils.INTERPOLATE_IN_EXPONENTIAL)
 	# if alpha > 0 and not AI.has_LOS(self.global_position, Scene.player.global_position):
 	# 	alpha = 0
