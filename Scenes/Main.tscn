@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Scenes/Levels/Hub.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Entities/Level.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/UI/Buttons/toggle-check.png" type="Texture" id=8]
 [ext_resource path="res://Scenes/Interface/Menus/Pause.tscn" type="PackedScene" id=9]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_bank.gd" type="Script" id=10]
+[ext_resource path="res://Resources/FilmPoster.tres" type="DynamicFont" id=11]
 [ext_resource path="res://Scripts/Entities/MainCamera.gd" type="Script" id=20]
 
 [sub_resource type="GDScript" id=8]
@@ -191,6 +192,9 @@ size = 104
 [sub_resource type="Theme" id=13]
 default_font = SubResource( 12 )
 
+[sub_resource type="Theme" id=14]
+default_font = ExtResource( 11 )
+
 [sub_resource type="Environment" id=1]
 background_mode = 4
 dof_blur_far_distance = 0.02
@@ -320,13 +324,14 @@ anchor_left = 0.835
 anchor_top = 0.883
 anchor_right = 0.847
 anchor_bottom = 0.986
-margin_left = 1154.6
-margin_top = 880.68
-margin_right = 1849.12
-margin_bottom = 1019.56
-theme = SubResource( 13 )
+margin_left = 1090.6
+margin_top = 600.68
+margin_right = 1843.12
+margin_bottom = 997.56
+theme = SubResource( 14 )
 text = "Loading..."
 align = 2
+valign = 2
 
 [node name="Remaining Enemies" type="Node2D" parent="UILayer"]
 script = SubResource( 12 )

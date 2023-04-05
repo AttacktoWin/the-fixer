@@ -635,7 +635,6 @@ position = Vector2( 215, -1012 )
 
 [node name="Hitbox" parent="Transition" instance=ExtResource( 14 )]
 to_level = ExtResource( 17 )
-long_load = false
 
 [node name="Exit" type="AnimatedSprite" parent="Transition/Hitbox"]
 position = Vector2( 0.5, -12.5 )
@@ -697,6 +696,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
+frame = 6
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
