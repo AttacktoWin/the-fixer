@@ -116,7 +116,7 @@ func deload():
 
 
 func load(new_level: Level):
-	if self._runtime:
+	if self._level_node:
 		print("Current level still loaded!")
 		return
 	if new_level.is_ui:

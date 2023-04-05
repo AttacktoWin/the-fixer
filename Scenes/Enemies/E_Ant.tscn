@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Assets/Sprites/Ant/ant-spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Assets/Magic/Effects/VFX_Explosion_GRAD.tres" type="Gradient" id=9]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateHurt.gd" type="Script" id=10]
 [ext_resource path="res://Assets/Finish.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateDead.gd" type="Script" id=12]
 
 [sub_resource type="CircleShape2D" id=78]
 radius = 512.0
@@ -162,35 +163,8 @@ scale_random = 0.91
 color_ramp = SubResource( 5 )
 anim_speed = 1.0
 
-[sub_resource type="Animation" id=112]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 20 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Particles2D:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
 [sub_resource type="Animation" id=8]
-resource_name = "explode"
+resource_name = "EXPLODE"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
@@ -252,6 +226,33 @@ tracks/4/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=112]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
 [node name="E_Ant" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource( 3 )
@@ -308,7 +309,6 @@ shape = SubResource( 63 )
 [node name="Visual" type="Node2D" parent="FlipComponents"]
 
 [node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
-visible = false
 material = SubResource( 74 )
 position = Vector2( 1, -26 )
 scale = Vector2( 0.346525, 0.346525 )
@@ -341,6 +341,9 @@ draw_path = true
 
 [node name="EnemyStateHurt" type="Node2D" parent="FSMController"]
 script = ExtResource( 10 )
+
+[node name="EnemyStateDead" type="Node2D" parent="FSMController"]
+script = ExtResource( 12 )
 
 [node name="AmmoRefill_Effect" type="Node2D" parent="."]
 
@@ -381,5 +384,5 @@ rotation = 0.18326
 texture = ExtResource( 7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VFX_Explosion"]
+anims/EXPLODE = SubResource( 8 )
 anims/RESET = SubResource( 112 )
-anims/explode = SubResource( 8 )

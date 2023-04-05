@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Assets/Sprites/Beetle/beetle-spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Scripts/Enemies/Beetle/BeetleStateAttack.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Magic/Effects/Textures/crate-spritesheet.png" type="Texture" id=12]
 [ext_resource path="res://Assets/Magic/Effects/VFX_Explosion_GRAD.tres" type="Gradient" id=13]
+[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateDead.gd" type="Script" id=14]
 
 [sub_resource type="CircleShape2D" id=78]
 radius = 512.0
@@ -224,35 +225,8 @@ scale_curve = SubResource( 116 )
 color_ramp = SubResource( 114 )
 anim_speed = 2.0
 
-[sub_resource type="Animation" id=7]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 20 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Particles2D:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-
 [sub_resource type="Animation" id=8]
-resource_name = "explode"
+resource_name = "EXPLODE"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
 tracks/0/interp = 1
@@ -324,6 +298,33 @@ tracks/5/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [node name="E_Beetle" type="KinematicBody2D" groups=["Enemy"]]
@@ -441,6 +442,9 @@ script = ExtResource( 10 )
 [node name="BeetleStateAttack" type="Node2D" parent="FSMController"]
 script = ExtResource( 11 )
 
+[node name="EnemyStateDead" type="Node2D" parent="FSMController"]
+script = ExtResource( 14 )
+
 [node name="VFX_Explosion" type="Node2D" parent="."]
 position = Vector2( 0, -34 )
 scale = Vector2( 1.2, 1.2 )
@@ -472,5 +476,5 @@ rotation = 0.18326
 texture = ExtResource( 9 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="VFX_Explosion"]
+anims/EXPLODE = SubResource( 8 )
 anims/RESET = SubResource( 7 )
-anims/explode = SubResource( 8 )

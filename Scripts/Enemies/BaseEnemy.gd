@@ -8,6 +8,9 @@ onready var sprite_material: Material = null
 onready var fsm: FSMController = $FSMController
 onready var flip_components: Node2D = $FlipComponents
 onready var hitbox: Node2D = get_node_or_null("FlipComponents/HitBox")
+onready var death_animation_player: AnimationPlayer = get_node_or_null(
+	"VFX_Explosion/AnimationPlayer"
+)
 
 onready var idle_collider: Area2D = $IdleRadius
 onready var nearby_entities: Area2D = $NearbyEntities
@@ -234,6 +237,8 @@ func _on_take_damage(info: AttackInfo):
 	)
 	var bar = self.get_node("ProgressBar")
 	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
+	if bar.value == 0:
+		bar.modulate.a = 0
 	._on_take_damage(info)
 
 
@@ -249,4 +254,4 @@ func _draw():
 
 func _on_death():
 	self.fsm.set_state(EnemyState.DEAD)
-	self.queue_free()
+	#self.queue_free()
