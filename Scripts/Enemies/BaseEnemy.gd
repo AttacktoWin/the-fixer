@@ -37,6 +37,8 @@ export(float) var attention_time: float = 3  # after this amount of seconds, los
 export(float) var attention_radius: float = 1024
 export(bool) var draw_path: bool = false
 
+const HIT_SCENE = preload("res://Assets/Magic/Effects/VFX_Hit.tscn")
+
 signal on_target_lost
 signal on_target_set
 signal on_investigate_target_set
@@ -239,6 +241,10 @@ func _on_take_damage(info: AttackInfo):
 	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
 	if bar.value == 0:
 		bar.modulate.a = 0
+
+	var fx = HIT_SCENE.instance()
+	Scene.runtime.add_child(fx)
+	fx.global_position = self.global_position
 	._on_take_damage(info)
 
 
