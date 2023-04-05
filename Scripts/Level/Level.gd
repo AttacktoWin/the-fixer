@@ -1,7 +1,8 @@
 # Author: Marcus
 
-extends Node2D
+class_name Level extends Node
 
+export var is_ui: bool = false
 export var ui_enabled: bool = true
 export var vision_enabled: bool = true
 export var vision_alpha: float = 1.0

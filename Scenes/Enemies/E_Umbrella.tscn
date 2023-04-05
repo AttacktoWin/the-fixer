@@ -543,6 +543,7 @@ script = ExtResource( 7 )
 [node name="EnemyStateAlert" type="Node2D" parent="FSMController"]
 script = ExtResource( 6 )
 animation_name = "TO_OPEN"
+alert_sound = 1274459313
 
 [node name="UmbrellaStateMelee" type="Node2D" parent="FSMController"]
 script = ExtResource( 12 )

@@ -111,7 +111,7 @@ margin_right = -2.23999
 margin_bottom = 0.119995
 theme = SubResource( 13 )
 custom_fonts/font = SubResource( 14 )
-text = "19"
+text = "0"
 align = 2
 
 [node name="EnemyIcon" type="AnimatedSprite" parent="."]

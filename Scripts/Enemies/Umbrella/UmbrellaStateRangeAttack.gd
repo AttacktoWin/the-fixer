@@ -60,6 +60,7 @@ func _shoot():
 	)
 	bullet.setv(AttackVariable.SPEED, self.bullet_speed)
 	bullet.setv(AttackVariable.DAMAGE, self.bullet_damage)
+	Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, self.entity)
 
 
 func _handle_weapon(delta):

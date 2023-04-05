@@ -115,13 +115,13 @@ func _process(_delta):
 
 	# move
 	if not self._frozen_dict[TARGET.LOCATION] and is_instance_valid(self._camera):
-			self._camera.transform.origin = (
-				self._camera.transform.origin
-				+ (
-					(self._location_target - self._camera.transform.origin)
-					* pow(self._transition_factor, 1 / delta_60)
-				)
+		self._camera.transform.origin = (
+			self._camera.transform.origin
+			+ (
+				(self._location_target - self._camera.transform.origin)
+				* pow(self._transition_factor, 1 / delta_60)
 			)
+		)
 
 	# zoom
 	if not self._frozen_dict[TARGET.ZOOM] and is_instance_valid(self._camera):
@@ -129,7 +129,7 @@ func _process(_delta):
 			self._camera.zoom
 			+ (self._zoom_target - self._camera.zoom) * pow(self._transition_factor, 1 / delta_60)
 		)
-	
+
 	if is_instance_valid(self._camera):
 		# SCREEN SHAKE!!! (the most important part)
 		self._camera.transform.origin = (

@@ -140,8 +140,13 @@ func _try_hit_entity(entity: LivingEntity) -> bool:
 	return true
 
 
+func _on_hit_wall(body: TileMap):
+	pass
+
+
 func _on_body_entered(body: Node2D):
 	if not ignore_wall_collisions and body is TileMap and not self.spectral:
+		self._on_hit_wall(body)
 		self._expire()
 	if (
 		self.attack_type != AttackVariable.ATTACK_TYPE.CONTINUOUS

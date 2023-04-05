@@ -4,7 +4,7 @@
 font_path = "res://Assets/UI/BAHNSCHRIFT.TTF"
 
 [resource]
-size = 50
-outline_size = 5
+size = 20
+outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = SubResource( 1 )

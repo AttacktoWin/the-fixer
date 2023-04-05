@@ -229,6 +229,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
 }, {
+"base": "Node",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Scripts/Level/Level.gd"
+}, {
 "base": "Entity",
 "class": "LivingEntity",
 "language": "GDScript",
@@ -509,6 +514,7 @@ _global_script_class_icons={
 "Goomba": "",
 "GoombaStateAttack": "",
 "HistoryRow": "",
+"Level": "",
 "LivingEntity": "",
 "LivingEntityStatus": "",
 "LivingEntityVariable": "",
@@ -561,7 +567,7 @@ _global_script_class_icons={
 [application]
 
 config/name="The Fixer"
-run/main_scene="res://Scenes/Interface/Menus/MainMenu.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]

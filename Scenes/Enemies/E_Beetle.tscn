@@ -430,6 +430,7 @@ script = ExtResource( 8 )
 
 [node name="EnemyStateAlert" type="Node2D" parent="FSMController"]
 script = ExtResource( 6 )
+alert_sound = 3277391769
 
 [node name="EnemyStateChase" type="Node2D" parent="FSMController"]
 script = ExtResource( 7 )

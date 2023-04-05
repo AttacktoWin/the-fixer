@@ -15,12 +15,16 @@ func _ready():
 
 
 func _on_hit_entity(_entity: LivingEntity):
-	pass
-	#Wwise.post_event_id(AK.EVENTS.HIT_PISTOL_PLAYER, self._damage_source)
+	Wwise.post_event_id(AK.EVENTS.HIT_PISTOL_PLAYER, self._damage_source)
+
+
+func _on_hit_wall(_wall: TileMap):
+	Wwise.post_event_id(AK.EVENTS.HIT_PISTOL_PLAYER, self._damage_source)
 
 
 func _on_wall_body_entered(body: Node2D):
 	if body is TileMap and not self.spectral:
+		self._on_hit_wall(body)
 		self._expire()
 
 
