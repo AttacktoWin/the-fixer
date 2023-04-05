@@ -7,6 +7,7 @@ var _root = null
 var camera setget , _get_camera
 var runtime setget , _get_runtime
 var ui setget , _get_ui
+var ui_layer setget , _get_ui_layer
 var managers setget , _get_managers
 var level setget , _get_level
 var player setget , _get_player
@@ -14,6 +15,7 @@ var player setget , _get_player
 var _camera = null
 var _runtime = null
 var _ui = null
+var _ui_layer = null
 var _managers = null
 var _level = null
 var _player = null
@@ -22,10 +24,12 @@ signal transition_start
 signal transition_complete
 signal world_updated
 
+
 func _reload_variables():
 	self._camera = self._root.get_node("MainCamera")
 	self._runtime = self._root.get_node("Level/SortableEntities/Runtime")
 	self._ui = self._root.get_node("UILayer/UI")
+	self._ui_layer = self._root.get_node("UILayer")
 	self._managers = self._root.get_node("Managers")
 	self._level = self._root.get_node("Level/Generator").level
 	self._player = self._root.get_node("Level/Generator").get_node("%Player")
@@ -57,6 +61,10 @@ func _get_ui() -> Node:
 	return self._ui
 
 
+func _get_ui_layer() -> Node:
+	return self._ui_layer
+
+
 func _get_managers() -> Node:
 	return self._managers
 
@@ -70,7 +78,7 @@ func _get_player() -> KinematicBody2D:
 
 
 func get_tree() -> SceneTree:
-	if (!is_instance_valid(self._root)):
+	if !is_instance_valid(self._root):
 		# Running some sort of test
 		self._root = Node2D.new()
 		add_child(self._root)

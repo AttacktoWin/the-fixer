@@ -229,7 +229,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
 }, {
-"base": "Entity",
+"base": "Reference",
 "class": "LivingEntity",
 "language": "GDScript",
 "path": "res://Scripts/Entities/LivingEntities/LivingEntity.gd"
@@ -576,6 +576,7 @@ Pathfinder="*res://Scripts/AI/Pathfinder.gd"
 AI="*res://Scripts/AI/AIManager.gd"
 WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
 Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
+TransitionHelper="*res://Scripts/Singletons/TransitionHelper.gd"
 
 [display]
 

@@ -9,6 +9,7 @@ var _zoom_target = Vector2(1 * _base_zoom, 2 * _base_zoom)  # 0.7, 1.4
 var _transition_factor = 0.1
 var _viewport
 var _camera
+var _controller = null
 
 const SHAKE_FACTOR = 10
 const MAX_SHAKE_TIMER = 120
@@ -28,9 +29,18 @@ func set_camera(camera):
 	self._viewport = camera.get_viewport()
 
 
-func set_target_center(target):
-	self._location_target.x = target.x
-	self._location_target.y = target.y
+func set_controller(controller):
+	self._controller = controller
+
+
+func remove_controller():
+	self._controller = null
+
+
+func set_target_center(target, controller = null):
+	if controller != self._controller:
+		return
+	self._location_target = target
 
 
 func set_transition_factor(transition_factor):
@@ -69,11 +79,17 @@ func get_camera_center() -> Vector2:
 	return self._camera.transform.origin
 
 
-func set_zoom(new_scale):
+func set_zoom(new_scale: Vector2, controller = null):
+	if controller != self._controller:
+		return
+
 	self._zoom_target = new_scale * MathUtils.FROM_ISO * self._base_zoom
 
 
-func jump_field(target_type):
+func jump_field(target_type: int, controller = null):
+	if controller != self._controller:
+		return
+
 	match target_type:
 		TARGET.LOCATION:
 			self._camera.transform.origin = self._location_target

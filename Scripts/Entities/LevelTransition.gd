@@ -3,12 +3,14 @@
 extends Area2D
 
 export(PackedScene) var to_level
-var cleared:bool = false
+export var long_load: bool = true
+var cleared: bool = false
+
 
 func _ready() -> void:
-	#warning-ignore:RETURN_VALUE_DISCARDED
-	connect("body_entered", self, "_on_body_entered")
-	connect("body_exited", self, "_on_body_exit")
+	connect("body_entered", self, "_on_body_entered")  # warning-ignore: RETURN_VALUE_DISCARDED
+	connect("body_exited", self, "_on_body_exit")  # warning-ignore: RETURN_VALUE_DISCARDED
+
 
 func _process(_delta):
 	if AI.get_all_enemies().size() == 0:
@@ -16,6 +18,7 @@ func _process(_delta):
 		var exit = get_node_or_null("Exit")
 		if exit:
 			exit.frame = 1
+
 
 func _on_body_entered(body: Node2D):
 	if body is Player and cleared:
@@ -25,7 +28,8 @@ func _on_body_entered(body: Node2D):
 		if exit:
 			exit.visible = true
 
-func _on_body_exit(body:Node2D):
+
+func _on_body_exit(body: Node2D):
 	if body is Player:
 		var exit = get_node_or_null("Node2D/ExitMessage")
 		if exit:
@@ -34,4 +38,4 @@ func _on_body_exit(body:Node2D):
 
 func _transition():
 	var inst = to_level.instance()
-	Scene.switch(inst)
+	TransitionHelper.transition(inst, long_load)

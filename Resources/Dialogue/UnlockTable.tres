@@ -1,8 +1,13 @@
-[gd_resource type="Resource" load_steps=180 format=2]
+[gd_resource type="Resource" load_steps=183 format=2]
 
 [ext_resource path="res://Scripts/DialogueSystem/classes/UnlockTable.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/DialogueSystem/classes/DialogueNpcIds.gd" type="Script" id=3]
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 3 )
+dialogue_id = "1-fight"
+npc_id = "manifestation"
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 3 )
@@ -14,25 +19,10 @@ script = ExtResource( 3 )
 dialogue_id = "2"
 npc_id = "manifestation"
 
-[sub_resource type="Resource" id=4]
-script = ExtResource( 3 )
-dialogue_id = "1-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 2 ), SubResource( 3 ) ]
 removed_ids = [ SubResource( 4 ) ]
-                
-[sub_resource type="Resource" id=6]
-script = ExtResource( 3 )
-dialogue_id = "1-pillbugkill"
-npc_id = "boss"
-
-[sub_resource type="Resource" id=7]
-script = ExtResource( 3 )
-dialogue_id = "1-pillgub1"
-npc_id = "boss"
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 3 )
@@ -64,20 +54,20 @@ script = ExtResource( 3 )
 dialogue_id = "1-birdkill1"
 npc_id = "boss"
 
+[sub_resource type="Resource" id=6]
+script = ExtResource( 3 )
+dialogue_id = "1-pillbugkill"
+npc_id = "boss"
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 3 )
+dialogue_id = "1-pillgub1"
+npc_id = "boss"
+
 [sub_resource type="Resource" id=5]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 6 ), SubResource( 7 ) ]
 removed_ids = [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ]
-                
-[sub_resource type="Resource" id=15]
-script = ExtResource( 3 )
-dialogue_id = "1-spyderkill"
-npc_id = "boss"
-
-[sub_resource type="Resource" id=16]
-script = ExtResource( 3 )
-dialogue_id = "1-spyderkill1"
-npc_id = "boss"
 
 [sub_resource type="Resource" id=17]
 script = ExtResource( 3 )
@@ -109,20 +99,20 @@ script = ExtResource( 3 )
 dialogue_id = "1-birdkill1"
 npc_id = "boss"
 
+[sub_resource type="Resource" id=15]
+script = ExtResource( 3 )
+dialogue_id = "1-spyderkill"
+npc_id = "boss"
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 3 )
+dialogue_id = "1-spyderkill1"
+npc_id = "boss"
+
 [sub_resource type="Resource" id=14]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 15 ), SubResource( 16 ) ]
 removed_ids = [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ) ]
-                
-[sub_resource type="Resource" id=24]
-script = ExtResource( 3 )
-dialogue_id = "1-beetlekill"
-npc_id = "boss"
-
-[sub_resource type="Resource" id=25]
-script = ExtResource( 3 )
-dialogue_id = "1-beetlekill1"
-npc_id = "boss"
 
 [sub_resource type="Resource" id=26]
 script = ExtResource( 3 )
@@ -154,20 +144,20 @@ script = ExtResource( 3 )
 dialogue_id = "1-birdkill1"
 npc_id = "boss"
 
+[sub_resource type="Resource" id=24]
+script = ExtResource( 3 )
+dialogue_id = "1-beetlekill"
+npc_id = "boss"
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 3 )
+dialogue_id = "1-beetlekill1"
+npc_id = "boss"
+
 [sub_resource type="Resource" id=23]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 24 ), SubResource( 25 ) ]
 removed_ids = [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ]
-                
-[sub_resource type="Resource" id=33]
-script = ExtResource( 3 )
-dialogue_id = "1-biidkill"
-npc_id = "boss"
-
-[sub_resource type="Resource" id=34]
-script = ExtResource( 3 )
-dialogue_id = "1-birdkill1"
-npc_id = "boss"
 
 [sub_resource type="Resource" id=35]
 script = ExtResource( 3 )
@@ -199,11 +189,26 @@ script = ExtResource( 3 )
 dialogue_id = "1-pillbugkill1"
 npc_id = "boss"
 
+[sub_resource type="Resource" id=33]
+script = ExtResource( 3 )
+dialogue_id = "1-biidkill"
+npc_id = "boss"
+
+[sub_resource type="Resource" id=34]
+script = ExtResource( 3 )
+dialogue_id = "1-birdkill1"
+npc_id = "boss"
+
 [sub_resource type="Resource" id=32]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 33 ), SubResource( 34 ) ]
 removed_ids = [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ), SubResource( 40 ) ]
-                
+
+[sub_resource type="Resource" id=44]
+script = ExtResource( 3 )
+dialogue_id = "2-fight"
+npc_id = "manifestation"
+
 [sub_resource type="Resource" id=42]
 script = ExtResource( 3 )
 dialogue_id = "manifestation2win"
@@ -214,16 +219,16 @@ script = ExtResource( 3 )
 dialogue_id = "3"
 npc_id = "manifestation"
 
-[sub_resource type="Resource" id=44]
-script = ExtResource( 3 )
-dialogue_id = "2-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=41]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 42 ), SubResource( 43 ) ]
 removed_ids = [ SubResource( 44 ) ]
-                
+
+[sub_resource type="Resource" id=48]
+script = ExtResource( 3 )
+dialogue_id = "3-fight"
+npc_id = "manifestation"
+
 [sub_resource type="Resource" id=46]
 script = ExtResource( 3 )
 dialogue_id = "manifestation3win"
@@ -234,16 +239,16 @@ script = ExtResource( 3 )
 dialogue_id = "4"
 npc_id = "manifestation"
 
-[sub_resource type="Resource" id=48]
-script = ExtResource( 3 )
-dialogue_id = "3-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=45]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 46 ), SubResource( 47 ) ]
 removed_ids = [ SubResource( 48 ) ]
-                
+
+[sub_resource type="Resource" id=52]
+script = ExtResource( 3 )
+dialogue_id = "4-fight"
+npc_id = "manifestation"
+
 [sub_resource type="Resource" id=50]
 script = ExtResource( 3 )
 dialogue_id = "manifestation4win"
@@ -254,16 +259,16 @@ script = ExtResource( 3 )
 dialogue_id = "5"
 npc_id = "manifestation"
 
-[sub_resource type="Resource" id=52]
-script = ExtResource( 3 )
-dialogue_id = "4-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=49]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 50 ), SubResource( 51 ) ]
 removed_ids = [ SubResource( 52 ) ]
-                
+
+[sub_resource type="Resource" id=56]
+script = ExtResource( 3 )
+dialogue_id = "5-fight"
+npc_id = "manifestation"
+
 [sub_resource type="Resource" id=54]
 script = ExtResource( 3 )
 dialogue_id = "manifestation5win"
@@ -274,16 +279,16 @@ script = ExtResource( 3 )
 dialogue_id = "6"
 npc_id = "manifestation"
 
-[sub_resource type="Resource" id=56]
-script = ExtResource( 3 )
-dialogue_id = "5-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=53]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 54 ), SubResource( 55 ) ]
 removed_ids = [ SubResource( 56 ) ]
-                
+
+[sub_resource type="Resource" id=60]
+script = ExtResource( 3 )
+dialogue_id = "6-fight"
+npc_id = "manifestation"
+
 [sub_resource type="Resource" id=58]
 script = ExtResource( 3 )
 dialogue_id = "manifestation6win"
@@ -294,16 +299,16 @@ script = ExtResource( 3 )
 dialogue_id = "7"
 npc_id = "manifestation"
 
-[sub_resource type="Resource" id=60]
-script = ExtResource( 3 )
-dialogue_id = "6-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=57]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 58 ), SubResource( 59 ) ]
 removed_ids = [ SubResource( 60 ) ]
-                
+
+[sub_resource type="Resource" id=64]
+script = ExtResource( 3 )
+dialogue_id = "7-fight"
+npc_id = "manifestation"
+
 [sub_resource type="Resource" id=62]
 script = ExtResource( 3 )
 dialogue_id = "manifestation7win"
@@ -314,16 +319,16 @@ script = ExtResource( 3 )
 dialogue_id = "8"
 npc_id = "manifestation"
 
-[sub_resource type="Resource" id=64]
-script = ExtResource( 3 )
-dialogue_id = "7-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=61]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 62 ), SubResource( 63 ) ]
 removed_ids = [ SubResource( 64 ) ]
-                
+
+[sub_resource type="Resource" id=68]
+script = ExtResource( 3 )
+dialogue_id = "8-fight"
+npc_id = "manifestation"
+
 [sub_resource type="Resource" id=66]
 script = ExtResource( 3 )
 dialogue_id = "manifestation8win"
@@ -334,16 +339,16 @@ script = ExtResource( 3 )
 dialogue_id = ""
 npc_id = "manifestation9"
 
-[sub_resource type="Resource" id=68]
-script = ExtResource( 3 )
-dialogue_id = "8-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=65]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 66 ), SubResource( 67 ) ]
 removed_ids = [ SubResource( 68 ) ]
-                
+
+[sub_resource type="Resource" id=72]
+script = ExtResource( 3 )
+dialogue_id = "9-fight"
+npc_id = "manifestation"
+
 [sub_resource type="Resource" id=70]
 script = ExtResource( 3 )
 dialogue_id = "manifestation9win"
@@ -354,16 +359,16 @@ script = ExtResource( 3 )
 dialogue_id = "10"
 npc_id = "manifestation"
 
-[sub_resource type="Resource" id=72]
-script = ExtResource( 3 )
-dialogue_id = "9-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=69]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 70 ), SubResource( 71 ) ]
 removed_ids = [ SubResource( 72 ) ]
-                
+
+[sub_resource type="Resource" id=76]
+script = ExtResource( 3 )
+dialogue_id = "10-fight"
+npc_id = "manifestation"
+
 [sub_resource type="Resource" id=74]
 script = ExtResource( 3 )
 dialogue_id = "manifestation10win"
@@ -374,16 +379,16 @@ script = ExtResource( 3 )
 dialogue_id = "11"
 npc_id = "manifestation"
 
-[sub_resource type="Resource" id=76]
-script = ExtResource( 3 )
-dialogue_id = "10-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=73]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 74 ), SubResource( 75 ) ]
 removed_ids = [ SubResource( 76 ) ]
-                
+
+[sub_resource type="Resource" id=80]
+script = ExtResource( 3 )
+dialogue_id = "11-fight"
+npc_id = "manifestation"
+
 [sub_resource type="Resource" id=78]
 script = ExtResource( 3 )
 dialogue_id = "manifestation11win"
@@ -394,16 +399,16 @@ script = ExtResource( 3 )
 dialogue_id = "12"
 npc_id = "manifestation"
 
-[sub_resource type="Resource" id=80]
-script = ExtResource( 3 )
-dialogue_id = "11-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=77]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 78 ), SubResource( 79 ) ]
 removed_ids = [ SubResource( 80 ) ]
-                
+
+[sub_resource type="Resource" id=84]
+script = ExtResource( 3 )
+dialogue_id = "12-fight"
+npc_id = "manifestation"
+
 [sub_resource type="Resource" id=82]
 script = ExtResource( 3 )
 dialogue_id = "manifestation12win"
@@ -414,16 +419,11 @@ script = ExtResource( 3 )
 dialogue_id = "post1"
 npc_id = "manifestation"
 
-[sub_resource type="Resource" id=84]
-script = ExtResource( 3 )
-dialogue_id = "12-fight"
-npc_id = "manifestation"
-
 [sub_resource type="Resource" id=81]
 script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 82 ), SubResource( 83 ) ]
 removed_ids = [ SubResource( 84 ) ]
-                
+
 [sub_resource type="Resource" id=86]
 script = ExtResource( 3 )
 dialogue_id = "demo1"
@@ -464,15 +464,15 @@ script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 86 ), SubResource( 87 ), SubResource( 88 ), SubResource( 89 ), SubResource( 90 ), SubResource( 91 ), SubResource( 92 ) ]
 removed_ids = [  ]
 
+[sub_resource type="Resource" id=95]
+script = ExtResource( 3 )
+dialogue_id = "default"
+npc_id = "boss"
+
 [sub_resource type="Resource" id=94]
 script = ExtResource( 3 )
 dialogue_id = "1-fight"
 npc_id = "manifestation"
-
-[sub_resource type="Resource" id=95]
-script = ExtResource ( 3 )
-dialogue_id = "default"
-npc_id = "boss"
 
 [sub_resource type="Resource" id=93]
 script = ExtResource( 2 )
@@ -540,7 +540,7 @@ unlocked_ids = [ SubResource( 107 ) ]
 removed_ids = [  ]
 
 [sub_resource type="Resource" id=109]
-script = ExtResource ( 3 )
+script = ExtResource( 3 )
 dialogue_id = "1-pillbugkill1"
 npc_id = "boss"
 
@@ -550,7 +550,7 @@ unlocked_ids = [  ]
 removed_ids = [ SubResource( 109 ) ]
 
 [sub_resource type="Resource" id=111]
-script = ExtResource ( 3 )
+script = ExtResource( 3 )
 dialogue_id = "pre-spyderkill1"
 npc_id = "boss"
 
@@ -560,7 +560,7 @@ unlocked_ids = [  ]
 removed_ids = [ SubResource( 111 ) ]
 
 [sub_resource type="Resource" id=113]
-script = ExtResource ( 3 )
+script = ExtResource( 3 )
 dialogue_id = "1-beetlekill1"
 npc_id = "boss"
 
@@ -570,7 +570,7 @@ unlocked_ids = [  ]
 removed_ids = [ SubResource( 113 ) ]
 
 [sub_resource type="Resource" id=115]
-script = ExtResource ( 3 )
+script = ExtResource( 3 )
 dialogue_id = "1-birdkill1"
 npc_id = "boss"
 
@@ -580,7 +580,7 @@ unlocked_ids = [  ]
 removed_ids = [ SubResource( 115 ) ]
 
 [sub_resource type="Resource" id=117]
-script = ExtResource ( 3 )
+script = ExtResource( 3 )
 dialogue_id = "1-pillbugkill"
 npc_id = "boss"
 
@@ -590,7 +590,7 @@ unlocked_ids = [  ]
 removed_ids = [ SubResource( 117 ) ]
 
 [sub_resource type="Resource" id=119]
-script = ExtResource ( 3 )
+script = ExtResource( 3 )
 dialogue_id = "1-spyderkill"
 npc_id = "boss"
 
@@ -600,7 +600,7 @@ unlocked_ids = [  ]
 removed_ids = [ SubResource( 119 ) ]
 
 [sub_resource type="Resource" id=121]
-script = ExtResource ( 3 )
+script = ExtResource( 3 )
 dialogue_id = "1-beetlekill"
 npc_id = "boss"
 
@@ -610,7 +610,7 @@ unlocked_ids = [  ]
 removed_ids = [ SubResource( 121 ) ]
 
 [sub_resource type="Resource" id=123]
-script = ExtResource ( 3 )
+script = ExtResource( 3 )
 dialogue_id = "1-birdkill"
 npc_id = "boss"
 
@@ -669,6 +669,26 @@ script = ExtResource( 2 )
 unlocked_ids = [ SubResource( 133 ) ]
 removed_ids = [  ]
 
+[sub_resource type="Resource" id=138]
+script = ExtResource( 3 )
+dialogue_id = "default"
+npc_id = "boss"
+
+[sub_resource type="Resource" id=139]
+script = ExtResource( 3 )
+dialogue_id = "demo1"
+npc_id = "fixer"
+
+[sub_resource type="Resource" id=140]
+script = ExtResource( 3 )
+dialogue_id = "demo2"
+npc_id = "fixer"
+
+[sub_resource type="Resource" id=141]
+script = ExtResource( 3 )
+dialogue_id = "demo3"
+npc_id = "fixer"
+
 [sub_resource type="Resource" id=135]
 script = ExtResource( 3 )
 dialogue_id = "1-quip1"
@@ -683,26 +703,6 @@ npc_id = "boss"
 script = ExtResource( 3 )
 dialogue_id = "1-quip3"
 npc_id = "boss"
-
-[sub_resource type="Resource" id=138]
-script = ExtResource ( 3 )
-dialogue_id = "default"
-npc_id = "boss"
-
-[sub_resource type="Resource" id=139]
-script = ExtResource ( 3 )
-dialogue_id = "demo1"
-npc_id = "fixer"
-
-[sub_resource type="Resource" id=140]
-script = ExtResource ( 3 )
-dialogue_id = "demo2"
-npc_id = "fixer"
-
-[sub_resource type="Resource" id=141]
-script = ExtResource ( 3 )
-dialogue_id = "demo3"
-npc_id = "fixer"
 
 [sub_resource type="Resource" id=134]
 script = ExtResource( 2 )
@@ -902,11 +902,10 @@ removed_ids = [  ]
 [resource]
 script = ExtResource( 1 )
 entries = {
+"event-manifestation10win": SubResource( 73 ),
+"event-manifestation11win": SubResource( 77 ),
+"event-manifestation12win": SubResource( 81 ),
 "event-manifestation1win": SubResource( 1 ),
-"event-pre-pillbugkill": SubResource( 5 ),
-"event-pre-spyderkill": SubResource( 14 ),
-"event-pre-beetlekill": SubResource( 23 ),
-"event-pre-birdkill": SubResource( 32 ),
 "event-manifestation2win": SubResource( 41 ),
 "event-manifestation3win": SubResource( 45 ),
 "event-manifestation4win": SubResource( 49 ),
@@ -915,56 +914,57 @@ entries = {
 "event-manifestation7win": SubResource( 61 ),
 "event-manifestation8win": SubResource( 65 ),
 "event-manifestation9win": SubResource( 69 ),
-"event-manifestation10win": SubResource( 73 ),
-"event-manifestation11win": SubResource( 77 ),
-"event-manifestation12win": SubResource( 81 ),
+"event-pre-beetlekill": SubResource( 23 ),
+"event-pre-birdkill": SubResource( 32 ),
+"event-pre-pillbugkill": SubResource( 5 ),
+"event-pre-spyderkill": SubResource( 14 ),
+"npc-boss-1-beetlekill": SubResource( 112 ),
+"npc-boss-1-beetlekill1": SubResource( 120 ),
+"npc-boss-1-birdkill": SubResource( 114 ),
+"npc-boss-1-birdkill1": SubResource( 122 ),
+"npc-boss-1-pillbugkill": SubResource( 108 ),
+"npc-boss-1-pillbugkill1": SubResource( 116 ),
+"npc-boss-1-quip1": SubResource( 106 ),
+"npc-boss-1-quip2": SubResource( 128 ),
+"npc-boss-1-quip3": SubResource( 130 ),
+"npc-boss-1-spyderkill": SubResource( 110 ),
+"npc-boss-default": SubResource( 102 ),
+"npc-boss-manifestation-12win": SubResource( 179 ),
+"npc-boss-manifestation10win": SubResource( 171 ),
+"npc-boss-manifestation11win": SubResource( 175 ),
+"npc-boss-manifestation1win": SubResource( 134 ),
+"npc-boss-manifestation2win": SubResource( 146 ),
+"npc-boss-manifestation3win": SubResource( 149 ),
+"npc-boss-manifestation4win": SubResource( 152 ),
+"npc-boss-manifestation5win": SubResource( 155 ),
+"npc-boss-manifestation6win": SubResource( 158 ),
+"npc-boss-manifestation7win": SubResource( 161 ),
+"npc-boss-manifestation8win": SubResource( 164 ),
+"npc-boss-manifestation9win": SubResource( 167 ),
+"npc-boss-pre-spyderkill1": SubResource( 118 ),
+"npc-fixer-1-beetle": SubResource( 126 ),
+"npc-fixer-1-bird": SubResource( 127 ),
+"npc-fixer-1-pillbug": SubResource( 124 ),
+"npc-fixer-1-spyder": SubResource( 125 ),
 "npc-fixer-default": SubResource( 85 ),
-"npc-manifestation-default": SubResource( 93 ),
 "npc-fixer-demo1": SubResource( 96 ),
 "npc-fixer-demo2": SubResource( 98 ),
 "npc-fixer-demo3": SubResource( 100 ),
-"npc-boss-default": SubResource( 102 ),
-"npc-boss-1-quip1": SubResource( 106 ),
-"npc-boss-1-pillbugkill": SubResource( 108 ),
-"npc-boss-1-spyderkill": SubResource( 110 ),
-"npc-boss-1-beetlekill": SubResource( 112 ),
-"npc-boss-1-birdkill": SubResource( 114 ),
-"npc-boss-1-pillbugkill1": SubResource( 116 ),
-"npc-boss-pre-spyderkill1": SubResource( 118 ),
-"npc-boss-1-beetlekill1": SubResource( 120 ),
-"npc-boss-1-birdkill1": SubResource( 122 ),
-"npc-fixer-1-pillbug": SubResource( 124 ),
-"npc-fixer-1-spyder": SubResource( 125 ),
-"npc-fixer-1-beetle": SubResource( 126 ),
-"npc-fixer-1-bird": SubResource( 127 ),
-"npc-boss-1-quip2": SubResource( 128 ),
-"npc-boss-1-quip3": SubResource( 130 ),
+"npc-fixer-post10win": SubResource( 170 ),
+"npc-fixer-post11win": SubResource( 174 ),
+"npc-fixer-post12win": SubResource( 178 ),
 "npc-manifestation-1-fight": SubResource( 132 ),
-"npc-boss-manifestation1win": SubResource( 134 ),
+"npc-manifestation-10": SubResource( 168 ),
+"npc-manifestation-11": SubResource( 172 ),
+"npc-manifestation-12": SubResource( 176 ),
 "npc-manifestation-2": SubResource( 142 ),
 "npc-manifestation-2-fight": SubResource( 144 ),
-"npc-boss-manifestation2win": SubResource( 146 ),
 "npc-manifestation-3": SubResource( 147 ),
-"npc-boss-manifestation3win": SubResource( 149 ),
 "npc-manifestation-4": SubResource( 150 ),
-"npc-boss-manifestation4win": SubResource( 152 ),
 "npc-manifestation-5": SubResource( 153 ),
-"npc-boss-manifestation5win": SubResource( 155 ),
 "npc-manifestation-6": SubResource( 156 ),
-"npc-boss-manifestation6win": SubResource( 158 ),
 "npc-manifestation-7": SubResource( 159 ),
-"npc-boss-manifestation7win": SubResource( 161 ),
 "npc-manifestation-8": SubResource( 162 ),
-"npc-boss-manifestation8win": SubResource( 164 ),
 "npc-manifestation-9": SubResource( 165 ),
-"npc-boss-manifestation9win": SubResource( 167 ),
-"npc-manifestation-10": SubResource( 168 ),
-"npc-fixer-post10win": SubResource( 170 ),
-"npc-boss-manifestation10win": SubResource( 171 ),
-"npc-manifestation-11": SubResource( 172 ),
-"npc-fixer-post11win": SubResource( 174 ),
-"npc-boss-manifestation11win": SubResource( 175 ),
-"npc-manifestation-12": SubResource( 176 ),
-"npc-fixer-post12win": SubResource( 178 ),
-"npc-boss-manifestation-12win": SubResource( 179 )
+"npc-manifestation-default": SubResource( 93 )
 }

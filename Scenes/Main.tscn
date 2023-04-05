@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/Levels/Hub.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Entities/Level.gd" type="Script" id=2]
@@ -7,22 +7,17 @@
 [ext_resource path="res://Assets/Magic/perlin 23 - 128x128.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Magic/milky 14 - 128x128.png" type="Texture" id=6]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_bank.gd" type="Script" id=7]
+[ext_resource path="res://addons/dialogic/Documentation/Theme/Font/NotoSans-Bold.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://Scripts/Entities/MainCamera.gd" type="Script" id=20]
 
 [sub_resource type="GDScript" id=8]
 script/source = "extends CanvasLayer
 
 func _ready():
-	Scene.connect(\"transition_start\",self,\"load_screen\")
 	Scene.connect(\"transition_complete\",self,\"enable_ui\")
 
 func enable_ui(state):
-	$ColorRect.visible = false;
-	self.visible = !state
-
-func load_screen():
-	print(\"called_ui\")
-	$ColorRect.visible = true;
+	get_node(\"UI\").visible = !state
 "
 
 [sub_resource type="Shader" id=4]
@@ -171,6 +166,13 @@ func _process(delta):
 	material.set_shader_param(\"smooth_a\",val)
 "
 
+[sub_resource type="DynamicFont" id=12]
+size = 104
+font_data = ExtResource( 8 )
+
+[sub_resource type="Theme" id=13]
+default_font = SubResource( 12 )
+
 [sub_resource type="Environment" id=1]
 background_mode = 4
 dof_blur_far_distance = 0.02
@@ -232,24 +234,24 @@ script = ExtResource( 20 )
 [node name="UILayer" type="CanvasLayer" parent="."]
 script = SubResource( 8 )
 
-[node name="VisionReduction" type="ColorRect" parent="UILayer"]
+[node name="UI" type="Control" parent="UILayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VisionReduction" type="ColorRect" parent="UILayer/UI"]
 material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = SubResource( 6 )
 
-[node name="VisionReduction2" type="ColorRect" parent="UILayer"]
+[node name="VisionReduction2" type="ColorRect" parent="UILayer/UI"]
 material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = SubResource( 6 )
-
-[node name="UI" type="Control" parent="UILayer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
 
 [node name="Retical" type="ColorRect" parent="UILayer/UI"]
 visible = false
@@ -267,11 +269,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 11 )
 
-[node name="ColorRect" type="ColorRect" parent="UILayer"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 1, 0, 0, 1 )
+[node name="TransitionUI" type="Control" parent="UILayer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="FadeRect" type="ColorRect" parent="UILayer/TransitionUI"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 1920.0
+margin_bottom = 1080.0
+rect_pivot_offset = Vector2( 1651, 982 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="LoadingText" type="Label" parent="UILayer/TransitionUI"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.835
+anchor_top = 0.883
+anchor_right = 0.847
+anchor_bottom = 0.986
+margin_left = 1154.6
+margin_top = 880.68
+margin_right = 1849.12
+margin_bottom = 1019.56
+theme = SubResource( 13 )
+text = "Loading..."
+align = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )

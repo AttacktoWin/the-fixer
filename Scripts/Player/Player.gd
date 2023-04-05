@@ -152,6 +152,9 @@ func _process(_delta):
 			Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, self)
 		if Input.is_action_just_pressed("ui_end"):
 			self.add_ammo(900)
+		if Input.is_action_just_pressed("ui_home"):
+			var scene = load("res://Scenes/Levels/Tutorial.tscn").instance()
+			TransitionHelper.transition(scene)
 
 
 func _unhandled_input(event: InputEvent):
