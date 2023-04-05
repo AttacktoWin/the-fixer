@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/noiseTexture.png-4bca9589f5a659bd1141ea79509eedcf.stex"
+path="res://.import/milky 14 - 128x128.png-f286ff5a93f25aeb76ad67dfb361d7ea.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Magic/noiseTexture.png"
-dest_files=[ "res://.import/noiseTexture.png-4bca9589f5a659bd1141ea79509eedcf.stex" ]
+source_file="res://Assets/Magic/Effects/Textures/milky 14 - 128x128.png"
+dest_files=[ "res://.import/milky 14 - 128x128.png-f286ff5a93f25aeb76ad67dfb361d7ea.stex" ]
 
 [params]
 

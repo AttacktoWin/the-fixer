@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Assets/Sprites/Knife/spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://Scripts/Enemies/BaseEnemy.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateHurt.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Enemies/Goomba/GoombaStateAttack.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Magic/Effects/Textures/explosion_text.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Magic/Effects/Textures/crate-spritesheet.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Magic/Effects/VFX_Explosion_GRAD.tres" type="Gradient" id=14]
+[ext_resource path="res://Assets/Finish.tscn" type="PackedScene" id=15]
 
 [sub_resource type="CircleShape2D" id=78]
 radius = 512.0
@@ -150,6 +154,9 @@ tracks/0/keys = {
 "values": [ 16, 17, 18, 19, 20, 21, 22, 23 ]
 }
 
+[sub_resource type="Animation" id=81]
+resource_name = "DEATH"
+
 [sub_resource type="Animation" id=14]
 resource_name = "Get_Ready"
 length = 0.8
@@ -203,6 +210,142 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=15]
 length = 0.001
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+void fragment(){
+	COLOR = vec4(1,1,1,1);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+next_pass = SubResource( 2 )
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="GradientTexture" id=5]
+gradient = ExtResource( 14 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 1
+emission_sphere_radius = 95.04
+flag_disable_z = true
+gravity = Vector3( 0, -200, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 60.5
+angle_random = 1.0
+scale = 1.11
+scale_random = 0.91
+color_ramp = SubResource( 5 )
+anim_speed = 1.0
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "explode"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 20 ), Vector2( 0, -18 ), Vector2( 0, -22 ), Vector2( 0, -18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Particles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../FlipComponents/Visual/Sprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../FlipComponents/Visual/Sprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 7, 8 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Finish:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="E_Goomba" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 2
@@ -293,6 +436,7 @@ anims/ALERTED = SubResource( 9 )
 anims/ATTACK = SubResource( 12 )
 anims/CHARGE = SubResource( 10 )
 anims/CHASE = SubResource( 13 )
+anims/DEATH = SubResource( 81 )
 anims/GET_READY = SubResource( 14 )
 anims/IDLE = SubResource( 25 )
 anims/RECOVER = SubResource( 71 )
@@ -323,3 +467,31 @@ margin_left = -25.0
 margin_top = -52.0
 margin_right = 15.0
 margin_bottom = -43.0
+
+[node name="VFX_Explosion" type="Node2D" parent="."]
+position = Vector2( 1, -17 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Particles2D" type="Particles2D" parent="VFX_Explosion"]
+material = SubResource( 3 )
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 13
+lifetime = 0.3
+speed_scale = 0.7
+explosiveness = 0.05
+process_material = SubResource( 6 )
+texture = ExtResource( 13 )
+
+[node name="Finish" parent="VFX_Explosion" instance=ExtResource( 15 )]
+position = Vector2( -4, 22 )
+
+[node name="Sprite" type="Sprite" parent="VFX_Explosion"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, 20 )
+rotation = 0.18326
+texture = ExtResource( 12 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VFX_Explosion"]
+anims/RESET = SubResource( 7 )
+anims/explode = SubResource( 8 )

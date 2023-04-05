@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Magic/Effects/VFX_Explosion_GRAD.tres" type="Gradient" id=1]
+[ext_resource path="res://Assets/Magic/Effects/Textures/crate-spritesheet.png" type="Texture" id=2]
+
+[sub_resource type="CanvasItemMaterial" id=113]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="GradientTexture" id=114]
+gradient = ExtResource( 1 )
+
+[sub_resource type="Curve" id=115]
+min_value = 0.7
+max_value = 1.3
+_data = [ Vector2( 0, 0.825455 ), 0.0, 0.0, 0, 0, Vector2( 0.997449, 1.03818 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=116]
+curve = SubResource( 115 )
+
+[sub_resource type="ParticlesMaterial" id=117]
+emission_shape = 1
+emission_sphere_radius = 5.67
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+angular_velocity = 27.69
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 1.4
+scale_curve = SubResource( 116 )
+color_ramp = SubResource( 114 )
+anim_speed = 2.0
+
+[node name="Finish" type="Particles2D"]
+material = SubResource( 113 )
+position = Vector2( -1, 1 )
+emitting = false
+amount = 2
+one_shot = true
+process_material = SubResource( 117 )
+texture = ExtResource( 2 )

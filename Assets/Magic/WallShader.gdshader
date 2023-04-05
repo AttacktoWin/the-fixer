@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-uniform vec2 targets = vec2(0.5);
+uniform vec2 target = vec2(0.5);
 uniform float radius = 0.5;
 void fragment(){
 	COLOR = texture(TEXTURE,UV);

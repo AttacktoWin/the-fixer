@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/UI/Vault/vault-ui-health-top.png" type="Texture" id=1]
 [ext_resource path="res://Assets/UI/Vault/vault-ui-ammo.png" type="Texture" id=2]
 [ext_resource path="res://Assets/UI/Vault/vault-ui-weapons.png" type="Texture" id=3]
 [ext_resource path="res://addons/dialogic/Documentation/Theme/Font/NotoSans-Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/UI/skull2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/skull1.png" type="Texture" id=6]
 
 [sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 1, 0.117647, 0.168627, 1 )
@@ -22,6 +24,33 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="Theme" id=13]
 default_font = SubResource( 12 )
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/UI/FilmPosterNarrow-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=14]
+size = 150
+font_data = SubResource( 1 )
+
+[sub_resource type="SpriteFrames" id=15]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="GDScript" id=16]
+resource_name = "EnemyCounter"
+script/source = "extends Label
+
+func _process(delta):
+	self.text = str(AI.get_all_enemies().size())
+	if self.text == \"0\":
+		get_parent().get_node(\"EnemyIcon\").frame = 1
+	else:
+		get_parent().get_node(\"EnemyIcon\").frame = 0
+"
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
@@ -76,10 +105,29 @@ anchor_left = 0.835
 anchor_top = 0.883
 anchor_right = 0.847
 anchor_bottom = 0.986
-margin_left = -102.2
+margin_left = -104.2
 margin_top = -39.64
-margin_right = -0.23999
+margin_right = -2.23999
 margin_bottom = 0.119995
 theme = SubResource( 13 )
-text = "2"
+custom_fonts/font = SubResource( 14 )
+text = "19"
 align = 2
+
+[node name="EnemyIcon" type="AnimatedSprite" parent="."]
+position = Vector2( 73, 88 )
+frames = SubResource( 15 )
+
+[node name="EnemyCount" type="Label" parent="."]
+anchor_left = 0.835
+anchor_top = 0.883
+anchor_right = 0.847
+anchor_bottom = 0.986
+margin_left = -1465.2
+margin_top = -943.64
+margin_right = -1358.24
+margin_bottom = -903.88
+theme = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
+text = "10"
+script = SubResource( 16 )

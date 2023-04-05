@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/perlin 23 - 128x128.png-4db3f58c4eea3bbd883fffd3bce237dc.stex"
+path="res://.import/skull2.png-9b60a0a0d2455491221bc42d8f7a0f3d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Magic/perlin 23 - 128x128.png"
-dest_files=[ "res://.import/perlin 23 - 128x128.png-4db3f58c4eea3bbd883fffd3bce237dc.stex" ]
+source_file="res://Assets/UI/skull2.png"
+dest_files=[ "res://.import/skull2.png-9b60a0a0d2455491221bc42d8f7a0f3d.stex" ]
 
 [params]
 
@@ -19,7 +19,7 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
