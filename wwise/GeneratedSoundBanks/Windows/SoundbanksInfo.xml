@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="SFX" Hash="3253593786">
+		<SoundBank Id="89505537" Language="SFX" Hash="3910922598">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>89505537.bnk</Path>
@@ -130,9 +130,9 @@
 				</Event>
 				<Event Id="708461478" Name="Hit_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Pistol_Player">
 					<IncludedMemoryFiles>
-						<File Id="73824784" Language="SFX">
-							<ShortName>Hit_Pistol_Player.wav</ShortName>
-							<Path>SFX\Hit_Pistol_Player_2DCB09E6.wem</Path>
+						<File Id="791064235" Language="SFX">
+							<ShortName>Impact_Shoot_Player.wav</ShortName>
+							<Path>SFX\Impact_Shoot_Player_6014E8C9.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -389,9 +389,9 @@
 				</Event>
 				<Event Id="708461478" Name="Hit_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Pistol_Player">
 					<IncludedMemoryFiles>
-						<File Id="73824784" Language="SFX">
-							<ShortName>Hit_Pistol_Player.wav</ShortName>
-							<Path>SFX\Hit_Pistol_Player_2DCB09E6.wem</Path>
+						<File Id="791064235" Language="SFX">
+							<ShortName>Impact_Shoot_Player.wav</ShortName>
+							<Path>SFX\Impact_Shoot_Player_6014E8C9.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
