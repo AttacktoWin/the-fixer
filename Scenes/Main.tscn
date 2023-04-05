@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=2]
 
-[ext_resource path="res://Scripts/Entities/Level.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Entities/World.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Interface/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Magic/Effects/Textures/noiseTexture.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Magic/Effects/Textures/perlin 23 - 128x128.png" type="Texture" id=5]
@@ -237,7 +237,7 @@ adjustment_contrast = 2.29
 [node name="World" type="Node2D"]
 process_priority = 100000000
 scale = Vector2( 1, 2 )
-script = ExtResource( 2 )
+script = ExtResource( 1 )
 
 [node name="Managers" type="Node2D" parent="."]
 
