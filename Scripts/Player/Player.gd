@@ -76,7 +76,14 @@ func _get_wanted_velocity():
 func get_wanted_gun_vector():
 	var v = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
 	if self.weapon_disabled or not self._gun:
-		return Vector2(0.1 * sign(v.x) if v.x != 0.0 else 1.0, 1)
+		return Vector2(
+			(
+				0.1 * sign(v.x) * max(abs(getv(LivingEntityVariable.VELOCITY).x) / 120, 1)
+				if v.x != 0.0
+				else 1.0
+			),
+			1
+		)
 	return v
 
 
