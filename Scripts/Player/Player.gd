@@ -4,6 +4,8 @@ class_name Player extends LivingEntity
 
 var _inv_timer = 0
 
+export(PackedScene) var start_weapon = null
+
 onready var anim_player: AnimationPlayer = $Visual/AnimationPlayer
 onready var arms_container: Node2D = $Visual/ArmsContainer
 onready var hand: Node2D = $Visual/ArmsContainer/Hand
@@ -33,7 +35,8 @@ func _ready():
 func _world_updated():
 	if not self._has_default_gun:
 		self._has_default_gun = true
-		self.set_gun(load("res://Scenes/Weapons/PlayerShotgunScene.tscn").instance())
+		if start_weapon:
+			self.set_gun(start_weapon.instance())
 	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION)
 
 
@@ -72,8 +75,8 @@ func _get_wanted_velocity():
 
 func get_wanted_gun_vector():
 	var v = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
-	if self.weapon_disabled:
-		return Vector2(1 * sign(v.x) if v.x != 0.0 else 1.0, 1)
+	if self.weapon_disabled or not self._gun:
+		return Vector2(0.1 * sign(v.x) if v.x != 0.0 else 1.0, 1)
 	return v
 
 
