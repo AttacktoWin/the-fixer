@@ -399,7 +399,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Spyder/SpyderStateRangeAttack.gd"
 }, {
-"base": "Reference",
+"base": "PlayerBaseGun",
 "class": "TestGun",
 "language": "GDScript",
 "path": "res://Scripts/Entities/Weapons/Player/TestGun.gd"
@@ -561,7 +561,7 @@ _global_script_class_icons={
 [application]
 
 config/name="The Fixer"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/Interface/Menus/MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

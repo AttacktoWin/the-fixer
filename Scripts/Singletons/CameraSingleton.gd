@@ -114,30 +114,31 @@ func _process(_delta):
 	self._shake_timer = max(self._shake_timer / pow(1.2, MathUtils.delta_frames(_delta)), 0)
 
 	# move
-	if not self._frozen_dict[TARGET.LOCATION]:
-		self._camera.transform.origin = (
-			self._camera.transform.origin
-			+ (
-				(self._location_target - self._camera.transform.origin)
-				* pow(self._transition_factor, 1 / delta_60)
+	if not self._frozen_dict[TARGET.LOCATION] and is_instance_valid(self._camera):
+			self._camera.transform.origin = (
+				self._camera.transform.origin
+				+ (
+					(self._location_target - self._camera.transform.origin)
+					* pow(self._transition_factor, 1 / delta_60)
+				)
 			)
-		)
 
 	# zoom
-	if not self._frozen_dict[TARGET.ZOOM]:
+	if not self._frozen_dict[TARGET.ZOOM] and is_instance_valid(self._camera):
 		self._camera.zoom = (
 			self._camera.zoom
 			+ (self._zoom_target - self._camera.zoom) * pow(self._transition_factor, 1 / delta_60)
 		)
-
-	# SCREEN SHAKE!!! (the most important part)
-	self._camera.transform.origin = (
-		self._camera.transform.origin
-		+ (
-			Vector2(
-				rand_range(-self._shake_timer, self._shake_timer),
-				rand_range(-self._shake_timer, self._shake_timer)
+	
+	if is_instance_valid(self._camera):
+		# SCREEN SHAKE!!! (the most important part)
+		self._camera.transform.origin = (
+			self._camera.transform.origin
+			+ (
+				Vector2(
+					rand_range(-self._shake_timer, self._shake_timer),
+					rand_range(-self._shake_timer, self._shake_timer)
+				)
+				/ 2
 			)
-			/ 2
 		)
-	)
