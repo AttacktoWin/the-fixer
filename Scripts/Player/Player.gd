@@ -24,6 +24,8 @@ var _knockback_velocity = Vector2.ZERO
 
 const INVULNERABLE_TIME = 1
 
+const HIT_SCENE = preload("res://Scenes/Particles/PlayerHitScene.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -212,9 +214,11 @@ func _physics_process(delta):
 func knockback(vel: Vector2):
 	self._knockback_velocity += vel
 
+
 func update_health_bar():
 	var bar = Scene.ui.get_node("HUD/HealthBar")
 	bar.value = ((getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
+
 
 func _on_take_damage(info: AttackInfo):
 	var direction = info.get_attack_direction(self.global_position)
@@ -226,6 +230,11 @@ func _on_take_damage(info: AttackInfo):
 			/ self.getv(LivingEntityVariable.WEIGHT)
 		)
 	)
+	var fx = HIT_SCENE.instance()
+	fx.initialize(direction.angle() + PI, info.damage)
+	self.add_child(fx)
+	fx.position = Vector2(0, -40)
+	fx.scale = Vector2.ONE / 2
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	update_health_bar()
 	Scene.ui.get_node("DamageFeedback").display_feedback()

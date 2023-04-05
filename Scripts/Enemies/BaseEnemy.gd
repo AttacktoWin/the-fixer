@@ -246,7 +246,7 @@ func _on_take_damage(info: AttackInfo):
 		bar.modulate.a = 0
 
 	var fx = HIT_SCENE.instance()
-	fx.initialize(info.get_attack_direction(self.global_position).angle(), info.damage)
+	fx.initialize(direction.angle(), info.damage)
 	Scene.runtime.add_child(fx)
 	fx.global_position = self.global_position
 	._on_take_damage(info)
