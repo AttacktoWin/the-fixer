@@ -8,6 +8,8 @@ export var transfer_player: bool = true
 export var fade_time: float = 0.5
 var cleared: bool = false
 
+signal on_displayed
+signal on_clear_display
 
 func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")  # warning-ignore: RETURN_VALUE_DISCARDED
@@ -29,6 +31,7 @@ func _on_body_entered(body: Node2D):
 		var exit = get_node_or_null("Node2D/ExitMessage")
 		if exit:
 			exit.visible = true
+			emit_signal("on_displayed")
 
 
 func _on_body_exit(body: Node2D):
@@ -36,6 +39,7 @@ func _on_body_exit(body: Node2D):
 		var exit = get_node_or_null("Node2D/ExitMessage")
 		if exit:
 			exit.visible = false
+			emit_signal("on_clear_display")
 
 
 func _transition():

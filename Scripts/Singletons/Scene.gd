@@ -12,6 +12,7 @@ var managers setget , _get_managers
 var level setget , _get_level
 var level_node setget , _get_level_node
 var player setget , _get_player
+var exit setget , _get_exit
 
 var _camera = null
 var _runtime = null
@@ -21,6 +22,7 @@ var _managers = null
 var _level = null
 var _level_node = null
 var _player = null
+var _exit = null
 
 signal transition_start
 signal transition_complete
@@ -35,8 +37,10 @@ func _reload_variables():
 	self._managers = self._root.get_node("Managers")
 	self._level = self._root.get_node("Level/Generator").level
 	self._level_node = self._root.get_node("Level")
+	self._exit = self._root.get_node("Level/Transition/Hitbox")
 	if self._player == null:
 		self._player = self._root.get_node("Level/SortableEntities/Player")
+	
 	Pathfinder.update_level(self._level)
 	emit_signal("world_updated")
 	emit_signal("transition_complete")
@@ -77,6 +81,9 @@ func _get_level_node() -> Node2D:
 
 func _get_player() -> Player:
 	return self._player
+
+func _get_exit():
+	return self._exit
 
 
 func get_tree() -> SceneTree:

@@ -51,8 +51,9 @@ func room_deco_pass(path,room_list,path_by_rooms,end_index,floor_set):
 	
 	room_tiles.shuffle()
 	var random_deco_tile = random.randi_range(6,10)
-	for tile in path_by_rooms[room_tiles[0]]:
-		floor_set.set_cellv(Vector2(tile.x,tile.y),random_deco_tile)
+	if(room_tiles.size()>0):
+		for tile in path_by_rooms[room_tiles[0]]:
+			floor_set.set_cellv(Vector2(tile.x,tile.y),random_deco_tile)
 
 # Description: Fills the walls in tileset
 func wall_pass(
