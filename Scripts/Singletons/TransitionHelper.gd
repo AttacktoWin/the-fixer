@@ -55,6 +55,9 @@ func _process(delta):
 			self._transition_phase = 2
 
 	elif self._transition_phase == 2:
+		if PausingSingleton.is_paused():
+			self._transition_timer = 0
+			return
 		Scene.ui_layer.get_node("TransitionUI/LoadingText").modulate.a = 0
 		Scene.ui_layer.get_node("TransitionUI/FadeRect").modulate.a = 1 - interp
 		CameraSingleton.set_zoom(Vector2.ONE * ((1 - interp) + 0.25) * ZOOM_OUT, self)

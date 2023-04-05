@@ -21,7 +21,7 @@ radius = 50.0
 radius = 400.0
 
 [sub_resource type="CircleShape2D" id=87]
-radius = 48.0
+radius = 40.0
 
 [sub_resource type="CircleShape2D" id=81]
 radius = 56.4358
@@ -207,12 +207,12 @@ attack_type = 2
 persistent = true
 die_on_pierce = false
 camera_shake = 64.0
-knockback_factor = 1024.0
+knockback_factor = 512.0
 max_pierce = 10000
 should_forget_entities = true
 
 [node name="HitCollider" type="CollisionShape2D" parent="FlipComponents/HitBox"]
-position = Vector2( 4, 33 )
+position = Vector2( -10, 25 )
 shape = SubResource( 87 )
 
 [node name="HurtBox" type="Area2D" parent="FlipComponents"]

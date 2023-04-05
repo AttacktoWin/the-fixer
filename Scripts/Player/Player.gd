@@ -201,7 +201,7 @@ func _try_move():
 
 func _physics_process(delta):
 	# Wwise.set_2d_position(self, self.global_position)
-	self._knockback_velocity *= 0.9
+	self._knockback_velocity *= 0.93
 	if self._knockback_velocity.length() < 30:
 		self._knockback_velocity = Vector2.ZERO
 	_handle_camera()
@@ -234,6 +234,7 @@ func _on_death():
 	self._knockback_velocity = Vector2.ZERO
 	self.fsm.set_state(PlayerState.DEAD, true)
 	self.fsm.lock()
-	self._gun.queue_free()
+	if self._gun:
+		self._gun.queue_free()
 	self._gun = null
 	StatsTracker.add_death()
