@@ -15,6 +15,9 @@ const ZOOM_OUT = 4
 
 func _switch():
 	PausingSingleton.unpause(self)
+	if Scene.player:
+		Scene.player.setv(LivingEntityVariable.HEALTH, Scene.player.base_health)
+		Scene.player.update_health_bar()
 	Scene.switch(self._transition_target, self._transfer_player)
 	CameraSingleton.set_target_center(Scene.player.global_position * MathUtils.TO_ISO, self)
 	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION, self)

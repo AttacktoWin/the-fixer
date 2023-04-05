@@ -181,6 +181,9 @@ func _process(_delta):
 
 
 func _physics_process(delta):
+	if self.position.x == NAN or self.position.y == NAN:
+		print("BAD STATE")
+		self.queue_free()
 	self._check_target_available()
 	self._handle_pathfinding(delta)
 
@@ -260,5 +263,6 @@ func _draw():
 
 
 func _on_death():
-	self.fsm.set_state(EnemyState.DEAD)
+	self.fsm.set_state(EnemyState.DEAD, true)
+	self.fsm.lock()
 	#self.queue_free()

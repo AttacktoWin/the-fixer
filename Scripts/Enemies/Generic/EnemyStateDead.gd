@@ -12,7 +12,6 @@ func get_handled_states():
 
 func enter():
 	if self.entity.death_animation_player:
-		self.fsm.lock()
 		self.entity.death_animation_player.play("EXPLODE")
 		self.entity.death_animation_player.connect("animation_finished", self, "_on_anim_complete")
 

@@ -11,6 +11,7 @@ var cleared: bool = false
 signal on_displayed
 signal on_clear_display
 
+
 func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")  # warning-ignore: RETURN_VALUE_DISCARDED
 	connect("body_exited", self, "_on_body_exit")  # warning-ignore: RETURN_VALUE_DISCARDED

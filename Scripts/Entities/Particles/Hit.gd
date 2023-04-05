@@ -24,6 +24,8 @@ const FLASH_RATE: float = 0.1
 const COLOR1 = Constants.COLOR.RED
 const COLOR2 = Constants.COLOR.WHITE
 
+const BASE_DAMAGE = 50.0
+
 
 func initialize(rotation: float = 0, damage: int = 0):
 	self._wanted_rotation = rotation
@@ -62,10 +64,14 @@ func _handle_text():
 	)
 
 	self._damage_label.rect_scale = (
-		Vector2.ONE
-		* MathUtils.interpolate(
-			self._timer / self.lifetime, 1, 2, MathUtils.INTERPOLATE_OUT_EXPONENTIAL
+		(
+			Vector2.ONE
+			* MathUtils.interpolate(
+				self._timer / self.lifetime, 1, 2, MathUtils.INTERPOLATE_OUT_EXPONENTIAL
+			)
 		)
+		* self._damage
+		/ BASE_DAMAGE
 	)
 
 	if self._timer > self.flash_time:

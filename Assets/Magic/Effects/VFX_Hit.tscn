@@ -101,6 +101,7 @@ script = SubResource( 21 )
 [node name="Mulit" type="Particles2D" parent="Rotate"]
 material = SubResource( 6 )
 position = Vector2( -22, 0 )
+emitting = false
 amount = 4
 lifetime = 0.2
 one_shot = true
@@ -111,6 +112,7 @@ texture = ExtResource( 2 )
 
 [node name="Single" type="Particles2D" parent="Rotate"]
 material = SubResource( 1 )
+emitting = false
 amount = 1
 lifetime = 0.3
 one_shot = true
