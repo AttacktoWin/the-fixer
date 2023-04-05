@@ -303,7 +303,6 @@ margin_bottom = 540.0
 visible = false
 script = SubResource( 13 )
 
-
 [node name="TransitionUI" type="Control" parent="UILayer"]
 margin_right = 40.0
 margin_bottom = 40.0

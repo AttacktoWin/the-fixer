@@ -8,6 +8,7 @@ var _disabled = false
 export var cooldown: float = 0.5
 export var ammo_count: int = 2
 export(PackedScene) var ammo_scene = null
+export(PackedScene) var visual_scene = null
 export var infinite_ammo: bool = false
 export(Texture) var world_sprite = null
 
@@ -116,6 +117,20 @@ func _check_fire_pressed() -> bool:
 
 func _cooldown_timer_tick(delta):
 	self._cooldown_timer -= delta
+
+
+func with_visuals(visuals: Node):
+	if visuals != null:
+		if visuals.get_node_or_null("SocketMuzzle"):
+			visuals.get_node_or_null("SocketMuzzle").add_child(self)
+		return visuals
+	return self
+
+
+func default_visual_scene():
+	if self.visual_scene:
+		return self.visual_scene.instance()
+	return null
 
 
 func _physics_process(delta):

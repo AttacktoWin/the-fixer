@@ -5,8 +5,8 @@ class_name Player extends LivingEntity
 var _inv_timer = 0
 
 onready var anim_player: AnimationPlayer = $Visual/AnimationPlayer
-onready var socket_muzzle: Node2D = $Visual/ArmsContainer/SocketMuzzle
 onready var arms_container: Node2D = $Visual/ArmsContainer
+onready var hand: Node2D = $Visual/ArmsContainer/Hand
 onready var arms_secondary: Node2D = $Visual/Arm2
 onready var visual: Node2D = $Visual
 onready var fsm: FSMController = $FSMController
@@ -33,7 +33,7 @@ func _ready():
 func _world_updated():
 	if not self._has_default_gun:
 		self._has_default_gun = true
-		self.set_gun(load("res://Scenes/Weapons/PlayerPistolScene.tscn").instance())
+		self.set_gun(load("res://Scenes/Weapons/PlayerShotgunScene.tscn").instance())
 	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION)
 
 
@@ -52,7 +52,7 @@ func set_gun(gun: PlayerBaseGun):
 		Scene.runtime.add_child(pickup)
 	self._gun = gun.with_parent(self)
 	self._gun.set_aim_bone(arms_container)
-	socket_muzzle.add_child(self._gun)
+	self.hand.add_child(self._gun.with_visuals(self._gun.default_visual_scene()))
 	update_ammo_counter()
 
 
