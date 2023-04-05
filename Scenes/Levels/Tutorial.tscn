@@ -587,10 +587,10 @@ base_speed = 200.0
 [node name="Label" type="Label" parent="SortableEntities/Runtime/E_Ant"]
 margin_left = -117.0
 margin_top = -69.0
-margin_right = -29.0
-margin_bottom = -20.0
+margin_right = 12.0
+margin_bottom = -4.0
 custom_fonts/font = ExtResource( 20 )
-text = "Hello, Im an ant"
+text = "Henlo am ant"
 align = 1
 autowrap = true
 
@@ -614,20 +614,20 @@ rotation = 0.785398
 shape = SubResource( 66 )
 
 [node name="Label4" type="Label" parent="."]
-margin_left = -353.0
-margin_top = 392.0
-margin_right = -191.0
-margin_bottom = 497.0
+margin_left = -392.0
+margin_top = 397.0
+margin_right = -150.0
+margin_bottom = 502.0
 custom_fonts/font = ExtResource( 20 )
 text = "Press E to pickup a weapon"
 align = 1
 autowrap = true
 
 [node name="Label3" type="Label" parent="."]
-margin_left = 487.0
-margin_top = 1416.0
-margin_right = 678.0
-margin_bottom = 1543.0
+margin_left = 455.0
+margin_top = 1409.0
+margin_right = 734.0
+margin_bottom = 1576.0
 custom_fonts/font = ExtResource( 20 )
 text = "Ants give back 1 ammo if destroyed by ranged and 3 if destroyed by melee..."
 autowrap = true
@@ -635,8 +635,8 @@ autowrap = true
 [node name="Label2" type="Label" parent="."]
 margin_left = -602.0
 margin_top = 1568.0
-margin_right = -411.0
-margin_bottom = 1695.0
+margin_right = -354.0
+margin_bottom = 1701.0
 custom_fonts/font = ExtResource( 20 )
 text = "As you progress deeper into the vault, your vision will decrease..."
 autowrap = true
@@ -674,7 +674,7 @@ material = ExtResource( 21 )
 position = Vector2( 170.866, 139.593 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 9
+frame = 7
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
@@ -711,7 +711,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 4
+frame = 3
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -741,6 +741,7 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
+frame = 2
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
@@ -775,12 +776,13 @@ playing = true
 position = Vector2( 92, 44.5 )
 scale = Vector2( 0.406667, 0.406667 )
 frames = SubResource( 63 )
+frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="Dash"]
-margin_left = 23.0
-margin_top = 71.0
-margin_right = 171.0
-margin_bottom = 104.0
+margin_left = -48.0
+margin_top = 84.0
+margin_right = 233.0
+margin_bottom = 117.0
 custom_fonts/font = ExtResource( 20 )
 text = "press Space To Dash"

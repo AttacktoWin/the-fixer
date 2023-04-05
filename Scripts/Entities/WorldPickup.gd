@@ -28,6 +28,8 @@ signal on_collected
 
 
 func _ready():
+	Wwise.register_listener(self)
+	Wwise.register_game_obj(self, self.get_name())
 	if get_node_or_null(self.height_component_path) == null:
 		set_height_component(self)
 	if not self._texture:

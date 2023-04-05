@@ -21,6 +21,7 @@ func set_weapon(weapon: Weapon):
 
 
 func on_collected(collector):
+	Wwise.post_event_id(AK.EVENTS.WEAPON_PICKUP_PLAYER, self)
 	self.weapon_instance.set_process(true)
 	self.weapon_instance.set_physics_process(true)
 	collector.set_gun(self.weapon_instance)
