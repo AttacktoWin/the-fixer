@@ -1,7 +1,27 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Assets/Magic/Effects/Textures/hit.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Magic/Effects/Textures/hit2.png" type="Texture" id=2]
+
+[sub_resource type="DynamicFontData" id=19]
+font_path = "res://Assets/UI/BAHNSCHRIFT.TTF"
+
+[sub_resource type="DynamicFont" id=20]
+size = 50
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 19 )
+
+[sub_resource type="GDScript" id=21]
+script/source = "extends Node2D
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	for node in self.get_children():
+		node.emitting = true
+"
 
 [sub_resource type="CanvasItemMaterial" id=6]
 particles_animation = true
@@ -60,41 +80,39 @@ color = Color( 0.937255, 0.92549, 0.219608, 1 )
 color_ramp = SubResource( 18 )
 anim_speed = 1.4
 
-[sub_resource type="DynamicFontData" id=19]
-font_path = "res://Assets/UI/BAHNSCHRIFT.TTF"
-
-[sub_resource type="DynamicFont" id=20]
-size = 50
-outline_size = 5
-outline_color = Color( 0, 0, 0, 1 )
-font_data = SubResource( 19 )
-
-[node name="VFX_Hit" type="Node2D"]
+[node name="VFX" type="Node2D"]
 scale = Vector2( 0.5, 0.5 )
 
-[node name="Mulit" type="Particles2D" parent="."]
+[node name="DamageLabel" type="Label" parent="."]
+margin_left = -40.0
+margin_top = -46.0
+margin_right = 40.0
+margin_bottom = 6.0
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 40, 26 )
+custom_fonts/font = SubResource( 20 )
+text = "ERR"
+align = 1
+
+[node name="Rotate" type="Node2D" parent="."]
+scale = Vector2( 2, 2 )
+script = SubResource( 21 )
+
+[node name="Mulit" type="Particles2D" parent="Rotate"]
 material = SubResource( 6 )
 position = Vector2( -22, 0 )
 amount = 4
 lifetime = 0.2
+one_shot = true
 explosiveness = 0.93
 local_coords = false
 process_material = SubResource( 2 )
 texture = ExtResource( 2 )
 
-[node name="Single" type="Particles2D" parent="."]
+[node name="Single" type="Particles2D" parent="Rotate"]
 material = SubResource( 1 )
 amount = 1
 lifetime = 0.3
+one_shot = true
 process_material = SubResource( 3 )
 texture = ExtResource( 1 )
-
-[node name="Label" type="Label" parent="."]
-margin_left = -18.0
-margin_top = -46.0
-margin_right = 34.0
-margin_bottom = 5.0
-rect_scale = Vector2( 0.8, 0.8 )
-custom_fonts/font = SubResource( 20 )
-text = "23"
-align = 1

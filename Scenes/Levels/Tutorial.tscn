@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=26]
 [ext_resource path="res://Scenes/Weapons/PlayerPistolScene.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scripts/Entities/Weapons/WorldWeapon.gd" type="Script" id=28]
+[ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=29]
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 127, 0, 255, 66, 127, 126, 1, 65, 127, 127 )
@@ -476,6 +477,16 @@ script = ExtResource( 26 )
 vision_range = 1.0
 enemy_appear_distance = 1000.0
 
+[node name="LevelMusic" type="Node2D" parent="."]
+script = ExtResource( 29 )
+event = {
+"Id": 3751267554,
+"Name": "HUB MUSIC"
+}
+trigger_on = 3
+stop_on = 2
+stop_fade_time = 2
+
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 6 )
 map_size = Vector2( 46, 40 )
@@ -681,7 +692,7 @@ playing = true
 position = Vector2( 77.25, 139.5 )
 scale = Vector2( 0.283333, 0.283333 )
 frames = SubResource( 24 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Shoot" type="Control" parent="."]
@@ -711,7 +722,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 1
+frame = 5
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -741,7 +752,6 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 4
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
