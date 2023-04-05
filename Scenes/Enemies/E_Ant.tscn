@@ -337,7 +337,6 @@ script = ExtResource( 6 )
 [node name="EnemyStateRun" type="Node2D" parent="FSMController"]
 script = ExtResource( 5 )
 global_animation_speed_multiplier = 2.0
-draw_path = true
 
 [node name="EnemyStateHurt" type="Node2D" parent="FSMController"]
 script = ExtResource( 10 )

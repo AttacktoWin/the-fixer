@@ -449,6 +449,7 @@ root_state = NodePath("EnemyStateWander")
 animation_player = NodePath("../FlipComponents/Visual/AnimationPlayer")
 
 [node name="EnemyStateWander" type="Node2D" parent="FSMController"]
+position = Vector2( 0, 2 )
 script = ExtResource( 8 )
 
 [node name="EnemyStateAlert" type="Node2D" parent="FSMController"]

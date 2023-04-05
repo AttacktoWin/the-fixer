@@ -34,7 +34,6 @@ func _physics_process(delta):
 		):
 			self.fsm.set_state(EnemyState.ATTACKING_RANGED)
 
-
-func _draw():
-	if self.entity.get_nav_path():
-		self.entity.get_nav_path().draw(self)
+# func _draw():
+# 	if self.entity.get_nav_path():
+# 		self.entity.get_nav_path().draw(self)
