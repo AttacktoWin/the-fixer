@@ -2,7 +2,7 @@ extends Node2D
 
 export(NodePath) var Player_path
 export(NodePath) var Exit_path
-onready var player = get_node(Player_path)
+onready var player = get_node(Player_path) if Player_path else Scene.player
 onready var exit = get_node(Exit_path)
 
 export(NodePath) var parent

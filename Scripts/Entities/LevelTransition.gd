@@ -4,6 +4,8 @@ extends Area2D
 
 export(PackedScene) var to_level
 export var long_load: bool = true
+export var transfer_player: bool = true
+export var fade_time: float = 0.5
 var cleared: bool = false
 
 
@@ -38,4 +40,4 @@ func _on_body_exit(body: Node2D):
 
 func _transition():
 	var inst = to_level.instance()
-	TransitionHelper.transition(inst, long_load)
+	TransitionHelper.transition(inst, long_load, transfer_player, fade_time)

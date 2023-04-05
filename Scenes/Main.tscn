@@ -73,7 +73,7 @@ script/source = "extends ColorRect
 var player_node:KinematicBody2D
 
 func _process(_delta):
-	player_node= Scene.player
+	player_node = Scene.player
 	var player_pos = player_node.get_global_transform_with_canvas().origin
 	var target = player_pos/get_viewport_rect().size
 	material.set_shader_param(\"target\",target)

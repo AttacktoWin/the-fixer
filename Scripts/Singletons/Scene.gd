@@ -32,16 +32,17 @@ func _reload_variables():
 	self._ui_layer = self._root.get_node("UILayer")
 	self._managers = self._root.get_node("Managers")
 	self._level = self._root.get_node("Level/Generator").level
-	self._player = self._root.get_node("Level/Generator").get_node("%Player")
+	if self._player == null:
+		self._player = self._root.get_node("Level/SortableEntities/Player")
 	Pathfinder.update_level(self._level)
 	emit_signal("world_updated")
 	if (
 		self._root.get_node("Level/Generator").get("level_name")
 		and self._root.get_node("Level/Generator").level_name == "hub"
 	):
-		self.emit_signal("transition_complete", true)
+		emit_signal("transition_complete", true)
 	else:
-		self.emit_signal("transition_complete", false)
+		emit_signal("transition_complete", false)
 
 
 func set_root(root: Node2D):
@@ -89,10 +90,11 @@ func deload():
 	if not self._runtime:
 		print("No level loaded!")
 		return
-	var new_level = self._root.get_node("Level")
-	self._root.remove_child(new_level)
-	new_level.queue_free()
+	var current_level = self._root.get_node("Level")
+	self._root.remove_child(current_level)
+	current_level.queue_free()
 	self._runtime = null
+	self._player = null
 
 
 func load(new_level: Node):
@@ -104,7 +106,19 @@ func load(new_level: Node):
 	_reload_variables()
 
 
-func switch(new_level: Node):
-	self.emit_signal("transition_start")
-	self.deload()
-	self.load(new_level)
+func switch(new_level: Node, transfer_player: bool = false):
+	emit_signal("transition_start")
+	if transfer_player:
+		var player_inst = self._player
+		player_inst.get_parent().remove_child(player_inst)
+		assert(
+			new_level.get_node_or_null("SortableEntities/Player") == null,
+			"Cannot transfer player to scene with existing player!"
+		)
+		new_level.get_node("SortableEntities").add_child(player_inst)
+		self.deload()
+		self._player = player_inst
+		self.load(new_level)
+	else:
+		self.deload()
+		self.load(new_level)

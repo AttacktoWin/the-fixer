@@ -635,6 +635,7 @@ position = Vector2( 215, -1012 )
 
 [node name="Hitbox" parent="Transition" instance=ExtResource( 14 )]
 to_level = ExtResource( 17 )
+transfer_player = false
 
 [node name="Exit" type="AnimatedSprite" parent="Transition/Hitbox"]
 position = Vector2( 0.5, -12.5 )
@@ -696,7 +697,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 6
+frame = 5
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
@@ -735,7 +736,6 @@ scale = Vector2( 0.790569, 0.790569 )
 shape = SubResource( 96 )
 
 [node name="Player" parent="SortableEntities" instance=ExtResource( 2 )]
-unique_name_in_owner = true
 position = Vector2( -172, -240 )
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]
