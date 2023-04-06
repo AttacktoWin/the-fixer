@@ -2065,7 +2065,6 @@ bones = [ "torso", PoolRealArray( 0, 0, 0, 0, 0 ), "torso/chest", PoolRealArray(
 
 [node name="eye" type="Polygon2D" parent="polygons"]
 position = Vector2( -1, -407 )
-color = Color( 0, 0, 0, 1 )
 offset = Vector2( -445, -467 )
 texture = ExtResource( 2 )
 skeleton = NodePath("../../skeleton")
@@ -2074,7 +2073,7 @@ uv = PoolVector2Array( 441.353, 414.689, 394.737, 455.29, 412.03, 508.674, 484.9
 bones = [ "torso", PoolRealArray( 0, 0, 0, 0, 0 ), "torso/chest", PoolRealArray( 0, 0, 0, 0, 0 ), "torso/chest/neck", PoolRealArray( 0, 0, 0, 0, 0 ), "torso/chest/neck/head", PoolRealArray( 1, 1, 1, 1, 1 ), "torso/chest/arm_left_upper", PoolRealArray( 0, 0, 0, 0, 0 ), "torso/chest/arm_left_upper/arm_left_lower", PoolRealArray( 0, 0, 0, 0, 0 ), "torso/chest/arm_left_upper/arm_left_lower/arm_left_hand", PoolRealArray( 0, 0, 0, 0, 0 ), "torso/chest/arm_right_upper", PoolRealArray( 0, 0, 0, 0, 0 ), "torso/chest/arm_right_upper/arm_right_lower", PoolRealArray( 0, 0, 0, 0, 0 ), "torso/chest/arm_right_upper/arm_right_lower/arm_right_hand", PoolRealArray( 0, 0, 0, 0, 0 ) ]
 
 [node name="eyelid" type="Polygon2D" parent="polygons"]
-position = Vector2( -5, -499 )
+position = Vector2( -5, -498 )
 offset = Vector2( -679, -225 )
 texture = ExtResource( 2 )
 skeleton = NodePath("../../skeleton")
