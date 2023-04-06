@@ -2,6 +2,9 @@
 
 class_name PlayerStateDead extends FSMNode
 
+const WAIT_TIME = 2.0
+var _timer = 0
+
 
 # returns an array of states this entry claims to handle. This can be any data type
 func get_handled_states():
@@ -22,4 +25,6 @@ func _physics_process(_delta):
 
 
 func _process(_delta):
-	pass
+	self._timer += _delta
+	if self._timer > WAIT_TIME:
+		TransitionHelper.transition(load("res://Scenes/Levels/Hub.tscn").instance(), false, false)

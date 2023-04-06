@@ -181,7 +181,7 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	if self.position.x == NAN or self.position.y == NAN:
+	if is_nan(self.position.x) or is_nan(self.position.y):
 		print("BAD STATE")
 		self.queue_free()
 	self._check_target_available()
