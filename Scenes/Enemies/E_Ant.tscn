@@ -22,9 +22,8 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id=77]
 radius = 400.0
 
-[sub_resource type="CapsuleShape2D" id=63]
-radius = 12.3667
-height = 10.676
+[sub_resource type="CircleShape2D" id=113]
+radius = 30.0
 
 [sub_resource type="Shader" id=79]
 code = "shader_type canvas_item;
@@ -297,14 +296,14 @@ shape = SubResource( 77 )
 [node name="FlipComponents" type="Node2D" parent="."]
 
 [node name="HurtBox" type="Area2D" parent="FlipComponents"]
-position = Vector2( -4, -10 )
+position = Vector2( 0, -19 )
 collision_layer = 32
 collision_mask = 0
 
 [node name="HurtCollider" type="CollisionShape2D" parent="FlipComponents/HurtBox"]
 position = Vector2( 1, 0 )
 rotation = -1.81514
-shape = SubResource( 63 )
+shape = SubResource( 113 )
 
 [node name="Visual" type="Node2D" parent="FlipComponents"]
 
