@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="SFX" Hash="3910922598">
+		<SoundBank Id="89505537" Language="SFX" Hash="1615150434">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>89505537.bnk</Path>
@@ -105,6 +105,26 @@
 						<File Id="90599123" Language="SFX">
 							<ShortName>Shoot_Pistol_Player.wav</ShortName>
 							<Path>SFX\Shoot_Pistol_Player_08F7D1DE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1367775454" Name="Fire_Shotgun_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Fire_Shotgun_Player">
+					<IncludedMemoryFiles>
+						<File Id="65303401" Language="SFX">
+							<ShortName>Shoot_Shotgun_Player.wav</ShortName>
+							<Path>SFX\Shoot_Shotgun_Player_F70B42BA.wem</Path>
+						</File>
+						<File Id="291940770" Language="SFX">
+							<ShortName>Shoot_Shotgun_Player.wav</ShortName>
+							<Path>SFX\Shoot_Shotgun_Player_4698CD56.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1807675346" Name="Fire_Tommy_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Fire_Tommy_Player">
+					<IncludedMemoryFiles>
+						<File Id="277708595" Language="SFX">
+							<ShortName>Shoot_Tommy_Player.wav</ShortName>
+							<Path>SFX\Shoot_Tommy_Player_211D2E73.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
