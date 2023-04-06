@@ -248,7 +248,10 @@ func _on_take_damage(info: AttackInfo):
 	var fx = HIT_SCENE.instance()
 	fx.initialize(direction.angle(), info.damage)
 	Scene.runtime.add_child(fx)
-	fx.global_position = self.global_position
+	if info.attack.damage_type == AttackVariable.DAMAGE_TYPE.RANGED:
+		fx.global_position = info.attack.global_position
+	else:
+		fx.global_position = self.global_position
 	._on_take_damage(info)
 
 
