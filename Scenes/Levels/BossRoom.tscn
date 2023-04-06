@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -6,9 +6,7 @@
 [ext_resource path="res://Resources/TileSets/WallTiles.tres" type="TileSet" id=4]
 [ext_resource path="res://Scenes/Manifestation/manifestation.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
-[ext_resource path="res://addons/wwise/runtime/nodes/ak_bank.gd" type="Script" id=10]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
-[ext_resource path="res://addons/wwise/runtime/nodes/ak_listener_2d.gd" type="Script" id=12]
 
 [sub_resource type="GDScript" id=24]
 script/source = "extends Node2D
@@ -19,8 +17,9 @@ var level = []
 script/source = "extends Node2D
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	Scene.switch(load(\"res://Scenes/Levels/Hub.tscn\").instance(), false)
+func _process(_delta):
+	if not PausingSingleton.is_paused():
+		Scene.switch(load(\"res://Scenes/Levels/Hub.tscn\").instance(), false)
 "
 
 [sub_resource type="NavigationPolygon" id=3]
@@ -216,45 +215,6 @@ shader_param/radius = 0.164
 script = ExtResource( 1 )
 vision_enabled = false
 enemy_appear_distance = 1000.0
-
-[node name="AkBank-INIT" type="Node" parent="."]
-script = ExtResource( 10 )
-bank = {
-"Id": 1355168291,
-"Name": "INIT"
-}
-load_on = 1
-unload_on = 2
-
-[node name="AkBank-UI" type="Node" parent="."]
-script = ExtResource( 10 )
-bank = {
-"Id": 1551306167,
-"Name": "UI"
-}
-load_on = 1
-unload_on = 2
-
-[node name="AkBank-GAMEPLAY" type="Node" parent="."]
-script = ExtResource( 10 )
-bank = {
-"Id": 89505537,
-"Name": "GAMEPLAY"
-}
-load_on = 1
-unload_on = 2
-
-[node name="AkBank-MUSIC" type="Node" parent="."]
-script = ExtResource( 10 )
-bank = {
-"Id": 3991942870,
-"Name": "MUSIC"
-}
-load_on = 1
-unload_on = 2
-
-[node name="AkListener2D" type="Node2D" parent="."]
-script = ExtResource( 12 )
 
 [node name="LevelMusic" type="Node2D" parent="."]
 script = ExtResource( 11 )

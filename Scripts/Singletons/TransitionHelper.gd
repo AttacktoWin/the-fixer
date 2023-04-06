@@ -53,6 +53,7 @@ func _process(delta):
 		Scene.ui_layer.get_node("TransitionUI/LoadingText").modulate.a = interp
 
 		if self._transition_timer > self._fade_time:
+			Scene.ui_layer.get_node("TransitionUI/LoadingText").modulate.a = 0
 			_switch()
 			self._transition_timer = 0
 			self._transition_phase = 2
