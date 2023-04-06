@@ -19,4 +19,5 @@ func _on_take_damage(info: AttackInfo):
 				self._spawn_particle(info.damage_source)
 				info.damage_source.add_ammo(2)  # +1 implicit from melee
 			else:
+				self._spawn_particle(info.damage_source)
 				info.damage_source.add_ammo(1)

@@ -18,6 +18,7 @@ const ACCEL = 12.0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	self._target_location = self.global_position
+	self.z_index = 1
 
 
 func set_target(target: Node2D):
