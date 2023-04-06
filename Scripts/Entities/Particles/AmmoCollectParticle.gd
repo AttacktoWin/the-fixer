@@ -8,7 +8,7 @@ var _velocity = Vector2(rand_range(-8, 8), rand_range(-10, -20))
 
 var _target_angle = PI * 2 + rand_range(-PI / 4, PI / 4)
 
-var target_y_offset = 80.0
+var target_y_offset =  -80
 
 const WAIT_TIME = 0.8
 const MAX_SPEED = 300.0

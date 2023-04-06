@@ -61,6 +61,10 @@ func set_gun(gun: PlayerBaseGun):
 	update_ammo_counter()
 
 
+func has_gun() -> bool:
+	return self._gun != null
+
+
 func _get_wanted_direction():
 	var dir = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),

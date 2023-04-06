@@ -16,6 +16,7 @@ export(GDScript) var allied_class = null  # this class will be ignored for attac
 export(AttackVariable.ATTACK_TYPE) var attack_type = AttackVariable.ATTACK_TYPE.CONTINUOUS
 export var attack_interval: float = 0.25
 export(AttackVariable.DAMAGE_TYPE) var damage_type = AttackVariable.DAMAGE_TYPE.MELEE
+export var require_living: bool = true
 export var persistent: bool = false
 export var die_on_pierce: bool = true
 export var spectral: bool = false
@@ -112,6 +113,13 @@ func _filter_entity(entity: LivingEntity) -> bool:
 		return false
 
 	if not entity.can_be_hit():
+		return false
+
+	if (
+		self.require_living
+		and is_instance_valid(self._damage_source)
+		and self._damage_source.is_dead()
+	):
 		return false
 
 	if not self._hit_entities.has(entity):
