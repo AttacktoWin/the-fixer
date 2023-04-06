@@ -14,8 +14,7 @@ export var bullet_spread: float = 0
 
 
 func _notify_fire(has_ammo):
-	var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
-	ammo_count.text = String(self.ammo_count)
+	self.entity.update_ammo_counter()
 	if has_ammo:
 		if self.sound_fire:
 			Wwise.post_event_id(self.sound_fire, self.entity)
