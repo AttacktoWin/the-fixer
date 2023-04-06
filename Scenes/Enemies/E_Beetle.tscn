@@ -331,9 +331,9 @@ tracks/1/keys = {
 collision_layer = 2
 script = ExtResource( 3 )
 height_component_path = NodePath("FlipComponents")
+entity_radius = 50.0
 base_speed = 200.0
 base_accel = 6.0
-entity_radius = 50.0
 melee_attack_range = 300.0
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]

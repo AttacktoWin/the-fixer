@@ -23,7 +23,6 @@ onready var variables = VariableList.new(
 
 onready var status_timers = TimerList.new(self, LivingEntityStatus.get_script_constant_map(), {})
 
-export var entity_radius: float = 32
 export var push_amount: float = 256
 export(NodePath) var entity_collider_path = NodePath("EntityCollider")
 
