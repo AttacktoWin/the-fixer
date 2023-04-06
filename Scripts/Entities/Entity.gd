@@ -55,6 +55,16 @@ func _process(_delta):
 		self._height_components.position = Vector2(self._height_components.position.x, y)
 		var interp = clamp(1 - (self._height / MAX_SHADOW_HEIGHT), 0, 1)
 		self._shadow.modulate.a = interp * MIN_SHADOW_VALUE
-		self._shadow.scale = Vector2.ONE * self.entity_radius * 2.0 / SHADOW_SIZE * MathUtils.interpolate(interp, 0.75, 1, MathUtils.INTERPOLATE_LINEAR)
+		self._shadow.scale = (
+			Vector2.ONE
+			* self.entity_radius
+			* 2.0
+			/ SHADOW_SIZE
+			* MathUtils.interpolate(interp, 0.75, 1, MathUtils.INTERPOLATE_LINEAR)
+		)
 		if self == self._height_components:
 			self._shadow.position = Vector2(0, self._height)
+			if self.scale.x == 0 or self.scale.y == 0:
+				self._shadow.scale = Vector2.ZERO
+			else:
+				self._shadow.scale /= self.scale
