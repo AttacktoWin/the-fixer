@@ -131,17 +131,33 @@ code = "shader_type canvas_item;
 uniform vec2 target = vec2(0.5);
 uniform float intensity: hint_range(0.0, 1.0, 0.1);
 
+uniform float smooth_a;
+uniform float smooth_b;
+uniform float smooth_c;
+uniform float smooth_d;
 void fragment(){
 	COLOR = vec4(1);
 	float x = SCREEN_PIXEL_SIZE.x/distance(vec2(target.x,UV.y),UV);
 	float y = SCREEN_PIXEL_SIZE.y/distance(vec2(UV.x,target.y),UV);
-	COLOR.a = (x+y)*intensity;
+	
+	float aspect = float(SCREEN_PIXEL_SIZE.x)/SCREEN_PIXEL_SIZE.y;
+	vec2 uv = SCREEN_UV;
+	uv.x = uv.x/aspect;
+	uv.y+=0.5;
+	vec2 diff = uv - target;
+	float dist = smoothstep(distance(diff,target),smooth_a,smooth_b);
+	COLOR = vec4(vec3(dist),1);
+	//COLOR.a = (x+y)*intensity;
 }"
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
 shader_param/target = Vector2( 0.5, 0.5 )
-shader_param/intensity = 0.2
+shader_param/intensity = 0.0
+shader_param/smooth_a = 0.288
+shader_param/smooth_b = 0.295
+shader_param/smooth_c = null
+shader_param/smooth_d = null
 
 [sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
