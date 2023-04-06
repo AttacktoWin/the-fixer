@@ -95,7 +95,7 @@ func get_wanted_gun_vector():
 
 func update_ammo_counter():
 	var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
-	ammo_count.text = String(self._gun.get_ammo_count())
+	ammo_count.text = String(self._gun.get_ammo_count()) + "/" + String(self._gun.get_max_ammo())
 
 
 func add_ammo(ammo: int):

@@ -85,6 +85,10 @@ func add_ammo(ammo: int) -> int:
 	return self.ammo_count - old_count
 
 
+func get_max_ammo() -> int:
+	return self.max_ammo
+
+
 func _get_aim_position() -> Vector2:
 	if self._aim_bone:
 		return self._aim_bone.global_position
