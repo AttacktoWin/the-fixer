@@ -1,9 +1,9 @@
 Event,Unlocks,Removes
-event-manifestation1win,"boss-manifestation1win,manifestation-2",manifestation-1-fight
-event-pre-pillbugkill,"boss-1-pillbugkill,boss-1-pillgub1","boss-1-spyderkill,boss-1-beetlekill,boss-1-birdkill,boss-1-spyderkill1,boss-1-beetlekill1,boss-1-birdkill1"
-event-pre-spyderkill,"boss-1-spyderkill,boss-1-spyderkill1","boss-1-pillbugkill,boss-1-beetlekill,boss-1-birdkill,boss-1-pillbugkill1,boss-1-beetlekill1,boss-1-birdkill1"
-event-pre-beetlekill,"boss-1-beetlekill,boss-1-beetlekill1","boss-1-spyderkill,boss-1-pillbugkill,boss-1-birdkill,boss-1-spyderkil1l,boss-1-pillbugkill1,boss-1-birdkill1"
-event-pre-birdkill,"boss-1-biidkill,boss-1-birdkill1","boss-1-spyderkill,boss-1-beetlekill,boss-1-pillbugkill,boss-1-spyderkill1,boss-1-beetlekill1,boss-1-pillbugkill1"
+event-manifestation1win,"boss-manifestation1win,manifestation-2,fixer-2-quip1,fixer-2-quip2,fixer-2-quip3","manifestation-1-fight,boss-1-quip1"
+event-1-pillbugkill,"boss-1-pillbugkill,boss-1-pillbug1","boss-1-spyderkill,boss-1-beetlekill,boss-1-birdkill,boss-1-spyderkill1,boss-1-beetlekill1,boss-1-birdkill1"
+event-1-spyderkill,"boss-1-spyderkill,boss-1-spyderkill1","boss-1-pillbugkill,boss-1-beetlekill,boss-1-birdkill,boss-1-pillbugkill1,boss-1-beetlekill1,boss-1-birdkill1"
+event-1-beetlekill,"boss-1-beetlekill,boss-1-beetlekill1","boss-1-spyderkill,boss-1-pillbugkill,boss-1-birdkill,boss-1-spyderkill1,boss-1-pillbugkill1,boss-1-birdkill1"
+event-1-birdkill,"boss-1-birdkill,boss-1-birdkill1","boss-1-spyderkill,boss-1-beetlekill,boss-1-pillbugkill,boss-1-spyderkill1,boss-1-beetlekill1,boss-1-pillbugkill1"
 event-manifestation2win,"boss-manifestation2win,manifestation-3",manifestation-2-fight
 event-manifestation3win,"boss-manifestation3win,manifestation-4",manifestation-3-fight
 event-manifestation4win,"boss-manifestation4win,manifestation-5",manifestation-4-fight
