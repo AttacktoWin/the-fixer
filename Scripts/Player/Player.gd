@@ -50,6 +50,7 @@ func set_weapon_disabled(val):
 
 func set_gun(gun: PlayerBaseGun):
 	if self._gun:
+		self.hand.remove_child(self.hand.get_child(0))
 		var pickup = WorldWeapon.new()
 		pickup.set_weapon(self._gun)
 		pickup.auto_pickup = false

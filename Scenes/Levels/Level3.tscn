@@ -7,7 +7,7 @@
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/LevelGeneration/PCG_DataClasses/test2.tres" type="Resource" id=6]
 [ext_resource path="res://Scripts/LevelGeneration/LevelGenerator.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/Levels/BossRoom.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Levels/Level4.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=13]
@@ -231,9 +231,7 @@ Exit_path = NodePath("../Transition")
 parent = NodePath("../SortableEntities/Runtime")
 enemy_buffer = 0
 pillbug_spawn_rate = 35
-spyder_spawn_rate = 30
-beetle_spawn_rate = 35
-ant_spawn_rate = 0
+beetle_spawn_rate = 20
 generator_data = ExtResource( 6 )
 
 [node name="Floor" type="TileMap" parent="."]

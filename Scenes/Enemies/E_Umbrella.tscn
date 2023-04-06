@@ -411,6 +411,7 @@ tracks/1/keys = {
 [node name="E_Umbrella" type="KinematicBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource( 2 )
+entity_radius = 48.0
 base_speed = 400.0
 base_health = 120.0
 has_ranged_attack = true
