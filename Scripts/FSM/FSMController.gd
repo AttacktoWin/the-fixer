@@ -155,6 +155,11 @@ func get_animation() -> String:
 	return self.animation_player.current_animation
 
 
+func reset_animation() -> void:
+	if not self.has_animation_player():
+		return
+	self.animation_player.play("RESET")
+
 func is_animation_complete() -> bool:
 	if not self.has_animation_player():
 		return false

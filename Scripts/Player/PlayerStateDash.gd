@@ -51,6 +51,7 @@ func on_anim_reached_end(_anim: String):
 
 func exit():
 	self._dash_recharge_timer = DASH_COOLDOWN
+	self.fsm.reset_animation()
 
 
 func _background_physics(delta):

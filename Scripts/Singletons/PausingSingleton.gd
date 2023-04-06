@@ -9,10 +9,6 @@ var _paused = false
 var _unpaused_frames = 0
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
 
 # entity is an optional entity to pass as an argument to ignore
 func pause(_entity = null):
@@ -38,5 +34,5 @@ func is_paused():
 	return self._paused
 
 
-func is_paused_recently(frames:int = 30):
+func is_paused_recently(frames: int = 30):
 	return self._paused or self._unpaused_frames <= frames

@@ -43,6 +43,8 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
+	if PausingSingleton.is_paused():
+		return
 	events.invoke(EVENTS.MOVE, null)
 	var dir = getv(AttackVariable.DIRECTION)
 	var speed = getv(AttackVariable.SPEED)

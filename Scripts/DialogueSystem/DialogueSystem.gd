@@ -64,7 +64,7 @@ func _ready():
 	if (Engine.editor_hint):
 		print("Loaded Dialogue System in {time} usec.".format({"time": Time.get_ticks_usec() - init_time}))
 		
-func _process(delta):
+func _process(_delta):
 	if (is_instance_valid(self.current_dialog_box) && follow_player):
 		var player = get_parent().get_node("World/Level/SortableEntities/Player")
 		if (is_instance_valid(player)):

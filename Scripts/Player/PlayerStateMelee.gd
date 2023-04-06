@@ -18,3 +18,6 @@ func enter():
 
 func on_anim_reached_end(_anim: String):
 	self.fsm.set_state(PlayerState.IDLE)
+
+func exit():
+	self.fsm.reset_animation()

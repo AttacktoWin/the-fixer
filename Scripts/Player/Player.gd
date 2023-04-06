@@ -167,6 +167,9 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_home"):
 			var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
 			TransitionHelper.transition(scene)
+		if Input.is_action_just_pressed("ui_page_down"):
+			for enemy in AI.get_all_enemies():
+				enemy.queue_free()
 
 
 func _unhandled_input(event: InputEvent):

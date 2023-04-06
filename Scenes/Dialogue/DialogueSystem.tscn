@@ -13,16 +13,19 @@ dialogue_unlock_table = ExtResource( 3 )
 save_file_name = "dialogue_system.save"
 
 [node name="Fixer" type="Node" parent="."]
+pause_mode = 2
 script = ExtResource( 2 )
 id = "fixer"
 dialogue_file = ExtResource( 4 )
 
 [node name="Manifestation" type="Node" parent="."]
+pause_mode = 2
 script = ExtResource( 2 )
 id = "manifestation"
 dialogue_file = ExtResource( 5 )
 
 [node name="Boss" type="Node" parent="."]
+pause_mode = 2
 script = ExtResource( 2 )
 id = "boss"
 dialogue_file = ExtResource( 6 )
