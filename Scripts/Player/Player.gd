@@ -165,7 +165,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_end"):
 			self.add_ammo(900)
 		if Input.is_action_just_pressed("ui_home"):
-			var scene = load("res://Scenes/Levels/Tutorial.tscn").instance()
+			var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
 			TransitionHelper.transition(scene)
 
 

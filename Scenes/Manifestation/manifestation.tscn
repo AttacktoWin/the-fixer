@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://_Dev/Victoria/Manifestation/front/manifestation-reference.png" type="Texture" id=1]
-[ext_resource path="res://_Dev/Victoria/Manifestation/front/manifestation-spritesheet-front.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Manifestation/manifestation-reference.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Manifestation/manifestation-spritesheet-front.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=5]
 resource_name = "DEATH"
@@ -1907,7 +1907,7 @@ tracks/31/keys = {
 "values": [ 0.0 ]
 }
 
-[node name="Visual" type="Node2D"]
+[node name="Manifestation" type="Node2D"]
 
 [node name="Manifestation-reference" type="Sprite" parent="."]
 visible = false

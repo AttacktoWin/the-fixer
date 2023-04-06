@@ -42,7 +42,7 @@ func _reload_variables(new_level: Level):
 	)
 	self._level_node = self._root.get_node("Level") if new_level == null else new_level
 	self._exit = (
-		self._root.get_node("Level/Transition/Hitbox")
+		self._root.get_node_or_null("Level/Transition/Hitbox")
 		if new_level == null
 		else new_level.get_node_or_null("Transition/Hitbox")
 	)
@@ -108,9 +108,8 @@ func deload():
 	if not self._level_node:
 		print("No level loaded!")
 		return
-	var current_level = self._level_node
-	self._root.remove_child(current_level)
-	current_level.queue_free()
+	self._level_node.get_parent().remove_child(self._level_node)
+	self._level_node.queue_free()
 	self._level_node = null
 	self._player = null
 
