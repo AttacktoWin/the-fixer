@@ -17,7 +17,6 @@ base_speed = 800.0
 base_damage = 40.0
 base_lifetime = 200.0
 damage_type = 1
-require_living = false
 ignore_rotation = true
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -256,9 +256,10 @@ tracks/1/keys = {
 collision_layer = 2
 script = ExtResource( 3 )
 height_component_path = NodePath("FlipComponents")
-base_speed = 400.0
-base_accel = 6.0
 entity_radius = 40.0
+base_speed = 400.0
+base_health = 40.0
+base_accel = 6.0
 auto_pathfind = false
 has_melee_attack = false
 
