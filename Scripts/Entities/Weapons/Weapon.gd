@@ -7,6 +7,7 @@ var _disabled = false
 
 export var cooldown: float = 0.5
 export var ammo_count: int = 2
+export var max_ammo: int = 10
 export(PackedScene) var ammo_scene = null
 export(PackedScene) var visual_scene = null
 export var infinite_ammo: bool = false
@@ -76,8 +77,12 @@ func set_ammo_count(ammo: int):
 	self.ammo_count = ammo
 
 
-func add_ammo(ammo: int):
+func add_ammo(ammo: int) -> int:
+	var old_count = self.ammo_count
 	self.ammo_count += ammo
+	if self.ammo_count > self.max_ammo:
+		self.ammo_count = self.max_ammo
+	return self.ammo_count - old_count
 
 
 func _get_aim_position() -> Vector2:

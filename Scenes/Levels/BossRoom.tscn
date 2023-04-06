@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -13,6 +13,14 @@
 [sub_resource type="GDScript" id=24]
 script/source = "extends Node2D
 var level = []
+"
+
+[sub_resource type="GDScript" id=25]
+script/source = "extends Node2D
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	Scene.switch(load(\"res://Scenes/Levels/Hub.tscn\").instance(), false)
 "
 
 [sub_resource type="NavigationPolygon" id=3]
@@ -260,6 +268,9 @@ stop_on = 2
 [node name="Generator" type="Node2D" parent="."]
 script = SubResource( 24 )
 
+[node name="ReturnToHub" type="Node2D" parent="."]
+script = SubResource( 25 )
+
 [node name="Floor" type="TileMap" parent="."]
 unique_name_in_owner = true
 scale = Vector2( 0.5, 0.5 )
@@ -293,5 +304,6 @@ tile_data = PoolIntArray( -720908, 3, 0, -720907, 3, 0, -720906, 3, 0, -720905, 
 [node name="Runtime" type="YSort" parent="SortableEntities"]
 
 [node name="Manifestation" parent="." instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 0, -460 )
 scale = Vector2( 0.5, 0.5 )

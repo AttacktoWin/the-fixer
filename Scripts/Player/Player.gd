@@ -100,8 +100,8 @@ func update_ammo_counter():
 
 func add_ammo(ammo: int):
 	if self._gun:
-		Wwise.post_event_id(AK.EVENTS.AMMO_PICKUP_PLAYER, self)
-		self._gun.add_ammo(ammo)
+		if self._gun.add_ammo(ammo):
+			Wwise.post_event_id(AK.EVENTS.AMMO_PICKUP_PLAYER, self)
 		update_ammo_counter()
 
 
