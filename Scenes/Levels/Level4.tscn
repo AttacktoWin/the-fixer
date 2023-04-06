@@ -212,9 +212,9 @@ shader_param/radius = 0.164
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
-vision_alpha = 0.5
+vision_alpha = 0.65
 vision_range = 0.4
-enemy_appear_distance = 800.0
+enemy_appear_distance = 750.0
 
 [node name="LevelMusic" type="Node2D" parent="."]
 script = ExtResource( 11 )
