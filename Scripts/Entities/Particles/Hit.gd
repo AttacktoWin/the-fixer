@@ -47,7 +47,7 @@ func _ready():
 		self._damage_label.text = String(self._damage)
 
 
-func _handle_text():
+func _handle_text(delta):
 	if not self._damage_label:
 		return
 	var m = fmod(self._timer, FLASH_RATE)
@@ -57,7 +57,7 @@ func _handle_text():
 		self._damage_label.modulate = COLOR2
 
 	self._damage_label.rect_position += self._velocity
-	self._velocity *= 0.75
+	self._velocity *= pow(0.75, MathUtils.delta_frames(delta))
 
 	self._damage_label.rect_rotation = MathUtils.interpolate(
 		self._timer / self.lifetime, 0.0, self._rand_angle, MathUtils.INTERPOLATE_OUT_EXPONENTIAL
@@ -86,7 +86,7 @@ func _handle_text():
 
 func _process(delta):
 	self._timer += delta
-	_handle_text()
+	_handle_text(delta)
 	self.modulate.a = MathUtils.interpolate(
 		MathUtils.normalize_range(self._timer, self.flash_time, self.lifetime),
 		1,

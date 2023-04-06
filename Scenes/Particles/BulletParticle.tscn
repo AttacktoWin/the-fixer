@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Sprites/Particles/bullet.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Entities/Particles/AmmoCollectParticle.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )

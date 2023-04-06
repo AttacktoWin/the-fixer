@@ -260,7 +260,7 @@ func get_x_direction():
 
 
 func _draw():
-	if self.has_nav_path():
+	if self.has_nav_path() and self.draw_path:
 		var path = self.get_nav_path()
 		path.draw(self)
 
