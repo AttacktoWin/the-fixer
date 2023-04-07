@@ -115,6 +115,7 @@ func _signal_listener(s_name: String):
 			CameraSingleton.shake(0.5)
 		"bubble":
 			self.current_dialog_box.follow_viewport_enable = true
+			self.current_dialog_box.scale = Vector2(1, 2)
 			self.follow_player = true
 
 func get_top_dialogue(npc_id: String) -> Dialogue:
