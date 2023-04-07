@@ -27,7 +27,6 @@ const enemy_timelines := {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	randomize()
 	var init_time: int
 	if (Engine.editor_hint):
 		print("Loading Dialogue System")
