@@ -118,10 +118,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( -10, 0 ), Vector2( -10, 0.5 ), Vector2( -10, 0.5 ), Vector2( -10, 1.5 ), Vector2( -10, 0.5 ), Vector2( -10, 0 ), Vector2( -10, 0.5 ), Vector2( -10, 0 ) ]
+"values": [ Vector2( -10, 0 ), Vector2( -10, 0.5 ), Vector2( -10, 1.5 ), Vector2( -10, 1.5 ), Vector2( -10, 0.5 ), Vector2( -10, -0.5 ), Vector2( -10, 0.5 ), Vector2( -10, 1.5 ), Vector2( -10, 1.5 ), Vector2( -10, 0.5 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -191,6 +191,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("ArmsContainer:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -10, 1.5 ) ]
+}
 
 [sub_resource type="Animation" id=8]
 resource_name = "Walk"
@@ -258,6 +270,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 5
+frame = 3
 
 [node name="HitBox" type="Area2D" parent="Visual"]
 collision_layer = 0
@@ -281,7 +294,7 @@ disabled = true
 
 [node name="ArmsContainer" type="Node2D" parent="Visual"]
 self_modulate = Color( 1, 1, 1, 0 )
-position = Vector2( -10, 5 )
+position = Vector2( -10, 1.5 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Hand" type="Node2D" parent="Visual/ArmsContainer"]
