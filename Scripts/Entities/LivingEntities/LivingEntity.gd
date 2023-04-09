@@ -95,7 +95,11 @@ func get_wanted_velocity(dir_vector: Vector2) -> Vector2:
 
 func _try_move():
 	# warning-ignore:return_value_discarded
-	move_and_slide(getv(LivingEntityVariable.VELOCITY))
+	var v = getv(LivingEntityVariable.VELOCITY)
+	if is_nan(v.x) or is_nan(v.y):
+		setv(LivingEntityVariable.VELOCITY, Vector2())
+		return
+	move_and_slide(v)
 
 
 func _get_base_alpha() -> float:
