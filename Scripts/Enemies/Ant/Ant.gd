@@ -5,6 +5,10 @@ class_name Ant extends BaseEnemy
 const AMMO_PARTICLE = preload("res://Scenes/Particles/BulletParticle.tscn")
 
 
+func get_display_name():
+	return "Ant"
+
+
 func _try_add_ammo(entity: LivingEntity):
 	var part = AMMO_PARTICLE.instance()
 	Scene.runtime.add_child(part)

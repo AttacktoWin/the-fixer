@@ -71,6 +71,9 @@ func _ready():
 func _add_default_runnables():
 	self.variables.add_runnable(LivingEntityVariable.MAX_SPEED, BaseSlowHandler.new())
 
+func get_display_name():
+	print("WARN: display name not set for ",name,"!")
+	return ""
 
 func getv(variable):
 	return self.variables.get_variable(variable)
@@ -139,20 +142,22 @@ func is_dead():
 	return self._is_dead
 
 
-func _on_death():
+func _on_death(_info: AttackInfo):
 	print("Rip")
 
 
-func _check_death() -> bool:
+func _check_death(info: AttackInfo = null) -> bool:
 	if self.getv(LivingEntityVariable.HEALTH) <= 0 and not self._is_dead:
 		self._is_dead = true
 		# queue_free()
-		self._on_death()  # emit signal
+		self._on_death(info)  # emit signal
 		return true
 	return false
 
+
 func can_attack_hit(_info: AttackInfo) -> bool:
 	return true
+
 
 func can_be_hit():
 	return self.status_timers.get_timer(LivingEntityStatus.INVULNERABLE) <= 0 and not self._is_dead
@@ -163,7 +168,7 @@ func knockback(_vel: Vector2):
 
 
 func on_hit(info: AttackInfo):
-	self._take_damage(info.damage)
+	self._take_damage(info.damage, info)
 	self._on_take_damage(info)
 
 
@@ -171,6 +176,6 @@ func _on_take_damage(_info: AttackInfo):
 	pass
 
 
-func _take_damage(amount: float):
+func _take_damage(amount: float, info: AttackInfo = null):
 	self.changev(LivingEntityVariable.HEALTH, -amount)
-	self._check_death()  # warning-ignore:return_value_discarded
+	self._check_death(info)  # warning-ignore:return_value_discarded

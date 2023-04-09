@@ -101,7 +101,7 @@ func update_ammo_counter():
 
 func add_ammo(ammo: int) -> int:
 	if self._gun:
-		var diff =self._gun.add_ammo(ammo)
+		var diff = self._gun.add_ammo(ammo)
 		if diff:
 			Wwise.post_event_id(AK.EVENTS.AMMO_PICKUP_PLAYER, self)
 		update_ammo_counter()
@@ -253,11 +253,14 @@ func _on_take_damage(info: AttackInfo):
 	._on_take_damage(info)
 
 
-func _on_death():
+func _on_death(info: AttackInfo):
 	self._knockback_velocity = Vector2.ZERO
 	self.fsm.set_state(PlayerState.DEAD, true)
 	self.fsm.lock()
 	if self._gun:
 		self._gun.queue_free()
 	self._gun = null
-	StatsTracker.add_death()
+	if info and info.damage_source is BaseEnemy:
+		StatsTracker.add_death(info.damage_source.get_display_name())
+	else:
+		StatsTracker.add_death()

@@ -265,7 +265,7 @@ func _draw():
 		path.draw(self)
 
 
-func _on_death():
+func _on_death(_info: AttackInfo):
 	self.fsm.set_state(EnemyState.DEAD, true)
 	self.fsm.lock()
 	#self.queue_free()
