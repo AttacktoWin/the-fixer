@@ -14,7 +14,7 @@ func _on_hit_entity(entity: LivingEntity):
 		Scene.runtime.add_child(part)
 		part.global_position = entity.global_position
 		part.set_target(self._damage_source)
-		self._damage_source.add_ammo(1)
+		part.set_bounce(not self._damage_source.add_ammo(1))
 
 
 func _generate_attack_info(_entity: LivingEntity) -> AttackInfo:
