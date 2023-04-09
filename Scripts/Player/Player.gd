@@ -99,11 +99,15 @@ func update_ammo_counter():
 	ammo_count.text = String(self._gun.get_ammo_count()) + "/" + String(self._gun.get_max_ammo())
 
 
-func add_ammo(ammo: int):
+func add_ammo(ammo: int) -> int:
 	if self._gun:
-		if self._gun.add_ammo(ammo):
+		var diff =self._gun.add_ammo(ammo)
+		if diff:
 			Wwise.post_event_id(AK.EVENTS.AMMO_PICKUP_PLAYER, self)
 		update_ammo_counter()
+		return diff
+
+	return 0
 
 
 func get_ammo() -> int:
