@@ -35,6 +35,7 @@ export(float) var ranged_attack_range: float = 400
 export(float) var steering_factor: float = 0.5
 export(float) var attention_time: float = 3  # after this amount of seconds, lose the target
 export(float) var attention_radius: float = 1024
+export(bool) var deaf: bool = false
 export(bool) var draw_path: bool = false
 
 const HIT_SCENE = preload("res://Scenes/Particles/HitScene.tscn")

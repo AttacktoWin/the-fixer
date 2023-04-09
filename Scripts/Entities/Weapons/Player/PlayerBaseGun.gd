@@ -16,6 +16,7 @@ export var bullet_spread: float = 0
 func _notify_fire(has_ammo):
 	self.entity.update_ammo_counter()
 	if has_ammo:
+		AI.notify_sound(self.entity.global_position, 4096, 2.5)
 		if self.sound_fire:
 			Wwise.post_event_id(self.sound_fire, self.entity)
 	else:

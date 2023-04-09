@@ -14,7 +14,6 @@ func _fire(direction: float, _target: Node2D = null):
 		for b in _bullets:
 			bullet.add_connected_bullet(b)
 		_bullets.append(bullet)
-		
 
 	for bullet in _bullets:
 		Scene.runtime.add_child(bullet)
@@ -26,4 +25,3 @@ func _fire(direction: float, _target: Node2D = null):
 	self.entity.knockback(Vector2(cos(direction), sin(direction)) * -user_knockback)
 
 	CameraSingleton.shake(self.screen_shake_on_fire)
-	AI.notify_sound(self.global_position)

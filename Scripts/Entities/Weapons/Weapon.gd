@@ -42,7 +42,7 @@ func _try_fire(direction: float, target: Node2D = null) -> bool:
 	self.ammo_count -= 1 if not self.infinite_ammo else 0
 
 	_fire(direction, target)
-	self._notify_fire(true)
+	_notify_fire(true)
 	emit_signal("on_fire")
 	return true
 
