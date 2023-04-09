@@ -16,6 +16,7 @@ var _current_state_name = null
 var _transition_target = null
 var _state_timer = 0
 var _last_animation_timer = 0
+var _playback_speed = 0
 var _state_index = 0
 var _last_anim = ""
 var _locked = false
@@ -72,6 +73,8 @@ func add_state(node: FSMNode):
 		idx += 1
 	node.fsm = self
 	node.entity = self.entity
+	node.set_process(false)
+	node.set_physics_process(false)
 	node.initialize()
 
 
@@ -93,9 +96,10 @@ func _on_pause_changed(pause_val, _entity):
 		if player.current_animation == "":
 			return
 		if pause_val:
-			player.stop(false)
+			self._playback_speed = player.playback_speed
+			player.playback_speed = 0
 		else:
-			player.play()
+			player.playback_speed = self._playback_speed
 
 
 func _process(delta):
@@ -159,6 +163,7 @@ func reset_animation() -> void:
 	if not self.has_animation_player():
 		return
 	self.animation_player.play("RESET")
+
 
 func is_animation_complete() -> bool:
 	if not self.has_animation_player():

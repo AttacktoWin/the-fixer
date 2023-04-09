@@ -71,9 +71,11 @@ func _ready():
 func _add_default_runnables():
 	self.variables.add_runnable(LivingEntityVariable.MAX_SPEED, BaseSlowHandler.new())
 
+
 func get_display_name():
-	print("WARN: display name not set for ",name,"!")
+	print("WARN: display name not set for ", name, "!")
 	return ""
+
 
 func getv(variable):
 	return self.variables.get_variable(variable)
@@ -130,7 +132,7 @@ func _physics_process(delta):
 				dist = max_dist
 
 			var interp = MathUtils.interpolate(
-				dist / max_dist, self.push_amount, 0, MathUtils.INTERPOLATE_OUT
+				dist / max_dist, other.push_amount, 0, MathUtils.INTERPOLATE_OUT
 			)
 
 			push_dir += v.normalized() * interp

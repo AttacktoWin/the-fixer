@@ -94,9 +94,16 @@ func get_wanted_gun_vector():
 	return v
 
 
-func update_ammo_counter():
+func update_ammo_counter(remove: bool = false):
 	var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
-	ammo_count.text = String(self._gun.get_ammo_count()) + "/" + String(self._gun.get_max_ammo())
+	if remove:
+		ammo_count.text = String("0")
+	else:
+		ammo_count.text = (
+			String(self._gun.get_ammo_count())
+			+ "/"
+			+ String(self._gun.get_max_ammo())
+		)
 
 
 func add_ammo(ammo: int) -> int:
@@ -254,6 +261,7 @@ func _on_take_damage(info: AttackInfo):
 
 
 func _on_death(info: AttackInfo):
+	update_ammo_counter(true)
 	self._knockback_velocity = Vector2.ZERO
 	self.fsm.set_state(PlayerState.DEAD, true)
 	self.fsm.lock()

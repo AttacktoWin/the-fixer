@@ -67,7 +67,7 @@ func _process(delta):
 		CameraSingleton.set_zoom(Vector2.ONE * ((1 - interp) + 0.25) * ZOOM_OUT, self)
 
 		if self._transition_timer > self._fade_time:
-			CameraSingleton.remove_controller()
+			CameraSingleton.remove_controller(self)
 			self._is_transitioning = false
 
 

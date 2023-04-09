@@ -48,7 +48,7 @@ func _ready():
 		{
 			AttackVariable.SPEED: base_speed,
 			AttackVariable.DAMAGE: base_damage,
-			AttackVariable.DIRECTION: base_direction,
+			AttackVariable.DIRECTION: deg2rad(base_direction),
 			AttackVariable.LIFE: base_lifetime
 		}
 	)
@@ -58,7 +58,8 @@ func _ready():
 	self._hitbox = get_node(hitbox_path) if hitbox_path else self
 	self._hitbox.connect("body_entered", self, "_on_body_entered")  # warning-ignore:return_value_discarded
 	self._hitbox.connect("area_entered", self, "_on_area_entered")  # warning-ignore:return_value_discarded
-	self.rotation = getv(AttackVariable.DIRECTION)
+	if not self.ignore_rotation:
+		self.rotation = getv(AttackVariable.DIRECTION)
 
 
 func set_damage_source(entity: LivingEntity):
@@ -148,7 +149,7 @@ func _try_hit_entity(entity: LivingEntity) -> bool:
 	return true
 
 
-func _on_hit_wall(body: TileMap):
+func _on_hit_wall(_body: TileMap):
 	pass
 
 
@@ -182,7 +183,8 @@ func invoke_attack():
 
 func set_direction(dir: float):
 	self.setv(AttackVariable.DIRECTION, dir)
-	self.rotation = self.getv(AttackVariable.DIRECTION)
+	if not self.ignore_rotation:
+		self.rotation = self.getv(AttackVariable.DIRECTION)
 
 
 func setv(variable: int, value):
