@@ -4,56 +4,60 @@ var saved_seed
 
 const TILE_SIZE = 2
 
-var room_count:int = 7
+var room_count:int = 10
 var min_dims:Vector2 = Vector2(5,5)# 5,5
-var max_dims:Vector2 = Vector2(8,8)#11,11
+var max_dims:Vector2 = Vector2(7,7)#8,8
 var rng = RandomNumberGenerator.new()
-
+var test_enemy = load("res://Scripts/LevelGeneration/test_enemy.tscn")
+onready var parent = get_node("../SortableEntities/Runtime")
 #DEBUG
 var test_rooms = []
+var test_points =[]
 func _ready():
-	var builder = PCG_Builder.new(
+	var room_maker = PCG_Rooms.new(
 		self.room_count,
 		self.min_dims,
 		self.max_dims,
 		self.rng
 	)
 	self.rng.randomize()
-	var rooms = builder.build_rooms(TILE_SIZE)
+	var rooms = room_maker.spawn_rooms(TILE_SIZE)
 	
 	var connector = PCG_Connector.new()
 	var corridors = connector._connect_rooms(rooms)
-	var filler = PCG_Filler.new(
+	
+	var builder = PCG_Level.new(
 		$"%Floor",
 		$"%Walls",
 		rng
 	)
-	self.level = filler.fill_floor(rooms,corridors)
+	var tile_by_room = builder.build_level(rooms,corridors,self.level)
+	
+	var spawner = PCG_Spawner.new()
+	spawner._sample2(rooms,self.test_points,rng)
+	spawner._spawn(test_enemy,self.test_points,$"%Floor",parent)
 	self.test_rooms = rooms
-
-func _process(delta):
-	#update()
-	pass
 
 #DEBUG
 func _draw():
 	for room in self.test_rooms:
-		draw_rect(room,Color(0,1,0,1),false,5)
+		draw_rect(room,Color(0,1,0,1),false,2)
 	var current = self.test_rooms[0]
 	for i in self.test_rooms.size():
 		draw_line(
 			current.get_center(),
 			self.test_rooms[i].get_center(),
 			Color(1,1,1,1),
-			6
+			2
 		)
 		current = self.test_rooms[i]
+	for point in test_points:
+		draw_circle(point,3,Color(0,0,1,1))
 
-func _shrink(rooms):
-	for i in rooms.size():
-		rooms[i].size -= Vector2(TILE_SIZE,TILE_SIZE)
+################
+################
 
-class PCG_Builder:
+class PCG_Rooms:
 	var room_count
 	var min_dims:Vector2
 	var max_dims:Vector2
@@ -66,7 +70,7 @@ class PCG_Builder:
 		self.max_dims = _max_dims
 		self.rng = _rng
 	
-	func build_rooms(step_size)->Array:
+	func spawn_rooms(step_size)->Array:
 		var rooms = []
 		_spawn_rects(rooms)
 		_seperate(rooms,step_size)
@@ -84,7 +88,9 @@ class PCG_Builder:
 			o_list.append(room)
 	
 	func _seperate(o_list:Array,step_size)->void:
-		while _is_overlapping(o_list):
+		var security_count = 0
+		while _is_overlapping(o_list) and security_count<500:
+			security_count+=1
 			for current in room_count:
 				for other in room_count:
 					if current == other or not o_list[current].intersects(o_list[other],true):
@@ -131,6 +137,9 @@ class PCG_Builder:
 				best_index = i
 		return best_index
 
+################
+################
+
 class PCG_Connector:
 	func _connect_rooms(rooms:Array)->Array:
 		var corridor_nodes = []
@@ -160,7 +169,10 @@ class PCG_Connector:
 					corridor.push_back(current+Vector2(i,j))
 		return corridor
 
-class PCG_Filler:
+################
+################
+
+class PCG_Level:
 	var VENT_TILE = 6
 	var floor_tileset:TileMap
 	var wall_tileset:TileMap
@@ -171,14 +183,13 @@ class PCG_Filler:
 		self.wall_tileset = _wall
 		self.rng = _rng
 	
-	func fill_floor(rooms,corridors):
-		var floor_set = {}
-		var level_array = []
+	func build_level(rooms,corridors,level_array):
+		var tile_by_room = {}
 		var bounds = _get_bounding(rooms)
-		_build_level(bounds,rooms,floor_set,level_array)
-		_fill_corridor(corridors,floor_set,level_array)
-		_fill_wall(level_array,bounds)
-		return level_array
+		_build_floor(bounds,rooms,tile_by_room,level_array)
+		_build_corridor(corridors,level_array)
+		_build_wall(level_array,bounds)
+		return tile_by_room
 	
 	func _get_bounding(rooms)->Rect2:
 		var bounds = Rect2(Vector2(0,0),Vector2(0,0))
@@ -190,25 +201,25 @@ class PCG_Filler:
 		bounds.end+=Vector2.ONE
 		return bounds
 	
-	func _build_level(bounds,rooms,o_set,o_list):
+	func _build_floor(bounds,rooms,o_set,o_list):
 		for x in bounds.end.x:
 			o_list.append([])
 			for y in bounds.end.y:
 				o_list[x].append(-1)
 		for room in rooms:
+			o_set[room] = []
 			for x in range(room.position.x,room.end.x):
 				for y in range(room.position.y,room.end.y):
 					o_list[x][y] = 1
-					o_set[Vector2(x,y)] = 1
-					self.floor_tileset.set_cellv(Vector2(x,y),rng.randi_range(0,10))
+					o_set[room].append(Vector2(x,y))
+					self.floor_tileset.set_cellv(Vector2(x,y),0)
 	
-	func _fill_corridor(corridor_points,o_set,o_list):
+	func _build_corridor(corridor_points,o_list):
 		for step in corridor_points:
 			o_list[step.x][step.y] = 1
-			o_set[step] = 1
-			self.floor_tileset.set_cellv(step,rng.randi_range(0,10))
-	
-	func _fill_wall(o_list,_bounds):
+			self.floor_tileset.set_cellv(step,0)
+	#rng.randi_range(0,10)
+	func _build_wall(o_list,_bounds):
 		var kernel = [
 			Vector2(0,1),
 			Vector2(0,-1),
@@ -230,3 +241,39 @@ class PCG_Filler:
 						self.wall_tileset.set_cellv(Vector2(x,y),rng.randi_range(2,4))
 						o_list[x][y] = 2
 						break
+
+################
+################
+
+class PCG_Spawner:
+	var max_per_room = 5
+	
+	#fibbonaci
+	func _sample(rooms, o_points,rng:RandomNumberGenerator):
+		for room in rooms:
+			var n = 5
+			var radius = pow((min(room.size.x,room.size.y)/2)-1,2)
+			var center = room.get_center()
+			for i in range(n):
+				var theta = rng.randf()*2*PI
+				var r = sqrt(rng.randi_range(0,radius))
+				o_points.append(Vector2(r*cos(theta), r*sin(theta))+center)
+		print(o_points.size())
+	
+	func _sample2(rooms, o_points,rng:RandomNumberGenerator):
+		for room in rooms:
+			var n = 2
+			var center = room.get_center()
+			var radius = (min(room.size.x,room.size.y)/2)-1
+			for i in range(n):
+				var theta = 2 * PI * i / n
+				var x = center.x + radius * cos(theta)
+				var y = center.y + radius * sin(theta)
+				o_points.append(Vector2(x, y))
+	
+	func _spawn(enemy,points,tile_map,entities):
+		for point in points:
+			var test = enemy.instance()
+			var pos = tile_map.map_to_world(point)
+			test.position = tile_map.to_global(pos)
+			entities.add_child(test)
