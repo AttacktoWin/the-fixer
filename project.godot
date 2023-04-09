@@ -284,21 +284,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Singletons/Data/Groups.gd"
 }, {
-"base": "Node",
-"class": "PCG_Corridors",
-"language": "GDScript",
-"path": "res://Scripts/LevelGeneration/PCG_Corridors.gd"
-}, {
-"base": "Node2D",
-"class": "PCG_Partioner",
-"language": "GDScript",
-"path": "res://Scripts/LevelGeneration/PCG_Partioner.gd"
-}, {
-"base": "Node2D",
-"class": "PCG_Populator",
-"language": "GDScript",
-"path": "res://Scripts/LevelGeneration/PCG_Populator.gd"
-}, {
 "base": "Resource",
 "class": "PCG_PopulatorData",
 "language": "GDScript",
@@ -309,20 +294,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/LevelGeneration/PCG_DataClasses/PCG_RoomData.gd"
 }, {
-"base": "Node",
-"class": "PCG_TileFiller",
-"language": "GDScript",
-"path": "res://Scripts/LevelGeneration/PCG_TileFiller.gd"
-}, {
 "base": "PCG_RoomData",
 "class": "PCG_WalkedRoomData",
 "language": "GDScript",
 "path": "res://Scripts/LevelGeneration/PCG_DataClasses/PCG_WalkedRoomData.gd"
-}, {
-"base": "Node",
-"class": "PCG_Walker",
-"language": "GDScript",
-"path": "res://Scripts/LevelGeneration/PCG_Walker.gd"
 }, {
 "base": "Resource",
 "class": "PathfindResult",
@@ -535,14 +510,9 @@ _global_script_class_icons={
 "NPC": "",
 "NPCInstance": "",
 "NodeGroups": "",
-"PCG_Corridors": "",
-"PCG_Partioner": "",
-"PCG_Populator": "",
 "PCG_PopulatorData": "",
 "PCG_RoomData": "",
-"PCG_TileFiller": "",
 "PCG_WalkedRoomData": "",
-"PCG_Walker": "",
 "PathfindResult": "",
 "Player": "",
 "PlayerBaseGun": "",
@@ -614,6 +584,7 @@ enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/wwise
 resolution=false
 window=false
 back=false
+display=false
 
 [gui]
 
