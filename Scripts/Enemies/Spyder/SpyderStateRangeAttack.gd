@@ -2,9 +2,9 @@
 
 class_name SpyderStateRangedAttack extends FSMNode
 
-const MAX_DEVIATION = PI / 6
+const MAX_DEVIATION = PI / 2
 const COOLDOWN = 5
-const COOLDOWN_INTERRUPT = 1
+const COOLDOWN_INTERRUPT = 1.75
 const SLOW_TIME = 1.5
 
 var _charging: int = 2
@@ -29,7 +29,8 @@ func _background_physics(_delta):
 
 
 func enter():
-	Wwise.post_event_id(AK.EVENTS.CHARGE_SPYDER, self.entity)
+	#Wwise.post_event_id(AK.EVENTS.CHARGE_SPYDER, self.entity)
+	Wwise.post_event_id(AK.EVENTS.FLASH_SPYDER, self.entity)
 	self.entity.disable_pathfind += 1
 	self.fsm.set_animation("CHARGE_TRANSITION")
 	self._charging = 2
@@ -53,10 +54,15 @@ func do_attack():
 		# apply slow
 		var dist_norm = (
 			(self.entity.global_position - body.global_position).length()
-			/ self.entity.ranged_attack_range
+			/ (self.entity.ranged_attack_range * 1.5)
 		)
-		var interp = MathUtils.interpolate(dist_norm, SLOW_TIME, 0.25, MathUtils.INTERPOLATE_IN)
-		body.status_timers.delta_timer(LivingEntityStatus.SLOWED, interp)
+		var interp1 = MathUtils.interpolate(
+			dist_norm, SLOW_TIME, 0.55, MathUtils.INTERPOLATE_IN_EXPONENTIAL
+		)
+		var interp2 = MathUtils.interpolate(
+			diff / MAX_DEVIATION, 1.0, 0.5, MathUtils.INTERPOLATE_IN
+		)
+		body.status_timers.delta_timer(LivingEntityStatus.SLOWED, interp1 * interp2)
 
 
 func on_anim_reached_end(_anim: String):
@@ -65,12 +71,12 @@ func on_anim_reached_end(_anim: String):
 		return
 
 	if self._charging == 2:
+		#Wwise.post_event_id(AK.EVENTS.FLASH_SPYDER, self.entity)
 		self._charging = 1
 		self.fsm.set_animation("CHARGE")
 		return
 
 	if self._charging == 1:
-		Wwise.post_event_id(AK.EVENTS.FLASH_SPYDER, self.entity)
 		self._charging = 0
 		self.fsm.set_animation("FLASH")
 		do_attack()
