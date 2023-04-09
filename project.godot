@@ -229,6 +229,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Goomba/GoombaStateAttack.gd"
 }, {
+"base": "WorldPickup",
+"class": "HealthPickup",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Pickups/HealthPickup.gd"
+}, {
 "base": "PanelContainer",
 "class": "HistoryRow",
 "language": "GDScript",
@@ -544,6 +549,7 @@ _global_script_class_icons={
 "FSMNode": "",
 "Goomba": "",
 "GoombaStateAttack": "",
+"HealthPickup": "",
 "HistoryRow": "",
 "Level": "",
 "LimitedSoundBullet": "",

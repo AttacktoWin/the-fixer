@@ -39,6 +39,9 @@ export(bool) var draw_path: bool = false
 
 const HIT_SCENE = preload("res://Scenes/Particles/HitScene.tscn")
 
+const HEALTH_CHANCE_RANGED = 0.05
+const HEALTH_CHANCE_MELEE = 0.1
+
 signal on_target_lost
 signal on_target_set
 signal on_investigate_target_set
@@ -229,6 +232,13 @@ func knockback(vel: Vector2):
 	self.changev(LivingEntityVariable.VELOCITY, vel / getv(LivingEntityVariable.WEIGHT))
 
 
+func update_health_bar():
+	var bar = self.get_node("ProgressBar")
+	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
+	if bar.value == 0:
+		bar.modulate.a = 0
+
+
 func _on_take_damage(info: AttackInfo):
 	self.fsm.set_state(EnemyState.PAIN)
 	var direction = info.get_attack_direction(self.global_position)
@@ -240,10 +250,6 @@ func _on_take_damage(info: AttackInfo):
 			/ self.getv(LivingEntityVariable.WEIGHT)
 		)
 	)
-	var bar = self.get_node("ProgressBar")
-	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
-	if bar.value == 0:
-		bar.modulate.a = 0
 
 	var fx = HIT_SCENE.instance()
 	fx.initialize(direction.angle(), info.damage)
@@ -265,7 +271,17 @@ func _draw():
 		path.draw(self)
 
 
-func _on_death(_info: AttackInfo):
+func _on_death(info: AttackInfo):
+	var chance = (
+		HEALTH_CHANCE_RANGED
+		if info.attack.damage_type == AttackVariable.DAMAGE_TYPE.RANGED
+		else HEALTH_CHANCE_MELEE
+	)
+	if randf() < chance:
+		var pickup = HealthPickup.new()
+		pickup.global_position = self.global_position * MathUtils.TO_ISO
+		Scene.runtime.add_child(pickup)
+
 	self.fsm.set_state(EnemyState.DEAD, true)
 	self.fsm.lock()
 	#self.queue_free()

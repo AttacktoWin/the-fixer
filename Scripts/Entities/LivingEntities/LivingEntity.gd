@@ -93,6 +93,19 @@ func get_wanted_velocity(dir_vector: Vector2) -> Vector2:
 	return dir_vector * getv(LivingEntityVariable.MAX_SPEED)
 
 
+func update_health_bar():
+	pass
+
+
+func add_health(value: int):
+	var health = getv(LivingEntityVariable.HEALTH)
+	health = health + value
+	if health > self.base_health:
+		health = self.base_health
+	setv(LivingEntityVariable.HEALTH, health)
+	update_health_bar()
+
+
 func _try_move():
 	# warning-ignore:return_value_discarded
 	var v = getv(LivingEntityVariable.VELOCITY)
@@ -174,8 +187,8 @@ func knockback(_vel: Vector2):
 
 
 func on_hit(info: AttackInfo):
-	self._take_damage(info.damage, info)
-	self._on_take_damage(info)
+	_take_damage(info.damage, info)
+	_on_take_damage(info)
 
 
 func _on_take_damage(_info: AttackInfo):
@@ -183,5 +196,6 @@ func _on_take_damage(_info: AttackInfo):
 
 
 func _take_damage(amount: float, info: AttackInfo = null):
-	self.changev(LivingEntityVariable.HEALTH, -amount)
-	self._check_death(info)  # warning-ignore:return_value_discarded
+	changev(LivingEntityVariable.HEALTH, -amount)
+	update_health_bar()
+	_check_death(info)  # warning-ignore:return_value_discarded
