@@ -19,6 +19,7 @@ ammo_speed_override = 1800
 ammo_knockback_override = 200
 screen_shake_on_fire = 64
 bullet_spread = 0.4
+weapon_volume = 3.0
 bullets = 10
 user_knockback = 800.0
 random_speed = 200

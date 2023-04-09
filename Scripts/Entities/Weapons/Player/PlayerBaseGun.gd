@@ -11,12 +11,13 @@ export(int) var ammo_speed_override: int = -1
 export(int) var ammo_knockback_override: int = -1
 export(int) var screen_shake_on_fire: int = 3
 export var bullet_spread: float = 0
+export var weapon_volume: float = 2.5
 
 
 func _notify_fire(has_ammo):
 	self.entity.update_ammo_counter()
 	if has_ammo:
-		AI.notify_sound(self.entity.global_position, 4096, 2.5)
+		AI.notify_sound(self.entity.global_position, 4096, weapon_volume)
 		if self.sound_fire:
 			Wwise.post_event_id(self.sound_fire, self.entity)
 	else:

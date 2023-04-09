@@ -13,3 +13,4 @@ visual_scene = ExtResource( 4 )
 world_sprite = ExtResource( 3 )
 sound_fire = 1828056235
 sound_empty = 4149800146
+ammo_damage_override = 60

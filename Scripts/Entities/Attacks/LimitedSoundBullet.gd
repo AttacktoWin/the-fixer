@@ -5,7 +5,7 @@ class_name LimitedSoundBullet extends BulletBase
 var _connected_bullets = [self]
 var _entity_counts = {}
 
-const MAX_COUNT = 2
+const MAX_COUNT = 1
 
 
 func add_connected_bullet(bullet: LimitedSoundBullet):

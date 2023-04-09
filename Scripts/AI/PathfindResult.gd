@@ -8,7 +8,7 @@ var _path_complete: bool = false
 var _current_location: Vector2 = Vector2()
 
 var _auto_advance: bool = true
-var _advance_distance: float = 16
+var _advance_distance: float = 4
 
 
 func _init(start: Vector2, nodes: Array = []):
