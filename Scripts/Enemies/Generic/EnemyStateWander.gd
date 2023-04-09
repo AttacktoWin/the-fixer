@@ -104,7 +104,6 @@ func _process(_delta):
 func _physics_process(delta):
 	_path_logic(delta)
 	_follow_path(delta)
-	self._animation_speed_multiplier = 2 if _is_moving() else 1
 	_update_visuals()
 	_check_for_targets()
 
