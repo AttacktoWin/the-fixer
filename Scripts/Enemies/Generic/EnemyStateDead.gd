@@ -16,6 +16,14 @@ func enter():
 		self.entity.death_animation_player.connect("animation_finished", self, "_on_anim_complete")
 
 
+func _physics_process(delta):
+	self.entity._try_move()
+	self.entity.setv(
+		LivingEntityVariable.VELOCITY,
+		self.entity.getv(LivingEntityVariable.VELOCITY) * pow(0.9, MathUtils.delta_frames(delta))
+	)
+
+
 func _on_anim_complete(_anim: String):
 	self.entity.queue_free()
 
