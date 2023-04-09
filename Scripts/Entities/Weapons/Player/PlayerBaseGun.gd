@@ -55,6 +55,13 @@ func _on_fire_called():
 	self._try_fire(self._get_fire_angle(), null)  # warning-ignore:return_value_discarded
 
 
+func _check_fire_just_pressed():
+	return (
+		not PausingSingleton.is_paused_recently()
+		and Input.is_action_just_pressed("weapon_fire_ranged")
+	)
+
+
 func _check_fire_pressed():
 	return (
 		not PausingSingleton.is_paused_recently()

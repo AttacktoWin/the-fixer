@@ -39,12 +39,6 @@ func _try_fire(direction: float, target: Node2D = null) -> bool:
 
 	self._cooldown_timer = self.cooldown
 
-	# fire sound
-	if self.ammo_count <= 0 and not self.infinite_ammo:
-		emit_signal("on_fire_empty")
-		self._notify_fire(false)
-		return false
-
 	self.ammo_count -= 1 if not self.infinite_ammo else 0
 
 	_fire(direction, target)
@@ -120,6 +114,10 @@ func _on_fire_called() -> void:
 	self._try_fire(self.get_angle(), null)
 
 
+func _check_fire_just_pressed() -> bool:
+	return false
+
+
 func _check_fire_pressed() -> bool:
 	return false
 
@@ -146,3 +144,11 @@ func _physics_process(delta):
 	self._cooldown_timer_tick(delta)
 	if self._check_fire_pressed():
 		self._on_fire_called()
+	if (
+		not self._disabled
+		and self._cooldown_timer < 0
+		and self.ammo_count <= 0
+		and self._check_fire_just_pressed()
+	):
+		emit_signal("on_fire_empty")
+		self._notify_fire(false)
