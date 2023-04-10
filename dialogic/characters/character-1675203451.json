@@ -1,21 +1,21 @@
 {
-	"color": "#ffffffff",
+	"color": "#fffdd838",
 	"description": "",
 	"display_name": "",
 	"display_name_bool": false,
 	"id": "character-1675203451.json",
 	"mirror_portraits": false,
 	"name": "Manifestation",
-	"nickname": "",
-	"nickname_bool": false,
-	"offset_x": 0,
+	"nickname": "Manifestation of the Vault,Man,the Vault",
+	"nickname_bool": true,
+	"offset_x": 200,
 	"offset_y": 0,
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://Assets/Portraits/Manifestation/manifest_portrait.png"
 		}
 	],
-	"scale": 100,
+	"scale": 70,
 	"theme": ""
 }

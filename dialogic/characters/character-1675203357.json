@@ -1,5 +1,5 @@
 {
-	"color": "#ffffffff",
+	"color": "#ffff1e2b",
 	"description": "",
 	"display_name": "",
 	"display_name_bool": false,
@@ -13,9 +13,21 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://Assets/Portraits/Fixer/fixer_portrait_neutral.png"
+		},
+		{
+			"name": "Shadow",
+			"path": "res://Assets/Portraits/Fixer/fixer_portrait_shadow.png"
+		},
+		{
+			"name": "Smile",
+			"path": "res://Assets/Portraits/Fixer/fixer_portrait_smile.png"
+		},
+		{
+			"name": "Secret",
+			"path": "res://Assets/Portraits/Fixer/fixer_portrait_uwu.png"
 		}
 	],
-	"scale": 100,
+	"scale": 63,
 	"theme": ""
 }

@@ -1,0 +1,588 @@
+[gd_scene load_steps=46 format=2]
+
+[ext_resource path="res://Assets/Sprites/Bird/bird-spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Enemies/Umbrella/Umbrella.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemies/Umbrella/UmbrellaStateIdle.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/Entities/Attacks/LocationAttack.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateAlert.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Enemies/Umbrella/UmbrellaStateRangeAttack.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateHurt.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Enemies/Umbrella/UmbrellaStateChase.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/Enemies/BaseEnemy.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Enemies/Umbrella/UmbrellaStateMelee.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Magic/Effects/Textures/explosion_text.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Magic/Effects/Textures/crate-spritesheet.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Magic/Effects/VFX_Explosion_GRAD.tres" type="Gradient" id=15]
+[ext_resource path="res://Scripts/Enemies/Generic/EnemyStateDead.gd" type="Script" id=16]
+
+[sub_resource type="CircleShape2D" id=97]
+radius = 512.0
+
+[sub_resource type="CircleShape2D" id=96]
+radius = 32.0
+
+[sub_resource type="CircleShape2D" id=99]
+radius = 300.0
+
+[sub_resource type="CircleShape2D" id=98]
+radius = 400.0
+
+[sub_resource type="CapsuleShape2D" id=109]
+radius = 24.5321
+height = 85.3061
+
+[sub_resource type="CircleShape2D" id=110]
+radius = 53.0094
+
+[sub_resource type="Shader" id=100]
+code = "shader_type canvas_item;
+
+uniform bool flash = false;
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 line_color : hint_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	//OUTLINE
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+	}
+	outline = min(outline, 1.0);
+	
+	//GET THE BASE
+	vec4 color = texture(TEXTURE, UV);
+	
+	//FLASH
+	vec4 new_color = color;
+	if (flash == true)
+	{
+		new_color = vec4(flash_color.xyz, color.a); 
+	}
+	
+	COLOR = mix(new_color, line_color, outline - new_color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=95]
+shader = SubResource( 100 )
+shader_param/flash = false
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/line_color = Color( 0, 0, 0, 1 )
+shader_param/line_thickness = 3.002
+
+[sub_resource type="Animation" id=101]
+resource_name = "FLY_CLOSED"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 18, 19, 20, 21 ]
+}
+
+[sub_resource type="Animation" id=102]
+resource_name = "FLY_OPEN"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 27, 28, 29, 30 ]
+}
+
+[sub_resource type="Animation" id=111]
+resource_name = "IDLE"
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 14, 11 ]
+}
+
+[sub_resource type="Animation" id=103]
+resource_name = "IDLE_CLOSED"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+
+[sub_resource type="Animation" id=104]
+resource_name = "IDLE_OPEN"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 9, 10, 11, 12, 13, 14 ]
+}
+
+[sub_resource type="Animation" id=105]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SocketMuzzle:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -54.2, 12 ) ]
+}
+
+[sub_resource type="Animation" id=106]
+resource_name = "SPIN"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 54, 55, 56, 57, 58, 59, 60, 61, 62, 56, 55, 54 ]
+}
+
+[sub_resource type="Animation" id=107]
+resource_name = "TO_CLOSED"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 45, 46, 47, 48, 49, 50 ]
+}
+
+[sub_resource type="Animation" id=108]
+resource_name = "TO_OPEN"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 36, 37, 38, 39, 40, 41 ]
+}
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+void fragment(){
+	COLOR = vec4(1,1,1,1);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[sub_resource type="CanvasItemMaterial" id=3]
+next_pass = SubResource( 2 )
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="GradientTexture" id=5]
+gradient = ExtResource( 15 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+emission_shape = 1
+emission_sphere_radius = 95.04
+flag_disable_z = true
+gravity = Vector3( 0, -200, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 60.5
+angle_random = 1.0
+scale = 1.11
+scale_random = 0.91
+color_ramp = SubResource( 5 )
+anim_speed = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=113]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="GradientTexture" id=114]
+gradient = ExtResource( 15 )
+
+[sub_resource type="Curve" id=115]
+min_value = 0.7
+max_value = 1.3
+_data = [ Vector2( 0, 0.825455 ), 0.0, 0.0, 0, 0, Vector2( 0.997449, 1.03818 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=116]
+curve = SubResource( 115 )
+
+[sub_resource type="ParticlesMaterial" id=117]
+emission_shape = 1
+emission_sphere_radius = 5.67
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+angular_velocity = 27.69
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 1.4
+scale_curve = SubResource( 116 )
+color_ramp = SubResource( 114 )
+anim_speed = 2.0
+
+[sub_resource type="Animation" id=8]
+resource_name = "EXPLODE"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.7, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 20 ), Vector2( 0, -18 ), Vector2( 0, -30 ), Vector2( 0, -18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Particles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../FlipComponents/Visual/Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../FlipComponents/Visual/Sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Finish:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=112]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 20 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[node name="E_Umbrella" type="KinematicBody2D" groups=["Enemy"]]
+collision_layer = 2
+script = ExtResource( 2 )
+entity_radius = 48.0
+base_speed = 400.0
+base_health = 120.0
+has_ranged_attack = true
+melee_attack_range = 200.0
+ranged_attack_range = 375.0
+
+[node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
+position = Vector2( 0, -61 )
+polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
+
+[node name="NearbyEntities" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NearbyEntities"]
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 97 )
+
+[node name="EntityCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityCollider"]
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 96 )
+
+[node name="RangedAttack" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Sense" type="CollisionShape2D" parent="RangedAttack"]
+scale = Vector2( 2, 1 )
+shape = SubResource( 99 )
+
+[node name="IdleRadius" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="Sense" type="CollisionShape2D" parent="IdleRadius"]
+position = Vector2( 0, 1 )
+scale = Vector2( 2, 1 )
+shape = SubResource( 98 )
+
+[node name="FlipComponents" type="Node2D" parent="."]
+
+[node name="HitBox" type="Area2D" parent="FlipComponents"]
+position = Vector2( -6.8, -34 )
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 5 )
+base_speed = 0.0
+base_damage = 20.0
+allied_class = ExtResource( 11 )
+attack_type = 2
+persistent = true
+die_on_pierce = false
+camera_shake = 32.0
+knockback_factor = 512.0
+max_pierce = 10000
+should_forget_entities = true
+entity_forget_time = 0.2
+
+[node name="HitCollider" type="CollisionShape2D" parent="FlipComponents/HitBox"]
+position = Vector2( -1.2, 4 )
+rotation = -1.8326
+shape = SubResource( 109 )
+
+[node name="HurtBox" type="Area2D" parent="FlipComponents"]
+position = Vector2( -6.8, -34 )
+collision_layer = 32
+collision_mask = 0
+
+[node name="HurtCollider" type="CollisionShape2D" parent="FlipComponents/HurtBox"]
+position = Vector2( 1.8, -3 )
+shape = SubResource( 110 )
+
+[node name="Visual" type="Node2D" parent="FlipComponents"]
+
+[node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
+material = SubResource( 95 )
+position = Vector2( -3, -36 )
+scale = Vector2( 0.346525, 0.346525 )
+texture = ExtResource( 1 )
+hframes = 9
+vframes = 7
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlipComponents/Visual"]
+anims/FLY_CLOSED = SubResource( 101 )
+anims/FLY_OPEN = SubResource( 102 )
+anims/IDLE = SubResource( 111 )
+anims/IDLE_CLOSED = SubResource( 103 )
+anims/IDLE_OPEN = SubResource( 104 )
+anims/RESET = SubResource( 105 )
+anims/SPIN = SubResource( 106 )
+anims/TO_CLOSED = SubResource( 107 )
+anims/TO_OPEN = SubResource( 108 )
+
+[node name="SocketMuzzle" type="Node2D" parent="FlipComponents/Visual"]
+position = Vector2( -54.2, 12 )
+
+[node name="ProgressBar" parent="." instance=ExtResource( 4 )]
+margin_left = -23.0
+margin_top = -95.0
+margin_right = 17.0
+margin_bottom = -86.0
+
+[node name="FSMController" type="Node2D" parent="."]
+script = ExtResource( 8 )
+root_state = NodePath("UmbrellaStateIdle")
+animation_player = NodePath("../FlipComponents/Visual/AnimationPlayer")
+
+[node name="UmbrellaStateIdle" type="Node2D" parent="FSMController"]
+script = ExtResource( 3 )
+global_animation_speed_multiplier = 2.0
+wander_radius = 128.0
+walk_speed_multiplier = 2.0
+min_wander_delay = 0.1
+max_wander_delay = 1.0
+min_wander_distance_fac = 0.25
+
+[node name="EnemyStateHurt" type="Node2D" parent="FSMController"]
+script = ExtResource( 9 )
+
+[node name="UmbrellaStateChase" type="Node2D" parent="FSMController"]
+script = ExtResource( 10 )
+
+[node name="UmbrellaStateRangedAttack" type="Node2D" parent="FSMController"]
+script = ExtResource( 7 )
+
+[node name="EnemyStateAlert" type="Node2D" parent="FSMController"]
+script = ExtResource( 6 )
+animation_name = "TO_OPEN"
+alert_sound = 1274459313
+
+[node name="UmbrellaStateMelee" type="Node2D" parent="FSMController"]
+script = ExtResource( 12 )
+
+[node name="EnemyStateDead" type="Node2D" parent="FSMController"]
+script = ExtResource( 16 )
+
+[node name="VFX_Explosion" type="Node2D" parent="."]
+position = Vector2( -1, -29 )
+
+[node name="Particles2D" type="Particles2D" parent="VFX_Explosion"]
+material = SubResource( 3 )
+scale = Vector2( 0.5, 0.5 )
+emitting = false
+amount = 13
+lifetime = 0.4
+speed_scale = 0.7
+explosiveness = 0.05
+process_material = SubResource( 6 )
+texture = ExtResource( 14 )
+
+[node name="Finish" type="Particles2D" parent="VFX_Explosion"]
+material = SubResource( 113 )
+position = Vector2( -1, 1 )
+emitting = false
+amount = 2
+one_shot = true
+process_material = SubResource( 117 )
+texture = ExtResource( 14 )
+
+[node name="Sprite" type="Sprite" parent="VFX_Explosion"]
+self_modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, 20 )
+rotation = 0.18326
+texture = ExtResource( 13 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VFX_Explosion"]
+anims/EXPLODE = SubResource( 8 )
+anims/RESET = SubResource( 112 )

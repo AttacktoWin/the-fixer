@@ -1,8 +1,52 @@
 Event	ID	Name			Wwise Object Path	Notes
-	1198969758	Swing_Knuckles_Player			\Default Work Unit\Swing_Knuckles_Player	
-	1828056235	Fire_Pistol_Player			\Default Work Unit\Fire_Pistol_Player	
+	282373675	Charge_Spyder			\Default Work Unit\Enemy Actions\Spyder Actions\Charge_Spyder	
+	338712458	Forward_Menu			\Default Work Unit\UI Actions\Menu Actions\Forward_Menu	
+	407919326	Back_Menu			\Default Work Unit\UI Actions\Menu Actions\Back_Menu	
+	476036265	Disappear_Textbox			\Default Work Unit\UI Actions\Textbox Actions\Disappear_Textbox	
+	708461478	Hit_Pistol_Player			\Default Work Unit\Player Actions\Hit_Pistol_Player	
+	942229886	Dodge_Player			\Default Work Unit\Player Actions\Dodge_Player	
+	1198969758	Swing_Knuckles_Player			\Default Work Unit\Player Actions\Swing_Knuckles_Player	
+	1237341883	Flash_Spyder			\Default Work Unit\Enemy Actions\Spyder Actions\Flash_Spyder	
+	1274459313	Notice_Bird			\Default Work Unit\Enemy Actions\Bird Actions\Notice_Bird	
+	1294487939	Attack_Spyder			\Default Work Unit\Enemy Actions\Spyder Actions\Attack_Spyder	
+	1479467640	Death_Enemy			\Default Work Unit\Enemy Actions\Death_Enemy	
+	1582328950	Roar_Manifestation			\Default Work Unit\Enemy Actions\Manifestation Actions\Roar_Manifestation	
+	1828056235	Fire_Pistol_Player			\Default Work Unit\Player Actions\Fire_Pistol_Player	
+	1980235893	Notice_Pillbug			\Default Work Unit\Enemy Actions\Pillbug Actions\Notice_Pillbug	
+	2010675244	Weapon_Pickup_Player			\Default Work Unit\Player Actions\Weapon_Pickup_Player	
+	2020382007	Hit_Knuckles_Player			\Default Work Unit\Player Actions\Hit_Knuckles_Player	
+	2348673105	Attack_Bird			\Default Work Unit\Enemy Actions\Bird Actions\Attack_Bird	
+	2396170652	Shoot_Bird			\Default Work Unit\Enemy Actions\Bird Actions\Shoot_Bird	
+	2891465027	Appear_Textbox			\Default Work Unit\UI Actions\Textbox Actions\Appear_Textbox	
+	3227525858	Die_Manifestation			\Default Work Unit\Enemy Actions\Manifestation Actions\Die_Manifestation	
+	3252579989	Attack_Pillbug			\Default Work Unit\Enemy Actions\Pillbug Actions\Attack_Pillbug	
+	3269141561	Attack_Beetle			\Default Work Unit\Enemy Actions\Beetle Actions\Attack_Beetle	
+	3277391769	Notice_Beetle			\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle	
+	3289055956	Move_Menu			\Default Work Unit\UI Actions\Menu Actions\Move_Menu	
+	3344761002	Ammo_Pickup_Player			\Default Work Unit\Player Actions\Ammo_Pickup_Player	
+	3852800920	Advance_Textbox			\Default Work Unit\UI Actions\Textbox Actions\Advance_Textbox	
+	4149800146	Empty_Pistol_Player			\Default Work Unit\Player Actions\Empty_Pistol_Player	
+	4275276242	Attack_Manifestation			\Default Work Unit\Enemy Actions\Manifestation Actions\Attack_Manifestation	
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1087353892	EffectVolume			\Default Work Unit\EffectVolume	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	90599123	Fire_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Shoot_Pistol_Player_08F7D1DE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Fire_Pistol_Player		51836
-	215651341	Punch_Knuckles_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Swing_Knuckles_Player_65AC56E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Punch_Knuckles_Player		40552
+	15880499	Spyder_Flash	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Flash_Camera_B6BBCEE5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Spyder\Spyder_Flash		63416
+	68113316	Ammo_Pickup_Player-004	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-004_3FDF283B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-004		40732
+	90599123	Fire_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Shoot_Pistol_Player_08F7D1DE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Fire_Pistol_Player		51836
+	215651341	Punch_Knuckles_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Swing_Knuckles_Player_65AC56E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Punch_Knuckles_Player		40552
+	313999180	Ammo_Pickup_Player-008	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-008_A9EDB648.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-008		44056
+	380485017	Dodge_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Dodge_Player_0FD3D937.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Dodge_Player		85320
+	384635967	Ammo_Pickup_Player-003	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-003_9BB6A447.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-003		57332
+	476551547	Spyder_Attack	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\spyder attack_9EEF2BFA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Spyder\Spyder_Attack		102884
+	518315914	Empty_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Empty_Pistol_Player_6C16FD96.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Empty_Pistol_Player		35756
+	678458525	Ammo_Pickup_Player-001	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-001_AF398A34.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-001		37412
+	738966222	Ammo_Pickup_Player-009	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-009_07D8E4C6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-009		44884
+	865640855	Spyder_Charge	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\spyder charge_A592BCF1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Spyder\Spyder_Charge		59286
+	983251993	Ammo_Pickup_Player-005	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-005_DD107A4A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-005		36584
+	984510645	Ammo_Pickup_Player-006	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-006_55712909.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-006		46544
+	998863668	Pillbug_Attack	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\pillbug attack_9C116509.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Pillbug\Pillbug_Attack		89292
+	1028577693	Ammo_Pickup_Player-007	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-007_BE19CFEC.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-007		50692
+	1061419174	Ammo_Pickup_Player-002	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-002_27239543.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-002		36584
 

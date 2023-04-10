@@ -1,3 +1,15 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	935463065	GamePaused			\Default Work Unit\GamePaused	
+	1017222595	LowHealth			\Default Work Unit\LowHealth	
+
+State	ID	Name	State Group			Notes
+	748895195	None	GamePaused			
+	979470758	Yes	GamePaused			
+	1668749452	No	GamePaused			
+	748895195	None	LowHealth			
+	979470758	Yes	LowHealth			
+	1668749452	No	LowHealth			
+
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	504532776	Brick			\Factory Acoustic Textures\Textures\Brick	
 	513139656	Mountain			\Factory Acoustic Textures\Textures\Mountain	

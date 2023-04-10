@@ -88,8 +88,14 @@ func dequeue() -> Dialogue:
 		size = 0;
 		return minimum;
 	
+	# To prevent recurring dialogues from constantly being at the top, select some other leaf
+	var leaf = randi() % (int(ceil(size / 2.0)) - 1) + (size / 2)
 	var root = heap[0];
-	heap[0] = heap[size - 1];
+	heap[0] = heap[leaf];
+	while leaf < size - 1:
+		heap[leaf] = heap[leaf + 1]
+		leaf += 1
+	heap.pop_back()
 	size -= 1;
 	_minheapify(0);
 	

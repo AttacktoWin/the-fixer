@@ -13,6 +13,17 @@ var NPCs: Dictionary = {}
 var current_npc_id := ""
 var current_dialogue_id := ""
 
+var current_dialog_box: CanvasLayer
+var follow_player := false
+
+const enemy_timelines := {
+	"pillbug": ["1-pillbug"],
+	"spyder": ["1-spyder"],
+	"beetle": ["1-beetle"],
+	"bird": ["1-bird"],
+	"ant": []
+}
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -46,26 +57,66 @@ func _ready():
 			npc.init_with_data(save_dict[npc.id] as Array)
 		else:
 			npc.init()
-			
+	if (save_dict.has("stats")):
+		StatsTracker.init(save_dict["stats"])
+		
 	if (Engine.editor_hint):
 		print("Loaded Dialogue System in {time} usec.".format({"time": Time.get_ticks_usec() - init_time}))
 		
+func _process(_delta):
+	if (is_instance_valid(self.current_dialog_box) && follow_player):
+		var player = get_parent().get_node("World/Level/SortableEntities/Player")
+		if (is_instance_valid(player)):
+			current_dialog_box.offset = MathUtils.from_iso(player.position - Vector2(80, 275))
 		
-func display_dialogue(npc_id: String, dialogue_id: String) -> void:
-	# TODO: listen to dialogic signals and emit signals for pausing player, etc.
+func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> void:
 	if (Dialogic.timeline_exists(npc_id + "-" + dialogue_id)):
-		PausingSingleton.pause()
-		var dialog = Dialogic.start(npc_id + "-" + dialogue_id)
+		var dialog: Node
+		dialog = Dialogic.start(npc_id + "-" + dialogue_id)
+		if (bubble):
+			follow_player = true
+			dialog.follow_viewport_enable = true
+			dialog.scale = Vector2(1, 2)
 		self.current_npc_id = npc_id
 		self.current_dialogue_id = dialogue_id
 		dialog.connect("timeline_end", self, "_timeline_end")
+		dialog.connect("dialogic_signal", self, "_signal_listener")
+		self.current_dialog_box = dialog
 		add_child(dialog)
 	else:
 		push_error("Unknown dialogue {d_id} for npc {n_id}".format({"d_id": dialogue_id, "n_id": npc_id}))
 
 func _timeline_end(t_name: String):
 	dialogue_viewed(self.current_npc_id, self.current_dialogue_id)
-	PausingSingleton.unpause()
+	self.current_dialog_box = null
+	self.follow_player = false
+
+func _signal_listener(s_name: String):
+	match s_name:
+		"pause":
+			PausingSingleton.pause()
+			$CanvasLayer.show()
+			$CanvasLayer/Tween.interpolate_property($CanvasLayer/ColorRect, "modulate", $CanvasLayer/ColorRect.modulate, Color(1, 1, 1, 0.5), 0.2)
+			$CanvasLayer/Tween.start()
+		"unpause":
+			PausingSingleton.unpause()
+			$CanvasLayer/Tween.interpolate_property($CanvasLayer/ColorRect, "modulate", $CanvasLayer/ColorRect.modulate, Color(1, 1, 1, 0), 0.2)
+			$CanvasLayer/Tween.interpolate_callback($CanvasLayer, 0.2, "hide")
+			$CanvasLayer/Tween.start()
+		"hide_screen":
+			$CanvasLayer.show()
+			$CanvasLayer/Tween.interpolate_property($CanvasLayer/ColorRect, "modulate", $CanvasLayer/ColorRect.modulate, Color(1, 1, 1, 1), 0.2)
+			$CanvasLayer/Tween.start()
+		"reveal_screen":
+			$CanvasLayer/Tween.interpolate_property($CanvasLayer/ColorRect, "modulate", $CanvasLayer/ColorRect.modulate, Color(1, 1, 1, 0), 0.2)
+			$CanvasLayer/Tween.interpolate_callback($CanvasLayer, 0.2, "hide")
+			$CanvasLayer/Tween.start()
+		"shake_screen":
+			CameraSingleton.shake(0.5)
+		"bubble":
+			self.current_dialog_box.follow_viewport_enable = true
+			self.current_dialog_box.scale = Vector2(1, 2)
+			self.follow_player = true
 
 func get_top_dialogue(npc_id: String) -> Dialogue:
 	if (!NPCs.has(npc_id)):
@@ -74,6 +125,7 @@ func get_top_dialogue(npc_id: String) -> Dialogue:
 	return (NPCs[npc_id] as NPC).get_top_dialogue()
 	
 func unlock_dialogues(unlocked: Array) -> void:
+	unlocked.shuffle()
 	for ids in unlocked:
 		if (NPCs.has(ids.npc_id)):
 			(NPCs[ids.npc_id] as NPC).unlock_dialogue(ids.dialogue_id)
@@ -102,13 +154,27 @@ func choice_selected(choice_id: String, option_selected: int) -> void:
 	_lookup_unlock_table(key)
 
 func event_viewed(event_tag: String) -> void:
-	var key := "world-{event_tag}".format({"event_tag": event_tag})
+	var key := "event-{event_tag}".format({"event_tag": event_tag})
 	_lookup_unlock_table(key)
+	
+func level_started(enemies: Array):
+	var index = randi() % len(enemies)
+	var e_name = enemies[index].get_entity_name()
+	if (e_name in self.enemy_timelines.keys()):
+		var timeline = self.enemy_timelines[e_name][randi() % len(self.enemy_timelines[e_name])]
+		NPCs["fixer"].unlock_dialogue(timeline)
+		
+	
+func level_changed():
+	for npc in self.NPCs.values():
+		while npc.peek_top_dialogue().priority == 0:
+			npc.get_top_dialogue()
 	
 func save() -> void:
 	var save_dict := {}
 	for npc in NPCs.values():
 		save_dict[npc.id] = npc.save()
+	save_dict["stats"] = StatsTracker.save()
 	var text = JSON.print(save_dict)
 	var file = File.new()
 	file.open(save_file_name, File.WRITE)

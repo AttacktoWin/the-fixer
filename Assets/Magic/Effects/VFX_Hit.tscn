@@ -1,0 +1,120 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Assets/Magic/Effects/Textures/hit.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Magic/Effects/Textures/hit2.png" type="Texture" id=2]
+
+[sub_resource type="DynamicFontData" id=19]
+font_path = "res://Assets/UI/BAHNSCHRIFT.TTF"
+
+[sub_resource type="DynamicFont" id=20]
+size = 50
+outline_size = 5
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 19 )
+
+[sub_resource type="GDScript" id=21]
+script/source = "extends Node2D
+
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	for node in self.get_children():
+		node.emitting = true
+"
+
+[sub_resource type="CanvasItemMaterial" id=6]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0, 0.249322, 0.384824, 0.631436, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.616071, 0.428571, 1, 0.917969, 0.77885, 0.233078, 1, 1, 0, 0.140625, 1, 0.0384615, 0.0384615, 0.0384615, 1 )
+
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
+
+[sub_resource type="Curve" id=12]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 0.476136 ), -4.63272, -4.63272, 0, 0, Vector2( 0.989796, 0.0215909 ), -8.50413, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=13]
+curve = SubResource( 12 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+spread = 69.23
+gravity = Vector3( 0, 300, 0 )
+initial_velocity = -300.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 0.3
+scale_random = 0.62
+scale_curve = SubResource( 13 )
+color_ramp = SubResource( 11 )
+anim_offset = 1.0
+
+[sub_resource type="CanvasItemMaterial" id=1]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=17]
+offsets = PoolRealArray( 0, 0.579946, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.210938, 0.210938, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=18]
+gradient = SubResource( 17 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle_random = 0.98
+scale = 1.5
+scale_random = 0.81
+color = Color( 0.937255, 0.92549, 0.219608, 1 )
+color_ramp = SubResource( 18 )
+anim_speed = 1.4
+
+[node name="VFX" type="Node2D"]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="DamageLabel" type="Label" parent="."]
+margin_left = -40.0
+margin_top = -46.0
+margin_right = 40.0
+margin_bottom = 6.0
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 40, 26 )
+custom_fonts/font = SubResource( 20 )
+text = "ERR"
+align = 1
+
+[node name="Rotate" type="Node2D" parent="."]
+scale = Vector2( 2, 2 )
+script = SubResource( 21 )
+
+[node name="Mulit" type="Particles2D" parent="Rotate"]
+material = SubResource( 6 )
+position = Vector2( -22, 0 )
+emitting = false
+amount = 4
+lifetime = 0.2
+one_shot = true
+explosiveness = 0.93
+local_coords = false
+process_material = SubResource( 2 )
+texture = ExtResource( 2 )
+
+[node name="Single" type="Particles2D" parent="Rotate"]
+material = SubResource( 1 )
+emitting = false
+amount = 1
+lifetime = 0.3
+one_shot = true
+process_material = SubResource( 3 )
+texture = ExtResource( 1 )

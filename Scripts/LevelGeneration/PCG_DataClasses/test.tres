@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/LevelGeneration/PCG_DataClasses/PCG_RoomData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+map_size = Vector2( 40, 40 )
+min_width = 10
+min_height = 10
+shrink_factor = 3
+corridor_width = 3

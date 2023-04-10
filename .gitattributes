@@ -1,0 +1,2 @@
+*.bnk filter=lfs diff=lfs merge=lfs -text
+addons/wwise/bin/linux/debug/* filter=lfs diff=lfs merge=lfs -text
