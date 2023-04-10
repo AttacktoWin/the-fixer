@@ -36,6 +36,22 @@ func _apply_base_stats(attack: BaseAttack):
 		attack.setv(AttackVariable.SPEED, self.ammo_speed_override)
 	if self.ammo_knockback_override:
 		attack.knockback_factor = ammo_knockback_override
+
+	attack.setv(AttackVariable.DAMAGE, attack.getv(AttackVariable.DAMAGE) * self.damage_multiplier)
+	attack.scale *= self.size_multiplier
+	attack.knockback_factor *= self.knockback_multiplier
+
+	attack.spectral = attack.spectral or self.is_spectral
+
+	if self.is_homing:
+		attack.variables.add_runnable(AttackVariable.DIRECTION, HomingBullet.new())
+
+	var t = self.pierce_chance
+	while t > 0:
+		if randf() < t:
+			attack.max_pierce += 1
+		t -= 1
+
 	return attack
 
 

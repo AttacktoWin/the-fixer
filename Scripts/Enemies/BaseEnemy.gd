@@ -63,6 +63,11 @@ func _world_updated():
 	self._appear_range = Scene.level_node.enemy_appear_distance
 
 
+func get_all_upgrade_handlers() -> Array:
+	if hitbox:
+		return [self.upgrade_handler, self.hitbox.upgrade_handler]
+	return [self.upgrade_handler]
+
 func set_nav_path(path: PathfindResult):
 	self._current_path = path
 
@@ -234,7 +239,7 @@ func knockback(vel: Vector2):
 
 func update_health_bar():
 	var bar = self.get_node("ProgressBar")
-	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
+	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / getv(LivingEntityVariable.MAX_HEALTH)) * 100)
 	if bar.value == 0:
 		bar.modulate.a = 0
 

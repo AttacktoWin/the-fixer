@@ -60,6 +60,7 @@ func set_gun(gun: PlayerBaseGun):
 		Scene.runtime.add_child(pickup)
 	self._gun = gun.with_parent(self)
 	self._gun.set_aim_bone(arms_container)
+	reapply_upgrades()
 	self.hand.add_child(self._gun.with_visuals(self._gun.default_visual_scene()))
 	update_ammo_counter()
 
@@ -151,6 +152,12 @@ func _update_reload_progress():
 		self.reload_progress_bar.visible = true
 
 
+func get_all_upgrade_handlers() -> Array:
+	if self._gun:
+		return [self.upgrade_handler, self._gun.upgrade_handler, self.melee_hitbox.upgrade_handler]
+	return [self.upgrade_handler, self.melee_hitbox.upgrade_handler]
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	_update_reload_progress()
@@ -188,6 +195,8 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_page_down"):
 			for enemy in AI.get_all_enemies():
 				enemy.queue_free()
+		if Input.is_action_just_pressed("ui_page_up"):
+			apply_upgrades([HomingUpgrade.new()])
 
 
 func _unhandled_input(event: InputEvent):
@@ -238,7 +247,7 @@ func knockback(vel: Vector2):
 
 func update_health_bar():
 	var bar = Scene.ui.get_node("HUD/HealthBar")
-	bar.value = ((getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
+	bar.value = ((getv(LivingEntityVariable.HEALTH) / getv(LivingEntityVariable.MAX_HEALTH)) * 100)
 
 
 func _on_take_damage(info: AttackInfo):

@@ -13,10 +13,24 @@ export(PackedScene) var visual_scene = null
 export var infinite_ammo: bool = false
 export(Texture) var world_sprite = null
 
+var damage_multiplier = 1.0
+var knockback_multiplier = 1.0
+var size_multiplier = 1.0
+
+var pierce_chance = 0.0
+var refund_chance = 0.0
+var multishot_chance = 0.0
+
+var is_spectral = false
+var is_homing = false
+
+var upgrade_handler = UpgradeHandler.new(self, UpgradeType.WEAPON)
+
 var entity = null
 
 signal on_fire
 signal on_fire_empty
+signal on_refund
 
 
 func _init(_parent_entity: LivingEntity = null):
@@ -40,6 +54,9 @@ func _try_fire(direction: float, target: Node2D = null) -> bool:
 	self._cooldown_timer = self.cooldown
 
 	self.ammo_count -= 1 if not self.infinite_ammo else 0
+	if randf() < self.refund_chance:
+		self.ammo_count += 1
+		emit_signal("on_refund")
 
 	_fire(direction, target)
 	_notify_fire(true)
@@ -82,6 +99,15 @@ func add_ammo(ammo: int) -> int:
 func get_max_ammo() -> int:
 	return self.max_ammo
 
+func calc_multishot() -> float:
+	var shots = 1
+	var t = self.multishot_chance
+	while t > 0:
+		if randf() < t:
+			shots +=1
+		t-=1
+
+	return shots
 
 func _get_aim_position() -> Vector2:
 	if self._aim_bone:

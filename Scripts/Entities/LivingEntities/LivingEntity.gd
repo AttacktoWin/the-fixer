@@ -13,6 +13,7 @@ onready var variables = VariableList.new(
 	{
 		LivingEntityVariable.MAX_SPEED: base_speed,
 		LivingEntityVariable.HEALTH: base_health,
+		LivingEntityVariable.MAX_HEALTH: base_health,
 		LivingEntityVariable.ACCEL: base_accel,
 		LivingEntityVariable.VELOCITY: Vector2(),
 		LivingEntityVariable.DRAG: base_drag,
@@ -21,10 +22,14 @@ onready var variables = VariableList.new(
 	}
 )
 
+var healing_multiplier = 1.0
+
 onready var status_timers = TimerList.new(self, LivingEntityStatus.get_script_constant_map(), {})
 
 export var push_amount: float = 256
 export(NodePath) var entity_collider_path = NodePath("EntityCollider")
+
+var upgrade_handler = UpgradeHandler.new(self, UpgradeType.ENTITY, true)
 
 var disable_pushing: int = 0
 
@@ -99,11 +104,25 @@ func update_health_bar():
 	pass
 
 
+func reapply_upgrades():
+	apply_upgrades(self.upgrade_handler.get_all_known_upgrades())
+
+
+func get_all_upgrade_handlers():
+	return [self.upgrade_handler]
+
+
+func apply_upgrades(upgrades: Array):
+	for handler in get_all_upgrade_handlers():
+		handler.add_upgrades(upgrades)
+
+
 func add_health(value: int):
 	var health = getv(LivingEntityVariable.HEALTH)
-	health = health + value
-	if health > self.base_health:
-		health = self.base_health
+	health = health + round(value * self.healing_multiplier)
+	var m = getv(LivingEntityVariable.MAX_HEALTH)
+	if health > m:
+		health = m
 	setv(LivingEntityVariable.HEALTH, health)
 	update_health_bar()
 

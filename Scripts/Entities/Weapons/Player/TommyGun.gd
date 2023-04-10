@@ -31,6 +31,6 @@ func _cooldown_timer_tick(delta):
 
 
 func _fire(direction: float, _target: Node2D = null):
-	self._fire_counter = fire_count - 1
+	self._fire_counter = fire_count - 1 + calc_multishot() * 2 - 1
 	self._fire_repeat_timer = fire_repeat_speed
 	self._fire_impl(direction)

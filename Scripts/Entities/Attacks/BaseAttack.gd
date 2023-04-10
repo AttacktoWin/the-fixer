@@ -39,6 +39,8 @@ var _countdown_timer: float = 0.0
 
 var _damage_source: LivingEntity = null
 
+var upgrade_handler = UpgradeHandler.new(self, UpgradeType.ATTACK)
+
 
 func _ready():
 	self.events = DecoratorList.new(self, EVENTS)
