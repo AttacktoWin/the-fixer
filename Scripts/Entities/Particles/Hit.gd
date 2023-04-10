@@ -70,8 +70,7 @@ func _handle_text(delta):
 				self._timer / self.lifetime, 1, 2, MathUtils.INTERPOLATE_OUT_EXPONENTIAL
 			)
 		)
-		* self._damage
-		/ BASE_DAMAGE
+		* clamp(self._damage / BASE_DAMAGE, 0.5, 10000)
 	)
 
 	if self._timer > self.flash_time:

@@ -41,7 +41,7 @@ func start_game():
 	Scene.switch(TUTORIAL.instance())
 "
 
-[node name="Level" type="Control"]
+[node name="Level2" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 7 )
