@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Assets/Sprites/Camera/camera_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemies/Spyder/Spyder.gd" type="Script" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://Assets/Magic/Effects/Textures/crate-spritesheet.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Magic/Effects/VFX_Explosion_GRAD.tres" type="Gradient" id=15]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateDead.gd" type="Script" id=16]
+[ext_resource path="res://Assets/Magic/Effects/Textures/circle.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Magic/Effects/Textures/ring.png" type="Texture" id=18]
 
 [sub_resource type="CircleShape2D" id=97]
 radius = 512.0
@@ -25,6 +27,33 @@ radius = 32.0
 
 [sub_resource type="CircleShape2D" id=99]
 radius = 300.0
+
+[sub_resource type="CanvasItemMaterial" id=118]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=119]
+colors = PoolColorArray( 1, 1, 1, 1, 0.988235, 0.847059, 0.215686, 1 )
+
+[sub_resource type="GradientTexture" id=120]
+gradient = SubResource( 119 )
+
+[sub_resource type="ParticlesMaterial" id=121]
+emission_shape = 5
+emission_ring_radius = 127.0
+emission_ring_inner_radius = 122.19
+emission_ring_height = 1.0
+emission_ring_axis = Vector3( 0, 0, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -70, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+scale_random = 1.0
+color_ramp = SubResource( 120 )
+anim_offset = 1.0
 
 [sub_resource type="CircleShape2D" id=98]
 radius = 400.0
@@ -416,6 +445,7 @@ position = Vector2( 0, -61 )
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
 
 [node name="NearbyEntities" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 6
 monitorable = false
@@ -425,6 +455,7 @@ scale = Vector2( 1, 0.5 )
 shape = SubResource( 97 )
 
 [node name="EntityCollider" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 6
 monitorable = false
@@ -438,10 +469,36 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="Sense" type="CollisionShape2D" parent="RangedAttack"]
+visible = false
+position = Vector2( -1, 22 )
 scale = Vector2( 2, 1 )
 shape = SubResource( 99 )
 
+[node name="VFX" type="Node2D" parent="RangedAttack"]
+z_index = -1
+
+[node name="VFX_Circle" type="Sprite" parent="RangedAttack/VFX"]
+self_modulate = Color( 0.992157, 0.847059, 0.219608, 0.25098 )
+position = Vector2( -0.5, 22 )
+scale = Vector2( 1, 0.5 )
+texture = ExtResource( 17 )
+
+[node name="VFX_Ring" type="Sprite" parent="RangedAttack/VFX"]
+self_modulate = Color( 0.988235, 0.854902, 0.266667, 1 )
+position = Vector2( -1, 22 )
+scale = Vector2( 1, 0.5 )
+texture = ExtResource( 18 )
+
+[node name="Particles2D" type="Particles2D" parent="RangedAttack/VFX"]
+material = SubResource( 118 )
+position = Vector2( 2, 17 )
+scale = Vector2( 2, 1 )
+amount = 130
+local_coords = false
+process_material = SubResource( 121 )
+
 [node name="IdleRadius" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 

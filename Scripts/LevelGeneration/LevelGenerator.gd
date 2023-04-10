@@ -4,6 +4,7 @@ export(int) var room_count: int = 5
 export(Vector2) var min_dims: Vector2 = Vector2(5, 5)  # 5,5
 export(Vector2) var max_dims: Vector2 = Vector2(8, 8)  # 8,8
 export(int) var seperation_strength = 4
+export(int) var enemies_per_room = 3
 
 var saved_seed
 var rng = RandomNumberGenerator.new()
@@ -34,7 +35,7 @@ func _ready():
 		$"../Transition",
 		rng
 	)
-	spawner.spawn_content(rooms, 5, test_enemy)
+	spawner.spawn_content(rooms, enemies_per_room, test_enemy)
 	self.test_rooms = rooms
 
 
@@ -60,6 +61,7 @@ class PCG_Rooms:
 	var max_dims: Vector2
 	var rng: RandomNumberGenerator
 	var left_edge_buffer = 3
+	const MAX_PUSH = 500
 
 	func _init(_count, _min_dims, _max_dims, _rng):
 		self.room_count = _count
@@ -86,13 +88,15 @@ class PCG_Rooms:
 
 	func _seperate(o_list: Array, step_size) -> void:
 		var security_count = 0
-		while _is_overlapping(o_list) and security_count < 500:
+		while _is_overlapping(o_list) and security_count < MAX_PUSH:
 			security_count += 1
 			for current in room_count:
 				for other in room_count:
 					if current == other or not o_list[current].intersects(o_list[other], true):
 						continue
 					var move_vec = o_list[current].get_center() - o_list[other].get_center()
+					if move_vec==Vector2.ZERO and security_count==0:
+						print("pain")
 					if move_vec.x > 0:
 						o_list[current].position.x = clamp(
 							o_list[current].position.x + step_size, left_edge_buffer, INF
@@ -107,6 +111,8 @@ class PCG_Rooms:
 						o_list[other].position.y = clamp(
 							o_list[other].position.y - step_size, left_edge_buffer, INF
 						)
+		if(security_count==MAX_PUSH):
+			print("premature,exit")
 
 	func _is_overlapping(o_list: Array) -> bool:
 		for current in o_list:
@@ -148,6 +154,10 @@ class PCG_Connector:
 			)
 			current = next
 			next += 1
+		
+		corridor_nodes += _build_corridor(
+				rooms[0].get_center().floor(), rooms[rooms.size()-1].get_center().floor()
+			)
 		return corridor_nodes
 
 	func _build_corridor(current: Vector2, end: Vector2) -> Array:
@@ -185,7 +195,8 @@ class PCG_Level:
 	func build_level(rooms, corridors, level_array):
 		var tile_by_room = {}
 		var bounds = _get_bounding(rooms)
-		_build_floor(bounds, rooms, tile_by_room, level_array)
+		_initalize_level_array(bounds,level_array)
+		_build_floor(rooms, tile_by_room, level_array)
 		_build_corridor(corridors, level_array)
 		_build_wall(level_array, bounds)
 		return tile_by_room
@@ -199,12 +210,15 @@ class PCG_Level:
 				bounds.end.y = room.end.y
 		bounds.end += Vector2.ONE
 		return bounds
-
-	func _build_floor(bounds, rooms, o_set, o_list):
+	
+	func _initalize_level_array(bounds,o_list):
 		for x in bounds.end.x:
 			o_list.append([])
 			for y in bounds.end.y:
 				o_list[x].append(-1)
+	
+	func _build_floor(rooms, o_set, o_list):
+		var pillar_count = 0
 		for room in rooms:
 			o_set[room] = []
 			for x in range(room.position.x, room.end.x):
@@ -306,7 +320,7 @@ class PCG_Spawner:
 				var theta = self.rng.randf() * 2 * PI
 				var r = sqrt(self.rng.randi_range(0, radius))
 				o_points.append(Vector2(r * cos(theta), r * sin(theta)) + center)
-		print(o_points.size())
+		print("POINTS SAMPLED: ",o_points.size())
 
 	#peremeter sampling
 	func _sample2(rooms, n, o_points):
@@ -318,6 +332,7 @@ class PCG_Spawner:
 				var x = center.x + radius * cos(theta)
 				var y = center.y + radius * sin(theta)
 				o_points.append(Vector2(x, y))
+		print("POINTS SAMPLED: ",o_points.size())
 
 	func _spawn(enemy, points):
 		for point in points:

@@ -638,6 +638,7 @@ script = SubResource( 4 )
 [node name="Floor" type="TileMap" parent="."]
 position = Vector2( -700, -529 )
 scale = Vector2( 0.5, 0.5 )
+z_index = -1
 mode = 1
 tile_set = SubResource( 1 )
 cell_size = Vector2( 256, 128 )
@@ -711,7 +712,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 7
+frame = 6
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
