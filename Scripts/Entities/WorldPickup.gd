@@ -59,9 +59,13 @@ func on_collected(_collector: LivingEntity):
 	pass
 
 
+func collection_check(_collector: LivingEntity) -> bool:
+	return true
+
+
 func _physics_process(_delta):
 	var dist = (Scene.player.global_position - self.global_position).length()
-	if dist < self.pickup_distance:
+	if dist < self.pickup_distance and collection_check(Scene.player):
 		if self.auto_pickup:
 			collect(Scene.player)
 		else:

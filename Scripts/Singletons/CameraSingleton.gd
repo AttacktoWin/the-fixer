@@ -33,8 +33,9 @@ func set_controller(controller):
 	self._controller = controller
 
 
-func remove_controller():
-	self._controller = null
+func remove_controller(controller=null):
+	if controller == self._controller:
+		self._controller = null
 
 
 func set_target_center(target, controller = null):

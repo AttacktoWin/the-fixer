@@ -59,6 +59,9 @@ func _ready():
 			npc.init()
 	if (save_dict.has("stats")):
 		StatsTracker.init(save_dict["stats"])
+	
+	Scene.connect("world_updated", self, "level_started")
+	Scene.connect("transition_start", self, "level_changed")
 		
 	if (Engine.editor_hint):
 		print("Loaded Dialogue System in {time} usec.".format({"time": Time.get_ticks_usec() - init_time}))
@@ -86,10 +89,12 @@ func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> vo
 	else:
 		push_error("Unknown dialogue {d_id} for npc {n_id}".format({"d_id": dialogue_id, "n_id": npc_id}))
 
-func _timeline_end(t_name: String):
+func _timeline_end(_t_name: String):
 	dialogue_viewed(self.current_npc_id, self.current_dialogue_id)
 	self.current_dialog_box = null
 	self.follow_player = false
+	if (PausingSingleton._paused):
+		PausingSingleton.unpause()
 
 func _signal_listener(s_name: String):
 	match s_name:
@@ -157,7 +162,10 @@ func event_viewed(event_tag: String) -> void:
 	var key := "event-{event_tag}".format({"event_tag": event_tag})
 	_lookup_unlock_table(key)
 	
-func level_started(enemies: Array):
+func level_started():
+	var enemies = AI.get_all_enemies()
+	if (len(enemies) == 0 || randi() % 100 >= 50):
+		return
 	var index = randi() % len(enemies)
 	var e_name = enemies[index].get_entity_name()
 	if (e_name in self.enemy_timelines.keys()):
@@ -166,9 +174,8 @@ func level_started(enemies: Array):
 		
 	
 func level_changed():
-	for npc in self.NPCs.values():
-		while npc.peek_top_dialogue().priority == 0:
-			npc.get_top_dialogue()
+	if NPCs["fixer"].peek_top_dialogue().priority == Dialogue.Priority.SPECIFIC:
+		NPCs["fixer"].get_top_dialogue()
 	
 func save() -> void:
 	var save_dict := {}

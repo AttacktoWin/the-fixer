@@ -49,7 +49,10 @@ func set_weapon_disabled(val):
 
 
 func set_gun(gun: PlayerBaseGun):
+	if gun == self._gun:
+		return
 	if self._gun:
+		self.hand.remove_child(self.hand.get_child(0))
 		var pickup = WorldWeapon.new()
 		pickup.set_weapon(self._gun)
 		pickup.auto_pickup = false
@@ -57,6 +60,7 @@ func set_gun(gun: PlayerBaseGun):
 		Scene.runtime.add_child(pickup)
 	self._gun = gun.with_parent(self)
 	self._gun.set_aim_bone(arms_container)
+	reapply_upgrades()
 	self.hand.add_child(self._gun.with_visuals(self._gun.default_visual_scene()))
 	update_ammo_counter()
 
@@ -93,16 +97,27 @@ func get_wanted_gun_vector():
 	return v
 
 
-func update_ammo_counter():
+func update_ammo_counter(remove: bool = false):
 	var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
-	ammo_count.text = String(self._gun.get_ammo_count()) + "/" + String(self._gun.get_max_ammo())
+	if remove:
+		ammo_count.text = String("0")
+	else:
+		ammo_count.text = (
+			String(self._gun.get_ammo_count())
+			+ "/"
+			+ String(self._gun.get_max_ammo())
+		)
 
 
-func add_ammo(ammo: int):
+func add_ammo(ammo: int) -> int:
 	if self._gun:
-		if self._gun.add_ammo(ammo):
+		var diff = self._gun.add_ammo(ammo)
+		if diff:
 			Wwise.post_event_id(AK.EVENTS.AMMO_PICKUP_PLAYER, self)
 		update_ammo_counter()
+		return diff
+
+	return 0
 
 
 func get_ammo() -> int:
@@ -137,6 +152,12 @@ func _update_reload_progress():
 		self.reload_progress_bar.visible = true
 
 
+func get_all_upgrade_handlers() -> Array:
+	if self._gun:
+		return [self.upgrade_handler, self._gun.upgrade_handler, self.melee_hitbox.upgrade_handler]
+	return [self.upgrade_handler, self.melee_hitbox.upgrade_handler]
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	_update_reload_progress()
@@ -167,13 +188,15 @@ func _process(_delta):
 			print("Playing test sound")
 			Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, self)
 		if Input.is_action_just_pressed("ui_end"):
-			self.add_ammo(900)
+			self.add_ammo(900)  # warning-ignore: return_value_discarded
 		if Input.is_action_just_pressed("ui_home"):
 			var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
-			TransitionHelper.transition(scene)
+			TransitionHelper.transition(scene, true, true, 0.01)
 		if Input.is_action_just_pressed("ui_page_down"):
 			for enemy in AI.get_all_enemies():
 				enemy.queue_free()
+		if Input.is_action_just_pressed("ui_page_up"):
+			apply_upgrades([HomingUpgrade.new()])
 
 
 func _unhandled_input(event: InputEvent):
@@ -224,7 +247,7 @@ func knockback(vel: Vector2):
 
 func update_health_bar():
 	var bar = Scene.ui.get_node("HUD/HealthBar")
-	bar.value = ((getv(LivingEntityVariable.HEALTH) / self.base_health) * 100)
+	bar.value = ((getv(LivingEntityVariable.HEALTH) / getv(LivingEntityVariable.MAX_HEALTH)) * 100)
 
 
 func _on_take_damage(info: AttackInfo):
@@ -248,11 +271,15 @@ func _on_take_damage(info: AttackInfo):
 	._on_take_damage(info)
 
 
-func _on_death():
+func _on_death(info: AttackInfo):
+	update_ammo_counter(true)
 	self._knockback_velocity = Vector2.ZERO
 	self.fsm.set_state(PlayerState.DEAD, true)
 	self.fsm.lock()
 	if self._gun:
 		self._gun.queue_free()
 	self._gun = null
-	StatsTracker.add_death()
+	if info and info.damage_source is BaseEnemy:
+		StatsTracker.add_death(info.damage_source.get_display_name())
+	else:
+		StatsTracker.add_death()

@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="SFX" Hash="1615150434">
+		<SoundBank Id="89505537" Language="SFX" Hash="1884956332">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>89505537.bnk</Path>
@@ -152,7 +152,7 @@
 					<IncludedMemoryFiles>
 						<File Id="791064235" Language="SFX">
 							<ShortName>Impact_Shoot_Player.wav</ShortName>
-							<Path>SFX\Impact_Shoot_Player_6014E8C9.wem</Path>
+							<Path>SFX\Impact_Shoot_Player_140664E6.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -411,7 +411,7 @@
 					<IncludedMemoryFiles>
 						<File Id="791064235" Language="SFX">
 							<ShortName>Impact_Shoot_Player.wav</ShortName>
-							<Path>SFX\Impact_Shoot_Player_6014E8C9.wem</Path>
+							<Path>SFX\Impact_Shoot_Player_140664E6.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

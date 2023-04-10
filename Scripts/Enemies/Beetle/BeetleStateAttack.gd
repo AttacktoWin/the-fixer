@@ -63,7 +63,8 @@ func _physics_process(delta):
 			ATTACK_SPEED_MULTIPLIER
 		)
 
-		self.entity.hitbox.invoke_attack()
+		if multiplier > 1:
+			self.entity.hitbox.invoke_attack()
 
 		# check collide with walls
 		if (

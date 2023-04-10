@@ -15,7 +15,6 @@ func _fire_impl(direction: float):
 	bullet.set_direction(direction + rand_range(-bullet_spread, bullet_spread))
 	bullet.max_pierce = self.gun_pierce_override
 	CameraSingleton.shake(self.screen_shake_on_fire)
-	AI.notify_sound(self.global_position)
 
 
 func _cooldown_timer_tick(delta):
@@ -32,6 +31,6 @@ func _cooldown_timer_tick(delta):
 
 
 func _fire(direction: float, _target: Node2D = null):
-	self._fire_counter = fire_count - 1
+	self._fire_counter = fire_count - 1 + calc_multishot() * 2 - 1
 	self._fire_repeat_timer = fire_repeat_speed
 	self._fire_impl(direction)

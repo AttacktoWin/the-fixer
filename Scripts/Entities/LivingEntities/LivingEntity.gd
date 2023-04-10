@@ -13,6 +13,7 @@ onready var variables = VariableList.new(
 	{
 		LivingEntityVariable.MAX_SPEED: base_speed,
 		LivingEntityVariable.HEALTH: base_health,
+		LivingEntityVariable.MAX_HEALTH: base_health,
 		LivingEntityVariable.ACCEL: base_accel,
 		LivingEntityVariable.VELOCITY: Vector2(),
 		LivingEntityVariable.DRAG: base_drag,
@@ -21,10 +22,14 @@ onready var variables = VariableList.new(
 	}
 )
 
+var healing_multiplier = 1.0
+
 onready var status_timers = TimerList.new(self, LivingEntityStatus.get_script_constant_map(), {})
 
 export var push_amount: float = 256
 export(NodePath) var entity_collider_path = NodePath("EntityCollider")
+
+var upgrade_handler = UpgradeHandler.new(self, UpgradeType.ENTITY, true)
 
 var disable_pushing: int = 0
 
@@ -33,6 +38,8 @@ var _entity_collider = null
 var _is_dead = false
 
 const INVULNERABLE_FLASH_RATE = 0.1
+
+signal on_death
 
 
 func _get_node_or_err(test_path, default_path):
@@ -72,6 +79,11 @@ func _add_default_runnables():
 	self.variables.add_runnable(LivingEntityVariable.MAX_SPEED, BaseSlowHandler.new())
 
 
+func get_display_name():
+	print("WARN: display name not set for ", name, "!")
+	return ""
+
+
 func getv(variable):
 	return self.variables.get_variable(variable)
 
@@ -88,9 +100,40 @@ func get_wanted_velocity(dir_vector: Vector2) -> Vector2:
 	return dir_vector * getv(LivingEntityVariable.MAX_SPEED)
 
 
+func update_health_bar():
+	pass
+
+
+func reapply_upgrades():
+	apply_upgrades(self.upgrade_handler.get_all_known_upgrades())
+
+
+func get_all_upgrade_handlers():
+	return [self.upgrade_handler]
+
+
+func apply_upgrades(upgrades: Array):
+	for handler in get_all_upgrade_handlers():
+		handler.add_upgrades(upgrades)
+
+
+func add_health(value: int):
+	var health = getv(LivingEntityVariable.HEALTH)
+	health = health + round(value * self.healing_multiplier)
+	var m = getv(LivingEntityVariable.MAX_HEALTH)
+	if health > m:
+		health = m
+	setv(LivingEntityVariable.HEALTH, health)
+	update_health_bar()
+
+
 func _try_move():
 	# warning-ignore:return_value_discarded
-	move_and_slide(getv(LivingEntityVariable.VELOCITY))
+	var v = getv(LivingEntityVariable.VELOCITY)
+	if is_nan(v.x) or is_nan(v.y):
+		setv(LivingEntityVariable.VELOCITY, Vector2())
+		return
+	move_and_slide(v)
 
 
 func _get_base_alpha() -> float:
@@ -127,7 +170,7 @@ func _physics_process(delta):
 				dist = max_dist
 
 			var interp = MathUtils.interpolate(
-				dist / max_dist, self.push_amount, 0, MathUtils.INTERPOLATE_OUT
+				dist / max_dist, other.push_amount, 0, MathUtils.INTERPOLATE_OUT
 			)
 
 			push_dir += v.normalized() * interp
@@ -139,20 +182,33 @@ func is_dead():
 	return self._is_dead
 
 
-func _on_death():
+func _on_death(_info: AttackInfo):
 	print("Rip")
 
 
-func _check_death() -> bool:
+func _check_death(info: AttackInfo = null) -> bool:
 	if self.getv(LivingEntityVariable.HEALTH) <= 0 and not self._is_dead:
 		self._is_dead = true
 		# queue_free()
-		self._on_death()  # emit signal
+		self._on_death(info)
+		emit_signal("on_death", self)
 		return true
 	return false
 
+
+func kill():
+	if self._is_dead:
+		return
+	setv(LivingEntityVariable.HEALTH, 0)
+	update_health_bar()
+	self._is_dead = true
+	self._on_death(null)
+	emit_signal("on_death", self)
+
+
 func can_attack_hit(_info: AttackInfo) -> bool:
 	return true
+
 
 func can_be_hit():
 	return self.status_timers.get_timer(LivingEntityStatus.INVULNERABLE) <= 0 and not self._is_dead
@@ -163,14 +219,15 @@ func knockback(_vel: Vector2):
 
 
 func on_hit(info: AttackInfo):
-	self._take_damage(info.damage)
-	self._on_take_damage(info)
+	_take_damage(info.damage, info)
+	_on_take_damage(info)
 
 
 func _on_take_damage(_info: AttackInfo):
 	pass
 
 
-func _take_damage(amount: float):
-	self.changev(LivingEntityVariable.HEALTH, -amount)
-	self._check_death()  # warning-ignore:return_value_discarded
+func _take_damage(amount: float, info: AttackInfo = null):
+	changev(LivingEntityVariable.HEALTH, -amount)
+	update_health_bar()
+	_check_death(info)  # warning-ignore:return_value_discarded

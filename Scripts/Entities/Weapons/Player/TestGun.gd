@@ -2,6 +2,7 @@
 
 class_name TestGun extends PlayerBaseGun
 
+"""
 var BulletScene = preload("res://Scenes/Weapons/bullet_scene.tscn")
 
 
@@ -92,3 +93,4 @@ func _fire(direction: float, _target: Node2D = null):
 	# add some screen shake!
 	CameraSingleton.shake(3)
 	AI.notify_sound(self.global_position)
+"""

@@ -405,8 +405,11 @@ collision_layer = 2
 script = ExtResource( 2 )
 height_component_path = NodePath("FlipComponents")
 base_speed = 300.0
+base_health = 80.0
 base_accel = 5.0
+has_ranged_attack = true
 melee_attack_range = 64.0
+ranged_attack_range = 320.0
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -61 )

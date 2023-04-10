@@ -184,3 +184,15 @@ func is_in_bounds(vec: Vector2) -> bool:
 func get_vector_from_walls(pos: Vector2) -> Vector2:
 	var v = MathUtils.floor_vec2(MathUtils.to_level_vector(pos))
 	return self._wall_gradient.get(v, Vector2())
+
+
+func random_location_near(input_vec: Vector2, radius: float) -> Vector2:
+	var attempts = 0
+	while attempts < 100:
+		var ang = randf() * PI * 2
+		var dist = rand_range(0, radius)
+		var loc = input_vec + Vector2(cos(ang), sin(ang)) * dist
+		if is_in_bounds(loc):
+			return loc
+
+	return input_vec

@@ -32,7 +32,7 @@ func enter():
 	self.fsm.set_animation("DASH")
 	self.entity.setv(LivingEntityVariable.VELOCITY, Vector2())
 	CameraSingleton.set_zoom(Vector2(1.01, 1.01))
-	self._dash_direction = CameraSingleton.get_mouse_from_camera_center_screen().normalized()
+	self._dash_direction = (CameraSingleton.get_absolute_mouse() - self.entity.global_position).normalized()
 	self._has_dashed = false
 	self._dash_timer = 0.25
 

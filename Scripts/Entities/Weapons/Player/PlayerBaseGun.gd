@@ -11,11 +11,13 @@ export(int) var ammo_speed_override: int = -1
 export(int) var ammo_knockback_override: int = -1
 export(int) var screen_shake_on_fire: int = 3
 export var bullet_spread: float = 0
+export var weapon_volume: float = 2.5
 
 
 func _notify_fire(has_ammo):
 	self.entity.update_ammo_counter()
 	if has_ammo:
+		AI.notify_sound(self.entity.global_position, 4096, weapon_volume)
 		if self.sound_fire:
 			Wwise.post_event_id(self.sound_fire, self.entity)
 	else:
@@ -34,6 +36,22 @@ func _apply_base_stats(attack: BaseAttack):
 		attack.setv(AttackVariable.SPEED, self.ammo_speed_override)
 	if self.ammo_knockback_override:
 		attack.knockback_factor = ammo_knockback_override
+
+	attack.setv(AttackVariable.DAMAGE, attack.getv(AttackVariable.DAMAGE) * self.damage_multiplier)
+	attack.scale *= self.size_multiplier
+	attack.knockback_factor *= self.knockback_multiplier
+
+	attack.spectral = attack.spectral or self.is_spectral
+
+	if self.is_homing:
+		attack.variables.add_runnable(AttackVariable.DIRECTION, HomingBullet.new())
+
+	var t = self.pierce_chance
+	while t > 0:
+		if randf() < t:
+			attack.max_pierce += 1
+		t -= 1
+
 	return attack
 
 
@@ -53,6 +71,13 @@ func _get_fire_angle():
 # override
 func _on_fire_called():
 	self._try_fire(self._get_fire_angle(), null)  # warning-ignore:return_value_discarded
+
+
+func _check_fire_just_pressed():
+	return (
+		not PausingSingleton.is_paused_recently()
+		and Input.is_action_just_pressed("weapon_fire_ranged")
+	)
 
 
 func _check_fire_pressed():

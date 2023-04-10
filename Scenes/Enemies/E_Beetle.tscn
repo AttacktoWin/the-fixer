@@ -333,6 +333,7 @@ script = ExtResource( 3 )
 height_component_path = NodePath("FlipComponents")
 entity_radius = 50.0
 base_speed = 200.0
+base_health = 160.0
 base_accel = 6.0
 melee_attack_range = 300.0
 

@@ -8,13 +8,14 @@ const AMMO_PARTICLE = preload("res://Scenes/Particles/BulletParticle.tscn")
 
 
 func _on_hit_entity(entity: LivingEntity):
+	AI.notify_sound(entity.global_position, 2048, 2)
 	Wwise.post_event_id(AK.EVENTS.HIT_KNUCKLES_PLAYER, self._damage_source)
 	if entity.is_dead():
 		var part = AMMO_PARTICLE.instance()
 		Scene.runtime.add_child(part)
 		part.global_position = entity.global_position
 		part.set_target(self._damage_source)
-		self._damage_source.add_ammo(1)
+		part.set_bounce(not self._damage_source.add_ammo(1))
 
 
 func _generate_attack_info(_entity: LivingEntity) -> AttackInfo:

@@ -16,8 +16,7 @@ const ZOOM_OUT = 4
 func _switch():
 	PausingSingleton.unpause(self)
 	if Scene.player:
-		Scene.player.setv(LivingEntityVariable.HEALTH, Scene.player.base_health)
-		Scene.player.update_health_bar()
+		Scene.player.add_health(Scene.player.base_health / 4)
 	Scene.switch(self._transition_target, self._transfer_player)
 	CameraSingleton.set_target_center(Scene.player.global_position * MathUtils.TO_ISO, self)
 	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION, self)
@@ -67,7 +66,7 @@ func _process(delta):
 		CameraSingleton.set_zoom(Vector2.ONE * ((1 - interp) + 0.25) * ZOOM_OUT, self)
 
 		if self._transition_timer > self._fade_time:
-			CameraSingleton.remove_controller()
+			CameraSingleton.remove_controller(self)
 			self._is_transitioning = false
 
 

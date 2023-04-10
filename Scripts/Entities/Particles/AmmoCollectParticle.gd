@@ -3,16 +3,23 @@ extends Node2D
 var _target: Node2D = null
 var _target_location: Vector2 = Vector2.ZERO
 
+var _bounce: bool = false
+var _step = 0
+
 var _timer = 0
 var _velocity = Vector2(rand_range(-8, 8), rand_range(-10, -20))
 
 var _target_angle = PI * 2 + rand_range(-PI / 4, PI / 4)
 
-var target_y_offset =  -80
+var _rand_rotate = rand_range(PI * 6, PI * 12)
+
+var target_y_offset = -80
 
 const WAIT_TIME = 0.8
 const MAX_SPEED = 300.0
 const ACCEL = 12.0
+
+signal on_reached_target
 
 
 # Called when the node enters the scene tree for the first time.
@@ -25,8 +32,28 @@ func set_target(target: Node2D):
 	self._target = target
 
 
+func set_bounce(bounce: bool):
+	self._bounce = bounce
+
+
+func _do_bounce(delta):
+	self._velocity += Vector2(0, 20 * delta)
+	self.position += self._velocity
+	self.rotation += self._rand_rotate * sign(self._velocity.x) * delta
+	self._rand_rotate *= 0.97
+	if self._timer > 0.5:
+		self.modulate.a = MathUtils.interpolate(self._timer - 0.5, 1, 0, MathUtils.INTERPOLATE_OUT)
+	if self._timer > 1.5:
+		self.queue_free()
+
+
 func _physics_process(delta):
 	self._timer += delta
+
+	if self._step == 1:
+		_do_bounce(delta)
+		return
+
 	self.position += self._velocity
 	if self._timer < WAIT_TIME:
 		self._velocity *= pow(0.92, MathUtils.delta_frames(delta))
@@ -69,5 +96,16 @@ func _physics_process(delta):
 		(self._target_location - self.global_position).length_squared()
 		< self._velocity.length_squared()
 	):
-		self.global_position = self._target_location
-		self.queue_free()
+		emit_signal("on_reached_target", self, self._bounce)
+		if not self._bounce:
+			self.global_position = self._target_location
+			self.queue_free()
+		else:
+			self._timer = 0
+			self._velocity = -self._velocity / 18
+			self._velocity.y = -6
+			self._velocity.x += rand_range(2, 4) * sign(self._velocity.x)
+			self._step = 1
+
+func get_angle():
+	return atan2(self._velocity.y, self._velocity.x)

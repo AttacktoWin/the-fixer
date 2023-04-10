@@ -15,6 +15,8 @@ func _ready():
 
 
 func set_weapon(weapon: Weapon):
+	if weapon.get_parent():
+		weapon.get_parent().remove_child(weapon)
 	weapon.set_process(false)
 	weapon.set_physics_process(false)
 	self.weapon_instance = weapon

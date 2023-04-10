@@ -143,6 +143,8 @@ static func delta_frames(delta):
 
 static func normalize_range(val: float, _min: float, _max: float) -> float:
 	var diff = _max - _min
+	if diff == 0:
+		return 0.5
 	return clamp((val - _min) * (1 / diff), 0, 1)
 
 
