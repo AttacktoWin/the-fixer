@@ -570,7 +570,7 @@ margin_right = 361.0
 margin_bottom = -5.0
 custom_fonts/font = ExtResource( 20 )
 text = "Destroy enemies that 
-gaurd the valut's secrets"
+guard the vault's secrets"
 
 [node name="E_Goomba2" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( 1163, 1232 )
@@ -618,21 +618,18 @@ margin_top = -69.0
 margin_right = 12.0
 margin_bottom = -4.0
 custom_fonts/font = ExtResource( 20 )
-text = "Henlo am ant"
+text = "Henlo I am an ant"
 align = 1
 autowrap = true
 
 [node name="E_Goomba4" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( -1482, 1760 )
-deaf = true
 
 [node name="E_Goomba5" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( -1270, 2053 )
-deaf = true
 
 [node name="E_Goomba6" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( -1193, 1837 )
-deaf = true
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( -2, -68 )
@@ -650,7 +647,7 @@ margin_top = 397.0
 margin_right = -150.0
 margin_bottom = 502.0
 custom_fonts/font = ExtResource( 20 )
-text = "Press E to pickup a weapon"
+text = "Press E to pick up a weapon"
 align = 1
 autowrap = true
 
@@ -705,14 +702,13 @@ material = ExtResource( 21 )
 position = Vector2( 170.866, 139.593 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 4
+frame = 9
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
 position = Vector2( 77.25, 139.5 )
 scale = Vector2( 0.283333, 0.283333 )
 frames = SubResource( 24 )
-frame = 1
 playing = true
 
 [node name="Shoot" type="Control" parent="."]
@@ -742,7 +738,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 2
+frame = 9
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -772,7 +768,7 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 5
+frame = 4
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
@@ -807,6 +803,7 @@ playing = true
 position = Vector2( 92, 44.5 )
 scale = Vector2( 0.406667, 0.406667 )
 frames = SubResource( 63 )
+frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="Dash"]
