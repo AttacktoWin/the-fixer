@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -7,20 +7,12 @@
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=5]
 [ext_resource path="res://Scenes/Levels/Level2.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/LevelGeneration/LevelGenerator.gd" type="Script" id=7]
-[ext_resource path="res://Scripts/LevelGeneration/PCG_DataClasses/PCG_RoomData.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=13]
 [ext_resource path="res://Assets/Magic/WallMaterial.tres" type="Material" id=14]
 [ext_resource path="res://Resources/Bahnschrift.tres" type="DynamicFont" id=15]
-
-[sub_resource type="Resource" id=7]
-script = ExtResource( 8 )
-map_size = Vector2( 25, 25 )
-min_width = 6
-min_height = 6
-shrink_factor = 2
-corridor_width = 3
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 127, 0, 255, 66, 127, 126, 1, 65, 127, 127 )
@@ -197,6 +189,7 @@ const BASIC_GUN = preload(\"res://Scenes/Weapons/PlayerPistolScene.tscn\")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	yield(get_tree(), \"idle_frame\")
 	if not Scene.player.has_gun():
 		Scene.player.set_gun(BASIC_GUN.instance())
 		
@@ -228,15 +221,6 @@ stop_fade_time = 2
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 7 )
-Exit_path = NodePath("../Transition")
-parent = NodePath("../SortableEntities/Runtime")
-enemies_per_room = 3
-enemy_buffer = 1
-pillbug_spawn_rate = 70
-spyder_spawn_rate = 30
-beetle_spawn_rate = 0
-ant_spawn_rate = 0
-generator_data = SubResource( 7 )
 
 [node name="Floor" type="TileMap" parent="."]
 unique_name_in_owner = true
@@ -249,7 +233,6 @@ format = 1
 [node name="NPCInstance" type="Node2D" parent="."]
 script = ExtResource( 9 )
 id = "fixer"
-immediate = true
 
 [node name="WeaponValidator" type="Node2D" parent="."]
 script = SubResource( 65 )
@@ -294,5 +277,7 @@ tile_set = ExtResource( 4 )
 cell_size = Vector2( 256, 128 )
 cell_y_sort = true
 format = 1
+
+[node name="Player" parent="SortableEntities" instance=ExtResource( 8 )]
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]

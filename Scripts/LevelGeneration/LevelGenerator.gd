@@ -1,16 +1,15 @@
 extends Node2D
 
 
-export(int) var room_count:int = 7
+export(int) var room_count:int = 5
 export(Vector2) var min_dims:Vector2 = Vector2(5,5)# 5,5
 export(Vector2) var max_dims:Vector2 = Vector2(8,8)# 8,8
-export(int) var seperation_strength = 2
-
+export(int) var seperation_strength = 4
 
 var saved_seed
 var rng = RandomNumberGenerator.new()
 var level = []  #-1 = non, 1 = floor, 2 = wall
-var test_enemy = load("res://Scripts/LevelGeneration/test_enemy.tscn")
+var test_enemy = load("res://Scenes/Enemies/E_Goomba.tscn")
 
 #DEBUG
 var test_rooms = []
@@ -38,9 +37,10 @@ func _ready():
 	var spawner = PCG_Spawner.new(
 		$"%Floor",
 		$"../SortableEntities/Runtime",
+		$"../SortableEntities/Player",
 		$"../Transition",
 		rng)
-	spawner.spawn_enemies(rooms,5,test_enemy)
+	spawner.spawn_content(rooms,5,test_enemy)
 	self.test_rooms = rooms
 
 #DEBUG
@@ -252,28 +252,49 @@ class PCG_Level:
 class PCG_Spawner:
 	var tile_map:TileMap
 	var containter
+	var player
 	var transition
 	var rng:RandomNumberGenerator
+	var guns = [
+		preload("res://Scenes/Weapons/PlayerShotgunScene.tscn").instance(),
+		preload("res://Scenes/Weapons/PlayerTommyGunScene.tscn").instance(),
+	]
 	
-	func _init(_floor,_containter, _transition,_rng):
+	func _init(_floor,_containter, _player, _transition,_rng):
 		self.tile_map = _floor
 		self.containter = _containter
 		self.transition = _transition
+		self.player = _player
 		self.rng = _rng
 	
-	func spawn_enemies(_rooms,n,enemy):
+	func spawn_content(_rooms,n,enemy):
 		set_start_end(_rooms)
 		_spawn_weapon(_rooms)
+		var spawn_points = []
 		var rooms = _rooms.duplicate(true)
 		rooms.pop_at(0)
-		var spawn_points = []
-		_sample2(rooms,n,spawn_points)
+		_sample(rooms,n,spawn_points)
 		_spawn(enemy,spawn_points)
 	
 	func set_start_end(rooms):
-		var start = self.tile_map.map_to_world(rooms[0].get_center())
-		var end = self.tile_map.map_to_world(rooms[rooms.size()-1].get_center())
-		self.transition.position = self.tile_map.to_global(end)
+		var start = _2tile2iso(rooms[0].get_center())
+		var end = _2tile2iso(rooms[rooms.size()-1].get_center())
+		self.player.position = start
+		self.transition.position = end
+	
+	func _spawn_weapon(rooms):
+		var max_dist = 0
+		var best_index = 0
+		var current = rooms[0].get_center()
+		for i in rooms.size()-1:
+			var dist = current.distance_squared_to(rooms[i].get_center())
+			if dist>max_dist:
+				max_dist = dist
+				best_index = i
+		var instance = WorldWeapon.new()
+		instance.set_weapon(self.guns[rng.randi_range(0,self.guns.size()-1)])
+		instance.position = _2tile2iso(rooms[best_index].get_center())
+		self.containter.add_child(instance)
 	
 	#fibbonaci sampling
 	func _sample(rooms, n, o_points):
@@ -300,19 +321,9 @@ class PCG_Spawner:
 	func _spawn(enemy,points):
 		for point in points:
 			var instance = enemy.instance()
-			var pos = self.tile_map.map_to_world(point)
-			instance.position = self.tile_map.to_global(pos)
+			instance.position = _2tile2iso(point)
 			self.containter.add_child(instance)
 	
-	func _spawn_weapon(rooms):
-		var max_dist = 0
-		var best_index = 0
-		var current = rooms[0].get_center()
-		for i in rooms.size()-1:
-			var dist = current.distance_squared_to(rooms[i].get_center())
-			if dist>max_dist:
-				max_dist = dist
-				best_index = i
-		rooms.pop_at(best_index)
-#		var spawn = self.tile_map.map_to_world(rooms[best_index].get_center())
-#		transition.position = self.tile_map.to_global(spawn)
+	func _2tile2iso(coord:Vector2):
+		var spawn = self.tile_map.map_to_world(coord)
+		return MathUtils.to_iso(self.tile_map.to_global(spawn))

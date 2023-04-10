@@ -19,7 +19,7 @@ script/source = "# Author: Marcus
 
 extends Level
 
-const START = preload(\"res://Scenes/Interface/Menus/MainMenu.tscn\")
+const START = preload(\"res://Scenes/Levels/Level1.tscn\")
 
 func _ready():
 	yield(owner, \"ready\")
