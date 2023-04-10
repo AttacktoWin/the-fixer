@@ -59,6 +59,9 @@ func _ready():
 			npc.init()
 	if (save_dict.has("stats")):
 		StatsTracker.init(save_dict["stats"])
+	
+	Scene.connect("world_updated", self, "level_started")
+	Scene.connect("transition_start", self, "level_changed")
 		
 	if (Engine.editor_hint):
 		print("Loaded Dialogue System in {time} usec.".format({"time": Time.get_ticks_usec() - init_time}))
@@ -159,7 +162,10 @@ func event_viewed(event_tag: String) -> void:
 	var key := "event-{event_tag}".format({"event_tag": event_tag})
 	_lookup_unlock_table(key)
 	
-func level_started(enemies: Array):
+func level_started():
+	var enemies = AI.get_all_enemies()
+	if (len(enemies) == 0 || randi() % 100 >= 50):
+		return
 	var index = randi() % len(enemies)
 	var e_name = enemies[index].get_entity_name()
 	if (e_name in self.enemy_timelines.keys()):

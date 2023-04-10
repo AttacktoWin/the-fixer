@@ -129,7 +129,6 @@ func load(new_level: Level):
 
 func switch(new_level: Level, transfer_player: bool = false):
 	emit_signal("transition_start")
-	DialogueSystem.level_changed()
 	if transfer_player:
 		var player_inst = self._player
 		player_inst.get_parent().remove_child(player_inst)
