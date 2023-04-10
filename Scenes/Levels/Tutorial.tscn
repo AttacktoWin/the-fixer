@@ -624,12 +624,15 @@ autowrap = true
 
 [node name="E_Goomba4" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( -1482, 1760 )
+deaf = true
 
 [node name="E_Goomba5" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( -1270, 2053 )
+deaf = true
 
 [node name="E_Goomba6" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( -1193, 1837 )
+deaf = true
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( -2, -68 )
@@ -709,7 +712,7 @@ playing = true
 position = Vector2( 77.25, 139.5 )
 scale = Vector2( 0.283333, 0.283333 )
 frames = SubResource( 24 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Shoot" type="Control" parent="."]
@@ -769,7 +772,7 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]

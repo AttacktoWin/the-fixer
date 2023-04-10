@@ -29,7 +29,6 @@ func on_anim_reached_end(_anim: String):
 func _physics_process(delta):
 	self._timer += delta
 	if self._timer > _spawn_delay:
-		CameraSingleton.shake(30)
 		self.entity._spawn_random_enemies(1, false)
 		self._timer -= self._spawn_delay
 		self._current_spawn += 1
