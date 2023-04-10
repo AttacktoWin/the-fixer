@@ -86,10 +86,12 @@ func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> vo
 	else:
 		push_error("Unknown dialogue {d_id} for npc {n_id}".format({"d_id": dialogue_id, "n_id": npc_id}))
 
-func _timeline_end(t_name: String):
+func _timeline_end(_t_name: String):
 	dialogue_viewed(self.current_npc_id, self.current_dialogue_id)
 	self.current_dialog_box = null
 	self.follow_player = false
+	if (PausingSingleton._paused):
+		PausingSingleton.unpause()
 
 func _signal_listener(s_name: String):
 	match s_name:

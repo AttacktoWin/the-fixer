@@ -231,6 +231,7 @@ format = 1
 [node name="NPCInstance" type="Node2D" parent="."]
 script = ExtResource( 9 )
 id = "fixer"
+immediate = true
 
 [node name="WeaponValidator" type="Node2D" parent="."]
 script = SubResource( 65 )
