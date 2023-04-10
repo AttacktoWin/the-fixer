@@ -89,7 +89,11 @@ func dequeue() -> Dialogue:
 		return minimum;
 	
 	# To prevent recurring dialogues from constantly being at the top, select some other leaf
-	var leaf = randi() % (int(ceil(size / 2.0)) - 1) + (size / 2)
+	var leaf: int
+	if ((int(ceil(size / 2.0)) - 1) == 0):
+		# Only one leaf, recurring dialogue will fix itself when more in enqueued
+		leaf = size / 2
+	leaf = randi() % (int(ceil(size / 2.0)) - 1) + (size / 2)
 	var root = heap[0];
 	heap[0] = heap[leaf];
 	while leaf < size - 1:
