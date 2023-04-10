@@ -49,6 +49,8 @@ func set_weapon_disabled(val):
 
 
 func set_gun(gun: PlayerBaseGun):
+	if gun == self._gun:
+		return
 	if self._gun:
 		self.hand.remove_child(self.hand.get_child(0))
 		var pickup = WorldWeapon.new()
@@ -179,7 +181,7 @@ func _process(_delta):
 			print("Playing test sound")
 			Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, self)
 		if Input.is_action_just_pressed("ui_end"):
-			self.add_ammo(900)
+			self.add_ammo(900)  # warning-ignore: return_value_discarded
 		if Input.is_action_just_pressed("ui_home"):
 			var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
 			TransitionHelper.transition(scene)

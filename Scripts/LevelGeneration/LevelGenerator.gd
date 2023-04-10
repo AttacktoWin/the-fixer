@@ -294,6 +294,7 @@ class PCG_Spawner:
 		var instance = WorldWeapon.new()
 		instance.set_weapon(self.guns[rng.randi_range(0, self.guns.size() - 1)])
 		instance.position = _2tile2iso(rooms[best_index].get_center())
+		instance.auto_pickup = false
 		self.containter.add_child(instance)
 
 	#fibbonaci sampling

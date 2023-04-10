@@ -126,10 +126,12 @@ func _cooldown_timer_tick(delta):
 	self._cooldown_timer -= delta
 
 
-func with_visuals(visuals: Node):
+func with_visuals(visuals: Node2D):
 	if visuals != null:
 		if visuals.get_node_or_null("SocketMuzzle"):
 			visuals.get_node_or_null("SocketMuzzle").add_child(self)
+		else:
+			visuals.add_child(self)
 		return visuals
 	return self
 
