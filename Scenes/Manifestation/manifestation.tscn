@@ -2109,7 +2109,7 @@ base_direction = 90.0
 attack_type = 2
 persistent = true
 die_on_pierce = false
-knockback_factor = 2048.0
+knockback_factor = 4096.0
 max_pierce = 99999999
 ignore_rotation = true
 should_forget_entities = true
@@ -2383,14 +2383,9 @@ explosiveness = 0.05
 process_material = SubResource( 6 )
 texture = ExtResource( 11 )
 
-[node name="Finish" type="Particles2D" parent="VFX_Explosion" instance=ExtResource( 4 )]
+[node name="Finish" parent="VFX_Explosion" instance=ExtResource( 4 )]
 material = SubResource( 113 )
-position = Vector2( -1, 1 )
-emitting = false
-amount = 2
-one_shot = true
 process_material = SubResource( 117 )
-texture = ExtResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="VFX_Explosion"]
 self_modulate = Color( 1, 1, 1, 0 )

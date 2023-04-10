@@ -57,6 +57,7 @@ func _ready():
 	var spr = visual.get_node("Sprite")
 	spr.set_material(spr.get_material().duplicate())
 	self.sprite_material = ($FlipComponents/Visual/Sprite).material
+	self._appear_range = Scene.level_node.enemy_appear_distance if Scene.level_node else 1024.0
 	Scene.connect("world_updated", self, "_world_updated")  # warning-ignore:return_value_discarded
 
 

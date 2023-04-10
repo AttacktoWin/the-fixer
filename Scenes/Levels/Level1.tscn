@@ -202,7 +202,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Level" type="Node2D"]
+[node name="Level2" type="Node2D"]
 script = ExtResource( 5 )
 vision_enabled = false
 enemy_appear_distance = 10000.0
