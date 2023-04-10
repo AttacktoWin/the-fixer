@@ -37,6 +37,7 @@ func get_entity_name():
 
 
 func _ready():
+	Wwise.register_game_obj(self, name)
 	self._start_position = self.global_position
 	StatsTracker.add_manifestation_fight()
 
@@ -142,6 +143,7 @@ func on_enemy_death(enemy):
 func _spawn_random_enemies(
 	count: int, use_hard_enemies: bool = false, difficulty_bias: float = 1.0
 ):
+	Wwise.post_event_id(AK.EVENTS.SUMMON_MANIFESTATION, self)
 	var enemy_list = self._enemy_info
 	if use_hard_enemies:
 		enemy_list = self._hard_enemy_info

@@ -74,6 +74,7 @@ func _physics_process(delta):
 			)
 			and self._current_time > 0.6
 		):
+			Wwise.post_event_id(AK.EVENTS.CRASH_BEETLE, self.entity)
 			CameraSingleton.shake(128)
 			self._current_time = ATTACK_TIME
 			self.entity.setv(LivingEntityVariable.VELOCITY, Vector2.ZERO)
