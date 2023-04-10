@@ -168,9 +168,8 @@ func level_started(enemies: Array):
 		
 	
 func level_changed():
-	for npc in self.NPCs.values():
-		while npc.peek_top_dialogue().priority == Dialogue.Priority.SPECIFIC:
-			npc.get_top_dialogue()
+	if NPCs["fixer"].peek_top_dialogue().priority == Dialogue.Priority.SPECIFIC:
+		NPCs["fixer"].get_top_dialogue()
 	
 func save() -> void:
 	var save_dict := {}

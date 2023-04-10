@@ -3,7 +3,6 @@ extends Node
 var manifestation_wins := 0
 var manifestation_fights := 0
 var deaths := 0
-var last_killer := ""
 
 
 func add_manifestation_win():
@@ -28,14 +27,16 @@ func add_manifestation_fight():
 
 func add_death(cause: String = ""):
 	self.deaths += 1
-	self.last_killer = cause if cause else ""
+	if (cause && randi() % 100 <= 33):
+		DialogueSystem.event_viewed("1-" + cause + "kill")
 	Dialogic.set_variable("deaths", self.deaths)
 
 
 func save():
 	return {
 		"manifestation_wins": self.manifestation_wins,
-		"manifestation_fights": self.manifestation_fights
+		"manifestation_fights": self.manifestation_fights,
+		"deaths": self.deaths
 	}
 
 
@@ -44,3 +45,5 @@ func init(save_dict: Dictionary):
 		self.manifestation_wins = save_dict["manifestation_wins"]
 	if save_dict.has("manifestation_fights"):
 		self.manifestation_fights = save_dict["manifestation_fights"]
+	if save_dict.has("deaths"):
+		self.deaths = save_dict["deaths"]

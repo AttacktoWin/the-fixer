@@ -38,6 +38,7 @@ func get_display_name():
 
 func _ready():
 	self._start_position = self.global_position
+	StatsTracker.add_manifestation_fight()	
 
 
 func _enter_tree():
@@ -154,6 +155,7 @@ func _spawn_random_enemies(
 
 
 func _on_death(_info: AttackInfo):
+	StatsTracker.add_manifestation_win()
 	self.fsm.set_state(ManifestationState.DEAD, true)
 	self.fsm.lock()
 
