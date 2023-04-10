@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="140">
+<SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="12" SoundbankVersion="140">
 	<RootPaths>
 		<ProjectRoot>A:\Downloads\Audio\INTD450\The Fixer Main\</ProjectRoot>
-		<SourceFilesRoot>A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>C:\Users\Evan\Desktop\The Fixer\the-fixer\wwise\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<SourceFilesRoot>A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Evan\Desktop\The Fixer\the-fixer\wwise\GeneratedSoundBanks\Mac\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>A:\Downloads\Audio\INTD450\The Fixer Main\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>A:\Downloads\Audio\INTD450\The Fixer Main\GeneratedSoundBanks\Mac</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -233,7 +233,7 @@
 				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2962085584">
+		<SoundBank Id="1355168291" Language="SFX" Hash="731906965">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>1355168291.bnk</Path>

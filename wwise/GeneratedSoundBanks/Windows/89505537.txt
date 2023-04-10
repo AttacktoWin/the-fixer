@@ -50,7 +50,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	791064235	Hit_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Impact_Shoot_Player_140664E6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Hit_Pistol_Player		49216
 	814482882	Beetle_Crash	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\don't worry about it_A31DED26.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Beetle\Beetle_Crash		137268
 	865640855	Spyder_Charge	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\spyder charge_A592BCF1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Spyder\Spyder_Charge		59286
-	964759676	Door_Unlock	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\unlock_vault_18A4ECA1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental Sounds\Door_Unlock		382076
+	964759676	Door_Unlock	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\unlock_vault_5AE648F0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental Sounds\Door_Unlock		382076
 	983251993	Ammo_Pickup_Player-005	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-005_DD107A4A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-005		36584
 	984510645	Ammo_Pickup_Player-006	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-006_55712909.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-006		46544
 	998863668	Pillbug_Attack	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\pillbug attack_9C116509.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Pillbug\Pillbug_Attack		89292
