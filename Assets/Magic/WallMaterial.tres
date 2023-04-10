@@ -1,10 +1,11 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
-[sub_resource type="Shader" id=5]
+[sub_resource type="Shader" id=1]
 code = "shader_type  canvas_item;
 
 uniform vec2 target = vec2(0.5);
 uniform float radius = 0.5;
+const vec4 LINE_COLOR = vec4(252.0 / 255.0, 216.0 / 255.0, 55.0 / 255.0,1.0);
 
 void fragment(){
 	COLOR = texture(TEXTURE,UV);
@@ -17,6 +18,6 @@ void fragment(){
 "
 
 [resource]
-shader = SubResource( 5 )
+shader = SubResource( 1 )
 shader_param/target = Vector2( 0.5, 0.5 )
 shader_param/radius = 0.164

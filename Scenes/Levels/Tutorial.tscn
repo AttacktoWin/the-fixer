@@ -212,11 +212,14 @@ code = "shader_type  canvas_item;
 
 uniform vec2 target = vec2(0.5);
 uniform float radius = 0.5;
+uniform float a;
+uniform float b;
 
 void fragment(){
 	COLOR = texture(TEXTURE,UV);
+	vec4 screen_color = texture(SCREEN_TEXTURE,SCREEN_UV);
 	float dist = abs(distance(target,SCREEN_UV));
-	float strenth = mix(0,1,dist/radius);
+	float strenth = mix(0,1,1.0-smoothstep(dist,a,b));
 	if(dist<=radius && COLOR.a>0.0){
 		COLOR.a = strenth;
 	}
@@ -226,7 +229,9 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=23]
 shader = SubResource( 22 )
 shader_param/target = Vector2( 0.5, 0.5 )
-shader_param/radius = 0.164
+shader_param/radius = 0.203
+shader_param/a = 0.22
+shader_param/b = 0.186
 
 [sub_resource type="GDScript" id=65]
 script/source = "# Author: Marcus
@@ -710,14 +715,13 @@ material = ExtResource( 21 )
 position = Vector2( 170.866, 139.593 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 7
+frame = 9
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
 position = Vector2( 77.25, 139.5 )
 scale = Vector2( 0.283333, 0.283333 )
 frames = SubResource( 24 )
-frame = 4
 playing = true
 
 [node name="Shoot" type="Control" parent="."]
@@ -747,7 +751,6 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 8
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -777,7 +780,6 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 4
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]

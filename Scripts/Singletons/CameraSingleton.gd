@@ -4,7 +4,7 @@ extends Node
 
 var _shake_timer = 0
 var _location_target = Vector2()
-var _base_zoom = 3
+var _base_zoom = 0.7
 var _zoom_target = Vector2(1 * _base_zoom, 2 * _base_zoom)  # 0.7, 1.4
 var _transition_factor = 0.1
 var _viewport
