@@ -1,27 +1,30 @@
 extends Node2D
-var level = []  #-1 = non, 1 = floor, 2 = wall
+
+
+export(int) var room_count:int = 7
+export(Vector2) var min_dims:Vector2 = Vector2(5,5)# 5,5
+export(Vector2) var max_dims:Vector2 = Vector2(8,8)# 8,8
+export(int) var seperation_strength = 2
+
+
 var saved_seed
-
-const TILE_SIZE = 2
-
-var room_count:int = 10
-var min_dims:Vector2 = Vector2(5,5)# 5,5
-var max_dims:Vector2 = Vector2(7,7)#8,8
 var rng = RandomNumberGenerator.new()
+var level = []  #-1 = non, 1 = floor, 2 = wall
 var test_enemy = load("res://Scripts/LevelGeneration/test_enemy.tscn")
-onready var parent = get_node("../SortableEntities/Runtime")
+
 #DEBUG
 var test_rooms = []
 var test_points =[]
 func _ready():
+	self.rng.randomize()
+	
 	var room_maker = PCG_Rooms.new(
 		self.room_count,
 		self.min_dims,
 		self.max_dims,
 		self.rng
 	)
-	self.rng.randomize()
-	var rooms = room_maker.spawn_rooms(TILE_SIZE)
+	var rooms = room_maker.spawn_rooms(seperation_strength)
 	
 	var connector = PCG_Connector.new()
 	var corridors = connector._connect_rooms(rooms)
@@ -29,13 +32,15 @@ func _ready():
 	var builder = PCG_Level.new(
 		$"%Floor",
 		$"%Walls",
-		rng
-	)
-	var tile_by_room = builder.build_level(rooms,corridors,self.level)
+		rng)
+	builder.build_level(rooms,corridors,self.level)
 	
-	var spawner = PCG_Spawner.new()
-	spawner._sample2(rooms,self.test_points,rng)
-	spawner._spawn(test_enemy,self.test_points,$"%Floor",parent)
+	var spawner = PCG_Spawner.new(
+		$"%Floor",
+		$"../SortableEntities/Runtime",
+		$"../Transition",
+		rng)
+	spawner.spawn_enemies(rooms,5,test_enemy)
 	self.test_rooms = rooms
 
 #DEBUG
@@ -103,7 +108,6 @@ class PCG_Rooms:
 						o_list[other].position.x = clamp(
 							o_list[other].position.x-step_size,
 							left_edge_buffer,INF)
-					
 					if move_vec.y>0:
 						o_list[current].position.y = clamp(
 							o_list[current].position.y+step_size,
@@ -246,23 +250,45 @@ class PCG_Level:
 ################
 
 class PCG_Spawner:
-	var max_per_room = 5
+	var tile_map:TileMap
+	var containter
+	var transition
+	var rng:RandomNumberGenerator
 	
-	#fibbonaci
-	func _sample(rooms, o_points,rng:RandomNumberGenerator):
+	func _init(_floor,_containter, _transition,_rng):
+		self.tile_map = _floor
+		self.containter = _containter
+		self.transition = _transition
+		self.rng = _rng
+	
+	func spawn_enemies(_rooms,n,enemy):
+		set_start_end(_rooms)
+		_spawn_weapon(_rooms)
+		var rooms = _rooms.duplicate(true)
+		rooms.pop_at(0)
+		var spawn_points = []
+		_sample2(rooms,n,spawn_points)
+		_spawn(enemy,spawn_points)
+	
+	func set_start_end(rooms):
+		var start = self.tile_map.map_to_world(rooms[0].get_center())
+		var end = self.tile_map.map_to_world(rooms[rooms.size()-1].get_center())
+		self.transition.position = self.tile_map.to_global(end)
+	
+	#fibbonaci sampling
+	func _sample(rooms, n, o_points):
 		for room in rooms:
-			var n = 5
 			var radius = pow((min(room.size.x,room.size.y)/2)-1,2)
 			var center = room.get_center()
-			for i in range(n):
-				var theta = rng.randf()*2*PI
-				var r = sqrt(rng.randi_range(0,radius))
+			for _i in range(n):
+				var theta = self.rng.randf()*2*PI
+				var r = sqrt(self.rng.randi_range(0,radius))
 				o_points.append(Vector2(r*cos(theta), r*sin(theta))+center)
 		print(o_points.size())
 	
-	func _sample2(rooms, o_points,rng:RandomNumberGenerator):
+	#peremeter sampling
+	func _sample2(rooms, n, o_points):
 		for room in rooms:
-			var n = 2
 			var center = room.get_center()
 			var radius = (min(room.size.x,room.size.y)/2)-1
 			for i in range(n):
@@ -271,9 +297,22 @@ class PCG_Spawner:
 				var y = center.y + radius * sin(theta)
 				o_points.append(Vector2(x, y))
 	
-	func _spawn(enemy,points,tile_map,entities):
+	func _spawn(enemy,points):
 		for point in points:
-			var test = enemy.instance()
-			var pos = tile_map.map_to_world(point)
-			test.position = tile_map.to_global(pos)
-			entities.add_child(test)
+			var instance = enemy.instance()
+			var pos = self.tile_map.map_to_world(point)
+			instance.position = self.tile_map.to_global(pos)
+			self.containter.add_child(instance)
+	
+	func _spawn_weapon(rooms):
+		var max_dist = 0
+		var best_index = 0
+		var current = rooms[0].get_center()
+		for i in rooms.size()-1:
+			var dist = current.distance_squared_to(rooms[i].get_center())
+			if dist>max_dist:
+				max_dist = dist
+				best_index = i
+		rooms.pop_at(best_index)
+#		var spawn = self.tile_map.map_to_world(rooms[best_index].get_center())
+#		transition.position = self.tile_map.to_global(spawn)
