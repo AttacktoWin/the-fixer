@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="SFX" Hash="1884956332">
+		<SoundBank Id="89505537" Language="SFX" Hash="385252611">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>89505537.bnk</Path>
@@ -56,7 +56,6 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="3269141561" Name="Attack_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Attack_Beetle"/>
 				<Event Id="2348673105" Name="Attack_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Attack_Bird">
 					<IncludedMemoryFiles>
 						<File Id="1061296916" Language="SFX">
@@ -82,6 +81,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="2212742940" Name="Crash_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Crash_Beetle">
+					<IncludedMemoryFiles>
+						<File Id="814482882" Language="SFX">
+							<ShortName>don't worry about it.wav</ShortName>
+							<Path>SFX\don't worry about it_A31DED26.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1479467640" Name="Death_Enemy" ObjectPath="\Events\Default Work Unit\Enemy Actions\Death_Enemy"/>
 				<Event Id="3227525858" Name="Die_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Die_Manifestation"/>
 				<Event Id="942229886" Name="Dodge_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Dodge_Player">
@@ -89,6 +96,14 @@
 						<File Id="380485017" Language="SFX">
 							<ShortName>Dodge_Player.wav</ShortName>
 							<Path>SFX\Dodge_Player_0FD3D937.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3790708028" Name="Door_Unlock" ObjectPath="\Events\Default Work Unit\Environmental Actions\Door_Unlock">
+					<IncludedMemoryFiles>
+						<File Id="964759676" Language="SFX">
+							<ShortName>unlock_vault.wav</ShortName>
+							<Path>SFX\unlock_vault_18A4ECA1.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -189,6 +204,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3178172643" Name="Summon_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Summon_Manifestation">
+					<IncludedMemoryFiles>
+						<File Id="448529706" Language="SFX">
+							<ShortName>summon_manny.wav</ShortName>
+							<Path>SFX\summon_manny_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1198969758" Name="Swing_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Swing_Knuckles_Player">
 					<IncludedMemoryFiles>
 						<File Id="215651341" Language="SFX">
@@ -210,12 +233,12 @@
 				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="1355168291" Language="SFX" Hash="2191988051">
+		<SoundBank Id="1355168291" Language="SFX" Hash="1913257028">
 			<ObjectPath>Init</ObjectPath>
 			<ShortName>Init</ShortName>
 			<Path>1355168291.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="1551306167" Language="SFX" Hash="3829557501">
+		<SoundBank Id="1551306167" Language="SFX">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
 			<ShortName>UI</ShortName>
 			<Path>1551306167.bnk</Path>
@@ -310,7 +333,6 @@
 					</IncludedMemoryFiles>
 				</Event>
 				<Event Id="2891465027" Name="Appear_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Appear_Textbox"/>
-				<Event Id="3269141561" Name="Attack_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Attack_Beetle"/>
 				<Event Id="2348673105" Name="Attack_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Attack_Bird">
 					<IncludedMemoryFiles>
 						<File Id="1061296916" Language="SFX">
@@ -349,6 +371,14 @@
 						<File Id="865640855" Language="SFX">
 							<ShortName>spyder charge.wav</ShortName>
 							<Path>SFX\spyder charge_A592BCF1.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2212742940" Name="Crash_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Crash_Beetle">
+					<IncludedMemoryFiles>
+						<File Id="814482882" Language="SFX">
+							<ShortName>don't worry about it.wav</ShortName>
+							<Path>SFX\don't worry about it_A31DED26.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -477,7 +507,7 @@
 				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="741126722">
+		<SoundBank Id="3991942870" Language="SFX">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>3991942870.bnk</Path>
@@ -581,6 +611,7 @@
 			</IncludedEvents>
 			<GameParameters>
 				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\MusicVolume"/>
+				<GameParameter Id="3333599352" Name="Whatever_marcus_needs_idk" ObjectPath="\Game Parameters\Default Work Unit\Whatever_marcus_needs_idk"/>
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>

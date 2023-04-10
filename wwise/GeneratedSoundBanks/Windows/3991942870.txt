@@ -21,6 +21,7 @@ Custom State	ID	Name	State Group	Owner		Notes
 	23191759	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody\combat_trumpetHarmony		
 	43055577	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody\combat_drumsKick		
 	47362443	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_pianoMelody		
+	124842503	Yes	LowHealth	\Interactive Music Hierarchy\Music\Combat Playlist		
 	148576282	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet\combat_drumsSnare		
 	161611501	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_drumsKick		
 	171930232	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_drumsSideStickRide		
