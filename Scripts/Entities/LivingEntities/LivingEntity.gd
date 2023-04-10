@@ -79,7 +79,7 @@ func _add_default_runnables():
 	self.variables.add_runnable(LivingEntityVariable.MAX_SPEED, BaseSlowHandler.new())
 
 
-func get_display_name():
+func get_entity_name():
 	print("WARN: display name not set for ", name, "!")
 	return ""
 

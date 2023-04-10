@@ -280,6 +280,6 @@ func _on_death(info: AttackInfo):
 		self._gun.queue_free()
 	self._gun = null
 	if info and info.damage_source is BaseEnemy:
-		StatsTracker.add_death(info.damage_source.get_display_name())
+		StatsTracker.add_death(info.damage_source.get_entity_name())
 	else:
 		StatsTracker.add_death()

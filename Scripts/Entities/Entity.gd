@@ -26,6 +26,9 @@ func set_height(height: float):
 func get_height() -> float:
 	return self._height
 
+func get_entity_name():
+	return name
+
 
 func set_height_component(component: Node2D):
 	if self._height_components:

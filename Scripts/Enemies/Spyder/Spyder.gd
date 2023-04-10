@@ -3,5 +3,5 @@
 class_name Spyder extends BaseEnemy
 
 
-func get_display_name():
+func get_entity_name():
 	return "Spyder"

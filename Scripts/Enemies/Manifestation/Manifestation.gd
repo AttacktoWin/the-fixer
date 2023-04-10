@@ -32,13 +32,13 @@ const MAX_WAVE_TIME = 2
 const WAVE_DIFFICULTY_FACTOR = 1.25
 
 
-func get_display_name():
+func get_entity_name():
 	return "Manifestation"
 
 
 func _ready():
 	self._start_position = self.global_position
-	StatsTracker.add_manifestation_fight()	
+	StatsTracker.add_manifestation_fight()
 
 
 func _enter_tree():
@@ -159,10 +159,11 @@ func _on_death(_info: AttackInfo):
 	self.fsm.set_state(ManifestationState.DEAD, true)
 	self.fsm.lock()
 
+
 func increment_wave():
 	self._wave_counter += 1
+
 
 func spawn_enemy_context():
 	var hard = self._wave_counter >= 4
 	_spawn_random_enemies(1, hard, pow(WAVE_DIFFICULTY_FACTOR, self._wave_counter))
-		

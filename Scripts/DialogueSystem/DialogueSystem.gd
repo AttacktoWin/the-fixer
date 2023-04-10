@@ -167,7 +167,7 @@ func level_started():
 	if (len(enemies) == 0 || randi() % 100 >= 50):
 		return
 	var index = randi() % len(enemies)
-	var e_name = enemies[index].get_entity_name()
+	var e_name = enemies[index].get_entity_name().to_lower()
 	if (e_name in self.enemy_timelines.keys()):
 		var timeline = self.enemy_timelines[e_name][randi() % len(self.enemy_timelines[e_name])]
 		NPCs["fixer"].unlock_dialogue(timeline)

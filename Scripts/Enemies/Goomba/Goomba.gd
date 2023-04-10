@@ -11,5 +11,5 @@ func _process(delta):
 # -Yalmaz
 
 
-func get_display_name():
+func get_entity_name():
 	return "Pillbug"
