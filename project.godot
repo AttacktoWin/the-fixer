@@ -275,6 +275,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/Enemies/Manifestation/Manifestation.gd"
 }, {
 "base": "FSMNode",
+"class": "ManifestationStateDead",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Manifestation/ManifestationStateDead.gd"
+}, {
+"base": "FSMNode",
 "class": "ManifestationStateIdle",
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Manifestation/ManifestationStateIdle.gd"
@@ -533,6 +538,7 @@ _global_script_class_icons={
 "LivingEntityVariable": "",
 "LocationAttack": "",
 "Manifestation": "",
+"ManifestationStateDead": "",
 "ManifestationStateIdle": "",
 "ManifestationStateMelee": "",
 "MathUtils": "",

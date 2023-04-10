@@ -184,7 +184,7 @@ func _process(_delta):
 			self.add_ammo(900)  # warning-ignore: return_value_discarded
 		if Input.is_action_just_pressed("ui_home"):
 			var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
-			TransitionHelper.transition(scene)
+			TransitionHelper.transition(scene, true, true, 0.01)
 		if Input.is_action_just_pressed("ui_page_down"):
 			for enemy in AI.get_all_enemies():
 				enemy.queue_free()

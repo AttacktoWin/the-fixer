@@ -3,6 +3,7 @@
 class_name Manifestation extends LivingEntity
 
 onready var hitbox: BaseAttack = $HitBox
+onready var fsm: FSMController = $FSMController
 
 var _start_position = Vector2()
 
@@ -25,6 +26,8 @@ var _hard_enemy_info = [
 var _wave_counter = 0
 var _timer = 0
 
+var _death_timer = 0
+
 const MAX_WAVE_TIME = 2
 
 
@@ -46,16 +49,33 @@ func _exit_tree():
 	CameraSingleton.remove_controller(self)
 
 
-func _physics_process(_delta):
-	self._timer += _delta
+func _boss_logic(delta):
+	self._timer += delta
 	if self._timer > MAX_WAVE_TIME:
 		self._timer = 0
 		self._spawn_random_enemies(1)
+
+
+func _dead_logic(delta):
+	self._death_timer += delta
+	CameraSingleton.shake_max(
+		MathUtils.interpolate(self._death_timer / 3.0, 30, 0, MathUtils.INTERPOLATE_OUT)
+	)
+
+
+func _physics_process(delta):
+	if not self.is_dead():
+		self._boss_logic(delta)
+	else:
+		self._dead_logic(delta)
 	self.global_position = self._start_position
 	_handle_camera()
 
 
 func _handle_camera():
+	if self.is_dead():
+		CameraSingleton.set_target_center(MathUtils.to_iso(self.global_position), self)
+		return
 	var center = CameraSingleton.get_mouse_from_camera_center() / 360
 	var off = (
 		Vector2(
@@ -108,3 +128,8 @@ func _spawn_random_enemies(
 		var loc = select_random_location()
 		Scene.runtime.add_child(enemy)
 		enemy.global_position = loc
+
+
+func _on_death(_info: AttackInfo):
+	self.fsm.set_state(EnemyState.DEAD, true)
+	self.fsm.lock()

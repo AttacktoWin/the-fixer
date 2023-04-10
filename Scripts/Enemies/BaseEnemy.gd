@@ -274,15 +274,16 @@ func _draw():
 
 
 func _on_death(info: AttackInfo):
-	var chance = (
-		HEALTH_CHANCE_RANGED
-		if info.attack.damage_type == AttackVariable.DAMAGE_TYPE.RANGED
-		else HEALTH_CHANCE_MELEE
-	)
-	if randf() < chance:
-		var pickup = HealthPickup.new()
-		pickup.global_position = self.global_position * MathUtils.TO_ISO
-		Scene.runtime.add_child(pickup)
+	if info:
+		var chance = (
+			HEALTH_CHANCE_RANGED
+			if info.attack.damage_type == AttackVariable.DAMAGE_TYPE.RANGED
+			else HEALTH_CHANCE_MELEE
+		)
+		if randf() < chance:
+			var pickup = HealthPickup.new()
+			pickup.global_position = self.global_position * MathUtils.TO_ISO
+			Scene.runtime.add_child(pickup)
 
 	self.fsm.set_state(EnemyState.DEAD, true)
 	self.fsm.lock()

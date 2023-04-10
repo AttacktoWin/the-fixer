@@ -169,9 +169,17 @@ func _check_death(info: AttackInfo = null) -> bool:
 	if self.getv(LivingEntityVariable.HEALTH) <= 0 and not self._is_dead:
 		self._is_dead = true
 		# queue_free()
-		self._on_death(info)  # emit signal
+		self._on_death(info)
 		return true
 	return false
+
+
+func kill():
+	if self._is_dead:
+		return
+	setv(LivingEntityVariable.HEALTH, 0)
+	self._is_dead = true
+	self._on_death(null)
 
 
 func can_attack_hit(_info: AttackInfo) -> bool:
