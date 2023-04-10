@@ -34,6 +34,8 @@ var _is_dead = false
 
 const INVULNERABLE_FLASH_RATE = 0.1
 
+signal on_death
+
 
 func _get_node_or_err(test_path, default_path):
 	var node = null
@@ -170,6 +172,7 @@ func _check_death(info: AttackInfo = null) -> bool:
 		self._is_dead = true
 		# queue_free()
 		self._on_death(info)
+		emit_signal("on_death", self)
 		return true
 	return false
 
@@ -178,8 +181,10 @@ func kill():
 	if self._is_dead:
 		return
 	setv(LivingEntityVariable.HEALTH, 0)
+	update_health_bar()
 	self._is_dead = true
 	self._on_death(null)
+	emit_signal("on_death", self)
 
 
 func can_attack_hit(_info: AttackInfo) -> bool:

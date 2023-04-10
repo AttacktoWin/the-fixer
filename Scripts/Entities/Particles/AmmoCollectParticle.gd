@@ -19,6 +19,8 @@ const WAIT_TIME = 0.8
 const MAX_SPEED = 300.0
 const ACCEL = 12.0
 
+signal on_reached_target
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -94,6 +96,7 @@ func _physics_process(delta):
 		(self._target_location - self.global_position).length_squared()
 		< self._velocity.length_squared()
 	):
+		emit_signal("on_reached_target", self, self._bounce)
 		if not self._bounce:
 			self.global_position = self._target_location
 			self.queue_free()
@@ -103,3 +106,6 @@ func _physics_process(delta):
 			self._velocity.y = -6
 			self._velocity.x += rand_range(2, 4) * sign(self._velocity.x)
 			self._step = 1
+
+func get_angle():
+	return atan2(self._velocity.y, self._velocity.x)

@@ -9,7 +9,7 @@ const ATTACK_DELAY = 0.7
 
 
 func get_handled_states():
-	return [EnemyState.ATTACKING_MELEE]
+	return [ManifestationState.ATTACKING_MELEE]
 
 
 func enter():
@@ -19,7 +19,7 @@ func enter():
 
 
 func on_anim_reached_end(_anim: String):
-	self.fsm.set_state(EnemyState.IDLE)
+	self.fsm.set_state(ManifestationState.IDLE)
 
 
 func _physics_process(delta):

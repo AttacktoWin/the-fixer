@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Assets/Manifestation/manifestation-reference.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Manifestation/manifestation-spritesheet-front.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Assets/Magic/Effects/VFX_Explosion_GRAD.tres" type="Gradient" id=10]
 [ext_resource path="res://Assets/Magic/Effects/Textures/crate-spritesheet.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Magic/Effects/Textures/explosion_text.png" type="Texture" id=12]
+[ext_resource path="res://Scripts/Enemies/Manifestation/ManifestationStateSpawnWave.gd" type="Script" id=13]
 
 [sub_resource type="CircleShape2D" id=122]
 radius = 196.0
@@ -2081,6 +2082,7 @@ collision_layer = 2
 script = ExtResource( 9 )
 entity_radius = 256.0
 base_speed = 0.0
+base_health = 1500.0
 base_accel = 0.0
 base_drag = 9999.0
 base_weight = 9999.0
@@ -2411,3 +2413,6 @@ script = ExtResource( 5 )
 
 [node name="ManifestationStateDead" type="Node2D" parent="FSMController"]
 script = ExtResource( 8 )
+
+[node name="ManifestationStateSpawnWave" type="Node2D" parent="FSMController"]
+script = ExtResource( 13 )

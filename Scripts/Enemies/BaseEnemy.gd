@@ -38,8 +38,6 @@ export(float) var attention_radius: float = 1024
 export(bool) var deaf: bool = false
 export(bool) var draw_path: bool = false
 
-const HIT_SCENE = preload("res://Scenes/Particles/HitScene.tscn")
-
 const HEALTH_CHANCE_RANGED = 0.05
 const HEALTH_CHANCE_MELEE = 0.1
 
@@ -253,7 +251,7 @@ func _on_take_damage(info: AttackInfo):
 		)
 	)
 
-	var fx = HIT_SCENE.instance()
+	var fx = preload("res://Scenes/Particles/HitScene.tscn").instance()
 	fx.initialize(direction.angle(), info.damage)
 	Scene.runtime.add_child(fx)
 	if info.attack.damage_type == AttackVariable.DAMAGE_TYPE.RANGED:

@@ -29,6 +29,7 @@ var _timer = 0
 var _death_timer = 0
 
 const MAX_WAVE_TIME = 2
+const WAVE_DIFFICULTY_FACTOR = 1.25
 
 
 func get_display_name():
@@ -51,9 +52,6 @@ func _exit_tree():
 
 func _boss_logic(delta):
 	self._timer += delta
-	if self._timer > MAX_WAVE_TIME:
-		self._timer = 0
-		self._spawn_random_enemies(1)
 
 
 func _dead_logic(delta):
@@ -61,6 +59,8 @@ func _dead_logic(delta):
 	CameraSingleton.shake_max(
 		MathUtils.interpolate(self._death_timer / 3.0, 30, 0, MathUtils.INTERPOLATE_OUT)
 	)
+	if self._death_timer > 4:
+		TransitionHelper.transition(load("res://Scenes/Levels/Hub.tscn").instance(), false, false)
 
 
 func _physics_process(delta):
@@ -73,7 +73,7 @@ func _physics_process(delta):
 
 
 func _handle_camera():
-	if self.is_dead():
+	if self.is_dead() or self.fsm.current_state_name() == ManifestationState.SPAWNING_WAVE:
 		CameraSingleton.set_target_center(MathUtils.to_iso(self.global_position), self)
 		return
 	var center = CameraSingleton.get_mouse_from_camera_center() / 360
@@ -108,12 +108,34 @@ func select_enemy(enemies: Array, bias: float):
 		if rng <= data[0]:
 			return data[1].instance()
 
-	print(rng)
 	return enemies[0][1].instance()
 
 
 func select_random_location():
 	return Pathfinder.random_location_near(Vector2(0, 8 * Constants.TILE.HYP), 512.0)
+
+
+func on_damage_orb_hit(orb, _bounce):
+	var fx = preload("res://Scenes/Particles/HitScene.tscn").instance()
+	fx.initialize(orb.get_angle(), 50)
+	Scene.runtime.add_child(fx)
+	fx.global_position = orb.global_position
+	fx.scale = Vector2(1, 1)
+	fx.z_index = 1
+	CameraSingleton.shake(10)
+	self._take_damage(50)
+	pass
+
+
+func on_enemy_death(enemy):
+	if self.is_dead():
+		return
+	var part = preload("res://Scenes/Manifestation/ManifestationDamageOrb.tscn").instance()
+	part.set_target(self)
+	part.connect("on_reached_target", self, "on_damage_orb_hit")
+	Scene.runtime.add_child(part)
+	part.global_position = enemy.global_position
+	part.modulate = Constants.COLOR.RED
 
 
 func _spawn_random_enemies(
@@ -128,8 +150,17 @@ func _spawn_random_enemies(
 		var loc = select_random_location()
 		Scene.runtime.add_child(enemy)
 		enemy.global_position = loc
+		enemy.connect("on_death", self, "on_enemy_death")
 
 
 func _on_death(_info: AttackInfo):
-	self.fsm.set_state(EnemyState.DEAD, true)
+	self.fsm.set_state(ManifestationState.DEAD, true)
 	self.fsm.lock()
+
+func increment_wave():
+	self._wave_counter += 1
+
+func spawn_enemy_context():
+	var hard = self._wave_counter >= 4
+	_spawn_random_enemies(1, hard, pow(WAVE_DIFFICULTY_FACTOR, self._wave_counter))
+		
