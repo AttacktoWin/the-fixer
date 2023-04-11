@@ -5,13 +5,16 @@ class_name Umbrella extends BaseEnemy
 onready var socket_muzzle: Node2D = $FlipComponents/Visual/SocketMuzzle
 
 
-func get_display_name():
+func get_entity_name():
 	return "Bird"
 
 
 func can_attack_hit(info: AttackInfo):
 	if (
-		self.fsm.current_state_name() in [EnemyState.PAIN, EnemyState.ATTACKING_MELEE, EnemyState.IDLE]
+		(
+			self.fsm.current_state_name()
+			in [EnemyState.PAIN, EnemyState.ATTACKING_MELEE, EnemyState.IDLE]
+		)
 		or info.attack.damage_type != AttackVariable.DAMAGE_TYPE.RANGED
 	):
 		return true

@@ -1,6 +1,6 @@
 NPC,Timeline,Priority,Unlocks,Removes,Bubble
-Fixer,fixer-default,STORY,"fixer-demo1,fixer-demo2,fixer-demo3,boss-1-quip1,boss-1-quip2,boss-1-quip3,fixer-1-quip1,fixer-1-quip2,fixer-1-quip3",,FALSE
-Manifestation,manifestation-default,STORY,manifestation-1-fight,boss-default,FALSE
+Fixer,fixer-default,STORY,"fixer-demo1,fixer-demo2,fixer-demo3,fixer-1-quip1,fixer-1-quip2,fixer-1-quip3",,FALSE
+Manifestation,manifestation-default,STORY,manifestation-1-fight,,FALSE
 Fixer,fixer-demo1,QUIP,fixer-demo1,,TRUE
 Fixer,fixer-demo2,QUIP,fixer-demo2,,TRUE
 Fixer,fixer-demo3,QUIP,fixer-demo3,,TRUE
