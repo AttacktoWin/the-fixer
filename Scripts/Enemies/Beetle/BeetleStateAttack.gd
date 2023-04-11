@@ -8,6 +8,7 @@ var _pushing_disabled = false
 var _wait_timer = 0
 var _target_direction = Vector2.ZERO
 var _last_position = Vector2.ZERO
+var _vulnerable = true
 
 const ATTACK_SPEED_MULTIPLIER = 3.5
 const ATTACK_TIME = 2
@@ -30,14 +31,17 @@ func enter():
 	self._wait_timer = WAIT_TIME
 	self._target_direction = (self.entity.get_target().global_position - self.entity.global_position).normalized()
 	self._last_position = self.entity.global_position
+	self._vulnerable = true
 	var x = sign(self._target_direction.x)
 	if x != 0:
 		self.entity.flip_components.scale.x = -x
 
 
 func state_is_interruptable():
-	return self._wait_timer > 0 or self._current_time > ATTACK_TIME
+	return self._wait_timer > 0 or self._current_time > ATTACK_TIME or self._vulnerable
 
+func is_vulnerable():
+	return self._vulnerable
 
 func _physics_process(delta):
 	if self._wait_timer > 0:
@@ -64,6 +68,7 @@ func _physics_process(delta):
 		)
 
 		if multiplier > 1:
+			self._vulnerable = false
 			self.entity.hitbox.invoke_attack()
 
 		# check collide with walls
