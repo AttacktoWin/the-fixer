@@ -15,6 +15,9 @@ var _rand_rotate = rand_range(PI * 6, PI * 12)
 
 var target_y_offset = -80
 
+var collect_sound = AK.EVENTS.AMMO_PICKUP_PLAYER
+var bounce_sound = null
+
 const WAIT_TIME = 0.8
 const MAX_SPEED = 300.0
 const ACCEL = 12.0
@@ -24,6 +27,7 @@ signal on_reached_target
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Wwise.register_game_obj(self, name)
 	self._target_location = self.global_position
 	self.z_index = 1
 
@@ -98,14 +102,19 @@ func _physics_process(delta):
 	):
 		emit_signal("on_reached_target", self, self._bounce)
 		if not self._bounce:
+			if self.collect_sound:
+				Wwise.post_event_id(self.collect_sound, self)
 			self.global_position = self._target_location
 			self.queue_free()
 		else:
+			if self.bounce_sound:
+				Wwise.post_event_id(self.bounce_sound, self)
 			self._timer = 0
 			self._velocity = -self._velocity / 18
 			self._velocity.y = -6
 			self._velocity.x += rand_range(2, 4) * sign(self._velocity.x)
 			self._step = 1
+
 
 func get_angle():
 	return atan2(self._velocity.y, self._velocity.x)

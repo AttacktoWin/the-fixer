@@ -11,6 +11,6 @@ func _generate_attack_info(entity: LivingEntity) -> AttackInfo:
 		self,
 		self.getv(AttackVariable.DAMAGE),
 		(entity.global_position - self.global_position).angle(),
-		self.knockback_factor,
+		self.getv(AttackVariable.DAMAGE),
 		self.stun_factor
 	)

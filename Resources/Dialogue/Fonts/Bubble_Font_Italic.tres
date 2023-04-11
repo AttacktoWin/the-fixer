@@ -5,4 +5,5 @@ font_path = "res://addons/dialogic/Example Assets/Fonts/Overlock/Overlock-Italic
 
 [resource]
 size = 20
+use_mipmaps = true
 font_data = SubResource( 1 )

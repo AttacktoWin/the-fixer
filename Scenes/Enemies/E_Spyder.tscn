@@ -447,7 +447,6 @@ position = Vector2( 0, -61 )
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
 
 [node name="NearbyEntities" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 6
 monitorable = false
@@ -457,7 +456,6 @@ scale = Vector2( 1, 0.5 )
 shape = SubResource( 97 )
 
 [node name="EntityCollider" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 6
 monitorable = false
@@ -471,29 +469,31 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="Sense" type="CollisionShape2D" parent="RangedAttack"]
-visible = false
 position = Vector2( -1, 22 )
 scale = Vector2( 2, 1 )
 shape = SubResource( 99 )
 
-[node name="VFX_Ring" type="Sprite" parent="RangedAttack"]
+[node name="VFX" type="Node2D" parent="RangedAttack"]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 1e-05, 1e-05 )
+z_index = -1
+
+[node name="VFX_Ring" type="Sprite" parent="RangedAttack/VFX"]
+modulate = Color( 1, 1, 1, 0 )
 self_modulate = Color( 0.988235, 0.854902, 0.266667, 1 )
-position = Vector2( -1, 22 )
 scale = Vector2( 1, 0.5 )
 texture = ExtResource( 18 )
 
-[node name="VFX" type="Node2D" parent="RangedAttack"]
-z_index = -1
+[node name="Inner" type="Node2D" parent="RangedAttack/VFX"]
+scale = Vector2( 1e-05, 1e-05 )
 
-[node name="VFX_Circle" type="Sprite" parent="RangedAttack/VFX"]
+[node name="VFX_Circle" type="Sprite" parent="RangedAttack/VFX/Inner"]
 self_modulate = Color( 0.992157, 0.847059, 0.219608, 0.25098 )
-position = Vector2( -0.5, 22 )
 scale = Vector2( 1, 0.5 )
 texture = ExtResource( 17 )
 
-[node name="Particles2D" type="Particles2D" parent="RangedAttack/VFX"]
+[node name="Particles2D" type="Particles2D" parent="RangedAttack/VFX/Inner"]
 material = SubResource( 118 )
-position = Vector2( 2, 17 )
 scale = Vector2( 2, 1 )
 amount = 130
 local_coords = false

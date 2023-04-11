@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -26,11 +26,12 @@
 [ext_resource path="res://Assets/UI/Tutorial/wasd.png" type="Texture" id=24]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=25]
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=26]
-[ext_resource path="res://Scenes/Weapons/PlayerShotgunScene.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scenes/Weapons/PlayerPistolScene.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scripts/Entities/Weapons/WorldWeapon.gd" type="Script" id=28]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=29]
 [ext_resource path="res://Scenes/Enemies/E_Spyder.tscn" type="PackedScene" id=30]
 [ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=31]
+[ext_resource path="res://Scenes/Weapons/PlayerBrassKnucklesScene.tscn" type="PackedScene" id=32]
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 127, 0, 255, 66, 127, 126, 1, 65, 127, 127 )
@@ -528,6 +529,7 @@ tile_data = PoolIntArray( 0, 4, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 3, 0, 5, 4, 0, 
 
 [node name="Player" parent="SortableEntities" instance=ExtResource( 5 )]
 position = Vector2( -122, 269 )
+start_melee = ExtResource( 32 )
 
 [node name="WorldWeapon" type="KinematicBody2D" parent="SortableEntities"]
 position = Vector2( -272, 380 )
@@ -690,14 +692,14 @@ material = ExtResource( 21 )
 position = Vector2( 170.866, 139.593 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 4
+frame = 2
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
 position = Vector2( 77.25, 139.5 )
 scale = Vector2( 0.283333, 0.283333 )
 frames = SubResource( 24 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="Shoot" type="Control" parent="."]
@@ -727,7 +729,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 7
+frame = 4
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]

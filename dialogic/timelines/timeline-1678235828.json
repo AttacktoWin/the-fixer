@@ -49,7 +49,7 @@
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"I gotta ask, how do you keep all those pieces in your trenchcoat?\""
+			"text": "\"I gotta ask, why do you only use two weapons at a time down in the Vault?\""
 		},
 		{
 			"character": "character-1675203357.json",
@@ -61,13 +61,13 @@
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"Whenever you come back from [color=#FDD838]The Vault[/color], you're carrying enough weapons for the entire family.\"\n\"There's no way you could fit those all into your trenchcoat, they don't even all fit into your locker.\""
+			"text": "\"Whenever you come back from [color=#FDD838]The Vault[/color], you're carrying enough weapons for the entire family.\"\n\"But I only ever see you holding onto a single piece and some sorta melee weapon.\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "Smile",
-			"text": "\"What can I say, Boss? I'm a very talented individual.\""
+			"text": "\"What can I say, Boss? I'm getting good with what I like using.\""
 		},
 		{
 			"animation": "5-fade_out_down.gd",
@@ -111,7 +111,7 @@
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"Though I wouldn't mind a bigger locker.\""
+			"text": "[i]Fear the man that has used the same tommy gun a thousand times.[/i]"
 		},
 		{
 			"event_id": "dialogic_022",

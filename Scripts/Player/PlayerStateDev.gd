@@ -18,7 +18,7 @@ func exit():
 
 
 func _physics_process(_delta):
-	var wanted_vel = self.entity._get_wanted_velocity() * 10
+	var wanted_vel = self.entity.get_input_velocity() * 10
 	self.entity.setv(LivingEntityVariable.VELOCITY, wanted_vel)
 
 

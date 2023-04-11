@@ -28,7 +28,6 @@ signal on_collected
 
 
 func _ready():
-	Wwise.register_listener(self)
 	Wwise.register_game_obj(self, self.get_name())
 	if get_node_or_null(self.height_component_path) == null:
 		set_height_component(self)
@@ -97,13 +96,13 @@ func _process(delta):
 		if v < 0:
 			var m = abs(fmod(v, 0.2))
 			if m < 0.1:
-				self.modulate.a = 1
-			else:
 				self.modulate.a = 0.5
+			else:
+				self.modulate.a = 0.25
 		if v > 0:
 			var interp = MathUtils.interpolate(v * 2, 1, 0, MathUtils.INTERPOLATE_IN_BACK)
 			self.scale.x = interp
-			self.modulate.a = interp
+			self.modulate.a = interp / 2.0
 		if v > 0.5:
 			self.queue_free()
 		return

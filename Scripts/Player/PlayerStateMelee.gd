@@ -13,11 +13,14 @@ func enter():
 	self.entity.melee_hitbox.attack_direction = dir
 	self.entity.setv(LivingEntityVariable.VELOCITY, Vector2.ZERO)
 	self.fsm.set_animation("MELEE")
+	self.fsm.get_animation_player().playback_speed = self.entity.get_melee_attack_speed()
 	Wwise.post_event_id(AK.EVENTS.SWING_KNUCKLES_PLAYER, self.entity)
 
 
 func on_anim_reached_end(_anim: String):
+	self.fsm.get_animation_player().playback_speed = 1.0
 	self.fsm.set_state(PlayerState.IDLE)
+
 
 func exit():
 	self.fsm.reset_animation()

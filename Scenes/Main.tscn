@@ -269,6 +269,7 @@ unload_on = 2
 script = SubResource( 15 )
 ui_enabled = false
 vision_enabled = false
+spawn_upgrades = null
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2( -6.10352e-05, 0 )

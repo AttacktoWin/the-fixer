@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Entities/Attacks/AttackInfo.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "AttackSizeUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/AttackSizeUpgrade.gd"
@@ -89,7 +89,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Localization/translation_service.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "DamageUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/DamageUpgrade.gd"
@@ -239,7 +239,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Goomba/GoombaStateAttack.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "HealingUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/HealingUpgrade.gd"
@@ -259,12 +259,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/Implementation/HomingBullet.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "HomingUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/HomingUpgrade.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "KnockbackUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/KnockbackUpgrade.gd"
@@ -334,22 +334,27 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Utils/MathUtils.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "MaxAmmoUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/MaxAmmoUpgrade.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "MaxHealthUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/MaxHealthUpgrade.gd"
+}, {
+"base": "Node2D",
+"class": "Melee",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Melee.gd"
 }, {
 "base": "BaseAttack",
 "class": "MovementAttack",
 "language": "GDScript",
 "path": "res://Scripts/Entities/Attacks/MovementAttack.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "MultishotUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/MultishotUpgrade.gd"
@@ -414,7 +419,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/AI/PathfindResult.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "PierceChanceUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/PierceChanceUpgrade.gd"
@@ -449,6 +454,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/PlayerMeleeAttack.gd"
 }, {
+"base": "Melee",
+"class": "PlayerMeleeBaton",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/Baton.gd"
+}, {
 "base": "Reference",
 "class": "PlayerState",
 "language": "GDScript",
@@ -479,7 +489,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/PlayerStateMelee.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "RefundChanceUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/AmmoRefundUpgrade.gd"
@@ -494,12 +504,17 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Utils/RunnableList.gd"
 }, {
-"base": "Upgrade",
+"base": "ProgressBar",
+"class": "SmoothProgress",
+"language": "GDScript",
+"path": "res://Scripts/Utils/SmoothProgress.gd"
+}, {
+"base": "Reference",
 "class": "SpectralUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/SpectralUpgrade.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "SpeedUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/SpeedUpgrade.gd"
@@ -514,7 +529,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Spyder/SpyderStateRangeAttack.gd"
 }, {
-"base": "PlayerBaseGun",
+"base": "Reference",
 "class": "TestGun",
 "language": "GDScript",
 "path": "res://Scripts/Entities/Weapons/Player/TestGun.gd"
@@ -667,6 +682,7 @@ _global_script_class_icons={
 "MathUtils": "",
 "MaxAmmoUpgrade": "",
 "MaxHealthUpgrade": "",
+"Melee": "",
 "MovementAttack": "",
 "MultishotUpgrade": "",
 "NPC": "",
@@ -688,6 +704,7 @@ _global_script_class_icons={
 "PlayerGunShotgun": "",
 "PlayerGunTommy": "",
 "PlayerMelee": "",
+"PlayerMeleeBaton": "",
 "PlayerState": "",
 "PlayerStateDash": "",
 "PlayerStateDead": "",
@@ -697,6 +714,7 @@ _global_script_class_icons={
 "RefundChanceUpgrade": "",
 "Runnable": "",
 "RunnableList": "",
+"SmoothProgress": "",
 "SpectralUpgrade": "",
 "SpeedUpgrade": "",
 "Spyder": "",
@@ -739,6 +757,12 @@ AI="*res://Scripts/AI/AIManager.gd"
 WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
 Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
 TransitionHelper="*res://Scripts/Singletons/TransitionHelper.gd"
+UpgradeSingleton="*res://Scripts/Upgrades/UpgradeSingleton.gd"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+gdscript/warnings/integer_division=false
 
 [display]
 
@@ -746,6 +770,7 @@ window/size/width=1920
 window/size/height=1080
 window/size/test_width=1024
 window/size/test_height=600
+window/dpi/allow_hidpi=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
