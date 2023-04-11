@@ -30,9 +30,9 @@ func enter():
 	self._gun_counter = 0
 	Wwise.post_event_id(AK.EVENTS.DODGE_PLAYER, self.entity)
 	self.fsm.set_animation("DASH")
+	self._dash_direction = self.entity.getv(LivingEntityVariable.VELOCITY).normalized()
 	self.entity.setv(LivingEntityVariable.VELOCITY, Vector2())
 	CameraSingleton.set_zoom(Vector2(1.01, 1.01))
-	self._dash_direction = (CameraSingleton.get_absolute_mouse() - self.entity.global_position).normalized()
 	self._has_dashed = false
 	self._dash_timer = 0.25
 
