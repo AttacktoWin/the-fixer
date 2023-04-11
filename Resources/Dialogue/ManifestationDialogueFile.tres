@@ -3,15 +3,27 @@
 [ext_resource path="res://Scripts/DialogueSystem/classes/DialogueFile.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DialogueSystem/classes/Dialogue.gd" type="Script" id=2]
 
-[sub_resource type="Resource" id=1]
-script = ExtResource( 2 )
-id = "default"
-priority = 1
-bubble = false
-
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
 id = "1-fight"
+priority = 1
+bubble = false
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 2 )
+id = "10"
+priority = 1
+bubble = false
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 2 )
+id = "11"
+priority = 1
+bubble = false
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 2 )
+id = "12"
 priority = 1
 bubble = false
 
@@ -69,21 +81,9 @@ id = "9"
 priority = 1
 bubble = false
 
-[sub_resource type="Resource" id=12]
+[sub_resource type="Resource" id=1]
 script = ExtResource( 2 )
-id = "10"
-priority = 1
-bubble = false
-
-[sub_resource type="Resource" id=13]
-script = ExtResource( 2 )
-id = "11"
-priority = 1
-bubble = false
-
-[sub_resource type="Resource" id=14]
-script = ExtResource( 2 )
-id = "12"
+id = "default"
 priority = 1
 bubble = false
 
