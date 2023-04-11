@@ -2,7 +2,6 @@
 
 [ext_resource path="res://Assets/UI/Vault/vault-ui-health-top.png" type="Texture" id=1]
 [ext_resource path="res://Assets/UI/Vault/vault-ui-ammo.png" type="Texture" id=2]
-[ext_resource path="res://Assets/UI/Vault/vault-ui-weapons.png" type="Texture" id=3]
 [ext_resource path="res://addons/dialogic/Documentation/Theme/Font/NotoSans-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Assets/UI/skull2.png" type="Texture" id=5]
 [ext_resource path="res://Assets/UI/skull1.png" type="Texture" id=6]
@@ -17,6 +16,10 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StreamTexture" id=17]
+flags = 4
+load_path = "res://.import/vault-ui-weapons.png-a85215a5fa079c86bd672421a62eaa5f.stex"
 
 [sub_resource type="DynamicFont" id=12]
 size = 104
@@ -86,7 +89,7 @@ margin_top = -1.0
 margin_right = 190.0
 margin_bottom = 157.0
 rect_rotation = -90.0
-texture = ExtResource( 3 )
+texture = SubResource( 17 )
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 anchor_left = 1.0
