@@ -474,6 +474,12 @@ position = Vector2( -1, 22 )
 scale = Vector2( 2, 1 )
 shape = SubResource( 99 )
 
+[node name="VFX_Ring" type="Sprite" parent="RangedAttack"]
+self_modulate = Color( 0.988235, 0.854902, 0.266667, 1 )
+position = Vector2( -1, 22 )
+scale = Vector2( 1, 0.5 )
+texture = ExtResource( 18 )
+
 [node name="VFX" type="Node2D" parent="RangedAttack"]
 z_index = -1
 
@@ -482,12 +488,6 @@ self_modulate = Color( 0.992157, 0.847059, 0.219608, 0.25098 )
 position = Vector2( -0.5, 22 )
 scale = Vector2( 1, 0.5 )
 texture = ExtResource( 17 )
-
-[node name="VFX_Ring" type="Sprite" parent="RangedAttack/VFX"]
-self_modulate = Color( 0.988235, 0.854902, 0.266667, 1 )
-position = Vector2( -1, 22 )
-scale = Vector2( 1, 0.5 )
-texture = ExtResource( 18 )
 
 [node name="Particles2D" type="Particles2D" parent="RangedAttack/VFX"]
 material = SubResource( 118 )
