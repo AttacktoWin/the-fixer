@@ -25,7 +25,7 @@ void fragment(){
 shader = SubResource( 16 )
 
 [sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 26.25, 48.3125 )
+extents = Vector2( 26, 26 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Dash"
@@ -159,10 +159,22 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.14, 0.22 ),
+"times": PoolRealArray( 0, 0.08, 0.26 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBox/HitCollider:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.08, 0.14, 0.26 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 26, 30 ), Vector2( 36, -7.5 ), Vector2( 26, -50 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -202,6 +214,18 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( -10, 1.5 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBox/HitCollider:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 26, 40 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -270,9 +294,10 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 5
-frame = 3
+frame = 20
 
 [node name="HitBox" type="Area2D" parent="Visual"]
+position = Vector2( 0, 55 )
 collision_layer = 0
 collision_mask = 32
 script = ExtResource( 9 )
@@ -288,7 +313,7 @@ should_forget_entities = true
 entity_forget_time = 0.5
 
 [node name="HitCollider" type="CollisionShape2D" parent="Visual/HitBox"]
-position = Vector2( 27, 55 )
+position = Vector2( 26, 40 )
 shape = SubResource( 15 )
 disabled = true
 
