@@ -11,7 +11,7 @@ var interacted: bool
 func _ready():
 	interacted = false
 	if randomized:
-		if randi()%100<=30:
+		if randi()%100 <= 30:
 			call_deferred("interact")
 	elif immediate:
 		call_deferred("interact")

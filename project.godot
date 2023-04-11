@@ -529,7 +529,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Spyder/SpyderStateRangeAttack.gd"
 }, {
-"base": "PlayerBaseGun",
+"base": "Reference",
 "class": "TestGun",
 "language": "GDScript",
 "path": "res://Scripts/Entities/Weapons/Player/TestGun.gd"
@@ -769,6 +769,7 @@ window/size/width=1920
 window/size/height=1080
 window/size/test_width=1024
 window/size/test_height=600
+window/dpi/allow_hidpi=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
