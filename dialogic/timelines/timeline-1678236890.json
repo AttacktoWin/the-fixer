@@ -46,12 +46,14 @@
 			"z_index": 0
 		},
 		{
-			"audio": "play",
-			"audio_bus": "Master",
-			"event_id": "dialogic_030",
-			"event_name": "AudioEvent",
-			"file": "",
-			"volume": 0
+			"call_node": {
+				"arguments": [
+					"PHONE RING"
+				],
+				"method_name": "play_sound",
+				"target_node_path": "DialogueSystem"
+			},
+			"event_id": "dialogic_042"
 		},
 		{
 			"character": "character-1675203357.json",

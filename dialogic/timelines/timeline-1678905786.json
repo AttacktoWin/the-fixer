@@ -35,12 +35,14 @@
 			"event_id": "dialogic_040"
 		},
 		{
-			"audio": "play",
-			"audio_bus": "Master",
-			"event_id": "dialogic_030",
-			"event_name": "AudioEvent",
-			"file": "",
-			"volume": 0
+			"call_node": {
+				"arguments": [
+					"LOCK PICK"
+				],
+				"method_name": "play_sound",
+				"target_node_path": "DialogueSystem"
+			},
+			"event_id": "dialogic_042"
 		},
 		{
 			"character": "character-1675203357.json",
@@ -55,12 +57,14 @@
 			"text": "[i]Woah. I'd never seen that many screens before. Numbers and letters flying across them.[/i]\n[i]There's a typewriter over there, maybe I can change the instructions.[/i]"
 		},
 		{
-			"audio": "play",
-			"audio_bus": "Master",
-			"event_id": "dialogic_030",
-			"event_name": "AudioEvent",
-			"file": "",
-			"volume": 0
+			"call_node": {
+				"arguments": [
+					"COMPUTER ERROR"
+				],
+				"method_name": "play_sound",
+				"target_node_path": "DialogueSystem"
+			},
+			"event_id": "dialogic_042"
 		},
 		{
 			"character": "character-1675203357.json",
@@ -69,12 +73,14 @@
 			"text": "[i]Damn thing says I'm 'not authorized'? How's this for authorized?![/i]"
 		},
 		{
-			"audio": "play",
-			"audio_bus": "Master",
-			"event_id": "dialogic_030",
-			"event_name": "AudioEvent",
-			"file": "",
-			"volume": 0
+			"call_node": {
+				"arguments": [
+					"HIT KNUCKLES PLAYER"
+				],
+				"method_name": "play_sound",
+				"target_node_path": "DialogueSystem"
+			},
+			"event_id": "dialogic_042"
 		},
 		{
 			"character": "character-1675203357.json",

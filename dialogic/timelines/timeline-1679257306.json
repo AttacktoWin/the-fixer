@@ -133,6 +133,10 @@
 			"set_theme": "theme-1679257626.cfg"
 		},
 		{
+			"emit_signal": "credits",
+			"event_id": "dialogic_040"
+		},
+		{
 			"block_input": true,
 			"event_id": "dialogic_050",
 			"wait_time": 5
@@ -173,6 +177,10 @@
 		},
 		{
 			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "stop_credits",
 			"event_id": "dialogic_040"
 		},
 		{

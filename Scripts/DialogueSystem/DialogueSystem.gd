@@ -62,6 +62,8 @@ func _ready():
 	
 	Scene.connect("world_updated", self, "level_started")
 	Scene.connect("transition_start", self, "level_changed")
+	
+	Wwise.register_game_obj(self, self.get_name())
 		
 	if (Engine.editor_hint):
 		print("Loaded Dialogue System in {time} usec.".format({"time": Time.get_ticks_usec() - init_time}))
@@ -122,6 +124,12 @@ func _signal_listener(s_name: String):
 			self.current_dialog_box.follow_viewport_enable = true
 			self.current_dialog_box.scale = Vector2(1, 2)
 			self.follow_player = true
+		"credits":
+			# Stop hub music and play credits music
+			pass
+		"stop_credits":
+			# Stop credits music and start hub music
+			pass
 
 func get_top_dialogue(npc_id: String) -> Dialogue:
 	if (!NPCs.has(npc_id)):
@@ -168,7 +176,7 @@ func level_started():
 		return
 	var index = randi() % len(enemies)
 	var e_name = enemies[index].get_entity_name().to_lower()
-	if (e_name in self.enemy_timelines.keys()):
+	if (e_name in self.enemy_timelines.keys() && len(self.enemy_timelines[e_name]) > 0):
 		var timeline = self.enemy_timelines[e_name][randi() % len(self.enemy_timelines[e_name])]
 		NPCs["fixer"].unlock_dialogue(timeline)
 		
@@ -176,6 +184,10 @@ func level_started():
 func level_changed():
 	if NPCs["fixer"].peek_top_dialogue().priority == Dialogue.Priority.SPECIFIC:
 		NPCs["fixer"].get_top_dialogue()
+		
+func play_sound(sound_id: String):
+	if (AK.EVENTS._dict.has(sound_id)):
+		Wwise.post_event_id(AK.EVENTS._dict[sound_id], self)
 	
 func save() -> void:
 	var save_dict := {}
