@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
-[sub_resource type="Shader" id=79]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform bool flash = false;
@@ -38,8 +38,8 @@ void fragment() {
 }"
 
 [resource]
-shader = SubResource( 79 )
+shader = SubResource( 1 )
 shader_param/flash = false
 shader_param/flash_color = Color( 1, 1, 1, 1 )
 shader_param/line_color = Color( 0, 0, 0, 1 )
-shader_param/line_thickness = 0.5
+shader_param/line_thickness = 3.211

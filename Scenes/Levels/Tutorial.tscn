@@ -539,7 +539,7 @@ weapon_scene = ExtResource( 27 )
 [node name="Runtime" type="YSort" parent="SortableEntities"]
 
 [node name="E_Spyder" parent="SortableEntities/Runtime" instance=ExtResource( 30 )]
-position = Vector2( 293, 437 )
+position = Vector2( -250, 331 )
 
 [node name="E_Goomba" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( 978, 812 )
@@ -690,7 +690,7 @@ material = ExtResource( 21 )
 position = Vector2( 170.866, 139.593 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 1
+frame = 4
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
@@ -727,7 +727,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 1
+frame = 7
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -757,7 +757,7 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 4
+frame = 1
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]

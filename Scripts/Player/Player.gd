@@ -261,10 +261,10 @@ func _on_take_damage(info: AttackInfo):
 		)
 	)
 	var fx = HIT_SCENE.instance()
-	fx.initialize(direction.angle() + PI, info.damage)
+	fx.initialize(direction.angle() + (2*PI), info.damage)
 	self.add_child(fx)
-	fx.position = Vector2(0, -40)
-	fx.scale = Vector2.ONE / 2
+	fx.position = Vector2(5, -45)
+	fx.scale = Vector2.ONE / 1.5
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	update_health_bar()
 	Scene.ui.get_node("DamageFeedback").display_feedback()

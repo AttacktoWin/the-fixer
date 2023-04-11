@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Scripts/Entities/World.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Magic/DamageMaterial.tres" type="Material" id=2]
 [ext_resource path="res://Scenes/Interface/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Magic/Effects/Textures/noiseTexture.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Magic/Effects/Textures/perlin 23 - 128x128.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Magic/Effects/Textures/milky 14 - 128x128.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Magic/Effects/ScreenTex/RoarVFX.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Magic/Effects/ScreenTex/FlashVFX.png" type="Texture" id=6]
 [ext_resource path="res://Scenes/Interface/Menus/Settings.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/Interface/GameMenues.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Interface/Menus/Pause.tscn" type="PackedScene" id=9]
@@ -125,101 +126,6 @@ shader_param/mask_mask_offset = Vector2( -0.26, -0.094 )
 shader_param/mask_mask_color = Color( 0, 0, 0, 0.788235 )
 shader_param/noise = ExtResource( 4 )
 
-[sub_resource type="Shader" id=2]
-code = "shader_type canvas_item;
-
-uniform vec2 target = vec2(0.5);
-uniform float intensity: hint_range(0.0, 1.0, 0.1);
-
-uniform float smooth_a;
-uniform float smooth_b;
-uniform float smooth_c;
-uniform float smooth_d;
-void fragment(){
-	COLOR = vec4(1);
-	float x = SCREEN_PIXEL_SIZE.x/distance(vec2(target.x,UV.y),UV);
-	float y = SCREEN_PIXEL_SIZE.y/distance(vec2(UV.x,target.y),UV);
-	
-	float aspect = float(SCREEN_PIXEL_SIZE.x)/SCREEN_PIXEL_SIZE.y;
-	vec2 uv = SCREEN_UV;
-	uv.x = uv.x/aspect;
-	uv.y+=0.5;
-	vec2 diff = uv - target;
-	float dist = smoothstep(distance(diff,target),smooth_a,smooth_b);
-	COLOR = vec4(vec3(dist),1);
-	//COLOR.a = (x+y)*intensity;
-}"
-
-[sub_resource type="ShaderMaterial" id=3]
-shader = SubResource( 2 )
-shader_param/target = Vector2( 0.5, 0.5 )
-shader_param/intensity = 0.0
-shader_param/smooth_a = 0.288
-shader_param/smooth_b = 0.295
-shader_param/smooth_c = null
-shader_param/smooth_d = null
-
-[sub_resource type="Shader" id=9]
-code = "shader_type canvas_item;
-
-uniform vec2 target = vec2(0.5);
-uniform sampler2D milk;
-uniform sampler2D lines;
-uniform sampler2D perlin;
-
-uniform float mask_radius = 0.3;
-uniform vec2 mask_mask_scale = vec2(1.3,1);
-uniform vec2 mask_mask_offset = vec2(-0.18,-0.03);
-uniform vec4 mask_mask_color:hint_color = vec4(1,0,0,0.3);
-uniform vec4 mask_mask_color2:hint_color = vec4(1,0,0,0.3);
-
-uniform float smooth_a = 0.5;
-uniform float smooth_b = 0.5;
-void fragment(){
-	COLOR = mask_mask_color;
-	
-	vec2 uv = UV*2.0;
-	uv.y += (TIME*0.01);
-	float milk_noise = smoothstep(texture(milk,UV*2.0-(TIME*0.007)).r,smooth_a,smooth_b);
-	float a = mix(COLOR.a,0,milk_noise);
-	
-//	uv = UV*2.0;
-//	uv.x += (TIME*0.01);
-//	float line_noise = smoothstep(texture(lines,uv).r,smooth_a,smooth_b);
-//	float b = mix(COLOR.a,0,line_noise);
-	
-	COLOR.a = a;
-	
-	//float perlin_noise = smoothstep(texture(perlin,UV*2.0+(TIME*0.01)).r,smooth_a,smooth_b);
-	
-//	COLOR = vec4(mask_mask_color.rgb,0);
-//	vec4 screen_color = texture(SCREEN_TEXTURE,SCREEN_UV);
-//	vec4 line_noise = texture(lines,UV*2.0);
-//	vec4 perlin_noise = texture(perlin,UV*2.0);
-//	COLOR = mix(COLOR,screen_color,line_noise);
-	//COLOR = mix(COLOR,screen_color,perlin_noise);
-	
-//	vec2 mask_uv = UV;
-//	mask_uv*=mask_mask_scale;
-//	mask_uv+=mask_mask_offset;
-//	float dist = length((mask_uv)-target);
-//	dist = 1.0-smoothstep(smooth_a,smooth_a - smooth_b,dist);
-//	COLOR.a = dist/2.5;
-}"
-
-[sub_resource type="ShaderMaterial" id=10]
-shader = SubResource( 9 )
-shader_param/target = Vector2( 0.5, 0.5 )
-shader_param/mask_radius = 0.546
-shader_param/mask_mask_scale = Vector2( 1.19, 1 )
-shader_param/mask_mask_offset = Vector2( -0.098, 0 )
-shader_param/mask_mask_color = Color( 1, 0, 0, 0.352941 )
-shader_param/mask_mask_color2 = Color( 0.184314, 0, 0, 0.937255 )
-shader_param/smooth_a = 2.0
-shader_param/smooth_b = 0.507
-shader_param/lines = ExtResource( 6 )
-shader_param/perlin = ExtResource( 5 )
-
 [sub_resource type="GDScript" id=11]
 script/source = "extends ColorRect
 
@@ -231,8 +137,76 @@ func display_feedback():
 func _process(delta):
 	var val = lerp(0.2,2,clamp(0,1,curr/total))
 	curr -= delta
-	material.set_shader_param(\"smooth_a\",val)
+	print(curr)
+	#material.set_shader_param(\"smooth_a\",val)
 "
+
+[sub_resource type="Shader" id=18]
+code = "shader_type canvas_item;
+uniform float modulate = 0;
+
+uniform sampler2D hurt_tex;
+uniform vec4 fuzz_color:hint_color;
+uniform float radius;
+uniform float a;
+uniform float b;
+
+void fragment(){
+	vec4 hurt = texture(hurt_tex,UV);
+
+	COLOR = fuzz_color;
+	float dist = abs(distance(vec2(0.5),SCREEN_UV));
+	float strength = mix(0,1,1.0-smoothstep(dist,a,b));
+	if(dist<=radius && COLOR.a>0.0){
+		COLOR.a = strength;
+	}
+	COLOR = mix(COLOR,hurt,hurt.a);
+	COLOR = mix(COLOR,vec4(0),vec4(modulate));
+}"
+
+[sub_resource type="ShaderMaterial" id=19]
+shader = SubResource( 18 )
+shader_param/modulate = 0.0
+shader_param/fuzz_color = Color( 0.992157, 0.847059, 0.219608, 0.196078 )
+shader_param/radius = 0.767
+shader_param/a = 0.767
+shader_param/b = 0.75
+shader_param/hurt_tex = ExtResource( 6 )
+
+[sub_resource type="Shader" id=16]
+code = "shader_type canvas_item;
+
+uniform vec2 pivot;
+uniform float rotation:hint_range(-0.02, 0.02);
+uniform float radius;
+uniform float a;
+uniform float b;
+void fragment(){
+	vec2 uv = UV;
+	float sine = sin(rotation);
+    float cosine = cos(rotation);
+
+    uv -= pivot;
+    uv.x = uv.x * cosine - uv.y * sine;
+    uv.y = uv.x * sine + uv.y * cosine;
+    uv += pivot;
+	
+	COLOR = texture(TEXTURE,uv);
+	
+	float dist = abs(distance(vec2(0.5),SCREEN_UV));
+	float strength = mix(0,1,1.0-smoothstep(dist,a,b));
+	if(dist<=radius && COLOR.a>0.0){
+		COLOR.a = mix(0,strength,COLOR.a);
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = SubResource( 16 )
+shader_param/pivot = Vector2( 0.5, 0.5 )
+shader_param/rotation = 0.0
+shader_param/radius = 0.425
+shader_param/a = 0.425
+shader_param/b = 0.0
 
 [sub_resource type="Theme" id=14]
 default_font = ExtResource( 11 )
@@ -311,6 +285,7 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="VisionReduction" type="ColorRect" parent="UILayer/UI"]
+visible = false
 material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -318,28 +293,34 @@ mouse_filter = 2
 script = SubResource( 6 )
 
 [node name="VisionReduction2" type="ColorRect" parent="UILayer/UI"]
+visible = false
 material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = SubResource( 6 )
 
-[node name="HUD" parent="UILayer/UI" instance=ExtResource( 3 )]
-
-[node name="Retical" type="ColorRect" parent="UILayer/UI"]
-visible = false
-material = SubResource( 3 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-
 [node name="DamageFeedback" type="ColorRect" parent="UILayer/UI"]
 visible = false
-material = SubResource( 10 )
+material = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 script = SubResource( 11 )
+
+[node name="FlashFeedback" type="ColorRect" parent="UILayer/UI"]
+visible = false
+material = SubResource( 19 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RoarVFX" type="TextureRect" parent="UILayer/UI"]
+material = SubResource( 17 )
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 5 )
+
+[node name="HUD" parent="UILayer/UI" instance=ExtResource( 3 )]
 
 [node name="TransitionUI" type="Control" parent="UILayer"]
 margin_right = 40.0
