@@ -58,7 +58,6 @@ func validate(level, parent):
 			any_fail = any_fail or not in_bounds(level, MathUtils.from_iso(enemy.position))
 
 	if not any_fail:
-		print(self.weapon)
 		parent.add_child(self.weapon)
 		for enemy in self.enemies:
 			parent.add_child(enemy)
