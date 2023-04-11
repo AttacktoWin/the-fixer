@@ -34,7 +34,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Entities/Attacks/AttackInfo.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "AttackSizeUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/AttackSizeUpgrade.gd"
@@ -89,7 +89,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/dialogic/Localization/translation_service.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "DamageUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/DamageUpgrade.gd"
@@ -239,7 +239,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Goomba/GoombaStateAttack.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "HealingUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/HealingUpgrade.gd"
@@ -259,12 +259,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/Implementation/HomingBullet.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "HomingUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/HomingUpgrade.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "KnockbackUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/KnockbackUpgrade.gd"
@@ -334,12 +334,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Utils/MathUtils.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "MaxAmmoUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/MaxAmmoUpgrade.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "MaxHealthUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/MaxHealthUpgrade.gd"
@@ -354,7 +354,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Entities/Attacks/MovementAttack.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "MultishotUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/MultishotUpgrade.gd"
@@ -419,7 +419,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/AI/PathfindResult.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "PierceChanceUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/PierceChanceUpgrade.gd"
@@ -489,7 +489,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/PlayerStateMelee.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "RefundChanceUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/AmmoRefundUpgrade.gd"
@@ -509,12 +509,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Utils/SmoothProgress.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "SpectralUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/SpectralUpgrade.gd"
 }, {
-"base": "Upgrade",
+"base": "Reference",
 "class": "SpeedUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/SpeedUpgrade.gd"
@@ -757,6 +757,7 @@ AI="*res://Scripts/AI/AIManager.gd"
 WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
 Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
 TransitionHelper="*res://Scripts/Singletons/TransitionHelper.gd"
+UpgradeSingleton="*res://Scripts/Upgrades/UpgradeSingleton.gd"
 
 [debug]
 
