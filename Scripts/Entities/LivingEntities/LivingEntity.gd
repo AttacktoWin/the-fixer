@@ -220,7 +220,6 @@ func knockback(_vel: Vector2):
 
 func on_hit(info: AttackInfo):
 	_take_damage(info.damage, info)
-	_on_take_damage(info)
 
 
 func _on_take_damage(_info: AttackInfo):
@@ -230,4 +229,5 @@ func _on_take_damage(_info: AttackInfo):
 func _take_damage(amount: float, info: AttackInfo = null):
 	changev(LivingEntityVariable.HEALTH, -amount)
 	update_health_bar()
+	_on_take_damage(info)
 	_check_death(info)  # warning-ignore:return_value_discarded

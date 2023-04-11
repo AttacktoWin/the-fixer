@@ -44,9 +44,8 @@ func _background_physics(_delta):
 func enter():
 	self._timer = 0
 
-	self.entity.flash_vfx.visible = true
-	self._vfx_ring.modulate.a = 0.0
 	self._vfx_particles.emitting = true
+	self._vfx_ring.modulate.a = 0.0
 	self._vfx_scale_node.scale = Vector2.ZERO
 	self.entity.flash_vfx.scale = Vector2.ONE * BASE_VFX_SCALE
 	self.entity.flash_vfx.modulate.a = 1.0
@@ -142,7 +141,7 @@ func on_anim_reached_end(_anim: String):
 
 
 func exit():
-	self.entity.flash_vfx.visible = false
+	self._vfx_scale_node.scale = Vector2.ZERO
 	self._vfx_particles.emitting = false
 	self.entity.disable_pathfind -= 1
 	if self._cooldown_timer <= 0:

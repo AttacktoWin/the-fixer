@@ -431,7 +431,8 @@ scale = Vector2( 2, 1 )
 shape = SubResource( 99 )
 
 [node name="VFX" type="Node2D" parent="RangedAttack"]
-scale = Vector2( 1.75, 1.75 )
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 1e-05, 1e-05 )
 z_index = -1
 
 [node name="VFX_Ring" type="Sprite" parent="RangedAttack/VFX"]
@@ -451,7 +452,6 @@ texture = ExtResource( 17 )
 [node name="Particles2D" type="Particles2D" parent="RangedAttack/VFX/Inner"]
 material = SubResource( 118 )
 scale = Vector2( 2, 1 )
-emitting = false
 amount = 130
 local_coords = false
 process_material = SubResource( 121 )

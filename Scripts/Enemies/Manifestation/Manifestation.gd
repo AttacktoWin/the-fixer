@@ -4,6 +4,7 @@ class_name Manifestation extends LivingEntity
 
 onready var hitbox: BaseAttack = $HitBox
 onready var fsm: FSMController = $FSMController
+var health_bar: ProgressBar
 
 var _start_position = Vector2()
 
@@ -39,6 +40,12 @@ func _ready():
 	Wwise.register_game_obj(self, name)
 	self._start_position = self.global_position
 	StatsTracker.add_manifestation_fight()
+	Scene.connect("world_updated", self, "_level_start", [], CONNECT_ONESHOT)  # warning-ignore: return_value_discarded
+
+
+func _level_start():
+	self.health_bar = Scene.level_node.get_node("CanvasLayer/HealthBar")
+	self.health_bar.target_value = 100.0
 
 
 func _enter_tree():
@@ -92,14 +99,20 @@ func _handle_camera():
 
 
 func _on_take_damage(info: AttackInfo):
-	var fx = HIT_SCENE.instance()
-	var direction = info.get_attack_direction(self.global_position)
-	fx.initialize(direction.angle(), info.damage)
-	Scene.runtime.add_child(fx)
-	if info.attack.damage_type == AttackVariable.DAMAGE_TYPE.RANGED:
-		fx.global_position = info.attack.global_position
-	else:
-		fx.global_position = self.global_position
+	if info:
+		var fx = HIT_SCENE.instance()
+		var direction = info.get_attack_direction(self.global_position)
+		fx.initialize(direction.angle(), info.damage)
+		Scene.runtime.add_child(fx)
+		if info.attack.damage_type == AttackVariable.DAMAGE_TYPE.RANGED:
+			fx.global_position = info.attack.global_position
+		else:
+			fx.global_position = self.global_position
+	self.health_bar.target_value = (
+		getv(LivingEntityVariable.HEALTH)
+		/ getv(LivingEntityVariable.MAX_HEALTH)
+		* 100
+	)
 	._on_take_damage(info)
 
 

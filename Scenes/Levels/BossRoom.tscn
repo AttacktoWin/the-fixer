@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/UI/Vault/vault-ui-boss-bar.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=8]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Utils/SmoothProgress.gd" type="Script" id=10]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
 
 [sub_resource type="NavigationPolygon" id=3]
@@ -258,6 +259,7 @@ custom_styles/fg = SubResource( 24 )
 custom_styles/bg = SubResource( 25 )
 value = 100.0
 percent_visible = false
+script = ExtResource( 10 )
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/HealthBar"]
 margin_left = -29.0
