@@ -7,6 +7,8 @@
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 1 )
+cooldown = 0.4
+ammo_count = 4
 max_ammo = 6
 ammo_scene = ExtResource( 2 )
 visual_scene = ExtResource( 4 )
@@ -14,3 +16,6 @@ world_sprite = ExtResource( 3 )
 sound_fire = 1828056235
 sound_empty = 4149800146
 ammo_damage_override = 60
+ammo_speed_override = 2200
+ammo_knockback_override = 128
+weapon_volume = 2.2
