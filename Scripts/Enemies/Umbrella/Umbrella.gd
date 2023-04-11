@@ -26,9 +26,10 @@ func can_attack_hit(info: AttackInfo):
 		or not self.fsm.current_state().is_vulnerable()
 		or facing != direction
 	):
-		info.attack.setv(
-			AttackVariable.DIRECTION,
-			info.get_attack_direction(self.visual.get_node("Sprite").global_position).angle() + PI
-		)
+		var fx = preload("res://Scenes/Particles/HitScene.tscn").instance()
+		fx.initialize(info.get_attack_direction(self.global_position).angle(), 0)
+		Scene.runtime.add_child(fx)
+		fx.global_position = info.attack.global_position
 		return false
+
 	return true
