@@ -22,7 +22,7 @@ func exit():
 
 func _physics_process(delta):
 	self._ground_control(MathUtils.delta_frames(delta))
-	if Input.is_action_pressed("weapon_fire_melee"):
+	if Input.is_action_pressed("weapon_fire_melee") and self.entity.has_melee():
 		self.fsm.set_state(PlayerState.FIRE_MELEE)
 
 
@@ -61,8 +61,6 @@ func _unhandled_input(event: InputEvent):
 
 	if event.is_action_pressed("move_dash") and self.fsm.can_transition_to(PlayerState.DASHING):
 		self.fsm.set_state(PlayerState.DASHING)
-	
-	
 
 	if (
 		event is InputEventKey

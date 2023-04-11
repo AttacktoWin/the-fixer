@@ -9,7 +9,6 @@ var _paused = false
 var _unpaused_frames = 0
 
 
-
 # entity is an optional entity to pass as an argument to ignore
 func pause(_entity = null):
 	assert(not self._paused)
