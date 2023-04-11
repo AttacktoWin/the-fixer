@@ -17,6 +17,7 @@ func get_handled_states():
 func enter():
 	self._timer = -0.5
 	self._current_spawn = 0
+	Wwise.post_event_id(AK.EVENTS.ROAR_MANIFESTATION, self.entity)
 	self.fsm.set_animation("ROAR")
 	CameraSingleton.shake(50)
 

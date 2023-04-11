@@ -11,6 +11,7 @@ export var base_speed: float = 500
 export var base_damage: float = 50
 export var base_direction: float = 0
 export var base_lifetime: float = 2.0
+export var base_knockback: float = 32
 export(NodePath) var hitbox_path = null  # assumed self otherwise
 export(GDScript) var allied_class = null  # this class will be ignored for attacks
 export(AttackVariable.ATTACK_TYPE) var attack_type = AttackVariable.ATTACK_TYPE.CONTINUOUS
@@ -22,7 +23,6 @@ export var die_on_pierce: bool = true
 export var spectral: bool = false
 export var ignore_wall_collisions: bool = true
 export var camera_shake: float = 3
-export var knockback_factor: float = 32
 export var stun_factor: float = 1
 export var max_pierce: int = 1
 export var can_hit_self: bool = false
@@ -41,6 +41,8 @@ var _damage_source: LivingEntity = null
 
 var upgrade_handler = UpgradeHandler.new(self, UpgradeType.ATTACK)
 
+signal on_hit_entity
+
 
 func _ready():
 	self.events = DecoratorList.new(self, EVENTS)
@@ -50,6 +52,7 @@ func _ready():
 		{
 			AttackVariable.SPEED: base_speed,
 			AttackVariable.DAMAGE: base_damage,
+			AttackVariable.KNOCKBACK: base_knockback,
 			AttackVariable.DIRECTION: deg2rad(base_direction),
 			AttackVariable.LIFE: base_lifetime
 		}
@@ -86,7 +89,7 @@ func _generate_attack_info(_entity: LivingEntity) -> AttackInfo:
 		self,
 		self.getv(AttackVariable.DAMAGE),
 		self.getv(AttackVariable.DIRECTION),
-		self.knockback_factor,
+		self.getv(AttackVariable.KNOCKBACK),
 		self.stun_factor
 	)
 
@@ -99,6 +102,7 @@ func _hit_entity(entity: LivingEntity, info: AttackInfo) -> void:
 	self._hit_entities[entity] = self._current_time
 	self._pierce += 1
 	CameraSingleton.shake(self.camera_shake)
+	emit_signal("on_hit_entity", entity, self)
 	entity.on_hit(info)
 	_on_hit_entity(entity)
 	if self.die_on_pierce and self._pierce >= max_pierce:

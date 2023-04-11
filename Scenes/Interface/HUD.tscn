@@ -106,9 +106,9 @@ anchor_top = 0.883
 anchor_right = 0.847
 anchor_bottom = 0.986
 margin_left = -104.2
-margin_top = -39.64
+margin_top = -33.64
 margin_right = -2.23999
-margin_bottom = 0.119995
+margin_bottom = 6.12
 theme = SubResource( 13 )
 custom_fonts/font = SubResource( 14 )
 text = "0"
@@ -131,3 +131,17 @@ theme = SubResource( 13 )
 custom_fonts/font = SubResource( 14 )
 text = "10"
 script = SubResource( 16 )
+
+[node name="CurrentGun" type="TextureRect" parent="."]
+margin_left = 1777.0
+margin_top = 934.0
+margin_right = 1905.0
+margin_bottom = 1062.0
+rect_scale = Vector2( 0.9, 0.9 )
+
+[node name="CurrentMelee" type="TextureRect" parent="."]
+margin_left = 1777.0
+margin_top = 781.0
+margin_right = 1905.0
+margin_bottom = 909.0
+rect_scale = Vector2( 0.9, 0.9 )

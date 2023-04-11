@@ -2,4 +2,4 @@
 
 class_name UpgradeType
 
-enum { ENTITY, ATTACK, WEAPON }
+enum { ENTITY, ATTACK, WEAPON, MELEE }

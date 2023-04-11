@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://Assets/Sprites/Bird/bird-spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemies/Umbrella/Umbrella.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Assets/Magic/Effects/Textures/crate-spritesheet.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Magic/Effects/VFX_Explosion_GRAD.tres" type="Gradient" id=15]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateDead.gd" type="Script" id=16]
+[ext_resource path="res://Assets/Magic/EnemyShader.tres" type="Material" id=17]
 
 [sub_resource type="CircleShape2D" id=97]
 radius = 512.0
@@ -35,48 +36,6 @@ height = 85.3061
 
 [sub_resource type="CircleShape2D" id=110]
 radius = 53.0094
-
-[sub_resource type="Shader" id=100]
-code = "shader_type canvas_item;
-
-uniform bool flash = false;
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform vec4 line_color : hint_color = vec4(1.0);
-uniform float line_thickness : hint_range(0, 10) = 1.0;
-
-const vec2 OFFSETS[8] = {
-	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
-	vec2(1, -1), vec2(1, 0), vec2(1, 1)
-};
-
-void fragment() {
-	//OUTLINE
-	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
-	float outline = 0.0;
-	for (int i = 0; i < OFFSETS.length(); i++) {
-		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
-	}
-	outline = min(outline, 1.0);
-	
-	//GET THE BASE
-	vec4 color = texture(TEXTURE, UV);
-	
-	//FLASH
-	vec4 new_color = color;
-	if (flash == true)
-	{
-		new_color = vec4(flash_color.xyz, color.a); 
-	}
-	
-	COLOR = mix(new_color, line_color, outline - new_color.a);
-}"
-
-[sub_resource type="ShaderMaterial" id=95]
-shader = SubResource( 100 )
-shader_param/flash = false
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/line_color = Color( 0, 0, 0, 1 )
-shader_param/line_thickness = 3.002
 
 [sub_resource type="Animation" id=101]
 resource_name = "FLY_CLOSED"
@@ -471,7 +430,7 @@ attack_type = 2
 persistent = true
 die_on_pierce = false
 camera_shake = 32.0
-knockback_factor = 512.0
+base_knockback = 512.0
 max_pierce = 10000
 should_forget_entities = true
 entity_forget_time = 0.2
@@ -493,7 +452,7 @@ shape = SubResource( 110 )
 [node name="Visual" type="Node2D" parent="FlipComponents"]
 
 [node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
-material = SubResource( 95 )
+material = ExtResource( 17 )
 position = Vector2( -3, -36 )
 scale = Vector2( 0.346525, 0.346525 )
 texture = ExtResource( 1 )

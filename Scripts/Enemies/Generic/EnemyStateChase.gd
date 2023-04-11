@@ -19,6 +19,8 @@ func _physics_process(delta):
 	var vel = self.entity.get_wanted_velocity(self.entity.get_wanted_direction())
 	_try_move(delta, vel)
 	_update_visuals()
+	if entity.status_timers.get_timer(LivingEntityStatus.STUNNED) > 0:
+		return
 	if AI.has_LOS(self.entity.global_position, self.entity.get_target().global_position):
 		var dist = (self.entity.get_target().global_position - self.entity.global_position).length()
 		if (

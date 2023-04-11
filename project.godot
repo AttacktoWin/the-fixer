@@ -344,6 +344,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/MaxHealthUpgrade.gd"
 }, {
+"base": "Node2D",
+"class": "Melee",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Melee.gd"
+}, {
 "base": "BaseAttack",
 "class": "MovementAttack",
 "language": "GDScript",
@@ -449,6 +454,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/PlayerMeleeAttack.gd"
 }, {
+"base": "Melee",
+"class": "PlayerMeleeBaton",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/Baton.gd"
+}, {
 "base": "Reference",
 "class": "PlayerState",
 "language": "GDScript",
@@ -493,6 +503,11 @@ _global_script_classes=[ {
 "class": "RunnableList",
 "language": "GDScript",
 "path": "res://Scripts/Utils/RunnableList.gd"
+}, {
+"base": "ProgressBar",
+"class": "SmoothProgress",
+"language": "GDScript",
+"path": "res://Scripts/Utils/SmoothProgress.gd"
 }, {
 "base": "Upgrade",
 "class": "SpectralUpgrade",
@@ -667,6 +682,7 @@ _global_script_class_icons={
 "MathUtils": "",
 "MaxAmmoUpgrade": "",
 "MaxHealthUpgrade": "",
+"Melee": "",
 "MovementAttack": "",
 "MultishotUpgrade": "",
 "NPC": "",
@@ -688,6 +704,7 @@ _global_script_class_icons={
 "PlayerGunShotgun": "",
 "PlayerGunTommy": "",
 "PlayerMelee": "",
+"PlayerMeleeBaton": "",
 "PlayerState": "",
 "PlayerStateDash": "",
 "PlayerStateDead": "",
@@ -697,6 +714,7 @@ _global_script_class_icons={
 "RefundChanceUpgrade": "",
 "Runnable": "",
 "RunnableList": "",
+"SmoothProgress": "",
 "SpectralUpgrade": "",
 "SpeedUpgrade": "",
 "Spyder": "",

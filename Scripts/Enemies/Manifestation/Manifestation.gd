@@ -4,14 +4,14 @@ class_name Manifestation extends LivingEntity
 
 onready var hitbox: BaseAttack = $HitBox
 onready var fsm: FSMController = $FSMController
+var health_bar: ProgressBar
 
 var _start_position = Vector2()
 
 const HIT_SCENE = preload("res://Scenes/Particles/HitScene.tscn")
 
 var _enemy_info = [
-	[8, load("res://Scenes/Enemies/E_Umbrella.tscn")],
-	[20, load("res://Scenes/Enemies/E_Beetle.tscn")],
+	[10, load("res://Scenes/Enemies/E_Beetle.tscn")],
 	[50, load("res://Scenes/Enemies/E_Spyder.tscn")],
 	[100, load("res://Scenes/Enemies/E_Goomba.tscn")]
 ]
@@ -37,8 +37,15 @@ func get_entity_name():
 
 
 func _ready():
+	Wwise.register_game_obj(self, name)
 	self._start_position = self.global_position
 	StatsTracker.add_manifestation_fight()
+	Scene.connect("world_updated", self, "_level_start", [], CONNECT_ONESHOT)  # warning-ignore: return_value_discarded
+
+
+func _level_start():
+	self.health_bar = Scene.level_node.get_node("CanvasLayer/HealthBar")
+	self.health_bar.target_value = 100.0
 
 
 func _enter_tree():
@@ -92,14 +99,20 @@ func _handle_camera():
 
 
 func _on_take_damage(info: AttackInfo):
-	var fx = HIT_SCENE.instance()
-	var direction = info.get_attack_direction(self.global_position)
-	fx.initialize(direction.angle(), info.damage)
-	Scene.runtime.add_child(fx)
-	if info.attack.damage_type == AttackVariable.DAMAGE_TYPE.RANGED:
-		fx.global_position = info.attack.global_position
-	else:
-		fx.global_position = self.global_position
+	if info:
+		var fx = HIT_SCENE.instance()
+		var direction = info.get_attack_direction(self.global_position)
+		fx.initialize(direction.angle(), info.damage)
+		Scene.runtime.add_child(fx)
+		if info.attack.damage_type == AttackVariable.DAMAGE_TYPE.RANGED:
+			fx.global_position = info.attack.global_position
+		else:
+			fx.global_position = self.global_position
+	self.health_bar.target_value = (
+		getv(LivingEntityVariable.HEALTH)
+		/ getv(LivingEntityVariable.MAX_HEALTH)
+		* 100
+	)
 	._on_take_damage(info)
 
 
@@ -133,6 +146,7 @@ func on_enemy_death(enemy):
 		return
 	var part = preload("res://Scenes/Manifestation/ManifestationDamageOrb.tscn").instance()
 	part.set_target(self)
+	part.collect_sound = null
 	part.connect("on_reached_target", self, "on_damage_orb_hit")
 	Scene.runtime.add_child(part)
 	part.global_position = enemy.global_position
@@ -142,6 +156,7 @@ func on_enemy_death(enemy):
 func _spawn_random_enemies(
 	count: int, use_hard_enemies: bool = false, difficulty_bias: float = 1.0
 ):
+	Wwise.post_event_id(AK.EVENTS.SUMMON_MANIFESTATION, self)
 	var enemy_list = self._enemy_info
 	if use_hard_enemies:
 		enemy_list = self._hard_enemy_info

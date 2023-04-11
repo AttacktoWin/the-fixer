@@ -22,7 +22,7 @@ func exit():
 
 func _physics_process(delta):
 	self._ground_control(MathUtils.delta_frames(delta))
-	if Input.is_action_pressed("weapon_fire_melee"):
+	if Input.is_action_pressed("weapon_fire_melee") and self.entity.has_melee():
 		self.fsm.set_state(PlayerState.FIRE_MELEE)
 
 
@@ -38,7 +38,7 @@ func _process(_delta):
 		self.entity.player_input_gun_aim()
 
 	var vel = self.entity.getv(LivingEntityVariable.VELOCITY)
-	if vel.length() > 25 or self.entity._get_wanted_direction().length() != 0:
+	if vel.length() > 25 or self.entity.get_wanted_direction().length() != 0:
 		self.fsm.set_animation("WALK")
 		var x = sign(round(vel.x))
 
@@ -61,8 +61,6 @@ func _unhandled_input(event: InputEvent):
 
 	if event.is_action_pressed("move_dash") and self.fsm.can_transition_to(PlayerState.DASHING):
 		self.fsm.set_state(PlayerState.DASHING)
-	
-	
 
 	if (
 		event is InputEventKey
@@ -83,7 +81,7 @@ func _ground_control(delta_fixed):
 	# if the angle you're going is < 120 degrees from the one you're trying to go to, turn
 	# otherwise, stop in x frames and turn
 
-	var wanted_dir = self.entity._get_wanted_direction()
+	var wanted_dir = self.entity.get_wanted_direction()
 
 	var current_vel = self.entity.getv(LivingEntityVariable.VELOCITY)
 
@@ -94,7 +92,7 @@ func _ground_control(delta_fixed):
 	# handle the case where we are stopped currently
 	if abs(current_vel.x) < 25 and abs(current_vel.y) < 25:
 		var boost = 6 * delta_fixed
-		var wanted_vel = self.entity._get_wanted_velocity()
+		var wanted_vel = self.entity.get_input_velocity()
 		var speed_diff = wanted_vel.length() - current_vel.length()
 		var accel = self.entity.getv(LivingEntityVariable.ACCEL) * boost
 		var max_spd = self.entity.getv(LivingEntityVariable.MAX_SPEED)
@@ -105,7 +103,7 @@ func _ground_control(delta_fixed):
 		# first, turn
 		current_vel = Vector2(cos(angle), sin(angle)) * current_vel.length()
 		# now scale up the speed to the desired one (using dot prod)
-		var wanted_vel = self.entity._get_wanted_velocity()
+		var wanted_vel = self.entity.get_input_velocity()
 		var coeff = wanted_vel.normalized().dot(current_vel.normalized())
 		var speed_diff = wanted_vel.length() - current_vel.length()
 		var dir = current_vel.normalized()
