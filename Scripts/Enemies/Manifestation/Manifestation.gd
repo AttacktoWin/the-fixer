@@ -134,6 +134,7 @@ func on_enemy_death(enemy):
 		return
 	var part = preload("res://Scenes/Manifestation/ManifestationDamageOrb.tscn").instance()
 	part.set_target(self)
+	part.collect_sound = null
 	part.connect("on_reached_target", self, "on_damage_orb_hit")
 	Scene.runtime.add_child(part)
 	part.global_position = enemy.global_position
