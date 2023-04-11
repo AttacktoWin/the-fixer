@@ -66,6 +66,14 @@ func _remove_weapon(parent: Node2D, weapon: Node2D):
 	Scene.runtime.add_child(pickup)
 
 
+func _update_weapons_ui():
+	var ui = Scene.ui.get_node("HUD")
+	var gun = ui.get_node("CurrentGun")
+	var melee = ui.get_node("CurrentMelee")
+	gun.texture = self._gun.world_sprite if self._gun else null
+	melee.texture = self._melee.world_sprite if self._melee else null
+
+
 func set_gun(gun: PlayerBaseGun):
 	if gun == self._gun:
 		return
@@ -77,6 +85,7 @@ func set_gun(gun: PlayerBaseGun):
 	reapply_upgrades()
 	self.hand.add_child(self._gun.with_visuals(self._gun.default_visual_scene()))
 	update_ammo_counter()
+	_update_weapons_ui()
 
 
 func set_melee(melee: Melee):
@@ -89,14 +98,18 @@ func set_melee(melee: Melee):
 	reapply_upgrades()
 	self.melee_hand.add_child(self._melee.with_visuals(self._melee.default_visual_scene()))
 	self._melee.apply_to_attack(self.melee_hitbox)
+	_update_weapons_ui()
+
 
 func get_melee_attack_speed():
 	if self._melee:
 		return self._melee.attack_speed
 	return 1.0
 
+
 func has_gun() -> bool:
 	return self._gun != null
+
 
 func has_melee() -> bool:
 	return self._melee != null
@@ -140,6 +153,11 @@ func update_ammo_counter(remove: bool = false):
 			+ "/"
 			+ String(self._gun.get_max_ammo())
 		)
+
+	if self._gun.get_ammo_count() == 0:
+		ammo_count.modulate = Constants.COLOR.RED
+	else:
+		ammo_count.modulate = Constants.COLOR.WHITE
 
 
 func add_ammo(ammo: int) -> int:

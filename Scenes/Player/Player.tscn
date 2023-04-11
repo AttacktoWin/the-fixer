@@ -336,7 +336,6 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 5
-frame = 25
 
 [node name="HitBox" type="Area2D" parent="Visual"]
 position = Vector2( 0, 55 )
