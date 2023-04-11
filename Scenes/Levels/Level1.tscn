@@ -9,9 +9,9 @@
 [ext_resource path="res://Scripts/LevelGeneration/LevelGenerator.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/LevelGeneration/PCG_DataClasses/PCG_RoomData.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=10]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=13]
-[ext_resource path="res://Assets/Magic/WallMaterial.tres" type="Material" id=14]
 [ext_resource path="res://Resources/Bahnschrift.tres" type="DynamicFont" id=15]
 
 [sub_resource type="Resource" id=7]
@@ -243,6 +243,7 @@ generator_data = SubResource( 7 )
 [node name="Floor" type="TileMap" parent="."]
 unique_name_in_owner = true
 scale = Vector2( 0.5, 0.5 )
+z_index = -1
 mode = 1
 tile_set = SubResource( 1 )
 cell_size = Vector2( 256, 128 )
@@ -289,7 +290,7 @@ __meta__ = {
 
 [node name="Walls" type="TileMap" parent="SortableEntities"]
 unique_name_in_owner = true
-material = ExtResource( 14 )
+material = ExtResource( 10 )
 scale = Vector2( 0.5, 0.5 )
 mode = 1
 tile_set = ExtResource( 4 )
