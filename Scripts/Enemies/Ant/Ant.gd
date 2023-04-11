@@ -5,7 +5,7 @@ class_name Ant extends BaseEnemy
 const AMMO_PARTICLE = preload("res://Scenes/Particles/BulletParticle.tscn")
 
 
-func get_display_name():
+func get_entity_name():
 	return "Ant"
 
 
