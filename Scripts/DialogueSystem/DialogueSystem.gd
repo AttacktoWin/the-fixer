@@ -63,7 +63,8 @@ func _ready():
 	Scene.connect("world_updated", self, "level_started")
 	Scene.connect("transition_start", self, "level_changed")
 	
-	Wwise.register_game_obj(self, self.get_name())
+	Wwise.register_listener(self)
+	Wwise.register_game_obj(self, "DialogueSystem")
 		
 	if (Engine.editor_hint):
 		print("Loaded Dialogue System in {time} usec.".format({"time": Time.get_ticks_usec() - init_time}))
@@ -130,6 +131,10 @@ func _signal_listener(s_name: String):
 		"stop_credits":
 			# Stop credits music and start hub music
 			pass
+			
+func play_sound(sound_id: String):
+	if (AK.EVENTS._dict.has(sound_id)):
+		Wwise.post_event_id(AK.EVENTS._dict[sound_id], self)
 
 func get_top_dialogue(npc_id: String) -> Dialogue:
 	if (!NPCs.has(npc_id)):
@@ -171,6 +176,8 @@ func event_viewed(event_tag: String) -> void:
 	_lookup_unlock_table(key)
 	
 func level_started():
+	if (NPCs["fixer"].peek_top_dialogue().priority == Dialogue.Priority.STORY):
+		return
 	var enemies = AI.get_all_enemies()
 	if (len(enemies) == 0 || randi() % 100 >= 50):
 		return
@@ -185,9 +192,6 @@ func level_changed():
 	if NPCs["fixer"].peek_top_dialogue().priority == Dialogue.Priority.SPECIFIC:
 		NPCs["fixer"].get_top_dialogue()
 		
-func play_sound(sound_id: String):
-	if (AK.EVENTS._dict.has(sound_id)):
-		Wwise.post_event_id(AK.EVENTS._dict[sound_id], self)
 	
 func save() -> void:
 	var save_dict := {}
