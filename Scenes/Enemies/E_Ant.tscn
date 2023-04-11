@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Sprites/Ant/ant-spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateHurt.gd" type="Script" id=10]
 [ext_resource path="res://Assets/Finish.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateDead.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Magic/EnemyShader.tres" type="Material" id=13]
 
 [sub_resource type="CircleShape2D" id=78]
 radius = 512.0
@@ -24,48 +25,6 @@ radius = 400.0
 
 [sub_resource type="CircleShape2D" id=113]
 radius = 30.0
-
-[sub_resource type="Shader" id=79]
-code = "shader_type canvas_item;
-
-uniform bool flash = false;
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform vec4 line_color : hint_color = vec4(1.0);
-uniform float line_thickness : hint_range(0, 10) = 1.0;
-
-const vec2 OFFSETS[8] = {
-	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
-	vec2(1, -1), vec2(1, 0), vec2(1, 1)
-};
-
-void fragment() {
-	//OUTLINE
-	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
-	float outline = 0.0;
-	for (int i = 0; i < OFFSETS.length(); i++) {
-		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
-	}
-	outline = min(outline, 1.0);
-	
-	//GET THE BASE
-	vec4 color = texture(TEXTURE, UV);
-	
-	//FLASH
-	vec4 new_color = color;
-	if (flash == true)
-	{
-		new_color = vec4(flash_color.xyz, color.a); 
-	}
-	
-	COLOR = mix(new_color, line_color, outline - new_color.a);
-}"
-
-[sub_resource type="ShaderMaterial" id=74]
-shader = SubResource( 79 )
-shader_param/flash = false
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/line_color = Color( 0, 0, 0, 1 )
-shader_param/line_thickness = 0.5
 
 [sub_resource type="Animation" id=82]
 resource_name = "CHASE"
@@ -309,7 +268,7 @@ shape = SubResource( 113 )
 [node name="Visual" type="Node2D" parent="FlipComponents"]
 
 [node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
-material = SubResource( 74 )
+material = ExtResource( 13 )
 position = Vector2( 1, -26 )
 scale = Vector2( 0.346525, 0.346525 )
 texture = ExtResource( 1 )

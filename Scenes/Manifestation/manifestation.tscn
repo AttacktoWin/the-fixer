@@ -2365,6 +2365,7 @@ anims/ROAR = SubResource( 3 )
 anims/SLAM = SubResource( 4 )
 
 [node name="HurtBox" type="Area2D" parent="."]
+visible = false
 collision_layer = 32
 collision_mask = 0
 

@@ -12,12 +12,12 @@
 [ext_resource path="res://Scripts/Entities/LevelTransition.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=11]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=13]
 [ext_resource path="res://Scenes/LevelTransition.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=16]
 [ext_resource path="res://Scenes/Levels/Tutorial.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Assets/Sprites/Boss_dad/boss-spritesheet-idle.png" type="Texture" id=18]
-[ext_resource path="res://Assets/Magic/WallMaterial.tres" type="Material" id=19]
 [ext_resource path="res://Resources/Bahnschrift.tres" type="DynamicFont" id=20]
 [ext_resource path="res://Assets/Tiles/Hub/tutorial.png" type="Texture" id=21]
 
@@ -693,7 +693,7 @@ shape = SubResource( 5 )
 position = Vector2( 17, 0 )
 
 [node name="Walls" type="TileMap" parent="SortableEntities"]
-material = ExtResource( 19 )
+material = ExtResource( 13 )
 position = Vector2( -717, -529 )
 scale = Vector2( 0.5, 0.5 )
 mode = 1
