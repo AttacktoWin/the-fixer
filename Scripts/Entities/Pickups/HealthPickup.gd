@@ -16,7 +16,7 @@ func _init(healing: int = DEFAULT_HEALING):
 
 func collection_check(collector: LivingEntity):
 	var health = collector.getv(LivingEntityVariable.HEALTH)
-	return health < collector.base_health
+	return health < collector.getv(LivingEntityVariable.MAX_HEALTH)
 
 
 func on_collected(collector: LivingEntity):
