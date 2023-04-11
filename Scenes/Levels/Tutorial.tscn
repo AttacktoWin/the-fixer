@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -26,9 +26,12 @@
 [ext_resource path="res://Assets/UI/Tutorial/wasd.png" type="Texture" id=24]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=25]
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=26]
-[ext_resource path="res://Scenes/Weapons/PlayerShotgunScene.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Scenes/Weapons/PlayerPistolScene.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scripts/Entities/Weapons/WorldWeapon.gd" type="Script" id=28]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=29]
+[ext_resource path="res://Scenes/Enemies/E_Spyder.tscn" type="PackedScene" id=30]
+[ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=31]
+[ext_resource path="res://Scenes/Weapons/PlayerBrassKnucklesScene.tscn" type="PackedScene" id=32]
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 127, 0, 255, 66, 127, 126, 1, 65, 127, 127 )
@@ -205,27 +208,6 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
-
-[sub_resource type="Shader" id=22]
-code = "shader_type  canvas_item;
-
-uniform vec2 target = vec2(0.5);
-uniform float radius = 0.5;
-
-void fragment(){
-	COLOR = texture(TEXTURE,UV);
-	float dist = abs(distance(target,SCREEN_UV));
-	float strenth = mix(0,1,dist/radius);
-	if(dist<=radius && COLOR.a>0.0){
-		COLOR.a = strenth;
-	}
-}
-"
-
-[sub_resource type="ShaderMaterial" id=23]
-shader = SubResource( 22 )
-shader_param/target = Vector2( 0.5, 0.5 )
-shader_param/radius = 0.164
 
 [sub_resource type="GDScript" id=65]
 script/source = "# Author: Marcus
@@ -494,6 +476,7 @@ map_size = Vector2( 46, 40 )
 [node name="Floor" type="TileMap" parent="."]
 unique_name_in_owner = true
 scale = Vector2( 0.5, 0.5 )
+z_index = -1
 mode = 1
 tile_set = SubResource( 1 )
 cell_size = Vector2( 256, 128 )
@@ -534,7 +517,7 @@ __meta__ = {
 
 [node name="Walls" type="TileMap" parent="SortableEntities"]
 unique_name_in_owner = true
-material = SubResource( 23 )
+material = ExtResource( 31 )
 position = Vector2( -1, 0 )
 scale = Vector2( 0.5, 0.5 )
 mode = 1
@@ -546,6 +529,7 @@ tile_data = PoolIntArray( 0, 4, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 3, 0, 5, 4, 0, 
 
 [node name="Player" parent="SortableEntities" instance=ExtResource( 5 )]
 position = Vector2( -122, 269 )
+start_melee = ExtResource( 32 )
 
 [node name="WorldWeapon" type="KinematicBody2D" parent="SortableEntities"]
 position = Vector2( -272, 380 )
@@ -555,6 +539,9 @@ auto_pickup = false
 weapon_scene = ExtResource( 27 )
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]
+
+[node name="E_Spyder" parent="SortableEntities/Runtime" instance=ExtResource( 30 )]
+position = Vector2( 293, 437 )
 
 [node name="E_Goomba" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( 978, 812 )
@@ -705,14 +692,14 @@ material = ExtResource( 21 )
 position = Vector2( 170.866, 139.593 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 6
+frame = 2
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
 position = Vector2( 77.25, 139.5 )
 scale = Vector2( 0.283333, 0.283333 )
 frames = SubResource( 24 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="Shoot" type="Control" parent="."]
@@ -742,7 +729,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 5
+frame = 4
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -772,7 +759,7 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 3
+frame = 1
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]

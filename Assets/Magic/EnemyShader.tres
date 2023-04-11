@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=79]
+code = "shader_type canvas_item;
+
+uniform bool flash = false;
+uniform vec4 flash_color : hint_color = vec4(1.0);
+uniform vec4 line_color : hint_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	//OUTLINE
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+	}
+	outline = min(outline, 1.0);
+	
+	//GET THE BASE
+	vec4 color = texture(TEXTURE, UV);
+	
+	//FLASH
+	vec4 new_color = color;
+	if (flash == true)
+	{
+		new_color = vec4(
+			mix(new_color.rgb,(flash_color.rgb),vec3(flash_color.a)), 
+			color.a); 
+	}
+	
+	COLOR = mix(new_color, line_color, outline - new_color.a);
+}"
+
+[resource]
+shader = SubResource( 79 )
+shader_param/flash = false
+shader_param/flash_color = Color( 1, 1, 1, 1 )
+shader_param/line_color = Color( 0, 0, 0, 1 )
+shader_param/line_thickness = 0.5

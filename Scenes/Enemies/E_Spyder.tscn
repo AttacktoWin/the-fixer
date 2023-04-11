@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Assets/Sprites/Camera/camera_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemies/Spyder/Spyder.gd" type="Script" id=2]
@@ -16,6 +16,9 @@
 [ext_resource path="res://Assets/Magic/Effects/Textures/crate-spritesheet.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Magic/Effects/VFX_Explosion_GRAD.tres" type="Gradient" id=15]
 [ext_resource path="res://Scripts/Enemies/Generic/EnemyStateDead.gd" type="Script" id=16]
+[ext_resource path="res://Assets/Magic/Effects/Textures/circle.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Magic/Effects/Textures/ring.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Magic/EnemyShader.tres" type="Material" id=19]
 
 [sub_resource type="CircleShape2D" id=97]
 radius = 512.0
@@ -26,6 +29,33 @@ radius = 32.0
 [sub_resource type="CircleShape2D" id=99]
 radius = 300.0
 
+[sub_resource type="CanvasItemMaterial" id=118]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=119]
+colors = PoolColorArray( 1, 1, 1, 1, 0.988235, 0.847059, 0.215686, 1 )
+
+[sub_resource type="GradientTexture" id=120]
+gradient = SubResource( 119 )
+
+[sub_resource type="ParticlesMaterial" id=121]
+emission_shape = 5
+emission_ring_radius = 127.0
+emission_ring_inner_radius = 122.19
+emission_ring_height = 1.0
+emission_ring_axis = Vector3( 0, 0, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -70, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+scale_random = 1.0
+color_ramp = SubResource( 120 )
+anim_offset = 1.0
+
 [sub_resource type="CircleShape2D" id=98]
 radius = 400.0
 
@@ -35,48 +65,6 @@ extents = Vector2( 24.5, 38.5 )
 [sub_resource type="CapsuleShape2D" id=63]
 radius = 28.0
 height = 36.0
-
-[sub_resource type="Shader" id=100]
-code = "shader_type canvas_item;
-
-uniform bool flash = false;
-uniform vec4 flash_color : hint_color = vec4(1.0);
-uniform vec4 line_color : hint_color = vec4(1.0);
-uniform float line_thickness : hint_range(0, 10) = 1.0;
-
-const vec2 OFFSETS[8] = {
-	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
-	vec2(1, -1), vec2(1, 0), vec2(1, 1)
-};
-
-void fragment() {
-	//OUTLINE
-	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
-	float outline = 0.0;
-	for (int i = 0; i < OFFSETS.length(); i++) {
-		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
-	}
-	outline = min(outline, 1.0);
-	
-	//GET THE BASE
-	vec4 color = texture(TEXTURE, UV);
-	
-	//FLASH
-	vec4 new_color = color;
-	if (flash == true)
-	{
-		new_color = vec4(flash_color.xyz, color.a); 
-	}
-	
-	COLOR = mix(new_color, line_color, outline - new_color.a);
-}"
-
-[sub_resource type="ShaderMaterial" id=95]
-shader = SubResource( 100 )
-shader_param/flash = false
-shader_param/flash_color = Color( 1, 1, 1, 1 )
-shader_param/line_color = Color( 0, 0, 0, 1 )
-shader_param/line_thickness = 3.838
 
 [sub_resource type="Animation" id=43]
 resource_name = "ALERTED"
@@ -438,10 +426,38 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="Sense" type="CollisionShape2D" parent="RangedAttack"]
+position = Vector2( -1, 22 )
 scale = Vector2( 2, 1 )
 shape = SubResource( 99 )
 
+[node name="VFX" type="Node2D" parent="RangedAttack"]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 1e-05, 1e-05 )
+z_index = -1
+
+[node name="VFX_Ring" type="Sprite" parent="RangedAttack/VFX"]
+modulate = Color( 1, 1, 1, 0 )
+self_modulate = Color( 0.988235, 0.854902, 0.266667, 1 )
+scale = Vector2( 1, 0.5 )
+texture = ExtResource( 18 )
+
+[node name="Inner" type="Node2D" parent="RangedAttack/VFX"]
+scale = Vector2( 1e-05, 1e-05 )
+
+[node name="VFX_Circle" type="Sprite" parent="RangedAttack/VFX/Inner"]
+self_modulate = Color( 0.992157, 0.847059, 0.219608, 0.25098 )
+scale = Vector2( 1, 0.5 )
+texture = ExtResource( 17 )
+
+[node name="Particles2D" type="Particles2D" parent="RangedAttack/VFX/Inner"]
+material = SubResource( 118 )
+scale = Vector2( 2, 1 )
+amount = 130
+local_coords = false
+process_material = SubResource( 121 )
+
 [node name="IdleRadius" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 4
 
@@ -483,7 +499,7 @@ shape = SubResource( 63 )
 [node name="Visual" type="Node2D" parent="FlipComponents"]
 
 [node name="Sprite" type="Sprite" parent="FlipComponents/Visual"]
-material = SubResource( 95 )
+material = ExtResource( 19 )
 position = Vector2( -6, -43 )
 scale = Vector2( 0.346525, 0.346525 )
 texture = ExtResource( 1 )

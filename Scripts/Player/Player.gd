@@ -4,21 +4,24 @@ class_name Player extends LivingEntity
 
 var _inv_timer = 0
 
-export(PackedScene) var start_weapon = null
+export(PackedScene) var start_gun = null
+export(PackedScene) var start_melee = null
 
 onready var anim_player: AnimationPlayer = $Visual/AnimationPlayer
 onready var arms_container: Node2D = $Visual/ArmsContainer
 onready var hand: Node2D = $Visual/ArmsContainer/Hand
+onready var melee_hand: Node2D = $Visual/MeleeHand
 onready var arms_secondary: Node2D = $Visual/Arm2
 onready var visual: Node2D = $Visual
 onready var fsm: FSMController = $FSMController
 onready var reload_progress_bar: ProgressBar = $ReloadProgress
-onready var melee_hitbox: Area2D = $Visual/HitBox
+onready var melee_hitbox: BaseAttack = $Visual/HitBox
 
 var weapon_disabled = false setget set_weapon_disabled
 
 var _gun = null
-var _has_default_gun = false
+var _melee = null
+var _has_default_weapons = false
 
 var _knockback_velocity = Vector2.ZERO
 
@@ -35,10 +38,12 @@ func _ready():
 
 
 func _world_updated():
-	if not self._has_default_gun:
-		self._has_default_gun = true
-		if start_weapon:
-			self.set_gun(start_weapon.instance())
+	if not self._has_default_weapons:
+		self._has_default_weapons = true
+		if start_gun:
+			self.set_gun(start_gun.instance())
+		if start_melee:
+			self.set_melee(start_melee.instance())
 	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION)
 
 
@@ -48,28 +53,70 @@ func set_weapon_disabled(val):
 		self._gun.set_disabled(val)
 
 
+func _remove_weapon(parent: Node2D, weapon: Node2D):
+	var visuals = parent.get_child(0)
+	parent.remove_child(visuals)
+	weapon.get_parent().remove_child(weapon)
+	visuals.queue_free()
+
+	var pickup = WorldWeapon.new()
+	pickup.set_weapon(weapon)
+	pickup.auto_pickup = false
+	pickup.global_position = self.global_position * MathUtils.TO_ISO
+	Scene.runtime.add_child(pickup)
+
+
+func _update_weapons_ui():
+	var ui = Scene.ui.get_node("HUD")
+	var gun = ui.get_node("CurrentGun")
+	var melee = ui.get_node("CurrentMelee")
+	gun.texture = self._gun.world_sprite if self._gun else null
+	melee.texture = self._melee.world_sprite if self._melee else null
+
+
 func set_gun(gun: PlayerBaseGun):
 	if gun == self._gun:
 		return
 	if self._gun:
-		self.hand.remove_child(self.hand.get_child(0))
-		var pickup = WorldWeapon.new()
-		pickup.set_weapon(self._gun)
-		pickup.auto_pickup = false
-		pickup.global_position = self.global_position * MathUtils.TO_ISO
-		Scene.runtime.add_child(pickup)
+		_remove_weapon(self.hand, self._gun)
+
 	self._gun = gun.with_parent(self)
 	self._gun.set_aim_bone(arms_container)
 	reapply_upgrades()
 	self.hand.add_child(self._gun.with_visuals(self._gun.default_visual_scene()))
 	update_ammo_counter()
+	_update_weapons_ui()
+
+
+func set_melee(melee: Melee):
+	if melee == self._melee:
+		return
+	if self._melee:
+		_remove_weapon(self.melee_hand, self._melee)
+		self._melee.detach()
+
+	self._melee = melee.with_parent(self)
+	reapply_upgrades()
+	self.melee_hand.add_child(self._melee.with_visuals(self._melee.default_visual_scene()))
+	self._melee.apply_to_attack(self.melee_hitbox)
+	_update_weapons_ui()
+
+
+func get_melee_attack_speed():
+	if self._melee:
+		return self._melee.attack_speed
+	return 1.0
 
 
 func has_gun() -> bool:
 	return self._gun != null
 
 
-func _get_wanted_direction():
+func has_melee() -> bool:
+	return self._melee != null
+
+
+func get_wanted_direction():
 	var dir = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -79,8 +126,8 @@ func _get_wanted_direction():
 	return dir
 
 
-func _get_wanted_velocity():
-	return _get_wanted_direction() * getv(LivingEntityVariable.MAX_SPEED)
+func get_input_velocity():
+	return get_wanted_direction() * getv(LivingEntityVariable.MAX_SPEED)
 
 
 func get_wanted_gun_vector():
@@ -108,12 +155,15 @@ func update_ammo_counter(remove: bool = false):
 			+ String(self._gun.get_max_ammo())
 		)
 
+	if self._gun.get_ammo_count() == 0:
+		ammo_count.modulate = Constants.COLOR.RED
+	else:
+		ammo_count.modulate = Constants.COLOR.WHITE
+
 
 func add_ammo(ammo: int) -> int:
 	if self._gun:
 		var diff = self._gun.add_ammo(ammo)
-		if diff:
-			Wwise.post_event_id(AK.EVENTS.AMMO_PICKUP_PLAYER, self)
 		update_ammo_counter()
 		return diff
 
@@ -153,9 +203,12 @@ func _update_reload_progress():
 
 
 func get_all_upgrade_handlers() -> Array:
+	var arr = [self.upgrade_handler, self.melee_hitbox.upgrade_handler]
 	if self._gun:
-		return [self.upgrade_handler, self._gun.upgrade_handler, self.melee_hitbox.upgrade_handler]
-	return [self.upgrade_handler, self.melee_hitbox.upgrade_handler]
+		arr.append(self._gun.upgrade_handler)
+	if self._melee:
+		arr.append(self._melee.upgrade_handler)
+	return arr
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -190,7 +243,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_end"):
 			self.add_ammo(900)  # warning-ignore: return_value_discarded
 		if Input.is_action_just_pressed("ui_home"):
-			var scene = load("res://Scenes/Levels/Level3.tscn").instance()
+			var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
 			TransitionHelper.transition(scene, true, true, 0.01)
 		if Input.is_action_just_pressed("ui_page_down"):
 			for enemy in AI.get_all_enemies():

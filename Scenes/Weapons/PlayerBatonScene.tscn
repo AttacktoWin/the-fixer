@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Items/baton.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Weapons/Visual/Baton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Entities/Weapons/Player/Baton.gd" type="Script" id=3]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+visual_scene = ExtResource( 2 )
+world_sprite = ExtResource( 1 )
+damage_override = 25.0
+knockback_override = 1024.0
+hitbox_size_override = 1.2
+attack_speed = 0.85
