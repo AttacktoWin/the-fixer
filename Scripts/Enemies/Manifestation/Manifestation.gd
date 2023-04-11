@@ -10,8 +10,7 @@ var _start_position = Vector2()
 const HIT_SCENE = preload("res://Scenes/Particles/HitScene.tscn")
 
 var _enemy_info = [
-	[8, load("res://Scenes/Enemies/E_Umbrella.tscn")],
-	[20, load("res://Scenes/Enemies/E_Beetle.tscn")],
+	[10, load("res://Scenes/Enemies/E_Beetle.tscn")],
 	[50, load("res://Scenes/Enemies/E_Spyder.tscn")],
 	[100, load("res://Scenes/Enemies/E_Goomba.tscn")]
 ]
