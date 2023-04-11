@@ -52,7 +52,7 @@ static func interpolate_vector(val: float, _min, _max, interp_type: int):
 	if typeof(_min) == TYPE_VECTOR2:
 		return Vector2(
 			interpolate(val, _min.x, _max.x, interp_type),
-			interpolate(val, _min.y, _max.z, interp_type)
+			interpolate(val, _min.y, _max.y, interp_type)
 		)
 	if typeof(_min) == TYPE_VECTOR3:
 		return Vector3(

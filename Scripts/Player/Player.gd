@@ -146,7 +146,7 @@ func get_wanted_gun_vector():
 
 func update_ammo_counter(remove: bool = false):
 	var ammo_count = Scene.ui.get_node("HUD/AmmoCount")
-	if remove:
+	if remove or not self._gun:
 		ammo_count.text = String("0")
 	else:
 		ammo_count.text = (
@@ -249,7 +249,10 @@ func _process(_delta):
 			for enemy in AI.get_all_enemies():
 				enemy.queue_free()
 		if Input.is_action_just_pressed("ui_page_up"):
-			apply_upgrades([HomingUpgrade.new()])
+			#apply_upgrades([HomingUpgrade.new()])
+			var d = DualUpgrade.new()
+			Scene.runtime.add_child(d)
+			d.global_position = self.global_position
 
 
 func _unhandled_input(event: InputEvent):
