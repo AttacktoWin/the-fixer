@@ -41,6 +41,8 @@ var _damage_source: LivingEntity = null
 
 var upgrade_handler = UpgradeHandler.new(self, UpgradeType.ATTACK)
 
+signal on_hit_entity
+
 
 func _ready():
 	self.events = DecoratorList.new(self, EVENTS)
@@ -100,6 +102,7 @@ func _hit_entity(entity: LivingEntity, info: AttackInfo) -> void:
 	self._hit_entities[entity] = self._current_time
 	self._pierce += 1
 	CameraSingleton.shake(self.camera_shake)
+	emit_signal("on_hit_entity", entity, self)
 	entity.on_hit(info)
 	_on_hit_entity(entity)
 	if self.die_on_pierce and self._pierce >= max_pierce:

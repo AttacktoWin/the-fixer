@@ -14,6 +14,8 @@ var upgrade_handler = UpgradeHandler.new(self, UpgradeType.MELEE)
 
 var entity = null
 
+var _current_attack = null
+
 
 func _init(_parent_entity: LivingEntity = null):
 	self.entity = _parent_entity
@@ -31,13 +33,28 @@ func with_visuals(visuals: Node2D):
 	return self
 
 
+func _on_attack_hit(_entity, _attack: BaseAttack):
+	pass
+
+
 func apply_to_attack(attack: BaseAttack):
+	if self._current_attack:
+		detach()
+	self._current_attack = attack
+	self._current_attack.connect("on_hit_entity", self, "_on_attack_hit")
 	if self.damage_override >= 0:
 		attack.setv(AttackVariable.DAMAGE, self.damage_override)
 	if self.knockback_override >= 0:
 		attack.setv(AttackVariable.KNOCKBACK, self.knockback_override)
 	if self.hitbox_size_override >= 0:
 		attack.scale = Vector2.ONE * self.hitbox_size_override
+
+
+func detach():
+	if not self._current_attack:
+		return
+	self._current_attack.disconnect("on_hit_entity", self, "_on_attack_hit")
+	self._current_attack = null
 
 
 func default_visual_scene():

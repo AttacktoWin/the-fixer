@@ -97,6 +97,8 @@ func changev(variable: int, off):
 
 
 func get_wanted_velocity(dir_vector: Vector2) -> Vector2:
+	if self.status_timers.get_timer(LivingEntityStatus.STUNNED) > 0:
+		return dir_vector.normalized()
 	return dir_vector * getv(LivingEntityVariable.MAX_SPEED)
 
 

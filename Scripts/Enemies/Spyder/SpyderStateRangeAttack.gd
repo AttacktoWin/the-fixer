@@ -5,7 +5,7 @@ class_name SpyderStateRangedAttack extends FSMNode
 const MAX_DEVIATION = PI * 2  # omni
 const COOLDOWN = 5
 const COOLDOWN_INTERRUPT = 1.75
-const SLOW_TIME = 1.5
+const SLOW_TIME = 1.75
 
 var _charging: int = 2
 var _angle: float = 0
@@ -141,6 +141,7 @@ func on_anim_reached_end(_anim: String):
 
 
 func exit():
+	self._vfx_ring.modulate.a = 0.0
 	self._vfx_scale_node.scale = Vector2.ZERO
 	self._vfx_particles.emitting = false
 	self.entity.disable_pathfind -= 1

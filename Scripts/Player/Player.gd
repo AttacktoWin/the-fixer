@@ -93,6 +93,7 @@ func set_melee(melee: Melee):
 		return
 	if self._melee:
 		_remove_weapon(self.melee_hand, self._melee)
+		self._melee.detach()
 
 	self._melee = melee.with_parent(self)
 	reapply_upgrades()
@@ -115,7 +116,7 @@ func has_melee() -> bool:
 	return self._melee != null
 
 
-func _get_wanted_direction():
+func get_wanted_direction():
 	var dir = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -125,8 +126,8 @@ func _get_wanted_direction():
 	return dir
 
 
-func _get_wanted_velocity():
-	return _get_wanted_direction() * getv(LivingEntityVariable.MAX_SPEED)
+func get_input_velocity():
+	return get_wanted_direction() * getv(LivingEntityVariable.MAX_SPEED)
 
 
 func get_wanted_gun_vector():

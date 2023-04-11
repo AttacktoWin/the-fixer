@@ -454,6 +454,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/PlayerMeleeAttack.gd"
 }, {
+"base": "Melee",
+"class": "PlayerMeleeBaton",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/Baton.gd"
+}, {
 "base": "Reference",
 "class": "PlayerState",
 "language": "GDScript",
@@ -699,6 +704,7 @@ _global_script_class_icons={
 "PlayerGunShotgun": "",
 "PlayerGunTommy": "",
 "PlayerMelee": "",
+"PlayerMeleeBaton": "",
 "PlayerState": "",
 "PlayerStateDash": "",
 "PlayerStateDead": "",
