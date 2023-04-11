@@ -73,7 +73,7 @@ func _process(_delta):
 	if (is_instance_valid(self.current_dialog_box) && follow_player):
 		var player = get_parent().get_node("World/Level/SortableEntities/Player")
 		if (is_instance_valid(player)):
-			current_dialog_box.offset = MathUtils.from_iso(player.position - Vector2(80, 275))
+			current_dialog_box.offset = MathUtils.from_iso(player.position - Vector2(40, 900))
 		
 func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> void:
 	if (Dialogic.timeline_exists(npc_id + "-" + dialogue_id)):
@@ -82,7 +82,7 @@ func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> vo
 		if (bubble):
 			follow_player = true
 			dialog.follow_viewport_enable = true
-			dialog.scale = Vector2(1, 2)
+			dialog.scale = Vector2(0.75, 1.5)
 		self.current_npc_id = npc_id
 		self.current_dialogue_id = dialogue_id
 		dialog.connect("timeline_end", self, "_timeline_end")
@@ -123,7 +123,7 @@ func _signal_listener(s_name: String):
 			CameraSingleton.shake(0.5)
 		"bubble":
 			self.current_dialog_box.follow_viewport_enable = true
-			self.current_dialog_box.scale = Vector2(1, 2)
+			self.current_dialog_box.scale = Vector2(0.75, 1.5)
 			self.follow_player = true
 		"credits":
 			# Stop hub music and play credits music

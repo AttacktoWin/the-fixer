@@ -3,51 +3,9 @@
 [ext_resource path="res://Scripts/DialogueSystem/classes/DialogueFile.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DialogueSystem/classes/Dialogue.gd" type="Script" id=2]
 
-[sub_resource type="Resource" id=1]
-script = ExtResource( 2 )
-id = "default"
-priority = 1
-bubble = false
-
-[sub_resource type="Resource" id=2]
-script = ExtResource( 2 )
-id = "1-quip1"
-priority = 99
-bubble = false
-
-[sub_resource type="Resource" id=3]
-script = ExtResource( 2 )
-id = "1-pillbugkill"
-priority = 2
-bubble = false
-
-[sub_resource type="Resource" id=4]
-script = ExtResource( 2 )
-id = "1-spyderkill"
-priority = 2
-bubble = false
-
 [sub_resource type="Resource" id=5]
 script = ExtResource( 2 )
 id = "1-beetlekill"
-priority = 2
-bubble = false
-
-[sub_resource type="Resource" id=6]
-script = ExtResource( 2 )
-id = "1-birdkill"
-priority = 2
-bubble = false
-
-[sub_resource type="Resource" id=7]
-script = ExtResource( 2 )
-id = "1-pillbugkill1"
-priority = 2
-bubble = false
-
-[sub_resource type="Resource" id=8]
-script = ExtResource( 2 )
-id = "pre-spyderkill1"
 priority = 2
 bubble = false
 
@@ -57,10 +15,34 @@ id = "1-beetlekill1"
 priority = 2
 bubble = false
 
+[sub_resource type="Resource" id=6]
+script = ExtResource( 2 )
+id = "1-birdkill"
+priority = 2
+bubble = false
+
 [sub_resource type="Resource" id=10]
 script = ExtResource( 2 )
 id = "1-birdkill1"
 priority = 2
+bubble = false
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 2 )
+id = "1-pillbugkill"
+priority = 2
+bubble = false
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 2 )
+id = "1-pillbugkill1"
+priority = 2
+bubble = false
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+id = "1-quip1"
+priority = 99
 bubble = false
 
 [sub_resource type="Resource" id=11]
@@ -73,6 +55,60 @@ bubble = false
 script = ExtResource( 2 )
 id = "1-quip3"
 priority = 99
+bubble = false
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 2 )
+id = "1-spyderkill"
+priority = 2
+bubble = false
+
+[sub_resource type="Resource" id=25]
+script = ExtResource( 2 )
+id = "2-quip1"
+priority = 99
+bubble = false
+
+[sub_resource type="Resource" id=26]
+script = ExtResource( 2 )
+id = "2-quip2"
+priority = 99
+bubble = false
+
+[sub_resource type="Resource" id=27]
+script = ExtResource( 2 )
+id = "2-quip3"
+priority = 99
+bubble = false
+
+[sub_resource type="Resource" id=28]
+script = ExtResource( 2 )
+id = "3-quip1"
+priority = 99
+bubble = false
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+id = "default"
+priority = 1
+bubble = false
+
+[sub_resource type="Resource" id=24]
+script = ExtResource( 2 )
+id = "manifestation-12win"
+priority = 1
+bubble = false
+
+[sub_resource type="Resource" id=22]
+script = ExtResource( 2 )
+id = "manifestation10win"
+priority = 1
+bubble = false
+
+[sub_resource type="Resource" id=23]
+script = ExtResource( 2 )
+id = "manifestation11win"
+priority = 1
 bubble = false
 
 [sub_resource type="Resource" id=13]
@@ -129,46 +165,10 @@ id = "manifestation9win"
 priority = 1
 bubble = false
 
-[sub_resource type="Resource" id=22]
+[sub_resource type="Resource" id=8]
 script = ExtResource( 2 )
-id = "manifestation10win"
-priority = 1
-bubble = false
-
-[sub_resource type="Resource" id=23]
-script = ExtResource( 2 )
-id = "manifestation11win"
-priority = 1
-bubble = false
-
-[sub_resource type="Resource" id=24]
-script = ExtResource( 2 )
-id = "manifestation-12win"
-priority = 1
-bubble = false
-
-[sub_resource type="Resource" id=25]
-script = ExtResource( 2 )
-id = "2-quip1"
-priority = 99
-bubble = false
-
-[sub_resource type="Resource" id=26]
-script = ExtResource( 2 )
-id = "2-quip2"
-priority = 99
-bubble = false
-
-[sub_resource type="Resource" id=27]
-script = ExtResource( 2 )
-id = "2-quip3"
-priority = 99
-bubble = false
-
-[sub_resource type="Resource" id=28]
-script = ExtResource( 2 )
-id = "3-quip1"
-priority = 99
+id = "pre-spyderkill1"
+priority = 2
 bubble = false
 
 [resource]
