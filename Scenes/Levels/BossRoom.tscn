@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Manifestation/manifestation.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/LevelGeneration/Non_Generated.gd" type="Script" id=6]
 [ext_resource path="res://Assets/UI/Vault/vault-ui-boss-bar.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=8]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
 
@@ -178,27 +179,6 @@ outlines = [ PoolVector2Array( 129, 127, 256, 63, 128, 0, 0, 60 ) ]
 10/shapes = [  ]
 10/z_index = 0
 
-[sub_resource type="Shader" id=22]
-code = "shader_type  canvas_item;
-
-uniform vec2 target = vec2(0.5);
-uniform float radius = 0.5;
-
-void fragment(){
-	COLOR = texture(TEXTURE,UV);
-	float dist = abs(distance(target,SCREEN_UV));
-	float strenth = mix(0,1,dist/radius);
-	if(dist<=radius && COLOR.a>0.0){
-		COLOR.a = strenth;
-	}
-}
-"
-
-[sub_resource type="ShaderMaterial" id=23]
-shader = SubResource( 22 )
-shader_param/target = Vector2( 0.5, 0.5 )
-shader_param/radius = 0.164
-
 [sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.992157, 0.847059, 0.219608, 1 )
 border_width_right = 4
@@ -250,7 +230,7 @@ script = ExtResource( 3 )
 
 [node name="Walls" type="TileMap" parent="SortableEntities"]
 unique_name_in_owner = true
-material = SubResource( 23 )
+material = ExtResource( 8 )
 scale = Vector2( 0.5, 0.5 )
 mode = 1
 tile_set = ExtResource( 4 )
