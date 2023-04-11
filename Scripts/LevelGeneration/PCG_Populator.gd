@@ -30,7 +30,9 @@ func construct(_player, _goal, per_room, buffer, info, seed_val):
 
 
 func in_bounds(level, loc):
-	var new_loc = MathUtils.floor_vec2(MathUtils.to_level_vector(loc))
+	var new_loc = MathUtils.floor_vec2(MathUtils.to_level_vector(loc, false))
+	if new_loc.x < 0 or new_loc.y < 0 or new_loc.x >= level.size() or new_loc.y >= level[0].size():
+		return false
 	return level[new_loc.x][new_loc.y] != Constants.TILE_TYPE.VOID
 
 
