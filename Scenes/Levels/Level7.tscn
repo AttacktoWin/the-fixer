@@ -5,22 +5,13 @@
 [ext_resource path="res://Scenes/LevelTransition.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Resources/TileSets/WallTiles.tres" type="TileSet" id=4]
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/LevelGeneration/PCG_DataClasses/PCG_RoomData.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/LevelGeneration/PCG_DataClasses/test2.tres" type="Resource" id=6]
 [ext_resource path="res://Scripts/LevelGeneration/LevelGenerator.gd" type="Script" id=7]
-[ext_resource path="res://Scenes/Levels/Level3.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Levels/Level8.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
-[ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=10]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=13]
 [ext_resource path="res://Resources/Bahnschrift.tres" type="DynamicFont" id=14]
-
-[sub_resource type="Resource" id=7]
-script = ExtResource( 6 )
-map_size = Vector2( 25, 25 )
-min_width = 8
-min_height = 8
-shrink_factor = 3
-corridor_width = 2
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 127, 0, 255, 66, 127, 126, 1, 65, 127, 127 )
@@ -198,11 +189,32 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="Shader" id=22]
+code = "shader_type  canvas_item;
+
+uniform vec2 target = vec2(0.5);
+uniform float radius = 0.5;
+
+void fragment(){
+	COLOR = texture(TEXTURE,UV);
+	float dist = abs(distance(target,SCREEN_UV));
+	float strenth = mix(0,1,dist/radius);
+	if(dist<=radius && COLOR.a>0.0){
+		COLOR.a = strenth;
+	}
+}
+"
+
+[sub_resource type="ShaderMaterial" id=23]
+shader = SubResource( 22 )
+shader_param/target = Vector2( 0.5, 0.5 )
+shader_param/radius = 0.164
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
-vision_alpha = 0.2
-vision_range = 0.5
-enemy_appear_distance = 1024.0
+vision_alpha = 0.8
+vision_range = 0.35
+enemy_appear_distance = 600.0
 spawn_upgrades = true
 
 [node name="LevelMusic" type="Node2D" parent="."]
@@ -218,14 +230,15 @@ stop_on = 2
 script = ExtResource( 7 )
 Exit_path = NodePath("../Transition")
 parent = NodePath("../SortableEntities/Runtime")
-enemies_per_room = 4
+enemies_per_room = 6
 enemy_buffer = 0
-pillbug_spawn_rate = 70
-spyder_spawn_rate = 30
-beetle_spawn_rate = 0
+pillbug_spawn_rate = 25
+spyder_spawn_rate = 35
+beetle_spawn_rate = 25
 ant_spawn_rate = 5
-bird_spawn_rate = 0
-generator_data = SubResource( 7 )
+bird_spawn_rate = 15
+rooms = 4
+generator_data = ExtResource( 6 )
 
 [node name="Floor" type="TileMap" parent="."]
 unique_name_in_owner = true
@@ -274,7 +287,7 @@ __meta__ = {
 
 [node name="Walls" type="TileMap" parent="SortableEntities"]
 unique_name_in_owner = true
-material = ExtResource( 10 )
+material = SubResource( 23 )
 scale = Vector2( 0.5, 0.5 )
 mode = 1
 tile_set = ExtResource( 4 )

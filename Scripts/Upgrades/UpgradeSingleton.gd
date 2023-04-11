@@ -28,7 +28,7 @@ var _class_lookup = {
 	"MaxHealth": [MaxHealthUpgrade, PLENTIFUL, FLAG_NONE, "+ Max Health"],
 	"MultishotChance": [MultishotUpgrade, UNCOMMON, FLAG_NONE, "+ Multishot Chance"],
 	"PierceChance": [PierceChanceUpgrade, UNCOMMON, FLAG_NONE, "+ Pierce Chance"],
-	"Spectral": [SpectralUpgrade, VERY_RARE, FLAG_SINGLE, "Homing"],
+	"Spectral": [SpectralUpgrade, VERY_RARE, FLAG_SINGLE, "Spectral"],
 	"Speed": [SpeedUpgrade, COMMON, FLAG_NONE, "+ Speed"],
 }
 

@@ -16,7 +16,7 @@
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 8 )
-map_size = Vector2( 25, 25 )
+map_size = Vector2( 15, 15 )
 min_width = 6
 min_height = 6
 shrink_factor = 2
@@ -216,6 +216,8 @@ animations = [ {
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
 vision_enabled = false
+vision_alpha = 0.2
+vision_range = 0.6
 enemy_appear_distance = 10000.0
 spawn_upgrades = true
 
@@ -235,10 +237,11 @@ Exit_path = NodePath("../Transition")
 parent = NodePath("../SortableEntities/Runtime")
 enemies_per_room = 3
 enemy_buffer = 1
-pillbug_spawn_rate = 70
-spyder_spawn_rate = 30
+pillbug_spawn_rate = 100
+spyder_spawn_rate = 0
 beetle_spawn_rate = 0
 ant_spawn_rate = 0
+rooms = 2
 generator_data = SubResource( 7 )
 
 [node name="Floor" type="TileMap" parent="."]
