@@ -159,7 +159,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.08, 0.26 ),
+"times": PoolRealArray( 0, 0.08, 0.4 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ true, false, true ]
@@ -174,7 +174,43 @@ tracks/3/keys = {
 "times": PoolRealArray( 0.08, 0.14, 0.26 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 26, 30 ), Vector2( 36, -7.5 ), Vector2( 26, -50 ) ]
+"values": [ Vector2( 32, -60 ), Vector2( 50, -15 ), Vector2( 26, 30 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MeleeHand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.06, 0.16, 0.22, 0.3, 0.44 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 13, -33 ), Vector2( 41, 4 ), Vector2( -11, 26 ), Vector2( -30, 19 ), Vector2( -36, 9 ), Vector2( -39, 3 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("MeleeHand:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.06, 0.16, 0.22, 0.3, 0.44 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ -50.0, 50.0, 190.0, 294.0, 305.0, 305.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("MeleeHand:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -284,6 +320,12 @@ shape = SubResource( 14 )
 material = SubResource( 17 )
 position = Vector2( 0, -55 )
 
+[node name="MeleeHand" type="Node2D" parent="Visual"]
+visible = false
+position = Vector2( -39, 3 )
+rotation = 5.32325
+scale = Vector2( 0.5, 0.5 )
+
 [node name="Arm2" type="Sprite" parent="Visual"]
 position = Vector2( 30, 2 )
 scale = Vector2( 0.5, 0.5 )
@@ -294,7 +336,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 hframes = 10
 vframes = 5
-frame = 20
+frame = 25
 
 [node name="HitBox" type="Area2D" parent="Visual"]
 position = Vector2( 0, 55 )
@@ -302,15 +344,15 @@ collision_layer = 0
 collision_mask = 32
 script = ExtResource( 9 )
 base_speed = 0.0
+base_knockback = 256.0
 allied_class = ExtResource( 12 )
 persistent = true
 die_on_pierce = false
 spectral = true
 camera_shake = 12.0
-knockback_factor = 256.0
 max_pierce = 100000000
 should_forget_entities = true
-entity_forget_time = 0.5
+entity_forget_time = 0.1
 
 [node name="HitCollider" type="CollisionShape2D" parent="Visual/HitBox"]
 position = Vector2( 26, 40 )

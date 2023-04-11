@@ -3,7 +3,7 @@
 class_name WorldWeapon extends WorldPickup
 
 export(PackedScene) var weapon_scene = null
-var weapon_instance: Weapon = null
+var weapon_instance = null
 
 
 func _ready():
@@ -14,7 +14,7 @@ func _ready():
 	set_texture(self.weapon_instance.world_sprite)
 
 
-func set_weapon(weapon: Weapon):
+func set_weapon(weapon):
 	if weapon.get_parent():
 		weapon.get_parent().remove_child(weapon)
 	weapon.set_process(false)
@@ -26,5 +26,8 @@ func on_collected(collector):
 	Wwise.post_event_id(AK.EVENTS.WEAPON_PICKUP_PLAYER, self)
 	self.weapon_instance.set_process(true)
 	self.weapon_instance.set_physics_process(true)
-	collector.set_gun(self.weapon_instance)
+	if weapon_instance is Melee:
+		collector.set_melee(self.weapon_instance)
+	if weapon_instance is PlayerBaseGun:
+		collector.set_gun(self.weapon_instance)
 	self.weapon_instance = null

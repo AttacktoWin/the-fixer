@@ -194,11 +194,13 @@ outlines = [ PoolVector2Array( 129, 127, 256, 63, 128, 0, 0, 60 ) ]
 script/source = "extends Node2D
 
 const BASIC_GUN = preload(\"res://Scenes/Weapons/PlayerPistolScene.tscn\")
+const BASIC_MELEE = preload(\"res://Scenes/Weapons/PlayerBrassKnucklesScene.tscn\")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if not Scene.player.has_gun():
 		Scene.player.set_gun(BASIC_GUN.instance())
+		Scene.player.set_melee(BASIC_MELEE.instance())
 		
 
 "
