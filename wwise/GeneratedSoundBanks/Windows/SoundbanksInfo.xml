@@ -507,7 +507,7 @@
 				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="2649458904">
+		<SoundBank Id="3991942870" Language="SFX" Hash="385807082">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>3991942870.bnk</Path>
@@ -553,6 +553,14 @@
 						<File Id="917152437" Language="SFX">
 							<ShortName>combat\combat_drumsCymbals.wav</ShortName>
 							<Path>SFX\combat\combat_drumsCymbals_9EDFC787.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1522595433" Name="Credits_Music" ObjectPath="\Events\Music\Credits_Music">
+					<IncludedMemoryFiles>
+						<File Id="384412065" Language="SFX">
+							<ShortName>end_credits.wav</ShortName>
+							<Path>SFX\end_credits_9EDFC787.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
