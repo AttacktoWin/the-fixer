@@ -8,8 +8,6 @@
 [ext_resource path="res://Assets/Tiles/Hub/tile0023.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Tiles/Hub/wall0010.png" type="Texture" id=8]
-[ext_resource path="res://Scenes/Levels/Level1.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scripts/Entities/LevelTransition.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=11]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=13]
@@ -23,6 +21,7 @@
 [ext_resource path="res://Assets/Tiles/Hub/tutorial.png" type="Texture" id=21]
 [ext_resource path="res://Assets/Tiles/Hub/bookcase.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Tiles/Hub/enter.png" type="Texture" id=23]
+[ext_resource path="res://Scenes/Interface/Menus/VaultConfirm.tscn" type="PackedScene" id=24]
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends Node2D
@@ -193,9 +192,6 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 34.9045, 10.7536 )
 
 [sub_resource type="StreamTexture" id=3]
 flags = 4
@@ -671,6 +667,25 @@ extents = Vector2( 172.625, 227.185 )
 [sub_resource type="RectangleShape2D" id=100]
 extents = Vector2( 51.8768, 127.009 )
 
+[sub_resource type="GDScript" id=103]
+resource_name = "Vault Enter"
+script/source = "extends Area2D
+
+func _ready() -> void:
+	connect(\"body_entered\", self, \"_on_body_entered\")  # warning-ignore: RETURN_VALUE_DISCARDED
+
+
+func _on_body_entered(body: Node2D):
+	if body is Player:
+		var confirmation = get_node_or_null(\"../../VaultConfirm\")
+		if confirmation:
+			confirmation.visible = true
+			PausingSingleton.pause()
+"
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 34.9045, 14.9154 )
+
 [sub_resource type="Animation" id=102]
 resource_name = "Bob"
 loop = true
@@ -746,19 +761,6 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="EnterDugeon" type="Node2D" parent="."]
-
-[node name="Area2D" type="Area2D" parent="EnterDugeon"]
-position = Vector2( 1796, -173 )
-scale = Vector2( 4, 2 )
-script = ExtResource( 10 )
-to_level = ExtResource( 9 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnterDugeon/Area2D"]
-position = Vector2( -166.943, -250.417 )
-rotation = 0.778417
-shape = SubResource( 5 )
-
 [node name="SortableEntities" type="YSort" parent="."]
 position = Vector2( 17, 0 )
 
@@ -782,7 +784,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 7
+frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
@@ -841,16 +843,28 @@ position = Vector2( -172, -240 )
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]
 
+[node name="Vault-door" type="Sprite" parent="."]
+position = Vector2( 1142, -759 )
+scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 4 )
+
+[node name="EnterDugeon" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="EnterDugeon"]
+position = Vector2( 1796, -173 )
+scale = Vector2( 4, 2 )
+script = SubResource( 103 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnterDugeon/Area2D"]
+position = Vector2( -169.865, -247.454 )
+rotation = 0.778417
+shape = SubResource( 5 )
+
 [node name="Tutorial" type="Sprite" parent="."]
 position = Vector2( 645, -862 )
 scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 21 )
 offset = Vector2( 0, -200 )
-
-[node name="Vault-door" type="Sprite" parent="."]
-position = Vector2( 1142, -759 )
-scale = Vector2( 0.45, 0.45 )
-texture = ExtResource( 4 )
 
 [node name="Enter" type="Sprite" parent="."]
 position = Vector2( 1160, -982.132 )
@@ -861,3 +875,14 @@ texture = ExtResource( 23 )
 root_node = NodePath("../..")
 autoplay = "Bob"
 anims/Bob = SubResource( 102 )
+
+[node name="VaultConfirm" type="CanvasLayer" parent="."]
+layer = 4
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="VaultConfirm"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.196078, 0.196078, 0.12549, 0.192157 )
+
+[node name="Control" parent="VaultConfirm" instance=ExtResource( 24 )]

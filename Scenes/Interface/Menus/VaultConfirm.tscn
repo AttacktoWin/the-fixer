@@ -1,0 +1,123 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/UI/FilmPosterNarrow-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Assets/UI/pause-box.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/Vault/FilmPosterNarrow-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/UI/Buttons/button-empty-hover.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/Buttons/button-enter-hover.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/Buttons/button-empty.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/Buttons/button-enter.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/Levels/Level1.tscn" type="PackedScene" id=8]
+
+[sub_resource type="DynamicFont" id=1]
+size = 157
+font_data = ExtResource( 1 )
+
+[sub_resource type="GDScript" id=3]
+resource_name = "Vault Enter"
+script/source = "extends TextureButton
+# Author: Marcus
+
+export(PackedScene) var to_level
+export var long_load: bool = true
+export var transfer_player: bool = true
+export var fade_time: float = 0.5
+
+signal on_displayed
+signal on_clear_display
+
+func _on_click():
+	PausingSingleton.unpause()
+	var canvas = get_node(\"../../..\")
+	canvas.visible = false
+	self.call_deferred(\"_transition\")
+
+func _transition():
+	var inst = to_level.instance()
+	TransitionHelper.transition(inst, long_load, transfer_player, fade_time)
+"
+
+[sub_resource type="GDScript" id=4]
+resource_name = "Later"
+script/source = "extends TextureButton
+
+
+func _on_click():
+	PausingSingleton.unpause()
+	var canvas = get_node(\"../../..\")
+	canvas.visible = false
+"
+
+[sub_resource type="DynamicFont" id=2]
+size = 103
+font_data = ExtResource( 3 )
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Pause" type="TextureRect" parent="."]
+margin_left = 519.0
+margin_top = 15.0
+margin_right = 2439.0
+margin_bottom = 1095.0
+texture = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 780.0
+margin_top = 117.0
+margin_right = 1135.0
+margin_bottom = 298.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 694.0
+margin_top = 187.0
+margin_right = 1239.0
+margin_bottom = 506.0
+custom_colors/font_color = Color( 1, 0.121569, 0.172549, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Are you ready to enter?"
+align = 1
+autowrap = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = 27.0
+margin_right = 250.0
+margin_bottom = 333.0
+
+[node name="Enter" type="TextureButton" parent="VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 150.0
+texture_normal = ExtResource( 7 )
+texture_hover = ExtResource( 5 )
+script = SubResource( 3 )
+to_level = ExtResource( 8 )
+
+[node name="Exit" type="TextureButton" parent="VBoxContainer"]
+margin_top = 154.0
+margin_right = 500.0
+margin_bottom = 304.0
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 4 )
+script = SubResource( 4 )
+
+[node name="Label" type="Label" parent="VBoxContainer/Exit"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -75.0
+margin_top = -55.0
+margin_right = 77.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 2 )
+text = "Not Yet"
+
+[connection signal="pressed" from="VBoxContainer/Enter" to="VBoxContainer/Enter" method="_on_click"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="VBoxContainer/Exit" method="_on_click"]

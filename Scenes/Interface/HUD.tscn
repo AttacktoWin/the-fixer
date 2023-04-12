@@ -50,9 +50,9 @@ script/source = "extends Label
 func _process(delta):
 	self.text = str(AI.get_all_enemies().size())
 	if self.text == \"0\":
-		get_parent().get_node(\"EnemyIcon\").frame = 1
+		get_node(\"../../EnemyIcon\").frame = 1
 	else:
-		get_parent().get_node(\"EnemyIcon\").frame = 0
+		get_node(\"../../EnemyIcon\").frame = 0
 "
 
 [node name="HUD" type="Control"]
@@ -121,20 +121,6 @@ align = 2
 position = Vector2( 73, 88 )
 frames = SubResource( 15 )
 
-[node name="EnemyCount" type="Label" parent="."]
-anchor_left = 0.835
-anchor_top = 0.883
-anchor_right = 0.847
-anchor_bottom = 0.986
-margin_left = -1465.2
-margin_top = -943.64
-margin_right = -1358.24
-margin_bottom = -903.88
-theme = SubResource( 13 )
-custom_fonts/font = SubResource( 14 )
-text = "10"
-script = SubResource( 16 )
-
 [node name="CurrentGun" type="TextureRect" parent="."]
 margin_left = 1771.0
 margin_top = 934.0
@@ -148,3 +134,25 @@ margin_top = 781.0
 margin_right = 1899.0
 margin_bottom = 909.0
 rect_scale = Vector2( 0.9, 0.9 )
+
+[node name="Counter" type="HBoxContainer" parent="."]
+margin_left = 136.0
+margin_top = 5.0
+margin_right = 752.0
+margin_bottom = 156.0
+
+[node name="Counter" type="Label" parent="Counter"]
+margin_right = 555.0
+margin_bottom = 151.0
+theme = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
+text = "Enemies Remaining:"
+
+[node name="Counter2" type="Label" parent="Counter"]
+margin_left = 559.0
+margin_right = 616.0
+margin_bottom = 151.0
+theme = SubResource( 13 )
+custom_fonts/font = SubResource( 14 )
+text = "10"
+script = SubResource( 16 )

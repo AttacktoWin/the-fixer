@@ -257,9 +257,10 @@ func _process(_delta):
 				enemy.queue_free()
 		if Input.is_action_just_pressed("ui_page_up"):
 			#apply_upgrades([HomingUpgrade.new()])
-			var d = DualUpgrade.new()
-			Scene.runtime.add_child(d)
-			d.global_position = self.global_position
+			self.kill()
+#			var d = DualUpgrade.new()
+#			Scene.runtime.add_child(d)
+#			d.global_position = self.global_position
 
 
 func _unhandled_input(event: InputEvent):
