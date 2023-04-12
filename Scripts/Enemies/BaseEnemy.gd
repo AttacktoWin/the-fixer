@@ -234,12 +234,12 @@ func _get_base_alpha() -> float:
 
 
 func knockback(vel: Vector2):
-	self.changev(LivingEntityVariable.VELOCITY, vel / getv(LivingEntityVariable.WEIGHT))
+	changev(LivingEntityVariable.VELOCITY, vel / getv(LivingEntityVariable.WEIGHT))
 
 
 func update_health_bar():
-	var bar = self.get_node("ProgressBar")
-	bar.value = ((self.getv(LivingEntityVariable.HEALTH) / getv(LivingEntityVariable.MAX_HEALTH)) * 100)
+	var bar = get_node("HealthContainer/ProgressBar")
+	bar.value = ((getv(LivingEntityVariable.HEALTH) / getv(LivingEntityVariable.MAX_HEALTH)) * 100)
 	if bar.value == 0:
 		bar.modulate.a = 0
 
@@ -251,8 +251,8 @@ func _on_take_damage(info: AttackInfo):
 		(
 			direction
 			* info.knockback_factor
-			* self.getv(LivingEntityVariable.KNOCKBACK_FACTOR)
-			/ self.getv(LivingEntityVariable.WEIGHT)
+			* getv(LivingEntityVariable.KNOCKBACK_FACTOR)
+			/ getv(LivingEntityVariable.WEIGHT)
 		)
 	)
 

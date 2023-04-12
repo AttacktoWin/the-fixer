@@ -561,7 +561,10 @@ anims/IDLE = SubResource( 7 )
 anims/PATROL = SubResource( 28 )
 anims/RESET = SubResource( 60 )
 
-[node name="ProgressBar" parent="." instance=ExtResource( 4 )]
+[node name="HealthContainer" type="Node2D" parent="."]
+z_index = 1
+
+[node name="ProgressBar" parent="HealthContainer" instance=ExtResource( 4 )]
 margin_left = -23.0
 margin_top = -95.0
 margin_right = 17.0
