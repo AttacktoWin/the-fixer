@@ -1,0 +1,35 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Magic/Effects/ScreenTex/HurtVFX.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=18]
+code = "shader_type canvas_item;
+uniform float modulate = 0;
+
+uniform sampler2D hurt_tex;
+uniform vec4 fuzz_color:hint_color;
+uniform float radius;
+uniform float a;
+uniform float b;
+
+void fragment(){
+	vec4 hurt = texture(hurt_tex,UV);
+
+	COLOR = fuzz_color;
+	float dist = abs(distance(vec2(0.5),SCREEN_UV));
+	float strength = mix(0,1,1.0-smoothstep(dist,a,b));
+	if(dist<=radius && COLOR.a>0.0){
+		COLOR.a = strength;
+	}
+	COLOR = mix(COLOR,hurt,hurt.a);
+	COLOR = mix(COLOR,vec4(0),vec4(modulate));
+}"
+
+[resource]
+shader = SubResource( 18 )
+shader_param/modulate = 0.214
+shader_param/fuzz_color = Color( 1, 0.121569, 0.172549, 1 )
+shader_param/radius = 0.767
+shader_param/a = 0.767
+shader_param/b = 0.708
+shader_param/hurt_tex = ExtResource( 1 )

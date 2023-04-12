@@ -116,5 +116,6 @@ emitting = false
 amount = 1
 lifetime = 0.3
 one_shot = true
+local_coords = false
 process_material = SubResource( 3 )
 texture = ExtResource( 1 )
