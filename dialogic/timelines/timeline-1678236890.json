@@ -53,7 +53,7 @@
 		{
 			"call_node": {
 				"arguments": [
-					"CRASH BEETLE"
+					"PHONE RING"
 				],
 				"method_name": "play_sound",
 				"target_node_path": "DialogueSystem"
@@ -63,7 +63,7 @@
 		{
 			"event_id": "dialogic_023",
 			"hide_dialogbox": true,
-			"wait_seconds": 0.2
+			"wait_seconds": 0.6
 		},
 		{
 			"character": "character-1675203357.json",

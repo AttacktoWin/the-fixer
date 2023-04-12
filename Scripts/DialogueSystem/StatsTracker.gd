@@ -27,7 +27,7 @@ func add_manifestation_fight():
 
 func add_death(cause: String = ""):
 	self.deaths += 1
-	if (cause && randi() % 100 <= 33):
+	if (cause && randi() % 100 <= 40):
 		DialogueSystem.event_viewed("1-" + cause + "kill")
 	Dialogic.set_variable("deaths", self.deaths)
 
