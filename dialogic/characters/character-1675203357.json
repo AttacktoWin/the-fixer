@@ -6,8 +6,8 @@
 	"id": "character-1675203357.json",
 	"mirror_portraits": false,
 	"name": "The Fixer",
-	"nickname": "",
-	"nickname_bool": false,
+	"nickname": "Val",
+	"nickname_bool": true,
 	"offset_x": 0,
 	"offset_y": 0,
 	"portraits": [
