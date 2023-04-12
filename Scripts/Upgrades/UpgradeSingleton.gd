@@ -15,21 +15,22 @@ const FLAG_SINGLE = 1
 const UPGRADE_CLASS = 0
 const UPGRADE_CHANCE = 1
 const UPGRADE_FLAG = 2
-const UPGRADE_DESCRIPTION = 3
+const UPGRADE_TEX_IDX = 3
+const UPGRADE_DESCRIPTION = 4
 
 var _class_lookup = {
-	"AmmoRefund": [RefundChanceUpgrade, COMMON, FLAG_NONE, "+ Refund Chance"],
-	#"AttackSize": [AttackSizeUpgrade, COMMON, FLAG_NONE, "+ Attack Size"],
-	"Damage": [DamageUpgrade, COMMON, FLAG_NONE, "+ Damage"],
-	"Healing": [HealingUpgrade, PLENTIFUL, FLAG_NONE, "+ Bandage Healing"],
-	"Homing": [HomingUpgrade, VERY_RARE, FLAG_SINGLE, "Homing"],
-	"Knockback": [KnockbackUpgrade, COMMON, FLAG_NONE, "+ Knockback"],
-	"MaxAmmo": [MaxAmmoUpgrade, PLENTIFUL, FLAG_NONE, "+ Max Ammo"],
-	"MaxHealth": [MaxHealthUpgrade, PLENTIFUL, FLAG_NONE, "+ Max Health"],
-	"MultishotChance": [MultishotUpgrade, UNCOMMON, FLAG_NONE, "+ Multishot Chance"],
-	"PierceChance": [PierceChanceUpgrade, UNCOMMON, FLAG_NONE, "+ Pierce Chance"],
-	"Spectral": [SpectralUpgrade, VERY_RARE, FLAG_SINGLE, "Spectral Bullets"],
-	"Speed": [SpeedUpgrade, COMMON, FLAG_NONE, "+ Speed"],
+	"AmmoRefund": [RefundChanceUpgrade, COMMON, FLAG_NONE, 3, "+ Refund Chance"],
+	"AttackSpeed": [AttackSpeedUpgrade, COMMON, FLAG_NONE, 0, "+ Attack Speed"],
+	"Damage": [DamageUpgrade, COMMON, FLAG_NONE, 1, "+ Damage"],
+	"Healing": [HealingUpgrade, PLENTIFUL, FLAG_NONE, 2, "+ Bandage Healing"],
+	"Homing": [HomingUpgrade, VERY_RARE, FLAG_SINGLE, 4, "Homing"],
+	"Knockback": [KnockbackUpgrade, COMMON, FLAG_NONE, 5, "+ Knockback"],
+	"MaxAmmo": [MaxAmmoUpgrade, PLENTIFUL, FLAG_NONE, 6, "+ Max Ammo"],
+	"MaxHealth": [MaxHealthUpgrade, PLENTIFUL, FLAG_NONE, 8, "+ Max Health"],
+	"MultishotChance": [MultishotUpgrade, UNCOMMON, FLAG_NONE, 9, "+ Multishot Chance"],
+	"PierceChance": [PierceChanceUpgrade, UNCOMMON, FLAG_NONE, 10, "+ Pierce Chance"],
+	"Spectral": [SpectralUpgrade, VERY_RARE, FLAG_SINGLE, 7, "Spectral Bullets"],
+	"Speed": [SpeedUpgrade, COMMON, FLAG_NONE, 11, "+ Speed"],
 }
 
 var _chances = []  # [norm_chance, class_name]
@@ -56,6 +57,10 @@ func name_to_upgrade(name: String) -> GDScript:
 
 func get_upgrade_description(name: String) -> String:
 	return self._class_lookup[name][UPGRADE_DESCRIPTION]
+
+
+func get_upgrade_tex_frame(name: String) -> int:
+	return self._class_lookup[name][UPGRADE_TEX_IDX]
 
 
 func pick_random_upgrade():
