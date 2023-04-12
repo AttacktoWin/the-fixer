@@ -23,6 +23,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3252579989	Attack_Pillbug			\Default Work Unit\Enemy Actions\Pillbug Actions\Attack_Pillbug	
 	3277391769	Notice_Beetle			\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle	
 	3344761002	Ammo_Pickup_Player			\Default Work Unit\Player Actions\Ammo_Pickup_Player	
+	3401439988	Phone_Ring			\Default Work Unit\Environmental Actions\Phone_Ring	
 	3790708028	Door_Unlock			\Default Work Unit\Environmental Actions\Door_Unlock	
 	4149800146	Empty_Pistol_Player			\Default Work Unit\Player Actions\Empty_Pistol_Player	
 	4275276242	Attack_Manifestation			\Default Work Unit\Enemy Actions\Manifestation Actions\Attack_Manifestation	
@@ -44,6 +45,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	313999180	Ammo_Pickup_Player-008	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-008_A9EDB648.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-008		44056
 	380485017	Dodge_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Dodge_Player_0FD3D937.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Dodge_Player		85320
 	384635967	Ammo_Pickup_Player-003	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-003_9BB6A447.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-003		57332
+	419100912	Phone_Ring	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\phone_ring_6ABAC244.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental Sounds\Phone_Ring		199760
 	448529706	Summon_Manny	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\summon_manny_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Manny\Summon_Manny		155676
 	476551547	Spyder_Attack	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\spyder attack_9EEF2BFA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Spyder\Spyder_Attack		102884
 	518315914	Empty_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Empty_Pistol_Player_6C16FD96.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Empty_Pistol_Player		35756

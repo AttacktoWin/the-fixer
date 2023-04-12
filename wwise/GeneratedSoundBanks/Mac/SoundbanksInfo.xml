@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="English(US)" Hash="2131615596">
+		<SoundBank Id="89505537" Language="English(US)" Hash="511278722">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>English(US)\89505537.bnk</Path>
@@ -218,6 +218,14 @@
 						<File Id="54709647" Language="SFX">
 							<ShortName>Notice_Enemy.wav</ShortName>
 							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3401439988" Name="Phone_Ring" ObjectPath="\Events\Default Work Unit\Environmental Actions\Phone_Ring">
+					<IncludedMemoryFiles>
+						<File Id="419100912" Language="SFX">
+							<ShortName>phone_ring.wav</ShortName>
+							<Path>SFX\phone_ring_6ABAC244.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
