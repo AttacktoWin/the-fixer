@@ -162,6 +162,9 @@ func update_ammo_counter(remove: bool = false):
 			+ String(self._gun.get_max_ammo())
 		)
 
+	if not self._gun:
+		return
+
 	if self._gun.get_ammo_count() == 0:
 		ammo_count.modulate = Constants.COLOR.RED
 	else:
@@ -221,6 +224,9 @@ func get_all_upgrade_handlers() -> Array:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	_update_reload_progress()
+	var t = self.get_global_transform_with_canvas().origin / get_viewport().get_visible_rect().size
+	t.y = 1-t.y
+	Scene.wall_material.set_shader_param("target", t)
 	if OS.is_debug_build():
 		if Input.is_action_just_pressed("ui_focus_next"):
 			var enemy = load("res://Scenes/Enemies/E_Umbrella.tscn").instance()
@@ -250,7 +256,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_end"):
 			self.add_ammo(900)  # warning-ignore: return_value_discarded
 		if Input.is_action_just_pressed("ui_home"):
-			var scene = load("res://Scenes/Levels/Level3.tscn").instance()
+			var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
 			TransitionHelper.transition(scene, true, true, 0.01)
 		if Input.is_action_just_pressed("ui_page_down"):
 			for enemy in AI.get_all_enemies():

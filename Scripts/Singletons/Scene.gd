@@ -13,6 +13,7 @@ var level setget , _get_level
 var level_node setget , _get_level_node
 var player setget , _get_player
 var exit setget , _get_exit
+var wall_material setget , _get_wall_material
 
 var _camera = null
 var _runtime = null
@@ -23,13 +24,16 @@ var _level = null
 var _level_node = null
 var _player = null
 var _exit = null
+var _wall_material = null
 
 signal transition_start
 signal transition_complete
 signal world_updated
 
+
 func _ready():
 	Wwise.register_listener(self)
+
 
 func _reload_variables(new_level: Level):
 	self._camera = self._root.get_node("MainCamera")
@@ -48,6 +52,9 @@ func _reload_variables(new_level: Level):
 		if new_level == null
 		else new_level.get_node_or_null("Transition/Hitbox")
 	)
+	self._wall_material = self._level_node.get_node_or_null("%Walls")
+	if self._wall_material:
+		self._wall_material = self._wall_material.material
 	if self._player == null:
 		self._player = self._root.get_node_or_null("Level/SortableEntities/Player")
 	if self._level != null:
@@ -96,6 +103,10 @@ func _get_player():
 
 func _get_exit():
 	return self._exit
+
+
+func _get_wall_material():
+	return self._wall_material
 
 
 func get_tree() -> SceneTree:
