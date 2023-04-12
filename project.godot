@@ -776,6 +776,7 @@ WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
 Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
 TransitionHelper="*res://Scripts/Singletons/TransitionHelper.gd"
 UpgradeSingleton="*res://Scripts/Upgrades/UpgradeSingleton.gd"
+StatsSingleton="*res://Scripts/Singletons/StatsSingleton.gd"
 
 [debug]
 
