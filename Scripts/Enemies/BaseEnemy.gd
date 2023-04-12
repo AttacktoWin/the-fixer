@@ -275,6 +275,10 @@ func _draw():
 		var path = self.get_nav_path()
 		path.draw(self)
 
+func _check_death(info: AttackInfo = null) -> bool:
+	if getv(LivingEntityVariable.HEALTH) / getv(LivingEntityVariable.MAX_HEALTH) * 100.0 < 2.7:
+		setv(LivingEntityVariable.HEALTH, 0)
+	return ._check_death(info)
 
 func _on_death(info: AttackInfo):
 	if info:
