@@ -2,7 +2,7 @@
 
 class_name HealingUpgrade extends Upgrade
 
-const HEALING_INCREASE = 0.2
+const HEALING_INCREASE = 0.1
 
 
 func apply(entity, _type: int):

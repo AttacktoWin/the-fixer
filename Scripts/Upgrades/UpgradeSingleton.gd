@@ -19,16 +19,16 @@ const UPGRADE_DESCRIPTION = 3
 
 var _class_lookup = {
 	"AmmoRefund": [RefundChanceUpgrade, COMMON, FLAG_NONE, "+ Refund Chance"],
-	"AttackSize": [AttackSizeUpgrade, COMMON, FLAG_NONE, "+ Attack Size"],
+	#"AttackSize": [AttackSizeUpgrade, COMMON, FLAG_NONE, "+ Attack Size"],
 	"Damage": [DamageUpgrade, COMMON, FLAG_NONE, "+ Damage"],
-	"Healing": [HealingUpgrade, PLENTIFUL, FLAG_NONE, "+ Healing"],
+	"Healing": [HealingUpgrade, PLENTIFUL, FLAG_NONE, "+ Bandage Healing"],
 	"Homing": [HomingUpgrade, VERY_RARE, FLAG_SINGLE, "Homing"],
 	"Knockback": [KnockbackUpgrade, COMMON, FLAG_NONE, "+ Knockback"],
 	"MaxAmmo": [MaxAmmoUpgrade, PLENTIFUL, FLAG_NONE, "+ Max Ammo"],
 	"MaxHealth": [MaxHealthUpgrade, PLENTIFUL, FLAG_NONE, "+ Max Health"],
 	"MultishotChance": [MultishotUpgrade, UNCOMMON, FLAG_NONE, "+ Multishot Chance"],
 	"PierceChance": [PierceChanceUpgrade, UNCOMMON, FLAG_NONE, "+ Pierce Chance"],
-	"Spectral": [SpectralUpgrade, VERY_RARE, FLAG_SINGLE, "Spectral"],
+	"Spectral": [SpectralUpgrade, VERY_RARE, FLAG_SINGLE, "Spectral Bullets"],
 	"Speed": [SpeedUpgrade, COMMON, FLAG_NONE, "+ Speed"],
 }
 

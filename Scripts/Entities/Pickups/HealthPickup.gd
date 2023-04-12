@@ -11,7 +11,8 @@ func _init(healing: int = DEFAULT_HEALING):
 	self._texture = preload("res://Assets/Items/bandaid.png")
 	if amount == DEFAULT_HEALING:
 		self.amount = healing
-	self.pickup_distance = 64
+	self.pickup_distance = 128
+	self.pickup_height = 128
 
 
 func collection_check(collector: LivingEntity):

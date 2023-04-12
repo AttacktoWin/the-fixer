@@ -2,7 +2,7 @@
 
 class_name AttackSizeUpgrade extends Upgrade
 
-const SIZE_ADD = 0.4
+const SIZE_ADD = 1
 
 
 func apply(entity, type: int):

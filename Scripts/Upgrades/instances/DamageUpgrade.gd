@@ -2,7 +2,7 @@
 
 class_name DamageUpgrade extends Upgrade
 
-const DAMAGE_MULTIPLIER = 0.2
+const DAMAGE_MULTIPLIER = 0.1
 
 
 func apply(entity, type: int):

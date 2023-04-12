@@ -8,7 +8,7 @@
 script = ExtResource( 3 )
 visual_scene = ExtResource( 2 )
 world_sprite = ExtResource( 1 )
-damage_override = 25.0
+damage_override = 40.0
 knockback_override = 1024.0
 hitbox_size_override = 1.2
 attack_speed = 0.85

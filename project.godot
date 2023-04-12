@@ -244,7 +244,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Enemies/Goomba/GoombaStateAttack.gd"
 }, {
-"base": "Reference",
+"base": "Upgrade",
 "class": "HealingUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/instances/HealingUpgrade.gd"
@@ -344,7 +344,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/instances/MaxAmmoUpgrade.gd"
 }, {
-"base": "Reference",
+"base": "Upgrade",
 "class": "MaxHealthUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/instances/MaxHealthUpgrade.gd"
@@ -494,7 +494,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Player/PlayerStateMelee.gd"
 }, {
-"base": "Reference",
+"base": "Upgrade",
 "class": "RefundChanceUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/instances/AmmoRefundUpgrade.gd"
@@ -514,12 +514,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Utils/SmoothProgress.gd"
 }, {
-"base": "Reference",
+"base": "Upgrade",
 "class": "SpectralUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/instances/SpectralUpgrade.gd"
 }, {
-"base": "Reference",
+"base": "Upgrade",
 "class": "SpeedUpgrade",
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/instances/SpeedUpgrade.gd"
