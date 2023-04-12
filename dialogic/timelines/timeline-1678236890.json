@@ -46,14 +46,24 @@
 			"z_index": 0
 		},
 		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 0.3
+		},
+		{
 			"call_node": {
 				"arguments": [
-					"PHONE RING"
+					"CRASH BEETLE"
 				],
 				"method_name": "play_sound",
 				"target_node_path": "DialogueSystem"
 			},
 			"event_id": "dialogic_042"
+		},
+		{
+			"event_id": "dialogic_023",
+			"hide_dialogbox": true,
+			"wait_seconds": 0.2
 		},
 		{
 			"character": "character-1675203357.json",
