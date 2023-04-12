@@ -159,11 +159,11 @@ func _signal_listener(s_name: String):
 			self.current_dialog_box.scale = Vector2(1, 2)
 			self.follow_player = true
 		"credits":
-			# Stop hub music and play credits music
-			pass
+			Wwise.stop_event(AK.EVENTS.HUB_MUSIC, 0.5, AkUtils.AkCurveInterpolation.LINEAR)
+			Wwise.post_event_id(AK.EVENTS.CREDITS_MUSIC, self)
 		"stop_credits":
-			# Stop credits music and start hub music
-			pass
+			Wwise.stop_event(AK.EVENTS.CREDITS_MUSIC, 2, AkUtils.AkCurveInterpolation.LINEAR)
+			Wwise.post_event_id(AK.EVENTS.HUB_MUSIC, self)
 
 
 func play_sound(sound_id: String):
