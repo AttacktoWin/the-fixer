@@ -269,7 +269,6 @@ unload_on = 2
 script = SubResource( 15 )
 ui_enabled = false
 vision_enabled = false
-spawn_upgrades = null
 
 [node name="MainCamera" type="Camera2D" parent="."]
 position = Vector2( -6.10352e-05, 0 )
@@ -310,12 +309,12 @@ mouse_filter = 2
 script = SubResource( 11 )
 
 [node name="FlashFeedback" type="ColorRect" parent="UILayer/UI"]
-visible = false
 material = SubResource( 19 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="RoarVFX" type="TextureRect" parent="UILayer/UI"]
+visible = false
 material = SubResource( 17 )
 margin_right = 1920.0
 margin_bottom = 1080.0
