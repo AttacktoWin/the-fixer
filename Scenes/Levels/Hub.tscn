@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Assets/Tiles/Hub/hub-wall.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -665,7 +665,19 @@ radius = 34.0596
 extents = Vector2( 172.625, 227.185 )
 
 [sub_resource type="RectangleShape2D" id=100]
-extents = Vector2( 51.8768, 127.009 )
+extents = Vector2( 87.6539, 127.009 )
+
+[sub_resource type="GDScript" id=104]
+resource_name = "Upgrades"
+script/source = "extends Area2D
+
+func _on_Area_body_entered(body):
+	if body is Player:
+		print(\"hi\")
+"
+
+[sub_resource type="RectangleShape2D" id=105]
+extents = Vector2( 160.997, 180.674 )
 
 [sub_resource type="GDScript" id=103]
 resource_name = "Vault Enter"
@@ -677,14 +689,15 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D):
 	if body is Player:
-		var confirmation = get_node_or_null(\"../../VaultConfirm\")
+		var confirmation = get_node_or_null(\"../../VaultConfirm/Confirm\")
 		if confirmation:
 			confirmation.visible = true
 			PausingSingleton.pause()
+			Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.YES)
 "
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 34.9045, 14.9154 )
+extents = Vector2( 34.9045, 13.6794 )
 
 [sub_resource type="Animation" id=102]
 resource_name = "Bob"
@@ -784,7 +797,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 1
+frame = 6
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
@@ -838,6 +851,16 @@ rotation = 0.785398
 scale = Vector2( 0.790569, 0.790569 )
 shape = SubResource( 100 )
 
+[node name="Area" type="Area2D" parent="SortableEntities/Vending"]
+scale = Vector2( 1, 0.5 )
+script = SubResource( 104 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SortableEntities/Vending/Area"]
+position = Vector2( 5.99998, 74.0001 )
+rotation = 0.785398
+scale = Vector2( 0.790569, 0.790569 )
+shape = SubResource( 105 )
+
 [node name="Player" parent="SortableEntities" instance=ExtResource( 2 )]
 position = Vector2( -172, -240 )
 
@@ -856,7 +879,7 @@ scale = Vector2( 4, 2 )
 script = SubResource( 103 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnterDugeon/Area2D"]
-position = Vector2( -169.865, -247.454 )
+position = Vector2( -168.997, -248.334 )
 rotation = 0.778417
 shape = SubResource( 5 )
 
@@ -867,7 +890,7 @@ texture = ExtResource( 21 )
 offset = Vector2( 0, -200 )
 
 [node name="Enter" type="Sprite" parent="."]
-position = Vector2( 1160, -982.132 )
+position = Vector2( 1146, -923 )
 scale = Vector2( 0.464844, 0.464844 )
 texture = ExtResource( 23 )
 
@@ -878,11 +901,8 @@ anims/Bob = SubResource( 102 )
 
 [node name="VaultConfirm" type="CanvasLayer" parent="."]
 layer = 4
+
+[node name="Confirm" parent="VaultConfirm" instance=ExtResource( 24 )]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="VaultConfirm"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.196078, 0.196078, 0.12549, 0.192157 )
-
-[node name="Control" parent="VaultConfirm" instance=ExtResource( 24 )]
+[connection signal="body_entered" from="SortableEntities/Vending/Area" to="SortableEntities/Vending/Area" method="_on_Area_body_entered"]

@@ -28,8 +28,9 @@ signal on_clear_display
 
 func _on_click():
 	PausingSingleton.unpause()
-	var canvas = get_node(\"../../..\")
+	var canvas = get_node(\"../..\")
 	canvas.visible = false
+	Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
 	self.call_deferred(\"_transition\")
 
 func _transition():
@@ -43,8 +44,9 @@ script/source = "extends TextureButton
 
 
 func _on_click():
+	Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
 	PausingSingleton.unpause()
-	var canvas = get_node(\"../../..\")
+	var canvas = get_node(\"../..\")
 	canvas.visible = false
 "
 
@@ -55,6 +57,11 @@ font_data = ExtResource( 3 )
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.196078, 0.196078, 0.12549, 0.192157 )
 
 [node name="Pause" type="TextureRect" parent="."]
 margin_left = 519.0
