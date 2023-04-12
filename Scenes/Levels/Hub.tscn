@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Assets/Tiles/Hub/hub-wall.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Resources/Bahnschrift.tres" type="DynamicFont" id=20]
 [ext_resource path="res://Assets/Tiles/Hub/tutorial.png" type="Texture" id=21]
 [ext_resource path="res://Assets/Tiles/Hub/bookcase.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Tiles/Hub/enter.png" type="Texture" id=23]
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends Node2D
@@ -670,6 +671,22 @@ extents = Vector2( 172.625, 227.185 )
 [sub_resource type="RectangleShape2D" id=100]
 extents = Vector2( 51.8768, 127.009 )
 
+[sub_resource type="Animation" id=102]
+resource_name = "Bob"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Enter:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1160, -987 ), Vector2( 1160, -975 ), Vector2( 1160, -987 ) ]
+}
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 11 )
 ui_enabled = false
@@ -765,7 +782,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 5
+frame = 7
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
@@ -834,3 +851,13 @@ offset = Vector2( 0, -200 )
 position = Vector2( 1142, -759 )
 scale = Vector2( 0.45, 0.45 )
 texture = ExtResource( 4 )
+
+[node name="Enter" type="Sprite" parent="."]
+position = Vector2( 1160, -982.132 )
+scale = Vector2( 0.464844, 0.464844 )
+texture = ExtResource( 23 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enter"]
+root_node = NodePath("../..")
+autoplay = "Bob"
+anims/Bob = SubResource( 102 )
