@@ -278,6 +278,7 @@ func _draw():
 func _check_death(info: AttackInfo = null) -> bool:
 	if getv(LivingEntityVariable.HEALTH) / getv(LivingEntityVariable.MAX_HEALTH) * 100.0 < 2.7:
 		setv(LivingEntityVariable.HEALTH, 0)
+		update_health_bar()
 	return ._check_death(info)
 
 func _on_death(info: AttackInfo):
