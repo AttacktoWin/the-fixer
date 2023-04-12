@@ -1,3 +1,4 @@
+extends Node
 
 var melee_damage_upgrades: int = 0
 var ranged_damage_upgrades: int = 0
