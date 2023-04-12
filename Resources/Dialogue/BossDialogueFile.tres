@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=32 format=2]
+[gd_resource type="Resource" load_steps=33 format=2]
 
 [ext_resource path="res://Scripts/DialogueSystem/classes/DialogueFile.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DialogueSystem/classes/Dialogue.gd" type="Script" id=2]
@@ -7,198 +7,197 @@
 script = ExtResource( 2 )
 id = "default"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 2 )
 id = "1-quip1"
 priority = 99
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 2 )
 id = "1-pillbugkill"
 priority = 2
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 2 )
 id = "1-spyderkill"
 priority = 2
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=5]
 script = ExtResource( 2 )
 id = "1-beetlekill"
 priority = 2
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=6]
 script = ExtResource( 2 )
 id = "1-birdkill"
 priority = 2
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 2 )
 id = "1-pillbugkill1"
 priority = 2
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 2 )
 id = "pre-spyderkill1"
 priority = 2
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=9]
 script = ExtResource( 2 )
 id = "1-beetlekill1"
 priority = 2
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=10]
 script = ExtResource( 2 )
 id = "1-birdkill1"
 priority = 2
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=11]
 script = ExtResource( 2 )
 id = "1-quip2"
 priority = 99
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=12]
 script = ExtResource( 2 )
 id = "1-quip3"
 priority = 99
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=13]
 script = ExtResource( 2 )
 id = "manifestation1win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=14]
 script = ExtResource( 2 )
 id = "manifestation2win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=15]
 script = ExtResource( 2 )
 id = "manifestation3win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=16]
 script = ExtResource( 2 )
 id = "manifestation4win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=17]
 script = ExtResource( 2 )
 id = "manifestation5win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=18]
 script = ExtResource( 2 )
 id = "manifestation6win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=19]
 script = ExtResource( 2 )
 id = "manifestation7win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=20]
 script = ExtResource( 2 )
 id = "manifestation8win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=21]
 script = ExtResource( 2 )
 id = "manifestation9win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=22]
 script = ExtResource( 2 )
 id = "manifestation10win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=23]
 script = ExtResource( 2 )
 id = "manifestation11win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=24]
 script = ExtResource( 2 )
 id = "manifestation-12win"
 priority = 1
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=25]
 script = ExtResource( 2 )
 id = "2-quip1"
 priority = 99
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=26]
 script = ExtResource( 2 )
 id = "2-quip2"
 priority = 99
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=27]
 script = ExtResource( 2 )
 id = "2-quip3"
 priority = 99
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=28]
 script = ExtResource( 2 )
 id = "3-quip1"
 priority = 99
-bubble = false
+bubble = false   
 
 [sub_resource type="Resource" id=29]
 script = ExtResource( 2 )
 id = "3-quipvending"
 priority = 99
-bubble = false
+bubble = false   
+
+[sub_resource type="Resource" id=30]
+script = ExtResource( 2 )
+id = "post-quip1"
+priority = 99
+bubble = false   
 
 [resource]
 script = ExtResource( 1 )
 dialogues = {
-"1-beetlekill": SubResource( 5 ),
-"1-beetlekill1": SubResource( 9 ),
-"1-birdkill": SubResource( 6 ),
-"1-birdkill1": SubResource( 10 ),
-"1-pillbugkill": SubResource( 3 ),
-"1-pillbugkill1": SubResource( 7 ),
+"default": SubResource( 1 ),
 "1-quip1": SubResource( 2 ),
+"1-pillbugkill": SubResource( 3 ),
+"1-spyderkill": SubResource( 4 ),
+"1-beetlekill": SubResource( 5 ),
+"1-birdkill": SubResource( 6 ),
+"1-pillbugkill1": SubResource( 7 ),
+"pre-spyderkill1": SubResource( 8 ),
+"1-beetlekill1": SubResource( 9 ),
+"1-birdkill1": SubResource( 10 ),
 "1-quip2": SubResource( 11 ),
 "1-quip3": SubResource( 12 ),
-"1-spyderkill": SubResource( 4 ),
-"2-quip1": SubResource( 25 ),
-"2-quip2": SubResource( 26 ),
-"2-quip3": SubResource( 27 ),
-"3-quip1": SubResource( 28 ),
-"3-quipvending": SubResource( 29 ),
-"default": SubResource( 1 ),
-"manifestation-12win": SubResource( 24 ),
-"manifestation10win": SubResource( 22 ),
-"manifestation11win": SubResource( 23 ),
 "manifestation1win": SubResource( 13 ),
 "manifestation2win": SubResource( 14 ),
 "manifestation3win": SubResource( 15 ),
@@ -208,5 +207,13 @@ dialogues = {
 "manifestation7win": SubResource( 19 ),
 "manifestation8win": SubResource( 20 ),
 "manifestation9win": SubResource( 21 ),
-"pre-spyderkill1": SubResource( 8 )
+"manifestation10win": SubResource( 22 ),
+"manifestation11win": SubResource( 23 ),
+"manifestation-12win": SubResource( 24 ),
+"2-quip1": SubResource( 25 ),
+"2-quip2": SubResource( 26 ),
+"2-quip3": SubResource( 27 ),
+"3-quip1": SubResource( 28 ),
+"3-quipvending": SubResource( 29 ),
+"post-quip1": SubResource( 30 )
 }
