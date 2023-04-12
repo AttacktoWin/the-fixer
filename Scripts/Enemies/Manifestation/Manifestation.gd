@@ -170,6 +170,7 @@ func _spawn_random_enemies(
 
 
 func _on_death(_info: AttackInfo):
+	Wwise.post_event_id(AK.EVENTS.DIE_MANIFESTATION, self)
 	StatsTracker.add_manifestation_win()
 	self.fsm.set_state(ManifestationState.DEAD, true)
 	self.fsm.lock()

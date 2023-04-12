@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Resources/Bahnschrift.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Assets/Particle/dust.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Upgrades/WorldUpgrade.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Sprites/Upgrades/upgrades.png" type="Texture" id=4]
 
 [node name="Upgrade" type="KinematicBody2D"]
 script = ExtResource( 3 )
@@ -25,3 +26,10 @@ texture = ExtResource( 2 )
 [node name="Sprite2" type="Sprite" parent="Visual"]
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
+
+[node name="UpgradeSprite" type="Sprite" parent="Visual"]
+modulate = Color( 1, 1, 1, 0.501961 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+hframes = 4
+vframes = 3

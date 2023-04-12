@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Upgrades/instances/AttackSizeUpgrade.gd"
 }, {
+"base": "Upgrade",
+"class": "AttackSpeedUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/AttackSpeedUpgrade.gd"
+}, {
 "base": "Reference",
 "class": "AttackVariable",
 "language": "GDScript",
@@ -631,6 +636,7 @@ _global_script_class_icons={
 "AntStateWander": "",
 "AttackInfo": "",
 "AttackSizeUpgrade": "",
+"AttackSpeedUpgrade": "",
 "AttackVariable": "",
 "BaseAttack": "",
 "BaseEnemy": "",
@@ -770,6 +776,7 @@ WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
 Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
 TransitionHelper="*res://Scripts/Singletons/TransitionHelper.gd"
 UpgradeSingleton="*res://Scripts/Upgrades/UpgradeSingleton.gd"
+StatsSingleton="*res://Scripts/Singletons/StatsSingleton.gd"
 
 [debug]
 
