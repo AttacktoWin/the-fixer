@@ -220,13 +220,15 @@ func get_all_upgrade_handlers() -> Array:
 		arr.append(self._melee.upgrade_handler)
 	return arr
 
+func _update_shader():
+	var t = self.get_global_transform_with_canvas().origin / get_viewport().get_visible_rect().size
+	t.y = 1-t.y
+	Scene.wall_material.set_shader_param("target", t)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	_update_reload_progress()
-	var t = self.get_global_transform_with_canvas().origin / get_viewport().get_visible_rect().size
-	t.y = 1-t.y
-	Scene.wall_material.set_shader_param("target", t)
+	_update_shader()
 	if OS.is_debug_build():
 		if Input.is_action_just_pressed("ui_focus_next"):
 			var enemy = load("res://Scenes/Enemies/E_Umbrella.tscn").instance()
