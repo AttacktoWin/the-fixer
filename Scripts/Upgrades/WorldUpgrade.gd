@@ -11,6 +11,7 @@ var _visuals = null
 
 var _sprite1 = null
 var _sprite2 = null
+var _upgrade_sprite = null
 
 var _text = null
 
@@ -33,6 +34,7 @@ func set_upgrade_name(val: String):
 	self._upgrade_name = val
 	if self._text:
 		self._text.text = UpgradeSingleton.get_upgrade_description(self._upgrade_name)
+		self._upgrade_sprite.frame = UpgradeSingleton.get_upgrade_tex_frame(self._upgrade_name)
 
 
 func _ready():
@@ -46,10 +48,12 @@ func _ready():
 	self._sprite2 = get_node("Visual/Sprite2")
 	self._sprite2.modulate.a = 0.5
 
+	self._upgrade_sprite = get_node("Visual/UpgradeSprite")
+
 	self._text = get_node("Visual/Label")
 	self._text.modulate.a = 0.0
-	if self._upgrade_name:
-		self._text.text = UpgradeSingleton.get_upgrade_description(self._upgrade_name)
+
+	set_upgrade_name(self._upgrade_name)
 
 
 func collect_range_normalized():
@@ -92,12 +96,19 @@ func _physics_process(_delta):
 	var tscale = MathUtils.interpolate(1 - self._timer1 / 6, 1, 0, MathUtils.INTERPOLATE_IN_BACK)
 
 	self._sprite1.scale = Vector2.ONE * (sin(self._timer1) + 6) / 7 * 0.25 * tscale
-	self._sprite2.scale = Vector2.ONE * (sin(self._timer1) + 2) / 3 * 0.16 * tscale
+	self._sprite2.scale = Vector2.ONE * (sin(self._timer2) + 2) / 3 * 0.16 * tscale
+
+	self._upgrade_sprite.scale = (
+		Vector2(sin(self._timer1) / 8.6 + 2.5, sin(self._timer2) / 8.6 + 2.5)
+		* 0.312
+		* tscale
+	)
+	self._upgrade_sprite.modulate.a = sin(self._timer1 * 0.83) / 12 + 0.66
 
 	if self._collected:
 		self._die_timer += _delta
 		set_height(
-			get_height() + MathUtils.interpolate(self._die_timer, 0, -90, MathUtils.INTERPOLATE_OUT)
+			get_height() + MathUtils.interpolate(self._die_timer, 0, -90, MathUtils.INTERPOLATE_IN_BACK)
 		)
 		self.modulate.a = MathUtils.interpolate(self._die_timer, 1, 0, MathUtils.INTERPOLATE_OUT)
 		if self._die_timer > 1:

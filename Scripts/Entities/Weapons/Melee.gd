@@ -8,8 +8,6 @@ export var knockback_override: float = -1
 export var hitbox_size_override: float = -1
 export var attack_speed: float = 1.0
 
-var attack_speed_multiplier = 1.0
-
 var upgrade_handler = UpgradeHandler.new(self, UpgradeType.MELEE)
 
 var entity = null
