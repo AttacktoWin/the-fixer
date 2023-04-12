@@ -379,11 +379,11 @@ collision_mask = 32
 script = ExtResource( 5 )
 base_speed = 0.0
 base_damage = 30.0
+base_knockback = 512.0
 attack_type = 2
 persistent = true
 die_on_pierce = false
 camera_shake = 64.0
-base_knockback = 512.0
 max_pierce = 10000
 should_forget_entities = true
 
