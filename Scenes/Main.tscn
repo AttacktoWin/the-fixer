@@ -126,18 +126,30 @@ shader_param/mask_mask_offset = Vector2( -0.26, -0.094 )
 shader_param/mask_mask_color = Color( 0, 0, 0, 0.788235 )
 shader_param/noise = ExtResource( 4 )
 
-[sub_resource type="GDScript" id=11]
+[sub_resource type="GDScript" id=20]
 script/source = "extends ColorRect
 
-var total = 0.3
-var curr = 0
-func display_feedback():
-	curr = total
 
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+const MAX_SHADER_VAL = 2.5
+
+var _timer: float = 0
+
+func add_value(v: float):
+	self._timer += v
+	if self._timer > MAX_SHADER_VAL:
+		self._timer = MAX_SHADER_VAL
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var val = lerp(0.2,2,clamp(0,1,curr/total))
-	curr -= delta
-	material.set_shader_param(\"smooth_a\",val)
+	self._timer -= delta
+	if self._timer < 0:
+		self._timer = 0
+	var interp = MathUtils.interpolate(self._timer / MAX_SHADER_VAL, 1, 0, MathUtils.INTERPOLATE_OUT_EXPONENTIAL)
+	material.set_shader_param(\"modulate\",interp)
 "
 
 [sub_resource type="Shader" id=18]
@@ -165,7 +177,7 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id=19]
 shader = SubResource( 18 )
-shader_param/modulate = 0.0
+shader_param/modulate = 1.0
 shader_param/fuzz_color = Color( 0.992157, 0.847059, 0.219608, 0.196078 )
 shader_param/radius = 0.767
 shader_param/a = 0.767
@@ -300,18 +312,17 @@ mouse_filter = 2
 script = SubResource( 6 )
 
 [node name="DamageFeedback" type="ColorRect" parent="UILayer/UI"]
-visible = false
 material = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = SubResource( 11 )
+script = SubResource( 20 )
 
 [node name="FlashFeedback" type="ColorRect" parent="UILayer/UI"]
-visible = false
 material = SubResource( 19 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = SubResource( 20 )
 
 [node name="RoarVFX" type="TextureRect" parent="UILayer/UI"]
 visible = false

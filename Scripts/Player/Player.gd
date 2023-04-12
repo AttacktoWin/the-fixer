@@ -330,7 +330,7 @@ func _on_take_damage(info: AttackInfo):
 	fx.scale = Vector2.ONE / 1.5
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	update_health_bar()
-	Scene.ui.get_node("DamageFeedback").display_feedback()
+	Scene.ui.get_node("DamageFeedback").add_value(info.damage / 25.0)
 	._on_take_damage(info)
 
 
