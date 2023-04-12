@@ -9,7 +9,7 @@ var _gun_angle: float = -1
 var _gun_counter: float = 0
 var _has_dashed = false
 
-const DASH_COOLDOWN = 1
+const DASH_COOLDOWN = 0.3
 const DASH_GUN_ANGLE = 0.8
 const DASH_INVULNERABILITY = 0.5
 

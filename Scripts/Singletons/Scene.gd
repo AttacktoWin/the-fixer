@@ -28,6 +28,8 @@ signal transition_start
 signal transition_complete
 signal world_updated
 
+func _ready():
+	Wwise.register_listener(self)
 
 func _reload_variables(new_level: Level):
 	self._camera = self._root.get_node("MainCamera")
@@ -88,7 +90,7 @@ func _get_level_node() -> Node2D:
 	return self._level_node
 
 
-func _get_player() -> Player:
+func _get_player():
 	return self._player
 
 

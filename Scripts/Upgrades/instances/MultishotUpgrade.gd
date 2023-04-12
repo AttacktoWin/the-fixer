@@ -2,7 +2,7 @@
 
 class_name MultishotUpgrade extends Upgrade
 
-const MULTISHOT_ADD = 0.2
+const MULTISHOT_ADD = 0.25
 
 
 func apply(entity, _type: int):

@@ -6,6 +6,7 @@ export var lifetime: float = 10
 export var lives_forever: float = true
 export var pickup_distance: float = 128
 export var auto_pickup: bool = true
+export var pickup_height: float = 64
 
 const DEFAULT_TEXTURE = preload("res://Assets/Tiles/Hub/wall0010.png")
 var _texture = null
@@ -86,7 +87,7 @@ func _process(delta):
 				MathUtils.interpolate(
 					self._collection_timer / COLLECTION_TIME,
 					0,
-					60,
+					pickup_height,
 					MathUtils.INTERPOLATE_OUT_EXPONENTIAL
 				)
 				+ height

@@ -10,10 +10,11 @@ var _height_components: Node2D = null
 var _height: float = 0
 var _default_height: float = 0
 
+var _shadow_appear_distance = 64.0
+
 var _shadow: Sprite = null
 const SHADOW_TEX = preload("res://Assets/Sprites/Shadow/dropshadow.png")
 
-const MAX_SHADOW_HEIGHT: float = 64.0
 const MIN_SHADOW_VALUE: float = 0.5
 
 const SHADOW_SIZE: float = 300.0
@@ -26,8 +27,17 @@ func set_height(height: float):
 func get_height() -> float:
 	return self._height
 
+
+func set_shadow_appear_distance(dist: float):
+	self._shadow_appear_distance = dist
+
+
 func get_entity_name():
 	return name
+
+
+func get_global_position_without_height():
+	return self.global_position + Vector2(0, self._height)
 
 
 func set_height_component(component: Node2D):
@@ -56,7 +66,7 @@ func _process(_delta):
 	if self._height_components:
 		var y = self._default_height - self._height
 		self._height_components.position = Vector2(self._height_components.position.x, y)
-		var interp = clamp(1 - (self._height / MAX_SHADOW_HEIGHT), 0, 1)
+		var interp = clamp(1 - (self._height / self._shadow_appear_distance), 0, 1)
 		self._shadow.modulate.a = interp * MIN_SHADOW_VALUE
 		self._shadow.scale = (
 			Vector2.ONE

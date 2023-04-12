@@ -53,6 +53,7 @@ func _shoot():
 	var bullet: BulletBase = BulletScene.instance().set_damage_source(self.entity)
 	Scene.runtime.add_child(bullet)
 	bullet.global_position = self.entity.socket_muzzle.global_position
+	bullet.get_node("Sprite").texture = preload("res://Assets/Sprites/Bullets/enemy-bullet.png")
 	# I am unsure of why the to_iso call is necessary
 	bullet.setv(
 		AttackVariable.DIRECTION,

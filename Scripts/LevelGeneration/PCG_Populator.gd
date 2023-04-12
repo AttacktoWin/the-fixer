@@ -7,6 +7,7 @@ var max_per_room
 var enemy_buffer
 var enemy_info
 var enemies = []
+var weapon = null
 
 var neighbours_kernel = [
 	Vector2(0, 1),
@@ -17,6 +18,15 @@ var neighbours_kernel = [
 	Vector2(-1, 1),
 	Vector2(1, -1),
 	Vector2(-1, -1),
+]
+
+var _weapon_list = [
+	preload("res://Scenes/Weapons/PlayerBatonScene.tscn"),
+	preload("res://Scenes/Weapons/PlayerBrassKnucklesScene.tscn"),
+	preload("res://Scenes/Weapons/PlayerKnifeScene.tscn"),
+	preload("res://Scenes/Weapons/PlayerPistolScene.tscn"),
+	preload("res://Scenes/Weapons/PlayerShotgunScene.tscn"),
+	preload("res://Scenes/Weapons/PlayerTommyGunScene.tscn"),
 ]
 
 
@@ -40,12 +50,15 @@ func validate(level, parent):
 	var any_fail = false
 	any_fail = any_fail or not in_bounds(level, MathUtils.from_iso(self.player.position))
 	any_fail = any_fail or not in_bounds(level, MathUtils.from_iso(self.goal.position))
+	if self.weapon:
+		any_fail = any_fail or not in_bounds(level, MathUtils.from_iso(self.weapon.position))
 
 	if not any_fail:
 		for enemy in self.enemies:
 			any_fail = any_fail or not in_bounds(level, MathUtils.from_iso(enemy.position))
 
 	if not any_fail:
+		parent.add_child(self.weapon)
 		for enemy in self.enemies:
 			parent.add_child(enemy)
 		return true
@@ -67,6 +80,7 @@ func populate(tile_map, path, path_by_room, room_list, room_centers):
 	if typeof(spawn_info) == TYPE_BOOL:
 		return -1
 	spawn_pass(spawn_info, tile_map)
+	weapon_pass(room_list, path_by_room, tile_map)
 	return end_index
 
 
@@ -182,6 +196,31 @@ func spawn_pass(spawn_info, tile_map):
 			instance.position = MathUtils.to_iso(tile_map.to_global(pos))
 			self.enemies.append(instance)
 			# entities.add_child(instance)
+
+
+func weapon_pass(room_list, path_by_room, tile_map):
+	if randf() < 0.25:
+		return
+
+	var rooms = room_list.duplicate()
+	rooms.remove(0)
+
+	var room = rooms[randi() % rooms.size()]
+
+	var spawn_candidates = []
+	for t in path_by_room[room]:
+		if t != null:
+			spawn_candidates.append(t)
+
+	self.weapon = self._weapon_list[randi() % self._weapon_list.size()].instance()
+	var ww = WorldWeapon.new()
+	ww.set_weapon(self.weapon)
+	ww.auto_pickup = false
+	self.weapon = ww
+
+	var coord = spawn_candidates[randi() % spawn_candidates.size()]
+	var pos = tile_map.map_to_world(coord)
+	self.weapon.position = MathUtils.to_iso(tile_map.to_global(pos))
 
 
 func gen_dijstra_map(start, path):

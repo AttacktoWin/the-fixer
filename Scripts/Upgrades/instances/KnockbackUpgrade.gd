@@ -2,7 +2,7 @@
 
 class_name KnockbackUpgrade extends Upgrade
 
-const KNOCKBACK_ADD = 0.25
+const KNOCKBACK_ADD = 0.5
 
 
 func apply(entity, type: int):

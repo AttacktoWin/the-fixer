@@ -8,7 +8,6 @@ func _physics_process(delta):
 	if self._first_frame:
 		self.default_value = (
 			self.entity.variables.get_variable_raw(AttackVariable.DIRECTION)
-			+ rand_range(-0.6, 0.6)
 		)
 		self._first_frame = false
 

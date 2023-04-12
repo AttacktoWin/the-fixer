@@ -231,5 +231,5 @@ func _on_take_damage(_info: AttackInfo):
 func _take_damage(amount: float, info: AttackInfo = null):
 	changev(LivingEntityVariable.HEALTH, -amount)
 	update_health_bar()
-	_on_take_damage(info)
 	_check_death(info)  # warning-ignore:return_value_discarded
+	_on_take_damage(info)
