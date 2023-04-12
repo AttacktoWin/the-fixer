@@ -759,8 +759,12 @@ _global_script_class_icons={
 [application]
 
 config/name="The Fixer"
+config/description="A noire-themed roguelite"
 run/main_scene="res://Scenes/Main.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://Assets/UI/logo.png"
+boot_splash/fullsize=false
+config/icon="res://Assets/icon.png"
+config/windows_native_icon="res://Assets/icon.ico"
 
 [autoload]
 
@@ -795,7 +799,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/wwise/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/godot_icon/plugin.cfg", "res://addons/wwise/plugin.cfg" )
 
 [global]
 
