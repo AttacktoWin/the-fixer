@@ -99,7 +99,7 @@ func build_level():
 		generator_data.shrink_factor
 	)
 	corridor_builder.construct(rng, generator_data.corridor_width)
-	populator.construct(player, exit, enemies_per_room, enemy_buffer, enemy_info, rng.seed)
+	populator.construct(rng, player, exit, enemies_per_room, enemy_buffer, enemy_info)
 	filler.construct(rng)
 
 	var attempts = 0

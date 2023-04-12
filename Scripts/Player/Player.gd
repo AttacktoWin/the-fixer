@@ -250,7 +250,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_end"):
 			self.add_ammo(900)  # warning-ignore: return_value_discarded
 		if Input.is_action_just_pressed("ui_home"):
-			var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
+			var scene = load("res://Scenes/Levels/Level3.tscn").instance()
 			TransitionHelper.transition(scene, true, true, 0.01)
 		if Input.is_action_just_pressed("ui_page_down"):
 			for enemy in AI.get_all_enemies():

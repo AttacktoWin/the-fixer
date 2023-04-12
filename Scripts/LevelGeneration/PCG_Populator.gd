@@ -1,6 +1,7 @@
 class_name PCG_Populator
 extends Node2D
 
+var rng
 var player
 var goal
 var max_per_room
@@ -30,13 +31,13 @@ var _weapon_list = [
 ]
 
 
-func construct(_player, _goal, per_room, buffer, info, seed_val):
+func construct(_rng, _player, _goal, per_room, buffer, info):
+	self.rng = _rng
 	self.player = _player
 	self.goal = _goal
 	self.max_per_room = per_room
 	self.enemy_buffer = buffer
 	self.enemy_info = info
-	seed(seed_val)
 
 
 func in_bounds(level, loc):
@@ -108,7 +109,7 @@ func _player_goal_pass(tile_map, path, room_list, room_centers):
 	var d_map = gen_dijstra_map(start, path)
 	#pick random high value tile
 	var random_end = d_map.keys().slice(d_map.size() - 10, d_map.size())
-	random_end.shuffle()
+	random_end = MathUtils.shuffle_list(self.rng, random_end)
 	var exit = random_end[0]
 	#loop over to find room
 	for index in range(room_list.size()):
@@ -143,7 +144,7 @@ func _spawn_point_pass(room_list, path_by_room):
 	var spawn_count = 0
 	for room in rooms:
 		var spawns = []
-		spawn_candidates[room].shuffle()
+		spawn_candidates[room] = MathUtils.shuffle_list(self.rng, spawn_candidates[room])
 		for _enemy in range(self.max_per_room):
 			if spawn_candidates[room].size() == 0:
 				return false
@@ -199,26 +200,26 @@ func spawn_pass(spawn_info, tile_map):
 
 
 func weapon_pass(room_list, path_by_room, tile_map):
-	if randf() < 0.25:
+	if self.rng.randf() < 0.25:
 		return
 
 	var rooms = room_list.duplicate()
 	rooms.remove(0)
 
-	var room = rooms[randi() % rooms.size()]
+	var room = rooms[self.rng.randi() % rooms.size()]
 
 	var spawn_candidates = []
 	for t in path_by_room[room]:
 		if t != null:
 			spawn_candidates.append(t)
 
-	self.weapon = self._weapon_list[randi() % self._weapon_list.size()].instance()
+	self.weapon = self._weapon_list[self.rng.randi() % self._weapon_list.size()].instance()
 	var ww = WorldWeapon.new()
 	ww.set_weapon(self.weapon)
 	ww.auto_pickup = false
 	self.weapon = ww
 
-	var coord = spawn_candidates[randi() % spawn_candidates.size()]
+	var coord = spawn_candidates[self.rng.randi() % spawn_candidates.size()]
 	var pos = tile_map.map_to_world(coord)
 	self.weapon.position = MathUtils.to_iso(tile_map.to_global(pos))
 
@@ -244,11 +245,11 @@ func gen_dijstra_map(start, path):
 	return d_map
 
 
-static func _randomize_rooms(room_list):
+func _randomize_rooms(room_list):
 	var room_que = []
 	#room_que = [[room,value],[room,value],..]
 	for room in room_list:
-		room_que.append([room, randi()])
+		room_que.append([room, self.rng.randi()])
 	room_que.sort_custom(CustomSorter, "priority_sorter")
 	for room in room_que:
 		room[1] = 0
