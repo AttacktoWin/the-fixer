@@ -137,8 +137,7 @@ func display_feedback():
 func _process(delta):
 	var val = lerp(0.2,2,clamp(0,1,curr/total))
 	curr -= delta
-	print(curr)
-	#material.set_shader_param(\"smooth_a\",val)
+	material.set_shader_param(\"smooth_a\",val)
 "
 
 [sub_resource type="Shader" id=18]
@@ -309,6 +308,7 @@ mouse_filter = 2
 script = SubResource( 11 )
 
 [node name="FlashFeedback" type="ColorRect" parent="UILayer/UI"]
+visible = false
 material = SubResource( 19 )
 anchor_right = 1.0
 anchor_bottom = 1.0

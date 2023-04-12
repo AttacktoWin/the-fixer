@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Sprites/Fixer/fixer-spritesheet-WHOLE.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player/PlayerStateFree.gd" type="Script" id=2]
@@ -12,6 +12,53 @@
 [ext_resource path="res://Scripts/Player/PlayerStateMelee.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=12]
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 400, 558 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 400, 0, 400, 558 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 800, 0, 400, 558 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), null ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="GDScript" id=25]
+script/source = "extends AnimatedSprite
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.connect(\"animation_finished\", self, \"anim_finish\")
+	
+func anim_finish():
+	set_frame(0)
+	stop()
+	self.visible = false
+
+func play_flash():
+	play()
+	self.visible = true	
+	
+"
 
 [sub_resource type="CircleShape2D" id=14]
 radius = 32.0
@@ -319,29 +366,6 @@ tracks/1/keys = {
 "values": [ Vector2( -10, 0 ), Vector2( -10, 1 ), Vector2( -10, 2 ), Vector2( -10, 2 ), Vector2( -10, 1 ), Vector2( -10, 0 ), Vector2( -10, 1 ), Vector2( -10, 2 ), Vector2( -10, 2 ), Vector2( -10, 1 ) ]
 }
 
-[sub_resource type="AtlasTexture" id=22]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 400, 558 )
-
-[sub_resource type="AtlasTexture" id=23]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 400, 0, 400, 558 )
-
-[sub_resource type="AtlasTexture" id=24]
-flags = 4
-atlas = ExtResource( 4 )
-region = Rect2( 800, 0, 400, 558 )
-
-[sub_resource type="SpriteFrames" id=21]
-animations = [ {
-"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), null ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
 [sub_resource type="CapsuleShape2D" id=13]
 radius = 14.0
 height = 30.0
@@ -350,6 +374,16 @@ height = 30.0
 collision_layer = 4
 script = ExtResource( 12 )
 base_speed = 450.0
+
+[node name="FlashNode" type="Node2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="FlashNode"]
+visible = false
+position = Vector2( 48, 10 )
+scale = Vector2( 0.333, 0.333 )
+frames = SubResource( 21 )
+speed_scale = 5.0
+script = SubResource( 25 )
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
 position = Vector2( 0, -60 )
@@ -425,16 +459,6 @@ anims/IDLE = SubResource( 4 )
 anims/MELEE = SubResource( 5 )
 anims/RESET = SubResource( 6 )
 anims/WALK = SubResource( 8 )
-
-[node name="Node2D" type="Node2D" parent="Visual"]
-position = Vector2( 0, -3.8147e-06 )
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Visual/Node2D"]
-position = Vector2( 67, -4 )
-scale = Vector2( 0.1375, 0.1375 )
-frames = SubResource( 21 )
-speed_scale = 2.0
-playing = true
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2( 0, -55 )

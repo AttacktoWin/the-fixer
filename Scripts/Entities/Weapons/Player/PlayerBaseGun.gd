@@ -13,10 +13,14 @@ export(int) var screen_shake_on_fire: int = 3
 export var bullet_spread: float = 0
 export var weapon_volume: float = 2.5
 
+var _flash_sprite = null
+
 
 func _notify_fire(has_ammo):
 	self.entity.update_ammo_counter()
 	if has_ammo:
+		if self._flash_sprite:
+			self._flash_sprite.play_flash()
 		AI.notify_sound(self.entity.global_position, 4096, weapon_volume)
 		if self.sound_fire:
 			Wwise.post_event_id(self.sound_fire, self.entity)
@@ -39,7 +43,10 @@ func _apply_base_stats(attack: BaseAttack):
 
 	attack.setv(AttackVariable.DAMAGE, attack.getv(AttackVariable.DAMAGE) * self.damage_multiplier)
 	attack.scale *= self.size_multiplier
-	attack.setv(AttackVariable.KNOCKBACK, attack.variables.get_variable_raw(AttackVariable.KNOCKBACK) * self.knockback_multiplier)
+	attack.setv(
+		AttackVariable.KNOCKBACK,
+		attack.variables.get_variable_raw(AttackVariable.KNOCKBACK) * self.knockback_multiplier
+	)
 
 	attack.spectral = attack.spectral or self.is_spectral
 
@@ -66,6 +73,10 @@ func _get_fire_angle():
 	var angle1 = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - self.global_position).angle()
 	var angle2 = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - self._get_aim_position()).angle()
 	return angle1 if abs(angle1 - angle2) < 0.1 else angle2
+
+
+func set_muzzle_flash_sprite(spr: AnimatedSprite):
+	self._flash_sprite = spr
 
 
 # override
