@@ -356,8 +356,8 @@ npc_id = "boss"
 
 [sub_resource type="Resource" id=72]
 script = ExtResource( 3 )
-dialogue_id = ""
-npc_id = "manifestation9"
+dialogue_id = "9"
+npc_id = "manifestation"
 
 [sub_resource type="Resource" id=73]
 script = ExtResource( 3 )
