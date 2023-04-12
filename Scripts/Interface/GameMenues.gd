@@ -37,6 +37,7 @@ func _resume():
 		self.visible = false
 		paused = false
 		PausingSingleton.unpause()
+		Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
 
 
 func _exit():
