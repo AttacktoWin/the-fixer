@@ -270,13 +270,14 @@ tracks/7/keys = {
 [node name="Node2D" type="Node2D"]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 29, -109.5 )
 frames = SubResource( 6 )
 frame = 3
 speed_scale = 2.157
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
 self_modulate = Color( 0.992157, 0.847059, 0.219608, 1 )
-position = Vector2( -17, -559 )
+position = Vector2( 12, -668.5 )
 frames = SubResource( 17 )
 speed_scale = 2.157
 

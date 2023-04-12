@@ -83,6 +83,7 @@ func do_attack():
 			dist_norm, SLOW_TIME, SLOW_TIME * (3.0 / 4.0), MathUtils.INTERPOLATE_IN_EXPONENTIAL
 		)
 		body.status_timers.delta_timer(LivingEntityStatus.SLOWED, interp1)
+		Scene.ui.get_node("FlashFeedback").add_value(interp1)
 
 
 func _physics_process(delta):

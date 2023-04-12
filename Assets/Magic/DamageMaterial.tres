@@ -27,7 +27,7 @@ void fragment(){
 
 [resource]
 shader = SubResource( 18 )
-shader_param/modulate = 0.214
+shader_param/modulate = 1.0
 shader_param/fuzz_color = Color( 1, 0.121569, 0.172549, 1 )
 shader_param/radius = 0.767
 shader_param/a = 0.767

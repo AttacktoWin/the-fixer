@@ -16,6 +16,7 @@ onready var visual: Node2D = $Visual
 onready var fsm: FSMController = $FSMController
 onready var reload_progress_bar: ProgressBar = $ReloadProgress
 onready var melee_hitbox: BaseAttack = $Visual/HitBox
+onready var flash_node: Node2D = $FlashNode
 
 var weapon_disabled = false setget set_weapon_disabled
 
@@ -35,6 +36,8 @@ func _ready():
 	Wwise.register_listener(self)
 	Wwise.register_game_obj(self, self.get_name())
 	Scene.connect("world_updated", self, "_world_updated")  # warning-ignore:return_value_discarded
+	# move flash into limbo
+	self.flash_node.get_parent().remove_child(self.flash_node)
 
 
 func _world_updated():
@@ -77,13 +80,17 @@ func _update_weapons_ui():
 func set_gun(gun: PlayerBaseGun):
 	if gun == self._gun:
 		return
+
 	if self._gun:
+		self.flash_node.get_parent().remove_child(self.flash_node)
 		_remove_weapon(self.hand, self._gun)
 
 	self._gun = gun.with_parent(self)
 	self._gun.set_aim_bone(arms_container)
+	self._gun.set_muzzle_flash_sprite(self.flash_node.get_child(0))
 	reapply_upgrades()
 	self.hand.add_child(self._gun.with_visuals(self._gun.default_visual_scene()))
+	self._gun.add_child(self.flash_node)
 	update_ammo_counter()
 	_update_weapons_ui()
 
@@ -317,13 +324,13 @@ func _on_take_damage(info: AttackInfo):
 		)
 	)
 	var fx = HIT_SCENE.instance()
-	fx.initialize(direction.angle() + (2*PI), info.damage)
+	fx.initialize(direction.angle() + (2 * PI), info.damage)
 	self.add_child(fx)
 	fx.position = Vector2(5, -45)
 	fx.scale = Vector2.ONE / 1.5
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	update_health_bar()
-	Scene.ui.get_node("DamageFeedback").display_feedback()
+	Scene.ui.get_node("DamageFeedback").add_value(info.damage / 25.0)
 	._on_take_damage(info)
 
 
