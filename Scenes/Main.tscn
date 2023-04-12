@@ -137,7 +137,6 @@ func display_feedback():
 func _process(delta):
 	var val = lerp(0.2,2,clamp(0,1,curr/total))
 	curr -= delta
-	print(curr)
 	#material.set_shader_param(\"smooth_a\",val)
 "
 
@@ -166,7 +165,7 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id=19]
 shader = SubResource( 18 )
-shader_param/modulate = 0.0
+shader_param/modulate = 0.568
 shader_param/fuzz_color = Color( 0.992157, 0.847059, 0.219608, 0.196078 )
 shader_param/radius = 0.767
 shader_param/a = 0.767
@@ -203,7 +202,7 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=17]
 shader = SubResource( 16 )
 shader_param/pivot = Vector2( 0.5, 0.5 )
-shader_param/rotation = 0.0
+shader_param/rotation = 0.008
 shader_param/radius = 0.425
 shader_param/a = 0.425
 shader_param/b = 0.0
@@ -285,7 +284,6 @@ anchor_bottom = 1.0
 mouse_filter = 2
 
 [node name="VisionReduction" type="ColorRect" parent="UILayer/UI"]
-visible = false
 material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -293,7 +291,6 @@ mouse_filter = 2
 script = SubResource( 6 )
 
 [node name="VisionReduction2" type="ColorRect" parent="UILayer/UI"]
-visible = false
 material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -309,6 +306,7 @@ mouse_filter = 2
 script = SubResource( 11 )
 
 [node name="FlashFeedback" type="ColorRect" parent="UILayer/UI"]
+visible = false
 material = SubResource( 19 )
 anchor_right = 1.0
 anchor_bottom = 1.0

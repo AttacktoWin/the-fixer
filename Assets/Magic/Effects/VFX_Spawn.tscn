@@ -268,7 +268,6 @@ tracks/7/keys = {
 }
 
 [node name="Node2D" type="Node2D"]
-position = Vector2( -589.5, 615.5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
