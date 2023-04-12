@@ -108,7 +108,10 @@ func _physics_process(_delta):
 	if self._collected:
 		self._die_timer += _delta
 		set_height(
-			get_height() + MathUtils.interpolate(self._die_timer, 0, -90, MathUtils.INTERPOLATE_IN_BACK)
+			(
+				get_height()
+				+ MathUtils.interpolate(self._die_timer, 0, -90, MathUtils.INTERPOLATE_IN_BACK)
+			)
 		)
 		self.modulate.a = MathUtils.interpolate(self._die_timer, 1, 0, MathUtils.INTERPOLATE_OUT)
 		if self._die_timer > 1:

@@ -26,7 +26,7 @@ func _process(_delta):
 			self._upgrades = DualUpgrade.new()
 			Scene.runtime.add_child(self._upgrades)
 			self._upgrades.global_position = self.global_position
-			get_node_or_null("Node2D/ExitMessage").text = "Select an upgrade (e)"
+			get_node_or_null("Node2D/ExitMessage").text = "Select an upgrade"
 	if self.cleared and (not self._upgrades or self._upgrades.is_collected()):
 		self._upgrades = null
 		var exit = get_node_or_null("Exit")

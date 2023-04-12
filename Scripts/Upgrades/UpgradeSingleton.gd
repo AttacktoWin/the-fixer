@@ -19,7 +19,7 @@ const UPGRADE_TEX_IDX = 3
 const UPGRADE_DESCRIPTION = 4
 
 var _class_lookup = {
-	"AmmoRefund": [RefundChanceUpgrade, COMMON, FLAG_NONE, 3, "+ Refund Chance"],
+	"AmmoRefund": [RefundChanceUpgrade, COMMON, FLAG_NONE, 3, "+ Ammo Refund Chance"],
 	"AttackSpeed": [AttackSpeedUpgrade, COMMON, FLAG_NONE, 0, "+ Attack Speed"],
 	"Damage": [DamageUpgrade, COMMON, FLAG_NONE, 1, "+ Damage"],
 	"Healing": [HealingUpgrade, PLENTIFUL, FLAG_NONE, 2, "+ Bandage Healing"],
