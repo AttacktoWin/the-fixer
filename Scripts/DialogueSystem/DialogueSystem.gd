@@ -16,11 +16,11 @@ var current_dialog_box: CanvasLayer
 var follow_player := false
 
 const enemy_timelines := {
-	"pillbug": ["1-pillbug"],
-	"spyder": ["1-spyder"],
-	"beetle": ["1-beetle"],
-	"bird": ["1-bird"],
-	"ant": []
+	"pillbug": ["1-pillbug", "1-pillbug2"],
+	"spyder": ["1-spyder", "1-spyder2"],
+	"beetle": ["1-beetle", "1-beetle2"],
+	"bird": ["1-bird", "1-bird2"],
+	"ant": ["1-ant", "1-ant2"]
 }
 
 
@@ -223,7 +223,7 @@ func level_started():
 	if NPCs["fixer"].peek_top_dialogue().priority == Dialogue.Priority.STORY:
 		return
 	var enemies = AI.get_all_enemies()
-	if len(enemies) == 0 || randi() % 100 >= 50:
+	if len(enemies) == 0 || randi() % 100 >= 40:
 		return
 	var index = randi() % len(enemies)
 	var e_name = enemies[index].get_entity_name().to_lower()

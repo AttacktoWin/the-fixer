@@ -136,15 +136,15 @@ text = "10"
 script = SubResource( 16 )
 
 [node name="CurrentGun" type="TextureRect" parent="."]
-margin_left = 1777.0
+margin_left = 1771.0
 margin_top = 934.0
-margin_right = 1905.0
+margin_right = 1899.0
 margin_bottom = 1062.0
 rect_scale = Vector2( 0.9, 0.9 )
 
 [node name="CurrentMelee" type="TextureRect" parent="."]
-margin_left = 1777.0
+margin_left = 1771.0
 margin_top = 781.0
-margin_right = 1905.0
+margin_right = 1899.0
 margin_bottom = 909.0
 rect_scale = Vector2( 0.9, 0.9 )
