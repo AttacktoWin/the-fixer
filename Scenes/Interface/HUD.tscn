@@ -32,7 +32,7 @@ default_font = SubResource( 12 )
 font_path = "res://Assets/UI/FilmPosterNarrow-Bold.ttf"
 
 [sub_resource type="DynamicFont" id=14]
-size = 150
+size = 126
 font_data = SubResource( 1 )
 
 [sub_resource type="SpriteFrames" id=15]
@@ -142,16 +142,18 @@ margin_right = 752.0
 margin_bottom = 156.0
 
 [node name="Counter" type="Label" parent="Counter"]
-margin_right = 555.0
-margin_bottom = 151.0
+margin_top = 12.0
+margin_right = 455.0
+margin_bottom = 139.0
 theme = SubResource( 13 )
 custom_fonts/font = SubResource( 14 )
 text = "Enemies Remaining:"
 
 [node name="Counter2" type="Label" parent="Counter"]
-margin_left = 559.0
-margin_right = 616.0
-margin_bottom = 151.0
+margin_left = 459.0
+margin_top = 12.0
+margin_right = 508.0
+margin_bottom = 139.0
 theme = SubResource( 13 )
 custom_fonts/font = SubResource( 14 )
 text = "10"

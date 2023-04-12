@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Assets/Tiles/Hub/hub-wall.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Assets/Tiles/Hub/tile0023.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Tiles/Hub/wall0010.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Interface/Menus/Upgrades.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=11]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=13]
@@ -673,11 +674,13 @@ script/source = "extends Area2D
 
 func _on_Area_body_entered(body):
 	if body is Player:
-		print(\"hi\")
+		Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.YES)
+		get_node(\"%Upgrade\").visible = true
+		PausingSingleton.pause()
 "
 
 [sub_resource type="RectangleShape2D" id=105]
-extents = Vector2( 160.997, 180.674 )
+extents = Vector2( 103.754, 144.003 )
 
 [sub_resource type="GDScript" id=103]
 resource_name = "Vault Enter"
@@ -797,7 +800,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 6
+frame = 5
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
@@ -856,7 +859,7 @@ scale = Vector2( 1, 0.5 )
 script = SubResource( 104 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SortableEntities/Vending/Area"]
-position = Vector2( 5.99998, 74.0001 )
+position = Vector2( -20.5, 36.5001 )
 rotation = 0.785398
 scale = Vector2( 0.790569, 0.790569 )
 shape = SubResource( 105 )
@@ -901,6 +904,10 @@ anims/Bob = SubResource( 102 )
 
 [node name="VaultConfirm" type="CanvasLayer" parent="."]
 layer = 4
+
+[node name="Upgrade" parent="VaultConfirm" instance=ExtResource( 9 )]
+unique_name_in_owner = true
+visible = false
 
 [node name="Confirm" parent="VaultConfirm" instance=ExtResource( 24 )]
 visible = false
