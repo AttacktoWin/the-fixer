@@ -1,7 +1,6 @@
 name: Nightly Build
 on:
-    schedule:
-        - cron: '59 11 * * *'
+    workflow_dispatch:
 
 jobs:
   # job id, can be anything
@@ -19,6 +18,7 @@ jobs:
       uses: actions/checkout@v3.3.0
       with:
         ref: Dev
+        lfs: true
   
     - name: export game
       id: export
@@ -33,12 +33,18 @@ jobs:
         use_preset_export_path: true
         use_godot_3: true
 
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+
       # This release action has worked well for me. However, you can most likely use any release action of your choosing.
       # https://github.com/ncipollo/release-action
     - name: create release
       uses: ncipollo/release-action@v1.12.0
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+        commit: Dev
         generateReleaseNotes: true
-        tag: ${{ github.ref_name }}
-        artifacts: ${{ steps.export.outputs.archive_directory }}/*jobs
+        tag: ${{ steps.date.outputs.date }}
+        name: Nightly ${{ steps.date.outputs.date }}
+        artifacts: ${{ steps.export.outputs.archive_directory }}/*
