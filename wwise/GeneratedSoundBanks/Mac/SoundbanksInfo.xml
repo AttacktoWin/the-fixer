@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="English(US)" Hash="486801245">
+		<SoundBank Id="89505537" Language="English(US)" Hash="2131615596">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>English(US)\89505537.bnk</Path>
@@ -93,6 +93,14 @@
 						<File Id="650969131" Language="SFX">
 							<ShortName>beetle charge.wav</ShortName>
 							<Path>SFX\beetle charge_5781BEBB.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="282373675" Name="Charge_Spyder" ObjectPath="\Events\Default Work Unit\Enemy Actions\Spyder Actions\Charge_Spyder">
+					<IncludedMemoryFiles>
+						<File Id="865640855" Language="SFX">
+							<ShortName>spyder charge.wav</ShortName>
+							<Path>SFX\spyder charge_A592BCF1.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

@@ -1,4 +1,5 @@
 Event	ID	Name			Wwise Object Path	Notes
+	282373675	Charge_Spyder			\Default Work Unit\Enemy Actions\Spyder Actions\Charge_Spyder	
 	708461478	Hit_Pistol_Player			\Default Work Unit\Player Actions\Hit_Pistol_Player	
 	942229886	Dodge_Player			\Default Work Unit\Player Actions\Dodge_Player	
 	1198969758	Swing_Knuckles_Player			\Default Work Unit\Player Actions\Swing_Knuckles_Player	
@@ -53,6 +54,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	738966222	Ammo_Pickup_Player-009	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-009_07D8E4C6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-009		44884
 	791064235	Hit_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Impact_Shoot_Player_140664E6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Hit_Pistol_Player		49216
 	814482882	Beetle_Crash	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\don't worry about it_A31DED26.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Beetle\Beetle_Crash		137268
+	865640855	Spyder_Charge	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\spyder charge_A592BCF1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Spyder\Spyder_Charge		59286
 	934392654	Roar_Manny	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\manny roar_7141D373.wem		\Actor-Mixer Hierarchy\Default Work Unit\Enemy Sounds\Manny\Roar_Manny		411320
 	964759676	Door_Unlock	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\unlock_vault_5AE648F0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Environmental Sounds\Door_Unlock		382076
 	983251993	Ammo_Pickup_Player-005	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-005_DD107A4A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-005		36584
