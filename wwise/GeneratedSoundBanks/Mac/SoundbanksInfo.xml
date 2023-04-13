@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="English(US)" Hash="2444159458">
+		<SoundBank Id="89505537" Language="English(US)" Hash="4248943576">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>English(US)\89505537.bnk</Path>
@@ -298,7 +298,7 @@
 			<ShortName>Init</ShortName>
 			<Path>1355168291.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="1551306167" Language="SFX" Hash="795298525">
+		<SoundBank Id="1551306167" Language="SFX" Hash="1839818560">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
 			<ShortName>UI</ShortName>
 			<Path>1551306167.bnk</Path>
@@ -338,6 +338,9 @@
 					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="3415057477" Name="UIVolume" ObjectPath="\Game Parameters\Default Work Unit\UIVolume"/>
+			</GameParameters>
 		</SoundBank>
 		<SoundBank Id="3161908922" Language="English(US)">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
@@ -582,6 +585,7 @@
 			</IncludedEvents>
 			<GameParameters>
 				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
+				<GameParameter Id="3415057477" Name="UIVolume" ObjectPath="\Game Parameters\Default Work Unit\UIVolume"/>
 			</GameParameters>
 		</SoundBank>
 		<SoundBank Id="3991942870" Language="SFX" Hash="385807082">
