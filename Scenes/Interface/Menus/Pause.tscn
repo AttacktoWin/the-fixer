@@ -25,9 +25,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -250.0
-margin_top = -166.0
+margin_top = -108.0
 margin_right = 250.0
-margin_bottom = 292.0
+margin_bottom = 350.0
 
 [node name="Resume" type="TextureButton" parent="VBoxContainer"]
 margin_right = 500.0
@@ -36,6 +36,7 @@ texture_normal = ExtResource( 1 )
 texture_hover = ExtResource( 2 )
 
 [node name="Settings" type="TextureButton" parent="VBoxContainer"]
+visible = false
 margin_top = 154.0
 margin_right = 500.0
 margin_bottom = 304.0
@@ -43,8 +44,8 @@ texture_normal = ExtResource( 6 )
 texture_hover = ExtResource( 5 )
 
 [node name="Exit" type="TextureButton" parent="VBoxContainer"]
-margin_top = 308.0
+margin_top = 154.0
 margin_right = 500.0
-margin_bottom = 458.0
+margin_bottom = 304.0
 texture_normal = ExtResource( 4 )
 texture_hover = ExtResource( 3 )
