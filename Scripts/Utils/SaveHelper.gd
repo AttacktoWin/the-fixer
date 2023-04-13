@@ -20,7 +20,11 @@ func save() -> void:
 	file.close()
 
 
-func load_data():
+func load_game():
+	# prevent gun firing
+	if not PausingSingleton.is_paused():
+		PausingSingleton.pause()
+		PausingSingleton.unpause()
 	TransitionHelper.transition_fade()
 	var data = load_json_file(SAVE_FILE_NAME)
 	StatsSingleton.load_data(data[PERMANENT_UPGRADES])

@@ -281,7 +281,7 @@ func _process(_delta):
 		if Input.is_action_just_pressed("ui_end"):
 			SaveHelper.save()
 		if Input.is_action_just_pressed("ui_home"):
-			SaveHelper.load_data()
+			SaveHelper.load_game()
 			# var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
 			# TransitionHelper.transition(scene, true, true, 0.01)
 		if Input.is_action_just_pressed("ui_page_down"):

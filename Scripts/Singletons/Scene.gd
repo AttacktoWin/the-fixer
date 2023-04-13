@@ -136,9 +136,9 @@ func load(new_level: Level):
 		self._root.add_child(new_level)
 		self._root.move_child(new_level, 0)
 	_update_pathfinder()
+	# ORDER MATTERS FOR SAVE!!!
 	emit_signal("transition_complete")
 	emit_signal("world_updated")
-	
 
 
 func switch(new_level: Level, transfer_player: bool = false):

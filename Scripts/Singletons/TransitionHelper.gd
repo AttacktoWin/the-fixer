@@ -78,7 +78,8 @@ func transition_fade():
 	CameraSingleton.set_controller(self)
 	Scene.ui_layer.get_node("TransitionUI/FadeRect").modulate.a = 1
 	CameraSingleton.set_zoom(Vector2.ONE * (1.25) * ZOOM_OUT, self)
-	CameraSingleton.set_target_center(Scene.player.global_position * MathUtils.TO_ISO, self)
+	if Scene.player:
+		CameraSingleton.set_target_center(Scene.player.global_position * MathUtils.TO_ISO, self)
 	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION, self)
 	CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM, self)
 

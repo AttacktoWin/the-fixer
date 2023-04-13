@@ -39,7 +39,7 @@ var _weapon_scene_lookup = {
 
 
 func _ready():
-	Scene.connect("transition_complete", self, "start")
+	Scene.connect("world_updated", self, "start")
 
 
 func start():

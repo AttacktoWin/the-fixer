@@ -198,7 +198,7 @@ const BASIC_MELEE = preload(\"res://Scenes/Weapons/PlayerBrassKnucklesScene.tscn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Scene.connect(\"world_updated\", self, \"do_check\")
+	Scene.connect(\"world_updated\", self, \"do_check\", [], CONNECT_ONESHOT)
 	
 
 func do_check():

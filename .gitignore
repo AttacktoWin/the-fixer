@@ -11,3 +11,6 @@ Resources/Dialouge/Generator/list.csv
 
 Bin/*/*
 !Bin/*/.gitignore
+
+dialogue_system.save
+game_data.save

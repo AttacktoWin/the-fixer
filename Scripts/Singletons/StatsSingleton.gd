@@ -1,6 +1,6 @@
 extends Node
 
-var available_tokens = 13
+var available_tokens = 0
 
 var health_upgrades: int = 0
 var speed_upgrades: int = 0
@@ -45,14 +45,16 @@ func apply_upgrades(entity):
 
 
 func load_data(data):
-	self.health_upgrades = data[0]
-	self.speed_upgrades = data[1]
-	self.melee_damage_upgrades = data[2]
-	self.ranged_damage_upgrades = data[3]
+	self.available_tokens = data[0]
+	self.health_upgrades = data[1]
+	self.speed_upgrades = data[2]
+	self.melee_damage_upgrades = data[3]
+	self.ranged_damage_upgrades = data[4]
 
 
 func save():
 	return [
+		self.available_tokens,
 		self.health_upgrades,
 		self.speed_upgrades,
 		self.melee_damage_upgrades,
