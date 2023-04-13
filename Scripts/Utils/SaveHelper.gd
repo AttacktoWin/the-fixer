@@ -5,7 +5,7 @@ extends Node
 const SAVE_LEVEL_ID = "LEVEL_ID"
 const SAVE_LEVEL_DATA = "LEVEL_DATA"
 const PERMANENT_UPGRADES = "PERMANENT_UPGRADES"
-const SAVE_FILE_NAME = "game_data.save"
+const SAVE_FILE_NAME = "user://game_data.save"
 
 
 func save() -> void:
