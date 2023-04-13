@@ -187,10 +187,11 @@ shader_param/hurt_tex = ExtResource( 6 )
 
 [sub_resource type="Shader" id=16]
 code = "shader_type canvas_item;
-
+uniform float modulate =1.0;
 uniform vec2 pivot;
 uniform float rotation:hint_range(-0.02, 0.02);
 uniform float radius;
+uniform float scale_factor = 1;
 uniform float a;
 uniform float b;
 void fragment(){
@@ -202,7 +203,8 @@ void fragment(){
     uv.x = uv.x * cosine - uv.y * sine;
     uv.y = uv.x * sine + uv.y * cosine;
     uv += pivot;
-	
+	uv = uv*scale_factor;
+	uv += 0.5-(scale_factor/2.0);
 	COLOR = texture(TEXTURE,uv);
 	
 	float dist = abs(distance(vec2(0.5),SCREEN_UV));
@@ -210,13 +212,16 @@ void fragment(){
 	if(dist<=radius && COLOR.a>0.0){
 		COLOR.a = mix(0,strength,COLOR.a);
 	}
+	COLOR.a = mix(0,COLOR.a,modulate);
 }"
 
 [sub_resource type="ShaderMaterial" id=17]
 shader = SubResource( 16 )
-shader_param/pivot = Vector2( 0.5, 0.5 )
-shader_param/rotation = 0.008
+shader_param/modulate = 1.0
+shader_param/pivot = Vector2( 0.521, 0.5 )
+shader_param/rotation = 0.02
 shader_param/radius = 0.425
+shader_param/scale_factor = 1.011
 shader_param/a = 0.425
 shader_param/b = 0.0
 
@@ -324,7 +329,6 @@ anchor_bottom = 1.0
 script = SubResource( 20 )
 
 [node name="RoarVFX" type="TextureRect" parent="UILayer/UI"]
-visible = false
 material = SubResource( 17 )
 margin_right = 1920.0
 margin_bottom = 1080.0
