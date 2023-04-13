@@ -1,0 +1,70 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Hey Val, nice to see you back here. How's the Vending Machine business going?\""
+		},
+		{
+			"character": "character-1681358997.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Business is slow right now, The Boss changed the machine to not accept regular coins.\"\n\"I've been reduced to shaking down passerbys for loose change.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Wait, what does the machine take now?\""
+		},
+		{
+			"character": "character-1681358997.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"All he said was the shipment of Tokens got taken down by some sorta ant machine?\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Hm, maybe I'll find something down in The Vault then.\""
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "bubble",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1677774779.cfg"
+		},
+		{
+			"block_input": true,
+			"event_id": "dialogic_050",
+			"wait_time": 0
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "[i]I hope she doesn't try to shake me down. [pause=0.2]Not again.[/i]"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0.5
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1681358948.json",
+		"name": "val-default"
+	}
+}

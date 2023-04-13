@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://Scripts/LevelGeneration/LevelGenerator.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Levels/Level7.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
-[ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=13]
 [ext_resource path="res://Resources/Bahnschrift.tres" type="DynamicFont" id=14]
 
@@ -216,15 +215,7 @@ vision_range = 0.44
 enemy_appear_distance = 650.0
 spawn_upgrades = true
 level_index = 6
-
-[node name="LevelMusic" type="Node2D" parent="."]
-script = ExtResource( 11 )
-event = {
-"Id": 1932095129,
-"Name": "COMBAT MUSIC"
-}
-trigger_on = 3
-stop_on = 2
+level_music = 1932095129
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 7 )

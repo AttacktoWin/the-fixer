@@ -1,0 +1,70 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"character": "character-1681358997.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"You're looking extra affluent, Fixer.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"...Please don't shake me down.\""
+		},
+		{
+			"character": "character-1681358997.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"For you? I suppose I wouldn't have to if a certain sort of Token made it's way into the machine...\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"[i]*sigh*[/i] [pause=0.2]What do you have in stock?\""
+		},
+		{
+			"character": "character-1681358997.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"I've got all sorts of upgrades to help you out with your job down in the Vault!\""
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "bubble",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1677774779.cfg"
+		},
+		{
+			"block_input": true,
+			"event_id": "dialogic_050",
+			"wait_time": 0
+		},
+		{
+			"character": "",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"Sounds... [pause=0.2]very helpful!\""
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0.5
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1681359256.json",
+		"name": "val-2"
+	}
+}

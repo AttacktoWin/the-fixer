@@ -26,6 +26,9 @@ var _player = null
 var _exit = null
 var _wall_material = null
 
+var _current_music = null
+var _current_music_id = null
+
 signal transition_start
 signal transition_complete
 signal world_updated
@@ -140,6 +143,24 @@ func load(new_level: Level):
 	# ORDER MATTERS FOR SAVE!!!
 	emit_signal("transition_complete")
 	emit_signal("world_updated")
+	_check_music()
+
+
+func _check_music():
+	if not self._level_node:
+		return
+
+	var old = self._current_music_id
+	self._current_music_id = self._level_node.level_music
+	if not self._current_music_id:
+		if self._current_music:
+			Wwise.stop_event(self._current_music, 500, AkUtils.AkCurveInterpolation.EXP3)
+		self._current_music = null
+
+	if self._current_music_id != old:
+		if self._current_music:
+			Wwise.stop_event(self._current_music, 500, AkUtils.AkCurveInterpolation.EXP3)
+		self._current_music = Wwise.post_event_id(self._level_node.level_music, self)
 
 
 func switch(new_level: Level, transfer_player: bool = false):

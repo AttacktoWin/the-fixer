@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=8]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Utils/SmoothProgress.gd" type="Script" id=10]
-[ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 127, 0, 255, 66, 127, 126, 1, 65, 127, 127 )
@@ -196,15 +195,7 @@ script = ExtResource( 1 )
 vision_range = 0.8
 enemy_appear_distance = 1000.0
 level_index = -2
-
-[node name="LevelMusic" type="Node2D" parent="."]
-script = ExtResource( 11 )
-event = {
-"Id": 2930852717,
-"Name": "MANIFESTATION MUSIC"
-}
-trigger_on = 3
-stop_on = 2
+level_music = 2930852717
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 6 )

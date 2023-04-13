@@ -10,6 +10,7 @@ export var vision_range: float = 0.3
 export var enemy_appear_distance: float = 512
 export var spawn_upgrades: bool = false
 export var level_index: int = 0  # i hate this
+export(AK.EVENTS._dict) var level_music: int = 0
 
 const SAVE_UPGRADE_LIST = "UPGRADES"
 const SAVE_MELEE = "MELEE"
