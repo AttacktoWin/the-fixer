@@ -4,6 +4,7 @@ extends Node
 
 const SAVE_LEVEL_ID = "LEVEL_ID"
 const SAVE_LEVEL_DATA = "LEVEL_DATA"
+const PERMANENT_UPGRADES = "PERMANENT_UPGRADES"
 const SAVE_FILE_NAME = "game_data.save"
 
 
@@ -12,6 +13,7 @@ func save() -> void:
 	var data = {}
 	data[SAVE_LEVEL_DATA] = Scene.level_node.save()
 	data[SAVE_LEVEL_ID] = Scene.level_node.level_index
+	data[PERMANENT_UPGRADES] = StatsSingleton.save()
 	var file = File.new()
 	file.open(SAVE_FILE_NAME, File.WRITE)
 	file.store_string(JSON.print(data))
@@ -21,6 +23,7 @@ func save() -> void:
 func load_data():
 	TransitionHelper.transition_fade()
 	var data = load_json_file(SAVE_FILE_NAME)
+	StatsSingleton.load_data(data[PERMANENT_UPGRADES])
 	var level_id = data[SAVE_LEVEL_ID]
 
 	var scene: PackedScene = null

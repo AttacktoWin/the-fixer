@@ -87,7 +87,7 @@ func _generate_attack_info(_entity: LivingEntity) -> AttackInfo:
 		self.damage_type,
 		Vector2(INF, INF),
 		self,
-		self.getv(AttackVariable.DAMAGE),
+		ceil(self.getv(AttackVariable.DAMAGE)),
 		self.getv(AttackVariable.DIRECTION),
 		self.getv(AttackVariable.KNOCKBACK),
 		self.stun_factor

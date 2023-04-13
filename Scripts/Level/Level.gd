@@ -69,6 +69,7 @@ func update_player():
 	for upgrade_name in self._temp_data[SAVE_UPGRADE_LIST]:
 		upgrades.append(UpgradeSingleton.name_to_upgrade(upgrade_name).new())
 
+	# StatsSingleton.apply_upgrades(Scene.player)
 	Scene.player.apply_upgrades(upgrades)
 	if self._temp_data[SAVE_RANGED] and not Scene.player.has_gun():
 		Scene.player.set_gun(self._name_to_scene(self._temp_data[SAVE_RANGED]).instance())
@@ -83,7 +84,9 @@ func save() -> Dictionary:
 	var data = {}
 	var list = []
 	for upgrade in Scene.player.upgrade_handler.get_all_known_upgrades():
-		list.append(UpgradeSingleton.name_from_upgrade(upgrade))
+		var up = UpgradeSingleton.name_from_upgrade(upgrade)
+		if up:
+			list.append(up)
 
 	data[SAVE_UPGRADE_LIST] = list
 	var gen = get_node_or_null("Generator")

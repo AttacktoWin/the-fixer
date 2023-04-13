@@ -8,6 +8,8 @@ var paused = false
 
 func _ready():
 	$PauseMenu/VBoxContainer/Resume.connect("button_down", self, "_resume")  #warning-ignore:return_value_discarded
+	$PauseMenu/VBoxContainer/Settings.connect("button_down", self, "_settings_open")  #warning-ignore:return_value_discarded
+	$Settings/VBoxContainer/Cancel.connect("button_down", self, "_settings_close")  #warning-ignore:return_value_discarded
 	$PauseMenu/VBoxContainer/Exit.connect("button_down", self, "_exit")  #warning-ignore:return_value_discarded
 
 
@@ -17,6 +19,7 @@ func _input(event):
 			if paused:
 				Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
 				$PauseMenu.visible = false
+				$Settings.visible = false
 				self.visible = false
 				paused = false
 				PausingSingleton.unpause()
@@ -37,7 +40,19 @@ func _resume():
 		self.visible = false
 		paused = false
 		PausingSingleton.unpause()
+		Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
 
+func _settings_open():
+	$PauseMenu.visible = false
+	$Settings.visible = true
+
+func _settings_close():
+	if paused:
+		$Settings.visible = false
+		self.visible = false
+		paused = false
+		PausingSingleton.unpause()
+		Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
 
 func _exit():
 	$PauseMenu.visible = false

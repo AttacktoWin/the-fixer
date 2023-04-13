@@ -9,8 +9,8 @@ func _generate_attack_info(entity: LivingEntity) -> AttackInfo:
 		self.damage_type,
 		self.global_position,
 		self,
-		self.getv(AttackVariable.DAMAGE),
+		ceil(self.getv(AttackVariable.DAMAGE)),
 		(entity.global_position - self.global_position).angle(),
-		self.getv(AttackVariable.DAMAGE),
+		ceil(self.getv(AttackVariable.DAMAGE)),
 		self.stun_factor
 	)

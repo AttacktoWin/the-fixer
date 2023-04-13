@@ -18,6 +18,8 @@ onready var reload_progress_bar: ProgressBar = $ReloadProgress
 onready var melee_hitbox: BaseAttack = $Visual/HitBox
 onready var flash_node: Node2D = $FlashNode
 
+var upgrades_applied = false
+
 var weapon_disabled = false setget set_weapon_disabled
 
 var _gun = null
@@ -38,6 +40,7 @@ func _ready():
 	Scene.connect("world_updated", self, "_world_updated")  # warning-ignore:return_value_discarded
 	# move flash into limbo
 	self.flash_node.get_parent().remove_child(self.flash_node)
+	StatsSingleton.apply_upgrades(self)
 
 
 func _world_updated():
@@ -61,7 +64,7 @@ func load_data(data: Dictionary):
 	setv(LivingEntityVariable.HEALTH, data["HEALTH"])
 	if self._gun:
 		self._gun.ammo_count = data["AMMO"]
-	
+
 	update_health_bar()
 	update_ammo_counter()
 
@@ -288,9 +291,12 @@ func _process(_delta):
 				enemy.queue_free()
 		if Input.is_action_just_pressed("ui_page_up"):
 			#apply_upgrades([HomingUpgrade.new()])
-			var d = DualUpgrade.new()
-			Scene.runtime.add_child(d)
-			d.global_position = self.global_position
+			self.kill()
+
+
+#			var d = DualUpgrade.new()
+#			Scene.runtime.add_child(d)
+#			d.global_position = self.global_position
 
 
 func _unhandled_input(event: InputEvent):

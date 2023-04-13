@@ -696,6 +696,7 @@ playing = true
 position = Vector2( 77.25, 139.5 )
 scale = Vector2( 0.283333, 0.283333 )
 frames = SubResource( 24 )
+frame = 2
 playing = true
 
 [node name="Shoot" type="Control" parent="."]
@@ -725,7 +726,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 8
+frame = 3
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -790,7 +791,6 @@ playing = true
 position = Vector2( 92, 44.5 )
 scale = Vector2( 0.406667, 0.406667 )
 frames = SubResource( 63 )
-frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="Dash"]
