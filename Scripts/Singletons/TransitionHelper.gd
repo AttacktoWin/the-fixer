@@ -18,7 +18,8 @@ func _switch():
 	if Scene.player:
 		Scene.player.add_health(Scene.player.base_health / 4)
 	Scene.switch(self._transition_target, self._transfer_player)
-	CameraSingleton.set_target_center(Scene.player.global_position * MathUtils.TO_ISO, self)
+	if Scene.player:
+		CameraSingleton.set_target_center(Scene.player.global_position * MathUtils.TO_ISO, self)
 	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION, self)
 	CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM, self)
 

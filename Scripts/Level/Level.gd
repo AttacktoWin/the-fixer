@@ -38,6 +38,15 @@ var _weapon_scene_lookup = {
 }
 
 
+func _ready():
+	Scene.connect("transition_complete", self, "start")
+
+
+func start():
+	if Scene.player:
+		SaveHelper.save()
+
+
 func _weapon_to_name(weapon):
 	for key in self._weapon_name_lookup.keys():
 		if weapon is key:
