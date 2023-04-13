@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="English(US)" Hash="4016416096">
+		<SoundBank Id="89505537" Language="English(US)" Hash="2444159458">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>English(US)\89505537.bnk</Path>
@@ -88,6 +88,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1294739221" Name="Big_Hit_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Big_Hit_Player"/>
 				<Event Id="1823915905" Name="Charge_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Charge_Beetle">
 					<IncludedMemoryFiles>
 						<File Id="650969131" Language="SFX">
@@ -197,6 +198,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1544845144" Name="Medium_Hurt_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Medium_Hurt_Player"/>
 				<Event Id="3277391769" Name="Notice_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle">
 					<IncludedMemoryFiles>
 						<File Id="54709647" Language="SFX">
@@ -245,6 +247,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="291251994" Name="Small_Hurt_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Small_Hurt_Player"/>
 				<Event Id="3178172643" Name="Summon_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Summon_Manifestation">
 					<IncludedMemoryFiles>
 						<File Id="448529706" Language="SFX">
@@ -295,7 +298,7 @@
 			<ShortName>Init</ShortName>
 			<Path>1355168291.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="1551306167" Language="SFX" Hash="3829557501">
+		<SoundBank Id="1551306167" Language="SFX" Hash="795298525">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
 			<ShortName>UI</ShortName>
 			<Path>1551306167.bnk</Path>
