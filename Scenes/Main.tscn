@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scripts/Entities/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Magic/DamageMaterial.tres" type="Material" id=2]
@@ -217,13 +217,92 @@ void fragment(){
 
 [sub_resource type="ShaderMaterial" id=17]
 shader = SubResource( 16 )
-shader_param/modulate = 1.0
+shader_param/modulate = 0.0
 shader_param/pivot = Vector2( 0.521, 0.5 )
-shader_param/rotation = 0.02
+shader_param/rotation = 0.0
 shader_param/radius = 0.425
-shader_param/scale_factor = 1.011
+shader_param/scale_factor = 0.0
 shader_param/a = 0.425
 shader_param/b = 0.0
+
+[sub_resource type="Animation" id=21]
+resource_name = "New Anim"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("RoarVFX:material")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("RoarVFX:material:shader_param/rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( -0.02, -0.25, 0, 0.25, 0, 0.02, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.02, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("RoarVFX:material:shader_param/scale_factor")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.05768, -0.25, 0.102392, 0.05, -0.0804513, 1, -0.25, 0, 0.25, 0, 0.960166, -0.15, 0.0926409, 0.25, -0.0243791, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("RoarVFX:material:shader_param/modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 2.035, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2.035, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 )
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("RoarVFX:material:shader_param/rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("RoarVFX:material:shader_param/scale_factor")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("RoarVFX:material:shader_param/modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Theme" id=14]
 default_font = ExtResource( 11 )
@@ -329,11 +408,14 @@ anchor_bottom = 1.0
 script = SubResource( 20 )
 
 [node name="RoarVFX" type="TextureRect" parent="UILayer/UI"]
-visible = false
 material = SubResource( 17 )
 margin_right = 1920.0
 margin_bottom = 1080.0
 texture = ExtResource( 5 )
+
+[node name="RoarAnim" type="AnimationPlayer" parent="UILayer/UI"]
+"anims/New Anim" = SubResource( 21 )
+anims/RESET = SubResource( 22 )
 
 [node name="HUD" parent="UILayer/UI" instance=ExtResource( 3 )]
 
