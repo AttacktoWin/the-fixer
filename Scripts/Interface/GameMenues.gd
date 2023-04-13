@@ -60,3 +60,4 @@ func _exit():
 	paused = false
 	PausingSingleton.unpause()
 	Scene.switch(load("res://Scenes/Interface/Menus/MainMenu.tscn").instance())
+	Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
