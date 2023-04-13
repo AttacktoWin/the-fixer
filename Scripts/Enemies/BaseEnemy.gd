@@ -48,7 +48,7 @@ signal on_investigate_target_set
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Wwise.register_listener(self)
+	#Wwise.register_listener(self)
 	Wwise.register_game_obj(self, name)
 	if not "Enemy" in get_groups():
 		print("WARN: enemy '", name, "' not in group 'Enemy'")

@@ -30,7 +30,7 @@ signal world_updated
 
 func _ready():
 	Wwise.register_listener(self)
-
+	Wwise.register_game_obj(self,self.name)
 func _reload_variables(new_level: Level):
 	self._camera = self._root.get_node("MainCamera")
 	self._runtime = self._root.get_node_or_null("Level/SortableEntities/Runtime")

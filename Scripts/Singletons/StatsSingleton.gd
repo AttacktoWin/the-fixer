@@ -21,7 +21,7 @@ func increment(index):
 		available_tokens-=1
 
 func reset():
-	var total = 0
+	var total = available_tokens
 	for stat in stats.size():
 		total+=stats[stat]
 		stats[stat] = 0

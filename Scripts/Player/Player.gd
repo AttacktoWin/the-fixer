@@ -33,7 +33,6 @@ const HIT_SCENE = preload("res://Scenes/Particles/PlayerHitScene.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Wwise.register_listener(self)
 	Wwise.register_game_obj(self, self.get_name())
 	Scene.connect("world_updated", self, "_world_updated")  # warning-ignore:return_value_discarded
 	# move flash into limbo

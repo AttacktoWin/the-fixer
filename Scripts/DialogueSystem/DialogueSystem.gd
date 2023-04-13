@@ -62,7 +62,6 @@ func _ready():
 	Scene.connect("world_updated", self, "level_started")
 	Scene.connect("transition_start", self, "level_changed")
 
-	Wwise.register_listener(self)
 	Wwise.register_game_obj(self, "DialogueSystem")
 
 	if Engine.editor_hint:
