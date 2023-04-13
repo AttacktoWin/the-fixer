@@ -216,6 +216,7 @@ void fragment(){
 }"
 
 [sub_resource type="ShaderMaterial" id=17]
+render_priority = 1
 shader = SubResource( 16 )
 shader_param/modulate = 0.0
 shader_param/pivot = Vector2( 0.521, 0.5 )
@@ -238,7 +239,7 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray(  ),
 "transitions": PoolRealArray(  ),
-"update": 1,
+"update": 0,
 "values": [  ]
 }
 tracks/1/type = "bezier"
@@ -248,7 +249,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"points": PoolRealArray( -0.02, -0.25, 0, 0.25, 0, 0.02, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.02, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( -0.02, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0.02, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, -0.02, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 )
 }
 tracks/2/type = "bezier"
@@ -258,7 +259,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1.05768, -0.25, 0.102392, 0.05, -0.0804513, 1, -0.25, 0, 0.25, 0, 0.960166, -0.15, 0.0926409, 0.25, -0.0243791, 1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.96, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 0.96, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 )
 }
 tracks/3/type = "bezier"
@@ -268,7 +269,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 2.035, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2.035, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 2.16, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0, 2.16, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
 "times": PoolRealArray( 0, 0.25, 0.5, 0.75, 1 )
 }
 

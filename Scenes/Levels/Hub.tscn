@@ -868,7 +868,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 7
+frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
@@ -939,7 +939,6 @@ position = Vector2( -172, -240 )
 position = Vector2( -282, -398 )
 scale = Vector2( 0.380342, 0.380342 )
 frames = SubResource( 118 )
-frame = 5
 speed_scale = 2.0
 playing = true
 flip_h = true

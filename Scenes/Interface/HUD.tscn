@@ -162,3 +162,7 @@ theme = SubResource( 13 )
 custom_fonts/font = SubResource( 14 )
 text = "10"
 script = SubResource( 16 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
