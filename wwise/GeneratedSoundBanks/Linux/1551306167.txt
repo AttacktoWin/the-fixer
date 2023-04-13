@@ -6,8 +6,11 @@ Event	ID	Name			Wwise Object Path	Notes
 	3289055956	Move_Menu			\Default Work Unit\UI Actions\Menu Actions\Move_Menu	
 	3852800920	Advance_Textbox			\Default Work Unit\UI Actions\Textbox Actions\Advance_Textbox	
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	3415057477	UIVolume			\Default Work Unit\UIVolume	
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	221732163	UI_Select	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Linux\SFX\ui select_26416A3B.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI Sounds\UI_Select		25772
-	434915307	UI_Move_Right	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Linux\SFX\ui move right_E0C3F934.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI Sounds\UI_Move_Right		23228
-	933296836	UI_Move_Left	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Linux\SFX\ui move left_8B132BEB.wem		\Actor-Mixer Hierarchy\Default Work Unit\UI Sounds\UI_Move_Left		22716
+	221732163	UI_Select	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Linux\SFX\ui select_26416A3B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\UI Sounds\UI_Select		25772
+	434915307	UI_Move_Right	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Linux\SFX\ui move right_E0C3F934.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\UI Sounds\UI_Move_Right		23228
+	933296836	UI_Move_Left	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Linux\SFX\ui move left_8B132BEB.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\UI Sounds\UI_Move_Left		22716
 

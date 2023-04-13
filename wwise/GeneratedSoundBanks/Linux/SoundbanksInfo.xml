@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="English(US)" Hash="486801245">
+		<SoundBank Id="89505537" Language="English(US)" Hash="4248943576">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>English(US)\89505537.bnk</Path>
@@ -88,11 +88,20 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1294739221" Name="Big_Hit_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Big_Hit_Player"/>
 				<Event Id="1823915905" Name="Charge_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Charge_Beetle">
 					<IncludedMemoryFiles>
 						<File Id="650969131" Language="SFX">
 							<ShortName>beetle charge.wav</ShortName>
 							<Path>SFX\beetle charge_5781BEBB.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="282373675" Name="Charge_Spyder" ObjectPath="\Events\Default Work Unit\Enemy Actions\Spyder Actions\Charge_Spyder">
+					<IncludedMemoryFiles>
+						<File Id="865640855" Language="SFX">
+							<ShortName>spyder charge.wav</ShortName>
+							<Path>SFX\spyder charge_A592BCF1.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -189,6 +198,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="1544845144" Name="Medium_Hurt_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Medium_Hurt_Player"/>
 				<Event Id="3277391769" Name="Notice_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle">
 					<IncludedMemoryFiles>
 						<File Id="54709647" Language="SFX">
@@ -213,6 +223,14 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="3401439988" Name="Phone_Ring" ObjectPath="\Events\Default Work Unit\Environmental Actions\Phone_Ring">
+					<IncludedMemoryFiles>
+						<File Id="419100912" Language="SFX">
+							<ShortName>phone_ring.wav</ShortName>
+							<Path>SFX\phone_ring_6ABAC244.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
 				<Event Id="1582328950" Name="Roar_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Roar_Manifestation">
 					<IncludedMemoryFiles>
 						<File Id="934392654" Language="SFX">
@@ -229,11 +247,28 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
+				<Event Id="291251994" Name="Small_Hurt_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Small_Hurt_Player"/>
 				<Event Id="3178172643" Name="Summon_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Summon_Manifestation">
 					<IncludedMemoryFiles>
 						<File Id="448529706" Language="SFX">
 							<ShortName>summon_manny.wav</ShortName>
 							<Path>SFX\summon_manny_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3768797038" Name="Swing_Baton_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Swing_Baton_Player">
+					<IncludedMemoryFiles>
+						<File Id="215651341" Language="SFX">
+							<ShortName>Swing_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Swing_Knuckles_Player_65AC56E0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2160065833" Name="Swing_Knife_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Swing_Knife_Player">
+					<IncludedMemoryFiles>
+						<File Id="215651341" Language="SFX">
+							<ShortName>Swing_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Swing_Knuckles_Player_65AC56E0.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -263,7 +298,7 @@
 			<ShortName>Init</ShortName>
 			<Path>1355168291.bnk</Path>
 		</SoundBank>
-		<SoundBank Id="1551306167" Language="SFX" Hash="3829557501">
+		<SoundBank Id="1551306167" Language="SFX" Hash="1839818560">
 			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
 			<ShortName>UI</ShortName>
 			<Path>1551306167.bnk</Path>
@@ -303,6 +338,9 @@
 					</IncludedMemoryFiles>
 				</Event>
 			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="3415057477" Name="UIVolume" ObjectPath="\Game Parameters\Default Work Unit\UIVolume"/>
+			</GameParameters>
 		</SoundBank>
 		<SoundBank Id="3161908922" Language="English(US)">
 			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
@@ -547,6 +585,7 @@
 			</IncludedEvents>
 			<GameParameters>
 				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
+				<GameParameter Id="3415057477" Name="UIVolume" ObjectPath="\Game Parameters\Default Work Unit\UIVolume"/>
 			</GameParameters>
 		</SoundBank>
 		<SoundBank Id="3991942870" Language="SFX" Hash="385807082">
