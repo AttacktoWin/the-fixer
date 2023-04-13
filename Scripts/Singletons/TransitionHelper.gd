@@ -70,6 +70,18 @@ func _process(delta):
 			self._is_transitioning = false
 
 
+func transition_fade():
+	self._is_transitioning = true
+	self._transition_timer = 0
+	self._transition_phase = 2
+	CameraSingleton.set_controller(self)
+	Scene.ui_layer.get_node("TransitionUI/FadeRect").modulate.a = 1
+	CameraSingleton.set_zoom(Vector2.ONE * (1.25) * ZOOM_OUT, self)
+	CameraSingleton.set_target_center(Scene.player.global_position * MathUtils.TO_ISO, self)
+	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION, self)
+	CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM, self)
+
+
 func transition(
 	to_scene: Node, long_load: bool = false, transfer_player: bool = true, fade_time: float = 0.5
 ):

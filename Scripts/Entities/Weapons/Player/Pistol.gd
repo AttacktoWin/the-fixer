@@ -3,6 +3,7 @@
 class_name PlayerGunPistol extends PlayerBaseGun
 
 
+
 func _fire(direction: float, _target: Node2D = null):
 	for j in range(calc_multishot()):
 		var bullet: BulletBase = self._generate_bullet()

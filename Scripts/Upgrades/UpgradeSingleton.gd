@@ -77,3 +77,11 @@ func pick_upgrade_pair():
 		upgrade2 = pick_random_upgrade()
 
 	return [upgrade1, upgrade2]
+
+
+func name_from_upgrade(upgrade: Upgrade) -> String:
+	for key in self._class_lookup.keys():
+		var data = self._class_lookup[key]
+		if upgrade is data[UPGRADE_CLASS]:
+			return key
+	return ""

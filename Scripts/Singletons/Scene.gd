@@ -32,36 +32,33 @@ signal world_updated
 
 
 func _ready():
+	randomize()
 	Wwise.register_listener(self)
+
+
+func _update_pathfinder():
+	if self._level != null:
+		self._level = self._level.level
+		Pathfinder.update_level(self._level)
 
 
 func _reload_variables(new_level: Level):
 	self._camera = self._root.get_node("MainCamera")
-	self._runtime = self._root.get_node_or_null("Level/SortableEntities/Runtime")
 	self._ui = self._root.get_node("UILayer/UI")
 	self._ui_layer = self._root.get_node("UILayer")
 	self._managers = self._root.get_node("Managers")
-	self._level = (
-		self._root.get_node_or_null("Level/Generator")
-		if new_level == null
-		else new_level.get_node_or_null("Generator")
-	)
-	self._level_node = self._root.get_node("Level") if new_level == null else new_level
-	self._exit = (
-		self._root.get_node_or_null("Level/Transition/Hitbox")
-		if new_level == null
-		else new_level.get_node_or_null("Transition/Hitbox")
-	)
-	self._wall_material = self._level_node.get_node_or_null("%Walls")
-	if self._wall_material:
-		self._wall_material = self._wall_material.material
-	if self._player == null:
-		self._player = self._root.get_node_or_null("Level/SortableEntities/Player")
-	if self._level != null:
-		self._level = self._level.level
-		Pathfinder.update_level(self._level)
-	emit_signal("world_updated")
-	emit_signal("transition_complete")
+	self._level_node = self._root.get_node_or_null("Level")  # edge case for start level
+	if new_level != null:
+		Pathfinder.update_level([[]])
+		self._runtime = new_level.get_node_or_null("SortableEntities/Runtime")
+		self._level = new_level.get_node_or_null("Generator")
+		self._level_node = new_level
+		self._exit = new_level.get_node_or_null("Transition/Hitbox")
+		self._wall_material = new_level.get_node_or_null("%Walls")
+		if self._wall_material:
+			self._wall_material = self._wall_material.material
+		if self._player == null:
+			self._player = new_level.get_node_or_null("SortableEntities/Player")
 
 
 func set_root(root: Node2D):
@@ -131,13 +128,17 @@ func load(new_level: Level):
 	if self._level_node:
 		print("Current level still loaded!")
 		return
+	_reload_variables(new_level)
 	if new_level.is_ui:
 		self._root.get_node("UILayer").add_child(new_level)
 		#self._root.get_node("UILayer").move_child(new_level, 0)
 	else:
 		self._root.add_child(new_level)
 		self._root.move_child(new_level, 0)
-	_reload_variables(new_level)
+	_update_pathfinder()
+	emit_signal("transition_complete")
+	emit_signal("world_updated")
+	
 
 
 func switch(new_level: Level, transfer_player: bool = false):

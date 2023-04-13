@@ -195,6 +195,7 @@ corner_radius_bottom_left = 2
 script = ExtResource( 1 )
 vision_enabled = false
 enemy_appear_distance = 1000.0
+level_index = -2
 
 [node name="LevelMusic" type="Node2D" parent="."]
 script = ExtResource( 11 )

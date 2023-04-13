@@ -2,7 +2,11 @@ extends Node2D
 
 export(NodePath) var Player_path
 export(NodePath) var Exit_path
-onready var player = get_node(Player_path) if Player_path else Scene.player
+onready var player = (
+	get_node(Player_path)
+	if Player_path
+	else get_node("../SortableEntities/Player")
+)
 onready var exit = get_node(Exit_path)
 
 export(NodePath) var parent
@@ -31,8 +35,9 @@ const MAX_TRIES = 1000
 
 
 func _init():
-	rng.randomize()
-	saved_seed = rng.seed
+	var rand = randi()
+	rng.seed = rand
+	self.saved_seed = rand
 
 
 func _ready():
@@ -184,8 +189,8 @@ func initialize_level(data):
 
 func set_seed(value):
 	rng.seed = value
-	saved_seed = value
+	self.saved_seed = value
 
 
 func get_seed():
-	return rng.seed
+	return self.saved_seed

@@ -15,3 +15,9 @@ func _ready():
 				self.level[x].push_back(2)
 			else:
 				self.level[x].push_back(-1)
+
+func set_seed(_value):
+	pass
+
+func get_seed():
+	return 0

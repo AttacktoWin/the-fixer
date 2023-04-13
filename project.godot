@@ -469,6 +469,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Entities/Weapons/Player/Baton.gd"
 }, {
+"base": "Melee",
+"class": "PlayerMeleeBrassKnuckles",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/BrassKnuckles.gd"
+}, {
+"base": "Melee",
+"class": "PlayerMeleeKnife",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/Knife.gd"
+}, {
 "base": "Reference",
 "class": "PlayerState",
 "language": "GDScript",
@@ -722,6 +732,8 @@ _global_script_class_icons={
 "PlayerGunTommy": "",
 "PlayerMelee": "",
 "PlayerMeleeBaton": "",
+"PlayerMeleeBrassKnuckles": "",
+"PlayerMeleeKnife": "",
 "PlayerState": "",
 "PlayerStateDash": "",
 "PlayerStateDead": "",
@@ -777,6 +789,7 @@ Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
 TransitionHelper="*res://Scripts/Singletons/TransitionHelper.gd"
 UpgradeSingleton="*res://Scripts/Upgrades/UpgradeSingleton.gd"
 StatsSingleton="*res://Scripts/Singletons/StatsSingleton.gd"
+SaveHelper="*res://Scripts/Utils/SaveHelper.gd"
 
 [debug]
 
