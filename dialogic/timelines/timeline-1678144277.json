@@ -46,13 +46,13 @@
 			"z_index": 0
 		},
 		{
-			"character": "character-1675203357.json",
+			"character": "character-1678144008.json",
 			"event_id": "dialogic_001",
-			"portrait": "(Don't change)",
+			"portrait": "",
 			"text": "\"...\""
 		},
 		{
-			"character": "character-1678144008.json",
+			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "\"...\""
