@@ -13,9 +13,9 @@
 	"portraits": [
 		{
 			"name": "Default",
-			"path": ""
+			"path": "res://Assets/Portraits/Val/val-portrait.png"
 		}
 	],
-	"scale": 100,
+	"scale": 65,
 	"theme": ""
 }
