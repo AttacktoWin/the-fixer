@@ -227,7 +227,7 @@ shader_param/a = 0.425
 shader_param/b = 0.0
 
 [sub_resource type="Animation" id=21]
-resource_name = "New Anim"
+resource_name = "FX"
 loop = true
 step = 0.05
 tracks/0/type = "value"
@@ -410,14 +410,15 @@ anchor_bottom = 1.0
 script = SubResource( 20 )
 
 [node name="RoarVFX" type="TextureRect" parent="UILayer/UI"]
+modulate = Color( 1, 1, 1, 0 )
 material = SubResource( 17 )
 margin_right = 1920.0
 margin_bottom = 1080.0
 texture = ExtResource( 5 )
 
 [node name="RoarAnim" type="AnimationPlayer" parent="UILayer/UI"]
-playback_speed = 1.3
-"anims/New Anim" = SubResource( 21 )
+autoplay = "FX"
+anims/FX = SubResource( 21 )
 anims/RESET = SubResource( 22 )
 
 [node name="HUD" parent="UILayer/UI" instance=ExtResource( 3 )]

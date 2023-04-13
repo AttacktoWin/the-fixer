@@ -2,18 +2,8 @@ extends Node
 
 var available_tokens = 0
 
-var health_upgrades: int = 0
-var speed_upgrades: int = 0
-var melee_damage_upgrades: int = 0
-var ranged_damage_upgrades: int = 0
-
 const MAX = 10
-var stats = [
-	self.health_upgrades,
-	self.speed_upgrades,
-	self.melee_damage_upgrades,
-	self.ranged_damage_upgrades
-]
+var stats = [0, 0, 0, 0]
 
 
 func increment(index):
@@ -36,27 +26,27 @@ func apply_upgrades(entity):
 	entity.upgrades_applied = true
 	entity.apply_upgrades(
 		[
-			PermanentHealthUpgrade.new(self.health_upgrades * 10),
-			PermanentSpeedUpgrade.new(self.speed_upgrades * 0.05),
-			PermanentMeleeDamageUpgrade.new(self.melee_damage_upgrades * 0.03),
-			PermanentRangedDamageUpgrade.new(self.ranged_damage_upgrades * 0.03),
+			PermanentHealthUpgrade.new(self.stats[0] * 10),
+			PermanentSpeedUpgrade.new(self.stats[1] * 0.05),
+			PermanentMeleeDamageUpgrade.new(self.stats[2] * 0.03),
+			PermanentRangedDamageUpgrade.new(self.stats[3] * 0.03),
 		]
 	)
 
 
 func load_data(data):
 	self.available_tokens = data[0]
-	self.health_upgrades = data[1]
-	self.speed_upgrades = data[2]
-	self.melee_damage_upgrades = data[3]
-	self.ranged_damage_upgrades = data[4]
+	self.stats[0] = data[1]
+	self.stats[1] = data[2]
+	self.stats[2] = data[3]
+	self.stats[3] = data[4]
 
 
 func save():
 	return [
 		self.available_tokens,
-		self.health_upgrades,
-		self.speed_upgrades,
-		self.melee_damage_upgrades,
-		self.ranged_damage_upgrades
+		self.stats[0],
+		self.stats[1],
+		self.stats[2],
+		self.stats[3],
 	]

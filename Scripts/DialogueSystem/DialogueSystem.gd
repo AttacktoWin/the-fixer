@@ -100,8 +100,8 @@ func _timeline_end(_t_name: String):
 	dialogue_viewed(self.current_npc_id, self.current_dialogue_id)
 	self.current_dialog_box = null
 	self.follow_player = false
-	if PausingSingleton._paused:
-		PausingSingleton.unpause()
+	# if PausingSingleton._paused:
+	# 	PausingSingleton.unpause()
 
 
 func _signal_listener(s_name: String):

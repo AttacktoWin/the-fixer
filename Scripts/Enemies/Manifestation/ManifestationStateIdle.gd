@@ -4,8 +4,8 @@ class_name ManifestationStateIdle extends FSMNode
 
 const MIN_DISTANCE = 256
 
-const SPAWN_WAVE_TIMER = 3.0  # check every 4 seconds
-var _timer: float = 2.0
+const SPAWN_WAVE_TIMER = 2.0  # check every 2 seconds
+var _timer: float = 1.0
 
 
 func get_handled_states():

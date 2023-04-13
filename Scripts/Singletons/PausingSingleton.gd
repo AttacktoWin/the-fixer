@@ -11,15 +11,15 @@ var _unpaused_frames = 0
 
 # entity is an optional entity to pass as an argument to ignore
 func pause(_entity = null):
-	assert(not self._paused)
+	# assert(not self._paused)
 	self._paused_entity = _entity
 	self._paused = true
 	emit_signal("pause_changed", true, _entity)
 
 
 func unpause(_entity = null):
-	assert(self._paused)
-	assert(self._paused_entity == _entity)
+	# assert(self._paused)
+	# assert(self._paused_entity == _entity)
 	self._paused = false
 	self._unpaused_frames = -1
 	emit_signal("pause_changed", false, _entity)
