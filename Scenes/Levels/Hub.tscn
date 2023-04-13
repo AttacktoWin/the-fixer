@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://Assets/Tiles/Hub/hub-wall.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://Assets/Tiles/Hub/bookcase.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Tiles/Hub/enter.png" type="Texture" id=23]
 [ext_resource path="res://Scenes/Interface/Menus/VaultConfirm.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Scenes/Levels/Val.gd" type="Script" id=25]
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends Node2D
@@ -754,6 +755,9 @@ animations = [ {
 [sub_resource type="CircleShape2D" id=119]
 radius = 30.24
 
+[sub_resource type="CircleShape2D" id=120]
+radius = 66.66
+
 [sub_resource type="GDScript" id=103]
 resource_name = "Vault Enter"
 script/source = "extends Area2D
@@ -874,7 +878,6 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 6
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
@@ -945,9 +948,10 @@ position = Vector2( -172, -240 )
 position = Vector2( -410, -390 )
 scale = Vector2( 0.380342, 0.380342 )
 frames = SubResource( 118 )
-frame = 6
+frame = 10
 speed_scale = 2.0
 playing = true
+script = ExtResource( 25 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="SortableEntities/Val"]
 position = Vector2( 13.1461, 139.348 )
@@ -957,6 +961,18 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SortableEntities/Val/StaticBody2D"]
 shape = SubResource( 119 )
+
+[node name="Area2D" type="Area2D" parent="SortableEntities/Val"]
+scale = Vector2( 2, 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SortableEntities/Val/Area2D"]
+position = Vector2( 7.88763, 144.607 )
+shape = SubResource( 120 )
+
+[node name="FixerNPCInstance" type="Node2D" parent="SortableEntities/Val"]
+position = Vector2( 680, 360 )
+script = ExtResource( 7 )
+id = "val"
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]
 
