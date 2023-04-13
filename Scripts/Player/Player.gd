@@ -284,10 +284,10 @@ func _process(_delta):
 			# var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
 			# TransitionHelper.transition(scene, true, true, 0.01)
 		if Input.is_action_just_pressed("ui_page_down"):
-			# var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
-			# TransitionHelper.transition(scene, true, true, 0.01)
-			for enemy in AI.get_all_enemies():
-				enemy.queue_free()
+			var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
+			TransitionHelper.transition(scene, true, true, 0.01)
+			# for enemy in AI.get_all_enemies():
+			# 	enemy.queue_free()
 		if Input.is_action_just_pressed("ui_page_up"):
 			#apply_upgrades([HomingUpgrade.new()])
 			self.kill()
