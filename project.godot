@@ -794,7 +794,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="The Fixer"
+config/name="Within The Vault"
 config/description="A noire-themed roguelite"
 run/main_scene="res://Scenes/Main.tscn"
 boot_splash/image="res://Assets/UI/logo.png"
