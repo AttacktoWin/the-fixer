@@ -59,6 +59,7 @@ func _on_Done_pressed():
 	Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
 	PausingSingleton.unpause()
 	get_parent().visible = false
+	SaveHelper.save()
 "
 
 [sub_resource type="GDScript" id=5]

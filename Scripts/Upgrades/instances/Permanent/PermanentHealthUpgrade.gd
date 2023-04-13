@@ -14,6 +14,7 @@ func apply(entity, _type: int):
 	r.extra = self._value
 	entity.variables.add_runnable(LivingEntityVariable.MAX_HEALTH, r)
 	entity.update_health_bar()
+	entity.add_health(1000000)
 
 
 func get_upgrade_types() -> Array:
