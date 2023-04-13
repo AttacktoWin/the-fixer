@@ -39,8 +39,8 @@
 				"0": false,
 				"1": false,
 				"2": false,
-				"3": true,
-				"4": false
+				"3": false,
+				"4": true
 			},
 			"type": 0,
 			"z_index": 0
@@ -73,7 +73,7 @@
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"Huh. Must have a warehouse down there full fo the things.\""
+			"text": "\"Huh. Must have a warehouse down there full of the things.\""
 		},
 		{
 			"animation": "[Default]",
@@ -117,7 +117,7 @@
 			"character": "",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[i]Imagine a warehouse with nothing but knives. A dreamland.[/i]"
+			"text": "[i]Imagine a warehouse with nothing but knives. [pause=0.3]A dreamland.[/i]"
 		},
 		{
 			"event_id": "dialogic_022",
