@@ -1,0 +1,145 @@
+{
+	"events": [
+		{
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "instant_in.gd",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Default",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": true,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Shadow",
+			"portrait_definition": "",
+			"position": {
+				"0": true,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 0
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"When did you get your orders and who gave them to you?\""
+		},
+		{
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"We received our orders from the Boss, 36.23 years ago.\""
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "[i]36 years? Looks like the Boss, [pause=0.2]my Boss, was right. That was before he took over.[/i]\n[i]But that does mean whoever made this thing knew what they were doing.[/i]\n[i]Maybe I can trick it.[/i]"
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"You've done a good job, I'm as efficient as ever! There's no need for you to train me anymore.\""
+		},
+		{
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"There is still inefficiency in your decision model. [pause=0.3]You have been sent back [deaths] number of times.\""
+		},
+		{
+			"condition": "<",
+			"definition": "1678834508-793",
+			"event_id": "dialogic_012",
+			"value": "5"
+		},
+		{
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"The optimization algorithm predicts higher efficiency if more runs are attempted.\""
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"condition": ">=",
+			"definition": "",
+			"event_id": "dialogic_012",
+			"value": "5"
+		},
+		{
+			"character": "character-1675203451.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"The optimization algorithm predicts more efficient performance if more weapons are gathered to train the model on the operation of the security systems.\""
+		},
+		{
+			"event_id": "dialogic_013"
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "Shadow",
+			"text": "\"Inefficiency means I'm trying. Getting sent back is just a sign of the progress I've made.\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.4.5",
+		"file": "timeline-1678841370.json",
+		"name": "manifestation-9"
+	}
+}

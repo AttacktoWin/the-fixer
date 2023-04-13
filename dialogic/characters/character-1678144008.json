@@ -1,0 +1,21 @@
+{
+	"color": "#fffdd838",
+	"description": "",
+	"display_name": "",
+	"display_name_bool": false,
+	"id": "character-1678144008.json",
+	"mirror_portraits": false,
+	"name": "???",
+	"nickname": "",
+	"nickname_bool": true,
+	"offset_x": 200,
+	"offset_y": 0,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://Assets/Portraits/Manifestation/manifest_portrait.png"
+		}
+	],
+	"scale": 70,
+	"theme": ""
+}

@@ -1,9 +1,79 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://Assets/Sprites/Fixer/fixer-spritesheet-WHOLE.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Sprites/Fixer/fixer-arm.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/Wrappers/AnimationTree.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/Player/PlayerStateFree.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Player/PlayerStateDash.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Magic/Effects/Textures/muzzle_smoklessVFX.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sprites/Fixer/fixer-arm-no-weapon.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/FSM/FSMController.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Player/PlayerStateDead.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Player/PlayerStateDev.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/Player/PlayerMeleeAttack.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/Player/PlayerStateMelee.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Interface/Enemy_Health.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=12]
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 400, 558 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 400, 0, 400, 558 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 800, 0, 400, 558 )
+
+[sub_resource type="SpriteFrames" id=21]
+animations = [ {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), null ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="GDScript" id=25]
+script/source = "extends AnimatedSprite
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.connect(\"animation_finished\", self, \"anim_finish\")
+	
+func anim_finish():
+	set_frame(0)
+	stop()
+	self.visible = false
+
+func play_flash():
+	play()
+	self.visible = true	
+	
+"
+
+[sub_resource type="CircleShape2D" id=14]
+radius = 32.0
+
+[sub_resource type="Shader" id=16]
+code = "shader_type canvas_item;
+void fragment(){
+	COLOR = vec4(1,1,1,1);
+}"
+
+[sub_resource type="ShaderMaterial" id=17]
+shader = SubResource( 16 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 20, 26 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Dash"
@@ -35,15 +105,15 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("ArmsContainer:modulate")
-tracks/2/interp = 0
+tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5, 0.52 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.12, 0.34, 0.52 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 0.376471 ), Color( 0, 0, 0, 0.376471 ), Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -73,6 +143,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("MeleeHand:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Idle"
@@ -96,10 +178,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( -10, 0 ), Vector2( -10, 0.5 ), Vector2( -10, 0.5 ), Vector2( -10, 1.5 ), Vector2( -10, 0.5 ), Vector2( -10, 0 ), Vector2( -10, 0.5 ), Vector2( -10, 0 ) ]
+"values": [ Vector2( -10, 0 ), Vector2( -10, 0.5 ), Vector2( -10, 1.5 ), Vector2( -10, 1.5 ), Vector2( -10, 0.5 ), Vector2( -10, -0.5 ), Vector2( -10, 0.5 ), Vector2( -10, 1.5 ), Vector2( -10, 1.5 ), Vector2( -10, 0.5 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -130,11 +212,71 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("HitBox/HitCollider:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.08, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBox/HitCollider:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.08, 0.18, 0.28 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 24, -60 ), Vector2( 34, -15 ), Vector2( 24, 24 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MeleeHand:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.06, 0.16, 0.22, 0.3, 0.44 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 13, -33 ), Vector2( 41, 4 ), Vector2( -11, 26 ), Vector2( -30, 19 ), Vector2( -36, 9 ), Vector2( -39, 3 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("MeleeHand:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.06, 0.16, 0.22, 0.3, 0.44 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ -50.0, 50.0, 190.0, 294.0, 305.0, 305.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("MeleeHand:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="Animation" id=6]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("PlayerSprite:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -143,10 +285,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0 ]
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("PlayerSprite:modulate")
+tracks/1/path = NodePath("ArmsContainer:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -167,37 +309,31 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( -10, 5 ) ]
+"values": [ Vector2( -10, 1.5 ) ]
 }
-
-[sub_resource type="Animation" id=7]
-resource_name = "Run"
-length = 0.5
-loop = true
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("PlayerSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 10, 11, 12, 13, 14, 15, 16, 17, 18, 19 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("ArmsContainer:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray(  ),
-"transitions": PoolRealArray(  ),
+tracks/3/type = "value"
+tracks/3/path = NodePath("HitBox/HitCollider:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [  ]
+"values": [ Vector2( 26, 40 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("MeleeHand:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -230,82 +366,52 @@ tracks/1/keys = {
 "values": [ Vector2( -10, 0 ), Vector2( -10, 1 ), Vector2( -10, 2 ), Vector2( -10, 2 ), Vector2( -10, 1 ), Vector2( -10, 0 ), Vector2( -10, 1 ), Vector2( -10, 2 ), Vector2( -10, 2 ), Vector2( -10, 1 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=14]
-animation = "Dash"
-
-[sub_resource type="AnimationNodeAnimation" id=27]
-animation = "Die"
-
-[sub_resource type="AnimationNodeAnimation" id=15]
-animation = "Idle"
-
-[sub_resource type="AnimationNodeAnimation" id=16]
-animation = "Melee"
-
-[sub_resource type="AnimationNodeAnimation" id=17]
-animation = "Run"
-
-[sub_resource type="AnimationNodeAnimation" id=18]
-animation = "Walk"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=25]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=26]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=28]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=29]
-
-[sub_resource type="AnimationNodeStateMachine" id=11]
-states/Dash/node = SubResource( 14 )
-states/Dash/position = Vector2( 548, -45 )
-states/Die/node = SubResource( 27 )
-states/Die/position = Vector2( 734, -45 )
-states/Idle/node = SubResource( 15 )
-states/Idle/position = Vector2( 548, 74 )
-states/Melee/node = SubResource( 16 )
-states/Melee/position = Vector2( 734, 74 )
-states/Run/node = SubResource( 17 )
-states/Run/position = Vector2( 192, 74 )
-states/Walk/node = SubResource( 18 )
-states/Walk/position = Vector2( 372, 74 )
-transitions = [ "Dash", "Idle", SubResource( 19 ), "Walk", "Idle", SubResource( 21 ), "Walk", "Run", SubResource( 22 ), "Run", "Walk", SubResource( 23 ), "Idle", "Walk", SubResource( 24 ), "Idle", "Dash", SubResource( 25 ), "Idle", "Melee", SubResource( 26 ), "Melee", "Idle", SubResource( 20 ), "Walk", "Dash", SubResource( 28 ), "Run", "Dash", SubResource( 29 ) ]
-start_node = "Idle"
-graph_offset = Vector2( -300, -126 )
-
-[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
-
 [sub_resource type="CapsuleShape2D" id=13]
-radius = 18.0
-height = 22.0
+radius = 14.0
+height = 30.0
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 4
-script = ExtResource( 11 )
-animation_tree_path = NodePath("Visual/AnimationTree")
+script = ExtResource( 12 )
+base_speed = 450.0
+
+[node name="FlashNode" type="Node2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="FlashNode"]
+visible = false
+position = Vector2( 48, 10 )
+scale = Vector2( 0.333, 0.333 )
+frames = SubResource( 21 )
+speed_scale = 5.0
+script = SubResource( 25 )
 
 [node name="PhysicsCollider" type="CollisionPolygon2D" parent="."]
-position = Vector2( 0, -55 )
+position = Vector2( 0, -60 )
 polygon = PoolVector2Array( 0, 76, 16, 74, 28, 68, 32, 60, 28, 52, 16, 46, 0, 44, -17, 46, -28, 52, -32, 60, -28, 68, -16, 74 )
 
+[node name="EntityCollider" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EntityCollider"]
+scale = Vector2( 1, 0.5 )
+shape = SubResource( 14 )
+
 [node name="Visual" type="Node2D" parent="."]
+material = SubResource( 17 )
 position = Vector2( 0, -55 )
+
+[node name="MeleeHand" type="Node2D" parent="Visual"]
+visible = false
+position = Vector2( 41, 4 )
+rotation = 0.872665
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Arm2" type="Sprite" parent="Visual"]
+position = Vector2( 30, 2 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
 
 [node name="PlayerSprite" type="Sprite" parent="Visual"]
 scale = Vector2( 0.5, 0.5 )
@@ -313,33 +419,46 @@ texture = ExtResource( 1 )
 hframes = 10
 vframes = 5
 
+[node name="HitBox" type="Area2D" parent="Visual"]
+position = Vector2( 0, 55 )
+collision_layer = 0
+collision_mask = 32
+script = ExtResource( 9 )
+base_speed = 0.0
+base_knockback = 256.0
+allied_class = ExtResource( 12 )
+persistent = true
+die_on_pierce = false
+spectral = true
+camera_shake = 12.0
+max_pierce = 100000000
+should_forget_entities = true
+entity_forget_time = 0.15
+
+[node name="HitCollider" type="CollisionShape2D" parent="Visual/HitBox"]
+position = Vector2( 26, 40 )
+shape = SubResource( 15 )
+disabled = true
+
 [node name="ArmsContainer" type="Node2D" parent="Visual"]
 self_modulate = Color( 1, 1, 1, 0 )
-position = Vector2( -10, 5 )
+position = Vector2( -10, 1.5 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="Arms" type="Sprite" parent="Visual/ArmsContainer"]
-position = Vector2( 52, 0 )
-texture = ExtResource( 4 )
+[node name="Hand" type="Node2D" parent="Visual/ArmsContainer"]
+position = Vector2( 72, 6 )
 
-[node name="SocketMuzzle" type="Node2D" parent="Visual/ArmsContainer"]
-position = Vector2( 114, -13 )
+[node name="Arm" type="Sprite" parent="Visual/ArmsContainer"]
+position = Vector2( 38, 4 )
+texture = ExtResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
-anims/Dash = SubResource( 2 )
-anims/Die = SubResource( 3 )
-anims/Idle = SubResource( 4 )
-anims/Melee = SubResource( 5 )
+anims/DASH = SubResource( 2 )
+anims/DIE = SubResource( 3 )
+anims/IDLE = SubResource( 4 )
+anims/MELEE = SubResource( 5 )
 anims/RESET = SubResource( 6 )
-anims/Run = SubResource( 7 )
-anims/Walk = SubResource( 8 )
-
-[node name="AnimationTree" type="AnimationTree" parent="Visual"]
-tree_root = SubResource( 11 )
-anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource( 12 )
-script = ExtResource( 5 )
+anims/WALK = SubResource( 8 )
 
 [node name="HurtBox" type="Area2D" parent="."]
 position = Vector2( 0, -55 )
@@ -347,5 +466,35 @@ collision_layer = 32
 collision_mask = 0
 
 [node name="HurtCollider" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( 0, 33 )
+position = Vector2( 0, 53 )
+rotation = 1.5708
 shape = SubResource( 13 )
+
+[node name="FSMController" type="Node2D" parent="."]
+script = ExtResource( 6 )
+root_state = NodePath("PlayerStateFree")
+animation_player = NodePath("../Visual/AnimationPlayer")
+
+[node name="PlayerStateFree" type="Node2D" parent="FSMController"]
+script = ExtResource( 2 )
+
+[node name="PlayerStateDash" type="Node2D" parent="FSMController"]
+script = ExtResource( 3 )
+
+[node name="PlayerStateDead" type="Node2D" parent="FSMController"]
+script = ExtResource( 7 )
+
+[node name="PlayerStateDev" type="Node2D" parent="FSMController"]
+script = ExtResource( 8 )
+
+[node name="PlayerStateMelee" type="Node2D" parent="FSMController"]
+script = ExtResource( 10 )
+
+[node name="ReloadProgress" parent="." instance=ExtResource( 11 )]
+visible = false
+margin_left = -26.0
+margin_top = -131.0
+margin_right = 26.0
+margin_bottom = -122.0
+max_value = 1.0
+value = 1.0

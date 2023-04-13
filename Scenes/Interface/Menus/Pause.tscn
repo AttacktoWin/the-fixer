@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Assets/UI/Buttons/button-resume.png" type="Texture" id=1]
+[ext_resource path="res://Assets/UI/Buttons/button-resume-hover.png" type="Texture" id=2]
+[ext_resource path="res://Assets/UI/Buttons/button-exittomainmenu-hover.png" type="Texture" id=3]
+[ext_resource path="res://Assets/UI/Buttons/button-exittomainmenu.png" type="Texture" id=4]
+[ext_resource path="res://Assets/UI/Buttons/button-settings-hover.png" type="Texture" id=5]
+[ext_resource path="res://Assets/UI/Buttons/button-settings.png" type="Texture" id=6]
+[ext_resource path="res://Assets/UI/pause-box.png" type="Texture" id=7]
+[ext_resource path="res://Assets/UI/Buttons/button-empty-hover.png" type="Texture" id=8]
+[ext_resource path="res://Assets/UI/Buttons/button-empty.png" type="Texture" id=9]
+
+[sub_resource type="GDScript" id=3]
+resource_name = "check"
+script/source = "extends VBoxContainer
+
+func _process(_delta):
+	if Scene.level_node.level_index == 0:
+		$Exit2HUB.visible = false
+	else:
+		$Exit2HUB.visible = true
+"
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Assets/UI/FilmPosterNarrow-Bold.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 109
+font_data = SubResource( 1 )
+
+[node name="PauseMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Pause" type="TextureRect" parent="."]
+margin_left = 519.0
+margin_top = 15.0
+margin_right = 2439.0
+margin_bottom = 1095.0
+texture = ExtResource( 7 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -108.0
+margin_right = 250.0
+margin_bottom = 350.0
+script = SubResource( 3 )
+
+[node name="Resume" type="TextureButton" parent="VBoxContainer"]
+margin_right = 500.0
+margin_bottom = 150.0
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+
+[node name="Settings" type="TextureButton" parent="VBoxContainer"]
+visible = false
+margin_top = 154.0
+margin_right = 500.0
+margin_bottom = 304.0
+texture_normal = ExtResource( 6 )
+texture_hover = ExtResource( 5 )
+
+[node name="Exit2HUB" type="TextureButton" parent="VBoxContainer"]
+margin_top = 154.0
+margin_right = 500.0
+margin_bottom = 304.0
+texture_normal = ExtResource( 9 )
+texture_hover = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="VBoxContainer/Exit2HUB"]
+margin_left = 126.0
+margin_top = 14.0
+margin_right = 393.0
+margin_bottom = 136.0
+custom_fonts/font = SubResource( 2 )
+text = "Exit to Hub"
+
+[node name="Exit" type="TextureButton" parent="VBoxContainer"]
+margin_top = 308.0
+margin_right = 500.0
+margin_bottom = 458.0
+texture_normal = ExtResource( 4 )
+texture_hover = ExtResource( 3 )

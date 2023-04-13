@@ -53,10 +53,10 @@ func _minheapify(key: int) -> void:
 		_minheapify(smallest);
 		
 func _find_item_index(item_id: String, key: int) -> int:
-	if (heap[key].id == item_id):
-		return key;
 	if (key >= len(heap)):
 		return -1;
+	if (heap[key].id == item_id):
+		return key;
 	if (!is_instance_valid(heap[key])):
 		# Not a node so no children
 		return -1;
@@ -88,8 +88,14 @@ func dequeue() -> Dialogue:
 		size = 0;
 		return minimum;
 	
+	# To prevent recurring dialogues from constantly being at the top, select some other node
+	var node = randi() % (size - 1) + 1
 	var root = heap[0];
-	heap[0] = heap[size - 1];
+	heap[0] = heap[node];
+	while node < size - 1:
+		heap[node] = heap[node + 1]
+		node += 1
+	heap.pop_back()
 	size -= 1;
 	_minheapify(0);
 	

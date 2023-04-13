@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Items/knife.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Weapons/Visual/Knife.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Entities/Weapons/Player/Knife.gd" type="Script" id=3]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 3 )
+visual_scene = ExtResource( 2 )
+world_sprite = ExtResource( 1 )
+damage_override = 60.0
+knockback_override = 128.0
+hitbox_size_override = 0.6
+attack_speed = 1.8

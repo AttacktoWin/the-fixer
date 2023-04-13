@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/LevelTransition.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Levels/Demo2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Enemies/E_Goomba.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/Enemies/E_Spyder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=8]
 [ext_resource path="res://Resources/TileSets/WallTiles.tres" type="TileSet" id=13]
 
@@ -198,9 +198,6 @@ tile_data = PoolIntArray( -1114090, 2, 0, -1114089, 2, 0, -1114088, 3, 0, -11140
 [node name="E_Goomba" parent="SortableEntities" instance=ExtResource( 5 )]
 position = Vector2( 883, 130 )
 
-[node name="E_Spyder" parent="SortableEntities" instance=ExtResource( 6 )]
-position = Vector2( 638, 227 )
-
 [node name="Player" parent="SortableEntities" instance=ExtResource( 2 )]
 position = Vector2( 259, 385 )
 
@@ -209,3 +206,8 @@ position = Vector2( 259, 385 )
 [node name="Transition" parent="." instance=ExtResource( 3 )]
 position = Vector2( 2500, 325 )
 to_level = ExtResource( 4 )
+
+[node name="FixerNPCInstance" type="Node2D" parent="."]
+script = ExtResource( 7 )
+id = "fixer"
+immediate = true

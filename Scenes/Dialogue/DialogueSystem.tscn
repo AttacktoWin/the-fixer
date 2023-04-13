@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/DialogueSystem/DialogueSystem.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/DialogueSystem/NPC.gd" type="Script" id=2]
+[ext_resource path="res://Resources/Dialogue/UnlockTable.tres" type="Resource" id=3]
+[ext_resource path="res://Resources/Dialogue/FixerDialogueFile.tres" type="Resource" id=4]
+[ext_resource path="res://Resources/Dialogue/ManifestationDialogueFile.tres" type="Resource" id=5]
+[ext_resource path="res://Resources/Dialogue/BossDialogueFile.tres" type="Resource" id=6]
+[ext_resource path="res://Resources/Dialogue/ValDialogueFile.tres" type="Resource" id=7]
+
+[node name="DialogueSystem" type="Node"]
+script = ExtResource( 1 )
+dialogue_unlock_table = ExtResource( 3 )
+save_file_name = "user://dialogue_system.save"
+
+[node name="Fixer" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 2 )
+id = "fixer"
+dialogue_file = ExtResource( 4 )
+
+[node name="Manifestation" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 2 )
+id = "manifestation"
+dialogue_file = ExtResource( 5 )
+
+[node name="Boss" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 2 )
+id = "boss"
+dialogue_file = ExtResource( 6 )
+
+[node name="Val" type="Node" parent="."]
+script = ExtResource( 2 )
+id = "val"
+dialogue_file = ExtResource( 7 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Tween" type="Tween" parent="CanvasLayer"]

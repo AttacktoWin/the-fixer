@@ -1,11 +1,15 @@
 {
 	"events": [
 		{
-			"animation": "2-fade_in_up.gd",
+			"emit_signal": "pause",
+			"event_id": "dialogic_040"
+		},
+		{
+			"animation": "1-fade_in.gd",
 			"animation_length": 0,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1675203451.json",
+			"character": "character-1678144008.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
 			"portrait": "Default",
@@ -14,66 +18,71 @@
 				"0": false,
 				"1": false,
 				"2": false,
-				"3": false,
+				"3": true,
 				"4": false
 			},
 			"type": 0,
 			"z_index": 0
 		},
 		{
-			"character": "character-1674002613.json",
+			"animation": "2-fade_in_up.gd",
+			"animation_length": 0.5,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "Shadow",
+			"portrait_definition": "",
+			"position": {
+				"0": true,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 0,
+			"z_index": 1
+		},
+		{
+			"character": "character-1678144008.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
 			"text": "[i]...[/i]"
 		},
 		{
-			"animation": "[Default]",
-			"animation_length": 0,
-			"change_mirror_portrait": false,
-			"change_z_index": false,
-			"character": "character-1675203357.json",
-			"event_id": "dialogic_002",
-			"mirror_portrait": false,
-			"portrait": "Default",
-			"portrait_definition": "",
-			"position": {
-				"0": false,
-				"1": false,
-				"2": false,
-				"3": false,
-				"4": false
-			},
-			"type": 0,
-			"z_index": 0
-		},
-		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "",
+			"portrait": "(Don't change)",
 			"text": "[i]I had never seen anything like it before and yet, here it was. [pause=0.5]Staring me in the face... with a face.[/i]"
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "I'm here to take out the trash."
+			"portrait": "Shadow",
+			"text": "\"I'm here to take out the trash.\""
 		},
 		{
-			"character": "character-1674002613.json",
+			"character": "character-1678144008.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[i]...[/i]"
+			"text": "\"[i]...[/i]\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "Not much of a talker, huh? [pause=1] [signal=anim-fixer-draw_weapon] Makes this next part easier for me."
+			"portrait": "Smile",
+			"text": "\"Not much of a talker, huh? [pause=1][signal=anim-fixer-draw_weapon] Makes this next part easier for me.\""
+		},
+		{
+			"emit_signal": "unpause",
+			"event_id": "dialogic_040"
 		}
 	],
 	"metadata": {
 		"dialogic-version": "1.4.5",
 		"file": "timeline-1675207311.json",
-		"name": "manifestation-1"
+		"name": "manifestation-default"
 	}
 }

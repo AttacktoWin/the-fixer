@@ -41,6 +41,9 @@ func save() -> Array:
 func get_top_dialogue() -> Dialogue:
 	return queue.dequeue()
 	
+func peek_top_dialogue() -> Dialogue:
+	return queue.peek()
+	
 func unlock_dialogue(d_id: String) -> void:
 	if (dialogue_file.dialogues.has(d_id)):
 		queue.enqueue(dialogue_file.dialogues[d_id])

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/LevelGeneration/PCG_DataClasses/PCG_WalkedRoomData.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+map_size = Vector2( 45, 45 )
+min_width = 10
+min_height = 10
+shrink_factor = 3
+corridor_width = 3
+start_direction = 0
+walk_length = 90
+max_steps_in_direction = 5
+walker_width = 2
+random_turn_chance = 0.25

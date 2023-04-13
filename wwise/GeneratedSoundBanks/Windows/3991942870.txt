@@ -1,0 +1,87 @@
+Event	ID	Name			Wwise Object Path	Notes
+	309205993	Title_Music			\Music\Title_Music	
+	1522595433	Credits_Music			\Music\Credits_Music	
+	1932095129	Combat_Music			\Music\Combat_Music	
+	2930852717	Manifestation_Music			\Music\Manifestation_Music	
+	3751267554	Hub_Music			\Music\Hub_Music	
+
+State Group	ID	Name			Wwise Object Path	Notes
+	935463065	GamePaused			\Default Work Unit\GamePaused	
+	1017222595	LowHealth			\Default Work Unit\LowHealth	
+
+State	ID	Name	State Group			Notes
+	748895195	None	GamePaused			
+	979470758	Yes	GamePaused			
+	1668749452	No	GamePaused			
+	748895195	None	LowHealth			
+	979470758	Yes	LowHealth			
+	1668749452	No	LowHealth			
+
+Custom State	ID	Name	State Group	Owner		Notes
+	14428371	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_trumpetHarmony		
+	23191759	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody\combat_trumpetHarmony		
+	43055577	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody\combat_drumsKick		
+	47362443	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_pianoMelody		
+	124842503	Yes	LowHealth	\Interactive Music Hierarchy\Music\Combat Playlist		
+	148576282	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet\combat_drumsSnare		
+	161611501	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_drumsKick		
+	171930232	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_drumsSideStickRide		
+	172559245	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_drumsSnare		
+	187424397	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_pianoMelody		
+	187745304	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_trumpetCrescendo		
+	241352986	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody		
+	252749704	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet\combat_trumpetHarmony		
+	280447904	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_trumpetCrescendo		
+	292279961	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_drumsKick		
+	362242592	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet\combat_drumsKick		
+	392981489	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_drumsSnare		
+	494727314	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass		
+	511433416	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_drumsKick		
+	515276191	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_trumpetCrescendo		
+	551311551	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_drumsSnare		
+	619541305	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet		
+	626499817	Yes	GamePaused	\Interactive Music Hierarchy\Music\Manifestation Playlist\manifestation		
+	651282631	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano		
+	659917848	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_drumsSideStickRide		
+	687163822	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_drumsSideStickRide		
+	700226086	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler		
+	730165159	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat__trumpet\combat_trumpetCrescendo		
+	738759556	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_pianoMelody		
+	769722826	No	LowHealth	\Interactive Music Hierarchy\Music\Combat Playlist		
+	783122944	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_piano\combat_drumsKick		
+	846409964	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_pianoMelody		
+	884997160	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_trumpetHarmony		
+	927133015	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_filler\combat_drumsSnare		
+	951897129	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_melody\combat_drumsSideStickRide		
+	989005569	Yes	GamePaused	\Interactive Music Hierarchy\Music\Hub Playlist\hub		
+	1029881085	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat_no_bass\combat_trumpetCrescendo		
+	1048229371	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat		
+	1065297155	Yes	GamePaused	\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_trumpetHarmony		
+
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	1614245164	MusicFade			\Default Work Unit\MusicFade	
+	2346531308	MusicVolume			\Default Work Unit\MusicVolume	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	13186207	combat_pianoHarmony1	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\combat\combat_pianoHarmony1_9EDFC787.wem		\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_pianoHarmony1		3008071
+	26819846	hub_theme_bass	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\hub\hub_theme_bass_9EDFC787.wem		\Interactive Music Hierarchy\Music\Hub Playlist\hub\hub_theme_bass		2730682
+	27907497	manifestation_theme	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\manifestation\manifestation_theme_9EDFC787.wem		\Interactive Music Hierarchy\Music\Manifestation Playlist\manifestation\manifestation_theme		4655658
+	105726356	combat_pianoMelody	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\combat\combat_pianoMelody_9EDFC787.wem		\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_pianoMelody		2270472
+	132082285	hub_theme_cymbalTriple	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\hub\hub_theme_cymbalTriple_9EDFC787.wem		\Interactive Music Hierarchy\Music\Hub Playlist\hub\hub_theme_cymbalTriple		3254650
+	187651302	hub_theme_pianoChords	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\hub\hub_theme_pianoChords_9EDFC787.wem		\Interactive Music Hierarchy\Music\Hub Playlist\hub\hub_theme_pianoChords		1750798
+	239014887	combat_drumsSideStickRide	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\combat\combat_drumsSideStickRide_9EDFC787.wem		\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_drumsSideStickRide		4473428
+	242845153	combat_drumsSnare	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\combat\combat_drumsSnare_9EDFC787.wem		\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_drumsSnare		4174011
+	267026404	combat_trumpetHarmony	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\combat\combat_trumpetHarmony_9EDFC787.wem		\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_trumpetHarmony		1839716
+	291085458	combat_pianoHarmony2	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\combat\combat_pianoHarmony2_9EDFC787.wem		\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_pianoHarmony2		1964531
+	379602483	hub_theme_hi-hatFourth	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\hub\hub_theme_hi-hatFourth_9EDFC787.wem		\Interactive Music Hierarchy\Music\Hub Playlist\hub\hub_theme_hi-hatFourth		3259710
+	384412065	end_credits	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\end_credits_9EDFC787.wem		\Interactive Music Hierarchy\Music\Credits Playlist\Credits\end_credits		2066425
+	385739181	combat_bass	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\combat\combat_bass_9EDFC787.wem		\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_bass		3000950
+	557515144	combat_trumpetCrescendo	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\combat\combat_trumpetCrescendo_9EDFC787.wem		\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_trumpetCrescendo		1614407
+	591223848	title_screen	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\title\title_screen_9EDFC787.wem		\Interactive Music Hierarchy\Music\Title Playlist\title\title_screen		1972152
+	655898296	hub_theme_vibraphone	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\hub\hub_theme_vibraphone_9EDFC787.wem		\Interactive Music Hierarchy\Music\Hub Playlist\hub\hub_theme_vibraphone		2190307
+	660831505	hub_theme_pianoMelody1	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\hub\hub_theme_pianoMelody1_9EDFC787.wem		\Interactive Music Hierarchy\Music\Hub Playlist\hub\hub_theme_pianoMelody1		2624487
+	732865985	combat_drumsKick	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\combat\combat_drumsKick_9EDFC787.wem		\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_drumsKick		2472896
+	748179741	hub_theme_pianoMelody	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\hub\hub_theme_pianoMelody_9EDFC787.wem		\Interactive Music Hierarchy\Music\Hub Playlist\hub\hub_theme_pianoMelody		2541973
+	748423373	hub_theme_hi-hatSixth	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\hub\hub_theme_hi-hatSixth_9EDFC787.wem		\Interactive Music Hierarchy\Music\Hub Playlist\hub\hub_theme_hi-hatSixth		3127619
+	917152437	combat_drumsCymbals	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\combat\combat_drumsCymbals_9EDFC787.wem		\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_drumsCymbals		4478742
+

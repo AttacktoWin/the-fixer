@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Mac" BasePlatform="Mac" SchemaVersion="12" SoundbankVersion="140">
+	<RootPaths>
+		<ProjectRoot>A:\Downloads\Audio\INTD450\The Fixer Main\</ProjectRoot>
+		<SourceFilesRoot>A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Evan\Desktop\The Fixer\the-fixer\wwise\GeneratedSoundBanks\Mac\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>A:\Downloads\Audio\INTD450\The Fixer Main\GeneratedSoundBanks\Mac</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="89505537" Language="English(US)" Hash="980566655">
+			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
+			<ShortName>Gameplay</ShortName>
+			<Path>English(US)\89505537.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3344761002" Name="Ammo_Pickup_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Ammo_Pickup_Player">
+					<IncludedMemoryFiles>
+						<File Id="68113316" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-004.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-004_3FDF283B.wem</Path>
+						</File>
+						<File Id="313999180" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-008.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-008_A9EDB648.wem</Path>
+						</File>
+						<File Id="384635967" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-003.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-003_9BB6A447.wem</Path>
+						</File>
+						<File Id="678458525" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-001.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-001_AF398A34.wem</Path>
+						</File>
+						<File Id="738966222" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-009.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-009_07D8E4C6.wem</Path>
+						</File>
+						<File Id="983251993" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-005.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-005_DD107A4A.wem</Path>
+						</File>
+						<File Id="984510645" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-006.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-006_55712909.wem</Path>
+						</File>
+						<File Id="1028577693" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-007.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-007_BE19CFEC.wem</Path>
+						</File>
+						<File Id="1061419174" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-002.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-002_27239543.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2348673105" Name="Attack_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Attack_Bird">
+					<IncludedMemoryFiles>
+						<File Id="1061296916" Language="SFX">
+							<ShortName>bird_attack.wav</ShortName>
+							<Path>SFX\bird_attack_12AB079B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4275276242" Name="Attack_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Attack_Manifestation">
+					<IncludedMemoryFiles>
+						<File Id="599388174" Language="English(US)">
+							<ShortName>manny slam.wav</ShortName>
+							<Path>Voices\English(US)\manny slam_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3252579989" Name="Attack_Pillbug" ObjectPath="\Events\Default Work Unit\Enemy Actions\Pillbug Actions\Attack_Pillbug">
+					<IncludedMemoryFiles>
+						<File Id="998863668" Language="SFX">
+							<ShortName>pillbug attack.wav</ShortName>
+							<Path>SFX\pillbug attack_9C116509.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1294487939" Name="Attack_Spyder" ObjectPath="\Events\Default Work Unit\Enemy Actions\Spyder Actions\Attack_Spyder">
+					<IncludedMemoryFiles>
+						<File Id="476551547" Language="SFX">
+							<ShortName>spyder attack.wav</ShortName>
+							<Path>SFX\spyder attack_9EEF2BFA.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1294739221" Name="Big_Hit_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Big_Hit_Player"/>
+				<Event Id="1823915905" Name="Charge_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Charge_Beetle">
+					<IncludedMemoryFiles>
+						<File Id="650969131" Language="SFX">
+							<ShortName>beetle charge.wav</ShortName>
+							<Path>SFX\beetle charge_5781BEBB.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="282373675" Name="Charge_Spyder" ObjectPath="\Events\Default Work Unit\Enemy Actions\Spyder Actions\Charge_Spyder">
+					<IncludedMemoryFiles>
+						<File Id="865640855" Language="SFX">
+							<ShortName>spyder charge.wav</ShortName>
+							<Path>SFX\spyder charge_A592BCF1.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2212742940" Name="Crash_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Crash_Beetle">
+					<IncludedMemoryFiles>
+						<File Id="814482882" Language="SFX">
+							<ShortName>don't worry about it.wav</ShortName>
+							<Path>SFX\don't worry about it_A31DED26.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1479467640" Name="Death_Enemy" ObjectPath="\Events\Default Work Unit\Enemy Actions\Death_Enemy"/>
+				<Event Id="3227525858" Name="Die_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Die_Manifestation">
+					<IncludedMemoryFiles>
+						<File Id="174886453" Language="SFX">
+							<ShortName>manny death.wav</ShortName>
+							<Path>SFX\manny death_091F8EB3.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="942229886" Name="Dodge_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Dodge_Player">
+					<IncludedMemoryFiles>
+						<File Id="380485017" Language="SFX">
+							<ShortName>Dodge_Player.wav</ShortName>
+							<Path>SFX\Dodge_Player_0FD3D937.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3790708028" Name="Door_Unlock" ObjectPath="\Events\Default Work Unit\Environmental Actions\Door_Unlock">
+					<IncludedMemoryFiles>
+						<File Id="964759676" Language="SFX">
+							<ShortName>unlock_vault.wav</ShortName>
+							<Path>SFX\unlock_vault_5AE648F0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4149800146" Name="Empty_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Empty_Pistol_Player">
+					<IncludedMemoryFiles>
+						<File Id="518315914" Language="SFX">
+							<ShortName>Empty_Pistol_Player.wav</ShortName>
+							<Path>SFX\Empty_Pistol_Player_6C16FD96.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1828056235" Name="Fire_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Fire_Pistol_Player">
+					<IncludedMemoryFiles>
+						<File Id="90599123" Language="SFX">
+							<ShortName>Shoot_Pistol_Player.wav</ShortName>
+							<Path>SFX\Shoot_Pistol_Player_08F7D1DE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1367775454" Name="Fire_Shotgun_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Fire_Shotgun_Player">
+					<IncludedMemoryFiles>
+						<File Id="65303401" Language="SFX">
+							<ShortName>Shoot_Shotgun_Player.wav</ShortName>
+							<Path>SFX\Shoot_Shotgun_Player_F70B42BA.wem</Path>
+						</File>
+						<File Id="291940770" Language="SFX">
+							<ShortName>Shoot_Shotgun_Player.wav</ShortName>
+							<Path>SFX\Shoot_Shotgun_Player_4698CD56.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1807675346" Name="Fire_Tommy_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Fire_Tommy_Player">
+					<IncludedMemoryFiles>
+						<File Id="277708595" Language="SFX">
+							<ShortName>Shoot_Tommy_Player.wav</ShortName>
+							<Path>SFX\Shoot_Tommy_Player_211D2E73.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1237341883" Name="Flash_Spyder" ObjectPath="\Events\Default Work Unit\Enemy Actions\Spyder Actions\Flash_Spyder">
+					<IncludedMemoryFiles>
+						<File Id="15880499" Language="SFX">
+							<ShortName>Flash_Camera.wav</ShortName>
+							<Path>SFX\Flash_Camera_B6BBCEE5.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2020382007" Name="Hit_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Knuckles_Player">
+					<IncludedMemoryFiles>
+						<File Id="590813281" Language="SFX">
+							<ShortName>Hit_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Hit_Knuckles_Player_09368E6E.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="708461478" Name="Hit_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Pistol_Player">
+					<IncludedMemoryFiles>
+						<File Id="791064235" Language="SFX">
+							<ShortName>Impact_Shoot_Player.wav</ShortName>
+							<Path>SFX\Impact_Shoot_Player_140664E6.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1544845144" Name="Medium_Hurt_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Medium_Hurt_Player"/>
+				<Event Id="3277391769" Name="Notice_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1274459313" Name="Notice_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Notice_Bird">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1980235893" Name="Notice_Pillbug" ObjectPath="\Events\Default Work Unit\Enemy Actions\Pillbug Actions\Notice_Pillbug">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3401439988" Name="Phone_Ring" ObjectPath="\Events\Default Work Unit\Environmental Actions\Phone_Ring">
+					<IncludedMemoryFiles>
+						<File Id="419100912" Language="SFX">
+							<ShortName>phone_ring.wav</ShortName>
+							<Path>SFX\phone_ring_6ABAC244.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1582328950" Name="Roar_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Roar_Manifestation">
+					<IncludedMemoryFiles>
+						<File Id="934392654" Language="SFX">
+							<ShortName>manny roar.wav</ShortName>
+							<Path>SFX\manny roar_7141D373.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2396170652" Name="Shoot_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Shoot_Bird">
+					<IncludedMemoryFiles>
+						<File Id="142273814" Language="SFX">
+							<ShortName>Shoot_Bird.wav</ShortName>
+							<Path>SFX\Shoot_Bird_6F6797E0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="291251994" Name="Small_Hurt_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Small_Hurt_Player"/>
+				<Event Id="3178172643" Name="Summon_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Summon_Manifestation">
+					<IncludedMemoryFiles>
+						<File Id="448529706" Language="SFX">
+							<ShortName>summon_manny.wav</ShortName>
+							<Path>SFX\summon_manny_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3768797038" Name="Swing_Baton_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Swing_Baton_Player">
+					<IncludedMemoryFiles>
+						<File Id="215651341" Language="SFX">
+							<ShortName>Swing_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Swing_Knuckles_Player_65AC56E0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2160065833" Name="Swing_Knife_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Swing_Knife_Player">
+					<IncludedMemoryFiles>
+						<File Id="215651341" Language="SFX">
+							<ShortName>Swing_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Swing_Knuckles_Player_65AC56E0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1198969758" Name="Swing_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Swing_Knuckles_Player">
+					<IncludedMemoryFiles>
+						<File Id="215651341" Language="SFX">
+							<ShortName>Swing_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Swing_Knuckles_Player_65AC56E0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2010675244" Name="Weapon_Pickup_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Weapon_Pickup_Player">
+					<IncludedMemoryFiles>
+						<File Id="1008462791" Language="SFX">
+							<ShortName>weapon_pickup_player.wav</ShortName>
+							<Path>SFX\weapon_pickup_player_97E11A47.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
+			</GameParameters>
+		</SoundBank>
+		<SoundBank Id="1355168291" Language="SFX" Hash="731906965">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>1355168291.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="1551306167" Language="SFX" Hash="1839818560">
+			<ObjectPath>\SoundBanks\Default Work Unit\UI</ObjectPath>
+			<ShortName>UI</ShortName>
+			<Path>1551306167.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3852800920" Name="Advance_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Advance_Textbox">
+					<IncludedMemoryFiles>
+						<File Id="221732163" Language="SFX">
+							<ShortName>ui select.wav</ShortName>
+							<Path>SFX\ui select_26416A3B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2891465027" Name="Appear_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Appear_Textbox"/>
+				<Event Id="407919326" Name="Back_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Back_Menu">
+					<IncludedMemoryFiles>
+						<File Id="933296836" Language="SFX">
+							<ShortName>ui move left.wav</ShortName>
+							<Path>SFX\ui move left_8B132BEB.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="476036265" Name="Disappear_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Disappear_Textbox"/>
+				<Event Id="338712458" Name="Forward_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Forward_Menu">
+					<IncludedMemoryFiles>
+						<File Id="434915307" Language="SFX">
+							<ShortName>ui move right.wav</ShortName>
+							<Path>SFX\ui move right_E0C3F934.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3289055956" Name="Move_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Move_Menu">
+					<IncludedMemoryFiles>
+						<File Id="221732163" Language="SFX">
+							<ShortName>ui select.wav</ShortName>
+							<Path>SFX\ui select_26416A3B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="3415057477" Name="UIVolume" ObjectPath="\Game Parameters\Default Work Unit\UIVolume"/>
+			</GameParameters>
+		</SoundBank>
+		<SoundBank Id="3161908922" Language="English(US)">
+			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
+			<ShortName>Main</ShortName>
+			<Path>English(US)\3161908922.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3852800920" Name="Advance_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Advance_Textbox">
+					<IncludedMemoryFiles>
+						<File Id="221732163" Language="SFX">
+							<ShortName>ui select.wav</ShortName>
+							<Path>SFX\ui select_26416A3B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3344761002" Name="Ammo_Pickup_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Ammo_Pickup_Player">
+					<IncludedMemoryFiles>
+						<File Id="68113316" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-004.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-004_3FDF283B.wem</Path>
+						</File>
+						<File Id="313999180" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-008.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-008_A9EDB648.wem</Path>
+						</File>
+						<File Id="384635967" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-003.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-003_9BB6A447.wem</Path>
+						</File>
+						<File Id="678458525" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-001.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-001_AF398A34.wem</Path>
+						</File>
+						<File Id="738966222" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-009.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-009_07D8E4C6.wem</Path>
+						</File>
+						<File Id="983251993" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-005.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-005_DD107A4A.wem</Path>
+						</File>
+						<File Id="984510645" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-006.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-006_55712909.wem</Path>
+						</File>
+						<File Id="1028577693" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-007.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-007_BE19CFEC.wem</Path>
+						</File>
+						<File Id="1061419174" Language="SFX">
+							<ShortName>Ammo_Pickup\Ammo_Pickup_Player-002.wav</ShortName>
+							<Path>SFX\Ammo_Pickup\Ammo_Pickup_Player-002_27239543.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2891465027" Name="Appear_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Appear_Textbox"/>
+				<Event Id="2348673105" Name="Attack_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Attack_Bird">
+					<IncludedMemoryFiles>
+						<File Id="1061296916" Language="SFX">
+							<ShortName>bird_attack.wav</ShortName>
+							<Path>SFX\bird_attack_12AB079B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4275276242" Name="Attack_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Attack_Manifestation">
+					<IncludedMemoryFiles>
+						<File Id="599388174" Language="English(US)">
+							<ShortName>manny slam.wav</ShortName>
+							<Path>Voices\English(US)\manny slam_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3252579989" Name="Attack_Pillbug" ObjectPath="\Events\Default Work Unit\Enemy Actions\Pillbug Actions\Attack_Pillbug">
+					<IncludedMemoryFiles>
+						<File Id="998863668" Language="SFX">
+							<ShortName>pillbug attack.wav</ShortName>
+							<Path>SFX\pillbug attack_9C116509.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1294487939" Name="Attack_Spyder" ObjectPath="\Events\Default Work Unit\Enemy Actions\Spyder Actions\Attack_Spyder">
+					<IncludedMemoryFiles>
+						<File Id="476551547" Language="SFX">
+							<ShortName>spyder attack.wav</ShortName>
+							<Path>SFX\spyder attack_9EEF2BFA.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="407919326" Name="Back_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Back_Menu">
+					<IncludedMemoryFiles>
+						<File Id="933296836" Language="SFX">
+							<ShortName>ui move left.wav</ShortName>
+							<Path>SFX\ui move left_8B132BEB.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="282373675" Name="Charge_Spyder" ObjectPath="\Events\Default Work Unit\Enemy Actions\Spyder Actions\Charge_Spyder">
+					<IncludedMemoryFiles>
+						<File Id="865640855" Language="SFX">
+							<ShortName>spyder charge.wav</ShortName>
+							<Path>SFX\spyder charge_A592BCF1.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2212742940" Name="Crash_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Crash_Beetle">
+					<IncludedMemoryFiles>
+						<File Id="814482882" Language="SFX">
+							<ShortName>don't worry about it.wav</ShortName>
+							<Path>SFX\don't worry about it_A31DED26.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1479467640" Name="Death_Enemy" ObjectPath="\Events\Default Work Unit\Enemy Actions\Death_Enemy"/>
+				<Event Id="3227525858" Name="Die_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Die_Manifestation">
+					<IncludedMemoryFiles>
+						<File Id="174886453" Language="SFX">
+							<ShortName>manny death.wav</ShortName>
+							<Path>SFX\manny death_091F8EB3.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="476036265" Name="Disappear_Textbox" ObjectPath="\Events\Default Work Unit\UI Actions\Textbox Actions\Disappear_Textbox"/>
+				<Event Id="942229886" Name="Dodge_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Dodge_Player">
+					<IncludedMemoryFiles>
+						<File Id="380485017" Language="SFX">
+							<ShortName>Dodge_Player.wav</ShortName>
+							<Path>SFX\Dodge_Player_0FD3D937.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="4149800146" Name="Empty_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Empty_Pistol_Player">
+					<IncludedMemoryFiles>
+						<File Id="518315914" Language="SFX">
+							<ShortName>Empty_Pistol_Player.wav</ShortName>
+							<Path>SFX\Empty_Pistol_Player_6C16FD96.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1828056235" Name="Fire_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Fire_Pistol_Player">
+					<IncludedMemoryFiles>
+						<File Id="90599123" Language="SFX">
+							<ShortName>Shoot_Pistol_Player.wav</ShortName>
+							<Path>SFX\Shoot_Pistol_Player_08F7D1DE.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1237341883" Name="Flash_Spyder" ObjectPath="\Events\Default Work Unit\Enemy Actions\Spyder Actions\Flash_Spyder">
+					<IncludedMemoryFiles>
+						<File Id="15880499" Language="SFX">
+							<ShortName>Flash_Camera.wav</ShortName>
+							<Path>SFX\Flash_Camera_B6BBCEE5.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="338712458" Name="Forward_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Forward_Menu">
+					<IncludedMemoryFiles>
+						<File Id="434915307" Language="SFX">
+							<ShortName>ui move right.wav</ShortName>
+							<Path>SFX\ui move right_E0C3F934.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2020382007" Name="Hit_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Knuckles_Player">
+					<IncludedMemoryFiles>
+						<File Id="590813281" Language="SFX">
+							<ShortName>Hit_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Hit_Knuckles_Player_09368E6E.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="708461478" Name="Hit_Pistol_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Hit_Pistol_Player">
+					<IncludedMemoryFiles>
+						<File Id="791064235" Language="SFX">
+							<ShortName>Impact_Shoot_Player.wav</ShortName>
+							<Path>SFX\Impact_Shoot_Player_140664E6.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3289055956" Name="Move_Menu" ObjectPath="\Events\Default Work Unit\UI Actions\Menu Actions\Move_Menu">
+					<IncludedMemoryFiles>
+						<File Id="221732163" Language="SFX">
+							<ShortName>ui select.wav</ShortName>
+							<Path>SFX\ui select_26416A3B.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3277391769" Name="Notice_Beetle" ObjectPath="\Events\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1274459313" Name="Notice_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Notice_Bird">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1980235893" Name="Notice_Pillbug" ObjectPath="\Events\Default Work Unit\Enemy Actions\Pillbug Actions\Notice_Pillbug">
+					<IncludedMemoryFiles>
+						<File Id="54709647" Language="SFX">
+							<ShortName>Notice_Enemy.wav</ShortName>
+							<Path>SFX\Notice_Enemy_CF802C2F.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1582328950" Name="Roar_Manifestation" ObjectPath="\Events\Default Work Unit\Enemy Actions\Manifestation Actions\Roar_Manifestation">
+					<IncludedMemoryFiles>
+						<File Id="934392654" Language="SFX">
+							<ShortName>manny roar.wav</ShortName>
+							<Path>SFX\manny roar_7141D373.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2396170652" Name="Shoot_Bird" ObjectPath="\Events\Default Work Unit\Enemy Actions\Bird Actions\Shoot_Bird">
+					<IncludedMemoryFiles>
+						<File Id="142273814" Language="SFX">
+							<ShortName>Shoot_Bird.wav</ShortName>
+							<Path>SFX\Shoot_Bird_6F6797E0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1198969758" Name="Swing_Knuckles_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Swing_Knuckles_Player">
+					<IncludedMemoryFiles>
+						<File Id="215651341" Language="SFX">
+							<ShortName>Swing_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Swing_Knuckles_Player_65AC56E0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2010675244" Name="Weapon_Pickup_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Weapon_Pickup_Player">
+					<IncludedMemoryFiles>
+						<File Id="1008462791" Language="SFX">
+							<ShortName>weapon_pickup_player.wav</ShortName>
+							<Path>SFX\weapon_pickup_player_97E11A47.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
+				<GameParameter Id="3415057477" Name="UIVolume" ObjectPath="\Game Parameters\Default Work Unit\UIVolume"/>
+			</GameParameters>
+		</SoundBank>
+		<SoundBank Id="3991942870" Language="SFX" Hash="385807082">
+			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
+			<ShortName>Music</ShortName>
+			<Path>3991942870.bnk</Path>
+			<IncludedEvents>
+				<Event Id="1932095129" Name="Combat_Music" ObjectPath="\Events\Music\Combat_Music">
+					<IncludedMemoryFiles>
+						<File Id="13186207" Language="SFX">
+							<ShortName>combat\combat_pianoHarmony1.wav</ShortName>
+							<Path>SFX\combat\combat_pianoHarmony1_9EDFC787.wem</Path>
+						</File>
+						<File Id="105726356" Language="SFX">
+							<ShortName>combat\combat_pianoMelody.wav</ShortName>
+							<Path>SFX\combat\combat_pianoMelody_9EDFC787.wem</Path>
+						</File>
+						<File Id="239014887" Language="SFX">
+							<ShortName>combat\combat_drumsSideStickRide.wav</ShortName>
+							<Path>SFX\combat\combat_drumsSideStickRide_9EDFC787.wem</Path>
+						</File>
+						<File Id="242845153" Language="SFX">
+							<ShortName>combat\combat_drumsSnare.wav</ShortName>
+							<Path>SFX\combat\combat_drumsSnare_9EDFC787.wem</Path>
+						</File>
+						<File Id="267026404" Language="SFX">
+							<ShortName>combat\combat_trumpetHarmony.wav</ShortName>
+							<Path>SFX\combat\combat_trumpetHarmony_9EDFC787.wem</Path>
+						</File>
+						<File Id="291085458" Language="SFX">
+							<ShortName>combat\combat_pianoHarmony2.wav</ShortName>
+							<Path>SFX\combat\combat_pianoHarmony2_9EDFC787.wem</Path>
+						</File>
+						<File Id="385739181" Language="SFX">
+							<ShortName>combat\combat_bass.wav</ShortName>
+							<Path>SFX\combat\combat_bass_9EDFC787.wem</Path>
+						</File>
+						<File Id="557515144" Language="SFX">
+							<ShortName>combat\combat_trumpetCrescendo.wav</ShortName>
+							<Path>SFX\combat\combat_trumpetCrescendo_9EDFC787.wem</Path>
+						</File>
+						<File Id="732865985" Language="SFX">
+							<ShortName>combat\combat_drumsKick.wav</ShortName>
+							<Path>SFX\combat\combat_drumsKick_9EDFC787.wem</Path>
+						</File>
+						<File Id="917152437" Language="SFX">
+							<ShortName>combat\combat_drumsCymbals.wav</ShortName>
+							<Path>SFX\combat\combat_drumsCymbals_9EDFC787.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1522595433" Name="Credits_Music" ObjectPath="\Events\Music\Credits_Music">
+					<IncludedMemoryFiles>
+						<File Id="384412065" Language="SFX">
+							<ShortName>end_credits.wav</ShortName>
+							<Path>SFX\end_credits_9EDFC787.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3751267554" Name="Hub_Music" ObjectPath="\Events\Music\Hub_Music">
+					<IncludedMemoryFiles>
+						<File Id="26819846" Language="SFX">
+							<ShortName>hub\hub_theme_bass.wav</ShortName>
+							<Path>SFX\hub\hub_theme_bass_9EDFC787.wem</Path>
+						</File>
+						<File Id="132082285" Language="SFX">
+							<ShortName>hub\hub_theme_cymbalTriple.wav</ShortName>
+							<Path>SFX\hub\hub_theme_cymbalTriple_9EDFC787.wem</Path>
+						</File>
+						<File Id="187651302" Language="SFX">
+							<ShortName>hub\hub_theme_pianoChords.wav</ShortName>
+							<Path>SFX\hub\hub_theme_pianoChords_9EDFC787.wem</Path>
+						</File>
+						<File Id="379602483" Language="SFX">
+							<ShortName>hub\hub_theme_hi-hatFourth.wav</ShortName>
+							<Path>SFX\hub\hub_theme_hi-hatFourth_9EDFC787.wem</Path>
+						</File>
+						<File Id="655898296" Language="SFX">
+							<ShortName>hub\hub_theme_vibraphone.wav</ShortName>
+							<Path>SFX\hub\hub_theme_vibraphone_9EDFC787.wem</Path>
+						</File>
+						<File Id="660831505" Language="SFX">
+							<ShortName>hub\hub_theme_pianoMelody1.wav</ShortName>
+							<Path>SFX\hub\hub_theme_pianoMelody1_9EDFC787.wem</Path>
+						</File>
+						<File Id="748179741" Language="SFX">
+							<ShortName>hub\hub_theme_pianoMelody.wav</ShortName>
+							<Path>SFX\hub\hub_theme_pianoMelody_9EDFC787.wem</Path>
+						</File>
+						<File Id="748423373" Language="SFX">
+							<ShortName>hub\hub_theme_hi-hatSixth.wav</ShortName>
+							<Path>SFX\hub\hub_theme_hi-hatSixth_9EDFC787.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2930852717" Name="Manifestation_Music" ObjectPath="\Events\Music\Manifestation_Music">
+					<IncludedMemoryFiles>
+						<File Id="27907497" Language="SFX">
+							<ShortName>manifestation\manifestation_theme.wav</ShortName>
+							<Path>SFX\manifestation\manifestation_theme_9EDFC787.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="309205993" Name="Title_Music" ObjectPath="\Events\Music\Title_Music">
+					<IncludedMemoryFiles>
+						<File Id="591223848" Language="SFX">
+							<ShortName>title\title_screen.wav</ShortName>
+							<Path>SFX\title\title_screen_9EDFC787.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+			<GameParameters>
+				<GameParameter Id="1614245164" Name="MusicFade" ObjectPath="\Game Parameters\Default Work Unit\MusicFade"/>
+				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\MusicVolume"/>
+			</GameParameters>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

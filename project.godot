@@ -9,50 +9,70 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Object",
-"class": "AttackHandler",
+"base": "Reference",
+"class": "AK",
 "language": "GDScript",
-"path": "res://Scripts/Data/DamageBox/AttackHandler.gd"
+"path": "res://wwise/GeneratedSoundBanks/wwise_ids.gd"
+}, {
+"base": "Reference",
+"class": "AkUtils",
+"language": "GDScript",
+"path": "res://addons/wwise/runtime/helpers/ak_utils.gd"
+}, {
+"base": "BaseEnemy",
+"class": "Ant",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Ant/Ant.gd"
+}, {
+"base": "EnemyStateWander",
+"class": "AntStateWander",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Ant/AntStateWander.gd"
+}, {
+"base": "Resource",
+"class": "AttackInfo",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Attacks/AttackInfo.gd"
+}, {
+"base": "Upgrade",
+"class": "AttackSizeUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/AttackSizeUpgrade.gd"
+}, {
+"base": "Reference",
+"class": "AttackSpeedUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/AttackSpeedUpgrade.gd"
 }, {
 "base": "Reference",
 "class": "AttackVariable",
 "language": "GDScript",
 "path": "res://Scripts/Entities/Attacks/AttackVariable.gd"
 }, {
-"base": "Area2D",
+"base": "Node2D",
 "class": "BaseAttack",
 "language": "GDScript",
 "path": "res://Scripts/Entities/Attacks/BaseAttack.gd"
 }, {
-"base": "Weapon",
-"class": "BaseGun",
-"language": "GDScript",
-"path": "res://Scripts/Entities/Weapons/BaseGun.gd"
-}, {
-"base": "Object",
-"class": "BaseHitHandler",
-"language": "GDScript",
-"path": "res://Scripts/Data/DamageBox/Handlers/BaseHitHandler.gd"
-}, {
 "base": "LivingEntity",
-"class": "Base_AnimatedFSM",
+"class": "BaseEnemy",
 "language": "GDScript",
-"path": "res://Scripts/State Machine/Base_AnimatedFSM.gd"
+"path": "res://Scripts/Enemies/BaseEnemy.gd"
 }, {
-"base": "Base_AnimatedFSM",
-"class": "Base_EnemyFSM",
+"base": "Runnable",
+"class": "BaseSlowHandler",
 "language": "GDScript",
-"path": "res://Scripts/Entities/Enemies/EnemyFSM.gd"
+"path": "res://Scripts/Entities/LivingEntities/BaseHandlers/BaseSlowHandler.gd"
 }, {
-"base": "KinematicBody2D",
-"class": "Base_FSM",
+"base": "BaseEnemy",
+"class": "Beetle",
 "language": "GDScript",
-"path": "res://Scripts/State Machine/Base_FSM.gd"
+"path": "res://Scripts/Enemies/Beetle/Beetle.gd"
 }, {
-"base": "Node2D",
-"class": "Base_State",
+"base": "FSMNode",
+"class": "BeetleStateAttack",
 "language": "GDScript",
-"path": "res://Scripts/State Machine/Base_State.gd"
+"path": "res://Scripts/Enemies/Beetle/BeetleStateAttack.gd"
 }, {
 "base": "BaseAttack",
 "class": "BulletBase",
@@ -60,9 +80,24 @@ _global_script_classes=[ {
 "path": "res://Scripts/Entities/Attacks/BulletBase.gd"
 }, {
 "base": "Reference",
+"class": "CollisionUtils",
+"language": "GDScript",
+"path": "res://Scripts/Utils/CollisionUtils.gd"
+}, {
+"base": "Node2D",
+"class": "Constants",
+"language": "GDScript",
+"path": "res://Scripts/Singletons/Data/Constants.gd"
+}, {
+"base": "Reference",
 "class": "DTS",
 "language": "GDScript",
 "path": "res://addons/dialogic/Localization/translation_service.gd"
+}, {
+"base": "Reference",
+"class": "DamageUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/DamageUpgrade.gd"
 }, {
 "base": "RunnableList",
 "class": "DecoratorList",
@@ -134,45 +169,205 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/DialogueQueue.gd"
 }, {
-"base": "Area2D",
-"class": "Generic_Hitbox",
+"base": "Node2D",
+"class": "DualUpgrade",
 "language": "GDScript",
-"path": "res://Scripts/Entities/Generic_HitBox.gd"
+"path": "res://Scripts/Upgrades/DualUpgrade.gd"
 }, {
-"base": "Area2D",
-"class": "Generic_Hurtbox",
+"base": "Reference",
+"class": "EnemyState",
 "language": "GDScript",
-"path": "res://Scripts/Entities/Generic_HurtBox.gd"
+"path": "res://Scripts/Enemies/EnemyStatesEnum.gd"
+}, {
+"base": "FSMNode",
+"class": "EnemyStateAlert",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateAlert.gd"
+}, {
+"base": "FSMNode",
+"class": "EnemyStateAttackMelee",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateAttackMelee.gd"
+}, {
+"base": "EnemyStateMoving",
+"class": "EnemyStateChase",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateChase.gd"
+}, {
+"base": "FSMNode",
+"class": "EnemyStateDead",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateDead.gd"
+}, {
+"base": "FSMNode",
+"class": "EnemyStateHurt",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateHurt.gd"
+}, {
+"base": "FSMNode",
+"class": "EnemyStateMoving",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateMoving.gd"
+}, {
+"base": "EnemyStateMoving",
+"class": "EnemyStateRun",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateRun.gd"
+}, {
+"base": "FSMNode",
+"class": "EnemyStateSleeping",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateSleeping.gd"
+}, {
+"base": "EnemyStateMoving",
+"class": "EnemyStateWander",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Generic/EnemyStateWander.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Entity.gd"
+}, {
+"base": "Node2D",
+"class": "FSMController",
+"language": "GDScript",
+"path": "res://Scripts/FSM/FSMController.gd"
+}, {
+"base": "Node2D",
+"class": "FSMNode",
+"language": "GDScript",
+"path": "res://Scripts/FSM/FSMNode.gd"
+}, {
+"base": "BaseEnemy",
+"class": "Goomba",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Goomba/Goomba.gd"
+}, {
+"base": "FSMNode",
+"class": "GoombaStateAttack",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Goomba/GoombaStateAttack.gd"
+}, {
+"base": "Reference",
+"class": "HealingUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/HealingUpgrade.gd"
+}, {
+"base": "WorldPickup",
+"class": "HealthPickup",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Pickups/HealthPickup.gd"
 }, {
 "base": "PanelContainer",
 "class": "HistoryRow",
 "language": "GDScript",
 "path": "res://addons/dialogic/Example Assets/History/HistoryRow.gd"
 }, {
-"base": "Object",
-"class": "HitFilter",
+"base": "Runnable",
+"class": "HomingBullet",
 "language": "GDScript",
-"path": "res://Scripts/Data/DamageBox/Filter.gd"
+"path": "res://Scripts/Upgrades/Implementation/HomingBullet.gd"
 }, {
-"base": "Object",
-"class": "HitMetadata",
+"base": "Reference",
+"class": "HomingUpgrade",
 "language": "GDScript",
-"path": "res://Scripts/Data/DamageBox/HitMeta.gd"
+"path": "res://Scripts/Upgrades/instances/HomingUpgrade.gd"
 }, {
-"base": "Object",
-"class": "HitboxProxy",
+"base": "Reference",
+"class": "KnockbackUpgrade",
 "language": "GDScript",
-"path": "res://Scripts/Data/DamageBox/HitboxProxy.gd"
+"path": "res://Scripts/Upgrades/instances/KnockbackUpgrade.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Node",
+"class": "Level",
+"language": "GDScript",
+"path": "res://Scripts/Level/Level.gd"
+}, {
+"base": "BulletBase",
+"class": "LimitedSoundBullet",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Attacks/LimitedSoundBullet.gd"
+}, {
+"base": "Entity",
 "class": "LivingEntity",
 "language": "GDScript",
-"path": "res://Scripts/Entities/LivingEntity.gd"
+"path": "res://Scripts/Entities/LivingEntities/LivingEntity.gd"
+}, {
+"base": "Node2D",
+"class": "LivingEntityStatus",
+"language": "GDScript",
+"path": "res://Scripts/Entities/LivingEntities/LivingEntityStatus.gd"
+}, {
+"base": "Node2D",
+"class": "LivingEntityVariable",
+"language": "GDScript",
+"path": "res://Scripts/Entities/LivingEntities/LivingEntityVariable.gd"
+}, {
+"base": "BaseAttack",
+"class": "LocationAttack",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Attacks/LocationAttack.gd"
+}, {
+"base": "LivingEntity",
+"class": "Manifestation",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Manifestation/Manifestation.gd"
+}, {
+"base": "Reference",
+"class": "ManifestationState",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Manifestation/ManifestationStatesEnum.gd"
+}, {
+"base": "FSMNode",
+"class": "ManifestationStateDead",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Manifestation/ManifestationStateDead.gd"
+}, {
+"base": "FSMNode",
+"class": "ManifestationStateIdle",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Manifestation/ManifestationStateIdle.gd"
+}, {
+"base": "FSMNode",
+"class": "ManifestationStateMelee",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Manifestation/ManifestationStateMelee.gd"
+}, {
+"base": "FSMNode",
+"class": "ManifestationStateSpawnWave",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Manifestation/ManifestationStateSpawnWave.gd"
 }, {
 "base": "Reference",
 "class": "MathUtils",
 "language": "GDScript",
 "path": "res://Scripts/Utils/MathUtils.gd"
+}, {
+"base": "Reference",
+"class": "MaxAmmoUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/MaxAmmoUpgrade.gd"
+}, {
+"base": "Reference",
+"class": "MaxHealthUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/MaxHealthUpgrade.gd"
+}, {
+"base": "Node2D",
+"class": "Melee",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Melee.gd"
+}, {
+"base": "BaseAttack",
+"class": "MovementAttack",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Attacks/MovementAttack.gd"
+}, {
+"base": "Reference",
+"class": "MultishotUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/MultishotUpgrade.gd"
 }, {
 "base": "Node",
 "class": "NPC",
@@ -184,17 +379,162 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/NPCInstance.gd"
 }, {
-"base": "AttackHandler",
-"class": "PierceAttackHandler",
+"base": "Node2D",
+"class": "NodeGroups",
 "language": "GDScript",
-"path": "res://Scripts/Data/DamageBox/PierceAttackHandler.gd"
+"path": "res://Scripts/Singletons/Data/Groups.gd"
 }, {
-"base": "Base_AnimatedFSM",
+"base": "Node",
+"class": "PCG_Corridors",
+"language": "GDScript",
+"path": "res://Scripts/LevelGeneration/PCG_Corridors.gd"
+}, {
+"base": "Node2D",
+"class": "PCG_Partioner",
+"language": "GDScript",
+"path": "res://Scripts/LevelGeneration/PCG_Partioner.gd"
+}, {
+"base": "Node2D",
+"class": "PCG_Populator",
+"language": "GDScript",
+"path": "res://Scripts/LevelGeneration/PCG_Populator.gd"
+}, {
+"base": "Resource",
+"class": "PCG_PopulatorData",
+"language": "GDScript",
+"path": "res://Scripts/LevelGeneration/PCG_DataClasses/PCG_PopulatorData.gd"
+}, {
+"base": "Resource",
+"class": "PCG_RoomData",
+"language": "GDScript",
+"path": "res://Scripts/LevelGeneration/PCG_DataClasses/PCG_RoomData.gd"
+}, {
+"base": "Node",
+"class": "PCG_TileFiller",
+"language": "GDScript",
+"path": "res://Scripts/LevelGeneration/PCG_TileFiller.gd"
+}, {
+"base": "PCG_RoomData",
+"class": "PCG_WalkedRoomData",
+"language": "GDScript",
+"path": "res://Scripts/LevelGeneration/PCG_DataClasses/PCG_WalkedRoomData.gd"
+}, {
+"base": "Node",
+"class": "PCG_Walker",
+"language": "GDScript",
+"path": "res://Scripts/LevelGeneration/PCG_Walker.gd"
+}, {
+"base": "Resource",
+"class": "PathfindResult",
+"language": "GDScript",
+"path": "res://Scripts/AI/PathfindResult.gd"
+}, {
+"base": "Upgrade",
+"class": "PermanentHealthUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/Permanent/PermanentHealthUpgrade.gd"
+}, {
+"base": "Reference",
+"class": "PermanentMeleeDamageUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/Permanent/PermanentMeleeDamageUpgrade.gd"
+}, {
+"base": "Reference",
+"class": "PermanentRangedDamageUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/Permanent/PermanentRangedDamageUpgrade.gd"
+}, {
+"base": "Reference",
+"class": "PermanentSpeedUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/Permanent/PermanentSpeedUpgrade.gd"
+}, {
+"base": "Reference",
+"class": "PierceChanceUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/PierceChanceUpgrade.gd"
+}, {
+"base": "LivingEntity",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Scripts/Player/Player.gd"
 }, {
-"base": "Object",
+"base": "Weapon",
+"class": "PlayerBaseGun",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/PlayerBaseGun.gd"
+}, {
+"base": "PlayerBaseGun",
+"class": "PlayerGunPistol",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/Pistol.gd"
+}, {
+"base": "PlayerBaseGun",
+"class": "PlayerGunShotgun",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/Shotgun.gd"
+}, {
+"base": "PlayerBaseGun",
+"class": "PlayerGunTommy",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/TommyGun.gd"
+}, {
+"base": "BaseAttack",
+"class": "PlayerMelee",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerMeleeAttack.gd"
+}, {
+"base": "Melee",
+"class": "PlayerMeleeBaton",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/Baton.gd"
+}, {
+"base": "Melee",
+"class": "PlayerMeleeBrassKnuckles",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/BrassKnuckles.gd"
+}, {
+"base": "Melee",
+"class": "PlayerMeleeKnife",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/Player/Knife.gd"
+}, {
+"base": "Reference",
+"class": "PlayerState",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStatesEnum.gd"
+}, {
+"base": "FSMNode",
+"class": "PlayerStateDash",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStateDash.gd"
+}, {
+"base": "FSMNode",
+"class": "PlayerStateDead",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStateDead.gd"
+}, {
+"base": "FSMNode",
+"class": "PlayerStateDev",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStateDev.gd"
+}, {
+"base": "FSMNode",
+"class": "PlayerStateFree",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStateFree.gd"
+}, {
+"base": "FSMNode",
+"class": "PlayerStateMelee",
+"language": "GDScript",
+"path": "res://Scripts/Player/PlayerStateMelee.gd"
+}, {
+"base": "Reference",
+"class": "RefundChanceUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/AmmoRefundUpgrade.gd"
+}, {
+"base": "Node2D",
 "class": "Runnable",
 "language": "GDScript",
 "path": "res://Scripts/Utils/Runnable.gd"
@@ -204,15 +544,65 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Utils/RunnableList.gd"
 }, {
-"base": "HitFilter",
-"class": "SingleHitFilter",
+"base": "ProgressBar",
+"class": "SmoothProgress",
 "language": "GDScript",
-"path": "res://Scripts/Data/DamageBox/SingleFilter.gd"
+"path": "res://Scripts/Utils/SmoothProgress.gd"
 }, {
-"base": "BaseGun",
+"base": "Reference",
+"class": "SpectralUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/SpectralUpgrade.gd"
+}, {
+"base": "Reference",
+"class": "SpeedUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/instances/SpeedUpgrade.gd"
+}, {
+"base": "BaseEnemy",
+"class": "Spyder",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Spyder/Spyder.gd"
+}, {
+"base": "FSMNode",
+"class": "SpyderStateRangedAttack",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Spyder/SpyderStateRangeAttack.gd"
+}, {
+"base": "PlayerBaseGun",
 "class": "TestGun",
 "language": "GDScript",
-"path": "res://Scripts/Entities/Weapons/TestGun.gd"
+"path": "res://Scripts/Entities/Weapons/Player/TestGun.gd"
+}, {
+"base": "Node2D",
+"class": "TimerList",
+"language": "GDScript",
+"path": "res://Scripts/Utils/TimerList.gd"
+}, {
+"base": "BaseEnemy",
+"class": "Umbrella",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Umbrella/Umbrella.gd"
+}, {
+"base": "EnemyStateMoving",
+"class": "UmbrellaStateChase",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Umbrella/UmbrellaStateChase.gd"
+}, {
+"base": "EnemyStateWander",
+"class": "UmbrellaStateIdle",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Umbrella/UmbrellaStateIdle.gd"
+}, {
+"base": "FSMNode",
+"class": "UmbrellaStateMelee",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Umbrella/UmbrellaStateMelee.gd"
+}, {
+"base": "EnemyStateMoving",
+"class": "UmbrellaStateRangedAttack",
+"language": "GDScript",
+"path": "res://Scripts/Enemies/Umbrella/UmbrellaStateRangeAttack.gd"
 }, {
 "base": "Resource",
 "class": "UnlockTable",
@@ -224,6 +614,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd"
 }, {
+"base": "Resource",
+"class": "Upgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/Upgrade.gd"
+}, {
+"base": "Resource",
+"class": "UpgradeHandler",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/UpgradeHandler.gd"
+}, {
+"base": "Reference",
+"class": "UpgradeType",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/UpgradeType.gd"
+}, {
 "base": "RunnableList",
 "class": "VariableList",
 "language": "GDScript",
@@ -233,19 +638,46 @@ _global_script_classes=[ {
 "class": "Weapon",
 "language": "GDScript",
 "path": "res://Scripts/Entities/Weapons/Weapon.gd"
+}, {
+"base": "Node2D",
+"class": "WeaponHitParticle",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Particles/Hit.gd"
+}, {
+"base": "Entity",
+"class": "WorldPickup",
+"language": "GDScript",
+"path": "res://Scripts/Entities/WorldPickup.gd"
+}, {
+"base": "Entity",
+"class": "WorldUpgrade",
+"language": "GDScript",
+"path": "res://Scripts/Upgrades/WorldUpgrade.gd"
+}, {
+"base": "WorldPickup",
+"class": "WorldWeapon",
+"language": "GDScript",
+"path": "res://Scripts/Entities/Weapons/WorldWeapon.gd"
 } ]
 _global_script_class_icons={
-"AttackHandler": "",
+"AK": "",
+"AkUtils": "",
+"Ant": "",
+"AntStateWander": "",
+"AttackInfo": "",
+"AttackSizeUpgrade": "",
+"AttackSpeedUpgrade": "",
 "AttackVariable": "",
 "BaseAttack": "",
-"BaseGun": "",
-"BaseHitHandler": "",
-"Base_AnimatedFSM": "",
-"Base_EnemyFSM": "",
-"Base_FSM": "",
-"Base_State": "",
+"BaseEnemy": "",
+"BaseSlowHandler": "",
+"Beetle": "",
+"BeetleStateAttack": "",
 "BulletBase": "",
+"CollisionUtils": "",
+"Constants": "",
 "DTS": "",
+"DamageUpgrade": "",
 "DecoratorList": "",
 "Dialogic": "",
 "DialogicAnimaPropertiesHelper": "",
@@ -260,43 +692,152 @@ _global_script_class_icons={
 "DialogueFile": "",
 "DialogueNPCIds": "",
 "DialogueQueue": "",
-"Generic_Hitbox": "",
-"Generic_Hurtbox": "",
+"DualUpgrade": "",
+"EnemyState": "",
+"EnemyStateAlert": "",
+"EnemyStateAttackMelee": "",
+"EnemyStateChase": "",
+"EnemyStateDead": "",
+"EnemyStateHurt": "",
+"EnemyStateMoving": "",
+"EnemyStateRun": "",
+"EnemyStateSleeping": "",
+"EnemyStateWander": "",
+"Entity": "",
+"FSMController": "",
+"FSMNode": "",
+"Goomba": "",
+"GoombaStateAttack": "",
+"HealingUpgrade": "",
+"HealthPickup": "",
 "HistoryRow": "",
-"HitFilter": "",
-"HitMetadata": "",
-"HitboxProxy": "",
+"HomingBullet": "",
+"HomingUpgrade": "",
+"KnockbackUpgrade": "",
+"Level": "",
+"LimitedSoundBullet": "",
 "LivingEntity": "",
+"LivingEntityStatus": "",
+"LivingEntityVariable": "",
+"LocationAttack": "",
+"Manifestation": "",
+"ManifestationState": "",
+"ManifestationStateDead": "",
+"ManifestationStateIdle": "",
+"ManifestationStateMelee": "",
+"ManifestationStateSpawnWave": "",
 "MathUtils": "",
+"MaxAmmoUpgrade": "",
+"MaxHealthUpgrade": "",
+"Melee": "",
+"MovementAttack": "",
+"MultishotUpgrade": "",
 "NPC": "",
 "NPCInstance": "",
-"PierceAttackHandler": "",
+"NodeGroups": "",
+"PCG_Corridors": "",
+"PCG_Partioner": "",
+"PCG_Populator": "",
+"PCG_PopulatorData": "",
+"PCG_RoomData": "",
+"PCG_TileFiller": "",
+"PCG_WalkedRoomData": "",
+"PCG_Walker": "",
+"PathfindResult": "",
+"PermanentHealthUpgrade": "",
+"PermanentMeleeDamageUpgrade": "",
+"PermanentRangedDamageUpgrade": "",
+"PermanentSpeedUpgrade": "",
+"PierceChanceUpgrade": "",
 "Player": "",
+"PlayerBaseGun": "",
+"PlayerGunPistol": "",
+"PlayerGunShotgun": "",
+"PlayerGunTommy": "",
+"PlayerMelee": "",
+"PlayerMeleeBaton": "",
+"PlayerMeleeBrassKnuckles": "",
+"PlayerMeleeKnife": "",
+"PlayerState": "",
+"PlayerStateDash": "",
+"PlayerStateDead": "",
+"PlayerStateDev": "",
+"PlayerStateFree": "",
+"PlayerStateMelee": "",
+"RefundChanceUpgrade": "",
 "Runnable": "",
 "RunnableList": "",
-"SingleHitFilter": "",
+"SmoothProgress": "",
+"SpectralUpgrade": "",
+"SpeedUpgrade": "",
+"Spyder": "",
+"SpyderStateRangedAttack": "",
 "TestGun": "",
+"TimerList": "",
+"Umbrella": "",
+"UmbrellaStateChase": "",
+"UmbrellaStateIdle": "",
+"UmbrellaStateMelee": "",
+"UmbrellaStateRangedAttack": "",
 "UnlockTable": "",
 "UnlockTableEntry": "",
+"Upgrade": "",
+"UpgradeHandler": "",
+"UpgradeType": "",
 "VariableList": "",
-"Weapon": ""
+"Weapon": "",
+"WeaponHitParticle": "",
+"WorldPickup": "",
+"WorldUpgrade": "",
+"WorldWeapon": ""
 }
 
 [application]
 
-config/name="The Fixer"
+config/name="Within The Vault"
+config/description="A noire-themed roguelite"
 run/main_scene="res://Scenes/Main.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://Assets/UI/logo.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0, 0, 0, 1 )
+config/icon="res://Assets/icon.png"
+config/windows_native_icon="res://Assets/icon.ico"
 
 [autoload]
 
 CameraSingleton="*res://Scripts/Singletons/CameraSingleton.gd"
 PausingSingleton="*res://Scripts/Singletons/PausingSingleton.gd"
 Scene="*res://Scripts/Singletons/Scene.gd"
+DialogueSystem="*res://Scenes/Dialogue/DialogueSystem.tscn"
+Waapi="*res://addons/wwise/bin/waapi-gdnative.gdns"
+StatsTracker="*res://Scenes/Dialogue/StatsTracker.tscn"
+Pathfinder="*res://Scripts/AI/Pathfinder.gd"
+AI="*res://Scripts/AI/AIManager.gd"
+WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
+Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
+TransitionHelper="*res://Scripts/Singletons/TransitionHelper.gd"
+UpgradeSingleton="*res://Scripts/Upgrades/UpgradeSingleton.gd"
+StatsSingleton="*res://Scripts/Singletons/StatsSingleton.gd"
+SaveHelper="*res://Scripts/Utils/SaveHelper.gd"
+
+[debug]
+
+gdscript/warnings/return_value_discarded=false
+gdscript/warnings/integer_division=false
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/test_width=1024
+window/size/test_height=600
+window/dpi/allow_hidpi=true
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/dialogic/plugin.cfg", "res://addons/godot_icon/plugin.cfg", "res://addons/wwise/plugin.cfg" )
 
 [global]
 
@@ -390,6 +931,11 @@ weapon_reload={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
+pickup_weapon={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -410,3 +956,7 @@ vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"
+
+[wwise]
+
+common_user_settings/engine_logging=true

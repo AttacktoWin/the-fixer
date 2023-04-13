@@ -3,26 +3,26 @@ extends Node2D
 
 export var id: String
 export var immediate: bool
+export var randomized: bool
 
 var interacted: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	interacted = false
-	if immediate:
-		interact()
+	if randomized:
+		if randi()%100 <= 30:
+			call_deferred("interact")
+	elif immediate:
+		call_deferred("interact")
 
 # TODO: make this a common function for all interactibles
 func interact() -> void:
 	if (interacted):
 		return
-	var system = get_node("/root/DialogueSystem")
-	if (is_instance_valid(system)):
-		var dialogue = system.get_top_dialogue(id)
-		if (is_instance_valid(dialogue)):
-			system.display_dialogue(id, dialogue.id)
-		else:
-			print("Something wrong with dialogue")
+	var dialogue = DialogueSystem.get_top_dialogue(id)
+	if (is_instance_valid(dialogue)):
+		DialogueSystem.display_dialogue(id, dialogue.id, dialogue.bubble)
 	else:
-		print("Something wrong with system")
+		print("Something wrong with dialogue")
 	interacted = true
