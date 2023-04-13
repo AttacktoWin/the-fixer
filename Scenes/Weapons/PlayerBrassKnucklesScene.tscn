@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/Weapons/Visual/BrassKnuckles.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Items/cuffs.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/Entities/Weapons/Melee.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/Entities/Weapons/Player/BrassKnuckles.gd" type="Script" id=3]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )

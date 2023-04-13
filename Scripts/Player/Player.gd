@@ -18,6 +18,8 @@ onready var reload_progress_bar: ProgressBar = $ReloadProgress
 onready var melee_hitbox: BaseAttack = $Visual/HitBox
 onready var flash_node: Node2D = $FlashNode
 
+var upgrades_applied = false
+
 var weapon_disabled = false setget set_weapon_disabled
 
 var _gun = null
@@ -37,16 +39,33 @@ func _ready():
 	Scene.connect("world_updated", self, "_world_updated")  # warning-ignore:return_value_discarded
 	# move flash into limbo
 	self.flash_node.get_parent().remove_child(self.flash_node)
+	StatsSingleton.apply_upgrades(self)
 
 
 func _world_updated():
 	if not self._has_default_weapons:
 		self._has_default_weapons = true
-		if start_gun:
+		if start_gun and not has_gun():
 			self.set_gun(start_gun.instance())
-		if start_melee:
+		if start_melee and not has_melee():
 			self.set_melee(start_melee.instance())
 	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION)
+
+
+func save():
+	var data = {}
+	data["HEALTH"] = getv(LivingEntityVariable.HEALTH)
+	data["AMMO"] = self._gun.ammo_count if self._gun else 0
+	return data
+
+
+func load_data(data: Dictionary):
+	setv(LivingEntityVariable.HEALTH, data["HEALTH"])
+	if self._gun:
+		self._gun.ammo_count = data["AMMO"]
+
+	update_health_bar()
+	update_ammo_counter()
 
 
 func set_weapon_disabled(val):
@@ -80,8 +99,10 @@ func set_gun(gun: PlayerBaseGun):
 	if gun == self._gun:
 		return
 
-	if self._gun:
+	if self.flash_node.get_parent():
 		self.flash_node.get_parent().remove_child(self.flash_node)
+
+	if self._gun:
 		_remove_weapon(self.hand, self._gun)
 
 	self._gun = gun.with_parent(self)
@@ -161,6 +182,9 @@ func update_ammo_counter(remove: bool = false):
 			+ String(self._gun.get_max_ammo())
 		)
 
+	if not self._gun:
+		return
+
 	if self._gun.get_ammo_count() == 0:
 		ammo_count.modulate = Constants.COLOR.RED
 	else:
@@ -217,9 +241,16 @@ func get_all_upgrade_handlers() -> Array:
 	return arr
 
 
+func _update_shader():
+	var t = self.get_global_transform_with_canvas().origin / get_viewport().get_visible_rect().size
+	t.y = 1 - t.y
+	Scene.wall_material.set_shader_param("target", t)
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	_update_reload_progress()
+	_update_shader()
 	if OS.is_debug_build():
 		if Input.is_action_just_pressed("ui_focus_next"):
 			var enemy = load("res://Scenes/Enemies/E_Umbrella.tscn").instance()
@@ -247,16 +278,21 @@ func _process(_delta):
 			print("Playing test sound")
 			Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, self)
 		if Input.is_action_just_pressed("ui_end"):
-			self.add_ammo(900)  # warning-ignore: return_value_discarded
+			SaveHelper.save()
 		if Input.is_action_just_pressed("ui_home"):
-			var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
-			TransitionHelper.transition(scene, true, true, 0.01)
+			SaveHelper.load_game()
+			# var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
+			# TransitionHelper.transition(scene, true, true, 0.01)
 		if Input.is_action_just_pressed("ui_page_down"):
+			# var scene = load("res://Scenes/Levels/BossRoom.tscn").instance()
+			# TransitionHelper.transition(scene, true, true, 0.01)
 			for enemy in AI.get_all_enemies():
 				enemy.queue_free()
 		if Input.is_action_just_pressed("ui_page_up"):
 			#apply_upgrades([HomingUpgrade.new()])
 			self.kill()
+
+
 #			var d = DualUpgrade.new()
 #			Scene.runtime.add_child(d)
 #			d.global_position = self.global_position
@@ -331,6 +367,12 @@ func _on_take_damage(info: AttackInfo):
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	update_health_bar()
 	Scene.ui.get_node("DamageFeedback").add_value(info.damage / 25.0)
+	if info.damage <= 15:
+		Wwise.post_event_id(AK.EVENTS.SMALL_HURT_PLAYER, self)
+	elif info.damage <= 20:
+		Wwise.post_event_id(AK.EVENTS.MEDIUM_HURT_PLAYER, self)
+	else:
+		Wwise.post_event_id(AK.EVENTS.BIG_HIT_PLAYER, self)
 	._on_take_damage(info)
 
 

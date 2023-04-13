@@ -322,7 +322,10 @@ anims/CHASE = SubResource( 82 )
 anims/IDLE = SubResource( 80 )
 anims/RESET = SubResource( 81 )
 
-[node name="ProgressBar" parent="." instance=ExtResource( 4 )]
+[node name="HealthContainer" type="Node2D" parent="."]
+z_index = 1
+
+[node name="ProgressBar" parent="HealthContainer" instance=ExtResource( 4 )]
 margin_left = -20.0
 margin_top = -72.0
 margin_right = 20.0

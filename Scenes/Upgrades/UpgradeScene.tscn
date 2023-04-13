@@ -30,7 +30,7 @@ scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
 
 [node name="UpgradeSprite" type="Sprite" parent="Visual"]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 4 )
 hframes = 4
 vframes = 3

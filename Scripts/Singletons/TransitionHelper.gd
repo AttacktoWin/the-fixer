@@ -18,7 +18,8 @@ func _switch():
 	if Scene.player:
 		Scene.player.add_health(Scene.player.base_health / 4)
 	Scene.switch(self._transition_target, self._transfer_player)
-	CameraSingleton.set_target_center(Scene.player.global_position * MathUtils.TO_ISO, self)
+	if Scene.player:
+		CameraSingleton.set_target_center(Scene.player.global_position * MathUtils.TO_ISO, self)
 	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION, self)
 	CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM, self)
 
@@ -68,6 +69,19 @@ func _process(delta):
 		if self._transition_timer > self._fade_time:
 			CameraSingleton.remove_controller(self)
 			self._is_transitioning = false
+
+
+func transition_fade():
+	self._is_transitioning = true
+	self._transition_timer = 0
+	self._transition_phase = 2
+	CameraSingleton.set_controller(self)
+	Scene.ui_layer.get_node("TransitionUI/FadeRect").modulate.a = 1
+	CameraSingleton.set_zoom(Vector2.ONE * (1.25) * ZOOM_OUT, self)
+	if Scene.player:
+		CameraSingleton.set_target_center(Scene.player.global_position * MathUtils.TO_ISO, self)
+	CameraSingleton.jump_field(CameraSingleton.TARGET.LOCATION, self)
+	CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM, self)
 
 
 func transition(

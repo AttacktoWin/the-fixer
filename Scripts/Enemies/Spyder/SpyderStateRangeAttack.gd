@@ -5,7 +5,7 @@ class_name SpyderStateRangedAttack extends FSMNode
 const MAX_DEVIATION = PI * 2  # omni
 const COOLDOWN = 5
 const COOLDOWN_INTERRUPT = 1.75
-const SLOW_TIME = 1.75
+const SLOW_TIME = 2.25
 
 var _charging: int = 2
 var _angle: float = 0

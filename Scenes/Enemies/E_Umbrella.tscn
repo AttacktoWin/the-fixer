@@ -425,12 +425,12 @@ collision_mask = 32
 script = ExtResource( 5 )
 base_speed = 0.0
 base_damage = 20.0
+base_knockback = 512.0
 allied_class = ExtResource( 11 )
 attack_type = 2
 persistent = true
 die_on_pierce = false
 camera_shake = 32.0
-base_knockback = 512.0
 max_pierce = 10000
 should_forget_entities = true
 entity_forget_time = 0.2
@@ -473,7 +473,10 @@ anims/TO_OPEN = SubResource( 108 )
 [node name="SocketMuzzle" type="Node2D" parent="FlipComponents/Visual"]
 position = Vector2( -54.2, 12 )
 
-[node name="ProgressBar" parent="." instance=ExtResource( 4 )]
+[node name="HealthContainer" type="Node2D" parent="."]
+z_index = 1
+
+[node name="ProgressBar" parent="HealthContainer" instance=ExtResource( 4 )]
 margin_left = -23.0
 margin_top = -95.0
 margin_right = 17.0

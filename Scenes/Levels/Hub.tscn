@@ -824,6 +824,7 @@ position = Vector2( 215, -1012 )
 [node name="Hitbox" parent="Transition" instance=ExtResource( 14 )]
 to_level = ExtResource( 17 )
 transfer_player = false
+spawn_upgrades = false
 
 [node name="Exit" type="AnimatedSprite" parent="Transition/Hitbox"]
 position = Vector2( 0.5, -12.5 )
@@ -853,6 +854,7 @@ __meta__ = {
 position = Vector2( 17, 0 )
 
 [node name="Walls" type="TileMap" parent="SortableEntities"]
+unique_name_in_owner = true
 material = ExtResource( 13 )
 position = Vector2( -717, -529 )
 scale = Vector2( 0.5, 0.5 )
@@ -872,7 +874,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 3
+frame = 6
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
@@ -958,8 +960,11 @@ shape = SubResource( 119 )
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]
 
-[node name="Vault-door" type="Sprite" parent="."]
-position = Vector2( 1142, -759 )
+[node name="DoorContainer" type="Node2D" parent="SortableEntities"]
+position = Vector2( 1072, -718 )
+
+[node name="Vault-door" type="Sprite" parent="SortableEntities/DoorContainer"]
+position = Vector2( 54, -41 )
 scale = Vector2( 0.45, 0.45 )
 texture = ExtResource( 4 )
 

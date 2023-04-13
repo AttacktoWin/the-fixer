@@ -9,8 +9,8 @@ func _generate_attack_info(_entity: LivingEntity) -> AttackInfo:
 		self.damage_type,
 		Vector2(INF, INF),
 		self,
-		self.getv(AttackVariable.DAMAGE),
+		ceil(self.getv(AttackVariable.DAMAGE)),
 		self._damage_source.getv(LivingEntityVariable.VELOCITY).normalized().angle(),
-		self.getv(AttackVariable.KNOCKBACK),
+		ceil(self.getv(AttackVariable.KNOCKBACK)),
 		self.stun_factor
 	)

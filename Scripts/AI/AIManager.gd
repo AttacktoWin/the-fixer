@@ -7,7 +7,7 @@ signal on_global_aggro_changed
 var _has_aggro = false
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if self._has_aggro:
 		for enemy in get_all_enemies():
 			if enemy.has_target():
@@ -24,14 +24,6 @@ func _physics_process(delta):
 
 func get_all_enemies():
 	return Scene.get_tree().get_nodes_in_group("Enemy")
-
-
-func _propogate_alert(location):
-	pass
-
-
-func notify_hit(source):
-	pass
 
 
 func has_LOS(from: Vector2, to: Vector2) -> bool:

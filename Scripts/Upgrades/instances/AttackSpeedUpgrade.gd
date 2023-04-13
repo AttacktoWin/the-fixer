@@ -2,7 +2,7 @@
 
 class_name AttackSpeedUpgrade extends Upgrade
 
-const SPEED_MULT = 1.25
+const SPEED_MULT = 1.15
 
 
 func apply(entity, type: int):

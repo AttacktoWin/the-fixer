@@ -16,8 +16,8 @@
 [ext_resource path="res://Assets/UI/Tutorial/mouse-left.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Sprites/Fixer/fixer_spritesheet_punch_front.png" type="Texture" id=15]
 [ext_resource path="res://Assets/Sprites/Bullets/fixer-bullet.png" type="Texture" id=16]
-[ext_resource path="res://Assets/UI/Tutorial/space-pressed.png" type="Texture" id=17]
-[ext_resource path="res://Assets/UI/Tutorial/space.png" type="Texture" id=18]
+[ext_resource path="res://Assets/UI/Tutorial/E.png" type="Texture" id=17]
+[ext_resource path="res://Assets/UI/Tutorial/E-pressed.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Sprites/Fixer/fixer_spritesheet_idle.png" type="Texture" id=19]
 [ext_resource path="res://Resources/Bahnschrift.tres" type="DynamicFont" id=20]
 [ext_resource path="res://Assets/Magic/FixerOutline.tres" type="Material" id=21]
@@ -244,6 +244,14 @@ func _process(delta):
 [sub_resource type="RectangleShape2D" id=66]
 extents = Vector2( 237.234, 57.3259 )
 
+[sub_resource type="SpriteFrames" id=63]
+animations = [ {
+"frames": [ ExtResource( 18 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
 atlas = ExtResource( 13 )
@@ -445,18 +453,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=63]
-animations = [ {
-"frames": [ ExtResource( 18 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
 [node name="Level" type="Node2D"]
 script = ExtResource( 26 )
 vision_range = 1.0
 enemy_appear_distance = 1000.0
+level_index = -1
 
 [node name="LevelMusic" type="Node2D" parent="."]
 script = ExtResource( 29 )
@@ -633,14 +634,21 @@ margin_top = 397.0
 margin_right = -150.0
 margin_bottom = 502.0
 custom_fonts/font = ExtResource( 20 )
-text = "Press E to pick up a weapon"
+text = "Press E to interact"
 align = 1
 autowrap = true
 
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Label4"]
+position = Vector2( 1700.22, 347.5 )
+scale = Vector2( 0.366667, 0.366667 )
+frames = SubResource( 63 )
+frame = 1
+playing = true
+
 [node name="Label3" type="Label" parent="."]
-margin_left = 455.0
+margin_left = 456.0
 margin_top = 1409.0
-margin_right = 734.0
+margin_right = 735.0
 margin_bottom = 1576.0
 custom_fonts/font = ExtResource( 20 )
 text = "Ants give back 1 ammo if destroyed by ranged and 3 if destroyed by melee..."
@@ -688,7 +696,7 @@ material = ExtResource( 21 )
 position = Vector2( 170.866, 139.593 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 5
+frame = 8
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
@@ -725,7 +733,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 3
+frame = 9
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -755,7 +763,7 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 4
+frame = 3
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
@@ -787,9 +795,10 @@ frames = SubResource( 62 )
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Dash"]
-position = Vector2( 92, 44.5 )
+position = Vector2( -1612, -265 )
 scale = Vector2( 0.406667, 0.406667 )
 frames = SubResource( 63 )
+frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="Dash"]
