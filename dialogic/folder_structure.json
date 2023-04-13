@@ -9,7 +9,8 @@
 				"character-1675203446.json",
 				"character-1675203451.json",
 				"character-1675203357.json",
-				"character-1678144008.json"
+				"character-1678144008.json",
+				"character-1681358997.json"
 			],
 			"folders": {
 
@@ -76,7 +77,7 @@
 							},
 							"metadata": {
 								"color": null,
-								"folded": false
+								"folded": true
 							}
 						},
 						"fixer": {
@@ -105,13 +106,25 @@
 							},
 							"metadata": {
 								"color": null,
-								"folded": false
+								"folded": true
 							}
 						},
 						"manifestation": {
 							"files": [
 								"timeline-1675207311.json",
 								"timeline-1678239083.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": true
+							}
+						},
+						"val": {
+							"files": [
+								"timeline-1681358948.json"
 							],
 							"folders": {
 
@@ -137,7 +150,8 @@
 								"timeline-1678555305.json",
 								"timeline-1680196732.json",
 								"timeline-1680197121.json",
-								"timeline-1680198161.json"
+								"timeline-1680198161.json",
+								"timeline-1681314333.json"
 							],
 							"folders": {
 
@@ -173,6 +187,18 @@
 								"color": null,
 								"folded": false
 							}
+						},
+						"val": {
+							"files": [
+								"timeline-1681359256.json"
+							],
+							"folders": {
+
+							},
+							"metadata": {
+								"color": null,
+								"folded": false
+							}
 						}
 					},
 					"metadata": {
@@ -188,8 +214,7 @@
 						"boss": {
 							"files": [
 								"timeline-1678678196.json",
-								"timeline-1680199476.json",
-								"timeline-1681314333.json"
+								"timeline-1680199476.json"
 							],
 							"folders": {
 
