@@ -110,7 +110,7 @@ autoplay = true
 script = SubResource( 3 )
 
 [node name="Title" type="Sprite" parent="."]
-position = Vector2( 1528, 425 )
+position = Vector2( 1528, 311 )
 texture = ExtResource( 9 )
 
 [node name="HBoxContainer" type="VBoxContainer" parent="."]
@@ -119,9 +119,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = 340.0
-margin_top = 143.0
+margin_top = 11.0
 margin_right = 1344.0
-margin_bottom = 447.0
+margin_bottom = 469.0
 
 [node name="New_Cont" type="VBoxContainer" parent="HBoxContainer"]
 margin_right = 1004.0

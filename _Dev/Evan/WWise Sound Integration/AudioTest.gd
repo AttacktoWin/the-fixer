@@ -13,7 +13,7 @@ func _ready():
 	Wwise.load_bank_id(AK.BANKS.MAIN)
 	
 	#Register a listener
-	Wwise.register_listener(self)
+	#Wwise.register_listener(self)
 	# update listener position
 	Wwise.set_2d_position(self, self.get_global_transform) 
 	

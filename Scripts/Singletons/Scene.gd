@@ -34,6 +34,7 @@ signal world_updated
 func _ready():
 	randomize()
 	Wwise.register_listener(self)
+	Wwise.register_game_obj(self, self.name)
 
 
 func _update_pathfinder():

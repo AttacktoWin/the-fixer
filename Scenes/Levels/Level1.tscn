@@ -219,9 +219,7 @@ animations = [ {
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
-vision_enabled = false
-vision_alpha = 0.2
-vision_range = 0.6
+vision_range = 0.56
 enemy_appear_distance = 10000.0
 spawn_upgrades = true
 level_index = 1

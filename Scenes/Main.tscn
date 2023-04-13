@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scripts/Entities/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Magic/DamageMaterial.tres" type="Material" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_bank.gd" type="Script" id=10]
 [ext_resource path="res://Resources/FilmPoster.tres" type="DynamicFont" id=11]
 [ext_resource path="res://Scripts/Level/Enemies_Remaing.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/VisionReduction2.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/Entities/MainCamera.gd" type="Script" id=20]
 
 [sub_resource type="GDScript" id=15]
@@ -186,10 +187,11 @@ shader_param/hurt_tex = ExtResource( 6 )
 
 [sub_resource type="Shader" id=16]
 code = "shader_type canvas_item;
-
+uniform float modulate =1.0;
 uniform vec2 pivot;
 uniform float rotation:hint_range(-0.02, 0.02);
 uniform float radius;
+uniform float scale_factor = 1;
 uniform float a;
 uniform float b;
 void fragment(){
@@ -201,7 +203,8 @@ void fragment(){
     uv.x = uv.x * cosine - uv.y * sine;
     uv.y = uv.x * sine + uv.y * cosine;
     uv += pivot;
-	
+	uv = uv*scale_factor;
+	uv += 0.5-(scale_factor/2.0);
 	COLOR = texture(TEXTURE,uv);
 	
 	float dist = abs(distance(vec2(0.5),SCREEN_UV));
@@ -209,13 +212,16 @@ void fragment(){
 	if(dist<=radius && COLOR.a>0.0){
 		COLOR.a = mix(0,strength,COLOR.a);
 	}
+	COLOR.a = mix(0,COLOR.a,modulate);
 }"
 
 [sub_resource type="ShaderMaterial" id=17]
 shader = SubResource( 16 )
-shader_param/pivot = Vector2( 0.5, 0.5 )
-shader_param/rotation = 0.008
+shader_param/modulate = 1.0
+shader_param/pivot = Vector2( 0.521, 0.5 )
+shader_param/rotation = 0.02
 shader_param/radius = 0.425
+shader_param/scale_factor = 1.011
 shader_param/a = 0.425
 shader_param/b = 0.0
 
@@ -307,7 +313,7 @@ material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = SubResource( 6 )
+script = ExtResource( 13 )
 
 [node name="DamageFeedback" type="ColorRect" parent="UILayer/UI"]
 material = ExtResource( 2 )
