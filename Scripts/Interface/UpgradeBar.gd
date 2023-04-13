@@ -10,9 +10,6 @@ func _ready():
 	bar_units = get_children()
 	set_active(StatsSingleton.stats[stat])
 
-func _process(_delta):
-	print(stat," ",StatsSingleton.stats[stat])
-
 func set_active(count)->bool:
 	if count>bar_units.size():
 		return false

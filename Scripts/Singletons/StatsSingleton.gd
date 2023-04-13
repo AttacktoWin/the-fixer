@@ -7,6 +7,7 @@ var speed_upgrades: int = 0
 var melee_damage_upgrades: int = 0
 var ranged_damage_upgrades: int = 0
 
+
 const MAX = 12
 var stats = [
 	self.health_upgrades,
