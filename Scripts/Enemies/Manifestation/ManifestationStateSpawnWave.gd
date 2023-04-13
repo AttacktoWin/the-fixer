@@ -50,3 +50,7 @@ func _physics_process(delta):
 
 	if self._current_spawn >= self._spawn_count:
 		self.fsm.set_state(ManifestationState.IDLE)
+
+
+func exit():
+	self._roar_fx.modulate.a = 0
