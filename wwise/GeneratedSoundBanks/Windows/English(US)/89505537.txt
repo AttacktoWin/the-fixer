@@ -15,6 +15,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	1980235893	Notice_Pillbug			\Default Work Unit\Enemy Actions\Pillbug Actions\Notice_Pillbug	
 	2010675244	Weapon_Pickup_Player			\Default Work Unit\Player Actions\Weapon_Pickup_Player	
 	2020382007	Hit_Knuckles_Player			\Default Work Unit\Player Actions\Hit_Knuckles_Player	
+	2160065833	Swing_Knife_Player			\Default Work Unit\Player Actions\Swing_Knife_Player	
 	2212742940	Crash_Beetle			\Default Work Unit\Enemy Actions\Beetle Actions\Crash_Beetle	
 	2348673105	Attack_Bird			\Default Work Unit\Enemy Actions\Bird Actions\Attack_Bird	
 	2396170652	Shoot_Bird			\Default Work Unit\Enemy Actions\Bird Actions\Shoot_Bird	
@@ -24,6 +25,7 @@ Event	ID	Name			Wwise Object Path	Notes
 	3277391769	Notice_Beetle			\Default Work Unit\Enemy Actions\Beetle Actions\Notice_Beetle	
 	3344761002	Ammo_Pickup_Player			\Default Work Unit\Player Actions\Ammo_Pickup_Player	
 	3401439988	Phone_Ring			\Default Work Unit\Environmental Actions\Phone_Ring	
+	3768797038	Swing_Baton_Player			\Default Work Unit\Player Actions\Swing_Baton_Player	
 	3790708028	Door_Unlock			\Default Work Unit\Environmental Actions\Door_Unlock	
 	4149800146	Empty_Pistol_Player			\Default Work Unit\Player Actions\Empty_Pistol_Player	
 	4275276242	Attack_Manifestation			\Default Work Unit\Enemy Actions\Manifestation Actions\Attack_Manifestation	

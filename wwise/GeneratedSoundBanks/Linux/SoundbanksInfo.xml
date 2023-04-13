@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="English(US)" Hash="511278722">
+		<SoundBank Id="89505537" Language="English(US)" Hash="4016416096">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>English(US)\89505537.bnk</Path>
@@ -250,6 +250,22 @@
 						<File Id="448529706" Language="SFX">
 							<ShortName>summon_manny.wav</ShortName>
 							<Path>SFX\summon_manny_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="3768797038" Name="Swing_Baton_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Swing_Baton_Player">
+					<IncludedMemoryFiles>
+						<File Id="215651341" Language="SFX">
+							<ShortName>Swing_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Swing_Knuckles_Player_65AC56E0.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2160065833" Name="Swing_Knife_Player" ObjectPath="\Events\Default Work Unit\Player Actions\Swing_Knife_Player">
+					<IncludedMemoryFiles>
+						<File Id="215651341" Language="SFX">
+							<ShortName>Swing_Knuckles_Player.wav</ShortName>
+							<Path>SFX\Swing_Knuckles_Player_65AC56E0.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
