@@ -150,7 +150,6 @@ func on_enemy_death(enemy):
 	part.connect("on_reached_target", self, "on_damage_orb_hit")
 	Scene.runtime.add_child(part)
 	part.global_position = enemy.global_position
-	part.modulate = Constants.COLOR.RED
 
 
 func _spawn_random_enemies(
