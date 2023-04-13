@@ -78,6 +78,8 @@ func _process(_delta):
 
 func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> void:
 	if Dialogic.timeline_exists(npc_id + "-" + dialogue_id):
+		if (is_instance_valid(self.current_dialog_box)):
+			_timeline_end("")
 		var dialog: Node
 		dialog = Dialogic.start(npc_id + "-" + dialogue_id)
 		if bubble:
@@ -98,10 +100,9 @@ func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> vo
 
 func _timeline_end(_t_name: String):
 	dialogue_viewed(self.current_npc_id, self.current_dialogue_id)
+	self.current_dialog_box.queue_free()
 	self.current_dialog_box = null
 	self.follow_player = false
-	# if PausingSingleton._paused:
-	# 	PausingSingleton.unpause()
 
 
 func _signal_listener(s_name: String):
@@ -229,6 +230,8 @@ func level_started():
 
 
 func level_changed():
+	if (is_instance_valid(self.current_dialog_box)):
+		_timeline_end("")
 	if NPCs["fixer"].peek_top_dialogue().priority == Dialogue.Priority.SPECIFIC:
 		NPCs["fixer"].get_top_dialogue()
 
