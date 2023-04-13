@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/Utils/SmoothProgress.gd" type="Script" id=10]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=11]
-[ext_resource path="res://Assets/Magic/Effects/Textures/crate-spritesheet.png" type="Texture" id=12]
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 127, 0, 255, 66, 127, 126, 1, 65, 127, 127 )
@@ -192,30 +191,6 @@ corner_radius_bottom_left = 2
 
 [sub_resource type="StyleBoxEmpty" id=25]
 
-[sub_resource type="CanvasItemMaterial" id=26]
-particles_animation = true
-particles_anim_h_frames = 7
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Gradient" id=27]
-offsets = PoolRealArray( 0.0439815, 0.164352, 0.212963, 0.361111 )
-colors = PoolColorArray( 0.992157, 0.847059, 0.219608, 1, 0.941895, 0.941895, 0.941895, 1, 0.555176, 0.333973, 0.355359, 1, 0, 0, 0, 1 )
-
-[sub_resource type="GradientTexture" id=28]
-gradient = SubResource( 27 )
-
-[sub_resource type="ParticlesMaterial" id=29]
-emission_shape = 1
-emission_sphere_radius = 128.0
-flag_disable_z = true
-gravity = Vector3( 0, 0, 0 )
-orbit_velocity = 0.0
-orbit_velocity_random = 0.0
-color_ramp = SubResource( 28 )
-anim_speed = 2.68
-anim_speed_random = 0.46
-
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
 vision_range = 0.8
@@ -292,13 +267,3 @@ margin_top = -35.0
 margin_right = 1165.0
 margin_bottom = 74.0
 texture = ExtResource( 7 )
-
-[node name="Particles2D" type="Particles2D" parent="."]
-visible = false
-material = SubResource( 26 )
-position = Vector2( 1, 195 )
-amount = 15
-explosiveness = 0.4
-randomness = 0.43
-process_material = SubResource( 29 )
-texture = ExtResource( 12 )
