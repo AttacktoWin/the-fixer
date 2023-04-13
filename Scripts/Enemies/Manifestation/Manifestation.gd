@@ -92,7 +92,7 @@ func _handle_camera():
 		)
 		* Vector2(sign(center.x), sign(center.y))
 	)
-	var off2 = off + self.getv(LivingEntityVariable.VELOCITY) / 8
+	var off2 = off + self.getv(LivingEntityVariable.VELOCITY) / 8 + Vector2(0, 40)
 	CameraSingleton.set_target_center(
 		MathUtils.to_iso(self.global_position * 4 + Scene.player.global_position) / 5 + off2, self
 	)
@@ -165,7 +165,10 @@ func _spawn_random_enemies(
 		var enemy = select_enemy(enemy_list, difficulty_bias)
 		var loc = select_random_location()
 		Scene.runtime.add_child(enemy)
+		var part = preload("res://Assets/Magic/Effects/VFX_Spawn.tscn").instance()
+		Scene.runtime.add_child(part)
 		enemy.global_position = loc
+		part.global_position = loc
 		enemy.connect("on_death", self, "on_enemy_death")
 
 

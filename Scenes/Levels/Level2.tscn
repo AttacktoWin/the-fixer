@@ -204,6 +204,7 @@ vision_alpha = 0.2
 vision_range = 0.5
 enemy_appear_distance = 1024.0
 spawn_upgrades = true
+level_index = 2
 
 [node name="LevelMusic" type="Node2D" parent="."]
 script = ExtResource( 11 )

@@ -1,3 +1,5 @@
+# Author: Marcus
+
 class_name PlayerMeleeBaton extends Melee
 
 

@@ -37,12 +37,10 @@ func _ready():
 	var save_dict: Dictionary = {}
 	var dir = Directory.new()
 	if dir.file_exists(save_file_name):
-		dir.free()
 		var file = File.new()
 		file.open(save_file_name, File.READ)
 		var text = file.get_as_text()
 		file.close()
-		file.free()
 		var json = JSON.parse(text)
 		if json.error == OK:
 			if typeof(json.result) == TYPE_DICTIONARY:

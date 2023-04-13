@@ -214,7 +214,7 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=17]
 shader = SubResource( 16 )
 shader_param/pivot = Vector2( 0.5, 0.5 )
-shader_param/rotation = 0.0
+shader_param/rotation = 0.008
 shader_param/radius = 0.425
 shader_param/a = 0.425
 shader_param/b = 0.0
@@ -251,14 +251,14 @@ bank = {
 load_on = 1
 unload_on = 2
 
-[node name="AkBank-UI" type="Node" parent="Managers"]
+[node name="AkBank-UI" type="Node" parent="Managers" groups=["bank"]]
 script = ExtResource( 10 )
 bank = {
 "Id": 1551306167,
 "Name": "UI"
 }
 
-[node name="AkBank-GAMEPLAY" type="Node" parent="Managers"]
+[node name="AkBank-GAMEPLAY" type="Node" parent="Managers" groups=["bank"]]
 script = ExtResource( 10 )
 bank = {
 "Id": 89505537,
@@ -267,7 +267,7 @@ bank = {
 load_on = 1
 unload_on = 2
 
-[node name="AkBank-MUSIC" type="Node" parent="Managers"]
+[node name="AkBank-MUSIC" type="Node" parent="Managers" groups=["bank"]]
 script = ExtResource( 10 )
 bank = {
 "Id": 3991942870,

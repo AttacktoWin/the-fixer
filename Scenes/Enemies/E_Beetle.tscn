@@ -379,11 +379,11 @@ collision_mask = 32
 script = ExtResource( 5 )
 base_speed = 0.0
 base_damage = 30.0
+base_knockback = 512.0
 attack_type = 2
 persistent = true
 die_on_pierce = false
 camera_shake = 64.0
-base_knockback = 512.0
 max_pierce = 10000
 should_forget_entities = true
 
@@ -418,7 +418,10 @@ anims/CHASE = SubResource( 84 )
 anims/IDLE = SubResource( 85 )
 anims/RESET = SubResource( 86 )
 
-[node name="ProgressBar" parent="." instance=ExtResource( 4 )]
+[node name="HealthContainer" type="Node2D" parent="."]
+z_index = 1
+
+[node name="ProgressBar" parent="HealthContainer" instance=ExtResource( 4 )]
 margin_left = -20.0
 margin_top = -83.0
 margin_right = 20.0

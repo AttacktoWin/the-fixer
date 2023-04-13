@@ -21,8 +21,6 @@ const WEAPON_COOLDOWN = 1.25
 const FIRE_COOLDOWN = 0.5
 const SHOTS_PER_VOLLEY = 3
 
-var BulletScene = preload("res://Scenes/Weapons/BulletScene.tscn")
-
 
 func get_handled_states():
 	return [EnemyState.ATTACKING_RANGED]
@@ -50,7 +48,7 @@ func is_vulnerable():
 
 
 func _shoot():
-	var bullet: BulletBase = BulletScene.instance().set_damage_source(self.entity)
+	var bullet: BulletBase = preload("res://Scenes/Weapons/BulletScene.tscn").instance().set_damage_source(self.entity)
 	Scene.runtime.add_child(bullet)
 	bullet.global_position = self.entity.socket_muzzle.global_position
 	bullet.get_node("Sprite").texture = preload("res://Assets/Sprites/Bullets/enemy-bullet.png")
@@ -60,7 +58,8 @@ func _shoot():
 		MathUtils.to_iso(self.entity.get_target().global_position - bullet.global_position).angle()
 	)
 	bullet.setv(AttackVariable.SPEED, self.bullet_speed)
-	bullet.setv(AttackVariable.DAMAGE, self.bullet_damage)
+	bullet.setv(AttackVariable.DAMAGE, ceil(self.bullet_damage))
+	bullet.allied_class = preload("res://Scripts/Enemies/BaseEnemy.gd")
 	Wwise.post_event_id(AK.EVENTS.ATTACK_BIRD, self.entity)
 
 

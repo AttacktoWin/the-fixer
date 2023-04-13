@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=59 format=2]
 
 [ext_resource path="res://Assets/Tiles/Hub/hub-wall.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
@@ -8,8 +8,7 @@
 [ext_resource path="res://Assets/Tiles/Hub/tile0023.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/DialogueSystem/NPCInstance.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Tiles/Hub/wall0010.png" type="Texture" id=8]
-[ext_resource path="res://Scenes/Levels/Level1.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scripts/Entities/LevelTransition.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Interface/Menus/Upgrades.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=11]
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_event_2d.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=13]
@@ -23,6 +22,7 @@
 [ext_resource path="res://Assets/Tiles/Hub/tutorial.png" type="Texture" id=21]
 [ext_resource path="res://Assets/Tiles/Hub/bookcase.png" type="Texture" id=22]
 [ext_resource path="res://Assets/Tiles/Hub/enter.png" type="Texture" id=23]
+[ext_resource path="res://Scenes/Interface/Menus/VaultConfirm.tscn" type="PackedScene" id=24]
 
 [sub_resource type="GDScript" id=4]
 script/source = "extends Node2D
@@ -193,9 +193,6 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 } ]
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 34.9045, 10.7536 )
 
 [sub_resource type="StreamTexture" id=3]
 flags = 4
@@ -669,7 +666,41 @@ radius = 34.0596
 extents = Vector2( 172.625, 227.185 )
 
 [sub_resource type="RectangleShape2D" id=100]
-extents = Vector2( 51.8768, 127.009 )
+extents = Vector2( 87.6539, 127.009 )
+
+[sub_resource type="GDScript" id=104]
+resource_name = "Upgrades"
+script/source = "extends Area2D
+
+func _on_Area_body_entered(body):
+	if body is Player:
+		Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.YES)
+		get_node(\"%Upgrade\").visible = true
+		PausingSingleton.pause()
+"
+
+[sub_resource type="RectangleShape2D" id=105]
+extents = Vector2( 103.754, 144.003 )
+
+[sub_resource type="GDScript" id=103]
+resource_name = "Vault Enter"
+script/source = "extends Area2D
+
+func _ready() -> void:
+	connect(\"body_entered\", self, \"_on_body_entered\")  # warning-ignore: RETURN_VALUE_DISCARDED
+
+
+func _on_body_entered(body: Node2D):
+	if body is Player:
+		var confirmation = get_node_or_null(\"../../VaultConfirm/Confirm\")
+		if confirmation:
+			confirmation.visible = true
+			PausingSingleton.pause()
+			Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.YES)
+"
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 34.9045, 13.6794 )
 
 [sub_resource type="Animation" id=102]
 resource_name = "Bob"
@@ -721,6 +752,7 @@ position = Vector2( 215, -1012 )
 [node name="Hitbox" parent="Transition" instance=ExtResource( 14 )]
 to_level = ExtResource( 17 )
 transfer_player = false
+spawn_upgrades = false
 
 [node name="Exit" type="AnimatedSprite" parent="Transition/Hitbox"]
 position = Vector2( 0.5, -12.5 )
@@ -746,23 +778,11 @@ __meta__ = {
 "_edit_use_anchors_": true
 }
 
-[node name="EnterDugeon" type="Node2D" parent="."]
-
-[node name="Area2D" type="Area2D" parent="EnterDugeon"]
-position = Vector2( 1796, -173 )
-scale = Vector2( 4, 2 )
-script = ExtResource( 10 )
-to_level = ExtResource( 9 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnterDugeon/Area2D"]
-position = Vector2( -166.943, -250.417 )
-rotation = 0.778417
-shape = SubResource( 5 )
-
 [node name="SortableEntities" type="YSort" parent="."]
 position = Vector2( 17, 0 )
 
 [node name="Walls" type="TileMap" parent="SortableEntities"]
+unique_name_in_owner = true
 material = ExtResource( 13 )
 position = Vector2( -717, -529 )
 scale = Vector2( 0.5, 0.5 )
@@ -782,7 +802,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 7
+frame = 6
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
@@ -836,10 +856,40 @@ rotation = 0.785398
 scale = Vector2( 0.790569, 0.790569 )
 shape = SubResource( 100 )
 
+[node name="Area" type="Area2D" parent="SortableEntities/Vending"]
+scale = Vector2( 1, 0.5 )
+script = SubResource( 104 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SortableEntities/Vending/Area"]
+position = Vector2( -20.5, 36.5001 )
+rotation = 0.785398
+scale = Vector2( 0.790569, 0.790569 )
+shape = SubResource( 105 )
+
 [node name="Player" parent="SortableEntities" instance=ExtResource( 2 )]
 position = Vector2( -172, -240 )
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]
+
+[node name="DoorContainer" type="Node2D" parent="SortableEntities"]
+position = Vector2( 1072, -718 )
+
+[node name="Vault-door" type="Sprite" parent="SortableEntities/DoorContainer"]
+position = Vector2( 54, -41 )
+scale = Vector2( 0.45, 0.45 )
+texture = ExtResource( 4 )
+
+[node name="EnterDugeon" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="EnterDugeon"]
+position = Vector2( 1796, -173 )
+scale = Vector2( 4, 2 )
+script = SubResource( 103 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnterDugeon/Area2D"]
+position = Vector2( -168.997, -248.334 )
+rotation = 0.778417
+shape = SubResource( 5 )
 
 [node name="Tutorial" type="Sprite" parent="."]
 position = Vector2( 645, -862 )
@@ -847,13 +897,8 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 21 )
 offset = Vector2( 0, -200 )
 
-[node name="Vault-door" type="Sprite" parent="."]
-position = Vector2( 1142, -759 )
-scale = Vector2( 0.45, 0.45 )
-texture = ExtResource( 4 )
-
 [node name="Enter" type="Sprite" parent="."]
-position = Vector2( 1160, -982.132 )
+position = Vector2( 1146, -923 )
 scale = Vector2( 0.464844, 0.464844 )
 texture = ExtResource( 23 )
 
@@ -861,3 +906,15 @@ texture = ExtResource( 23 )
 root_node = NodePath("../..")
 autoplay = "Bob"
 anims/Bob = SubResource( 102 )
+
+[node name="VaultConfirm" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="Upgrade" parent="VaultConfirm" instance=ExtResource( 9 )]
+unique_name_in_owner = true
+visible = false
+
+[node name="Confirm" parent="VaultConfirm" instance=ExtResource( 24 )]
+visible = false
+
+[connection signal="body_entered" from="SortableEntities/Vending/Area" to="SortableEntities/Vending/Area" method="_on_Area_body_entered"]

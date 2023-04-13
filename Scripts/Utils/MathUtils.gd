@@ -141,6 +141,17 @@ static func delta_frames(delta):
 	return delta * 60
 
 
+# returns the same list
+static func shuffle_list(rng: RandomNumberGenerator, list: Array) -> Array:
+	for _i in range(list.size()):
+		var idx1 = rng.randi() % list.size()
+		var idx2 = rng.randi() % list.size()
+		var a = list[idx1]
+		list[idx1] = list[idx2]
+		list[idx2] = a
+	return list
+
+
 static func normalize_range(val: float, _min: float, _max: float) -> float:
 	var diff = _max - _min
 	if diff == 0:
