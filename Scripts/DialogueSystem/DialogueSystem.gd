@@ -35,9 +35,8 @@ func _ready():
 			NPCs[child.id] = child
 
 	var save_dict: Dictionary = {}
-	var dir = Directory.new()
-	if dir.file_exists(save_file_name):
-		var file = File.new()
+	var file = File.new()
+	if file.file_exists(save_file_name):
 		file.open(save_file_name, File.READ)
 		var text = file.get_as_text()
 		file.close()
@@ -73,10 +72,10 @@ func _ready():
 func _process(_delta):
 	if is_instance_valid(self.current_dialog_box) && follow_player:
 		var player = get_parent().get_node("World/Level/SortableEntities/Player")
-		if (is_instance_valid(player)):
+		if is_instance_valid(player):
 			current_dialog_box.offset = MathUtils.from_iso(player.position - Vector2(40, 1150))
-	
-		
+
+
 func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> void:
 	if Dialogic.timeline_exists(npc_id + "-" + dialogue_id):
 		var dialog: Node

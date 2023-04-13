@@ -57,7 +57,7 @@ func load_game():
 
 
 func has_save_file() -> bool:
-	return Directory.new().file_exists(SAVE_FILE_NAME)
+	return File.new().file_exists(SAVE_FILE_NAME)
 
 
 func load_json_file(file_name: String) -> Dictionary:
