@@ -130,10 +130,10 @@
 		{
 			"call_node": {
 				"arguments": [
-
+					"ROAR MANIFESTATION"
 				],
-				"method_name": "",
-				"target_node_path": ""
+				"method_name": "play_sound",
+				"target_node_path": "DialogueSystem"
 			},
 			"event_id": "dialogic_042"
 		},
@@ -160,8 +160,8 @@
 				"0": false,
 				"1": false,
 				"2": false,
-				"3": true,
-				"4": false
+				"3": false,
+				"4": true
 			},
 			"type": 0,
 			"z_index": 0
@@ -210,6 +210,27 @@
 			"event_id": "dialogic_001",
 			"portrait": "Shadow Cross",
 			"text": "\"Get it done this time. [pause=1]See to it that our problem gets popped [speed=6][i]for good[/i].\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"change_mirror_portrait": false,
+			"change_position": true,
+			"change_z_index": false,
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "(Don't change)",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": true,
+				"3": false,
+				"4": false
+			},
+			"type": 2,
+			"z_index": 0
 		},
 		{
 			"animation": "5-fade_out_down.gd",

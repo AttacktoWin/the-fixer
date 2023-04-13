@@ -103,7 +103,7 @@ func _physics_process(_delta):
 		* 0.312
 		* tscale
 	)
-	self._upgrade_sprite.modulate.a = sin(self._timer1 * 0.83) / 12 + 0.66
+	#self._upgrade_sprite.modulate.a = sin(self._timer1 * 0.83) / 12 + 0.66
 
 	if self._collected:
 		self._die_timer += _delta

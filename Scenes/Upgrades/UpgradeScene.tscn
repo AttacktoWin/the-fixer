@@ -20,15 +20,16 @@ text = "UPGRADE TEXT"
 align = 1
 
 [node name="Sprite1" type="Sprite" parent="Visual"]
+modulate = Color( 1, 0.121569, 0.172549, 0.564706 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
 
 [node name="Sprite2" type="Sprite" parent="Visual"]
+modulate = Color( 0.647059, 0.133333, 0.211765, 1 )
 scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 2 )
 
 [node name="UpgradeSprite" type="Sprite" parent="Visual"]
-modulate = Color( 1, 1, 1, 0.501961 )
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 4 )
 hframes = 4
