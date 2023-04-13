@@ -367,6 +367,12 @@ func _on_take_damage(info: AttackInfo):
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	update_health_bar()
 	Scene.ui.get_node("DamageFeedback").add_value(info.damage / 25.0)
+	if info.damage <= 15:
+		Wwise.post_event_id(AK.EVENTS.SMALL_HURT_PLAYER, self)
+	elif info.damage <= 20:
+		Wwise.post_event_id(AK.EVENTS.MEDIUM_HURT_PLAYER, self)
+	else:
+		Wwise.post_event_id(AK.EVENTS.BIG_HIT_PLAYER, self)
 	._on_take_damage(info)
 
 

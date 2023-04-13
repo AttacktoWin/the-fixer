@@ -51,6 +51,7 @@ func _physics_process(delta):
 		self._wait_timer -= delta
 		if self._wait_timer <= 0:
 			self.fsm.set_animation("CHARGE")
+			Wwise.post_event_id(AK.EVENTS.CHARGE_BEETLE, self.entity)
 		return
 
 	self._current_time += delta
