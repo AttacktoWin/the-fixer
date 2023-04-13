@@ -212,6 +212,7 @@ shader_param/radius = 0.164
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
+vision_range = 0.415
 spawn_upgrades = true
 
 [node name="LevelMusic" type="Node2D" parent="."]

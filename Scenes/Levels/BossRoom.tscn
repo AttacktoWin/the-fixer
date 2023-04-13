@@ -193,7 +193,7 @@ corner_radius_bottom_left = 2
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
-vision_enabled = false
+vision_range = 0.8
 enemy_appear_distance = 1000.0
 
 [node name="LevelMusic" type="Node2D" parent="."]

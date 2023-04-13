@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://Scripts/Entities/World.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Magic/DamageMaterial.tres" type="Material" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://addons/wwise/runtime/nodes/ak_bank.gd" type="Script" id=10]
 [ext_resource path="res://Resources/FilmPoster.tres" type="DynamicFont" id=11]
 [ext_resource path="res://Scripts/Level/Enemies_Remaing.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/VisionReduction2.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/Entities/MainCamera.gd" type="Script" id=20]
 
 [sub_resource type="GDScript" id=15]
@@ -307,7 +308,7 @@ material = SubResource( 7 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = SubResource( 6 )
+script = ExtResource( 13 )
 
 [node name="DamageFeedback" type="ColorRect" parent="UILayer/UI"]
 material = ExtResource( 2 )
