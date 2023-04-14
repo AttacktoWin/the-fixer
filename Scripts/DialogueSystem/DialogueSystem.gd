@@ -161,6 +161,7 @@ func _signal_listener(s_name: String):
 		"stop_credits":
 			Wwise.stop_event(AK.EVENTS.CREDITS_MUSIC, 2, AkUtils.AkCurveInterpolation.LINEAR)
 			Wwise.post_event_id(AK.EVENTS.HUB_MUSIC, self)
+			StatsTracker.watched_ending = true
 
 
 func play_sound(sound_id: String):
