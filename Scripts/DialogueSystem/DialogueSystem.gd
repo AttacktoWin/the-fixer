@@ -173,6 +173,12 @@ func get_top_dialogue(npc_id: String) -> Dialogue:
 		print("No NPC with id ", npc_id, " exists.")
 		return null
 	return (NPCs[npc_id] as NPC).get_top_dialogue()
+	
+func peek_top_dialogue(npc_id: String) -> Dialogue:
+	if !NPCs.has(npc_id):
+		print("No NPC with id ", npc_id, " exists.")
+		return null
+	return (NPCs[npc_id] as NPC).peek_top_dialogue()
 
 
 func unlock_dialogues(unlocked: Array) -> void:
