@@ -78,7 +78,7 @@ func _process(_delta):
 
 func display_dialogue(npc_id: String, dialogue_id: String, bubble = false) -> void:
 	if Dialogic.timeline_exists(npc_id + "-" + dialogue_id):
-		if (is_instance_valid(self.current_dialog_box)):
+		if is_instance_valid(self.current_dialog_box):
 			_timeline_end("")
 		var dialog: Node
 		dialog = Dialogic.start(npc_id + "-" + dialogue_id)
@@ -156,9 +156,9 @@ func _signal_listener(s_name: String):
 			self.current_dialog_box.scale = Vector2(1, 2)
 			self.follow_player = true
 		"credits":
-			Scene.start_credits()
+			Scene.play_music(AK.EVENTS.CREDITS_MUSIC)
 		"stop_credits":
-			Scene.stop_credits()
+			Scene.play_level_music()
 			StatsTracker.watched_ending = true
 
 
@@ -172,7 +172,8 @@ func get_top_dialogue(npc_id: String) -> Dialogue:
 		print("No NPC with id ", npc_id, " exists.")
 		return null
 	return (NPCs[npc_id] as NPC).get_top_dialogue()
-	
+
+
 func peek_top_dialogue(npc_id: String) -> Dialogue:
 	if !NPCs.has(npc_id):
 		print("No NPC with id ", npc_id, " exists.")
@@ -235,7 +236,7 @@ func level_started():
 
 
 func level_changed():
-	if (is_instance_valid(self.current_dialog_box)):
+	if is_instance_valid(self.current_dialog_box):
 		_timeline_end("")
 	if NPCs["fixer"].peek_top_dialogue().priority == Dialogue.Priority.SPECIFIC:
 		NPCs["fixer"].get_top_dialogue()

@@ -143,42 +143,34 @@ func load(new_level: Level):
 	# ORDER MATTERS FOR SAVE!!!
 	emit_signal("transition_complete")
 	emit_signal("world_updated")
-	_check_music()
+	play_level_music()
 
 
-func _check_music():
+func play_level_music():
 	if not self._level_node:
+		clear_music()
 		return
+	play_music(self._level_node.level_music)
 
-	var old = self._current_music_id
-	self._current_music_id = self._level_node.level_music
-	if not self._current_music_id:
+
+func clear_music():
+	play_music(0)
+
+
+func play_music(id_to_play: int):
+	var old_id = self._current_music_id
+	self._current_music_id = id_to_play
+
+	if not id_to_play:
 		if self._current_music:
 			Wwise.stop_event(self._current_music, 500, AkUtils.AkCurveInterpolation.EXP3)
 		self._current_music = null
+		return
 
-	if self._current_music_id != old:
+	if id_to_play != old_id:
 		if self._current_music:
 			Wwise.stop_event(self._current_music, 500, AkUtils.AkCurveInterpolation.EXP3)
-		self._current_music = Wwise.post_event_id(self._level_node.level_music, self)
-
-
-func start_credits():
-	if not self._level_node:
-		return
-	
-	if self._current_music:
-		Wwise.stop_event(self._current_music, 500, AkUtils.AkCurveInterpolation.EXP3)
-		self._current_music = Wwise.post_event_id(AK.EVENTS.CREDITS_MUSIC, self)
-		
-
-func stop_credits():
-	if not self._level_node:
-		return
-	
-	if self._current_music:
-		Wwise.stop_event(self._current_music, 500, AkUtils.AkCurveInterpolation.EXP3)
-		self._current_music = Wwise.post_event_id(self._current_music_id, self)
+		self._current_music = Wwise.post_event_id(id_to_play, self)
 
 
 func switch(new_level: Level, transfer_player: bool = false):
