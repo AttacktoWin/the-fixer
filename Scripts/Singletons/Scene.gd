@@ -163,6 +163,24 @@ func _check_music():
 		self._current_music = Wwise.post_event_id(self._level_node.level_music, self)
 
 
+func start_credits():
+	if not self._level_node:
+		return
+	
+	if self._current_music:
+		Wwise.stop_event(self._current_music, 500, AkUtils.AkCurveInterpolation.EXP3)
+		self._current_music = Wwise.post_event_id(AK.EVENTS.CREDITS_MUSIC, self)
+		
+
+func stop_credits():
+	if not self._level_node:
+		return
+	
+	if self._current_music:
+		Wwise.stop_event(self._current_music, 500, AkUtils.AkCurveInterpolation.EXP3)
+		self._current_music = Wwise.post_event_id(self._current_music_id, self)
+
+
 func switch(new_level: Level, transfer_player: bool = false):
 	emit_signal("transition_start")
 	if transfer_player:

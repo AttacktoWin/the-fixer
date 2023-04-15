@@ -59,7 +59,7 @@ func _ready():
 	Scene.connect("world_updated", self, "level_started")
 	Scene.connect("transition_start", self, "level_changed")
 
-	Wwise.register_game_obj(self, "DialogueSystem")
+	Wwise.register_game_obj(self, self.name)
 
 	if Engine.editor_hint:
 		print(
@@ -156,11 +156,9 @@ func _signal_listener(s_name: String):
 			self.current_dialog_box.scale = Vector2(1, 2)
 			self.follow_player = true
 		"credits":
-			Wwise.stop_event(AK.EVENTS.HUB_MUSIC, 0.5, AkUtils.AkCurveInterpolation.LINEAR)
-			Wwise.post_event_id(AK.EVENTS.CREDITS_MUSIC, self)
+			Scene.start_credits()
 		"stop_credits":
-			Wwise.stop_event(AK.EVENTS.CREDITS_MUSIC, 2, AkUtils.AkCurveInterpolation.LINEAR)
-			Wwise.post_event_id(AK.EVENTS.HUB_MUSIC, self)
+			Scene.stop_credits()
 			StatsTracker.watched_ending = true
 
 
