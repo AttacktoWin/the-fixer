@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="English(US)" Hash="980566655">
+		<SoundBank Id="89505537" Language="English(US)" Hash="2679146804">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>English(US)\89505537.bnk</Path>
@@ -93,7 +93,7 @@
 					<IncludedMemoryFiles>
 						<File Id="650969131" Language="SFX">
 							<ShortName>beetle charge.wav</ShortName>
-							<Path>SFX\beetle charge_5781BEBB.wem</Path>
+							<Path>SFX\beetle charge_94ECA594.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -118,7 +118,7 @@
 					<IncludedMemoryFiles>
 						<File Id="174886453" Language="SFX">
 							<ShortName>manny death.wav</ShortName>
-							<Path>SFX\manny death_091F8EB3.wem</Path>
+							<Path>SFX\manny death_6BFCC375.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -227,7 +227,7 @@
 					<IncludedMemoryFiles>
 						<File Id="419100912" Language="SFX">
 							<ShortName>phone_ring.wav</ShortName>
-							<Path>SFX\phone_ring_6ABAC244.wem</Path>
+							<Path>SFX\phone_ring_6433BED4.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -235,7 +235,7 @@
 					<IncludedMemoryFiles>
 						<File Id="934392654" Language="SFX">
 							<ShortName>manny roar.wav</ShortName>
-							<Path>SFX\manny roar_7141D373.wem</Path>
+							<Path>SFX\manny roar_83000778.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -457,7 +457,7 @@
 					<IncludedMemoryFiles>
 						<File Id="174886453" Language="SFX">
 							<ShortName>manny death.wav</ShortName>
-							<Path>SFX\manny death_091F8EB3.wem</Path>
+							<Path>SFX\manny death_6BFCC375.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -554,7 +554,7 @@
 					<IncludedMemoryFiles>
 						<File Id="934392654" Language="SFX">
 							<ShortName>manny roar.wav</ShortName>
-							<Path>SFX\manny roar_7141D373.wem</Path>
+							<Path>SFX\manny roar_83000778.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
@@ -588,7 +588,7 @@
 				<GameParameter Id="3415057477" Name="UIVolume" ObjectPath="\Game Parameters\Default Work Unit\UIVolume"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="385807082">
+		<SoundBank Id="3991942870" Language="SFX" Hash="1214285576">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>3991942870.bnk</Path>
