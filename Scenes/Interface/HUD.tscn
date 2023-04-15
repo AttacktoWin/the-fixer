@@ -51,7 +51,7 @@ animations = [ {
 resource_name = "EnemyCounter"
 script/source = "extends Label
 
-func _process(delta):
+func _process(_delta):
 	self.text = str(AI.get_all_enemies().size())
 	if self.text == \"0\":
 		get_node(\"../../EnemyIcon\").frame = 1

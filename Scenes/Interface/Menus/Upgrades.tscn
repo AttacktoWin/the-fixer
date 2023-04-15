@@ -35,7 +35,7 @@ font_data = ExtResource( 17 )
 resource_name = "Counter"
 script/source = "extends Label
 
-func _process(delta):
+func _process(_delta):
 	self.text = str(StatsSingleton.available_tokens)
 "
 

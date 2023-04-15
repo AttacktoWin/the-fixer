@@ -10,10 +10,12 @@ func _init(value):
 
 
 func apply(entity, _type: int):
-	var r = PermanentSpeedRunnable.new()
-	r.extra = self._value
-	entity.variables.add_runnable(LivingEntityVariable.MAX_SPEED, r)
-	entity.variables.add_runnable(LivingEntityVariable.ACCEL, r)
+	var r1 = PermanentSpeedRunnable.new()
+	r1.extra = self._value
+	entity.variables.add_runnable(LivingEntityVariable.MAX_SPEED, r1)
+	var r2 = PermanentSpeedRunnable.new()
+	r2.extra = self._value
+	entity.variables.add_runnable(LivingEntityVariable.ACCEL, r2)
 
 
 func get_upgrade_types() -> Array:

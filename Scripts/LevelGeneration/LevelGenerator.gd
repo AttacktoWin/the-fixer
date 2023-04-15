@@ -173,7 +173,7 @@ func build_level():
 		return false
 
 	self.level = filler.floor_pass(path, level, Floor)
-	filler.room_deco_pass(path, room_list, path_by_rooms, end_index, Floor)
+	filler.room_deco_pass(room_list, path_by_rooms, Floor)
 	self.level = filler.wall_pass(path, level, Walls)
 
 	# perform one last check... everything must be on a floor tile!
