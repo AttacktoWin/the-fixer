@@ -107,8 +107,8 @@ func unfreeze(type):
 	self._frozen_dict[type] = false
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+# Called every frame. 'delta' is the el apsed time since the previous frame.
+func _physics_process(_delta):
 	if not self._camera:
 		return
 	var delta_60 = _delta * 60
