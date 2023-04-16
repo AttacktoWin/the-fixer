@@ -50,7 +50,7 @@ func _show():
 		#position
 		var enemy_pos = enemy.get_global_transform_with_canvas().origin
 		var dir: Vector2 = (enemy_pos - Vector2(0, 30)) - player_pos
-		var dist = dir.clamped(500)
+		var dist = dir.clamped(396)
 		indicator.global_position = player_pos + dist
 
 

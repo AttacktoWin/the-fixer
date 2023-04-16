@@ -6,9 +6,7 @@ var _first_frame = true
 
 func _physics_process(delta):
 	if self._first_frame:
-		self.default_value = (
-			self.entity.variables.get_variable_raw(AttackVariable.DIRECTION)
-		)
+		self.default_value = (self.entity.variables.get_variable_raw(AttackVariable.DIRECTION))
 		self._first_frame = false
 
 	var enemies = AI.get_all_enemies()
