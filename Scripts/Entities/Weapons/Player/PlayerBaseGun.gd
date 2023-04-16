@@ -41,7 +41,9 @@ func _apply_base_stats(attack: BaseAttack):
 	if self.ammo_knockback_override:
 		attack.setv(AttackVariable.KNOCKBACK, ammo_knockback_override)
 
-	attack.setv(AttackVariable.DAMAGE, attack.getv(AttackVariable.DAMAGE) * self.damage_multiplier)
+	attack.setv(
+		AttackVariable.DAMAGE, ceil(attack.getv(AttackVariable.DAMAGE) * self.damage_multiplier)
+	)
 	attack.scale *= self.size_multiplier
 	attack.setv(
 		AttackVariable.KNOCKBACK,

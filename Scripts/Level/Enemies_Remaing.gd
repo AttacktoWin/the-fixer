@@ -3,6 +3,7 @@ extends Node
 var indicator_scene = preload("res://Scenes/Interface/EnemyIndicator.tscn")
 var indicators = []
 
+const MAX_DIST = 450
 
 func _ready():
 	Scene.connect("world_updated", self, "_reload")  # warning-ignore:return_value_discarded
@@ -28,7 +29,7 @@ func _process(_delta):
 			break
 		var enemy_pos = enemies[index].get_global_transform_with_canvas().origin
 		var dir: Vector2 = enemy_pos - player_pos
-		var dist = dir.clamped(600)
+		var dist = dir.limit_length(MAX_DIST)
 		indicator.global_position = player_pos + dist
 		index += 1
 
@@ -50,7 +51,7 @@ func _show():
 		#position
 		var enemy_pos = enemy.get_global_transform_with_canvas().origin
 		var dir: Vector2 = (enemy_pos - Vector2(0, 30)) - player_pos
-		var dist = dir.clamped(396)
+		var dist = dir.limit_length(MAX_DIST)
 		indicator.global_position = player_pos + dist
 
 
