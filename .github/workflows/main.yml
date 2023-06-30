@@ -20,6 +20,12 @@ jobs:
       with:
         ref: main
         lfs: true
+        
+    - name: install wine
+      id: wine_install
+      run: |
+        sudo apt install wine64
+        echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
   
     - name: export game
       id: export
@@ -27,6 +33,7 @@ jobs:
       uses: firebelley/godot-export@v5.0.0
       with:
         # Defining all the required inputs
+        wine_path: ${{ steps.wine_install.outputs.WINE_PATH }}
         godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.5.1/Godot_v3.5.1-stable_linux_headless.64.zip
         godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.5.1/Godot_v3.5.1-stable_export_templates.tpz
         relative_project_path: ./
