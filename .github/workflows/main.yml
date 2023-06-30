@@ -45,7 +45,7 @@ jobs:
         CHANNEL: windows
         ITCH_GAME: within-the-vault
         ITCH_USER: variable-eye-games
-        PACKAGE: ${{ steps.export.outputs.archive_directory }}/win/Windows.Desktop.zip
+        PACKAGE: ${{ steps.export.outputs.archive_directory }}/win/Windows Desktop.zip
         VERSION: ${{ steps.date.outputs.date }}
         
     - name: Push OSX
@@ -55,7 +55,7 @@ jobs:
         CHANNEL: osx
         ITCH_GAME: within-the-vault
         ITCH_USER: variable-eye-games
-        PACKAGE: ${{ steps.export.outputs.archive_directory }}/osx/Mac.OSX.zip
+        PACKAGE: ${{ steps.export.outputs.archive_directory }}/osx/Mac OSX.zip
         VERSION: ${{ steps.date.outputs.date }}
     
     - name: Push Linux
