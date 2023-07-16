@@ -94,7 +94,7 @@ func apply_steering(in_vec: Vector2) -> Vector2:
 				off.normalized()
 				* MathUtils.interpolate(dist, 1, 0, MathUtils.INTERPOLATE_OUT)
 			)
-	steer += steer_from_walls()
+	steer += steer_from_walls() * 2
 	if not steer:
 		return in_vec
 	if steer.length_squared() > 1:
@@ -271,6 +271,12 @@ func get_x_direction():
 
 
 func _draw():
+	# self.draw_line(
+	# 	Vector2.ZERO,
+	# 	get_wanted_direction() * 128,
+	# 	Color.white,
+	# 	6
+	# )
 	if self.has_nav_path() and self.draw_path:
 		var path = self.get_nav_path()
 		path.draw(self)

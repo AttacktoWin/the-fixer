@@ -634,6 +634,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Utils/VariableList.gd"
 }, {
+"base": "HSlider",
+"class": "VolumeSlider",
+"language": "GDScript",
+"path": "res://Scripts/Interface/VolumeSlider.gd"
+}, {
 "base": "Node2D",
 "class": "Weapon",
 "language": "GDScript",
@@ -785,6 +790,7 @@ _global_script_class_icons={
 "UpgradeHandler": "",
 "UpgradeType": "",
 "VariableList": "",
+"VolumeSlider": "",
 "Weapon": "",
 "WeaponHitParticle": "",
 "WorldPickup": "",
@@ -829,6 +835,7 @@ gdscript/warnings/integer_division=false
 
 window/size/width=1920
 window/size/height=1080
+window/size/resizable=false
 window/size/test_width=1024
 window/size/test_height=600
 window/dpi/allow_hidpi=true

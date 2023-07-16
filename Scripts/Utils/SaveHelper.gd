@@ -7,6 +7,26 @@ const SAVE_LEVEL_DATA = "LEVEL_DATA"
 const PERMANENT_UPGRADES = "PERMANENT_UPGRADES"
 const SAVE_FILE_NAME = "user://game_data.save"
 
+const SAVE_SETTINGS_FILE_NAME = "user://game_settings.save"
+
+func _ready():
+	load_settings()
+
+func save_settings() -> void:
+	var data = {}
+	data["master_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.EFFECTVOLUME, Scene)
+	data["music_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, Scene)
+	data["ui_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.UIVOLUME, Scene)
+	var file = File.new()
+	file.open(SAVE_SETTINGS_FILE_NAME, File.WRITE)
+	file.store_string(JSON.print(data))
+	file.close()
+
+func load_settings() -> void:
+	var data = load_json_file(SAVE_SETTINGS_FILE_NAME, {})
+	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.EFFECTVOLUME, data.get("master_volume",100), Scene) 
+	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, data.get("music_volume",100), Scene) 
+	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.UIVOLUME, data.get("ui_volume",100), Scene) 
 
 func save() -> void:
 	DialogueSystem.save()
@@ -60,8 +80,11 @@ func has_save_file() -> bool:
 	return File.new().file_exists(SAVE_FILE_NAME)
 
 
-func load_json_file(file_name: String) -> Dictionary:
+func load_json_file(file_name: String, _default=null) -> Dictionary:
 	var file = File.new()
+	if not file.file_exists(file_name) and _default != null:
+		return _default
+	
 	file.open(file_name, File.READ)
 	var text = file.get_as_text()
 	file.close()
