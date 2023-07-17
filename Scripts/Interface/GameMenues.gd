@@ -15,28 +15,26 @@ func _ready():
 	$Settings/VBoxContainer/Save.connect("button_down", self, "_save_settings")
 	$Settings/VBoxContainer/Cancel.connect("button_down", self, "_cancel_settings")
 
-
-func _input(event):
-	if event is InputEventKey and event.pressed:
-		if Input.is_action_pressed("ui_cancel"):
-			if paused:
-				Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
-				$PauseMenu.visible = false
-				if $Settings.visible:
-					_cancel_settings()
-				$Settings.visible = false
-				self.visible = false
-				paused = false
-				PausingSingleton.unpause()
-			else:
-				if PausingSingleton.is_paused():
-					return
-				Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.YES)
-				#Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, 100)
-				self.visible = true
-				$PauseMenu.visible = true
-				paused = true
-				PausingSingleton.pause()
+func _process(_delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		if paused:
+			Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
+			$PauseMenu.visible = false
+			if $Settings.visible:
+				_cancel_settings()
+			$Settings.visible = false
+			self.visible = false
+			paused = false
+			PausingSingleton.unpause()
+		else:
+			if PausingSingleton.is_paused():
+				return
+			Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.YES)
+			#Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, 100)
+			self.visible = true
+			$PauseMenu.visible = true
+			paused = true
+			PausingSingleton.pause()
 
 
 func _save_settings():

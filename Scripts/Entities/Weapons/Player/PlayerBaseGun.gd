@@ -72,6 +72,8 @@ func _generate_bullet() -> BulletBase:
 
 
 func _get_fire_angle():
+	if self.entity.is_controller():
+		return self.entity.controller_wanted_gun_vector().angle()
 	var angle1 = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - self.global_position).angle()
 	var angle2 = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - self._get_aim_position()).angle()
 	return angle1 if abs(angle1 - angle2) < 0.1 else angle2

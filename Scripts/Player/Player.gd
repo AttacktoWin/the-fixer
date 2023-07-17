@@ -17,6 +17,7 @@ onready var fsm: FSMController = $FSMController
 onready var reload_progress_bar: ProgressBar = $ReloadProgress
 onready var melee_hitbox: BaseAttack = $Visual/HitBox
 onready var flash_node: Node2D = $FlashNode
+onready var crosshair: Node2D = $Crosshair
 
 var upgrades_applied = false
 
@@ -25,6 +26,9 @@ var weapon_disabled = false setget set_weapon_disabled
 var _gun = null
 var _melee = null
 var _has_default_weapons = false
+
+var _primary_control = 0  # mouse = 0, controller = 1
+var _last_aim_direction = 1
 
 var _knockback_velocity = Vector2.ZERO
 
@@ -157,8 +161,101 @@ func get_input_velocity():
 	return get_wanted_direction() * getv(LivingEntityVariable.MAX_SPEED)
 
 
+func _aim_assist(vec):
+	if not self._gun:
+		return vec
+	var v_len = vec.length()
+	if v_len < 0.05:
+		return vec
+	var angle = vec.angle()
+
+	var max_dist = 400
+	var aim_factor = PI / 6
+
+	var aim_data = []
+
+	for enemy in AI.get_all_enemies():
+		if enemy.is_dead() or not enemy.can_be_hit():
+			continue
+		var dir = MathUtils.to_iso(enemy.global_position - self._gun.global_position)
+		var dist = dir.length() / max_dist
+		if dist > 1:
+			continue
+		var dir_ang = dir.angle()
+		var diff = MathUtils.angle_difference(dir_ang, angle)
+		if abs(diff) > aim_factor and dist > 0.25:  # exception for close targets
+			continue
+
+		if (
+			not self._gun.is_spectral
+			and not AI.has_LOS(enemy.global_position, self.global_position)
+		):
+			continue
+
+		aim_data.append({"angle": dir_ang, "dist": dist})
+
+	if not aim_data.size():
+		return vec
+
+	#var total_factor = 0
+	#var desired_angle_change = 0
+	var t_angle = angle
+
+	var aim_data2 = []
+	var max_term = 0
+
+	for data in aim_data:
+		var diff = MathUtils.angle_difference(data["angle"], t_angle)
+		var angle_fac = MathUtils.interpolate(
+			1 - (abs(diff) / aim_factor), 0, 1, MathUtils.INTERPOLATE_SMOOTH
+		)
+		var dist_fac
+		if data["dist"] < 0.5:
+			dist_fac = MathUtils.interpolate(data["dist"] * 2, 0, 1, MathUtils.INTERPOLATE_OUT)
+		else:
+			dist_fac = MathUtils.interpolate(data["dist"] * 2 - 1, 1, 0, MathUtils.INTERPOLATE_IN)
+
+			dist_fac = min(
+				dist_fac, MathUtils.interpolate(data["dist"] * 4, 0, 1, MathUtils.INTERPOLATE_IN)
+			)  # quickly degrade if you are too close
+		var fac = MathUtils.interpolate(angle_fac, 0, dist_fac, MathUtils.INTERPOLATE_OUT)
+		aim_data2.append({"fac": fac, "diff": diff})
+		max_term = max(max_term, fac)
+
+	max_term = max_term - 0.25
+
+	for data in aim_data2:
+		var new_fac = MathUtils.interpolate(
+			(data["fac"] - max_term) * 4, 0, data["fac"], MathUtils.INTERPOLATE_OUT
+		)
+		t_angle += data["diff"] * new_fac
+
+	return Vector2(cos(t_angle), sin(t_angle)) * v_len
+
+
+func controller_wanted_gun_vector():
+	var v = Vector2(
+		(
+			Input.get_action_strength("weapon_aim_right")
+			- Input.get_action_strength("weapon_aim_left")
+		),
+		Input.get_action_strength("weapon_aim_down") - Input.get_action_strength("weapon_aim_up")
+	)
+	return _aim_assist(v)
+
+
+func is_controller():
+	return self._primary_control == 1
+
+
 func get_wanted_gun_vector():
 	var v = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
+	var v2 = controller_wanted_gun_vector()
+	if v2.length() > 0.05 or self._primary_control == 1:
+		self._primary_control = 1
+		if v2.length() > 0.25:
+			self._last_aim_direction = sign(v2.x) if sign(v2.x) != 0 else 1.0
+		v = v2
 	if self.weapon_disabled or not self._gun:
 		return Vector2(
 			(
@@ -168,6 +265,8 @@ func get_wanted_gun_vector():
 			),
 			1
 		)
+	if self._primary_control == 1 and v.length() < 0.05:
+		return Vector2(self._last_aim_direction, 0)
 	return v
 
 
@@ -298,7 +397,14 @@ func _process(_delta):
 #			d.global_position = self.global_position
 
 
+func _input(event):
+	if event is InputEventMouseMotion:
+		self._primary_control = 0
+
+
 func _unhandled_input(event: InputEvent):
+	if event is InputEventMouseMotion:
+		self._primary_control = 0
 	if (
 		OS.is_debug_build()
 		and event is InputEventKey
@@ -330,11 +436,23 @@ func _try_move():
 	move_and_slide(getv(LivingEntityVariable.VELOCITY) + self._knockback_velocity)
 
 
+func _handle_crosshair():
+	if not self._gun or not is_controller() or controller_wanted_gun_vector().length() < 0.05:
+		crosshair.visible = false
+		return
+	crosshair.visible = true
+	crosshair.global_position = (
+		self._gun.global_position
+		+ MathUtils.from_iso(controller_wanted_gun_vector().normalized() * 200)
+	)
+
+
 func _physics_process(delta):
 	# Wwise.set_2d_position(self, self.global_position)
 	self._knockback_velocity *= 0.93
 	if self._knockback_velocity.length() < 30:
 		self._knockback_velocity = Vector2.ZERO
+	_handle_crosshair()
 	_handle_camera()
 	_try_move()
 	._physics_process(delta)
