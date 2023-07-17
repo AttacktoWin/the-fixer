@@ -819,6 +819,7 @@ TransitionHelper="*res://Scripts/Singletons/TransitionHelper.gd"
 UpgradeSingleton="*res://Scripts/Upgrades/UpgradeSingleton.gd"
 StatsSingleton="*res://Scripts/Singletons/StatsSingleton.gd"
 SaveHelper="*res://Scripts/Utils/SaveHelper.gd"
+UpdateSingleton="*res://Scripts/Singletons/UpdateSingleton.gd"
 
 [debug]
 

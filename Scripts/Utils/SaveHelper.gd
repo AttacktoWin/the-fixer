@@ -5,6 +5,7 @@ extends Node
 const SAVE_LEVEL_ID = "LEVEL_ID"
 const SAVE_LEVEL_DATA = "LEVEL_DATA"
 const PERMANENT_UPGRADES = "PERMANENT_UPGRADES"
+const PATCHES = "PATCHES"
 const SAVE_FILE_NAME = "user://game_data.save"
 
 
@@ -14,11 +15,13 @@ func save() -> void:
 	data[SAVE_LEVEL_DATA] = Scene.level_node.save()
 	data[SAVE_LEVEL_ID] = Scene.level_node.level_index
 	data[PERMANENT_UPGRADES] = StatsSingleton.save()
+	_save(data)
+	
+func _save(data: Dictionary):
 	var file = File.new()
 	file.open(SAVE_FILE_NAME, File.WRITE)
 	file.store_string(JSON.print(data))
 	file.close()
-
 
 func load_game():
 	# prevent gun firing
@@ -28,6 +31,7 @@ func load_game():
 	TransitionHelper.transition_fade()
 	var data = load_json_file(SAVE_FILE_NAME)
 	StatsSingleton.load_data(data[PERMANENT_UPGRADES])
+	UpdateSingleton.load_patches(data[PATCHES])
 	var level_id = data[SAVE_LEVEL_ID]
 
 	var scene: PackedScene = null
@@ -55,6 +59,14 @@ func load_game():
 	instance.load_data(data[SAVE_LEVEL_DATA])
 	Scene.switch(instance, false)
 
+func run_patch(patch: Runnable) -> bool:
+	var save = load_json_file(SAVE_FILE_NAME)
+	var patcher = patch.new(save)
+	var patched_save = patcher.run(null)
+	if (patched_save != false):
+		_save(patched_save)
+		return true
+	return false
 
 func has_save_file() -> bool:
 	return File.new().file_exists(SAVE_FILE_NAME)
