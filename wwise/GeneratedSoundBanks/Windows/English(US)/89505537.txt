@@ -35,6 +35,7 @@ Event	ID	Name			Wwise Object Path	Notes
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	1087353892	EffectVolume			\Default Work Unit\EffectVolume	
+	4056684167	Master			\Default Work Unit\Master	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	15880499	Spyder_Flash	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Flash_Camera_B6BBCEE5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Spyder\Spyder_Flash		63416
@@ -44,7 +45,7 @@ In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	90599123	Fire_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Shoot_Pistol_Player_08F7D1DE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Fire_Pistol_Player		51836
 	142273814	shoot_bird	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Shoot_Bird_6F6797E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Bird\shoot_bird		35404
 	174886453	Die_Manny	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\manny death_6BFCC375.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Manny\Die_Manny		403360
-	215651341	Swing_Knife_PLayer	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Swing_Knuckles_Player_65AC56E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Swing_Knife_PLayer		40552
+	215651341	Punch_Knuckles_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Swing_Knuckles_Player_65AC56E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Punch_Knuckles_Player		40552
 	277708595	Fire_Tommy_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Shoot_Tommy_Player_211D2E73.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Fire_Tommy_Player		20068
 	291940770	Pump_Shotgun_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Shoot_Shotgun_Player_4698CD56.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Pump_Shotgun_Player		81712
 	313999180	Ammo_Pickup_Player-008	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\Ammo_Pickup\Ammo_Pickup_Player-008_A9EDB648.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-008		44056
