@@ -162,7 +162,7 @@ func get_input_velocity():
 
 
 func _aim_assist(vec):
-	if not self._gun:
+	if not self._gun or AI.aim_assist == 0:
 		return vec
 	var v_len = vec.length()
 	if v_len < 0.05:
@@ -170,7 +170,7 @@ func _aim_assist(vec):
 	var angle = vec.angle()
 
 	var max_dist = 400
-	var aim_factor = PI / 6
+	var aim_factor = AI.aim_assist
 
 	var aim_data = []
 
@@ -350,6 +350,7 @@ func _update_shader():
 func _process(_delta):
 	_update_reload_progress()
 	_update_shader()
+	return
 	if OS.is_debug_build():
 		if Input.is_action_just_pressed("ui_focus_next"):
 			var enemy = load("res://Scenes/Enemies/E_Umbrella.tscn").instance()

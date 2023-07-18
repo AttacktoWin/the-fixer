@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/UI/Buttons/button-empty.png" type="Texture" id=1]
+[ext_resource path="res://Assets/UI/Vault/FilmPosterNarrow-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Assets/UI/Buttons/button-empty-hover.png" type="Texture" id=3]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends TextureButton
+
+export var action: String = \"ui_up\"
+export var label: String =  \"UNDEFINED\"
+var _accepting_input = false
+var _mode = 0
+
+onready var _text_node = $Label
+
+func _ready():
+	assert(InputMap.has_action(action))
+	$text_label.text = self.label
+	set_process_unhandled_key_input(false)
+	display_current_key()
+	connect(\"mouse_entered\", self, \"_on_mouse_entered\")
+
+func _friendly_name(action):
+	if action is InputEventJoypadButton:
+		return Input.get_joy_button_string(action.button_index)
+	var text: String = action.as_text()
+	if text.begins_with(\"InputEventMouseButton\"):
+		return text.split(\"=\")[1].split(\",\")[0]
+	return text
+		
+func set_mode(mode: int):
+	if self._mode != mode:
+		self._mode = mode
+		display_current_key()
+
+func _on_mouse_entered():
+	var owner = get_focus_owner()
+	if owner:
+		owner.release_focus()
+	self.grab_focus()
+
+func _pressed():
+	self._accepting_input = true
+	self._text_node.text = \"...\"
+
+
+func _input(event):
+	if not self._accepting_input or not (event is InputEventKey or event is InputEventJoypadButton or event is InputEventMouseButton):
+		return
+	accept_event()
+	self._accepting_input = false
+	# Note that you can use the _input callback instead, especially if
+	# you want to work with gamepads.
+	remap_action_to(event)
+	# button_pressed = false
+	
+	yield(get_tree(), \"idle_frame\")
+	grab_focus()
+
+
+func remap_action_to(event):
+	SaveHelper.keymappings[action][self._mode] = event
+	self._text_node.text = \"%s\" % _friendly_name(event)
+
+
+func display_current_key():
+	var current_key = _friendly_name(InputMap.get_action_list(action)[self._mode])
+	self._text_node.text = \"%s\" % current_key
+"
+
+[sub_resource type="DynamicFont" id=2]
+size = 103
+font_data = ExtResource( 2 )
+
+[node name="TextureButton" type="TextureButton"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+script = SubResource( 1 )
+
+[node name="text_label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -153.0
+margin_top = -154.0
+margin_right = 258.0
+margin_bottom = -50.0
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = SubResource( 2 )
+text = "UNDEFINED"
+align = 1
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -207.0
+margin_top = -55.0
+margin_right = 204.0
+margin_bottom = 49.0
+custom_fonts/font = SubResource( 2 )
+align = 1

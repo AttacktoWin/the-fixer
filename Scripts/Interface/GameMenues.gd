@@ -18,12 +18,15 @@ func _ready():
 func _process(_delta):
 	if Scene.level_node.level_index == -2: # main menu
 		return
+
+func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if paused:
 			Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
 			$PauseMenu.visible = false
 			if $Settings.visible:
 				_cancel_settings()
+				return
 			$Settings.visible = false
 			self.visible = false
 			paused = false
@@ -39,9 +42,9 @@ func _process(_delta):
 			paused = true
 			PausingSingleton.pause()
 
-
 func _save_settings():
 	SaveHelper.save_settings()
+	SaveHelper.load_settings() # reload keymapping
 	_pause_open()
 
 func _cancel_settings():
@@ -65,6 +68,7 @@ func _settings_open():
 	$PauseMenu.visible = false
 	$Settings.visible = true
 	$"Settings/Audio Settings".reload_sliders()
+	$"Settings/InputMapper".reload_inputs()
 	$"Settings/Audio Settings/Master/HSlider".grab_focus()
 
 func _exit2hub():
