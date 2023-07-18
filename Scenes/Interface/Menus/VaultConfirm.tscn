@@ -36,6 +36,15 @@ func _on_click():
 func _transition():
 	var inst = to_level.instance()
 	TransitionHelper.transition(inst, long_load, transfer_player, fade_time)
+
+func _ready():
+	connect(\"mouse_entered\", self, \"_on_mouse_entered\")
+
+func _on_mouse_entered():
+	var owner = get_focus_owner()
+	if owner:
+		owner.release_focus()
+	self.grab_focus()
 "
 
 [sub_resource type="GDScript" id=4]
@@ -48,6 +57,15 @@ func _on_click():
 	PausingSingleton.unpause()
 	var canvas = get_node(\"../..\")
 	canvas.visible = false
+
+func _ready():
+	connect(\"mouse_entered\", self, \"_on_mouse_entered\")
+
+func _on_mouse_entered():
+	var owner = get_focus_owner()
+	if owner:
+		owner.release_focus()
+	self.grab_focus()
 "
 
 [sub_resource type="DynamicFont" id=2]
@@ -103,6 +121,7 @@ margin_right = 500.0
 margin_bottom = 150.0
 texture_normal = ExtResource( 7 )
 texture_hover = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
 script = SubResource( 3 )
 to_level = ExtResource( 8 )
 transfer_player = false
@@ -113,6 +132,7 @@ margin_right = 500.0
 margin_bottom = 304.0
 texture_normal = ExtResource( 6 )
 texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
 script = SubResource( 4 )
 
 [node name="Label" type="Label" parent="VBoxContainer/Exit"]
@@ -128,4 +148,5 @@ custom_fonts/font = SubResource( 2 )
 text = "Not Yet"
 
 [connection signal="pressed" from="VBoxContainer/Enter" to="VBoxContainer/Enter" method="_on_click"]
+[connection signal="mouse_exited" from="VBoxContainer/Exit" to="VBoxContainer/Exit" method="_on_Exit_mouse_exited"]
 [connection signal="pressed" from="VBoxContainer/Exit" to="VBoxContainer/Exit" method="_on_click"]

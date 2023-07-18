@@ -16,6 +16,8 @@ func _ready():
 	$Settings/VBoxContainer/Cancel.connect("button_down", self, "_cancel_settings")
 
 func _process(_delta):
+	if Scene.level_node.level_index == -2: # main menu
+		return
 	if Input.is_action_just_pressed("ui_cancel"):
 		if paused:
 			Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
@@ -33,6 +35,7 @@ func _process(_delta):
 			#Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, 100)
 			self.visible = true
 			$PauseMenu.visible = true
+			$PauseMenu/VBoxContainer/Resume.grab_focus()
 			paused = true
 			PausingSingleton.pause()
 
@@ -56,11 +59,13 @@ func _resume():
 func _pause_open():
 	$PauseMenu.visible = true
 	$Settings.visible = false
+	$PauseMenu/VBoxContainer/Resume.grab_focus()
 
 func _settings_open():
 	$PauseMenu.visible = false
 	$Settings.visible = true
 	$"Settings/Audio Settings".reload_sliders()
+	$"Settings/Audio Settings/Master/HSlider".grab_focus()
 
 func _exit2hub():
 	$PauseMenu.visible = false
