@@ -8,6 +8,7 @@ Event	ID	Name			Wwise Object Path	Notes
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	3415057477	UIVolume			\Default Work Unit\UIVolume	
+	4056684167	Master			\Default Work Unit\Master	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	221732163	UI_Select	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\ui select_26416A3B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\UI Sounds\UI_Select		25772
