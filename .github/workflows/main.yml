@@ -49,13 +49,7 @@ jobs:
 
     - uses: actions/checkout@master
     - name: Copy OSX Build
-      run: |
-        find ./Bin/osx -type f -name "Within The Vault.zip" | while read fname; do
-          dirname=`dirname "$fname"`
-          foldername=`basename "$dirname"`
-          filename=`basename "$fname"`
-          cp "${dirname}/$filename" "./exports/Within The Vault - osx.zip"
-        done
+      run: cp "./Bin/osx/Within The Vault.zip" "./exports/Within The Vault - osx.zip"
 
     - name: Archive Linux Build
       uses: thedoctor0/zip-release@0.7.1
