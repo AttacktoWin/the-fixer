@@ -23,10 +23,10 @@ func _notify_fire(has_ammo):
 			self._flash_sprite.play_flash()
 		AI.notify_sound(self.entity.global_position, 4096, weapon_volume)
 		if self.sound_fire:
-			Wwise.post_event_id(self.sound_fire, self.entity)
+			Wwise.post_event_id(self.sound_fire, Scene)
 	else:
 		if self.sound_empty:
-			Wwise.post_event_id(self.sound_empty, self.entity)
+			Wwise.post_event_id(self.sound_empty, Scene)
 
 
 func _apply_base_stats(attack: BaseAttack):

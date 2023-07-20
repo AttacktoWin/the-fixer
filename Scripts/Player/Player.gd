@@ -350,8 +350,7 @@ func _update_shader():
 func _process(_delta):
 	_update_reload_progress()
 	_update_shader()
-	return
-	if OS.is_debug_build():
+	if OS.is_debug_build() and not is_controller():
 		if Input.is_action_just_pressed("ui_focus_next"):
 			var enemy = load("res://Scenes/Enemies/E_Umbrella.tscn").instance()
 			enemy.global_position = CameraSingleton.get_absolute_mouse_iso()
@@ -376,7 +375,7 @@ func _process(_delta):
 			print("Level: ", vec, " -- in bounds: ", point, " -- tile_type: ", type)
 		if Input.is_action_just_pressed("ui_left"):
 			print("Playing test sound")
-			Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, self)
+			Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, Scene)
 		if Input.is_action_just_pressed("ui_end"):
 			SaveHelper.save()
 		if Input.is_action_just_pressed("ui_home"):
@@ -487,11 +486,11 @@ func _on_take_damage(info: AttackInfo):
 	update_health_bar()
 	Scene.ui.get_node("DamageFeedback").add_value(info.damage / 25.0)
 	# if info.damage <= 15:
-	# 	Wwise.post_event_id(AK.EVENTS.SMALL_HURT_PLAYER, self)
+	# 	Wwise.post_event_id(AK.EVENTS.SMALL_HURT_PLAYER, Scene)
 	# elif info.damage <= 20:
-	# 	Wwise.post_event_id(AK.EVENTS.MEDIUM_HURT_PLAYER, self)
+	# 	Wwise.post_event_id(AK.EVENTS.MEDIUM_HURT_PLAYER, Scene)
 	# else:
-	# 	Wwise.post_event_id(AK.EVENTS.BIG_HIT_PLAYER, self)
+	# 	Wwise.post_event_id(AK.EVENTS.BIG_HIT_PLAYER, Scene)
 	._on_take_damage(info)
 
 

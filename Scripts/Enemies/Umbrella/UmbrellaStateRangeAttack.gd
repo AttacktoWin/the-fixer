@@ -60,7 +60,7 @@ func _shoot():
 	bullet.setv(AttackVariable.SPEED, self.bullet_speed)
 	bullet.setv(AttackVariable.DAMAGE, ceil(self.bullet_damage))
 	bullet.allied_class = preload("res://Scripts/Enemies/BaseEnemy.gd")
-	Wwise.post_event_id(AK.EVENTS.ATTACK_BIRD, self.entity)
+	Wwise.post_event_id(AK.EVENTS.ATTACK_BIRD, Scene)
 
 
 func _handle_weapon(delta):

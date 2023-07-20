@@ -24,7 +24,7 @@ func _cooldown_timer_tick(delta):
 			self._fire_repeat_timer += fire_repeat_speed
 			self._fire_counter -= 1
 
-			Wwise.post_event_id(self.sound_fire, self.entity)
+			Wwise.post_event_id(self.sound_fire, Scene)
 			self._fire_impl(_get_fire_angle())
 	else:
 		._cooldown_timer_tick(delta)

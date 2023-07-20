@@ -155,7 +155,7 @@ func on_enemy_death(enemy):
 func _spawn_random_enemies(
 	count: int, use_hard_enemies: bool = false, difficulty_bias: float = 1.0
 ):
-	Wwise.post_event_id(AK.EVENTS.SUMMON_MANIFESTATION, self)
+	Wwise.post_event_id(AK.EVENTS.SUMMON_MANIFESTATION, Scene)
 	var enemy_list = self._enemy_info
 	if use_hard_enemies:
 		enemy_list = self._hard_enemy_info
@@ -172,7 +172,7 @@ func _spawn_random_enemies(
 
 
 func _on_death(_info: AttackInfo):
-	Wwise.post_event_id(AK.EVENTS.DIE_MANIFESTATION, self)
+	Wwise.post_event_id(AK.EVENTS.DIE_MANIFESTATION, Scene)
 	StatsTracker.add_manifestation_win()
 	StatsSingleton.available_tokens += 1
 	self.fsm.set_state(ManifestationState.DEAD, true)

@@ -103,12 +103,12 @@ func _physics_process(delta):
 		emit_signal("on_reached_target", self, self._bounce)
 		if not self._bounce:
 			if self.collect_sound:
-				Wwise.post_event_id(self.collect_sound, self)
+				Wwise.post_event_id(self.collect_sound, Scene)
 			self.global_position = self._target_location
 			self.queue_free()
 		else:
 			if self.bounce_sound:
-				Wwise.post_event_id(self.bounce_sound, self)
+				Wwise.post_event_id(self.bounce_sound, Scene)
 			self._timer = 0
 			self._velocity = -self._velocity / 18
 			self._velocity.y = -6

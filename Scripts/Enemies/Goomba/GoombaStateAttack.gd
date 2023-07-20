@@ -62,7 +62,7 @@ func on_anim_reached_end(_anim: String):
 		return
 
 	if self._charging:
-		Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, self.entity)
+		Wwise.post_event_id(AK.EVENTS.ATTACK_PILLBUG, Scene)
 		self._charging = false
 		self.fsm.set_animation("ATTACK")
 		var off = Vector2(rand_range(-RANDOM_MAX, RANDOM_MAX), rand_range(-RANDOM_MAX, RANDOM_MAX))

@@ -51,7 +51,7 @@ func _physics_process(delta):
 		self._wait_timer -= delta
 		if self._wait_timer <= 0:
 			self.fsm.set_animation("CHARGE")
-			Wwise.post_event_id(AK.EVENTS.CHARGE_BEETLE, self.entity)
+			Wwise.post_event_id(AK.EVENTS.CHARGE_BEETLE, Scene)
 		return
 
 	self._current_time += delta
@@ -80,7 +80,7 @@ func _physics_process(delta):
 			)
 			and self._current_time > 0.6
 		):
-			Wwise.post_event_id(AK.EVENTS.CRASH_BEETLE, self.entity)
+			Wwise.post_event_id(AK.EVENTS.CRASH_BEETLE, Scene)
 			CameraSingleton.shake(128)
 			self._current_time = ATTACK_TIME
 			self.entity.setv(LivingEntityVariable.VELOCITY, Vector2.ZERO)

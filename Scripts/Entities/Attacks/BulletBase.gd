@@ -16,12 +16,12 @@ func _ready():
 
 func _on_hit_entity(_entity: LivingEntity):
 	if is_instance_valid(self._damage_source):
-		Wwise.post_event_id(AK.EVENTS.HIT_PISTOL_PLAYER, self._damage_source)
+		Wwise.post_event_id(AK.EVENTS.HIT_PISTOL_PLAYER, Scene)
 
 
 func _on_hit_wall(_wall: TileMap):
 	pass
-	#Wwise.post_event_id(AK.EVENTS.HIT_PISTOL_PLAYER, self._damage_source)
+	#Wwise.post_event_id(AK.EVENTS.HIT_PISTOL_PLAYER, Scene)
 
 
 func _on_wall_body_entered(body: Node2D):

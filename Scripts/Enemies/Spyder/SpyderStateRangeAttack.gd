@@ -51,8 +51,8 @@ func enter():
 	self.entity.flash_vfx.modulate.a = 1.0
 	self.entity.flash_vfx.position.y = 0.0
 
-	#Wwise.post_event_id(AK.EVENTS.CHARGE_SPYDER, self.entity)
-	Wwise.post_event_id(AK.EVENTS.CHARGE_SPYDER, self.entity)
+	#Wwise.post_event_id(AK.EVENTS.CHARGE_SPYDER, Scene)
+	Wwise.post_event_id(AK.EVENTS.CHARGE_SPYDER, Scene)
 	self.entity.disable_pathfind += 1
 	self.fsm.set_animation("CHARGE_TRANSITION")
 	self._charging = 2
@@ -129,7 +129,7 @@ func on_anim_reached_end(_anim: String):
 		return
 
 	if self._charging == 1:
-		Wwise.post_event_id(AK.EVENTS.FLASH_SPYDER, self.entity)
+		Wwise.post_event_id(AK.EVENTS.FLASH_SPYDER, Scene)
 		self._charging = 0
 		self._timer = 0
 		self.fsm.set_animation("FLASH")
