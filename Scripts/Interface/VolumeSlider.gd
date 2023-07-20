@@ -10,7 +10,7 @@ func _ready():
 
 func reset_value():
 	if track == TRACK.MASTER:
-		self.value = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.EFFECTVOLUME, Scene) # TODO
+		self.value = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.MASTER, Scene)
 	if track == TRACK.MUSIC:
 		self.value = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, Scene)
 	if track == TRACK.COMBAT:
@@ -21,7 +21,7 @@ func reset_value():
 func _on_HSlider_value_changed(value):
 
 	if track == TRACK.MASTER:
-		Wwise.set_rtpc_id(AK.GAME_PARAMETERS.EFFECTVOLUME, value, Scene) # TODO
+		Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MASTER, value, Scene)
 	if track == TRACK.MUSIC:
 		Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, value, Scene)
 	if track == TRACK.COMBAT:
