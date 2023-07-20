@@ -11,7 +11,7 @@
 	<StreamedFiles/>
 	<MediaFilesNotInAnyBank/>
 	<SoundBanks>
-		<SoundBank Id="89505537" Language="English(US)" Hash="3662402410">
+		<SoundBank Id="89505537" Language="English(US)" Hash="3184820283">
 			<ObjectPath>\SoundBanks\Default Work Unit\Gameplay</ObjectPath>
 			<ShortName>Gameplay</ShortName>
 			<Path>English(US)\89505537.bnk</Path>
@@ -291,6 +291,7 @@
 			</IncludedEvents>
 			<GameParameters>
 				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
+				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\MusicVolume"/>
 				<GameParameter Id="4056684167" Name="Master" ObjectPath="\Game Parameters\Default Work Unit\Master"/>
 			</GameParameters>
 		</SoundBank>
@@ -588,11 +589,12 @@
 			</IncludedEvents>
 			<GameParameters>
 				<GameParameter Id="1087353892" Name="EffectVolume" ObjectPath="\Game Parameters\Default Work Unit\EffectVolume"/>
+				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\MusicVolume"/>
 				<GameParameter Id="3415057477" Name="UIVolume" ObjectPath="\Game Parameters\Default Work Unit\UIVolume"/>
 				<GameParameter Id="4056684167" Name="Master" ObjectPath="\Game Parameters\Default Work Unit\Master"/>
 			</GameParameters>
 		</SoundBank>
-		<SoundBank Id="3991942870" Language="SFX" Hash="2730104161">
+		<SoundBank Id="3991942870" Language="SFX" Hash="3901802362">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>
 			<Path>3991942870.bnk</Path>
@@ -705,6 +707,7 @@
 			<GameParameters>
 				<GameParameter Id="1614245164" Name="MusicFade" ObjectPath="\Game Parameters\Default Work Unit\MusicFade"/>
 				<GameParameter Id="2346531308" Name="MusicVolume" ObjectPath="\Game Parameters\Default Work Unit\MusicVolume"/>
+				<GameParameter Id="4056684167" Name="Master" ObjectPath="\Game Parameters\Default Work Unit\Master"/>
 			</GameParameters>
 		</SoundBank>
 	</SoundBanks>

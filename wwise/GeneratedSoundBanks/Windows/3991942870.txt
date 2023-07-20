@@ -61,6 +61,7 @@ Custom State	ID	Name	State Group	Owner		Notes
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	1614245164	MusicFade			\Default Work Unit\MusicFade	
 	2346531308	MusicVolume			\Default Work Unit\MusicVolume	
+	4056684167	Master			\Default Work Unit\Master	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	13186207	combat_pianoHarmony1	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Windows\SFX\combat\combat_pianoHarmony1_9EDFC787.wem		\Interactive Music Hierarchy\Music\Combat Playlist\combat\combat_pianoHarmony1		3008071

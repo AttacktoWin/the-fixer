@@ -35,6 +35,7 @@ Event	ID	Name			Wwise Object Path	Notes
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	1087353892	EffectVolume			\Default Work Unit\EffectVolume	
+	2346531308	MusicVolume			\Default Work Unit\MusicVolume	
 	4056684167	Master			\Default Work Unit\Master	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
