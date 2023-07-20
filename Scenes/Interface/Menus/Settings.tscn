@@ -112,15 +112,15 @@ margin_top = -1080.0
 margin_right = 910.0
 
 [node name="Audio Settings" type="VBoxContainer" parent="."]
-margin_left = 429.0
+margin_left = 420.0
 margin_top = 72.0
-margin_right = 929.0
+margin_right = 920.0
 margin_bottom = 568.0
 rect_scale = Vector2( 0.8, 0.8 )
 script = SubResource( 3 )
 
 [node name="Master" type="Label" parent="Audio Settings"]
-margin_right = 500.0
+margin_right = 499.0
 margin_bottom = 121.0
 rect_pivot_offset = Vector2( -1719, -146 )
 custom_fonts/font = ExtResource( 7 )
@@ -143,7 +143,7 @@ script = ExtResource( 8 )
 
 [node name="Music" type="Label" parent="Audio Settings"]
 margin_top = 125.0
-margin_right = 500.0
+margin_right = 499.0
 margin_bottom = 246.0
 custom_fonts/font = ExtResource( 7 )
 text = "Music Volume"
@@ -165,7 +165,7 @@ track = 1
 
 [node name="Combat" type="Label" parent="Audio Settings"]
 margin_top = 250.0
-margin_right = 500.0
+margin_right = 499.0
 margin_bottom = 371.0
 rect_pivot_offset = Vector2( -1719, -146 )
 custom_fonts/font = ExtResource( 7 )
@@ -188,7 +188,7 @@ track = 2
 
 [node name="AimAssist" type="Label" parent="Audio Settings"]
 margin_top = 375.0
-margin_right = 500.0
+margin_right = 499.0
 margin_bottom = 496.0
 rect_pivot_offset = Vector2( -1719, -146 )
 custom_fonts/font = ExtResource( 7 )
@@ -210,10 +210,10 @@ value = 0.5
 script = SubResource( 5 )
 
 [node name="InputMapper" type="HBoxContainer" parent="."]
-margin_left = 123.0
-margin_top = 582.0
-margin_right = 2135.0
-margin_bottom = 732.0
+margin_left = 109.0
+margin_top = 581.0
+margin_right = 2123.96
+margin_bottom = 731.0
 rect_scale = Vector2( 0.8, 0.8 )
 script = SubResource( 4 )
 
