@@ -2,8 +2,6 @@ extends Control
 
 export var game_url := "https://variable-eye-games.itch.io/within-the-vault"
 
-func _ready():
-	$TextureButton.grab_focus()
 
 func _on_TextureButton_pressed():
 	OS.shell_open(game_url)

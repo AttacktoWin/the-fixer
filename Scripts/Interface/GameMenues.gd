@@ -16,7 +16,7 @@ func _ready():
 	$Settings/VBoxContainer/Cancel.connect("button_down", self, "_cancel_settings")
 
 func _input(_event):
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_cancel") and (Scene.level_node and Scene.level_node.level_index != -3):
 		if paused:
 			Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.NO)
 			$PauseMenu.visible = false
