@@ -14,6 +14,12 @@ func _reload():
 		Scene.exit.connect("on_displayed", self, "_show")
 		Scene.exit.connect("on_clear_display", self, "_clear")
 
+func _input(_event):
+	if Input.is_action_just_pressed("show_enemies"):
+		_show()
+	if Input.is_action_just_released("show_enemies"):
+		_clear()
+
 
 func _process(_delta):
 	if not Scene.player:
