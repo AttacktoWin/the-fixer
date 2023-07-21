@@ -54,4 +54,7 @@ jobs:
         # We assume that we have the following files in ./build:
         # release-linux.tar.gz, release-windows.zip,
         # release-mac.zip, java-release.apk
-        files: ${{ steps.export.outputs.archive_directory }}/*
+        files: |
+          win "${{ steps.export.outputs.archive_directory }}/Within The Vault - Windows.zip"
+          osx "${{ steps.export.outputs.archive_directory }}/Within The Vault - osx.zip"
+          linux "${{ steps.export.outputs.archive_directory }}/Within The Vault - Linux.zip"
