@@ -6,6 +6,8 @@ signal on_global_aggro_changed
 
 var _has_aggro = false
 
+var aim_assist = 0.5
+
 
 func _physics_process(_delta):
 	if self._has_aggro:

@@ -24,4 +24,4 @@ func _ready():
 # Wwise.set_2d_position(self, self.global_position)
 
 # play the sound (note: id is basically just a string and it is up to evan to add the corresponding sound. any value is accepted
-# Wwise.post_event_id(AK.EVENTS.DASH_PLAYER, self)
+# Wwise.post_event_id(AK.EVENTS.DASH_PLAYER, Scene)

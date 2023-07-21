@@ -13,7 +13,7 @@ func get_handled_states():
 
 
 func enter():
-	Wwise.post_event_id(AK.EVENTS.ATTACK_MANIFESTATION, self.entity)
+	Wwise.post_event_id(AK.EVENTS.ATTACK_MANIFESTATION, Scene)
 	self.fsm.set_animation("SLAM")
 	self._timer = 0
 	self._attacked = false

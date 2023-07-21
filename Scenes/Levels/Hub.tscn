@@ -677,6 +677,7 @@ func _on_Area_body_entered(body):
 	if body is Player:
 		Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.YES)
 		get_node(\"%Upgrade\").visible = true
+		get_node(\"%Upgrade/Done\").grab_focus()
 		PausingSingleton.pause()
 "
 
@@ -770,6 +771,7 @@ func _on_body_entered(body: Node2D):
 		var confirmation = get_node_or_null(\"../../VaultConfirm/Confirm\")
 		if confirmation:
 			confirmation.visible = true
+			confirmation.get_node(\"VBoxContainer/Enter\").grab_focus()
 			PausingSingleton.pause()
 			Wwise.set_state_id(AK.STATES.GAMEPAUSED.GROUP, AK.STATES.GAMEPAUSED.STATE.YES)
 "
@@ -868,7 +870,7 @@ script = SubResource( 78 )
 position = Vector2( -8, 2 )
 scale = Vector2( 0.389113, 0.389113 )
 frames = SubResource( 77 )
-frame = 7
+frame = 2
 playing = true
 
 [node name="Area2D" type="Area2D" parent="SortableEntities/Boss_dad"]
@@ -939,7 +941,7 @@ position = Vector2( -172, -240 )
 position = Vector2( -282, -398 )
 scale = Vector2( 0.380342, 0.380342 )
 frames = SubResource( 118 )
-frame = 11
+frame = 8
 speed_scale = 2.0
 playing = true
 flip_h = true

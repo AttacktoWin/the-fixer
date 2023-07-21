@@ -33,7 +33,7 @@ func _calc_gradient(level, wall_distances, x, y):
 			if x + xx > 0 and x + xx < level.size() and y + yy > 0 and y + yy < level[0].size():
 				var diff = wall_distances[x + xx][y + yy] - wall_distances[x][y]
 				gradient += Vector2(xx * diff, yy * diff)
-	return gradient.normalized()
+	return gradient.rotated(PI/4).normalized()
 
 
 func _BFS_walls(level: Array, current: int = 1) -> Array:

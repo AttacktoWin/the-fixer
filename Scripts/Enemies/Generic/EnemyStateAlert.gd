@@ -12,7 +12,7 @@ func get_handled_states():
 
 func enter():
 	if self.alert_sound:
-		Wwise.post_event_id(self.alert_sound, self.entity)
+		Wwise.post_event_id(self.alert_sound, Scene)
 	self.entity.sprite_material.set_shader_param(Constants.SP.B_FLASH, false)
 	self.entity.sprite_material.set_shader_param(Constants.SP.C_LINE_COLOR, Constants.COLOR.YELLOW)
 	self.fsm.set_animation(animation_name)

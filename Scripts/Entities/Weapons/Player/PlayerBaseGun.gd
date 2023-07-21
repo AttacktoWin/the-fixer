@@ -23,10 +23,10 @@ func _notify_fire(has_ammo):
 			self._flash_sprite.play_flash()
 		AI.notify_sound(self.entity.global_position, 4096, weapon_volume)
 		if self.sound_fire:
-			Wwise.post_event_id(self.sound_fire, self.entity)
+			Wwise.post_event_id(self.sound_fire, Scene)
 	else:
 		if self.sound_empty:
-			Wwise.post_event_id(self.sound_empty, self.entity)
+			Wwise.post_event_id(self.sound_empty, Scene)
 
 
 func _apply_base_stats(attack: BaseAttack):
@@ -72,6 +72,8 @@ func _generate_bullet() -> BulletBase:
 
 
 func _get_fire_angle():
+	if self.entity.is_controller():
+		return self.entity.controller_wanted_gun_vector().angle()
 	var angle1 = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - self.global_position).angle()
 	var angle2 = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - self._get_aim_position()).angle()
 	return angle1 if abs(angle1 - angle2) < 0.1 else angle2

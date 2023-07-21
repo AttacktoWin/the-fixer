@@ -23,7 +23,7 @@ func set_weapon(weapon):
 
 
 func on_collected(collector):
-	Wwise.post_event_id(AK.EVENTS.WEAPON_PICKUP_PLAYER, self)
+	Wwise.post_event_id(AK.EVENTS.WEAPON_PICKUP_PLAYER, Scene)
 	self.weapon_instance.set_process(true)
 	self.weapon_instance.set_physics_process(true)
 	if weapon_instance is Melee:

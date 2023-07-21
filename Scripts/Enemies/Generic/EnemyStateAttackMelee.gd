@@ -41,7 +41,7 @@ func on_anim_reached_end(_anim: String):
 
 	if self._charging:
 		if self.should_play_sound:
-			Wwise.post_event_id(self.play_sound, self.entity)
+			Wwise.post_event_id(self.play_sound, Scene)
 		self._charging = false
 		self.fsm.set_animation("ATTACK_MELEE")
 	else:

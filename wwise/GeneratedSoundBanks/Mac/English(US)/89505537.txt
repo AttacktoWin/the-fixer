@@ -35,40 +35,42 @@ Event	ID	Name			Wwise Object Path	Notes
 
 Game Parameter	ID	Name			Wwise Object Path	Notes
 	1087353892	EffectVolume			\Default Work Unit\EffectVolume	
+	2346531308	MusicVolume			\Default Work Unit\MusicVolume	
+	4056684167	Master			\Default Work Unit\Master	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	15880499	Spyder_Flash	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Flash_Camera_B6BBCEE5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Spyder\Spyder_Flash		63416
-	54709647	Notice_Enemy	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Notice_Enemy_CF802C2F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Notice_Enemy		47852
-	65303401	Fire_Shotgun_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Shoot_Shotgun_Player_F70B42BA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Fire_Shotgun_Player		75120
-	68113316	Ammo_Pickup_Player-004	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-004_3FDF283B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-004		40732
-	90599123	Fire_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Shoot_Pistol_Player_08F7D1DE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Fire_Pistol_Player		51836
-	142273814	shoot_bird	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Shoot_Bird_6F6797E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Bird\shoot_bird		35404
-	174886453	Die_Manny	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\manny death_6BFCC375.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Manny\Die_Manny		403360
-	215651341	Swing_Knife_PLayer	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Swing_Knuckles_Player_65AC56E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Swing_Knife_PLayer		40552
-	277708595	Fire_Tommy_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Shoot_Tommy_Player_211D2E73.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Fire_Tommy_Player		20068
-	291940770	Pump_Shotgun_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Shoot_Shotgun_Player_4698CD56.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Pump_Shotgun_Player		81712
-	313999180	Ammo_Pickup_Player-008	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-008_A9EDB648.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-008		44056
-	380485017	Dodge_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Dodge_Player_0FD3D937.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Dodge_Player		85320
-	384635967	Ammo_Pickup_Player-003	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-003_9BB6A447.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-003		57332
-	419100912	Phone_Ring	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\phone_ring_6433BED4.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Environmental Sounds\Phone_Ring		199760
-	448529706	Summon_Manny	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\summon_manny_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Manny\Summon_Manny		155676
-	476551547	Spyder_Attack	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\spyder attack_9EEF2BFA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Spyder\Spyder_Attack		102884
-	518315914	Empty_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Empty_Pistol_Player_6C16FD96.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Empty_Pistol_Player		35756
-	590813281	Hit_Knuckles_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Hit_Knuckles_Player_09368E6E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Hit_Knuckles_Player		94412
-	599388174	Attack_Manny	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\Voices\English(US)\manny slam_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Manny\Attack_Manny		419452
-	650969131	Beetle_Charge	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\beetle charge_94ECA594.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Beetle\Beetle_Charge		107272
-	678458525	Ammo_Pickup_Player-001	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-001_AF398A34.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-001		37412
-	738966222	Ammo_Pickup_Player-009	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-009_07D8E4C6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-009		44884
-	791064235	Hit_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Impact_Shoot_Player_140664E6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Hit_Pistol_Player		49216
-	814482882	Beetle_Crash	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\don't worry about it_A31DED26.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Beetle\Beetle_Crash		137268
-	865640855	Spyder_Charge	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\spyder charge_A592BCF1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Spyder\Spyder_Charge		59286
-	934392654	Roar_Manny	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\manny roar_83000778.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Manny\Roar_Manny		411320
-	964759676	Door_Unlock	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\unlock_vault_5AE648F0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Environmental Sounds\Door_Unlock		382076
-	983251993	Ammo_Pickup_Player-005	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-005_DD107A4A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-005		36584
-	984510645	Ammo_Pickup_Player-006	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-006_55712909.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-006		46544
-	998863668	Pillbug_Attack	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\pillbug attack_9C116509.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Pillbug\Pillbug_Attack		89292
-	1008462791	Weapon_Pickup_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\weapon_pickup_player_97E11A47.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Weapon_Pickup_Player		105892
-	1028577693	Ammo_Pickup_Player-007	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-007_BE19CFEC.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-007		50692
-	1061296916	attack_bird	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\bird_attack_12AB079B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Enemy Sounds\Bird\attack_bird		43288
-	1061419174	Ammo_Pickup_Player-002	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-002_27239543.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-002		36584
+	15880499	Spyder_Flash	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Flash_Camera_B6BBCEE5.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Spyder\Spyder_Flash		63416
+	54709647	Notice_Enemy	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Notice_Enemy_CF802C2F.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Notice_Enemy		47852
+	65303401	Fire_Shotgun_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Shoot_Shotgun_Player_F70B42BA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Fire_Shotgun_Player		75120
+	68113316	Ammo_Pickup_Player-004	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-004_3FDF283B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-004		40732
+	90599123	Fire_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Shoot_Pistol_Player_08F7D1DE.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Fire_Pistol_Player		51836
+	142273814	shoot_bird	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Shoot_Bird_6F6797E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Bird\shoot_bird		35404
+	174886453	Die_Manny	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\manny death_6BFCC375.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Manny\Die_Manny		403360
+	215651341	Punch_Knuckles_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Swing_Knuckles_Player_65AC56E0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Punch_Knuckles_Player		40552
+	277708595	Fire_Tommy_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Shoot_Tommy_Player_211D2E73.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Fire_Tommy_Player		20068
+	291940770	Pump_Shotgun_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Shoot_Shotgun_Player_4698CD56.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Pump_Shotgun_Player		81712
+	313999180	Ammo_Pickup_Player-008	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-008_A9EDB648.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-008		44056
+	380485017	Dodge_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Dodge_Player_0FD3D937.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Dodge_Player		85320
+	384635967	Ammo_Pickup_Player-003	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-003_9BB6A447.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-003		57332
+	419100912	Phone_Ring	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\phone_ring_6433BED4.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Environmental Sounds\Phone_Ring		199760
+	448529706	Summon_Manny	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\summon_manny_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Manny\Summon_Manny		155676
+	476551547	Spyder_Attack	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\spyder attack_9EEF2BFA.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Spyder\Spyder_Attack		102884
+	518315914	Empty_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Empty_Pistol_Player_6C16FD96.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Empty_Pistol_Player		35756
+	590813281	Hit_Knuckles_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Hit_Knuckles_Player_09368E6E.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Hit_Knuckles_Player		94412
+	599388174	Attack_Manny	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\Voices\English(US)\manny slam_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Manny\Attack_Manny		419452
+	650969131	Beetle_Charge	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\beetle charge_94ECA594.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Beetle\Beetle_Charge		107272
+	678458525	Ammo_Pickup_Player-001	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-001_AF398A34.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-001		37412
+	738966222	Ammo_Pickup_Player-009	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-009_07D8E4C6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-009		44884
+	791064235	Hit_Pistol_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Impact_Shoot_Player_140664E6.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Hit_Pistol_Player		49216
+	814482882	Beetle_Crash	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\don't worry about it_A31DED26.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Beetle\Beetle_Crash		137268
+	865640855	Spyder_Charge	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\spyder charge_A592BCF1.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Spyder\Spyder_Charge		59286
+	934392654	Roar_Manny	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\manny roar_83000778.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Manny\Roar_Manny		411320
+	964759676	Door_Unlock	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\unlock_vault_5AE648F0.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Environmental Sounds\Door_Unlock		382076
+	983251993	Ammo_Pickup_Player-005	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-005_DD107A4A.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-005		36584
+	984510645	Ammo_Pickup_Player-006	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-006_55712909.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-006		46544
+	998863668	Pillbug_Attack	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\pillbug attack_9C116509.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Pillbug\Pillbug_Attack		89292
+	1008462791	Weapon_Pickup_Player	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\weapon_pickup_player_97E11A47.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Weapon_Pickup_Player		105892
+	1028577693	Ammo_Pickup_Player-007	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-007_BE19CFEC.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-007		50692
+	1061296916	attack_bird	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\bird_attack_12AB079B.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Enemy Sounds\Bird\attack_bird		43288
+	1061419174	Ammo_Pickup_Player-002	A:\Downloads\Audio\INTD450\The Fixer Main\.cache\Mac\SFX\Ammo_Pickup\Ammo_Pickup_Player-002_27239543.wem		\Actor-Mixer Hierarchy\Default Work Unit\Global\Effects\Player Sounds\Ammo_Pickup_Player\Ammo_Pickup_Player-002		36584
 

@@ -14,7 +14,7 @@ func enter():
 	self.entity.setv(LivingEntityVariable.VELOCITY, Vector2.ZERO)
 	self.fsm.set_animation("MELEE")
 	self.fsm.get_animation_player().playback_speed = self.entity.get_melee_attack_speed()
-	Wwise.post_event_id(AK.EVENTS.SWING_KNUCKLES_PLAYER, self.entity)
+	Wwise.post_event_id(AK.EVENTS.SWING_KNUCKLES_PLAYER, Scene)
 
 
 func on_anim_reached_end(_anim: String):

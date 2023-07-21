@@ -164,7 +164,7 @@ func _signal_listener(s_name: String):
 
 func play_sound(sound_id: String):
 	if AK.EVENTS._dict.has(sound_id):
-		Wwise.post_event_id(AK.EVENTS._dict[sound_id], self)
+		Wwise.post_event_id(AK.EVENTS._dict[sound_id], Scene)
 
 
 func get_top_dialogue(npc_id: String) -> Dialogue:

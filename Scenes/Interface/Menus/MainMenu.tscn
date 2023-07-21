@@ -41,9 +41,15 @@ script/source = "extends VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var resume = get_node(\"Resume\")
+	var new_game = get_node(\"NewGame\")
 	if SaveHelper.has_save_file():
-		get_node(\"NewGame\").visible=false
-		get_node(\"Resume\").visible=true
+		
+		new_game.visible=false
+		resume.visible=true
+		resume.grab_focus()
+	else:
+		new_game.grab_focus()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -57,9 +63,18 @@ script/source = "extends TextureButton
 
 const TUTORIAL = preload(\"res://Scenes/Levels/Tutorial.tscn\")
 
-
 func start_game():
 	Scene.switch(TUTORIAL.instance())
+
+
+func _ready():
+	connect(\"mouse_entered\", self, \"_on_mouse_entered\")
+
+func _on_mouse_entered():
+	var owner = get_focus_owner()
+	if owner:
+		owner.release_focus()
+	self.grab_focus()
 "
 
 [sub_resource type="GDScript" id=5]
@@ -71,11 +86,14 @@ script/source = "extends TextureButton
 # var b = \"text\"
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	connect(\"mouse_entered\", self, \"_on_mouse_entered\")
 
-
+func _on_mouse_entered():
+	var owner = get_focus_owner()
+	if owner:
+		owner.release_focus()
+	self.grab_focus()
 
 func start_game():
 	SaveHelper.load_game()
@@ -87,6 +105,15 @@ script/source = "extends TextureButton
 
 func _on_Quit_pressed():
 	Scene.get_tree().quit()
+
+func _ready():
+	connect(\"mouse_entered\", self, \"_on_mouse_entered\")
+
+func _on_mouse_entered():
+	var owner = get_focus_owner()
+	if owner:
+		owner.release_focus()
+	self.grab_focus()
 "
 
 [node name="Level" type="Control"]
@@ -96,6 +123,7 @@ script = ExtResource( 7 )
 is_ui = true
 ui_enabled = false
 vision_enabled = false
+level_index = -2
 level_music = 309205993
 
 [node name="VideoPlayer" type="VideoPlayer" parent="."]
@@ -124,7 +152,7 @@ margin_bottom = 469.0
 
 [node name="New_Cont" type="VBoxContainer" parent="HBoxContainer"]
 margin_right = 1004.0
-margin_bottom = 150.0
+margin_bottom = 304.0
 script = SubResource( 4 )
 
 [node name="NewGame" type="TextureButton" parent="HBoxContainer/New_Cont"]
@@ -132,6 +160,7 @@ margin_right = 1004.0
 margin_bottom = 150.0
 texture_normal = ExtResource( 3 )
 texture_hover = ExtResource( 1 )
+texture_focused = ExtResource( 1 )
 script = SubResource( 1 )
 
 [node name="Resume" type="TextureButton" parent="HBoxContainer/New_Cont"]
@@ -141,14 +170,16 @@ margin_right = 1004.0
 margin_bottom = 304.0
 texture_normal = ExtResource( 2 )
 texture_hover = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
 script = SubResource( 5 )
 
-[node name="Quit" type="TextureButton" parent="HBoxContainer"]
+[node name="Quit" type="TextureButton" parent="HBoxContainer/New_Cont"]
 margin_top = 154.0
 margin_right = 1004.0
 margin_bottom = 304.0
 texture_normal = ExtResource( 6 )
 texture_hover = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
 script = SubResource( 6 )
 
 [node name="Logo" type="Sprite" parent="."]
@@ -161,4 +192,4 @@ visible = false
 
 [connection signal="button_down" from="HBoxContainer/New_Cont/NewGame" to="HBoxContainer/New_Cont/NewGame" method="start_game"]
 [connection signal="button_down" from="HBoxContainer/New_Cont/Resume" to="HBoxContainer/New_Cont/Resume" method="start_game"]
-[connection signal="pressed" from="HBoxContainer/Quit" to="HBoxContainer/Quit" method="_on_Quit_pressed"]
+[connection signal="pressed" from="HBoxContainer/New_Cont/Quit" to="HBoxContainer/New_Cont/Quit" method="_on_Quit_pressed"]

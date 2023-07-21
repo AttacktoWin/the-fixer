@@ -25,13 +25,33 @@
 [ext_resource path="res://Assets/UI/Tutorial/wasd-a-down.png" type="Texture" id=23]
 [ext_resource path="res://Assets/UI/Tutorial/wasd.png" type="Texture" id=24]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=25]
-[ext_resource path="res://Scripts/Level/Level.gd" type="Script" id=26]
 [ext_resource path="res://Scenes/Weapons/PlayerPistolScene.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scripts/Entities/Weapons/WorldWeapon.gd" type="Script" id=28]
 [ext_resource path="res://Assets/UI/Tutorial/space-pressed.png" type="Texture" id=29]
 [ext_resource path="res://Assets/UI/Tutorial/space.png" type="Texture" id=30]
 [ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=31]
 [ext_resource path="res://Scenes/Weapons/PlayerBrassKnucklesScene.tscn" type="PackedScene" id=32]
+
+[sub_resource type="GDScript" id=68]
+script/source = "extends Level
+
+onready var player_label = $PlayerLabel
+onready var pickup_label = $PickupLabel
+
+func _ready():
+	remove_child(player_label)
+	Scene.player.add_child(player_label)
+
+func _process(_delta):
+	if AI.get_all_enemies().size() == 0:
+		player_label.visible = true
+		pickup_label.visible = true
+		var max_dist = 750;
+		var min_dist = 400;
+		var dist = (Scene.player.global_position - Scene.exit.global_position).length()
+		var a = MathUtils.interpolate((dist-min_dist)/(max_dist-min_dist), 0, 1, MathUtils.INTERPOLATE_OUT);
+		player_label.modulate.a = a
+"
 
 [sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 127, 0, 255, 66, 127, 126, 1, 65, 127, 127 )
@@ -463,11 +483,33 @@ animations = [ {
 } ]
 
 [node name="Level" type="Node2D"]
-script = ExtResource( 26 )
+script = SubResource( 68 )
 vision_range = 1.0
 enemy_appear_distance = 1000.0
 level_index = -1
 level_music = 3751267554
+
+[node name="PlayerLabel" type="Label" parent="."]
+visible = false
+margin_left = -121.0
+margin_top = -165.0
+margin_right = 121.0
+margin_bottom = -60.0
+custom_fonts/font = ExtResource( 20 )
+text = "Head to the Vault Door"
+align = 1
+autowrap = true
+
+[node name="PickupLabel" type="Label" parent="."]
+visible = false
+margin_left = -429.0
+margin_top = 1385.0
+margin_right = -187.0
+margin_bottom = 1490.0
+custom_fonts/font = ExtResource( 20 )
+text = "Press 'E' to select an upgrade"
+align = 1
+autowrap = true
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 6 )
@@ -534,6 +576,7 @@ start_melee = ExtResource( 32 )
 [node name="WorldWeapon" type="KinematicBody2D" parent="SortableEntities"]
 position = Vector2( -272, 380 )
 script = ExtResource( 28 )
+auto_pickup = false
 weapon_scene = ExtResource( 27 )
 
 [node name="Runtime" type="YSort" parent="SortableEntities"]
@@ -605,13 +648,13 @@ align = 1
 autowrap = true
 
 [node name="E_Goomba4" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
-position = Vector2( -1482, 1760 )
+position = Vector2( -1880, 1783 )
 
 [node name="E_Goomba5" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
-position = Vector2( -1270, 2053 )
+position = Vector2( -821, 2285 )
 
 [node name="E_Goomba6" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
-position = Vector2( -1193, 1837 )
+position = Vector2( -1450, 1575 )
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2( -2, -68 )
@@ -658,6 +701,16 @@ custom_fonts/font = ExtResource( 20 )
 text = "As you progress deeper into the vault, your vision will decrease..."
 autowrap = true
 
+[node name="Label5" type="Label" parent="."]
+margin_left = -1408.0
+margin_top = 1881.0
+margin_right = -1073.0
+margin_bottom = 2014.0
+custom_fonts/font = ExtResource( 20 )
+text = "Kill all enemies in the level to progress"
+align = 1
+autowrap = true
+
 [node name="Label" type="Label" parent="."]
 margin_left = 597.0
 margin_top = 1724.0
@@ -691,12 +744,14 @@ material = ExtResource( 21 )
 position = Vector2( 170.866, 139.593 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
+frame = 7
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
 position = Vector2( 77.25, 139.5 )
 scale = Vector2( 0.283333, 0.283333 )
 frames = SubResource( 24 )
+frame = 2
 playing = true
 
 [node name="Shoot" type="Control" parent="."]
@@ -726,6 +781,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
+frame = 8
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -755,7 +811,6 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 3
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
