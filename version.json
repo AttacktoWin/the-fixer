@@ -1,0 +1,55 @@
+{
+    "current_version": 1.0,
+    "releases": [
+        {
+            "version": 1.0,
+            "notes": "Our first release with patching support! Patches can now be downloaded and installed from within the game so you won't have to redownload the game every time there's an update."
+        }
+    ],
+    "singletons": [
+        {
+            "name": "CameraSingleton",
+            "path": "res://Scripts/Singletons/CameraSingleton.gd"
+        },
+        {
+            "name": "PausingSingleton",
+            "path": "res://Scripts/Singletons/PausingSingleton.gd"
+        },
+        {
+            "name": "Scene",
+            "path": "res://Scripts/Singletons/Scene.gd"
+        },
+        {
+            "name": "DialogueSystem",
+            "path": "res://Scripts/Singletons/DialogueSystem.gd"
+        },
+        {
+            "name": "StatsTracker",
+            "path": "res://Scripts/Singletons/StatsTracker.gd"
+        },
+        {
+            "name": "Pathfinder",
+            "path": "res://Scripts/AI/Pathfinder.gd"
+        },
+        {
+            "name": "AI",
+            "path":"res://Scripts/AI/AIManager.gd"
+        },
+        {
+            "name": "TransitionHelper",
+            "path":"res://Scripts/Singletons/TransitionHelper.gd"
+        },
+        {
+            "name": "UpgradeSingleton",
+            "path": "res://Scripts/Upgrades/UpgradeSingleton.gd"
+        },
+        {
+            "name": "StatsSingleton",
+            "path": "res://Scripts/Singletons/StatsSingleton.gd"
+        },
+        {
+            "name": "SaveHelper",
+            "path": "res://Scripts/Utils/SaveHelper.gd"
+        }
+    ]
+}

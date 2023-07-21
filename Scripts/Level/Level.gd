@@ -41,6 +41,7 @@ var _weapon_scene_lookup = {
 
 func _ready():
 	Scene.connect("world_updated", self, "start")
+	UpdateSingleton.connect("update_avaliable", self, "_on_update_available")
 
 
 func start():
@@ -106,3 +107,6 @@ func save() -> Dictionary:
 	data[SAVE_MELEE] = self._weapon_to_name(Scene.player._melee)
 
 	return data
+
+func _on_update_available():
+	$UpdatePopUp.visible = true
