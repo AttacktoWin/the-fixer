@@ -22,6 +22,10 @@ func _ready():
 		"Linux", "FreeBSD", "NetBSD", "OpenBSD", "BSD":
 			self.channel_name = "linux"
 
+func _input(_event):
+	pass
+	# if Input.is_action_just_pressed("show_enemies"):
+	# 	emit_signal("update_avaliable")
 
 func load_patches(saved_patches: Dictionary):
 	var request = HTTPRequest.new()

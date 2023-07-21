@@ -31,7 +31,7 @@ var rng = RandomNumberGenerator.new()
 var level = []  #-1 = non, 1 = floor, 2 = wall
 var saved_seed
 
-const MAX_TRIES = 1000
+const MAX_TRIES = 5000
 
 
 func _init():

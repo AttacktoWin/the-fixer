@@ -123,7 +123,7 @@ script = ExtResource( 7 )
 is_ui = true
 ui_enabled = false
 vision_enabled = false
-level_index = -2
+level_index = -3
 level_music = 309205993
 
 [node name="VideoPlayer" type="VideoPlayer" parent="."]

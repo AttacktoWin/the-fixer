@@ -15,10 +15,6 @@ func _ready():
 	$Settings/VBoxContainer/Save.connect("button_down", self, "_save_settings")
 	$Settings/VBoxContainer/Cancel.connect("button_down", self, "_cancel_settings")
 
-func _process(_delta):
-	if Scene.level_node.level_index == -2: # main menu
-		return
-
 func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel"):
 		if paused:
