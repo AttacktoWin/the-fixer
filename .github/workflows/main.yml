@@ -26,6 +26,13 @@ jobs:
       run: |
         sudo apt install wine64
         echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
+
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    
+    - name: Get Version File
+      run: echo ${{ steps.date.outputs.date }} > ./VERSIONFILE
   
     - name: export game
       id: export
@@ -37,12 +44,26 @@ jobs:
         godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/3.5.1/Godot_v3.5.1-stable_linux_headless.64.zip
         godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/3.5.1/Godot_v3.5.1-stable_export_templates.tpz
         relative_project_path: ./
-        archive_output: true
         use_godot_3: true
 
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    - name: Archive Windows Build
+      uses: thedoctor0/zip-release@0.7.1
+      with:
+        type: 'zip'
+        filename: './exports/Within The Vault - Windows.zip'
+        path: './Bin/win'
+        exclusions: '*.git*'
+
+    - name: Copy OSX Build
+      run: cp "./Bin/osx/Within The Vault.zip" "./exports/Within The Vault - osx.zip"
+
+    - name: Archive Linux Build
+      uses: thedoctor0/zip-release@0.7.1
+      with:
+        type: 'tar'
+        filename: './exports/Within The Vault - Linux.tar.gz'
+        path: './Bin/linux'
+        exclusions: '*.git*'
       
     - name: Push To Itch
       uses: Ayowel/butler-to-itch@v1.0.0
@@ -51,7 +72,7 @@ jobs:
         itch_user: variable-eye-games
         itch_game: within-the-vault
         version: ${{ steps.date.outputs.date }}
-        # We assume that we have the following files in ./build:
-        # release-linux.tar.gz, release-windows.zip,
-        # release-mac.zip, java-release.apk
-        files: ${{ steps.export.outputs.archive_directory }}/*
+        # We assume that we have the following files in ./export:
+        # Within The Vault - Windows.zip, Wihtin The Vault - osx.zip,
+        # Wihtin The Vault - Linuz.tar.gz
+        files: ./exports/*
