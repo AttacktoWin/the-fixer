@@ -26,6 +26,13 @@ jobs:
       run: |
         sudo apt install wine64
         echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
+
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    
+    - name: Get Version File
+      run: echo ${{ steps.date.outputs.date }} > ./VERSIONFILE
   
     - name: export game
       id: export
@@ -39,10 +46,6 @@ jobs:
         relative_project_path: ./
         archive_output: true
         use_godot_3: true
-
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       
     - name: Push To Itch
       uses: Ayowel/butler-to-itch@v1.0.0
@@ -51,9 +54,6 @@ jobs:
         itch_user: variable-eye-games
         itch_game: within-the-vault
         version: ${{ steps.date.outputs.date }}
-        # We assume that we have the following files in ./build:
-        # release-linux.tar.gz, release-windows.zip,
-        # release-mac.zip, java-release.apk
         files: |
           win "${{ steps.export.outputs.archive_directory }}/Within The Vault - Windows.zip"
           osx "${{ steps.export.outputs.archive_directory }}/Within The Vault - osx.zip"
