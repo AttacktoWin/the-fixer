@@ -27,12 +27,12 @@ jobs:
         sudo apt install wine64
         echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
 
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    - name: Get Version
+      id: version
+      run: echo "::set-output name=version::$(date +'%Y-%m-%d').$(date | sha256sum | cut -c1-8)"
     
-    - name: Get Version File
-      run: echo ${{ steps.date.outputs.date }} > ./VERSIONFILE
+    - name: Create Version File
+      run: echo "${{ steps.version.outputs.version }}" > ./VERSIONFILE
   
     - name: export game
       id: export
@@ -53,7 +53,7 @@ jobs:
         butler_key: ${{ secrets.BUTLER_CREDENTIALS }}
         itch_user: variable-eye-games
         itch_game: within-the-vault
-        version: ${{ steps.date.outputs.date }}
+        version: ${{ steps.version.outputs.version }}
         files: |
           win ${{ steps.export.outputs.archive_directory }}/Within The Vault - Windows.zip
           osx ${{ steps.export.outputs.archive_directory }}/Within The Vault - osx.zip
