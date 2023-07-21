@@ -46,15 +46,6 @@ jobs:
         relative_project_path: ./
         archive_output: true
         use_godot_3: true
-
-    - name: Copy Windows Build
-      run: cp "${{ steps.export.outputs.archive_directory }}/Windows.Desktop.zip" "./exports/Within The Vault - Windows.zip"
-
-    - name: Copy OSX Build
-      run: cp "${{ steps.export.outputs.archive_directory }}/Mac.OSX.zip" "./exports/Within The Vault - osx.zip"
-
-    - name: Archive Linux Build
-      run: cp "${{ steps.export.outputs.archive_directory }}/LinuxX11.zip" "./exports/Within The Vault - Linux.zip"
       
     - name: Push To Itch
       uses: Ayowel/butler-to-itch@v1.0.0
@@ -66,4 +57,4 @@ jobs:
         # We assume that we have the following files in ./export:
         # Within The Vault - Windows.zip, Wihtin The Vault - osx.zip,
         # Wihtin The Vault - Linuz.tar.gz
-        files: ./exports/*
+        files: ${{ steps.export.outputs.archive_directory }}/*
