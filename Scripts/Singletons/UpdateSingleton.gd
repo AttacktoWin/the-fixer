@@ -9,6 +9,11 @@ const PATCHES_PATH := "res://Scripts/Patches"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var f = File.new()
+	f.open("res://VERSIONFILE", File.READ)
+	self.current_version = f.get_as_text()
+	f.close()
+	
 	match OS.get_name():
 		"Windows":
 			self.channel_name = "win"
@@ -19,7 +24,6 @@ func _ready():
 
 
 func load_patches(saved_patches: Dictionary):
-	self.current_version = saved_patches["version"]
 	var request = HTTPRequest.new()
 	request.connect("request_completed", self, "_on_request_completed")
 	request.request("https://itch.io/api/1/x/wharf/latest?game_id=2002925&channel_name=" + self.channel_name)

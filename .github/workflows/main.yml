@@ -26,6 +26,13 @@ jobs:
       run: |
         sudo apt install wine64
         echo "WINE_PATH=$(which wine64)" >> $GITHUB_OUTPUT
+
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    
+    - name: Get Version File
+      run: echo ${{ steps.date.outputs.date }} > ./VERSIONFILE
   
     - name: export game
       id: export
@@ -47,7 +54,6 @@ jobs:
         path: './Bin/win'
         exclusions: '*.git*'
 
-    - uses: actions/checkout@master
     - name: Copy OSX Build
       run: cp "./Bin/osx/Within The Vault.zip" "./exports/Within The Vault - osx.zip"
 
@@ -58,10 +64,6 @@ jobs:
         filename: './exports/Within The Vault - Linux.tar.gz'
         path: './Bin/linux'
         exclusions: '*.git*'
-
-    - name: Get current date
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       
     - name: Push To Itch
       uses: Ayowel/butler-to-itch@v1.0.0
