@@ -55,6 +55,6 @@ jobs:
         itch_game: within-the-vault
         version: ${{ steps.date.outputs.date }}
         files: |
-          "win ${{ steps.export.outputs.archive_directory }}/Within The Vault - Windows.zip"
-          "osx ${{ steps.export.outputs.archive_directory }}/Within The Vault - osx.zip"
-          "linux ${{ steps.export.outputs.archive_directory }}/Within The Vault - Linux.zip"
+          win ${{ steps.export.outputs.archive_directory }}/Within The Vault - Windows.zip
+          "osx ${{ steps.export.outputs.archive_directory }}/Within The Vault - osx.zip
+          linux ${{ steps.export.outputs.archive_directory }}/Within The Vault - Linux.zip
