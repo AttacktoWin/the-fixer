@@ -97,7 +97,7 @@ func load_game():
 	TransitionHelper.transition_fade()
 	var data = load_json_file(SAVE_FILE_NAME)
 	StatsSingleton.load_data(data[PERMANENT_UPGRADES])
-	UpdateSingleton.load_patches(data[PATCHES])
+	UpdateSingleton.load_patches(data.get(PATCHES, {}))
 	var level_id = data[SAVE_LEVEL_ID]
 
 	var scene: PackedScene = null
