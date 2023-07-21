@@ -502,12 +502,12 @@ autowrap = true
 
 [node name="PickupLabel" type="Label" parent="."]
 visible = false
-margin_left = -429.0
+margin_left = -449.0
 margin_top = 1385.0
-margin_right = -187.0
+margin_right = -175.0
 margin_bottom = 1490.0
 custom_fonts/font = ExtResource( 20 )
-text = "Press 'E' to select an upgrade"
+text = "Press E / Xbox A to select an upgrade"
 align = 1
 autowrap = true
 
@@ -667,17 +667,17 @@ rotation = 0.785398
 shape = SubResource( 66 )
 
 [node name="Label4" type="Label" parent="."]
-margin_left = -392.0
-margin_top = 397.0
-margin_right = -150.0
-margin_bottom = 502.0
+margin_left = -360.0
+margin_top = 410.0
+margin_right = -118.0
+margin_bottom = 515.0
 custom_fonts/font = ExtResource( 20 )
-text = "Press E to interact"
+text = "Press E / Xbox A to interact"
 align = 1
 autowrap = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Label4"]
-position = Vector2( -2, 26 )
+position = Vector2( -36, 28 )
 scale = Vector2( 0.366667, 0.366667 )
 frames = SubResource( 63 )
 frame = 1
@@ -735,7 +735,8 @@ margin_top = 195.0
 margin_right = 214.0
 margin_bottom = 244.0
 custom_fonts/font = ExtResource( 20 )
-text = "press \"WASD\" keys to move."
+text = "press \"WASD\" / Left Stick
+to move."
 align = 1
 autowrap = true
 
@@ -744,14 +745,14 @@ material = ExtResource( 21 )
 position = Vector2( 170.866, 139.593 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 7
+frame = 6
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
 position = Vector2( 77.25, 139.5 )
 scale = Vector2( 0.283333, 0.283333 )
 frames = SubResource( 24 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Shoot" type="Control" parent="."]
@@ -781,7 +782,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 8
+frame = 2
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -795,7 +796,7 @@ margin_top = 193.0
 margin_right = 177.0
 margin_bottom = 231.0
 custom_fonts/font = ExtResource( 20 )
-text = "Left click to shoot."
+text = "Left click / R1 to shoot."
 align = 1
 
 [node name="Melee" type="Control" parent="."]
@@ -811,6 +812,7 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
+frame = 1
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
@@ -824,7 +826,7 @@ margin_top = 194.0
 margin_right = 202.0
 margin_bottom = 232.0
 custom_fonts/font = ExtResource( 20 )
-text = "Right click to melee."
+text = "Right click / L1 to melee."
 align = 1
 
 [node name="Dash" type="Control" parent="."]
@@ -853,4 +855,4 @@ margin_top = 84.0
 margin_right = 233.0
 margin_bottom = 117.0
 custom_fonts/font = ExtResource( 20 )
-text = "press Space To Dash"
+text = "press Space / R2 To Dash"

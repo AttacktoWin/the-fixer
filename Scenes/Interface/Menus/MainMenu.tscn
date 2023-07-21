@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/UI/Buttons/button-newgame-hover.png" type="Texture" id=1]
 [ext_resource path="res://Assets/UI/Buttons/button-resume.png" type="Texture" id=2]
@@ -41,6 +41,9 @@ script/source = "extends VBoxContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	check_save()
+
+func check_save():
 	var resume = get_node(\"Resume\")
 	var new_game = get_node(\"NewGame\")
 	if SaveHelper.has_save_file():
@@ -49,8 +52,9 @@ func _ready():
 		resume.visible=true
 		resume.grab_focus()
 	else:
+		new_game.visible=true
+		resume.visible=false
 		new_game.grab_focus()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -114,6 +118,23 @@ func _on_mouse_entered():
 	if owner:
 		owner.release_focus()
 	self.grab_focus()
+"
+
+[sub_resource type="GDScript" id=7]
+script/source = "extends Control
+
+var _timer = 0;
+
+func _process(delta):
+
+	if Input.is_action_pressed(\"delete_save\"):
+		self._timer += delta
+		if self._timer > 1.5:
+			SaveHelper.delete()
+			self._timer = -1e9
+			get_parent().get_node(\"HBoxContainer/New_Cont\").check_save()
+	else:
+		self._timer = 0
 "
 
 [node name="Level" type="Control"]
@@ -189,6 +210,11 @@ texture = ExtResource( 11 )
 
 [node name="UpdatePopUp" parent="." instance=ExtResource( 10 )]
 visible = false
+
+[node name="SaveDeleter" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = SubResource( 7 )
 
 [connection signal="button_down" from="HBoxContainer/New_Cont/NewGame" to="HBoxContainer/New_Cont/NewGame" method="start_game"]
 [connection signal="button_down" from="HBoxContainer/New_Cont/Resume" to="HBoxContainer/New_Cont/Resume" method="start_game"]

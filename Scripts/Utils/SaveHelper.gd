@@ -73,7 +73,13 @@ func load_settings() -> void:
 
 	load_keymap()
 
-	
+func delete():
+	var names = [SAVE_FILE_NAME, SAVE_SETTINGS_FILE_NAME, KEYMAP_FILE_NAME, DialogueSystem.save_file_name]
+
+	var directory = Directory.new()
+	for name in names:
+		if directory.file_exists(name):
+			directory.remove(name)
 
 func save() -> void:
 	DialogueSystem.save()
