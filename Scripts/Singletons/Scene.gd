@@ -29,6 +29,8 @@ var _wall_material = null
 var _current_music = null
 var _current_music_id = null
 
+var _marked_inputs = {}
+
 signal transition_start
 signal transition_complete
 signal world_updated
@@ -38,7 +40,10 @@ func _ready():
 	randomize()
 	Wwise.register_listener(self)
 	Wwise.register_game_obj(self, self.name)
+	self.process_priority = 1
 
+func _physics_process(_delta):
+	self._marked_inputs = {}
 
 func _update_pathfinder():
 	if self._level != null:
@@ -109,6 +114,11 @@ func _get_exit():
 func _get_wall_material():
 	return self._wall_material
 
+func mark_input(ev_name):
+	self._marked_inputs[ev_name] = true
+
+func is_input_marked(ev_name):
+	return ev_name in self._marked_inputs
 
 func get_tree() -> SceneTree:
 	if !is_instance_valid(self._root):

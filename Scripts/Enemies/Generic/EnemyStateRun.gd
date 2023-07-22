@@ -31,7 +31,7 @@ func _follow_path(delta):
 	if self._path == null:
 		_try_move(delta, Vector2())
 		return
-	self._path.update(self.entity.global_position)
+	self._path.update(self.entity.global_position, self.entity.entity_radius)
 	var dir = self.entity.apply_steering(self._path.get_target_vector())
 	var vel = self.entity.get_wanted_velocity(dir)
 	_try_move(delta, vel)
@@ -74,5 +74,5 @@ func _process(_delta):
 
 
 func _draw():
-	if self._path and self.draw_path:
+	if self._path and (self.draw_path or self.entity.draw_path):
 		self._path.draw(self)

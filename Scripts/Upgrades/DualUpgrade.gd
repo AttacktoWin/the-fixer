@@ -25,6 +25,8 @@ func _ready():
 	self._upgrade1.handle_pickup = false
 	self._upgrade2.handle_pickup = false
 
+	self.process_priority = -1;
+
 
 func is_collected():
 	return self._collected
@@ -35,7 +37,10 @@ func _physics_process(_delta):
 		queue_free()
 		return
 
-	if Input.is_action_just_pressed("pickup_weapon"):
+	if self._collected:
+		return
+
+	if Input.is_action_just_pressed("pickup_weapon") and not PausingSingleton.is_paused_recently() and not Scene.is_input_marked("pickup_weapon"):
 		var selected = null
 		var dist = 1
 		if self._upgrade1.collect_range_normalized() < dist:
@@ -51,3 +56,4 @@ func _physics_process(_delta):
 			selected.collect(Scene.player)
 			self._upgrade1.kill()
 			self._upgrade2.kill()
+			Scene.mark_input("pickup_weapon")

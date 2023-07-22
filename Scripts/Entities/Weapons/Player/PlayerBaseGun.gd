@@ -15,6 +15,8 @@ export var weapon_volume: float = 2.5
 
 var _flash_sprite = null
 
+var OutOfAmmo = preload("res://Scenes/Particles/OutOfAmmo.tscn");
+
 
 func _notify_fire(has_ammo):
 	self.entity.update_ammo_counter()
@@ -26,6 +28,9 @@ func _notify_fire(has_ammo):
 			Wwise.post_event_id(self.sound_fire, Scene)
 	else:
 		if self.sound_empty:
+			var inst = OutOfAmmo.instance()
+			Scene.runtime.add_child(inst)
+			inst.global_position = self.entity.global_position + Vector2(0, -225)
 			Wwise.post_event_id(self.sound_empty, Scene)
 
 

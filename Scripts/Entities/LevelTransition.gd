@@ -55,3 +55,6 @@ func _on_body_exit(body: Node2D):
 func _transition():
 	var inst = to_level.instance()
 	TransitionHelper.transition(inst, long_load, transfer_player, fade_time)
+
+func should_search_exit():
+	return self._upgrades and (is_instance_valid(self._upgrades) and not self._upgrades.is_collected())

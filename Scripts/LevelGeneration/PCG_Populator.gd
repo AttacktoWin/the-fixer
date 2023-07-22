@@ -82,7 +82,7 @@ func populate(tile_map, path, path_by_room, room_list, room_centers):
 	if typeof(spawn_info) == TYPE_BOOL:
 		return -1
 	spawn_pass(spawn_info, tile_map)
-	weapon_pass(room_list, path_by_room, tile_map)
+	weapon_pass(room_list, path_by_room, tile_map, end_index)
 	return end_index
 
 
@@ -200,12 +200,16 @@ func spawn_pass(spawn_info, tile_map):
 			# entities.add_child(instance)
 
 
-func weapon_pass(room_list, path_by_room, tile_map):
+func weapon_pass(room_list, path_by_room, tile_map, exit_room_index):
 	if self.rng.randf() < 0.25:
 		return
 
 	var rooms = room_list.duplicate()
+	rooms.pop_at(exit_room_index)
 	rooms.remove(0)
+	if rooms.size() == 0:
+		rooms = room_list.duplicate()
+		rooms.remove(0)
 
 	var room = rooms[self.rng.randi() % rooms.size()]
 

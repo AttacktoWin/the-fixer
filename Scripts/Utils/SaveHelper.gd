@@ -33,7 +33,7 @@ func save_settings() -> void:
 	var data = {}
 	data["master_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.MASTER, Scene)
 	data["music_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, Scene)
-	data["ui_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.UIVOLUME, Scene)
+	data["effect_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.EFFECTVOLUME, Scene)
 	data["aim_assist"] = AI.aim_assist
 
 	var file = File.new()
@@ -66,20 +66,23 @@ func load_keymap():
 
 func load_settings() -> void:
 	var data = load_json_file(SAVE_SETTINGS_FILE_NAME, {})
-	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MASTER, data.get("master_volume",100), Scene) 
-	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, data.get("music_volume",100), Scene) 
-	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.UIVOLUME, data.get("ui_volume",100), Scene)
+	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MASTER, data.get("master_volume",50), Scene) 
+	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, data.get("music_volume",50), Scene) 
+	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.EFFECTVOLUME, data.get("effect_volume",50), Scene)
 	AI.aim_assist = data.get("aim_assist", 0.5)
 
 	load_keymap()
 
 func delete():
-	var names = [SAVE_FILE_NAME, SAVE_SETTINGS_FILE_NAME, KEYMAP_FILE_NAME, DialogueSystem.save_file_name]
+	var names = [SAVE_FILE_NAME, DialogueSystem.save_file_name]
 
 	var directory = Directory.new()
 	for name in names:
 		if directory.file_exists(name):
 			directory.remove(name)
+
+	DialogueSystem.clear()
+	StatsSingleton.clear()
 
 func save() -> void:
 	DialogueSystem.save()
@@ -98,9 +101,7 @@ func _save(data: Dictionary):
 
 func load_game():
 	# prevent gun firing
-	if not PausingSingleton.is_paused():
-		PausingSingleton.pause()
-		PausingSingleton.unpause()
+	PausingSingleton.emulate_pause()
 	TransitionHelper.transition_fade()
 	var data = load_json_file(SAVE_FILE_NAME)
 	StatsSingleton.load_data(data[PERMANENT_UPGRADES])

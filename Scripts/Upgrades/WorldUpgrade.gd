@@ -76,8 +76,9 @@ func _physics_process(_delta):
 	var dist = collect_range_normalized()
 	if dist <= 1:
 		change = -change
-		if self.handle_pickup and Input.is_action_just_pressed("pickup_weapon"):
+		if self.handle_pickup and Input.is_action_just_pressed("pickup_weapon") and not PausingSingleton.is_paused_recently() and not Scene.is_input_marked("pickup_weapon"):
 			collect(Scene.player)
+			Scene.mark_input("pickup_weapon")
 
 	self._show_timer = clamp(self._show_timer + change, 0, 1)
 

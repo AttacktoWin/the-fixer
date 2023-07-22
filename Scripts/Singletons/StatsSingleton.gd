@@ -33,6 +33,12 @@ func apply_upgrades(entity):
 		]
 	)
 
+func clear():
+	self.available_tokens = 0
+	self.stats[0] = 0
+	self.stats[1] = 0
+	self.stats[2] = 0
+	self.stats[3] = 0
 
 func load_data(data):
 	self.available_tokens = data[0]
