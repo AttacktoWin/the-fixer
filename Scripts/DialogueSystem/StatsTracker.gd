@@ -27,6 +27,11 @@ func add_manifestation_fight():
 	if self.manifestation_fights == 100:
 		DialogueSystem.event_viewed("100manifestation")
 
+func clear():
+	self.manifestation_wins = 0;
+	self.manifestation_fights = 0;
+	self.deaths = 0;
+	self.watched_ending = false;
 
 func add_death(cause: String = ""):
 	self.deaths += 1

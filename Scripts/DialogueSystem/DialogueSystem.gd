@@ -68,6 +68,12 @@ func _ready():
 			)
 		)
 
+func clear():
+	StatsTracker.clear()
+	for child in get_children():
+		if child is NPC:
+			child.clear()
+
 
 func _process(_delta):
 	if is_instance_valid(self.current_dialog_box) && follow_player:

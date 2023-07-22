@@ -109,8 +109,9 @@ func save() -> Dictionary:
 	return data
 
 func _input(event):
-	if Input.is_action_just_pressed("show_enemies"):
-		_on_update_available()
+	pass
+	# if Input.is_action_just_pressed("show_enemies"):
+	# 	_on_update_available()
 
 func _on_update_available():
 	$UpdatePopUp.visible = true

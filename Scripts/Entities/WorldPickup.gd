@@ -68,10 +68,9 @@ func _physics_process(_delta):
 	if dist < self.pickup_distance and collection_check(Scene.player):
 		if self.auto_pickup:
 			collect(Scene.player)
-		else:
-			if Input.is_action_just_pressed("pickup_weapon"):
-				collect(Scene.player)
-
+		if Input.is_action_just_pressed("pickup_weapon") and not PausingSingleton.is_paused_recently() and not Scene.is_input_marked("pickup_weapon"):
+			collect(Scene.player)
+			Scene.mark_input("pickup_weapon")
 
 func _process(delta):
 	#print(self._height_components)

@@ -24,6 +24,10 @@ func init():
 		return
 	queue.enqueue(dialogue_file.dialogues["default"])
 
+func clear():
+	queue.clear()
+	init()
+
 func init_with_data(queued_ids: Array):
 	for d_id in queued_ids:
 		if (dialogue_file.dialogues.has(d_id)):

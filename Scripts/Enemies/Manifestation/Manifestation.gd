@@ -17,9 +17,9 @@ var _enemy_info = [
 ]
 
 var _hard_enemy_info = [
-	[15, load("res://Scenes/Enemies/E_Umbrella.tscn")],
-	[35, load("res://Scenes/Enemies/E_Beetle.tscn")],
-	[60, load("res://Scenes/Enemies/E_Spyder.tscn")],
+	[5, load("res://Scenes/Enemies/E_Umbrella.tscn")],
+	[15, load("res://Scenes/Enemies/E_Beetle.tscn")],
+	[45, load("res://Scenes/Enemies/E_Spyder.tscn")],
 	[100, load("res://Scenes/Enemies/E_Goomba.tscn")]
 ]
 
@@ -29,7 +29,7 @@ var _timer = 0
 var _death_timer = 0
 
 const MAX_WAVE_TIME = 2
-const WAVE_DIFFICULTY_FACTOR = 1.25
+const WAVE_DIFFICULTY_FACTOR = 1.1
 
 
 func get_entity_name():
@@ -184,5 +184,5 @@ func increment_wave():
 
 
 func spawn_enemy_context():
-	var hard = self._wave_counter >= 4
+	var hard = self._wave_counter >= 2
 	_spawn_random_enemies(1, hard, pow(WAVE_DIFFICULTY_FACTOR, self._wave_counter))

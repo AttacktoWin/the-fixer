@@ -5,7 +5,7 @@ class_name ManifestationStateSpawnWave extends FSMNode
 var _timer = 0
 var _global_timer = 0
 var _spawn_delay = 0.36
-var _spawn_count = 5
+var _spawn_count = 4
 var _current_spawn = 0
 
 var _roar_fx = null
@@ -44,7 +44,7 @@ func _physics_process(delta):
 	)
 
 	if self._timer > _spawn_delay:
-		self.entity._spawn_random_enemies(1, false)
+		self.entity.spawn_enemy_context()
 		self._timer -= self._spawn_delay
 		self._current_spawn += 1
 
@@ -54,3 +54,7 @@ func _physics_process(delta):
 
 func exit():
 	self._roar_fx.modulate.a = 0
+	self._spawn_count += 0.4
+	self.entity.increment_wave()
+	if self._spawn_delay < 0.1:
+		self._spawn_delay = 0.1

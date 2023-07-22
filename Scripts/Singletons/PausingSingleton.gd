@@ -24,6 +24,8 @@ func unpause(_entity = null):
 	self._unpaused_frames = -1
 	emit_signal("pause_changed", false, _entity)
 
+func emulate_pause():
+	self._unpaused_frames = -1
 
 func _physics_process(_delta):
 	self._unpaused_frames += 1
@@ -33,5 +35,5 @@ func is_paused():
 	return self._paused
 
 
-func is_paused_recently(frames: int = 30):
+func is_paused_recently(frames: int = 18):
 	return self._paused or self._unpaused_frames <= frames

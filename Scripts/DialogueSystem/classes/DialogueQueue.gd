@@ -8,6 +8,9 @@ var heap: Array
 var size: int
 
 func _init() -> void:
+	clear()
+
+func clear():
 	heap = []
 	size = 0
 	

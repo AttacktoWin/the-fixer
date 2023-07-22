@@ -74,12 +74,15 @@ func load_settings() -> void:
 	load_keymap()
 
 func delete():
-	var names = [SAVE_FILE_NAME, SAVE_SETTINGS_FILE_NAME, KEYMAP_FILE_NAME, DialogueSystem.save_file_name]
+	var names = [SAVE_FILE_NAME, DialogueSystem.save_file_name]
 
 	var directory = Directory.new()
 	for name in names:
 		if directory.file_exists(name):
 			directory.remove(name)
+
+	DialogueSystem.clear()
+	StatsSingleton.clear()
 
 func save() -> void:
 	DialogueSystem.save()
@@ -98,9 +101,7 @@ func _save(data: Dictionary):
 
 func load_game():
 	# prevent gun firing
-	if not PausingSingleton.is_paused():
-		PausingSingleton.pause()
-		PausingSingleton.unpause()
+	PausingSingleton.emulate_pause()
 	TransitionHelper.transition_fade()
 	var data = load_json_file(SAVE_FILE_NAME)
 	StatsSingleton.load_data(data[PERMANENT_UPGRADES])
