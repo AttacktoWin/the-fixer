@@ -27,6 +27,8 @@ const FADE_OUT_TIME = 3
 
 signal on_collected
 
+const OutlinedSprite = preload("res://Scenes/Particles/OutlinedSprite.tscn")
+
 
 func _ready():
 	Wwise.register_game_obj(self, self.get_name())
@@ -35,7 +37,7 @@ func _ready():
 	if not self._texture:
 		self._texture = DEFAULT_TEXTURE
 
-	self._sprite = Sprite.new()
+	self._sprite = OutlinedSprite.instance()
 	self._sprite.texture = self._texture
 	self._sprite.scale = Vector2(0.6, 0.6)
 	self.add_child(self._sprite)
@@ -54,6 +56,15 @@ func collect(collector: LivingEntity):
 		return true
 	return false
 
+func set_outline_enabled(enabled: bool):
+	if enabled:
+		self._sprite.material.set_shader_param(Constants.SP.C_LINE_COLOR, Constants.COLOR.WHITE)
+		self._sprite.material.set_shader_param(Constants.SP.I_LINE_THICKNESS, 3)
+	else:
+		self._sprite.material.set_shader_param(Constants.SP.C_LINE_COLOR, Constants.COLOR.BLACK)
+		self._sprite.material.set_shader_param(Constants.SP.I_LINE_THICKNESS, 0)
+
+
 
 func on_collected(_collector: LivingEntity):
 	pass
@@ -66,11 +77,16 @@ func collection_check(_collector: LivingEntity) -> bool:
 func _physics_process(_delta):
 	var dist = (Scene.player.global_position - self.global_position).length()
 	if dist < self.pickup_distance and collection_check(Scene.player):
+		set_outline_enabled(true)
 		if self.auto_pickup:
 			collect(Scene.player)
 		if Input.is_action_just_pressed("pickup_weapon") and not PausingSingleton.is_paused_recently() and not Scene.is_input_marked("pickup_weapon"):
 			collect(Scene.player)
 			Scene.mark_input("pickup_weapon")
+	else:
+		set_outline_enabled(false)
+	if self._collected:
+		set_outline_enabled(false)
 
 func _process(delta):
 	#print(self._height_components)

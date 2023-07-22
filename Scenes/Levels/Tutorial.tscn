@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -25,12 +25,15 @@
 [ext_resource path="res://Assets/UI/Tutorial/wasd-a-down.png" type="Texture" id=23]
 [ext_resource path="res://Assets/UI/Tutorial/wasd.png" type="Texture" id=24]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Sprites/Bullets/crosshair.png" type="Texture" id=26]
 [ext_resource path="res://Scenes/Weapons/PlayerPistolScene.tscn" type="PackedScene" id=27]
 [ext_resource path="res://Scripts/Entities/Weapons/WorldWeapon.gd" type="Script" id=28]
 [ext_resource path="res://Assets/UI/Tutorial/space-pressed.png" type="Texture" id=29]
 [ext_resource path="res://Assets/UI/Tutorial/space.png" type="Texture" id=30]
 [ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=31]
 [ext_resource path="res://Scenes/Weapons/PlayerBrassKnucklesScene.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Assets/UI/Tutorial/mouse.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Sprites/Knife/spritesheet.png" type="Texture" id=34]
 
 [sub_resource type="GDScript" id=68]
 script/source = "extends Level
@@ -229,6 +232,34 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="GDScript" id=81]
+script/source = "extends Goomba
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	self.setv(LivingEntityVariable.HEALTH, self.getv(LivingEntityVariable.HEALTH) / 4)
+	update_health_bar()
+
+func can_attack_hit(info: AttackInfo):
+	if info.attack.damage_type == AttackVariable.DAMAGE_TYPE.MELEE:
+		return true
+	info.attack.setv(
+		AttackVariable.DIRECTION,
+		info.get_attack_direction(self.visual.get_node(\"Sprite\").global_position).angle() + PI
+	)
+	Scene.player.add_ammo(1)
+	return false
+
+func set_target(node: LivingEntity):
+	pass
+"
+
 [sub_resource type="GDScript" id=65]
 script/source = "# Author: Marcus
 
@@ -264,6 +295,54 @@ func _process(delta):
 
 [sub_resource type="RectangleShape2D" id=66]
 extents = Vector2( 237.234, 57.3259 )
+
+[sub_resource type="AtlasTexture" id=71]
+flags = 4
+atlas = ExtResource( 34 )
+region = Rect2( 0, 894, 225, 298 )
+
+[sub_resource type="AtlasTexture" id=72]
+flags = 4
+atlas = ExtResource( 34 )
+region = Rect2( 225, 894, 225, 298 )
+
+[sub_resource type="AtlasTexture" id=73]
+flags = 4
+atlas = ExtResource( 34 )
+region = Rect2( 450, 894, 225, 298 )
+
+[sub_resource type="AtlasTexture" id=74]
+flags = 4
+atlas = ExtResource( 34 )
+region = Rect2( 675, 894, 225, 298 )
+
+[sub_resource type="AtlasTexture" id=75]
+flags = 4
+atlas = ExtResource( 34 )
+region = Rect2( 900, 894, 225, 298 )
+
+[sub_resource type="AtlasTexture" id=76]
+flags = 4
+atlas = ExtResource( 34 )
+region = Rect2( 1125, 894, 225, 298 )
+
+[sub_resource type="AtlasTexture" id=77]
+flags = 4
+atlas = ExtResource( 34 )
+region = Rect2( 1350, 894, 225, 298 )
+
+[sub_resource type="AtlasTexture" id=78]
+flags = 4
+atlas = ExtResource( 34 )
+region = Rect2( 1575, 894, 225, 298 )
+
+[sub_resource type="SpriteFrames" id=79]
+animations = [ {
+"frames": [ SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
 
 [sub_resource type="SpriteFrames" id=63]
 animations = [ {
@@ -338,6 +417,37 @@ animations = [ {
 "name": "default",
 "speed": 7.0
 } ]
+
+[sub_resource type="Animation" id=69]
+resource_name = "New Anim"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("crosshair:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 325.286, 120 ), Vector2( 349.286, 120 ), Vector2( 369.286, 120 ) ]
+}
+
+[sub_resource type="Animation" id=70]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("crosshair:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 298, 121 ) ]
+}
 
 [sub_resource type="AtlasTexture" id=49]
 flags = 4
@@ -582,45 +692,28 @@ weapon_scene = ExtResource( 27 )
 [node name="Runtime" type="YSort" parent="SortableEntities"]
 
 [node name="E_Goomba" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
-position = Vector2( 978, 812 )
+position = Vector2( 1299, 989 )
 
 [node name="Instruct" type="Node2D" parent="SortableEntities/Runtime/E_Goomba"]
 z_index = 1
 z_as_relative = false
 
-[node name="Label" type="Label" parent="SortableEntities/Runtime/E_Goomba/Instruct"]
-margin_left = 26.0
-margin_top = -74.0
-margin_right = 361.0
-margin_bottom = -5.0
-custom_fonts/font = ExtResource( 20 )
-text = "Destroy enemies that 
-guard the vault's secrets"
+[node name="TheMostPowerfulGoomba" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
+position = Vector2( 1517, 1260 )
+script = SubResource( 81 )
+height_component_path = NodePath("Visual")
+base_speed = 340.0
+base_accel = 80.0
+auto_pathfind = false
+has_melee_attack = false
+melee_attack_range = 32.0
+deaf = true
 
-[node name="E_Goomba2" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
-position = Vector2( 1163, 1232 )
-
-[node name="Instruct" type="Node2D" parent="SortableEntities/Runtime/E_Goomba2"]
+[node name="Instruct" type="Node2D" parent="SortableEntities/Runtime/TheMostPowerfulGoomba"]
 z_index = 1
 z_as_relative = false
 
-[node name="Label" type="Label" parent="SortableEntities/Runtime/E_Goomba2/Instruct"]
-margin_left = 26.0
-margin_top = -74.0
-margin_right = 357.0
-margin_bottom = -5.0
-custom_fonts/font = ExtResource( 20 )
-text = "Finish off an enemy with
-melee to pick up ammo"
-
-[node name="E_Goomba3" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
-position = Vector2( 1671, 1180 )
-
-[node name="Instruct" type="Node2D" parent="SortableEntities/Runtime/E_Goomba3"]
-z_index = 1
-z_as_relative = false
-
-[node name="Label" type="Label" parent="SortableEntities/Runtime/E_Goomba3/Instruct"]
+[node name="Label" type="Label" parent="SortableEntities/Runtime/TheMostPowerfulGoomba/Instruct"]
 margin_left = 26.0
 margin_top = -74.0
 margin_right = 357.0
@@ -638,10 +731,10 @@ z_index = 1
 z_as_relative = false
 
 [node name="Label" type="Label" parent="SortableEntities/Runtime/E_Ant/Instruct"]
-margin_left = -117.0
-margin_top = -69.0
-margin_right = 12.0
-margin_bottom = -4.0
+margin_left = -146.0
+margin_top = -73.0
+margin_right = -17.0
+margin_bottom = 26.0
 custom_fonts/font = ExtResource( 20 )
 text = "Henlo I am an ant"
 align = 1
@@ -666,7 +759,22 @@ position = Vector2( -611.116, 3358.62 )
 rotation = 0.785398
 shape = SubResource( 66 )
 
-[node name="Label4" type="Label" parent="."]
+[node name="DestroyEnemiesLabel" type="Label" parent="."]
+margin_left = 864.0
+margin_top = 545.0
+margin_right = 1199.0
+margin_bottom = 614.0
+custom_fonts/font = ExtResource( 20 )
+text = "Destroy enemies that 
+guard the vault's secrets"
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 833, 546 )
+scale = Vector2( 0.366667, 0.366667 )
+frames = SubResource( 79 )
+playing = true
+
+[node name="InteractLabel" type="Label" parent="."]
 margin_left = -360.0
 margin_top = 410.0
 margin_right = -118.0
@@ -676,14 +784,14 @@ text = "Press E / Xbox A to interact"
 align = 1
 autowrap = true
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Label4"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="InteractLabel"]
 position = Vector2( -36, 28 )
 scale = Vector2( 0.366667, 0.366667 )
 frames = SubResource( 63 )
 frame = 1
 playing = true
 
-[node name="Label3" type="Label" parent="."]
+[node name="AntLabel1" type="Label" parent="."]
 margin_left = 456.0
 margin_top = 1409.0
 margin_right = 735.0
@@ -692,7 +800,17 @@ custom_fonts/font = ExtResource( 20 )
 text = "Ants give back 1 ammo if destroyed by ranged and 3 if destroyed by melee..."
 autowrap = true
 
-[node name="Label2" type="Label" parent="."]
+[node name="AntLabel2" type="Label" parent="."]
+margin_left = 597.0
+margin_top = 1724.0
+margin_right = 828.0
+margin_bottom = 1829.0
+custom_fonts/font = ExtResource( 20 )
+text = "...but they will try
+to run away from
+you"
+
+[node name="VaultVision" type="Label" parent="."]
 margin_left = -602.0
 margin_top = 1568.0
 margin_right = -354.0
@@ -701,7 +819,7 @@ custom_fonts/font = ExtResource( 20 )
 text = "As you progress deeper into the vault, your vision will decrease..."
 autowrap = true
 
-[node name="Label5" type="Label" parent="."]
+[node name="KillAllEnemies" type="Label" parent="."]
 margin_left = -1408.0
 margin_top = 1881.0
 margin_right = -1073.0
@@ -711,21 +829,11 @@ text = "Kill all enemies in the level to progress"
 align = 1
 autowrap = true
 
-[node name="Label" type="Label" parent="."]
-margin_left = 597.0
-margin_top = 1724.0
-margin_right = 766.0
-margin_bottom = 1829.0
-custom_fonts/font = ExtResource( 20 )
-text = "...but they will try
-to run away from
-you."
-
 [node name="Movement" type="Control" parent="."]
-margin_left = -72.0
-margin_top = -38.0
-margin_right = 252.0
-margin_bottom = 220.0
+margin_left = -367.0
+margin_top = -129.0
+margin_right = -43.0
+margin_bottom = 129.0
 rect_pivot_offset = Vector2( 406, 269 )
 mouse_filter = 2
 
@@ -736,7 +844,7 @@ margin_right = 214.0
 margin_bottom = 244.0
 custom_fonts/font = ExtResource( 20 )
 text = "press \"WASD\" / Left Stick
-to move."
+to move"
 align = 1
 autowrap = true
 
@@ -745,15 +853,51 @@ material = ExtResource( 21 )
 position = Vector2( 170.866, 139.593 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 6
+frame = 2
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
 position = Vector2( 77.25, 139.5 )
 scale = Vector2( 0.283333, 0.283333 )
 frames = SubResource( 24 )
-frame = 1
+frame = 2
 playing = true
+
+[node name="Aim" type="Control" parent="."]
+margin_left = -101.0
+margin_top = -128.0
+margin_right = 223.0
+margin_bottom = 130.0
+rect_pivot_offset = Vector2( 406, 269 )
+mouse_filter = 2
+
+[node name="mouse" type="Sprite" parent="Aim"]
+position = Vector2( 56, 131 )
+scale = Vector2( 0.633333, 0.633333 )
+texture = ExtResource( 33 )
+
+[node name="Node2D" type="Node2D" parent="Aim"]
+position = Vector2( -95.0001, 38 )
+scale = Vector2( 0.776, 0.776 )
+
+[node name="crosshair" type="Sprite" parent="Aim/Node2D"]
+position = Vector2( 298, 121 )
+texture = ExtResource( 26 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Aim/Node2D"]
+playback_speed = 4.72
+"anims/New Anim" = SubResource( 69 )
+anims/RESET = SubResource( 70 )
+
+[node name="Label" type="Label" parent="Aim"]
+margin_left = -4.0
+margin_top = 193.0
+margin_right = 275.0
+margin_bottom = 258.0
+custom_fonts/font = ExtResource( 20 )
+text = "Mouse / Right Stick to aim"
+align = 1
+autowrap = true
 
 [node name="Shoot" type="Control" parent="."]
 margin_left = 446.0
@@ -782,7 +926,7 @@ material = ExtResource( 21 )
 position = Vector2( 292.286, 127 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 2
+frame = 5
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -796,7 +940,7 @@ margin_top = 193.0
 margin_right = 177.0
 margin_bottom = 231.0
 custom_fonts/font = ExtResource( 20 )
-text = "Left click / R1 to shoot."
+text = "Left click / R1 to shoot"
 align = 1
 
 [node name="Melee" type="Control" parent="."]
@@ -812,7 +956,7 @@ material = ExtResource( 21 )
 position = Vector2( 138, 141 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 1
+frame = 5
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
@@ -826,14 +970,14 @@ margin_top = 194.0
 margin_right = 202.0
 margin_bottom = 232.0
 custom_fonts/font = ExtResource( 20 )
-text = "Right click / L1 to melee."
+text = "Right click / L1 to melee"
 align = 1
 
 [node name="Dash" type="Control" parent="."]
-margin_left = 1208.0
-margin_top = 697.0
-margin_right = 1413.0
-margin_bottom = 839.0
+margin_left = 1180.0
+margin_top = 1384.0
+margin_right = 1385.0
+margin_bottom = 1526.0
 rect_pivot_offset = Vector2( 406, 269 )
 mouse_filter = 2
 
@@ -847,6 +991,7 @@ playing = true
 position = Vector2( 106, 40 )
 scale = Vector2( 0.406667, 0.406667 )
 frames = SubResource( 67 )
+frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="Dash"]

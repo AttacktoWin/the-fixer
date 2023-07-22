@@ -33,7 +33,7 @@ func save_settings() -> void:
 	var data = {}
 	data["master_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.MASTER, Scene)
 	data["music_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, Scene)
-	data["ui_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.UIVOLUME, Scene)
+	data["effect_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.EFFECTVOLUME, Scene)
 	data["aim_assist"] = AI.aim_assist
 
 	var file = File.new()
@@ -66,9 +66,9 @@ func load_keymap():
 
 func load_settings() -> void:
 	var data = load_json_file(SAVE_SETTINGS_FILE_NAME, {})
-	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MASTER, data.get("master_volume",100), Scene) 
-	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, data.get("music_volume",100), Scene) 
-	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.UIVOLUME, data.get("ui_volume",100), Scene)
+	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MASTER, data.get("master_volume",50), Scene) 
+	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, data.get("music_volume",50), Scene) 
+	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.EFFECTVOLUME, data.get("effect_volume",50), Scene)
 	AI.aim_assist = data.get("aim_assist", 0.5)
 
 	load_keymap()

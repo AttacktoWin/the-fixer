@@ -104,7 +104,7 @@ func apply_steering(in_vec: Vector2) -> Vector2:
 
 func _handle_pathfinding(delta):
 	if self._current_path:
-		self._current_path.update(self.global_position)
+		self._current_path.update(self.global_position, self.entity_radius)
 	if self.has_target():
 		if (
 			AI.has_LOS(self.global_position, self._target.global_position)

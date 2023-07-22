@@ -20,14 +20,25 @@ func _input(_event):
 	if Input.is_action_just_released("show_enemies") and Scene.exit:
 		_clear()
 
+func _get_target_instances():
+	var enemies = AI.get_all_enemies()
+	if(enemies.size() == 0):
+		enemies = [Scene.exit]
+	return enemies
 
 func _process(_delta):
 	if not Scene.player:
 		return
+	if Scene.exit and AI.get_all_enemies().size() == 0:
+		if Scene.exit.should_search_exit():
+			_show()
+		else:
+			_clear()
+			return
 	#Update the position of indicators
 	var player_node = Scene.player
 	var player_pos = player_node.get_global_transform_with_canvas().origin
-	var enemies = AI.get_all_enemies()
+	var enemies = _get_target_instances()
 	var index = 0
 
 	for indicator in indicators:
@@ -49,7 +60,7 @@ func _show():
 	var player_node = Scene.player
 	var player_pos = player_node.get_global_transform_with_canvas().origin
 
-	for enemy in AI.get_all_enemies():
+	for enemy in _get_target_instances():
 		#spawn
 		var indicator = indicator_scene.instance()
 		add_child(indicator)
