@@ -57,7 +57,7 @@ func _on_request_completed(result, response_code, headers, body):
 			self.update_available = true
 			emit_signal("update_avaliable")
 		else:
-			var newest_version = body.get_string_from_utf8()
+			var newest_version = JSON.parse(body.get_string_from_utf8()).result["latest"]
 			if (newest_version != self.current_version):
 				self.update_available = true
 				emit_signal("update_avaliable")
