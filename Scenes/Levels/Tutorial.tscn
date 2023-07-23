@@ -709,6 +709,7 @@ weapon_scene = ExtResource( 27 )
 
 [node name="E_Goomba" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( 1299, 989 )
+deaf = true
 
 [node name="Sense" parent="SortableEntities/Runtime/E_Goomba/IdleRadius" index="0"]
 scale = Vector2( 1, 0.5 )
@@ -799,7 +800,6 @@ script = ExtResource( 35 )
 position = Vector2( 7, 27 )
 scale = Vector2( 0.367, 0.367 )
 frames = SubResource( 24 )
-frame = 1
 playing = true
 script = SubResource( 83 )
 
@@ -807,7 +807,6 @@ script = SubResource( 83 )
 position = Vector2( -20, -398 )
 scale = Vector2( 0.345, 0.345 )
 frames = SubResource( 86 )
-frame = 1
 playing = true
 script = SubResource( 83 )
 
@@ -874,7 +873,6 @@ material = ExtResource( 21 )
 position = Vector2( 121, 139 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 9
 playing = true
 
 [node name="Aim" type="Control" parent="."]
@@ -940,7 +938,6 @@ material = ExtResource( 21 )
 position = Vector2( 228.497, 124.852 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 5
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -972,7 +969,7 @@ material = ExtResource( 21 )
 position = Vector2( 92.5, 142.333 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 4
+frame = 5
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
@@ -1009,7 +1006,6 @@ playing = true
 position = Vector2( 106, 40 )
 scale = Vector2( 0.406667, 0.406667 )
 frames = SubResource( 67 )
-frame = 1
 playing = true
 script = SubResource( 83 )
 
