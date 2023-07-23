@@ -28,7 +28,10 @@ var _melee = null
 var _has_default_weapons = false
 
 var _primary_control = 0  # mouse = 0, controller = 1
-var _last_aim_direction = 1
+var _last_aim_direction = Vector2()
+
+var _joystick_flick_check = Vector2.ZERO
+var _flick_timer = 0
 
 var _knockback_velocity = Vector2.ZERO
 
@@ -139,6 +142,12 @@ func get_melee_attack_speed():
 	return 1.0
 
 
+func get_melee_push():
+	if self._melee:
+		return self._melee.push_forward
+	return 0.0
+
+
 func has_gun() -> bool:
 	return self._gun != null
 
@@ -244,29 +253,27 @@ func controller_wanted_gun_vector():
 	return _aim_assist(v)
 
 
-func is_controller():
-	return self._primary_control == 1
+func controller_has_aim_input():
+	return controller_wanted_gun_vector().length() > 0.25
 
 
-func get_wanted_gun_vector():
+func get_wanted_gun_vector(check_gun: bool = true):
 	var v = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
-	var v2 = controller_wanted_gun_vector()
-	if v2.length() > 0.05 or self._primary_control == 1:
-		self._primary_control = 1
-		if v2.length() > 0.25:
-			self._last_aim_direction = sign(v2.x) if sign(v2.x) != 0 else 1.0
-		v = v2
-	if self.weapon_disabled or not self._gun:
+	if not Scene.is_controller():
+		return v
+	if self._flick_timer <= 1:
+		return self._last_aim_direction
+
+	v = controller_wanted_gun_vector()
+	if v.length() > 0.25:
+		self._last_aim_direction = v.normalized()
+	else:
+		v = self._last_aim_direction
+
+	if check_gun and self.weapon_disabled or not self._gun:
 		return Vector2(
-			(
-				0.1 * sign(v.x) * max(abs(getv(LivingEntityVariable.VELOCITY).x) / 120, 1)
-				if v.x != 0.0
-				else 1.0
-			),
-			1
+			0.1 * sign(v.x) * max(abs(getv(LivingEntityVariable.VELOCITY).x) / 120, 1), 1
 		)
-	if self._primary_control == 1 and v.length() < 0.05:
-		return Vector2(self._last_aim_direction, 0)
 	return v
 
 
@@ -350,7 +357,7 @@ func _update_shader():
 func _process(_delta):
 	_update_reload_progress()
 	_update_shader()
-	if OS.is_debug_build() and not is_controller():
+	if OS.is_debug_build() and not Scene.is_controller():
 		if Input.is_action_just_pressed("ui_focus_next"):
 			var enemy = load("res://Scenes/Enemies/E_Umbrella.tscn").instance()
 			enemy.global_position = CameraSingleton.get_absolute_mouse_iso()
@@ -437,7 +444,12 @@ func _try_move():
 
 
 func _handle_crosshair():
-	if not self._gun or not is_controller() or controller_wanted_gun_vector().length() < 0.05:
+	if (
+		not self._gun
+		or not Scene.is_controller()
+		or controller_wanted_gun_vector().length() < 0.25
+		or self._flick_timer <= 2
+	):
 		crosshair.visible = false
 		return
 	crosshair.visible = true
@@ -445,6 +457,25 @@ func _handle_crosshair():
 		self._gun.global_position
 		+ MathUtils.from_iso(controller_wanted_gun_vector().normalized() * 200)
 	)
+
+
+func _handle_aim_with_movement():
+	if not controller_has_aim_input():
+		var v = getv(LivingEntityVariable.VELOCITY)
+		if v.length_squared() > 10:
+			self._last_aim_direction = v.normalized()
+
+
+func _handle_joystick_flick():
+	self._flick_timer += 1
+	var v = controller_wanted_gun_vector()
+	var dx = v.x - self._joystick_flick_check.x
+	var dy = v.y - self._joystick_flick_check.y
+	var length = abs(dx) * abs(dx) + abs(dy) * abs(dy)
+	if length > 1.1:
+		self._flick_timer = 0
+
+	self._joystick_flick_check = v
 
 
 func _physics_process(delta):
@@ -455,6 +486,8 @@ func _physics_process(delta):
 	_handle_crosshair()
 	_handle_camera()
 	_try_move()
+	_handle_aim_with_movement()
+	_handle_joystick_flick()
 	._physics_process(delta)
 
 

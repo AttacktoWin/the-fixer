@@ -70,18 +70,36 @@ func pick_random_upgrade():
 			return x[0]
 
 
+func pick_random_upgrade_checked():
+	while true:
+		var up_name = pick_random_upgrade()
+		var valid = true
+		if self._class_lookup[up_name][UPGRADE_FLAG] == FLAG_SINGLE:
+			for handler in Scene.player.get_all_upgrade_handlers():
+				if handler.has_upgrade(up_name):
+					valid = false
+					break
+
+		if valid:
+			return up_name
+
+
 func pick_upgrade_pair():
-	var upgrade1 = pick_random_upgrade()
-	var upgrade2 = pick_random_upgrade()
+	var upgrade1 = pick_random_upgrade_checked()
+	var upgrade2 = pick_random_upgrade_checked()
 	while upgrade1 == upgrade2:
-		upgrade2 = pick_random_upgrade()
+		upgrade2 = pick_random_upgrade_checked()
 
 	return [upgrade1, upgrade2]
 
 
-func name_from_upgrade(upgrade: Upgrade) -> String:
+func name_from_upgrade(upgrade: Upgrade, use_class = false) -> String:
 	for key in self._class_lookup.keys():
 		var data = self._class_lookup[key]
-		if upgrade is data[UPGRADE_CLASS]:
-			return key
+		if use_class:
+			if upgrade.get_script() == data[UPGRADE_CLASS].get_script():
+				return key
+		else:
+			if upgrade is data[UPGRADE_CLASS]:
+				return key
 	return ""

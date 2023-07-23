@@ -25,6 +25,12 @@ func clear_upgrades() -> void:
 	self._known_upgrades = []
 
 
+func has_upgrade(upgrade: String) -> bool:
+	for up in self._known_upgrades:
+		if UpgradeSingleton.name_from_upgrade(up) == upgrade:
+			return true
+	return false
+
 
 func add_upgrades(upgrades: Array):
 	for upgrade in upgrades:

@@ -27,8 +27,10 @@ func _physics_process(delta):
 	if Input.is_action_pressed("weapon_fire_melee") and self.entity.has_melee():
 		self.fsm.set_state(PlayerState.FIRE_MELEE)
 
+
 func _background_physics(delta):
 	self.dash_timer -= delta
+
 
 func _process(_delta):
 	if self.t_timer > 0:
@@ -57,14 +59,16 @@ func _process(_delta):
 	else:
 		self.fsm.set_animation("IDLE")
 		self.fsm.get_animation_player().playback_speed = 1
-	
+
 	if self.dash_timer > 0 and self.fsm.can_transition_to(PlayerState.DASHING):
 		self.dash_timer = 0
 		self.fsm.set_state(PlayerState.DASHING)
 
+
 func _input(event):
 	if not self.fsm.is_this_state(self) and event.is_action("move_dash"):
 		self.dash_timer = 0.2
+
 
 func _unhandled_input(event: InputEvent):
 	if PausingSingleton.is_paused_recently(6) or not self.fsm.is_this_state(self):
@@ -81,7 +85,7 @@ func _unhandled_input(event: InputEvent):
 		and event.scancode == KEY_T
 		and not event.is_echo()
 		and event.is_pressed()
-		and randf() < 0.01
+		and randf() < 0.1 # :)
 	):
 		CameraSingleton.shake(20)
 		self.t_timer = 0.1

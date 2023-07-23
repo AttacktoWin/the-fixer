@@ -7,6 +7,7 @@ export var damage_override: float = -1
 export var knockback_override: float = -1
 export var hitbox_size_override: float = -1
 export var attack_speed: float = 1.0
+export var push_forward: float = 128.0
 
 var upgrade_handler = UpgradeHandler.new(self, UpgradeType.MELEE)
 

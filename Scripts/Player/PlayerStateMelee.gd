@@ -9,12 +9,19 @@ func get_handled_states():
 
 
 func enter():
-	self.entity.melee_hitbox.attack_direction = self.entity.get_wanted_gun_vector().angle()
-	self.entity.setv(LivingEntityVariable.VELOCITY, Vector2.ZERO)
+	var vec = self.entity.get_wanted_gun_vector(false)
+	self.entity.melee_hitbox.attack_direction = vec.angle()
+	self.entity.setv(LivingEntityVariable.VELOCITY, vec.normalized() * self.entity.get_melee_push())
 	self.fsm.set_animation("MELEE")
 	self.fsm.get_animation_player().playback_speed = self.entity.get_melee_attack_speed()
 	Wwise.post_event_id(AK.EVENTS.SWING_KNUCKLES_PLAYER, Scene)
 
+func _physics_process(delta):
+	var frames = MathUtils.delta_frames(delta)
+	var fac = pow(0.9, frames)
+	var current = self.entity.getv(LivingEntityVariable.VELOCITY)
+	current *= fac
+	self.entity.setv(LivingEntityVariable.VELOCITY, current)
 
 func on_anim_reached_end(_anim: String):
 	self.fsm.get_animation_player().playback_speed = 1.0
