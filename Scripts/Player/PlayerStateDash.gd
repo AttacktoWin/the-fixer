@@ -35,10 +35,16 @@ func enter():
 	self._has_dashed = false
 	self._dash_timer = 0.25
 
+
 func _update_dash_direction():
 	var v = self.entity.get_wanted_direction()
 	if v:
-		self._dash_direction = v
+		if Scene.is_controller():
+			if v.length() > 0.25:
+				self._dash_direction = v.normalized()
+		else:
+			self._dash_direction = v
+
 
 func _dash_increment(delta):
 	_update_dash_direction()
