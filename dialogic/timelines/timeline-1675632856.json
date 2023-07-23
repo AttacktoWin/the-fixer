@@ -13,7 +13,7 @@
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[i]These security systems are getting more complex, with more legs than they have any right to. I should be on my guard. [/i]"
+			"text": "[i]These security systems are getting more complex, with more legs than they have any right to. [/i]"
 		},
 		{
 			"event_id": "dialogic_022",

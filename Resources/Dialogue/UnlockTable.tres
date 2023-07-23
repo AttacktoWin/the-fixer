@@ -1,4 +1,4 @@
-[gd_resource type="Resource" load_steps=244 format=2]
+[gd_resource type="Resource" load_steps=249 format=2]
 
 [ext_resource path="res://Scripts/DialogueSystem/classes/UnlockTable.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/DialogueSystem/classes/UnlockTableEntry.gd" type="Script" id=2]
@@ -1219,6 +1219,31 @@ script = ExtResource( 2 )
 unlocked_ids = [  ]
 removed_ids = [  ]
 
+[sub_resource type="Resource" id=245]
+script = ExtResource( 3 )
+dialogue_id = "default"
+npc_id = "val"
+
+[sub_resource type="Resource" id=244]
+script = ExtResource( 2 )
+unlocked_ids = [ SubResource( 245 ) ]
+removed_ids = [  ]
+
+[sub_resource type="Resource" id=247]
+script = ExtResource( 3 )
+dialogue_id = "2"
+npc_id = "val"
+
+[sub_resource type="Resource" id=248]
+script = ExtResource ( 3 )
+dialogue_id = "default"
+npc_id = "val"
+
+[sub_resource type="Resource" id=246]
+script = ExtResource( 2 )
+unlocked_ids = [ SubResource( 247 ) ]
+removed_ids = [ SubResource( 248 ) ]
+
 [resource]
 script = ExtResource( 1 )
 entries = {
@@ -1305,5 +1330,7 @@ entries = {
 "npc-fixer-1-spyder2": SubResource( 240 ),
 "npc-fixer-1-beetle2": SubResource( 241 ),
 "npc-fixer-1-bird2": SubResource( 242 ),
-"npc-fixer-1-ant2": SubResource( 243 )
+"npc-fixer-1-ant2": SubResource( 243 ),
+"npc-val-default": SubResource( 244 ),
+"npc-val-2": SubResource( 246 )
 }
