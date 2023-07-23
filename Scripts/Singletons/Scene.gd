@@ -30,6 +30,7 @@ var _current_music = null
 var _current_music_id = null
 
 var _marked_inputs = {}
+var _primary_control = 0
 
 signal transition_start
 signal transition_complete
@@ -42,8 +43,10 @@ func _ready():
 	Wwise.register_game_obj(self, self.name)
 	self.process_priority = 1
 
+
 func _physics_process(_delta):
 	self._marked_inputs = {}
+
 
 func _update_pathfinder():
 	if self._level != null:
@@ -68,6 +71,38 @@ func _reload_variables(new_level: Level):
 			self._wall_material = self._wall_material.material
 		if self._player == null:
 			self._player = new_level.get_node_or_null("SortableEntities/Player")
+
+
+func _process(_delta):
+	var v = Vector2(
+		(
+			Input.get_action_strength("weapon_aim_right")
+			- Input.get_action_strength("weapon_aim_left")
+		),
+		Input.get_action_strength("weapon_aim_down") - Input.get_action_strength("weapon_aim_up")
+	)
+	if v.length() > 0.25:
+		self._primary_control = 1
+	var inputs = [
+		Input.get_action_strength("move_right"),
+		Input.get_action_strength("move_up"),
+		Input.get_action_strength("move_left"),
+		Input.get_action_strength("move_down")
+	]
+	for input in inputs:
+		if input > 0.1 and input != 1:
+			self._primary_control = 1
+
+
+func _input(event):
+	if event is InputEventKey or event is InputEventMouse:
+		self._primary_control = 0
+	if event is InputEventJoypadButton:
+		self._primary_control = 1
+
+
+func is_controller():
+	return self._primary_control == 1
 
 
 func set_root(root: Node2D):
@@ -114,11 +149,14 @@ func _get_exit():
 func _get_wall_material():
 	return self._wall_material
 
+
 func mark_input(ev_name):
 	self._marked_inputs[ev_name] = true
 
+
 func is_input_marked(ev_name):
 	return ev_name in self._marked_inputs
+
 
 func get_tree() -> SceneTree:
 	if !is_instance_valid(self._root):

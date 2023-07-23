@@ -7,6 +7,7 @@ var goal
 var max_per_room
 var enemy_buffer
 var enemy_info
+var weapon_spawn_chance
 var enemies = []
 var weapon = null
 
@@ -31,13 +32,14 @@ var _weapon_list = [
 ]
 
 
-func construct(_rng, _player, _goal, per_room, buffer, info):
+func construct(_rng, _player, _goal, per_room, buffer, info, w_spawn_chance):
 	self.rng = _rng
 	self.player = _player
 	self.goal = _goal
 	self.max_per_room = per_room
 	self.enemy_buffer = buffer
 	self.enemy_info = info
+	self.weapon_spawn_chance = w_spawn_chance
 
 
 func in_bounds(level, loc):
@@ -201,7 +203,7 @@ func spawn_pass(spawn_info, tile_map):
 
 
 func weapon_pass(room_list, path_by_room, tile_map, exit_room_index):
-	if self.rng.randf() < 0.25:
+	if self.rng.randf() > self.weapon_spawn_chance:
 		return
 
 	var rooms = room_list.duplicate()
@@ -218,7 +220,20 @@ func weapon_pass(room_list, path_by_room, tile_map, exit_room_index):
 		if t != null:
 			spawn_candidates.append(t)
 
-	self.weapon = self._weapon_list[self.rng.randi() % self._weapon_list.size()].instance()
+	var weapon_valid = false
+	while not weapon_valid:
+		self.weapon = self._weapon_list[self.rng.randi() % self._weapon_list.size()].instance()
+		# this does not work on loading a save, i can live with that
+		if Scene.player and Scene.player._melee and Scene.player._gun:
+			if (
+				self.weapon.get_script() == Scene.player._melee.get_script()
+				or self.weapon.get_script() == Scene.player._gun.get_script()
+			):
+				self.weapon.free()
+			else:
+				weapon_valid = true
+		else:
+			weapon_valid = true
 	var ww = WorldWeapon.new()
 	ww.set_weapon(self.weapon)
 	ww.auto_pickup = false

@@ -19,6 +19,7 @@ export(int) var beetle_spawn_rate = 15
 export(int) var ant_spawn_rate = 10
 export(int) var bird_spawn_rate = 10
 export(int) var rooms = 3
+export(float) var weapon_spawn_chance = 0.75
 
 export(Resource) var generator_data = PCG_RoomData.new()
 
@@ -104,7 +105,9 @@ func build_level():
 		generator_data.shrink_factor
 	)
 	corridor_builder.construct(rng, generator_data.corridor_width)
-	populator.construct(rng, player, exit, enemies_per_room, enemy_buffer, enemy_info)
+	populator.construct(
+		rng, player, exit, enemies_per_room, enemy_buffer, enemy_info, weapon_spawn_chance
+	)
 	filler.construct(rng)
 
 	var attempts = 0

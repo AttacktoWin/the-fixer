@@ -84,7 +84,7 @@ func _on_mouse_entered():
 	self.grab_focus()
 
 func _input(event):
-	get_parent().visible = (event is InputEventJoypadButton or event is InputEventJoypadMotion)
+	get_parent().visible = Scene.is_controller()
 	
 "
 
@@ -96,8 +96,8 @@ func reload_inputs():
 	for child in get_children():
 		child.display_current_key()
 
-func _input(event):
-	var mode = int(event is InputEventJoypadButton or event is InputEventJoypadMotion)
+func _process(_delta):
+	var mode = int(Scene.is_controller())
 	for child in get_children():
 		child.set_mode(mode)
 "

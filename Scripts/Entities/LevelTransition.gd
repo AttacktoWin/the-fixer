@@ -34,6 +34,16 @@ func _process(_delta):
 			exit.frame = 1
 
 
+func _physics_process(_delta):
+	if (
+		self.cleared
+		and self._upgrades == null
+		and Scene.player
+		and Scene.player in get_overlapping_bodies()
+	):
+		self.call_deferred("_transition")
+
+
 func _on_body_entered(body: Node2D):
 	if body is Player and self.cleared and self._upgrades == null:
 		self.call_deferred("_transition")
@@ -56,5 +66,9 @@ func _transition():
 	var inst = to_level.instance()
 	TransitionHelper.transition(inst, long_load, transfer_player, fade_time)
 
+
 func should_search_exit():
-	return self._upgrades and (is_instance_valid(self._upgrades) and not self._upgrades.is_collected())
+	return (
+		self._upgrades
+		and (is_instance_valid(self._upgrades) and not self._upgrades.is_collected())
+	)

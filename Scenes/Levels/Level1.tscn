@@ -235,6 +235,7 @@ spyder_spawn_rate = 0
 beetle_spawn_rate = 0
 ant_spawn_rate = 0
 rooms = 2
+weapon_spawn_chance = 0.0
 generator_data = SubResource( 7 )
 
 [node name="Floor" type="TileMap" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=2]
+[gd_scene load_steps=82 format=2]
 
 [ext_resource path="res://Assets/Tiles/Vault/hatch.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Tiles/Vault/vault-basic-floor.png" type="Texture" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://Assets/Sprites/Fixer/fixer_spritesheet_run_front.png" type="Texture" id=13]
 [ext_resource path="res://Assets/UI/Tutorial/mouse-left.png" type="Texture" id=14]
 [ext_resource path="res://Assets/Sprites/Fixer/fixer_spritesheet_punch_front.png" type="Texture" id=15]
-[ext_resource path="res://Assets/Sprites/Bullets/fixer-bullet.png" type="Texture" id=16]
 [ext_resource path="res://Assets/UI/Tutorial/E.png" type="Texture" id=17]
 [ext_resource path="res://Assets/UI/Tutorial/E-pressed.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Sprites/Fixer/fixer_spritesheet_idle.png" type="Texture" id=19]
@@ -23,7 +22,6 @@
 [ext_resource path="res://Assets/Magic/FixerOutline.tres" type="Material" id=21]
 [ext_resource path="res://Assets/UI/Tutorial/mouse-right.png" type="Texture" id=22]
 [ext_resource path="res://Assets/UI/Tutorial/wasd-a-down.png" type="Texture" id=23]
-[ext_resource path="res://Assets/UI/Tutorial/wasd.png" type="Texture" id=24]
 [ext_resource path="res://Assets/Tiles/Vault/hatch-closed.png" type="Texture" id=25]
 [ext_resource path="res://Assets/Sprites/Bullets/crosshair.png" type="Texture" id=26]
 [ext_resource path="res://Scenes/Weapons/PlayerPistolScene.tscn" type="PackedScene" id=27]
@@ -33,7 +31,7 @@
 [ext_resource path="res://Assets/Magic/Wall2.tres" type="Material" id=31]
 [ext_resource path="res://Scenes/Weapons/PlayerBrassKnucklesScene.tscn" type="PackedScene" id=32]
 [ext_resource path="res://Assets/UI/Tutorial/mouse.png" type="Texture" id=33]
-[ext_resource path="res://Assets/Sprites/Knife/spritesheet.png" type="Texture" id=34]
+[ext_resource path="res://Scripts/Utils/ControllerAwareLabel.gd" type="Script" id=35]
 
 [sub_resource type="GDScript" id=68]
 script/source = "extends Level
@@ -54,6 +52,33 @@ func _process(_delta):
 		var dist = (Scene.player.global_position - Scene.exit.global_position).length()
 		var a = MathUtils.interpolate((dist-min_dist)/(max_dist-min_dist), 0, 1, MathUtils.INTERPOLATE_OUT);
 		player_label.modulate.a = a
+"
+
+[sub_resource type="GDScript" id=87]
+resource_name = "WallChecker"
+script/source = "extends Control
+
+var _done = false
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+func _process(_delta):
+	if not self._done and Scene.player and Scene.player.has_gun():
+		var walls = get_node(\"%Walls\")
+		var coords = [[8,7],[8,6],[8,5],[8,4]]
+		for coord in coords:
+			walls.set_cell(coord[0], coord[1], -1)
+		self._done = true
+		var parent = get_parent()
+		parent.get_node(\"Aim\").visible = true
+		parent.get_node(\"Shoot\").visible = true
+		parent.get_node(\"Melee\").visible = true
+		
+		parent.get_node(\"Movement\").visible = false
+		parent.get_node(\"InteractLabel\").visible = false
 "
 
 [sub_resource type="NavigationPolygon" id=3]
@@ -256,7 +281,7 @@ func can_attack_hit(info: AttackInfo):
 	Scene.player.add_ammo(1)
 	return false
 
-func set_target(node: LivingEntity):
+func set_target(_node: LivingEntity):
 	pass
 "
 
@@ -296,61 +321,59 @@ func _process(delta):
 [sub_resource type="RectangleShape2D" id=66]
 extents = Vector2( 237.234, 57.3259 )
 
-[sub_resource type="AtlasTexture" id=71]
-flags = 4
-atlas = ExtResource( 34 )
-region = Rect2( 0, 894, 225, 298 )
-
-[sub_resource type="AtlasTexture" id=72]
-flags = 4
-atlas = ExtResource( 34 )
-region = Rect2( 225, 894, 225, 298 )
-
-[sub_resource type="AtlasTexture" id=73]
-flags = 4
-atlas = ExtResource( 34 )
-region = Rect2( 450, 894, 225, 298 )
-
-[sub_resource type="AtlasTexture" id=74]
-flags = 4
-atlas = ExtResource( 34 )
-region = Rect2( 675, 894, 225, 298 )
-
-[sub_resource type="AtlasTexture" id=75]
-flags = 4
-atlas = ExtResource( 34 )
-region = Rect2( 900, 894, 225, 298 )
-
-[sub_resource type="AtlasTexture" id=76]
-flags = 4
-atlas = ExtResource( 34 )
-region = Rect2( 1125, 894, 225, 298 )
-
-[sub_resource type="AtlasTexture" id=77]
-flags = 4
-atlas = ExtResource( 34 )
-region = Rect2( 1350, 894, 225, 298 )
-
-[sub_resource type="AtlasTexture" id=78]
-flags = 4
-atlas = ExtResource( 34 )
-region = Rect2( 1575, 894, 225, 298 )
-
-[sub_resource type="SpriteFrames" id=79]
-animations = [ {
-"frames": [ SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ) ],
-"loop": true,
-"name": "default",
-"speed": 15.0
-} ]
-
-[sub_resource type="SpriteFrames" id=63]
+[sub_resource type="SpriteFrames" id=24]
 animations = [ {
 "frames": [ ExtResource( 18 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 7.0
 } ]
+
+[sub_resource type="GDScript" id=83]
+resource_name = "HiddenIfController"
+script/source = "extends AnimatedSprite
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+func _process(_delta):
+	self.modulate.a = float(not Scene.is_controller())
+"
+
+[sub_resource type="SpriteFrames" id=86]
+animations = [ {
+"frames": [ ExtResource( 12 ), ExtResource( 23 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
+
+[sub_resource type="GDScript" id=82]
+script/source = "extends Label
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+func _process(_delta):
+	if AI.get_all_enemies().size() == 0:
+		self.visible = false
+"
 
 [sub_resource type="AtlasTexture" id=32]
 flags = 4
@@ -410,13 +433,24 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[sub_resource type="SpriteFrames" id=24]
-animations = [ {
-"frames": [ ExtResource( 24 ), ExtResource( 23 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "default",
-"speed": 7.0
-} ]
+[sub_resource type="GDScript" id=85]
+resource_name = "HiddenIfControllerSprite"
+script/source = "extends Sprite
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+func _process(_delta):
+	self.modulate.a = float(not Scene.is_controller())
+"
 
 [sub_resource type="Animation" id=69]
 resource_name = "New Anim"
@@ -510,33 +544,9 @@ animations = [ {
 [sub_resource type="Animation" id=60]
 resource_name = "New Anim"
 loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("bullet:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 325.286, 120 ), Vector2( 349.286, 120 ), Vector2( 369.286, 120 ) ]
-}
 
 [sub_resource type="Animation" id=61]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("bullet:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 298, 121 ) ]
-}
 
 [sub_resource type="AtlasTexture" id=43]
 flags = 4
@@ -617,9 +627,15 @@ margin_top = 1385.0
 margin_right = -175.0
 margin_bottom = 1490.0
 custom_fonts/font = ExtResource( 20 )
-text = "Press E / Xbox A to select an upgrade"
+text = "Press E to select an upgrade///Press Xbox X to select an upgrade"
 align = 1
 autowrap = true
+script = ExtResource( 35 )
+
+[node name="WallChecker" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+script = SubResource( 87 )
 
 [node name="Generator" type="Node2D" parent="."]
 script = ExtResource( 6 )
@@ -677,14 +693,14 @@ tile_set = ExtResource( 4 )
 cell_size = Vector2( 256, 128 )
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( 0, 4, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 3, 0, 5, 4, 0, 6, 2, 0, 7, 2, 0, 8, 2, 0, 65536, 4, 0, 65544, 3, 0, 131072, 2, 0, 131080, 2, 0, 131096, 2, 0, 131097, 2, 0, 131098, 2, 0, 131099, 2, 0, 131100, 4, 0, 131101, 2, 0, 131102, 2, 0, 131103, 3, 0, 131104, 4, 0, 131105, 2, 0, 131106, 2, 0, 131107, 2, 0, 131108, 2, 0, 131109, 2, 0, 131110, 4, 0, 196608, 3, 0, 196616, 4, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 3, 0, 196624, 2, 0, 196625, 2, 0, 196626, 3, 0, 196627, 4, 0, 196628, 2, 0, 196629, 2, 0, 196630, 2, 0, 196631, 2, 0, 196632, 2, 0, 196646, 2, 0, 262144, 2, 0, 262182, 2, 0, 327680, 2, 0, 327718, 4, 0, 393216, 3, 0, 393254, 2, 0, 458752, 2, 0, 458790, 3, 0, 524288, 2, 0, 524296, 2, 0, 524297, 2, 0, 524298, 2, 0, 524299, 2, 0, 524300, 2, 0, 524301, 2, 0, 524302, 2, 0, 524303, 2, 0, 524304, 2, 0, 524305, 4, 0, 524306, 2, 0, 524307, 4, 0, 524308, 2, 0, 524309, 2, 0, 524310, 2, 0, 524311, 2, 0, 524312, 2, 0, 524326, 3, 0, 589824, 2, 0, 589832, 2, 0, 589848, 2, 0, 589862, 2, 0, 655360, 2, 0, 655368, 4, 0, 655384, 2, 0, 655398, 2, 0, 720896, 2, 0, 720904, 2, 0, 720920, 3, 0, 720934, 2, 0, 786432, 2, 0, 786433, 2, 0, 786434, 2, 0, 786435, 2, 0, 786436, 2, 0, 786437, 2, 0, 786438, 3, 0, 786439, 2, 0, 786440, 4, 0, 786456, 2, 0, 786470, 3, 0, 851992, 2, 0, 852006, 2, 0, 917528, 2, 0, 917529, 2, 0, 917530, 2, 0, 917531, 2, 0, 917532, 2, 0, 917538, 2, 0, 917539, 2, 0, 917540, 2, 0, 917541, 2, 0, 917542, 2, 0, 983068, 3, 0, 983074, 2, 0, 1048604, 4, 0, 1048610, 2, 0, 1114140, 2, 0, 1114146, 2, 0, 1179676, 2, 0, 1179682, 4, 0, 1245197, 2, 0, 1245198, 2, 0, 1245199, 4, 0, 1245200, 4, 0, 1245201, 2, 0, 1245202, 3, 0, 1245203, 2, 0, 1245204, 2, 0, 1245205, 2, 0, 1245206, 2, 0, 1245212, 2, 0, 1245218, 2, 0, 1310733, 2, 0, 1310742, 2, 0, 1310748, 2, 0, 1310754, 3, 0, 1376269, 3, 0, 1376278, 2, 0, 1376279, 2, 0, 1376280, 2, 0, 1376281, 3, 0, 1376282, 4, 0, 1376283, 2, 0, 1376284, 2, 0, 1376290, 2, 0, 1441805, 2, 0, 1441826, 3, 0, 1507341, 2, 0, 1507362, 2, 0, 1572877, 2, 0, 1572898, 2, 0, 1638413, 2, 0, 1638434, 2, 0, 1703949, 2, 0, 1703962, 4, 0, 1703963, 2, 0, 1703964, 2, 0, 1703965, 2, 0, 1703966, 2, 0, 1703967, 3, 0, 1703968, 2, 0, 1703969, 2, 0, 1703970, 2, 0, 1769485, 2, 0, 1769498, 4, 0, 1835021, 2, 0, 1835022, 2, 0, 1835023, 2, 0, 1835024, 2, 0, 1835025, 2, 0, 1835026, 2, 0, 1835030, 2, 0, 1835031, 4, 0, 1835032, 2, 0, 1835033, 2, 0, 1835034, 4, 0, 1900562, 2, 0, 1900566, 2, 0, 1966098, 2, 0, 1966102, 2, 0, 2031634, 2, 0, 2031638, 2, 0, 2097170, 3, 0, 2097174, 2, 0, 2162699, 2, 0, 2162700, 2, 0, 2162701, 3, 0, 2162702, 3, 0, 2162703, 2, 0, 2162704, 2, 0, 2162705, 2, 0, 2162706, 4, 0, 2162710, 2, 0, 2162711, 2, 0, 2162712, 3, 0, 2162713, 2, 0, 2162714, 2, 0, 2162715, 2, 0, 2162716, 2, 0, 2162717, 2, 0, 2228235, 2, 0, 2228253, 4, 0, 2293771, 2, 0, 2293789, 2, 0, 2359307, 2, 0, 2359325, 3, 0, 2424843, 4, 0, 2424861, 2, 0, 2490379, 2, 0, 2490397, 2, 0, 2555915, 4, 0, 2555933, 2, 0, 2621448, 2, 0, 2621449, 2, 0, 2621450, 2, 0, 2621451, 2, 0, 2621469, 2, 0, 2621470, 2, 0, 2621471, 2, 0, 2621472, 2, 0, 2686984, 3, 0, 2687008, 2, 0, 2752520, 2, 0, 2752544, 3, 0, 2818056, 3, 0, 2818080, 2, 0, 2883592, 2, 0, 2883616, 2, 0, 2949128, 2, 0, 2949129, 2, 0, 2949130, 2, 0, 2949131, 2, 0, 2949149, 2, 0, 2949150, 2, 0, 2949151, 2, 0, 2949152, 3, 0, 3014667, 3, 0, 3014685, 2, 0, 3080203, 2, 0, 3080204, 2, 0, 3080205, 2, 0, 3080206, 3, 0, 3080207, 3, 0, 3080208, 2, 0, 3080209, 2, 0, 3080210, 2, 0, 3080211, 3, 0, 3080212, 2, 0, 3080213, 2, 0, 3080214, 2, 0, 3080215, 2, 0, 3080216, 4, 0, 3080217, 2, 0, 3080218, 2, 0, 3080219, 2, 0, 3080220, 2, 0, 3080221, 3, 0 )
+tile_data = PoolIntArray( 0, 4, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 3, 0, 5, 4, 0, 6, 2, 0, 7, 2, 0, 8, 2, 0, 65536, 4, 0, 65544, 3, 0, 131072, 2, 0, 131080, 2, 0, 131096, 2, 0, 131097, 2, 0, 131098, 2, 0, 131099, 2, 0, 131100, 4, 0, 131101, 2, 0, 131102, 2, 0, 131103, 3, 0, 131104, 4, 0, 131105, 2, 0, 131106, 2, 0, 131107, 2, 0, 131108, 2, 0, 131109, 2, 0, 131110, 4, 0, 196608, 3, 0, 196616, 4, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 3, 0, 196624, 2, 0, 196625, 2, 0, 196626, 3, 0, 196627, 4, 0, 196628, 2, 0, 196629, 2, 0, 196630, 2, 0, 196631, 2, 0, 196632, 2, 0, 196646, 2, 0, 262144, 2, 0, 262152, 2, 0, 262182, 2, 0, 327680, 2, 0, 327688, 2, 0, 327718, 4, 0, 393216, 3, 0, 393224, 2, 0, 393254, 2, 0, 458752, 2, 0, 458760, 2, 0, 458790, 3, 0, 524288, 2, 0, 524296, 2, 0, 524297, 2, 0, 524298, 2, 0, 524299, 2, 0, 524300, 2, 0, 524301, 2, 0, 524302, 2, 0, 524303, 2, 0, 524304, 2, 0, 524305, 4, 0, 524306, 2, 0, 524307, 4, 0, 524308, 2, 0, 524309, 2, 0, 524310, 2, 0, 524311, 2, 0, 524312, 2, 0, 524326, 3, 0, 589824, 2, 0, 589832, 2, 0, 589848, 2, 0, 589862, 2, 0, 655360, 2, 0, 655368, 4, 0, 655384, 2, 0, 655398, 2, 0, 720896, 2, 0, 720904, 2, 0, 720920, 3, 0, 720934, 2, 0, 786432, 2, 0, 786433, 2, 0, 786434, 2, 0, 786435, 2, 0, 786436, 2, 0, 786437, 2, 0, 786438, 3, 0, 786439, 2, 0, 786440, 4, 0, 786456, 2, 0, 786470, 3, 0, 851992, 2, 0, 852006, 2, 0, 917528, 2, 0, 917529, 2, 0, 917530, 2, 0, 917531, 2, 0, 917532, 2, 0, 917538, 2, 0, 917539, 2, 0, 917540, 2, 0, 917541, 2, 0, 917542, 2, 0, 983068, 3, 0, 983074, 2, 0, 1048604, 4, 0, 1048610, 2, 0, 1114140, 2, 0, 1114146, 2, 0, 1179676, 2, 0, 1179682, 4, 0, 1245197, 2, 0, 1245198, 2, 0, 1245199, 4, 0, 1245200, 4, 0, 1245201, 2, 0, 1245202, 3, 0, 1245203, 2, 0, 1245204, 2, 0, 1245205, 2, 0, 1245206, 2, 0, 1245212, 2, 0, 1245218, 2, 0, 1310733, 2, 0, 1310742, 2, 0, 1310748, 2, 0, 1310754, 3, 0, 1376269, 3, 0, 1376278, 2, 0, 1376279, 2, 0, 1376280, 2, 0, 1376281, 3, 0, 1376282, 4, 0, 1376283, 2, 0, 1376284, 2, 0, 1376290, 2, 0, 1441805, 2, 0, 1441826, 3, 0, 1507341, 2, 0, 1507362, 2, 0, 1572877, 2, 0, 1572898, 2, 0, 1638413, 2, 0, 1638434, 2, 0, 1703949, 2, 0, 1703962, 4, 0, 1703963, 2, 0, 1703964, 2, 0, 1703965, 2, 0, 1703966, 2, 0, 1703967, 3, 0, 1703968, 2, 0, 1703969, 2, 0, 1703970, 2, 0, 1769485, 2, 0, 1769498, 4, 0, 1835021, 2, 0, 1835022, 2, 0, 1835023, 2, 0, 1835024, 2, 0, 1835025, 2, 0, 1835026, 2, 0, 1835030, 2, 0, 1835031, 4, 0, 1835032, 2, 0, 1835033, 2, 0, 1835034, 4, 0, 1900562, 2, 0, 1900566, 2, 0, 1966098, 2, 0, 1966102, 2, 0, 2031634, 2, 0, 2031638, 2, 0, 2097170, 3, 0, 2097174, 2, 0, 2162699, 2, 0, 2162700, 2, 0, 2162701, 3, 0, 2162702, 3, 0, 2162703, 2, 0, 2162704, 2, 0, 2162705, 2, 0, 2162706, 4, 0, 2162710, 2, 0, 2162711, 2, 0, 2162712, 3, 0, 2162713, 2, 0, 2162714, 2, 0, 2162715, 2, 0, 2162716, 2, 0, 2162717, 2, 0, 2228235, 2, 0, 2228253, 4, 0, 2293771, 2, 0, 2293789, 2, 0, 2359307, 2, 0, 2359325, 3, 0, 2424843, 4, 0, 2424861, 2, 0, 2490379, 2, 0, 2490397, 2, 0, 2555915, 4, 0, 2555933, 2, 0, 2621448, 2, 0, 2621449, 2, 0, 2621450, 2, 0, 2621451, 2, 0, 2621469, 2, 0, 2621470, 2, 0, 2621471, 2, 0, 2621472, 2, 0, 2686984, 3, 0, 2687008, 2, 0, 2752520, 2, 0, 2752544, 3, 0, 2818056, 3, 0, 2818080, 2, 0, 2883592, 2, 0, 2883616, 2, 0, 2949128, 2, 0, 2949129, 2, 0, 2949130, 2, 0, 2949131, 2, 0, 2949149, 2, 0, 2949150, 2, 0, 2949151, 2, 0, 2949152, 3, 0, 3014667, 3, 0, 3014685, 2, 0, 3080203, 2, 0, 3080204, 2, 0, 3080205, 2, 0, 3080206, 3, 0, 3080207, 3, 0, 3080208, 2, 0, 3080209, 2, 0, 3080210, 2, 0, 3080211, 3, 0, 3080212, 2, 0, 3080213, 2, 0, 3080214, 2, 0, 3080215, 2, 0, 3080216, 4, 0, 3080217, 2, 0, 3080218, 2, 0, 3080219, 2, 0, 3080220, 2, 0, 3080221, 3, 0 )
 
 [node name="Player" parent="SortableEntities" instance=ExtResource( 5 )]
 position = Vector2( -122, 269 )
 start_melee = ExtResource( 32 )
 
 [node name="WorldWeapon" type="KinematicBody2D" parent="SortableEntities"]
-position = Vector2( -272, 380 )
+position = Vector2( -252, 388 )
 script = ExtResource( 28 )
 auto_pickup = false
 weapon_scene = ExtResource( 27 )
@@ -694,9 +710,8 @@ weapon_scene = ExtResource( 27 )
 [node name="E_Goomba" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( 1299, 989 )
 
-[node name="Instruct" type="Node2D" parent="SortableEntities/Runtime/E_Goomba"]
-z_index = 1
-z_as_relative = false
+[node name="Sense" parent="SortableEntities/Runtime/E_Goomba/IdleRadius" index="0"]
+scale = Vector2( 1, 0.5 )
 
 [node name="TheMostPowerfulGoomba" parent="SortableEntities/Runtime" instance=ExtResource( 7 )]
 position = Vector2( 1517, 1260 )
@@ -760,19 +775,13 @@ rotation = 0.785398
 shape = SubResource( 66 )
 
 [node name="DestroyEnemiesLabel" type="Label" parent="."]
-margin_left = 864.0
-margin_top = 545.0
-margin_right = 1199.0
-margin_bottom = 614.0
+margin_left = 901.0
+margin_top = 548.0
+margin_right = 1236.0
+margin_bottom = 617.0
 custom_fonts/font = ExtResource( 20 )
 text = "Destroy enemies that 
 guard the vault's secrets"
-
-[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
-position = Vector2( 833, 546 )
-scale = Vector2( 0.366667, 0.366667 )
-frames = SubResource( 79 )
-playing = true
 
 [node name="InteractLabel" type="Label" parent="."]
 margin_left = -360.0
@@ -780,16 +789,27 @@ margin_top = 410.0
 margin_right = -118.0
 margin_bottom = 515.0
 custom_fonts/font = ExtResource( 20 )
-text = "Press E / Xbox A to interact"
+text = "Press E to interact///Press Xbox X
+ to interact"
 align = 1
 autowrap = true
+script = ExtResource( 35 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="InteractLabel"]
-position = Vector2( -36, 28 )
-scale = Vector2( 0.366667, 0.366667 )
-frames = SubResource( 63 )
+position = Vector2( 7, 27 )
+scale = Vector2( 0.367, 0.367 )
+frames = SubResource( 24 )
 frame = 1
 playing = true
+script = SubResource( 83 )
+
+[node name="KeyboardSprites" type="AnimatedSprite" parent="InteractLabel"]
+position = Vector2( -20, -398 )
+scale = Vector2( 0.345, 0.345 )
+frames = SubResource( 86 )
+frame = 1
+playing = true
+script = SubResource( 83 )
 
 [node name="AntLabel1" type="Label" parent="."]
 margin_left = 456.0
@@ -828,6 +848,7 @@ custom_fonts/font = ExtResource( 20 )
 text = "Kill all enemies in the level to progress"
 align = 1
 autowrap = true
+script = SubResource( 82 )
 
 [node name="Movement" type="Control" parent="."]
 margin_left = -367.0
@@ -843,31 +864,25 @@ margin_top = 195.0
 margin_right = 214.0
 margin_bottom = 244.0
 custom_fonts/font = ExtResource( 20 )
-text = "press \"WASD\" / Left Stick
-to move"
+text = " Press \"WASD\" to move///Left Stick to move"
 align = 1
 autowrap = true
+script = ExtResource( 35 )
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="Movement"]
 material = ExtResource( 21 )
-position = Vector2( 170.866, 139.593 )
+position = Vector2( 121, 139 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 2
-playing = true
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Movement"]
-position = Vector2( 77.25, 139.5 )
-scale = Vector2( 0.283333, 0.283333 )
-frames = SubResource( 24 )
-frame = 2
+frame = 9
 playing = true
 
 [node name="Aim" type="Control" parent="."]
-margin_left = -101.0
-margin_top = -128.0
-margin_right = 223.0
-margin_bottom = 130.0
+visible = false
+margin_left = -136.0
+margin_top = 314.0
+margin_right = 188.0
+margin_bottom = 572.0
 rect_pivot_offset = Vector2( 406, 269 )
 mouse_filter = 2
 
@@ -875,6 +890,7 @@ mouse_filter = 2
 position = Vector2( 56, 131 )
 scale = Vector2( 0.633333, 0.633333 )
 texture = ExtResource( 33 )
+script = SubResource( 85 )
 
 [node name="Node2D" type="Node2D" parent="Aim"]
 position = Vector2( -95.0001, 38 )
@@ -895,11 +911,13 @@ margin_top = 193.0
 margin_right = 275.0
 margin_bottom = 258.0
 custom_fonts/font = ExtResource( 20 )
-text = "Mouse / Right Stick to aim"
+text = "Mouse to aim///Right stick to aim"
 align = 1
 autowrap = true
+script = ExtResource( 35 )
 
 [node name="Shoot" type="Control" parent="."]
+visible = false
 margin_left = 446.0
 margin_top = 254.0
 margin_right = 770.0
@@ -908,22 +926,18 @@ rect_pivot_offset = Vector2( 406, 269 )
 mouse_filter = 2
 
 [node name="mouse" type="Sprite" parent="Shoot"]
-position = Vector2( 56, 131 )
+position = Vector2( 6.49997, 129.333 )
 scale = Vector2( 0.633333, 0.633333 )
 texture = ExtResource( 14 )
+script = SubResource( 85 )
 
 [node name="Node2D" type="Node2D" parent="Shoot"]
 position = Vector2( -95.0001, 38 )
 scale = Vector2( 0.776, 0.776 )
 
-[node name="bullet" type="Sprite" parent="Shoot/Node2D"]
-position = Vector2( 298, 121 )
-scale = Vector2( 0.26087, 0.238095 )
-texture = ExtResource( 16 )
-
 [node name="fixer" type="AnimatedSprite" parent="Shoot/Node2D"]
 material = ExtResource( 21 )
-position = Vector2( 292.286, 127 )
+position = Vector2( 228.497, 124.852 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
 frame = 5
@@ -940,10 +954,12 @@ margin_top = 193.0
 margin_right = 177.0
 margin_bottom = 231.0
 custom_fonts/font = ExtResource( 20 )
-text = "Left click / R1 to shoot"
+text = "Hold left click to shoot///Hold R2 to shoot"
 align = 1
+script = ExtResource( 35 )
 
 [node name="Melee" type="Control" parent="."]
+visible = false
 margin_left = 320.0
 margin_top = 536.0
 margin_right = 644.0
@@ -953,16 +969,17 @@ mouse_filter = 2
 
 [node name="fixer" type="AnimatedSprite" parent="Melee"]
 material = ExtResource( 21 )
-position = Vector2( 138, 141 )
+position = Vector2( 92.5, 142.333 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 5
+frame = 4
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
-position = Vector2( 56, 131 )
+position = Vector2( 10.5, 132.333 )
 scale = Vector2( 0.633333, 0.633333 )
 texture = ExtResource( 22 )
+script = SubResource( 85 )
 
 [node name="Label" type="Label" parent="Melee"]
 margin_left = 2.0
@@ -970,8 +987,9 @@ margin_top = 194.0
 margin_right = 202.0
 margin_bottom = 232.0
 custom_fonts/font = ExtResource( 20 )
-text = "Right click / L1 to melee"
+text = "Hold right click to melee///Hold R1 to melee"
 align = 1
+script = ExtResource( 35 )
 
 [node name="Dash" type="Control" parent="."]
 margin_left = 1180.0
@@ -993,6 +1011,7 @@ scale = Vector2( 0.406667, 0.406667 )
 frames = SubResource( 67 )
 frame = 1
 playing = true
+script = SubResource( 83 )
 
 [node name="Label" type="Label" parent="Dash"]
 margin_left = -48.0
@@ -1000,4 +1019,9 @@ margin_top = 84.0
 margin_right = 233.0
 margin_bottom = 117.0
 custom_fonts/font = ExtResource( 20 )
-text = "press Space / R2 To Dash"
+text = "Press Space To Dash///Press L2 or Xbox A to dash"
+align = 1
+autowrap = true
+script = ExtResource( 35 )
+
+[editable path="SortableEntities/Runtime/E_Goomba"]
