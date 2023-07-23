@@ -807,6 +807,7 @@ script = SubResource( 83 )
 position = Vector2( -20, -398 )
 scale = Vector2( 0.345, 0.345 )
 frames = SubResource( 86 )
+frame = 2
 playing = true
 script = SubResource( 83 )
 
@@ -873,6 +874,7 @@ material = ExtResource( 21 )
 position = Vector2( 121, 139 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
+frame = 2
 playing = true
 
 [node name="Aim" type="Control" parent="."]
@@ -938,6 +940,7 @@ material = ExtResource( 21 )
 position = Vector2( 228.497, 124.852 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
+frame = 6
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -1003,7 +1006,7 @@ frames = SubResource( 62 )
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Dash"]
-position = Vector2( 106, 40 )
+position = Vector2( 84, 42 )
 scale = Vector2( 0.406667, 0.406667 )
 frames = SubResource( 67 )
 playing = true

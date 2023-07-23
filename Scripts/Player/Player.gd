@@ -259,18 +259,17 @@ func controller_has_aim_input():
 
 func get_wanted_gun_vector(check_gun: bool = true):
 	var v = MathUtils.to_iso(CameraSingleton.get_absolute_mouse() - arms_container.global_position)
-	if not Scene.is_controller():
-		return v
-	if self._flick_timer <= 1:
-		return self._last_aim_direction
+	if Scene.is_controller():
+		if self._flick_timer <= 1:
+			return self._last_aim_direction
 
-	v = controller_wanted_gun_vector()
-	if v.length() > 0.25:
-		self._last_aim_direction = v.normalized()
-	else:
-		v = self._last_aim_direction
+		v = controller_wanted_gun_vector()
+		if v.length() > 0.25:
+			self._last_aim_direction = v.normalized()
+		else:
+			v = self._last_aim_direction
 
-	if check_gun and self.weapon_disabled or not self._gun:
+	if check_gun and (self.weapon_disabled or not self._gun):
 		return Vector2(
 			0.1 * sign(v.x) * max(abs(getv(LivingEntityVariable.VELOCITY).x) / 120, 1), 1
 		)
