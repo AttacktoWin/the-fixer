@@ -12,7 +12,7 @@
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
-			"portrait": "Default",
+			"portrait": "Crossed",
 			"portrait_definition": "",
 			"position": {
 				"0": false,
@@ -49,29 +49,79 @@
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"Glad to see you back in one piece. I trust you're keeping an eye on our little... [i]problem[/i]?\""
+			"text": "\"You're back early, [pause=0.3]didn't go well?\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "Shadow",
-			"text": "\"Yeah, Boss. I'm keeping close watch on it. But it's not looking great.\""
+			"text": "\"Well, can't say I've ever had a knife grow legs and come at me before. [pause=0.6]No, not particularly well.\""
 		},
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
-			"portrait": "Crossed",
-			"text": "\"Just remember your new assignment. [pause=0.5] Get to the bottom of [color=#FDD838]The Vault[/color] and, [pause=0.3]you know, [pause=0.3]if something [speed=5][i]unfortunate[/i][speed=1][pause=0.2] were to happen to some of the machinery down there...?\""
+			"portrait": "(Don't change)",
+			"text": "\"Don't leave a job unfinished, got it?\""
+		},
+		{
+			"character": "character-1675203446.json",
+			"event_id": "dialogic_001",
+			"portrait": "Default",
+			"text": "\"Knives walking around is one thing, but there's a lot of The Family's history down there. [pause=0.3]You gotta stop whatever's happening before those decide to take a walk on the town.\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "Smile",
-			"text": "\"Sure would be a shame. Don't think anyone would be surprised though, sometimes [i]accidents[/i] happen, you know?\""
+			"portrait": "Default",
+			"text": "\"Understood, Boss.\""
+		},
+		{
+			"animation": "[Default]",
+			"animation_length": 0,
+			"animation_wait": true,
+			"change_mirror_portrait": false,
+			"change_z_index": false,
+			"character": "[All]",
+			"event_id": "dialogic_002",
+			"mirror_portrait": false,
+			"portrait": "",
+			"portrait_definition": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			},
+			"type": 1,
+			"z_index": 0
 		},
 		{
 			"emit_signal": "unpause",
 			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "bubble",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1677774779.cfg"
+		},
+		{
+			"block_input": true,
+			"event_id": "dialogic_050",
+			"wait_time": 3
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "\"The knives don't really walk though, they sorta jump at ya.\""
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 1
 		}
 	],
 	"metadata": {
