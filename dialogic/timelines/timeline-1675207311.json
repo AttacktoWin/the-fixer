@@ -55,7 +55,7 @@
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "(Don't change)",
-			"text": "[i]I had never seen anything like it before and yet, here it was. [pause=0.5]Staring me in the face... with a face.[/i]"
+			"text": "[i]Walking into that room, I coulda sworn that thing was looking me dead in the eyes.[/i]\n[i]This had to be the source of it, [pause=0.3]this was what I was sent to take care of.[/i]"
 		},
 		{
 			"character": "character-1675203357.json",
@@ -73,7 +73,7 @@
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "Smile",
-			"text": "\"Not much of a talker, huh? [pause=1][signal=anim-fixer-draw_weapon] Makes this next part easier for me.\""
+			"text": "\"Not much of a talker, huh? [pause=1] Makes this next part easier for me.\""
 		},
 		{
 			"emit_signal": "unpause",

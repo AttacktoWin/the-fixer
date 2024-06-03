@@ -12,19 +12,19 @@
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[i]My job used to be pretty simple. Get in, get the goods, get out.[/i]"
+			"text": "[i]My job used to be simple. Get in, get the goods, get out.[/i]"
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[i]But this time?[/i]"
+			"text": "[i]But when the goods started moving on their own and The Boss came knocking at my door?[/i]"
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[i]I knew that this time was gonna be different.[/i]"
+			"text": "[i]I knew this time was gonna be different.[/i]"
 		},
 		{
 			"emit_signal": "reveal_screen",

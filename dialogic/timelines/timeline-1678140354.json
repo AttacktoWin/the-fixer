@@ -12,7 +12,7 @@
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
-			"portrait": "Default",
+			"portrait": "Crossed",
 			"portrait_definition": "",
 			"position": {
 				"0": false,
@@ -49,43 +49,37 @@
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "\"I figure you've taken care of our little problem?\""
+			"text": "\"You're covered in more grease than usual, I take it our little [pause=0.3][speed=10][i]friend's[/i] [pause=0.3][speed=1]taken an impromptu trip out of town for the forseeable future?\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "Smile",
-			"text": "\"Our little friend down there won't be causing any more trouble for our operation.\""
+			"text": "\"Sure has, Boss. I don't think we'll be seeing it anytime soon.\""
 		},
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "Smile",
-			"text": "\"See, this is why you're a part of the family.\""
+			"text": "\"Good work out there. [pause=0.4]Now go get yourself cleaned up, [pause=0.3]you're tracking footprints all over the place.\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "Shadow",
-			"text": "[i]Still though.. what was that thing?[/i]"
+			"portrait": "Default",
+			"text": "\"You got it, Boss.\""
 		},
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
 			"portrait": "Crossed",
-			"text": "\"You feeling alright? You're looking a little pale.\""
+			"text": "\"Oh, and once you're back, we've got a lot of business to discuss... [pause=0.3]Now that our weapons aren't trying to mow you down I'm expecting you to get back to gathering them for hits and the like.\""
 		},
 		{
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "\"Yeah... just tired from the job is all.\""
-		},
-		{
-			"character": "character-1675203446.json",
-			"event_id": "dialogic_001",
-			"portrait": "",
-			"text": "\"Go distribute the goods as usual, then take it easy. You've earned your rest.\""
+			"portrait": "Shadow",
+			"text": "\"Gotta say, not a fan of being on the recieving end of some of our pieces.\""
 		},
 		{
 			"animation": "5-fade_out_down.gd",
@@ -118,19 +112,15 @@
 			"wait_seconds": 1
 		},
 		{
-			"character": "",
+			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "[i]A short time later.[/i]"
-		},
-		{
-			"emit_signal": "shake_screen",
-			"event_id": "dialogic_040"
+			"text": "[i]It finally looked like things were gonna get back to normal. [pause=0.7]Course, things are never that simple, are they?[/i]\n[i]In my line of work, simple's tough to come by.[/i]"
 		},
 		{
 			"call_node": {
 				"arguments": [
-					"ROAR MANIFESTATION"
+					"ROAR_MANIFESTATION"
 				],
 				"method_name": "play_sound",
 				"target_node_path": "DialogueSystem"
@@ -140,7 +130,7 @@
 		{
 			"event_id": "dialogic_023",
 			"hide_dialogbox": true,
-			"wait_seconds": 1
+			"wait_seconds": 2
 		},
 		{
 			"emit_signal": "reveal_screen",
@@ -175,7 +165,7 @@
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
-			"portrait": "Default",
+			"portrait": "Shadow Cross",
 			"portrait_definition": "",
 			"position": {
 				"0": false,
@@ -191,46 +181,13 @@
 			"character": "character-1675203357.json",
 			"event_id": "dialogic_001",
 			"portrait": "(Don't change)",
-			"text": "\"I take it our friend's no longer sleeping with the fishes.\""
+			"text": "\"Looks like our chat's gonna have to wait, Boss. I think our friend's back early from its vacation.\""
 		},
 		{
 			"character": "character-1675203446.json",
 			"event_id": "dialogic_001",
-			"portrait": "Shadow",
-			"text": "\"Ah, we got a real detective here.\""
-		},
-		{
-			"character": "character-1675203357.json",
-			"event_id": "dialogic_001",
-			"portrait": "Default",
-			"text": "\"I guess my new assgnment's not done yet.\""
-		},
-		{
-			"character": "character-1675203446.json",
-			"event_id": "dialogic_001",
-			"portrait": "Shadow Cross",
-			"text": "\"Get it done this time. [pause=1]See to it that our problem gets popped [speed=6][i]for good[/i].\""
-		},
-		{
-			"animation": "[Default]",
-			"animation_length": 0,
-			"change_mirror_portrait": false,
-			"change_position": true,
-			"change_z_index": false,
-			"character": "character-1675203357.json",
-			"event_id": "dialogic_002",
-			"mirror_portrait": false,
 			"portrait": "(Don't change)",
-			"portrait_definition": "",
-			"position": {
-				"0": false,
-				"1": false,
-				"2": true,
-				"3": false,
-				"4": false
-			},
-			"type": 2,
-			"z_index": 0
+			"text": "\"Oh, a real wiseguy. [pause=0.3]Make sure there's no [i]loose ends[/i] this time, ya see?\""
 		},
 		{
 			"animation": "5-fade_out_down.gd",
@@ -238,7 +195,7 @@
 			"animation_wait": true,
 			"change_mirror_portrait": false,
 			"change_z_index": false,
-			"character": "character-1675203446.json",
+			"character": "[All]",
 			"event_id": "dialogic_002",
 			"mirror_portrait": false,
 			"portrait": "",
@@ -254,14 +211,31 @@
 			"z_index": 0
 		},
 		{
-			"character": "character-1675203357.json",
-			"event_id": "dialogic_001",
-			"portrait": "Shadow",
-			"text": "[i]Looks like I gotta get down [color=#FDD838]there[/color] and take out... whatever that thing was, again.[/i]"
-		},
-		{
 			"emit_signal": "unpause",
 			"event_id": "dialogic_040"
+		},
+		{
+			"emit_signal": "bubble",
+			"event_id": "dialogic_040"
+		},
+		{
+			"event_id": "dialogic_024",
+			"set_theme": "theme-1677774779.cfg"
+		},
+		{
+			"block_input": true,
+			"event_id": "dialogic_050",
+			"wait_time": 3
+		},
+		{
+			"character": "character-1675203357.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "[i]Oh, I'll make sure that thing never gets up again.[/i]"
+		},
+		{
+			"event_id": "dialogic_022",
+			"transition_duration": 0.5
 		}
 	],
 	"metadata": {
