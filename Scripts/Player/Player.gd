@@ -496,7 +496,9 @@ func knockback(vel: Vector2):
 
 func update_health_bar():
 	var bar = Scene.ui.get_node("HUD/HealthBar")
-	bar.value = ((getv(LivingEntityVariable.HEALTH) / getv(LivingEntityVariable.MAX_HEALTH)) * 100)
+	# bar.value = ((getv(LivingEntityVariable.HEALTH) / getv(LivingEntityVariable.MAX_HEALTH)) * 100)
+	print(getv(LivingEntityVariable.HEALTH))
+	bar.current_health = getv(LivingEntityVariable.HEALTH)
 
 
 func _on_take_damage(info: AttackInfo):

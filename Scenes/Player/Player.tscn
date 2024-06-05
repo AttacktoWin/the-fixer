@@ -375,6 +375,7 @@ height = 30.0
 collision_layer = 4
 script = ExtResource( 12 )
 base_speed = 450.0
+base_health = 10.0
 
 [node name="FlashNode" type="Node2D" parent="."]
 
