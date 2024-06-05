@@ -2,7 +2,7 @@
 
 class_name HealthPickup extends WorldPickup
 
-const DEFAULT_HEALING = 25
+const DEFAULT_HEALING = 2
 
 export var amount: int = DEFAULT_HEALING
 

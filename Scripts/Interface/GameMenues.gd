@@ -12,8 +12,8 @@ func _ready():
 	# $Settings/VBoxContainer/Cancel.connect("button_down", self, "_settings_close")  #warning-ignore:return_value_discarded
 	$PauseMenu/VBoxContainer/Exit2HUB.connect("button_down", self, "_exit2hub")  #warning-ignore:return_value_discarded
 	$PauseMenu/VBoxContainer/Exit.connect("button_down", self, "_exit")
-	$Settings/VBoxContainer/Save.connect("button_down", self, "_save_settings")
-	$Settings/VBoxContainer/Cancel.connect("button_down", self, "_cancel_settings")
+	$Settings/Save/Save.connect("button_down", self, "_save_settings")
+	$Settings/Save/Cancel.connect("button_down", self, "_cancel_settings")
 
 func _input(_event):
 	if Input.is_action_just_pressed("ui_cancel") and (Scene.level_node and Scene.level_node.level_index != -3):
@@ -63,9 +63,9 @@ func _pause_open():
 func _settings_open():
 	$PauseMenu.visible = false
 	$Settings.visible = true
-	$"Settings/Audio Settings".reload_sliders()
-	$"Settings/InputMapper".reload_inputs()
-	$"Settings/Audio Settings/Master/HSlider".grab_focus()
+	$"Settings/TabContainer/Audio/Audio Settings".reload_sliders()
+	$"Settings/TabContainer/Controls/InputMapper".reload_inputs()
+	$"Settings/TabContainer/Audio/Audio Settings/Master/HSlider".grab_focus()
 
 func _exit2hub():
 	$PauseMenu.visible = false

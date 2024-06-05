@@ -14,4 +14,4 @@ class HealthRunnable:
 	extends Runnable
 
 	func run(arg):
-		return arg + 20
+		return arg + 2

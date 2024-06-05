@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Assets/UI/Buttons/button-cancel.png" type="Texture" id=1]
 [ext_resource path="res://Assets/UI/Buttons/button-save-hover.png" type="Texture" id=2]
@@ -10,6 +10,10 @@
 [ext_resource path="res://Scripts/Interface/VolumeSlider.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Interface/RemappableButton.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/Interface/FocusButton.gd" type="Script" id=11]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 0 )
+draw_center = false
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends VBoxContainer
@@ -89,7 +93,7 @@ func _input(event):
 "
 
 [sub_resource type="GDScript" id=4]
-script/source = "extends HBoxContainer
+script/source = "extends GridContainer
 	
 
 func reload_inputs():
@@ -111,22 +115,35 @@ margin_left = -910.0
 margin_top = -1080.0
 margin_right = 910.0
 
-[node name="Audio Settings" type="VBoxContainer" parent="."]
-margin_left = 420.0
-margin_top = 72.0
-margin_right = 920.0
-margin_bottom = 568.0
+[node name="TabContainer" type="TabContainer" parent="."]
+margin_left = 39.0
+margin_top = 82.0
+margin_right = 1810.0
+margin_bottom = 1036.0
+custom_fonts/font = ExtResource( 7 )
+custom_styles/panel = SubResource( 6 )
+
+[node name="Audio" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 131.0
+
+[node name="Audio Settings" type="VBoxContainer" parent="TabContainer/Audio"]
+margin_left = 340.0
+margin_top = 112.0
+margin_right = 840.0
+margin_bottom = 608.0
 rect_scale = Vector2( 0.8, 0.8 )
 script = SubResource( 3 )
 
-[node name="Master" type="Label" parent="Audio Settings"]
+[node name="Master" type="Label" parent="TabContainer/Audio/Audio Settings"]
 margin_right = 500.0
 margin_bottom = 121.0
 rect_pivot_offset = Vector2( -1719, -146 )
 custom_fonts/font = ExtResource( 7 )
 text = "Master Volume"
 
-[node name="HSlider" type="HSlider" parent="Audio Settings/Master"]
+[node name="HSlider" type="HSlider" parent="TabContainer/Audio/Audio Settings/Master"]
 margin_left = 478.0
 margin_top = 19.0
 margin_right = 1238.0
@@ -141,14 +158,14 @@ step = 5.0
 value = 50.0
 script = ExtResource( 8 )
 
-[node name="Music" type="Label" parent="Audio Settings"]
+[node name="Music" type="Label" parent="TabContainer/Audio/Audio Settings"]
 margin_top = 125.0
 margin_right = 500.0
 margin_bottom = 246.0
 custom_fonts/font = ExtResource( 7 )
 text = "Music Volume"
 
-[node name="HSlider" type="HSlider" parent="Audio Settings/Music"]
+[node name="HSlider" type="HSlider" parent="TabContainer/Audio/Audio Settings/Music"]
 margin_left = 478.0
 margin_top = 19.0
 margin_right = 1238.0
@@ -163,7 +180,7 @@ value = 50.0
 script = ExtResource( 8 )
 track = 1
 
-[node name="Combat" type="Label" parent="Audio Settings"]
+[node name="Combat" type="Label" parent="TabContainer/Audio/Audio Settings"]
 margin_top = 250.0
 margin_right = 500.0
 margin_bottom = 371.0
@@ -171,7 +188,7 @@ rect_pivot_offset = Vector2( -1719, -146 )
 custom_fonts/font = ExtResource( 7 )
 text = "Combat Volume"
 
-[node name="HSlider" type="HSlider" parent="Audio Settings/Combat"]
+[node name="HSlider" type="HSlider" parent="TabContainer/Audio/Audio Settings/Combat"]
 margin_left = 478.0
 margin_top = 19.0
 margin_right = 1238.0
@@ -186,19 +203,26 @@ value = 50.0
 script = ExtResource( 8 )
 track = 2
 
-[node name="AimAssist" type="Label" parent="Audio Settings"]
-margin_top = 375.0
-margin_right = 500.0
-margin_bottom = 496.0
+[node name="Controls" type="Tabs" parent="TabContainer"]
+margin_right = 40.0
+margin_bottom = 24.0
+
+[node name="AimAssist" type="Label" parent="TabContainer/Controls"]
+visible = false
+margin_left = 795.0
+margin_top = 165.0
+margin_right = 1295.0
+margin_bottom = 286.0
+rect_scale = Vector2( 0.814, 0.814 )
 rect_pivot_offset = Vector2( -1719, -146 )
 custom_fonts/font = ExtResource( 7 )
 text = "Aim Assist Factor"
 
-[node name="HSlider" type="HSlider" parent="Audio Settings/AimAssist"]
-margin_left = 478.0
-margin_top = 19.0
-margin_right = 1238.0
-margin_bottom = 119.0
+[node name="HSlider" type="HSlider" parent="TabContainer/Controls/AimAssist"]
+margin_left = 465.275
+margin_top = 18.6192
+margin_right = 1225.28
+margin_bottom = 118.619
 custom_icons/grabber_highlight = ExtResource( 5 )
 custom_icons/grabber = ExtResource( 6 )
 custom_styles/slider = SubResource( 1 )
@@ -209,52 +233,60 @@ step = 0.05
 value = 0.5
 script = SubResource( 5 )
 
-[node name="InputMapper" type="HBoxContainer" parent="."]
-margin_left = 109.0
-margin_top = 581.0
-margin_right = 2123.96
-margin_bottom = 731.0
+[node name="InputMapper" type="GridContainer" parent="TabContainer/Controls"]
+anchor_right = 0.435
+margin_left = 432.0
+margin_top = 140.0
+margin_right = 2446.96
+margin_bottom = 567.0
 rect_scale = Vector2( 0.8, 0.8 )
+custom_constants/vseparation = 60
+custom_constants/hseparation = 100
+columns = 2
 script = SubResource( 4 )
 
-[node name="ControlButtonInteract" parent="InputMapper" instance=ExtResource( 10 )]
+[node name="ControlButtonInteract" parent="TabContainer/Controls/InputMapper" instance=ExtResource( 10 )]
 margin_right = 500.0
 margin_bottom = 150.0
 action = "pickup_weapon"
 label = "Interact"
 
-[node name="ControlButtonFire" parent="InputMapper" instance=ExtResource( 10 )]
-margin_left = 504.0
-margin_right = 1004.0
+[node name="ControlButtonFire" parent="TabContainer/Controls/InputMapper" instance=ExtResource( 10 )]
+margin_left = 600.0
+margin_right = 1100.0
 margin_bottom = 150.0
 action = "weapon_fire_ranged"
 label = "Shoot"
 
-[node name="ControlButtonMelee" parent="InputMapper" instance=ExtResource( 10 )]
-margin_left = 1008.0
-margin_right = 1508.0
-margin_bottom = 150.0
+[node name="ControlButtonMelee" parent="TabContainer/Controls/InputMapper" instance=ExtResource( 10 )]
+margin_top = 210.0
+margin_right = 500.0
+margin_bottom = 360.0
 action = "weapon_fire_melee"
 label = "Melee"
 
-[node name="ControlButtonDash" parent="InputMapper" instance=ExtResource( 10 )]
-margin_left = 1512.0
-margin_right = 2012.0
-margin_bottom = 150.0
+[node name="ControlButtonDash" parent="TabContainer/Controls/InputMapper" instance=ExtResource( 10 )]
+margin_left = 600.0
+margin_top = 210.0
+margin_right = 1100.0
+margin_bottom = 360.0
 action = "move_dash"
 label = "Dash"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Save" type="HBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -250.0
-margin_top = 173.0
-margin_right = 250.0
-margin_bottom = 477.0
+margin_left = 368.0
+margin_top = 421.0
+margin_right = 1372.0
+margin_bottom = 571.0
+rect_scale = Vector2( 0.8, 0.8 )
+rect_pivot_offset = Vector2( -3839, -1103 )
+custom_constants/separation = 0
 
-[node name="Save" type="TextureButton" parent="VBoxContainer"]
+[node name="Save" type="TextureButton" parent="Save"]
 margin_right = 500.0
 margin_bottom = 150.0
 texture_normal = ExtResource( 3 )
@@ -262,16 +294,16 @@ texture_hover = ExtResource( 2 )
 texture_focused = ExtResource( 2 )
 script = ExtResource( 11 )
 
-[node name="Cancel" type="TextureButton" parent="VBoxContainer"]
-margin_top = 154.0
-margin_right = 500.0
-margin_bottom = 304.0
+[node name="Cancel" type="TextureButton" parent="Save"]
+margin_left = 500.0
+margin_right = 1000.0
+margin_bottom = 150.0
 texture_normal = ExtResource( 1 )
 texture_hover = ExtResource( 4 )
 texture_focused = ExtResource( 4 )
 script = ExtResource( 11 )
 
-[connection signal="value_changed" from="Audio Settings/Master/HSlider" to="Audio Settings/Master/HSlider" method="_on_HSlider_value_changed"]
-[connection signal="value_changed" from="Audio Settings/Music/HSlider" to="Audio Settings/Music/HSlider" method="_on_HSlider_value_changed"]
-[connection signal="value_changed" from="Audio Settings/Combat/HSlider" to="Audio Settings/Combat/HSlider" method="_on_HSlider_value_changed"]
-[connection signal="value_changed" from="Audio Settings/AimAssist/HSlider" to="Audio Settings/AimAssist/HSlider" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Audio/Audio Settings/Master/HSlider" to="TabContainer/Audio/Audio Settings/Master/HSlider" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Audio/Audio Settings/Music/HSlider" to="TabContainer/Audio/Audio Settings/Music/HSlider" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Audio/Audio Settings/Combat/HSlider" to="TabContainer/Audio/Audio Settings/Combat/HSlider" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="TabContainer/Controls/AimAssist/HSlider" to="TabContainer/Controls/AimAssist/HSlider" method="_on_HSlider_value_changed"]
