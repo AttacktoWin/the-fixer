@@ -627,7 +627,7 @@ margin_top = 1385.0
 margin_right = -175.0
 margin_bottom = 1490.0
 custom_fonts/font = ExtResource( 20 )
-text = "Press E to select an upgrade///Press Xbox X to select an upgrade"
+text = "Press E to select an upgrade///Press Xbox A to select an upgrade"
 align = 1
 autowrap = true
 script = ExtResource( 35 )
@@ -790,7 +790,7 @@ margin_top = 410.0
 margin_right = -118.0
 margin_bottom = 515.0
 custom_fonts/font = ExtResource( 20 )
-text = "Press E to interact///Press Xbox X
+text = "Press E to interact///Press Xbox A
  to interact"
 align = 1
 autowrap = true
@@ -800,6 +800,7 @@ script = ExtResource( 35 )
 position = Vector2( 7, 27 )
 scale = Vector2( 0.367, 0.367 )
 frames = SubResource( 24 )
+frame = 1
 playing = true
 script = SubResource( 83 )
 
@@ -807,7 +808,7 @@ script = SubResource( 83 )
 position = Vector2( -20, -398 )
 scale = Vector2( 0.345, 0.345 )
 frames = SubResource( 86 )
-frame = 2
+frame = 3
 playing = true
 script = SubResource( 83 )
 
@@ -874,7 +875,7 @@ material = ExtResource( 21 )
 position = Vector2( 121, 139 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 2
+frame = 8
 playing = true
 
 [node name="Aim" type="Control" parent="."]
@@ -940,7 +941,7 @@ material = ExtResource( 21 )
 position = Vector2( 228.497, 124.852 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 6
+frame = 4
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -972,7 +973,7 @@ material = ExtResource( 21 )
 position = Vector2( 92.5, 142.333 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 5
+frame = 1
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
@@ -1018,7 +1019,7 @@ margin_top = 84.0
 margin_right = 233.0
 margin_bottom = 117.0
 custom_fonts/font = ExtResource( 20 )
-text = "Press Space To Dash///Press L2 or Xbox A to dash"
+text = "Press Space To Dash///Press L2 or Xbox X to dash"
 align = 1
 autowrap = true
 script = ExtResource( 35 )
