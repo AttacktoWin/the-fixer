@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/plugin-editor-icon-dark-theme-1.5.svg-929f75a0513df90d21fa132ddf63d8c2.stex"
+path="res://.import/health-full.png-8a2bb05e54b456591fca5193787085e7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/dialogic/Images/Plugin/plugin-editor-icon-dark-theme-1.5.svg"
-dest_files=[ "res://.import/plugin-editor-icon-dark-theme-1.5.svg-929f75a0513df90d21fa132ddf63d8c2.stex" ]
+source_file="res://Assets/UI/health-full.png"
+dest_files=[ "res://.import/health-full.png-8a2bb05e54b456591fca5193787085e7.stex" ]
 
 [params]
 
