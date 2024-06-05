@@ -424,7 +424,7 @@ collision_layer = 0
 collision_mask = 32
 script = ExtResource( 5 )
 base_speed = 0.0
-base_damage = 20.0
+base_damage = 4.0
 base_knockback = 512.0
 allied_class = ExtResource( 11 )
 attack_type = 2
@@ -504,6 +504,7 @@ script = ExtResource( 10 )
 
 [node name="UmbrellaStateRangedAttack" type="Node2D" parent="FSMController"]
 script = ExtResource( 7 )
+bullet_damage = 2
 
 [node name="EnemyStateAlert" type="Node2D" parent="FSMController"]
 script = ExtResource( 6 )

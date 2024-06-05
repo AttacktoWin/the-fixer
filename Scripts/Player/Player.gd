@@ -535,19 +535,21 @@ func _on_take_damage(info: AttackInfo):
 	fx.scale = Vector2.ONE / 1.5
 	self.status_timers.set_timer(LivingEntityStatus.INVULNERABLE, INVULNERABLE_TIME)
 	update_health_bar()
-	Scene.ui.get_node("DamageFeedback").add_value(info.damage / 25.0)
+	Scene.ui.get_node("DamageFeedback").add_value(info.damage / 2.5)
 	# if info.damage <= 15:
 	# 	Wwise.post_event_id(AK.EVENTS.SMALL_HURT_PLAYER, Scene)
 	# elif info.damage <= 20:
 	# 	Wwise.post_event_id(AK.EVENTS.MEDIUM_HURT_PLAYER, Scene)
 	# else:
 	# 	Wwise.post_event_id(AK.EVENTS.BIG_HIT_PLAYER, Scene)
-	var is_beetle = info.damage_source is Beetle
-	var old_damage = info.damage
-	if is_beetle:
-		info.damage=2
 	._on_take_damage(info)
-	info.damage = old_damage
+
+
+func _take_damage(amount: float, info: AttackInfo = null):
+	var is_beetle = info.damage_source is Beetle
+	if is_beetle:
+		amount=5
+	._take_damage(amount, info)
 
 
 func _on_death(info: AttackInfo):

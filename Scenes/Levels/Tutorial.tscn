@@ -67,6 +67,7 @@ var _ant_check_done = false
 var _spawns = null
 var _spawn_index = 0
 var _active_spawn = null
+var _finished = false
 const GOOMBA = preload(\"res://Scenes/Enemies/E_Goomba.tscn\");
 
 func _ready():
@@ -188,6 +189,15 @@ func _ant_check():
 		Scene.ui.get_node(\"HUD/EnemyIcon\").visible=true
 		Scene.ui.get_node(\"HUD/Counter\").visible=true
 
+func _finished_check():
+	if self._finished:
+		return
+		
+	if AI.get_all_enemies().size() == 0:
+		get_parent().get_node(\"InteractLabel2\").visible=true
+		get_parent().get_node(\"FixerVision\").visible=false
+		self._finished = true
+
 func _process(_delta):
 	_enemy_check_1()
 	_weapon_check()
@@ -195,6 +205,7 @@ func _process(_delta):
 	_ammo_check()
 	_melee_practice()
 	_ant_check()
+	_finished_check()
 "
 
 [sub_resource type="NavigationPolygon" id=3]
@@ -1464,6 +1475,25 @@ frames = SubResource( 24 )
 playing = true
 script = SubResource( 83 )
 
+[node name="InteractLabel2" type="Label" parent="."]
+visible = false
+margin_left = -1868.0
+margin_top = 1023.0
+margin_right = -1626.0
+margin_bottom = 1190.0
+custom_fonts/font = ExtResource( 20 )
+text = "Press E near an upgrade to select///Press Xbox A  near an upgrade to select"
+align = 1
+autowrap = true
+script = ExtResource( 35 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="InteractLabel2"]
+position = Vector2( -26, 28 )
+scale = Vector2( 0.367, 0.367 )
+frames = SubResource( 24 )
+playing = true
+script = SubResource( 83 )
+
 [node name="AntLabel1" type="Label" parent="."]
 visible = false
 margin_left = -850.0
@@ -1540,7 +1570,7 @@ material = ExtResource( 21 )
 position = Vector2( 121, 139 )
 scale = Vector2( 0.351344, 0.351344 )
 frames = SubResource( 42 )
-frame = 8
+frame = 4
 playing = true
 
 [node name="Melee" type="Control" parent="."]
@@ -1556,7 +1586,7 @@ material = ExtResource( 21 )
 position = Vector2( 92.5, 142.333 )
 scale = Vector2( 0.351, 0.351 )
 frames = SubResource( 31 )
-frame = 1
+frame = 3
 playing = true
 
 [node name="mouse" type="Sprite" parent="Melee"]
@@ -1638,7 +1668,6 @@ material = ExtResource( 21 )
 position = Vector2( 228.497, 124.852 )
 scale = Vector2( 0.472689, 0.472689 )
 frames = SubResource( 59 )
-frame = 7
 playing = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Shoot/Node2D"]
@@ -1675,7 +1704,6 @@ playing = true
 position = Vector2( 84, 42 )
 scale = Vector2( 0.406667, 0.406667 )
 frames = SubResource( 67 )
-frame = 1
 playing = true
 script = SubResource( 83 )
 
