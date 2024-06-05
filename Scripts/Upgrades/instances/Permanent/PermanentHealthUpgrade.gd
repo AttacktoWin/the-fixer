@@ -24,7 +24,7 @@ func get_upgrade_types() -> Array:
 class PermanentHealthRunnable:
 	extends Runnable
 
-	var extra = 0.0
+	var extra = 1.0
 
 	func run(arg):
 		return arg + self.extra
