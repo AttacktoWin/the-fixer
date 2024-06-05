@@ -396,6 +396,25 @@ func _process(_delta):
 			# 	enemy.queue_free()
 		if Input.is_action_just_pressed("ui_page_up"):
 			apply_upgrades([MaxHealthUpgrade.new()])
+			var scene = load("res://Scenes/Levels/Level5.tscn").instance()
+			TransitionHelper.transition(scene, true, true, 0.01)
+			# for enemy in AI.get_all_enemies():
+			# 	enemy.queue_free()
+		if Input.is_key_pressed(KEY_1):
+			CameraSingleton.set_zoom(Vector2.ONE * 1)
+			CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
+		if Input.is_key_pressed(KEY_2):
+			CameraSingleton.set_zoom(Vector2.ONE * 2)
+			CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
+		if Input.is_key_pressed(KEY_3):
+			CameraSingleton.set_zoom(Vector2.ONE * 3)
+			CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
+		if Input.is_key_pressed(KEY_4):
+			CameraSingleton.set_zoom(Vector2.ONE * 4)
+			CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
+		if Input.is_key_pressed(KEY_5):
+			CameraSingleton.set_zoom(Vector2.ONE * 5)
+			CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
 
 #			var d = DualUpgrade.new()
 #			Scene.runtime.add_child(d)
@@ -496,7 +515,6 @@ func knockback(vel: Vector2):
 func update_health_bar():
 	var bar = Scene.ui.get_node("HUD/HealthBar")
 	# bar.value = ((getv(LivingEntityVariable.HEALTH) / getv(LivingEntityVariable.MAX_HEALTH)) * 100)
-	print(getv(LivingEntityVariable.HEALTH))
 	bar.current_health = getv(LivingEntityVariable.HEALTH)
 
 
@@ -524,7 +542,12 @@ func _on_take_damage(info: AttackInfo):
 	# 	Wwise.post_event_id(AK.EVENTS.MEDIUM_HURT_PLAYER, Scene)
 	# else:
 	# 	Wwise.post_event_id(AK.EVENTS.BIG_HIT_PLAYER, Scene)
+	var is_beetle = info.damage_source is Beetle
+	var old_damage = info.damage
+	if is_beetle:
+		info.damage=2
 	._on_take_damage(info)
+	info.damage = old_damage
 
 
 func _on_death(info: AttackInfo):

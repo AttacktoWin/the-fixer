@@ -25,7 +25,7 @@ func can_transition(_from):
 
 func enter():
 	self.entity.status_timers.delta_timer(LivingEntityStatus.INVULNERABLE, DASH_INVULNERABILITY)
-
+	self.entity.set_collision_mask_bit(3, false)
 	self._gun_angle = MathUtils.abs_x(self.entity.get_wanted_gun_vector()).angle()
 	self._gun_counter = 0
 	Wwise.post_event_id(AK.EVENTS.DODGE_PLAYER, Scene)
@@ -46,12 +46,18 @@ func _update_dash_direction():
 			self._dash_direction = v
 
 
-func _dash_increment(delta):
+func _dash_increment(_delta):
 	_update_dash_direction()
 	CameraSingleton.set_zoom(Vector2(0.97, 0.97))
 	CameraSingleton.jump_field(CameraSingleton.TARGET.ZOOM)
 	CameraSingleton.set_zoom(Vector2(1, 1))
-	self.entity.move_and_slide(self._dash_direction * 320 * 60 * MathUtils.delta_frames(delta))
+	var old_pos = self.entity.global_position
+	self.entity.move_and_slide(self._dash_direction * 320 * 60)
+	self.entity.set_collision_mask_bit(3, true)
+
+	if self.entity.move_and_collide(Vector2(0, 0), true, true, true):
+		self.entity.global_position = old_pos
+		self.entity.move_and_slide(self._dash_direction * 320 * 60)
 	self._has_dashed = true
 
 
