@@ -114,5 +114,8 @@ func _input(event):
 	# 	_on_update_available()
 
 func _on_update_available():
-	$UpdatePopUp.visible = true
-	$UpdatePopUp/TextureButton.grab_focus()
+	var node = get_node_or_null("UpdatePopUp")
+	if not node:
+		return
+	node.visible = true
+	node.get_node("TextureButton").grab_focus()
