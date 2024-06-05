@@ -93,6 +93,8 @@ func add_ammo(ammo: int) -> int:
 	self.ammo_count += ammo
 	if self.ammo_count > self.max_ammo:
 		self.ammo_count = self.max_ammo
+	if self.ammo_count < 0:
+		self.ammo_count = 0
 	return self.ammo_count - old_count
 
 
