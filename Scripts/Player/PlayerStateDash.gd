@@ -56,8 +56,26 @@ func _dash_increment(_delta):
 	self.entity.set_collision_mask_bit(3, true)
 
 	if self.entity.move_and_collide(Vector2(0, 0), true, true, true):
-		self.entity.global_position = old_pos
-		self.entity.move_and_slide(self._dash_direction * 320 * 60)
+		# we couldn't dash, but maybe we can go to a nearby tile?
+		var this_tile = MathUtils.to_level_vector(self.entity.global_position).floor()
+		var dx = [0, -1,0,1, -1,1, -1,0,1]
+		var dy = [0, -1,-1,-1, 0,0, 1,1,1]
+
+		var successful_pos = false
+		var try_tile_original_pos = self.entity.global_position
+		var successful_distance = 1000 * 1000
+		for x in range(9):
+			var try_pos = MathUtils.from_level_vector(this_tile + Vector2(dx[x], dy[x])) + Vector2(0, Constants.TILE.SIDE)
+			if try_pos.distance_squared_to(try_tile_original_pos) > successful_distance or not Pathfinder.is_in_bounds(try_pos):
+				continue
+			self.entity.global_position = try_pos
+			if not self.entity.move_and_collide(Vector2(0, 0), true, true, true):
+				successful_distance = try_pos.distance_squared_to(try_tile_original_pos)
+				successful_pos = true
+
+		if not successful_pos:
+			self.entity.global_position = old_pos
+			self.entity.move_and_slide(self._dash_direction * 320 * 60)
 	self._has_dashed = true
 
 
