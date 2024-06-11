@@ -47,6 +47,7 @@ func _ready():
 	# move flash into limbo
 	self.flash_node.get_parent().remove_child(self.flash_node)
 	StatsSingleton.apply_upgrades(self)
+	
 
 
 func _world_updated():

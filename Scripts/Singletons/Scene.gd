@@ -192,7 +192,22 @@ func load(new_level: Level):
 	emit_signal("transition_complete")
 	emit_signal("world_updated")
 	play_level_music()
+	set_contrast_mode()
 
+func set_contrast_mode():
+	var status = SaveHelper.contrast_mode
+	
+	for enemy in AI.get_all_enemies():
+		if status:
+			_player.visual.get_node("PlayerSprite").material.set_shader_param("c_strength",1)
+			_player.arms_container.get_node("Arm").material.set_shader_param("c_strength",1)
+			_player.visual.get_node("Arm2").material.set_shader_param("c_strength",1)
+			enemy.sprite_material.set_shader_param("c_strength",1)
+		else:
+			_player.visual.get_node("PlayerSprite").material.set_shader_param("c_strength",0)
+			_player.arms_container.get_node("Arm").material.set_shader_param("c_strength",0)
+			_player.visual.get_node("Arm2").material.set_shader_param("c_strength",0)
+			enemy.sprite_material.set_shader_param("c_strength",0)
 
 func play_level_music():
 	if not self._level_node:
@@ -237,3 +252,5 @@ func switch(new_level: Level, transfer_player: bool = false):
 	else:
 		self.deload()
 		self.load(new_level)
+
+
