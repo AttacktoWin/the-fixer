@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/UI/Buttons/button-cancel.png" type="Texture" id=1]
 [ext_resource path="res://Assets/UI/Buttons/button-save-hover.png" type="Texture" id=2]
@@ -14,10 +14,24 @@
 [ext_resource path="res://Assets/UI/Menu/settings-mid.png" type="Texture" id=12]
 [ext_resource path="res://Assets/UI/Buttons/toggle.png" type="Texture" id=13]
 [ext_resource path="res://Assets/UI/Buttons/toggle-hover.png" type="Texture" id=14]
+[ext_resource path="res://Scripts/Utils/ControllerAwareLabel.gd" type="Script" id=15]
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 0 )
 draw_center = false
+
+[sub_resource type="GDScript" id=8]
+script/source = "extends TabContainer
+func _unhandled_input(event):
+	if not PausingSingleton.is_paused():
+		return
+	var tab = current_tab
+	if event.is_action_pressed(\"ui_tab_left\"):
+		tab -= 1
+	elif event.is_action_pressed(\"ui_tab_right\"):
+		tab += 1
+	current_tab = (get_child_count() + tab) % get_child_count()
+"
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends VBoxContainer
@@ -83,6 +97,20 @@ func _on_TextureButton_toggled(button_pressed):
 	Scene.set_contrast_mode()
 "
 
+[sub_resource type="GDScript" id=4]
+script/source = "extends GridContainer
+	
+
+func reload_inputs():
+	for child in get_children():
+		child.display_current_key()
+
+func _process(_delta):
+	var mode = int(Scene.is_controller())
+	for child in get_children():
+		child.set_mode(mode)
+"
+
 [sub_resource type="GDScript" id=5]
 script/source = "extends HSlider
 
@@ -107,19 +135,14 @@ func _input(event):
 	
 "
 
-[sub_resource type="GDScript" id=4]
-script/source = "extends GridContainer
-	
+[sub_resource type="DynamicFontData" id=19]
+font_path = "res://Assets/UI/BAHNSCHRIFT.TTF"
 
-func reload_inputs():
-	for child in get_children():
-		child.display_current_key()
-
-func _process(_delta):
-	var mode = int(Scene.is_controller())
-	for child in get_children():
-		child.set_mode(mode)
-"
+[sub_resource type="DynamicFont" id=20]
+size = 84
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 19 )
 
 [node name="Control" type="Control"]
 anchor_left = 0.5
@@ -151,6 +174,7 @@ margin_right = 1810.0
 margin_bottom = 1036.0
 custom_fonts/font = ExtResource( 7 )
 custom_styles/panel = SubResource( 6 )
+script = SubResource( 8 )
 
 [node name="Audio" type="Tabs" parent="TabContainer"]
 anchor_right = 1.0
@@ -186,6 +210,7 @@ custom_styles/grabber_area = SubResource( 2 )
 step = 5.0
 value = 50.0
 script = ExtResource( 8 )
+autofocus = true
 
 [node name="Music" type="Label" parent="TabContainer/Audio/Audio Settings"]
 margin_top = 125.0
@@ -253,41 +278,16 @@ script = SubResource( 7 )
 
 [node name="Controls" type="Tabs" parent="TabContainer"]
 visible = false
-margin_right = 40.0
-margin_bottom = 24.0
-
-[node name="AimAssist" type="Label" parent="TabContainer/Controls"]
-visible = false
-margin_left = 795.0
-margin_top = 165.0
-margin_right = 1295.0
-margin_bottom = 286.0
-rect_scale = Vector2( 0.814, 0.814 )
-rect_pivot_offset = Vector2( -1719, -146 )
-custom_fonts/font = ExtResource( 7 )
-text = "Aim Assist Factor"
-
-[node name="HSlider" type="HSlider" parent="TabContainer/Controls/AimAssist"]
-margin_left = 465.275
-margin_top = 18.6192
-margin_right = 1225.28
-margin_bottom = 118.619
-custom_icons/grabber_highlight = ExtResource( 5 )
-custom_icons/grabber = ExtResource( 6 )
-custom_styles/slider = SubResource( 1 )
-custom_styles/grabber_area_highlight = SubResource( 2 )
-custom_styles/grabber_area = SubResource( 2 )
-max_value = 1.0
-step = 0.05
-value = 0.5
-script = SubResource( 5 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 131.0
 
 [node name="InputMapper" type="GridContainer" parent="TabContainer/Controls"]
 anchor_right = 0.435
 margin_left = 432.0
-margin_top = 140.0
+margin_top = 88.0
 margin_right = 2446.96
-margin_bottom = 567.0
+margin_bottom = 515.0
 rect_scale = Vector2( 0.8, 0.8 )
 custom_constants/vseparation = 60
 custom_constants/hseparation = 100
@@ -299,6 +299,7 @@ margin_right = 500.0
 margin_bottom = 150.0
 action = "pickup_weapon"
 label = "Interact"
+autofocus = true
 
 [node name="ControlButtonFire" parent="TabContainer/Controls/InputMapper" instance=ExtResource( 10 )]
 margin_left = 600.0
@@ -321,6 +322,31 @@ margin_right = 1100.0
 margin_bottom = 360.0
 action = "move_dash"
 label = "Dash"
+
+[node name="AimAssist" type="Label" parent="TabContainer/Controls"]
+margin_left = 693.0
+margin_top = 444.0
+margin_right = 1193.0
+margin_bottom = 565.0
+rect_scale = Vector2( 0.8, 0.8 )
+rect_pivot_offset = Vector2( -1719, -146 )
+custom_fonts/font = ExtResource( 7 )
+text = "Aim Assist Factor"
+
+[node name="HSlider" type="HSlider" parent="TabContainer/Controls/AimAssist"]
+margin_left = 465.275
+margin_top = 18.6192
+margin_right = 1225.28
+margin_bottom = 118.619
+custom_icons/grabber_highlight = ExtResource( 5 )
+custom_icons/grabber = ExtResource( 6 )
+custom_styles/slider = SubResource( 1 )
+custom_styles/grabber_area_highlight = SubResource( 2 )
+custom_styles/grabber_area = SubResource( 2 )
+max_value = 1.0
+step = 0.05
+value = 0.5
+script = SubResource( 5 )
 
 [node name="Save" type="HBoxContainer" parent="."]
 anchor_left = 0.5
@@ -351,6 +377,30 @@ texture_normal = ExtResource( 1 )
 texture_hover = ExtResource( 4 )
 texture_focused = ExtResource( 4 )
 script = ExtResource( 11 )
+
+[node name="L1" type="Label" parent="."]
+margin_left = 487.0
+margin_top = 113.0
+margin_right = 822.0
+margin_bottom = 246.0
+rect_pivot_offset = Vector2( 243, 100 )
+custom_fonts/font = SubResource( 20 )
+text = "///L1"
+align = 1
+autowrap = true
+script = ExtResource( 15 )
+
+[node name="L2" type="Label" parent="."]
+margin_left = 1031.0
+margin_top = 113.0
+margin_right = 1366.0
+margin_bottom = 246.0
+rect_pivot_offset = Vector2( 243, 100 )
+custom_fonts/font = SubResource( 20 )
+text = "///R1"
+align = 1
+autowrap = true
+script = ExtResource( 15 )
 
 [connection signal="value_changed" from="TabContainer/Audio/Audio Settings/Master/HSlider" to="TabContainer/Audio/Audio Settings/Master/HSlider" method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="TabContainer/Audio/Audio Settings/Music/HSlider" to="TabContainer/Audio/Audio Settings/Music/HSlider" method="_on_HSlider_value_changed"]
