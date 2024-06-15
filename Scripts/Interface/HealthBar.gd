@@ -34,5 +34,8 @@ func set_healthbar():
 				health_pips[pip].status = true
 			else:
 				health_pips[pip].status = false
+			health_pips[pip].update()
+
+
 func _process(_delta):
 	set_healthbar()

@@ -3,10 +3,19 @@ extends HSlider
 
 enum TRACK { MASTER, MUSIC, COMBAT }
 export(TRACK) var track
+export var autofocus: bool = false
 
 func _ready():
 	reset_value()
 	connect("mouse_entered", self, "_on_mouse_entered")
+
+
+func _process(_delta):
+	if not self.is_visible_in_tree() or not autofocus or not Scene.is_controller():
+		return
+	var focus_owner = get_focus_owner()
+	if focus_owner == null or not focus_owner.is_inside_tree() or not focus_owner.is_visible_in_tree():
+		self.grab_focus()
 
 func reset_value():
 	if track == TRACK.MASTER:

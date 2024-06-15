@@ -8,7 +8,7 @@ script/source = "extends TextureRect
 
 export(bool) var status = true
 
-func _process(delta):
+func update():
 	if status==false:
 		get_child(0).visible = true
 	else:

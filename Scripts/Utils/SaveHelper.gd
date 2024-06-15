@@ -15,6 +15,7 @@ const MAPPABLE_KEYS = ["pickup_weapon", "weapon_fire_ranged", "weapon_fire_melee
 
 # i am too lazy to put this somewhere better.
 var keymappings = {}
+var contrast_mode = false
 
 func _ready():
 	for action in MAPPABLE_KEYS:
@@ -35,6 +36,7 @@ func save_settings() -> void:
 	data["music_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, Scene)
 	data["effect_volume"] = Wwise.get_rtpc_id(AK.GAME_PARAMETERS.EFFECTVOLUME, Scene)
 	data["aim_assist"] = AI.aim_assist
+	data["contrast_mode"] = contrast_mode
 
 	var file = File.new()
 	file.open(SAVE_SETTINGS_FILE_NAME, File.WRITE)
@@ -70,7 +72,7 @@ func load_settings() -> void:
 	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.MUSICVOLUME, data.get("music_volume",50), Scene) 
 	Wwise.set_rtpc_id(AK.GAME_PARAMETERS.EFFECTVOLUME, data.get("effect_volume",50), Scene)
 	AI.aim_assist = data.get("aim_assist", 0.5)
-
+	contrast_mode = data.get("contrast_mode",false)
 	load_keymap()
 
 func delete():

@@ -10,6 +10,7 @@ func get_handled_states():
 
 func enter():
 	var vec = self.entity.get_wanted_gun_vector(false)
+	self.entity.visual.scale.x = sign(vec.x) if vec.x != 0.0 else 1.0
 	self.entity.melee_hitbox.attack_direction = vec.angle()
 	self.entity.setv(LivingEntityVariable.VELOCITY, vec.normalized() * self.entity.get_melee_push())
 	self.fsm.set_animation("MELEE")

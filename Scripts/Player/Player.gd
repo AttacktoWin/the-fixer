@@ -47,6 +47,7 @@ func _ready():
 	# move flash into limbo
 	self.flash_node.get_parent().remove_child(self.flash_node)
 	StatsSingleton.apply_upgrades(self)
+	
 
 
 func _world_updated():
@@ -396,8 +397,8 @@ func _process(_delta):
 			# 	enemy.queue_free()
 		if Input.is_action_just_pressed("ui_page_up"):
 			apply_upgrades([MaxHealthUpgrade.new()])
-			var scene = load("res://Scenes/Levels/Level5.tscn").instance()
-			TransitionHelper.transition(scene, true, true, 0.01)
+			#var scene = load("res://Scenes/Levels/Level5.tscn").instance()
+			# TransitionHelper.transition(scene, true, true, 0.01)
 			# for enemy in AI.get_all_enemies():
 			# 	enemy.queue_free()
 		if Input.is_key_pressed(KEY_1):
@@ -516,6 +517,7 @@ func update_health_bar():
 	var bar = Scene.ui.get_node("HUD/HealthBar")
 	# bar.value = ((getv(LivingEntityVariable.HEALTH) / getv(LivingEntityVariable.MAX_HEALTH)) * 100)
 	bar.current_health = getv(LivingEntityVariable.HEALTH)
+	bar.reset_health()
 
 
 func _on_take_damage(info: AttackInfo):
