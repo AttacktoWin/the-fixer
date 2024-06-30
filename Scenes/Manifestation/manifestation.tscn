@@ -2229,7 +2229,6 @@ tracks/13/keys = {
 [sub_resource type="Animation" id=129]
 resource_name = "WAKEUP"
 length = 2.0
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Visual/skeleton/torso/chest/arm_right_upper/arm_right_lower/arm_right_hand:position")
 tracks/0/interp = 1
@@ -2381,7 +2380,7 @@ tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 0.3, 0.9, 1.4, 2 ),
+"times": PoolRealArray( 0, 0.9, 1.4, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 29.767 ), Vector2( 0, 29.767 ), Vector2( 0, 9.76709 ), Vector2( 0, 9.76709 ) ]
@@ -2405,7 +2404,7 @@ tracks/14/loop_wrap = true
 tracks/14/imported = false
 tracks/14/enabled = true
 tracks/14/keys = {
-"times": PoolRealArray( 0.1, 0.7, 1.6, 2 ),
+"times": PoolRealArray( 0, 0.7, 1.6, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -1, -203.186 ), Vector2( -1, -203.186 ), Vector2( -1, -214.186 ), Vector2( -1, -214.186 ) ]
@@ -2992,7 +2991,6 @@ default_length = 100.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visual"]
 root_node = NodePath("../..")
-autoplay = "WAKEUP"
 anims/DEATH = SubResource( 5 )
 anims/IDLE = SubResource( 1 )
 anims/RESET = SubResource( 2 )
